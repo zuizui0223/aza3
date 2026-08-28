@@ -2,8 +2,9 @@
   "contract_version": "chapter3_eazami_handoff_contract_v1",
   "status_date": "2026-08-28",
   "source_repository": "https://github.com/zuizui0223/EAzami",
-  "source_merge_sha": "4fc03f128a7ec05ce9e16e1daedef23b61104b89",
+  "source_merge_sha": "62fa8c5c913c2b236e710f6bad366e80676aa78f",
   "source_pr": "https://github.com/zuizui0223/EAzami/pull/129",
+  "source_completeness_pr": "https://github.com/zuizui0223/EAzami/pull/130",
   "source_files": [
     {
       "path": "data/evidence/chapter2_resolution_classification_v1.csv",
@@ -12,7 +13,7 @@
     },
     {
       "path": "data/evidence/meta_simulation_resolution_audit_v1.csv",
-      "canonical_text_sha256": "d775a8335efc2bc3dc059769b19e33f4703db2208af805fa1cec63ca332c9470",
+      "canonical_text_sha256": "a223dcb7a88cfeeed487b7b1d39c8d412113a818e7ae81c9637859fd699f346a",
       "role": "complete meta-analysis and simulation disposition"
     },
     {

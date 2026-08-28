@@ -16,7 +16,8 @@ INTAKE_PATH = ROOT / "data" / "intake" / "chapter3_individual_intake_v1.csv"
 SCOPE_PATH = ROOT / "docs" / "CHAPTER3_SCOPE_AND_HANDOFF_V1.md"
 README_PATH = ROOT / "README.md"
 
-SOURCE_MERGE_SHA = "4fc03f128a7ec05ce9e16e1daedef23b61104b89"
+SOURCE_MERGE_SHA = "62fa8c5c913c2b236e710f6bad366e80676aa78f"
+SOURCE_META_SIM_SHA256 = "a223dcb7a88cfeeed487b7b1d39c8d412113a818e7ae81c9637859fd699f346a"
 SOURCE_PRIORITY_SHA256 = "48066b17bb3767f8aa23e4945184125d83d3f71e09ecdfd4aa94352e15fec252"
 
 INTAKE_FIELDS = [
@@ -67,6 +68,12 @@ def validate_contract() -> dict:
     )
     if source_priority["canonical_text_sha256"] != SOURCE_PRIORITY_SHA256:
         raise AssertionError("source sampling-priority provenance drift")
+    source_meta_sim = next(
+        row for row in sources
+        if row["path"] == "data/evidence/meta_simulation_resolution_audit_v1.csv"
+    )
+    if source_meta_sim["canonical_text_sha256"] != SOURCE_META_SIM_SHA256:
+        raise AssertionError("source meta/simulation audit provenance drift")
 
     locked = contract["chapter2_locked_results"]
     expected = {
@@ -132,11 +139,12 @@ def validate_sampling_priorities() -> list[dict[str, str]]:
 
 def validate_bounded_priors() -> list[dict[str, str]]:
     rows = read_rows(PRIOR_PATH)
-    if [row["prior_id"] for row in rows] != [f"B{i:02d}" for i in range(1, 11)]:
-        raise AssertionError("bounded-prior registry must contain ordered B01-B10")
+    if [row["prior_id"] for row in rows] != [f"B{i:02d}" for i in range(1, 15)]:
+        raise AssertionError("bounded-prior registry must contain ordered B01-B14")
     allowed = {
         "BOUNDED_PRIOR", "MEASUREMENT_REQUIREMENT", "DESIGN_CONSTRAINT",
         "FEASIBILITY_PRIOR", "STOP_RULE", "SAMPLING_REQUIREMENT", "REFERENCE_ONLY",
+        "ROUTING_ONLY",
     }
     for row in rows:
         if row["admission_status"] not in allowed:
@@ -153,6 +161,14 @@ def validate_bounded_priors() -> list[dict[str, str]]:
         raise AssertionError("generic-meta stop rule drift")
     if "0/64" not in lookup["B10"]["exact_result"] or lookup["B10"]["admission_status"] != "REFERENCE_ONLY":
         raise AssertionError("simulation boundary was promoted to a biological prior")
+    if "5 families x 1500" not in lookup["B11"]["exact_result"] or "not fitted to Cirsium" not in lookup["B11"]["claim_ceiling"]:
+        raise AssertionError("orientation simulation boundary drift")
+    if "11/11" not in lookup["B12"]["exact_result"] or lookup["B12"]["admission_status"] != "REFERENCE_ONLY":
+        raise AssertionError("macro-interaction simulation was promoted")
+    if "9 source-backed" not in lookup["B13"]["exact_result"]:
+        raise AssertionError("cytotype context drift")
+    if lookup["B14"]["admission_status"] != "ROUTING_ONLY" or "not scientific results" not in lookup["B14"]["claim_ceiling"]:
+        raise AssertionError("planned FDT programme was promoted")
     return rows
 
 

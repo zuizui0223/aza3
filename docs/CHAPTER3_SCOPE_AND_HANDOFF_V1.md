@@ -50,10 +50,13 @@ Predeclare the topology ensemble, trait-history rules, network sensitivities and
 - pollinator dependence is common, but only 1/6 studies supplies the exact common numeric contrast needed for pooling;
 - the orientation meta-diagnostic is k=2 with I2=93.6%, so it sets feasibility endpoints rather than an expected Cirsium effect;
 - the current generic meta-analysis ceiling is reached for 6/6 hypotheses, so the next information gain is linked focal data.
+- nine source-backed cytotype concepts contradict a deterministic one-ploidy-to-one-orientation mapping, but do not establish independence or causation.
 
 ## Simulation disposition
 
 Present-state covariance simulations remain Chapter 1 evidence. Their valid negative conclusions are restricted to their frozen contracts: v3.1 has zero adequate declared families; `NULL_COUPLED` reproduces the held-out primary pattern in 0/64 draws; the among-only diagnostic has zero adequate families. None is a negative result about biological mechanism or Chapter 2 history.
+
+Two older function-oriented screens remain visible as design history. The orientation screen ranked a combined time-window plus abiotic model first across 5 x 1,500 draws, but combines nonhomologous cross-study targets and is not fitted to Cirsium. The macro-interaction screen ranked modular structure first, but common-lability retained support and later adequacy screens superseded the result. Neither result is admitted as evidence for genetic modularity or a focal biological effect.
 
 FDT7 is the only planned branch-indexed evolutionary simulation lane. It cannot run as confirmatory evidence until empirical histories are independently frozen, and it cannot be used to manufacture the empirical patterns it would test.
 
