@@ -1,0 +1,35 @@
+name: Validate Chapter 3 EAzami handoff
+
+on:
+  pull_request:
+    paths:
+      - "README.md"
+      - "docs/CHAPTER3_SCOPE_AND_HANDOFF_V1.md"
+      - "data/contracts/chapter3_eazami_handoff_contract_v1.json"
+      - "data/planning/chapter3_sampling_priorities_v1.csv"
+      - "data/planning/chapter3_bounded_prior_registry_v1.csv"
+      - "data/planning/chapter3_protocol_registry_v1.csv"
+      - "data/intake/chapter3_individual_intake_v1.csv"
+      - "analysis/validate_chapter3_handoff_v1.py"
+      - "tests/test_validate_chapter3_handoff_v1.py"
+      - ".github/workflows/validate-chapter3-handoff-v1.yml"
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validate fail-closed Chapter 3 handoff
+        run: |
+          python analysis/validate_chapter3_handoff_v1.py
+          python tests/test_validate_chapter3_handoff_v1.py -v
