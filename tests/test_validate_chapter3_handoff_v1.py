@@ -29,8 +29,11 @@ class Chapter3HandoffTests(unittest.TestCase):
     def test_meta_and_simulation_results_are_bounded(self) -> None:
         rows = target.validate_bounded_priors()
         lookup = {row["prior_id"]: row for row in rows}
+        self.assertEqual(len(rows), 14)
         self.assertEqual(lookup["B10"]["admission_status"], "REFERENCE_ONLY")
         self.assertIn("not biological", lookup["B10"]["claim_ceiling"])
+        self.assertEqual(lookup["B12"]["admission_status"], "REFERENCE_ONLY")
+        self.assertEqual(lookup["B14"]["admission_status"], "ROUTING_ONLY")
 
     def test_protocols_are_not_authorized(self) -> None:
         rows = target.validate_protocol_registry()

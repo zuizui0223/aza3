@@ -4,7 +4,7 @@ This repository starts Chapter 3 from the uncertainty left by the completed publ
 
 ## Locked starting point
 
-EAzami Chapter 2 is frozen at merge `4fc03f128a7ec05ce9e16e1daedef23b61104b89` ([PR #129](https://github.com/zuizui0223/EAzami/pull/129)). Within its admitted public topology ensemble:
+EAzami Chapter 2 and its complete meta/simulation disposition are frozen at merge `62fa8c5c913c2b236e710f6bad366e80676aa78f` ([core PR #129](https://github.com/zuizui0223/EAzami/pull/129); [completeness PR #130](https://github.com/zuizui0223/EAzami/pull/130)). Within its admitted public topology ensemble:
 
 - orientation requires **at least four** state changes;
 - phyllary posture requires **at least three**;
@@ -25,7 +25,7 @@ The first product is an all-Japan same-library RAD-seq topology/network sensitiv
 1. `docs/CHAPTER3_SCOPE_AND_HANDOFF_V1.md` — question, work packages and claim boundary.
 2. `data/contracts/chapter3_eazami_handoff_contract_v1.json` — fail-closed source and authorization contract.
 3. `data/planning/chapter3_sampling_priorities_v1.csv` — five ranked history discriminators.
-4. `data/planning/chapter3_bounded_prior_registry_v1.csv` — meta-analysis priors and simulation boundaries.
+4. `data/planning/chapter3_bounded_prior_registry_v1.csv` — 14 meta-analysis, programme-routing and simulation boundaries.
 5. `data/planning/chapter3_protocol_registry_v1.csv` — experiment readiness without field authorization.
 6. `data/intake/chapter3_individual_intake_v1.csv` — currently empty same-individual intake ledger.
 
