@@ -1,0 +1,87 @@
+{
+  "contract_version": "chapter3_eazami_handoff_contract_v1",
+  "status_date": "2026-08-28",
+  "source_repository": "https://github.com/zuizui0223/EAzami",
+  "source_merge_sha": "4fc03f128a7ec05ce9e16e1daedef23b61104b89",
+  "source_pr": "https://github.com/zuizui0223/EAzami/pull/129",
+  "source_files": [
+    {
+      "path": "data/evidence/chapter2_resolution_classification_v1.csv",
+      "canonical_text_sha256": "88b71a781a2c2df80eff44d78e640a206341a719661ba1aba8e5a0462f438823",
+      "role": "certain versus unresolved versus restricted-negative classification"
+    },
+    {
+      "path": "data/evidence/meta_simulation_resolution_audit_v1.csv",
+      "canonical_text_sha256": "d775a8335efc2bc3dc059769b19e33f4703db2208af805fa1cec63ca332c9470",
+      "role": "complete meta-analysis and simulation disposition"
+    },
+    {
+      "path": "data/evidence/chapter2_to_chapter3_sampling_priorities_v1.csv",
+      "canonical_text_sha256": "48066b17bb3767f8aa23e4945184125d83d3f71e09ecdfd4aa94352e15fec252",
+      "role": "source sampling priorities transformed into the local five-row plan"
+    },
+    {
+      "path": "data/evidence/chapter2_to_chapter3_radseq_bridge_v1.json",
+      "canonical_text_sha256": "80bd6f9587260d83d3935b18eafa88edf6d389f18a55514c5a2d5bae4a58d8d2",
+      "role": "source dependency and RAD-seq claim boundary"
+    },
+    {
+      "path": "data/evidence/jpn36_phyllary_access_pilot_contract_v1.json",
+      "canonical_text_sha256": "4e8bdb62dd03d777ddff9d78c0923a9753b3489a9cc34221273db96503a5e255",
+      "role": "non-destructive JPN36 experiment contract"
+    },
+    {
+      "path": "data/evidence/jpn36_phyllary_access_pilot_validation_v1.json",
+      "canonical_text_sha256": "20ea276837feca0c28c49fa82b21bd3a19a3188cd8f7091662d401444be4bfff",
+      "role": "technical-readiness evidence, not field authorization"
+    }
+  ],
+  "frozen_text_hash_semantics": "SHA-256 of UTF-8 text after CRLF-to-LF normalization",
+  "chapter2_locked_results": {
+    "orientation_minimum_changes": {"lower_bound": 4, "ensemble_range": [4, 6]},
+    "phyllary_posture_minimum_changes": {"lower_bound": 3, "ensemble_range": [3, 3]},
+    "stickiness_minimum_changes": {"lower_bound": 5, "ensemble_range": [5, 5]},
+    "orientation_forced_ml_edges": 0,
+    "jpn36_phyllary_terminal_fraction": 0.754,
+    "species_tip_compression_systems": 4,
+    "morph_linked_testable_systems": 1
+  },
+  "chapter3_estimands": {
+    "history": "own Japan-wide nuclear ancestry/topology/network sensitivity linked to same-individual phenotype and cytotype",
+    "function": "separately authorized local manipulation effects on preregistered mediator and final-fitness endpoints",
+    "dependency": "Chapter 3 may falsify or refine Chapter 2 placements prospectively; it is not required to make Chapter 2 valid"
+  },
+  "current_state": {
+    "own_biological_records_admitted": 0,
+    "field_execution_authorized": false,
+    "tissue_collection_authorized": false,
+    "definitive_japan_wide_species_tree_claim_authorized": false,
+    "sensitive_coordinates_allowed_in_repository": false,
+    "jpn36_protocol_state": "TECHNICALLY_READY_NOT_FIELD_AUTHORIZED"
+  },
+  "mandatory_individual_linkage": [
+    "immutable individual_id",
+    "accepted taxon concept",
+    "population_id and deidentified locality key",
+    "voucher or voucher-linked diagnostic images",
+    "RAD-seq tissue and library ID",
+    "same-individual orientation phyllary posture and stickiness where scorable",
+    "cytotype or explicitly missing cytotype",
+    "rights conservation and collection authorization record IDs"
+  ],
+  "admission_gates": [
+    "freeze taxonomy populations and allocation before inspecting topology leverage",
+    "verify current occupancy abundance collection cap and authorization for each population",
+    "freeze missingness shared-locus replicate and ploidy rules before trait-history analysis",
+    "retain population structure admixture and network alternatives",
+    "do not replace blocked or failed samples after observing history consequences",
+    "store exact locality permit documents and personal details outside the public repository"
+  ],
+  "failure_actions": {
+    "rights_or_conservation_gate": "no collection no manipulation and no convenience substitution",
+    "shared_locus_or_ploidy_gate": "report population ancestry or within-cytotype results only",
+    "same_individual_linkage_gate": "do not estimate cross-layer trait-history or mechanism claims",
+    "field_protocol_gate": "field execution is not authorized; observation only where separately authorized"
+  },
+  "claim_boundary": "Own RAD-seq can update the set of admissible histories but cannot by itself establish independent origins, convergence, function, adaptation or fitness. Meta-analysis is a bounded design prior, simulation failures apply only to frozen generators, and technical protocol readiness is not authorization or a biological result."
+}
