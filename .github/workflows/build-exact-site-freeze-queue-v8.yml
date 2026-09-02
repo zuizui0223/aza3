@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - "analysis/build_exact_site_freeze_queue_v8.py"
+      - "data/planning/chapter3_conservation_override_v9.csv"
       - "data/planning/chapter3_holefill_priority1_sample_sectors_v7.csv"
       - "data/planning/chapter3_holefill_priority2_sample_sectors_v7.csv"
       - "data/planning/chapter3_holefill_priority3_sample_sectors_v7.csv"
@@ -37,9 +38,14 @@ jobs:
               rows=list(csv.DictReader(f))
           assert len(rows)==229
           assert sum(r['required_for_tree']=='true' for r in rows)==228
-          assert all(r['freeze_status']=='NOT_FROZEN' for r in rows)
+          allowed={'NOT_FROZEN','WILD_COLLECTION_BLOCKED','CONSERVATION_GATE_REQUIRED'}
+          assert all(r['freeze_status'] in allowed for r in rows)
+          assert any(r['freeze_status']=='WILD_COLLECTION_BLOCKED' for r in rows)
+          assert any(r['freeze_status']=='CONSERVATION_GATE_REQUIRED' for r in rows)
           assert all('latitude' not in r and 'longitude' not in r for r in rows)
           print('queue_shape_valid=true')
+          print('wild_collection_blocked=',sum(r['freeze_status']=='WILD_COLLECTION_BLOCKED' for r in rows))
+          print('conservation_gate=',sum(r['freeze_status']=='CONSERVATION_GATE_REQUIRED' for r in rows))
           PY
       - uses: actions/upload-artifact@v4
         with:
