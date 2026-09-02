@@ -12,15 +12,18 @@ on:
       - "data/planning/chapter3_sampling_priorities_v1.csv"
       - "data/planning/chapter3_mechanistic_demonstration_v1.json"
       - "data/planning/chapter3_transition_first_sampling_v3.json"
+      - "data/planning/chapter3_p03_orientation_neighbourhood_registry_v3.csv"
       - "data/intake/chapter3_individual_intake_v1.csv"
       - "data/intake/chapter3_radseq_library_intake_v1.csv"
       - "analysis/build_nmns_transition_candidate_universe_v3.py"
       - "analysis/validate_chapter3_handoff_v1.py"
       - "analysis/validate_mechanistic_demonstration_v1.py"
       - "analysis/validate_transition_first_sampling_v3.py"
+      - "analysis/validate_p03_orientation_neighbourhoods_v3.py"
       - "tests/test_validate_chapter3_handoff_v1.py"
       - "tests/test_validate_mechanistic_demonstration_v1.py"
       - "tests/test_validate_transition_first_sampling_v3.py"
+      - "tests/test_validate_p03_orientation_neighbourhoods_v3.py"
       - ".github/workflows/validate-chapter3-handoff-v1.yml"
   push:
     branches: [main]
@@ -50,3 +53,7 @@ jobs:
         run: |
           python analysis/validate_transition_first_sampling_v3.py
           python tests/test_validate_transition_first_sampling_v3.py -v
+      - name: Validate provisional P03 orientation neighbourhoods
+        run: |
+          python analysis/validate_p03_orientation_neighbourhoods_v3.py
+          python tests/test_validate_p03_orientation_neighbourhoods_v3.py -v
