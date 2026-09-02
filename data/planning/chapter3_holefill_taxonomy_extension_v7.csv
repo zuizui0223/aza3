@@ -1,0 +1,27 @@
+priority_rank,slot_priority,species_binomial,source_species_strings,japanese_names,nmns_record_ids,region_bucket,nmns_taxonomic_block,moreyra_jpns,moreyra_public_biological_n,new_samples_if_extension_admitted
+1,P1_PROVISIONAL_NAME,Cirsium ishidatense,Cirsium ishidatense,イシダテアザミ(仮称),NMNS_11,SHIKOKU,ナンブアザミ節キリシマアザミ亜節,JPN_10,1,1
+2,P2_UNPUBLISHED_NEW_NAME,Cirsium adzumiense,Cirsium adzumiense,アヅミノアザミ(新称),NMNS_8,CHUBU,ナンブアザミ節ナンブアザミ亜節ジャクエツアザミ列,,0,2
+2,P2_UNPUBLISHED_NEW_NAME,Cirsium austrohidakaense,Cirsium austrohidakaense,カムイアザミ(新称),NMNS_44,HOKKAIDO,ナンブアザミ節チシマアザミ亜節コバナアザミ列,,0,2
+2,P2_UNPUBLISHED_NEW_NAME,Cirsium chikabumiense,Cirsium chikabumiense,チカブミアザミ(新称),NMNS_85,HOKKAIDO,ナンブアザミ節チシマアザミ亜節コバナアザミ列,,0,2
+2,P2_UNPUBLISHED_NEW_NAME,Cirsium echigomontanum,Cirsium echigomontanum,エチゴヒメアザミ(新称),NMNS_28,CHUBU,ナンブアザミ節カガノアザミ亜節,,0,2
+2,P2_UNPUBLISHED_NEW_NAME,Cirsium hideo-takahashii,Cirsium hideo-takahashii,テマリフジアザミ(新称),NMNS_94,CHUBU,フジアザミ節,,0,2
+2,P2_UNPUBLISHED_NEW_NAME,Cirsium indefensum,Cirsium indefensum,イズモアザミ(新称),NMNS_13,CHUGOKU,ナンブアザミ節ナンブアザミ亜節ジャクエツアザミ列,,0,2
+2,P2_UNPUBLISHED_NEW_NAME,Cirsium kenji-horieanum,Cirsium kenji-horieanum,アサヒカワアザミ(新称),NMNS_4,HOKKAIDO,ナンブアザミ節チシマアザミ亜節コバナアザミ列,,0,2
+2,P2_UNPUBLISHED_NEW_NAME,Cirsium leptolepis,Cirsium leptolepis,ヒダノタイアザミ(新称),NMNS_130,CHUBU,ナンブアザミ節ナンブアザミ亜節ナンブアザミ列,,0,2
+2,P2_UNPUBLISHED_NEW_NAME,Cirsium marumoriense,Cirsium marumoriense,マルモリアザミ(新称),NMNS_144,TOHOKU,ナンブアザミ節ダキバヒメアザミ亜節リシリアザミ列,,0,2
+2,P2_UNPUBLISHED_NEW_NAME,Cirsium mimasakaense,Cirsium mimasakaense,ミマサカアザミ(新称),NMNS_146,CHUGOKU,ナンブアザミ節カガノアザミ亜節,,0,2
+2,P2_UNPUBLISHED_NEW_NAME,Cirsium mitanii,Cirsium mitanii,ヤシマアザミ(新称),NMNS_153,SHIKOKU,ナンブアザミ節ニッポウアザミ亜節,,0,2
+2,P2_UNPUBLISHED_NEW_NAME,Cirsium muratae,Cirsium muratae,タンバアザミ(新称),NMNS_80,KINKI,ナンブアザミ節カガノアザミ亜節,,0,2
+2,P2_UNPUBLISHED_NEW_NAME,Cirsium nishimeraense,Cirsium nishimeraense,メラモリアザミ(新称),NMNS_150,KYUSHU,ナンブアザミ節キリシマアザミ亜節,,0,2
+2,P2_UNPUBLISHED_NEW_NAME,Cirsium sanboense,Cirsium sanboense,サンボウアザミ(新称),NMNS_62,CHUBU,ナンブアザミ節ダキバヒメアザミ亜節リシリアザミ列,,0,2
+2,P2_UNPUBLISHED_NEW_NAME,Cirsium sanukiense,Cirsium sanukiense,サヌキアザミ(新称),NMNS_59,SHIKOKU,ナンブアザミ節ナンブアザミ亜節ジャクエツアザミ列,,0,2
+2,P2_UNPUBLISHED_NEW_NAME,Cirsium senumae,Cirsium senumae,カクダアザミ(新称),NMNS_41,CHUBU,ナンブアザミ節アシノクラアザミ亜節,,0,2
+2,P2_UNPUBLISHED_NEW_NAME,Cirsium shigekrense,Cirsium shigekrense,シゲクラアザミ(新称),NMNS_63,CHUBU,ナンブアザミ節カガノアザミ亜節,,0,2
+2,P2_UNPUBLISHED_NEW_NAME,Cirsium taishakuense,Cirsium taishakuense,タイシャクアザミ(新称),NMNS_75,CHUGOKU,ナンブアザミ節キリシマアザミ亜節,,0,2
+2,P2_UNPUBLISHED_NEW_NAME,Cirsium takaoi,Cirsium takaoi,ジャクエツアザミ(新称),NMNS_67,CHUBU,ナンブアザミ節ナンブアザミ亜節ジャクエツアザミミ列,,0,2
+2,P2_UNPUBLISHED_NEW_NAME,Cirsium tannense,Cirsium tannense,タンネアザミ(新称),NMNS_84,CHUBU,ナンブアザミ節ダキバヒメアザミ亜節ダキバヒメアザミ列,,0,2
+2,P2_UNPUBLISHED_NEW_NAME,Cirsium teshioense,Cirsium teshioense,テシオアザミ(新称),NMNS_93,HOKKAIDO,ナンブアザミ節チシマアザミ亜節チシマアザミ列,,0,2
+2,P2_UNPUBLISHED_NEW_NAME,Cirsium tsugarumontanum,Cirsium tsugarumontanum,シラガミアザミ(新称),NMNS_71,TOHOKU,ナンブアザミ節タチアザミ亜節,,0,2
+2,P2_UNPUBLISHED_NEW_NAME,Cirsium tsushimense,Cirsium tsushimense,ツシマノアザミ(新称),NMNS_92,TSUSHIMA|KYUSHU,ナンブアザミ節ノアザミ亜節ノアザミ列,,0,2
+2,P2_UNPUBLISHED_NEW_NAME,Cirsium yamaguchiense,Cirsium yamaguchiense,チョウシュウアザミ(新称),NMNS_88,CHUGOKU,ナンブアザミ節ツクシアザミ亜節,,0,2
+2,P2_UNPUBLISHED_NEW_NAME,Cirsium yanagitae,Cirsium yanagitae,ヨネヤマアザミ(新称),NMNS_159,CHUBU,ナンブアザミ節ヤマアザミ亜節,,0,2
