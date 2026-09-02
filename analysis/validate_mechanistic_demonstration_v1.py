@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fail-closed validation of the independent M01 mechanistic demonstration lane."""
+"""Fail-closed validation of the embedded M01 mechanistic demonstration."""
 from __future__ import annotations
 
 import csv
@@ -36,10 +36,16 @@ def validate_m01_contract() -> dict:
         raise AssertionError("mechanistic demonstration must remain M01")
 
     role = m01.get("role", {})
-    if role.get("core_priority_status") != "INDEPENDENT_NOT_P06":
-        raise AssertionError("M01 was promoted into the frozen P01-P05 priority list")
+    if role.get("architecture") != "BREADTH_TO_DEPTH":
+        raise AssertionError("M01 drifted away from the breadth-to-depth Chapter 3 architecture")
+    if role.get("core_priority_status") != "EMBEDDED_CASE_NOT_P06":
+        raise AssertionError("M01 was promoted into the frozen P01-P05 priority list or detached as a separate theme")
+    if "same Chapter 3 identifiability problem" not in role.get("dissertation_role", ""):
+        raise AssertionError("M01 lost its explicit connection to the core identifiability problem")
+    if "P01-P05 provide the breadth test" not in role.get("general_problem_bridge", ""):
+        raise AssertionError("M01 breadth-to-depth bridge drift")
     if "does not reorder, replace, validate or invalidate" not in role.get("core_independence", ""):
-        raise AssertionError("M01 core-independence boundary drift")
+        raise AssertionError("M01 core-validity boundary drift")
     if "worked example" not in role.get("not_primary_subject", ""):
         raise AssertionError("M01 focal taxa were promoted into the dissertation's primary taxonomic subject")
 
@@ -84,6 +90,21 @@ def validate_m01_contract() -> dict:
         raise AssertionError("E3 selective-agent ceiling drift")
     if "direct agent-specific ecological evidence" not in ladder[4].get("maximum_claim", ""):
         raise AssertionError("E4 selective-agent boundary drift")
+
+    connection = m01.get("core_connection", {})
+    required_connection = {
+        "stage_1_species_tip_contrast",
+        "stage_2_linked_history",
+        "stage_3_transition_decomposition",
+        "stage_4_selection_layer",
+        "stage_5_causal_ecology",
+    }
+    if set(connection) != required_connection:
+        raise AssertionError("M01 core-connection sequence drift")
+    if "not yet a historical event" not in connection["stage_1_species_tip_contrast"]:
+        raise AssertionError("species-tip contrast was promoted directly to a historical event")
+    if "separate functional or agent-specific ecological design" not in connection["stage_5_causal_ecology"]:
+        raise AssertionError("M01 causal-ecology boundary drift")
 
     sampling = m01.get("sampling_contract", {})
     if sampling.get("field_manipulation_required") is not False:
@@ -131,7 +152,9 @@ def validate_narrative() -> None:
     required_m01 = [
         "Cirsium brevicaule",
         "Cirsium irumtiense",
-        "without presupposing regain",
+        "embedded worked case",
+        "same problem one layer deeper",
+        "not P06",
         "H1",
         "H2",
         "H3",
@@ -141,7 +164,6 @@ def validate_narrative() -> None:
         "E3",
         "E4",
         "genomics alone cannot identify the selective agent",
-        "not P06",
     ]
     missing = [needle for needle in required_m01 if needle not in m01_doc]
     if missing:
@@ -149,7 +171,8 @@ def validate_narrative() -> None:
 
     scope = SCOPE_PATH.read_text(encoding="utf-8")
     required_scope = [
-        "M01",
+        "breadth-to-depth programme",
+        "M01 depth layer",
         "not P06",
         "does not invalidate P01-P05",
         "two-species FST",
@@ -160,10 +183,16 @@ def validate_narrative() -> None:
         raise AssertionError(f"Chapter 3 scope missing M01 boundary language: {missing}")
 
     readme = README_PATH.read_text(encoding="utf-8")
-    required_readme = ["M01", "not P06", "mechanistic demonstration", "P01-P05"]
+    required_readme = [
+        "one question, breadth and depth",
+        "P01-P05",
+        "embedded worked case",
+        "not P06",
+        "species-tip compression",
+    ]
     missing = [needle for needle in required_readme if needle not in readme]
     if missing:
-        raise AssertionError(f"README missing M01 architecture: {missing}")
+        raise AssertionError(f"README missing breadth-to-depth M01 architecture: {missing}")
 
 
 def main() -> int:
@@ -176,6 +205,7 @@ def main() -> int:
     print("chapter3_m01_mechanistic_demonstration_valid=true")
     print(f"core_priorities={len(priorities)}")
     print(f"mechanistic_demonstration={m01['demonstration_id']}")
+    print(f"architecture={m01['role']['architecture']}")
     print("own_m01_biological_records_admitted=0")
     print("regain_claim_authorized=false")
     print("selection_claim_authorized=false")
