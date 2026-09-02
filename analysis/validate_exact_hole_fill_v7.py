@@ -26,6 +26,7 @@ FILES = {
 }
 P1_SECTORS = ROOT / "data/planning/chapter3_holefill_priority1_sample_sectors_v7.csv"
 P2_SECTORS = ROOT / "data/planning/chapter3_holefill_priority2_sample_sectors_v7.csv"
+P3_SECTORS = ROOT / "data/planning/chapter3_holefill_priority3_sample_sectors_v7.csv"
 EXTENSION = ROOT / "data/planning/chapter3_holefill_taxonomy_extension_v7.csv"
 CONFLICTS = ROOT / "data/planning/chapter3_holefill_taxonomy_conflicts_v7.csv"
 
@@ -55,7 +56,7 @@ def validate_sector_file(path: Path, expected_priority: int, expected_species: s
 
 
 def main() -> int:
-    paths = [SUMMARY, DOC, P1_SECTORS, P2_SECTORS, EXTENSION, CONFLICTS] + [p for ps in FILES.values() for p in ps]
+    paths = [SUMMARY, DOC, P1_SECTORS, P2_SECTORS, P3_SECTORS, EXTENSION, CONFLICTS] + [p for ps in FILES.values() for p in ps]
     for path in paths:
         if not path.exists() or path.stat().st_size == 0:
             raise AssertionError(f"missing v7 hole-fill artifact: {path.relative_to(ROOT)}")
@@ -93,6 +94,7 @@ def main() -> int:
 
     validate_sector_file(P1_SECTORS, 1, {r["species_binomial"] for r in by_priority[1]}, 33, 66)
     validate_sector_file(P2_SECTORS, 2, {r["species_binomial"] for r in by_priority[2]}, 6, 12)
+    validate_sector_file(P3_SECTORS, 3, {r["species_binomial"] for r in by_priority[3]}, 44, 88)
 
     p2 = {row["species_binomial"] for row in by_priority[2]}
     p3 = {row["species_binomial"] for row in by_priority[3]}
@@ -128,6 +130,8 @@ def main() -> int:
     print("priority1_sector_samples=66")
     print("priority2_sector_species=6")
     print("priority2_sector_samples=12")
+    print("priority3_sector_species=44")
+    print("priority3_sector_samples=88")
     print("extension_species=26")
     print("extension_new_samples_if_admitted=51")
     print("taxonomy_gate_concepts=3")
