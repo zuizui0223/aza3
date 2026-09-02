@@ -15,6 +15,7 @@ on:
       - "data/planning/chapter3_holefill_priority1_empty_blocks_v7.csv"
       - "data/planning/chapter3_holefill_priority1_sample_sectors_v7.csv"
       - "data/planning/chapter3_holefill_priority2_broken_tips_v7.csv"
+      - "data/planning/chapter3_holefill_priority2_sample_sectors_v7.csv"
       - "data/planning/chapter3_holefill_priority3_kaganoazami_block_v7.csv"
       - "data/planning/chapter3_holefill_priority3_sawaazami_block_v7.csv"
       - "data/planning/chapter3_holefill_priority3_norikura_series_v7.csv"
