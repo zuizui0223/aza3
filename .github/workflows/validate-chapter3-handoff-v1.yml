@@ -20,6 +20,7 @@ on:
       - "data/planning/chapter3_radseq_end_to_end_v1.json"
       - "data/planning/chapter3_radseq_pilot_anchor_ledger_v1.csv"
       - "data/intake/chapter3_individual_intake_v1.csv"
+      - "data/intake/chapter3_radseq_library_intake_v1.csv"
       - "analysis/validate_chapter3_handoff_v1.py"
       - "analysis/validate_mechanistic_demonstration_v1.py"
       - "analysis/validate_inverse_sampling_design_v1.py"
