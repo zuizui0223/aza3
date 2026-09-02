@@ -9,8 +9,19 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT_PATH = ROOT / "data" / "planning" / "chapter3_radseq_end_to_end_v1.json"
 ANCHOR_PATH = ROOT / "data" / "planning" / "chapter3_radseq_pilot_anchor_ledger_v1.csv"
+LIBRARY_INTAKE_PATH = ROOT / "data" / "intake" / "chapter3_radseq_library_intake_v1.csv"
 DOC_PATH = ROOT / "docs" / "CHAPTER3_RADSEQ_END_TO_END_V1.md"
 README_PATH = ROOT / "README.md"
+
+LIBRARY_INTAKE_FIELDS = [
+    "individual_id", "rad_tissue_id", "extraction_id", "extraction_batch",
+    "dna_concentration_ng_ul", "dna_input_ng", "dna_purity_state", "dna_integrity_state",
+    "rad_protocol_id", "enzyme_pair_id", "size_window_id", "sample_index", "rad_library_id",
+    "library_batch", "pcr_cycles", "technical_duplicate_group", "sequencing_run_id",
+    "lane_or_partition", "read_configuration", "raw_read_pairs", "retained_read_pairs",
+    "library_complexity_state", "median_locus_depth", "usable_locus_count", "missingness_rate",
+    "technical_replicate_concordance", "library_qc_status", "exclusion_reason",
+]
 
 
 def load_contract() -> dict:
@@ -43,6 +54,19 @@ def validate_anchor_ledger() -> list[dict[str, str]]:
     if {row["taxon_concept"] for row in rows} != required:
         raise AssertionError("RAD pilot anchor concepts drift")
     return rows
+
+
+def validate_empty_library_intake() -> None:
+    with LIBRARY_INTAKE_PATH.open(encoding="utf-8", newline="") as handle:
+        reader = csv.DictReader(handle)
+        if reader.fieldnames != LIBRARY_INTAKE_FIELDS:
+            raise AssertionError("RAD library intake schema drift")
+        rows = list(reader)
+    if rows:
+        raise AssertionError("RAD library intake must remain empty before production RAD authorization")
+    forbidden = {"latitude", "longitude", "exact_locality", "permit_document"}
+    if forbidden.intersection(LIBRARY_INTAKE_FIELDS):
+        raise AssertionError("sensitive locality fields entered RAD library intake")
 
 
 def validate_contract() -> dict:
@@ -102,7 +126,6 @@ def validate_contract() -> dict:
 
     m01 = d["m01_selection_boundary"]
     if "RAD-only cross-species FST" not in " ".join(m01["rad_not_sufficient"]):
-        # Keep compatibility with wording in the contract while requiring the shortcut to remain prohibited.
         if "two-species FST outlier" not in m01["rad_not_sufficient"]:
             raise AssertionError("RAD-only cross-species selection shortcut reopened")
     if "non-RAD confirmation route" not in m01["promotion_rule"]:
@@ -145,19 +168,23 @@ def validate_narrative() -> None:
     readme = README_PATH.read_text(encoding="utf-8")
     if "CHAPTER3_RADSEQ_END_TO_END_V1.md" not in readme:
         raise AssertionError("README does not route to RAD end-to-end design")
+    if "chapter3_radseq_library_intake_v1.csv" not in readme:
+        raise AssertionError("README does not route to RAD library intake schema")
 
 
 def main() -> int:
-    for path in (CONTRACT_PATH, ANCHOR_PATH, DOC_PATH, README_PATH):
+    for path in (CONTRACT_PATH, ANCHOR_PATH, LIBRARY_INTAKE_PATH, DOC_PATH, README_PATH):
         if not path.exists() or path.stat().st_size == 0:
             raise AssertionError(f"missing or empty RAD contract file: {path.relative_to(ROOT)}")
     anchors = validate_anchor_ledger()
+    validate_empty_library_intake()
     d = validate_contract()
     validate_narrative()
     print("chapter3_radseq_end_to_end_valid=true")
     print(f"pilot_anchors={len(anchors)}")
     print(f"pilot_biological_templates={sum(int(r['biological_templates']) for r in anchors)}")
     print(f"primary_assembly={d['bioinformatics']['primary_assembly']}")
+    print("rad_library_records_admitted=0")
     print("production_rad_authorized=false")
     print("m01_rad_only_selection_claim_authorized=false")
     return 0
