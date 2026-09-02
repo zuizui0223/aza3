@@ -14,7 +14,7 @@ Within its admitted public topology ensemble:
 - minimum counts are better resolved than individual event placements;
 - species-tip compression hides within-species state multiplicity.
 
-## One Chapter 3 question, breadth to depth
+## One question, breadth and depth
 
 > Which trait histories still survive when species-tip states are returned to linked individuals, populations and nuclear ancestry, and how far can a retained transition be decomposed into mechanism without confusing history, selection and causation?
 
@@ -22,9 +22,9 @@ Within its admitted public topology ensemble:
 
 The frozen core asks where apparent transitions in orientation, phyllary posture, stickiness and related morphology remain identifiable after adding same-individual phenotype, population replication, cytotype and nuclear ancestry.
 
-### M01 depth, embedded case not P06
+### M01 depth — embedded worked case, not P06
 
-The white versus bluish-purple floral-pigmentation contrast in `Cirsium brevicaule` and `C. irumtiense` is used as one worked example of the same identifiability problem. M01 follows one retained contrast through:
+The white versus bluish-purple floral-pigmentation contrast in `Cirsium brevicaule` and `C. irumtiense` is used as one **embedded worked case** of the same identifiability problem. M01 follows one retained contrast through:
 
 1. ancestral-state / transition history;
 2. pigment chemistry;
