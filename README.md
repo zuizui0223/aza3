@@ -14,41 +14,45 @@ EAzami Chapter 2 and its complete meta/simulation disposition are frozen at merg
 
 These are topology-conditioned lower bounds, not counts of independent origins, convergence events, rates or adaptations.
 
-## Chapter 3 architecture
-
-### Core history-discrimination programme: P01-P05
+## Chapter 3 architecture — one question, breadth and depth
 
 The primary Chapter 3 question remains:
 
-> Which histories and causal paths that remain compatible with Chapter 2 can be discriminated by own Japan-wide ancestry data linked to phenotype, cytotype and separately authorized functional experiments?
+> Which histories and causal paths that remain compatible with Chapter 2 can be discriminated by own Japan-wide ancestry data linked to phenotype, cytotype and separately authorized functional or molecular evidence?
+
+Chapter 3 now uses the same identifiability problem at two scales rather than creating a separate Ryukyu-thistle project.
+
+### Breadth: core history-discrimination programme P01-P05
 
 The first core product is an all-Japan same-library RAD-seq topology/network sensitivity, not an unconditional species tree. Every genomic record must link to an immutable individual, a voucher or diagnostic image, phenotype states, cytotype status and deidentified authorization records.
 
-The five ranked history discriminators in `chapter3_sampling_priorities_v1.csv` remain frozen as P01-P05. They are not reordered or replaced by later mechanistic examples.
+The five ranked history discriminators in `chapter3_sampling_priorities_v1.csv` remain frozen as P01-P05. They ask whether apparent species-tip transitions in orientation, phyllary posture, stickiness and related morphology survive when the analysis is returned to linked individuals, populations and nuclear ancestry. They are not reordered or replaced by later mechanistic examples.
 
-### M01 mechanistic demonstration: floral pigmentation
+### Depth: M01 embedded mechanistic case — floral pigmentation
 
-M01 is an independent **mechanistic demonstration**, **not P06** and not a sixth Chapter 2-derived history priority. It asks whether a clearly observed trait-state contrast can be decomposed into:
+M01 is an **embedded worked case of the same Chapter 3 problem**, **not P06** and not a sixth Chapter 2-derived history priority. The core asks **where a trait-state change remains identifiable** after species-tip compression is reduced; M01 asks **what one such trait-state contrast consists of biologically** when followed below the topology level.
+
+M01 decomposes one conspicuous contrast into:
 
 1. ancestral-state and transition history;
 2. homologous pigment chemistry;
 3. same-individual corolla gene expression and regulatory mechanism;
 4. population-genomic evidence that is consistent with selection after demographic and mapping-bias controls.
 
-The worked example is the white versus bluish-purple corolla contrast between `Cirsium brevicaule` and `C. irumtiense`. Published 2026 phylotranscriptomic work is treated only as a literature premise for their lineage separation and reported genome-size contrast; M01 does not make basic species delimitation its primary estimand.
+The worked example is the white versus bluish-purple corolla contrast between `Cirsium brevicaule` and `C. irumtiense`. The taxa are therefore an empirical example, not the primary taxonomic subject of Chapter 3. Published 2026 phylotranscriptomic work is treated only as a literature premise for their lineage separation and reported genome-size contrast; M01 does not make basic species delimitation its primary estimand.
 
 M01 freezes three competing histories rather than assuming re-evolution: pigmented ancestor followed by loss/reduction, unpigmented ancestor followed by secondary gain/regain, or a more complex/unresolved history. `regain` is therefore an output-dependent claim, not the starting hypothesis.
 
-M01 does **not** require manipulative pollination experiments or pollinator observation for its E0-E3 evidence ladder. Genomics alone cannot identify butterflies, flies, bees, climate or another ecological factor as the selective agent. Failure, ambiguity or cancellation of M01 does not invalidate P01-P05.
+M01 does **not** require manipulative pollination experiments or pollinator observation for its E0-E3 evidence ladder. Genomics alone cannot identify butterflies, flies, bees, climate or another ecological factor as the selective agent. Failure, ambiguity or cancellation of M01 limits only the depth demonstration; it does not invalidate or reorder P01-P05.
 
 ## Start here
 
-1. `docs/CHAPTER3_SCOPE_AND_HANDOFF_V1.md` — core question, work packages, M01 relationship and claim boundary.
+1. `docs/CHAPTER3_SCOPE_AND_HANDOFF_V1.md` — the breadth-to-depth Chapter 3 question, work packages, M01 relationship and claim boundary.
 2. `data/contracts/chapter3_eazami_handoff_contract_v1.json` — fail-closed source and authorization contract.
 3. `data/planning/chapter3_sampling_priorities_v1.csv` — five ranked core history discriminators P01-P05.
 4. `data/planning/chapter3_bounded_prior_registry_v1.csv` — 14 meta-analysis, programme-routing and simulation boundaries.
 5. `data/planning/chapter3_protocol_registry_v1.csv` — experiment readiness without field authorization.
-6. `data/planning/chapter3_mechanistic_demonstration_v1.json` — independent M01 competing histories, evidence ladder, selection gates and stop rules.
+6. `data/planning/chapter3_mechanistic_demonstration_v1.json` — embedded M01 competing histories, evidence ladder, selection gates and stop rules.
 7. `docs/M01_FLORAL_PIGMENTATION_MECHANISTIC_DEMONSTRATION_V1.md` — readable M01 research design.
 8. `data/intake/chapter3_individual_intake_v1.csv` — currently empty same-individual intake ledger.
 
