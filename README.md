@@ -57,18 +57,23 @@ Sampling is frozen by inference rather than by a single maximum field count. `do
 
 Cheap leaf/photo material may be banked early, but expensive population-genomic sequencing remains closed until the previous inference layer survives. This is a distributed collection design; the investigator is not required to visit every population personally.
 
+The operational acquisition layer is frozen separately in `docs/CHAPTER3_OPERATIONAL_SAMPLE_LEDGER_V1.md`. It contains one row for every Japan38 concept, records identity/provenance gates instead of silently normalizing them, and specifies the M01 discovery/E3 populations and ancestral-state bracket. `JPN_29`, `JPN_31` and `JPN_33` remain identity-blocked and cannot be replaced by convenience taxa if their gates do not clear.
+
 ## Start here
 
 1. `docs/CHAPTER3_SCOPE_AND_HANDOFF_V1.md` — the breadth-to-depth Chapter 3 question, work packages, M01 relationship and claim boundary.
 2. `docs/CHAPTER3_INVERSE_SAMPLING_DESIGN_V1.md` — claim-backward core and M01 sampling, assay gates and field-burden rules.
-3. `data/planning/chapter3_inverse_sampling_design_v1.json` — machine-readable inverse sampling contract.
-4. `data/contracts/chapter3_eazami_handoff_contract_v1.json` — fail-closed source and authorization contract.
-5. `data/planning/chapter3_sampling_priorities_v1.csv` — five ranked core history discriminators P01-P05.
-6. `data/planning/chapter3_bounded_prior_registry_v1.csv` — 14 meta-analysis, programme-routing and simulation boundaries.
-7. `data/planning/chapter3_protocol_registry_v1.csv` — experiment readiness without field authorization.
-8. `data/planning/chapter3_mechanistic_demonstration_v1.json` — embedded M01 competing histories, evidence ladder, selection gates and stop rules.
-9. `docs/M01_FLORAL_PIGMENTATION_MECHANISTIC_DEMONSTRATION_V1.md` — readable M01 research design.
-10. `data/intake/chapter3_individual_intake_v1.csv` — currently empty same-individual intake ledger.
+3. `docs/CHAPTER3_OPERATIONAL_SAMPLE_LEDGER_V1.md` — concept-by-concept acquisition priorities, identity blocks, M01 field populations and nonfocal bracket.
+4. `data/planning/chapter3_inverse_sampling_design_v1.json` — machine-readable inverse sampling contract.
+5. `data/planning/chapter3_core_operational_sample_ledger_v1.csv` — operational Japan38 breadth ledger.
+6. `data/planning/m01_operational_population_ledger_v1.csv` — operational M01 focal/outgroup population ledger.
+7. `data/contracts/chapter3_eazami_handoff_contract_v1.json` — fail-closed source and authorization contract.
+8. `data/planning/chapter3_sampling_priorities_v1.csv` — five ranked core history discriminators P01-P05.
+9. `data/planning/chapter3_bounded_prior_registry_v1.csv` — 14 meta-analysis, programme-routing and simulation boundaries.
+10. `data/planning/chapter3_protocol_registry_v1.csv` — experiment readiness without field authorization.
+11. `data/planning/chapter3_mechanistic_demonstration_v1.json` — embedded M01 competing histories, evidence ladder, selection gates and stop rules.
+12. `docs/M01_FLORAL_PIGMENTATION_MECHANISTIC_DEMONSTRATION_V1.md` — readable M01 research design.
+13. `data/intake/chapter3_individual_intake_v1.csv` — currently empty same-individual intake ledger.
 
 ## Current authorization state
 
@@ -87,4 +92,4 @@ M01:
 - selection claim authorized: **false**;
 - pollinator-agent claim authorized: **false**.
 
-Run `python analysis/validate_chapter3_handoff_v1.py`, `python analysis/validate_mechanistic_demonstration_v1.py` and `python analysis/validate_inverse_sampling_design_v1.py` before accepting any change to this starting state.
+Run `python analysis/validate_chapter3_handoff_v1.py`, `python analysis/validate_mechanistic_demonstration_v1.py`, `python analysis/validate_inverse_sampling_design_v1.py` and `python analysis/validate_operational_sample_ledger_v1.py` before accepting any change to this starting state.
