@@ -5,43 +5,22 @@ on:
     paths:
       - "README.md"
       - "docs/CHAPTER3_SCOPE_AND_HANDOFF_V1.md"
-      - "docs/CHAPTER3_INVERSE_SAMPLING_DESIGN_V1.md"
-      - "docs/CHAPTER3_OPERATIONAL_SAMPLE_LEDGER_V1.md"
+      - "docs/CHAPTER3_ZERO_BASELINE_SAMPLING_PLAN_V2.md"
       - "docs/CHAPTER3_RADSEQ_END_TO_END_V1.md"
-      - "docs/CHAPTER3_RADSEQ_PILOT_EXECUTION_V1.md"
-      - "docs/CHAPTER3_RADSEQ_STAGE_A_READINESS_V1.md"
-      - "docs/CHAPTER3_RADSEQ_PHYSICAL_TEMPLATE_READINESS_V1.md"
       - "docs/M01_FLORAL_PIGMENTATION_MECHANISTIC_DEMONSTRATION_V1.md"
       - "data/contracts/chapter3_eazami_handoff_contract_v1.json"
       - "data/planning/chapter3_sampling_priorities_v1.csv"
-      - "data/planning/chapter3_bounded_prior_registry_v1.csv"
-      - "data/planning/chapter3_protocol_registry_v1.csv"
       - "data/planning/chapter3_mechanistic_demonstration_v1.json"
-      - "data/planning/chapter3_inverse_sampling_design_v1.json"
-      - "data/planning/chapter3_core_operational_sample_ledger_v1.csv"
-      - "data/planning/m01_operational_population_ledger_v1.csv"
-      - "data/planning/chapter3_radseq_end_to_end_v1.json"
-      - "data/planning/chapter3_radseq_pilot_anchor_ledger_v1.csv"
-      - "data/planning/chapter3_radseq_pilot_execution_v1.json"
-      - "data/planning/chapter3_radseq_pilot_protocol_candidates_v1.csv"
-      - "data/planning/chapter3_radseq_pilot_library_allocation_v1.csv"
-      - "data/planning/chapter3_radseq_physical_template_inventory_v1.csv"
+      - "data/planning/chapter3_zero_baseline_sampling_v2.json"
+      - "data/planning/chapter3_zero_baseline_population_targets_v2.csv"
       - "data/intake/chapter3_individual_intake_v1.csv"
       - "data/intake/chapter3_radseq_library_intake_v1.csv"
       - "analysis/validate_chapter3_handoff_v1.py"
       - "analysis/validate_mechanistic_demonstration_v1.py"
-      - "analysis/validate_inverse_sampling_design_v1.py"
-      - "analysis/validate_operational_sample_ledger_v1.py"
-      - "analysis/validate_radseq_end_to_end_v1.py"
-      - "analysis/validate_radseq_pilot_execution_v1.py"
-      - "analysis/validate_radseq_physical_template_readiness_v1.py"
+      - "analysis/validate_zero_baseline_sampling_v2.py"
       - "tests/test_validate_chapter3_handoff_v1.py"
       - "tests/test_validate_mechanistic_demonstration_v1.py"
-      - "tests/test_validate_inverse_sampling_design_v1.py"
-      - "tests/test_validate_operational_sample_ledger_v1.py"
-      - "tests/test_validate_radseq_end_to_end_v1.py"
-      - "tests/test_validate_radseq_pilot_execution_v1.py"
-      - "tests/test_validate_radseq_physical_template_readiness_v1.py"
+      - "tests/test_validate_zero_baseline_sampling_v2.py"
       - ".github/workflows/validate-chapter3-handoff-v1.yml"
   push:
     branches: [main]
@@ -67,23 +46,7 @@ jobs:
         run: |
           python analysis/validate_mechanistic_demonstration_v1.py
           python tests/test_validate_mechanistic_demonstration_v1.py -v
-      - name: Validate claim-backward inverse sampling design
+      - name: Validate zero-baseline sampling v2
         run: |
-          python analysis/validate_inverse_sampling_design_v1.py
-          python tests/test_validate_inverse_sampling_design_v1.py -v
-      - name: Validate operational sample ledgers
-        run: |
-          python analysis/validate_operational_sample_ledger_v1.py
-          python tests/test_validate_operational_sample_ledger_v1.py -v
-      - name: Validate end-to-end RAD-seq contract
-        run: |
-          python analysis/validate_radseq_end_to_end_v1.py
-          python tests/test_validate_radseq_end_to_end_v1.py -v
-      - name: Validate executable RAD-seq pilot
-        run: |
-          python analysis/validate_radseq_pilot_execution_v1.py
-          python tests/test_validate_radseq_pilot_execution_v1.py -v
-      - name: Validate RAD physical template readiness
-        run: |
-          python analysis/validate_radseq_physical_template_readiness_v1.py
-          python tests/test_validate_radseq_physical_template_readiness_v1.py -v
+          python analysis/validate_zero_baseline_sampling_v2.py
+          python tests/test_validate_zero_baseline_sampling_v2.py -v
