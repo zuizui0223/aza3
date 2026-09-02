@@ -5,25 +5,22 @@ on:
     paths:
       - "README.md"
       - "docs/CHAPTER3_SCOPE_AND_HANDOFF_V1.md"
-      - "docs/CHAPTER3_TRANSITION_FIRST_SAMPLING_PLAN_V3.md"
+      - "docs/CHAPTER3_NATIONWIDE_SPECIES_TREE_SAMPLING_V4.md"
       - "docs/CHAPTER3_RADSEQ_END_TO_END_V1.md"
       - "docs/M01_FLORAL_PIGMENTATION_MECHANISTIC_DEMONSTRATION_V1.md"
       - "data/contracts/chapter3_eazami_handoff_contract_v1.json"
       - "data/planning/chapter3_sampling_priorities_v1.csv"
       - "data/planning/chapter3_mechanistic_demonstration_v1.json"
-      - "data/planning/chapter3_transition_first_sampling_v3.json"
-      - "data/planning/chapter3_p03_orientation_neighbourhood_registry_v3.csv"
+      - "data/planning/chapter3_nationwide_species_tree_sampling_v4.json"
+      - "data/planning/chapter3_nationwide_species_tree_budget_v4.csv"
       - "data/intake/chapter3_individual_intake_v1.csv"
       - "data/intake/chapter3_radseq_library_intake_v1.csv"
-      - "analysis/build_nmns_transition_candidate_universe_v3.py"
       - "analysis/validate_chapter3_handoff_v1.py"
       - "analysis/validate_mechanistic_demonstration_v1.py"
-      - "analysis/validate_transition_first_sampling_v3.py"
-      - "analysis/validate_p03_orientation_neighbourhoods_v3.py"
+      - "analysis/validate_nationwide_species_tree_sampling_v4.py"
       - "tests/test_validate_chapter3_handoff_v1.py"
       - "tests/test_validate_mechanistic_demonstration_v1.py"
-      - "tests/test_validate_transition_first_sampling_v3.py"
-      - "tests/test_validate_p03_orientation_neighbourhoods_v3.py"
+      - "tests/test_validate_nationwide_species_tree_sampling_v4.py"
       - ".github/workflows/validate-chapter3-handoff-v1.yml"
   push:
     branches: [main]
@@ -49,11 +46,7 @@ jobs:
         run: |
           python analysis/validate_mechanistic_demonstration_v1.py
           python tests/test_validate_mechanistic_demonstration_v1.py -v
-      - name: Validate transition-first sampling v3
+      - name: Validate nationwide species-tree sampling v4
         run: |
-          python analysis/validate_transition_first_sampling_v3.py
-          python tests/test_validate_transition_first_sampling_v3.py -v
-      - name: Validate provisional P03 orientation neighbourhoods
-        run: |
-          python analysis/validate_p03_orientation_neighbourhoods_v3.py
-          python tests/test_validate_p03_orientation_neighbourhoods_v3.py -v
+          python analysis/validate_nationwide_species_tree_sampling_v4.py
+          python tests/test_validate_nationwide_species_tree_sampling_v4.py -v
