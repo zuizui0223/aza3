@@ -1,6 +1,6 @@
 # Chapter 3 scope and EAzami handoff v1
 
-Status date: 2026-09-01
+Status date: 2026-09-02
 
 ## Role in the dissertation
 
@@ -8,11 +8,11 @@ Chapter 2 closes with a public-evidence result: alternative capitulum configurat
 
 Chapter 3 begins only where new linked data can reduce that unresolved set. Its main contribution is not “a better tree” in isolation. It is a Japan-wide ancestry analysis in which phenotype, nuclear history, cytotype and sample identity are measured on the same biological units.
 
-The dissertation now separates two layers. The **core P01-P05 programme** discriminates trait histories across Japanese Cirsium. The independent **M01 mechanistic demonstration** asks, in one worked trait contrast, how far a localized state difference can be decomposed into biochemical phenotype, expression mechanism and selection-consistent genomic evidence. M01 is **not P06** and does not replace or reorder any Chapter 2-derived priority.
+Chapter 3 is one **breadth-to-depth programme** built around the same identifiability problem. The **core P01-P05 breadth layer** asks which apparent species-tip trait histories survive when they are returned to individual and population ancestry. The **M01 depth layer** uses one worked trait contrast to ask what a retained transition consists of biologically below the topology level. M01 is **not P06**, not a separate Ryukyu-thistle dissertation theme, and does not replace or reorder any Chapter 2-derived priority.
 
 ## Primary question
 
-> Which ancestry and trait histories that remain admissible after Chapter 2 are rejected when own RAD-seq data, population replication, cytotype and same-individual phenotype are analysed together?
+> Which ancestry and trait histories that remain admissible after Chapter 2 are rejected when own RAD-seq data, population replication, cytotype and same-individual phenotype are analysed together, and how far can a retained trait-state contrast be decomposed without confusing history, mechanism, selection and causation?
 
 ## Work packages
 
@@ -34,7 +34,7 @@ Score orientation, phyllary posture and stickiness on the same individuals used 
 4. whether same-individual data produce shared localization that the authority-linked Chapter 2 data did not require;
 5. whether morph-linked sampling removes species-tip compression in polymorphic systems.
 
-These remain the frozen P01-P05 core. A later mechanistic case cannot be promoted into this ranking after its apparent tractability or outcome is known.
+These remain the frozen P01-P05 breadth core. A later mechanistic case cannot be promoted into this ranking after its apparent tractability or outcome is known.
 
 ### WP4 — separate function and fitness tests
 
@@ -46,13 +46,13 @@ JPN15 stickiness neutralization remains a prospective necessity test. The JPN06-
 
 Predeclare the topology ensemble, trait-history rules, network sensitivities and function models before examining their joint result. A topology update may reject a Chapter 2 placement, but it cannot by itself establish function, selection, adaptation, convergence or developmental modularity.
 
-## Independent mechanistic demonstration — M01
+## Embedded depth demonstration — M01
 
-M01 is a downstream demonstration of the same identifiability logic, not a sixth core history discriminator. Its question is:
+M01 applies the same aza3 logic one layer deeper. Its question is:
 
-> Once a trait-state contrast is defined, can it be decomposed into transition history, biochemical phenotype, regulatory expression and selection-consistent genomic evidence without presupposing the direction or cause of evolution?
+> Once a trait-state contrast survives the relevant history and sampling gates, can it be decomposed into transition history, biochemical phenotype, regulatory expression and selection-consistent genomic evidence without presupposing the direction or cause of evolution?
 
-The worked example is floral pigmentation in `Cirsium brevicaule` and `Cirsium irumtiense`. Chang et al. (2026; DOI `10.1186/s12870-026-08097-6`) is admitted as a **reference premise only**: the focal concepts are already supported as distinct Ryukyu lineages/species across the Miyako Strait, their corollas are reported as white versus bluish-purple, and a large 2C genome-size difference is reported. M01 therefore does not spend its primary information budget re-running basic species delimitation with a few Sanger loci.
+The worked example is floral pigmentation in `Cirsium brevicaule` and `Cirsium irumtiense`. The pair is an empirical case because the visible contrast can be followed from phenotype to pigment and expression; it is not the primary taxonomic subject of Chapter 3. Chang et al. (2026; DOI `10.1186/s12870-026-08097-6`) is admitted as a **reference premise only**: the focal concepts are already supported as distinct Ryukyu lineages/species across the Miyako Strait, their corollas are reported as white versus bluish-purple, and a large 2C genome-size difference is reported. M01 therefore does not spend its primary information budget re-running basic species delimitation with a few Sanger loci.
 
 M01 freezes three competing histories before new focal evidence is admitted:
 
@@ -61,6 +61,18 @@ M01 freezes three competing histories before new focal evidence is admitted:
 - **H3 — simple on/off history not identified:** ancestral state, transition placement, pigment chemistry or reticulation remains ambiguous or indicates a more complex history.
 
 No history is preferred in advance. If the topology-and-trait ensemble cannot robustly distinguish H1 from H2, the result remains H3 and no “re-evolution” language is admitted.
+
+### How M01 returns to the core question
+
+M01 is evaluated through the same inference sequence that motivates the core:
+
+1. **species-tip contrast:** a present-day difference is observed but is not yet a named historical event;
+2. **linked individual/population history:** ancestry determines whether the contrast corresponds to a robust transition;
+3. **transition decomposition:** chemistry and expression identify what biological layer differs;
+4. **selection layer:** population genomics tests whether the implicated mechanism departs from a frozen demographic/background expectation;
+5. **causal ecology:** only a separate functional or agent-specific design can identify fitness effects or a selective agent.
+
+Thus P01-P05 provide breadth across Japanese Cirsium, while M01 provides depth for one tractable transition. M01 succeeds only if it demonstrates how a trait-history statement can be carried downward without silently turning topology into mechanism or genomic association into causation.
 
 ### M01 evidence ladder
 
@@ -76,7 +88,7 @@ The published genome-size contrast creates a specific mapping-bias gate: cross-l
 
 Genomics alone cannot identify butterflies, flies, bees, climate or another ecological factor as the selective agent. Agent-specific selection requires a separate ecological causal design.
 
-Failure of M01 does not invalidate P01-P05. Ambiguous ancestral state, failed RNA preservation, insufficient population replication, mapping-bias failure or a null selection scan only limits the M01 evidence level; it cannot be used to reinterpret the frozen core as a failure.
+Failure of M01 does not invalidate P01-P05. Ambiguous ancestral state, failed RNA preservation, insufficient population replication, mapping-bias failure or a null selection scan only limits the depth evidence level; it cannot be used to reinterpret the frozen breadth core as a failure.
 
 ## Bounded priors recovered from meta-analysis
 
@@ -118,6 +130,6 @@ M01:
 
 ## Claim ceiling
 
-Chapter 3 may discriminate public-history alternatives with own ancestry and linked phenotype data and may separately estimate local causal effects under authorized experiments. It cannot infer adaptation from topology, infer historical origin from function, generalize a pilot across Cirsium or publish sensitive locality and permit records.
+Chapter 3 may discriminate public-history alternatives with own ancestry and linked phenotype data and, for tractable cases, may decompose a retained transition into biochemical, expression and selection-consistent genomic layers. It may separately estimate local causal effects under authorized experiments. It cannot infer adaptation from topology, infer historical origin from function, generalize a single mechanistic case across Cirsium or publish sensitive locality and permit records.
 
-M01 may add a worked mechanistic decomposition of one floral-pigmentation contrast. It cannot turn a visible white/purple difference into a regain claim without ancestral-state support, cannot turn expression alone into a causal regulatory mechanism, cannot turn a selection scan into proof of adaptation, and cannot identify a pollinator or other selective agent from genomics alone.
+M01 cannot turn a visible white/purple difference into a regain claim without ancestral-state support, cannot turn expression alone into a causal regulatory mechanism, cannot turn a selection scan into proof of adaptation, and cannot identify a pollinator or other selective agent from genomics alone.
