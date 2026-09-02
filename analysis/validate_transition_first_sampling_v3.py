@@ -114,7 +114,7 @@ def validate_narrative() -> None:
         "15 shallow libraries",
         "25 libraries",
         "up to 12 non-backbone authority concepts",
-        "not posterior probabilities",
+        "did not assign posterior probabilities",
     ]
     missing = [x for x in required if x not in doc]
     if missing:
