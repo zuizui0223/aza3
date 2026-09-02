@@ -103,8 +103,18 @@ def validate_allocation() -> list[dict[str, str]]:
             raise AssertionError(f"Stage A candidate coverage drift: {anchor}")
     if sum(r["protocol_slot"] == "TOP1" for r in repeats) != 4 or sum(r["protocol_slot"] == "TOP2" for r in repeats) != 4:
         raise AssertionError("Stage B repeats are not balanced 4/4 across TOP1/TOP2")
-    if any(not r["technical_repeat_of"] for r in repeats):
-        raise AssertionError("technical repeat lacks declared original library")
+
+    primary = {r["library_slot"]: r for r in stage_b}
+    for repeat in repeats:
+        original_slot = repeat["technical_repeat_of"]
+        original = primary.get(original_slot)
+        if original is None:
+            raise AssertionError(f"technical repeat does not reference a Stage B primary slot: {repeat['library_slot']}")
+        for field in ("anchor_id", "template_role", "protocol_slot"):
+            if repeat[field] != original[field]:
+                raise AssertionError(f"technical repeat changed {field}: {repeat['library_slot']}")
+        if repeat["library_batch"] == original["library_batch"]:
+            raise AssertionError(f"technical repeat is not cross-batch: {repeat['library_slot']}")
     return rows
 
 
