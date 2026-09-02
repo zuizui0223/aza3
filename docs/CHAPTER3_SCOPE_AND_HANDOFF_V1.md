@@ -46,6 +46,16 @@ JPN15 stickiness neutralization remains a prospective necessity test. The JPN06-
 
 Predeclare the topology ensemble, trait-history rules, network sensitivities and function models before examining their joint result. A topology update may reject a Chapter 2 placement, but it cannot by itself establish function, selection, adaptation, convergence or developmental modularity.
 
+## Claim-backward sampling architecture
+
+Sampling is reverse-engineered from the maximum admissible claim. The machine-readable contract is `data/planning/chapter3_inverse_sampling_design_v1.json`, with the readable design in `docs/CHAPTER3_INVERSE_SAMPLING_DESIGN_V1.md`.
+
+For the breadth core, P03/P04 require a 38-concept × 3-individual all-Japan floor (**114 primary individuals**). P01 and P02 then add only the population depth needed by their own historical ambiguities: JPN36 reaches 30 minimum/40 recommended individuals, while JPN06 and JPN15 each reach 16 minimum/24 recommended. This yields a **167-individual minimum core** or **193 recommended** core. P04 reuses these same individuals; P05 first reuses calibrated images and opens no additional fresh-collection quota in v1.
+
+For M01, the full Ryukyu population-genomic panel is not the first assay. E1/E2 begins with two populations per lineage, 15 primary individuals per population, a nested pigment subset, a six-concept ancestral-state outgroup panel, and 20 primary corolla RNA-seq libraries. E3 opens only after the E1/E2 promotion gate succeeds, and then expands to four populations × 15 primary individuals × two lineages = **120 population-genomic individuals**.
+
+This is a distributed collection design. Authorized collaborators may acquire standardized material under the same identity and rights contract; the investigator is not required to personally visit every Japanese population. Cheap leaf/photo material may be banked early, but expensive sequencing is staged behind G0-G4 inference gates. No outcome-dependent replacement is permitted.
+
 ## Embedded depth demonstration — M01
 
 M01 applies the same aza3 logic one layer deeper. Its question is:
