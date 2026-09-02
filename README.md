@@ -26,128 +26,133 @@ P01-P05 ask where apparent transitions in orientation, phyllary posture, stickin
 
 The white versus bluish-purple floral-pigmentation contrast in `Cirsium brevicaule` and `C. irumtiense` remains an **embedded worked case**, **not P06**. It follows one retained contrast through history, pigment chemistry, corolla expression and selection-consistent genomic evidence without presupposing loss, regain or a selective agent.
 
-## Authoritative sampling v4: nationwide species tree first
+## Nationwide species tree first
 
-New sampling is governed by `docs/CHAPTER3_NATIONWIDE_SPECIES_TREE_SAMPLING_V4.md` and `data/planning/chapter3_nationwide_species_tree_sampling_v4.json`.
+Sampling architecture is governed by `docs/CHAPTER3_NATIONWIDE_SPECIES_TREE_SAMPLING_V4.md`.
 
-The primary genomic product is now:
+The primary genomic product is:
 
 > **a Japan-wide nuclear Cirsium species-tree/network built with target capture.**
 
-RAD is nested underneath that tree for population ancestry and reticulation; it is not the method used to define the nationwide cross-species scaffold.
+Current planning baseline:
 
-## How many species and individuals?
+- approximately **120 primary species concepts** after taxonomic reconciliation;
+- two independent biological individuals/species = **240 Wave-1 target-capture individuals**;
+- up to 30 widespread/variable taxa receive a third individual;
+- up to 10 complex/polyploid/hybrid-suspected taxa receive two additional individuals;
+- nominal full nationwide target-capture panel = **290 individuals**;
+- if the frozen primary-species count exceeds 125, reopen the budget rather than reducing replication.
 
-Current NMNS public resources use different scopes: a 2025 article describes approximately **120 species**, while the thistle database currently returns **161 authority records**, including infraspecific and unpublished/new-name entries. Therefore 161 database rows are not treated as 161 independent species.
+The current NMNS database returns 161 authority records, but database rows, varieties, synonyms and unpublished/new-name entries are not treated as 161 independent species.
 
-Planning baseline:
+Every nationwide-tree individual is also a phenotype sample: immutable ID, voucher/images, orientation, phyllary posture, stickiness/gland state, flower colour, developmental stage, DNA source and cytotype/genome-size evidence status are linked to the same plant.
 
-- **120 primary species concepts** as the working nationwide count;
-- final operational count must be frozen by taxonomic reconciliation before destructive collection;
-- if the final primary-species count exceeds 125, reopen the individual budget rather than reducing replication.
+## Field priority v5 — how to actually collect it
 
-### Nationwide target-capture bank
+`docs/CHAPTER3_FIELD_PRIORITY_CALENDAR_V5.md` converts the nationwide-tree design into a seasonal priority schedule.
 
-Every admitted species receives **two independent biological individuals** where possible.
+The governing trip rule is:
 
-At 120 species:
+> **tree breadth first, focal RAD top-up second, enrichment last.**
 
-- base: 120 ×2 = **240 individuals**;
-- up to 30 widespread/variable taxa receive +1 = **+30**;
-- up to 10 complex/polyploid/hybrid-suspected taxa receive +2 = **+20**;
-- nominal full panel = **290 target-capture candidates**.
+If field time forces a choice between a missing admitted species for the nationwide species tree and extra population depth in an already represented focal species, collect the missing species-tree taxon.
 
-At 125 species with the same enrichment envelope, the planning ceiling is **300 individuals**.
+### Priority A — short-window / hard-to-repeat taxa
 
-The two base individuals should come from different populations or clearly separated geographic occurrences whenever feasible. A conservation-limited species may remain one-sample with an explicit `SINGLE_SAMPLE_LIMITED` flag; it is not replaced by a convenience relative.
+Highest priority: alpine, narrow-range, island-endemic or conservation-coordinated taxa whose flowering window is short. September 2026 is therefore used first for northern/high-alpine taxa whose documented flowering closes in August–September.
 
-### Target-capture sequencing waves
+### Priority B — focal systems
 
-**Wave 1:** sequence the two base individuals/species first — nominally **240 individuals** at 120 species.
+Second priority because one collection serves Level 1 tree, Level 2 traits and Level 3 population genomics:
 
-**Wave 2:** sequence up to **50 preregistered enrichment individuals** for widespread/variable or complex taxa.
+- `C. sieboldii`;
+- `C. dipsacolepis`;
+- `C. lineare`;
+- `C. brevicaule`;
+- `C. irumtiense`.
 
-The intended full nationwide nuclear panel is therefore **290–300 individuals**, not 38×3 RAD samples.
+### Priority C — route-efficient nationwide taxa
 
-Use a **Comp1061-compatible nuclear target-capture assay**, or an explicitly crosswalked equivalent, so the own-data panel remains compatible with the existing Moreyra/EAzami nuclear scaffold.
+Any other admitted species flowering in the same field block is collected for its two-individual tree package before extra focal-population depth is added.
 
-## Every tree sample is also a trait sample
+### Priority D — completion/enrichment
 
-The nationwide tree must not recreate species-tip compression. Every newly collected sequenced individual links one immutable ID to:
+Third/fourth target-capture individuals, additional focal populations and network-enrichment material are added after missing Level-1 species are covered.
 
-- taxon and population;
-- voucher/diagnostic images;
-- capitulum orientation;
-- phyllary posture plus calibrated image;
-- stickiness/gland state;
-- flower colour;
-- developmental stage;
-- silica/fresh leaf DNA;
-- cytotype or genome-size evidence status;
-- deidentified authorization/conservation IDs.
+## Field calendar
 
-Thus Level 1 provides both the own nuclear tree and the individual-linked phenotype scaffold for P01-P05.
+1. **September 2026 — northern/high-alpine rescue.** Secure two tree individuals for short-window alpine/narrow taxa first.
+2. **Late September–October 2026 — central Honshu/Shikoku + `C. sieboldii`.** Build tree breadth and start `C. sieboldii` with two 15-plant populations.
+3. **October–November 2026 — western Honshu/Shikoku/Kyushu.** Tree breadth plus two populations each of `C. dipsacolepis` and `C. lineare`; schedule `C. lineare` earlier because its flowering window is shorter.
+4. **Late February–late March 2027 — Ryukyu discovery.** Okinawa Honto + Amami Oshima for `C. brevicaule`, Miyako + Ishigaki for `C. irumtiense`, 15 plants/population with nested RNA/pigment sampling; collect other admitted island Cirsium tree representatives on the same routes.
+5. **July–September 2027 — Hokkaido/high-alpine completion.** Fill missed summer taxa and second geographic representatives.
+6. **September–November 2027 — nationwide gap fill.** Complete two-per-species representation first, then focal RAD completion and Wave-2 enrichment.
+
+## RAD is staged under the tree
+
+Full focal RAD target remains:
+
+- `C. sieboldii`: 4 populations ×12 = **48**;
+- `C. dipsacolepis`: 3 ×12 = **36**;
+- `C. lineare`: 3 ×12 = **36**;
+- `C. brevicaule`: 2 ×12 = **24**;
+- `C. irumtiense`: 2 ×12 = **24**;
+- full target = **168 primary RAD individuals**.
+
+But it is **not front-loaded**.
+
+Starter before Level-2 remapping:
+
+- two populations/species for all five focal systems;
+- 10 populations total;
+- **120 primary RAD /150 physical plants including reserves**.
+
+Conditional completion after the nationwide tree and trait-history remapping:
+
+- `C. sieboldii` +2 populations;
+- `C. dipsacolepis` +1;
+- `C. lineare` +1;
+- +48 primary RAD, reaching 168 only if the added depth remains discriminating.
+
+The focal RAD technical pilot remains 15 Stage-A shallow libraries and 25 Stage-B libraries with genotype-concordance ≥0.95 and core-locus recovery ≥0.90.
+
+## Target-capture sequencing waves
+
+A **24-sample technical qualification batch** (12 species ×2 individuals) is drawn from the actual nationwide Wave-1 samples and spans geography, DNA quality and cytotype/genome-size classes.
+
+- **Wave 1 — breadth:** nominally 240 individuals, two/species.
+- **Wave 2 — complexity:** up to 50 additional preregistered individuals.
+
+No separate technical-sample quota is created.
 
 ## Analysis hierarchy
 
 1. **Level 0 — taxonomic census:** reconcile the NMNS authority universe into operational species concepts.
 2. **Level 1 — nationwide target capture:** build the Japanese nuclear species-tree/network ensemble.
 3. **Level 2 — trait history:** remap orientation, phyllary, stickiness and cross-module histories on the own-data nationwide ensemble.
-4. **Level 3 — population RAD:** expand only focal lineages/transition neighbourhoods where shallow ancestry, introgression or morph history can discriminate competing histories.
+4. **Level 3 — population RAD:** deepen only focal lineages/transition neighbourhoods where shallow ancestry, introgression or morph history can discriminate competing histories.
 5. **Level 4 — M01:** add pigment/RNA and later candidate-region confirmation to the embedded floral-pigmentation case.
-
-## Nested focal RAD programme
-
-Current target population-RAD design:
-
-- `C. sieboldii`: 4 populations ×12 = **48**;
-- `C. dipsacolepis`: 3 ×12 = **36**;
-- `C. lineare`: 3 ×12 = **36**;
-- `C. brevicaule`: 2 ×12 = **24**;
-- `C. irumtiense`: 2 ×12 = **24**.
-
-Total initial focal RAD = **168 primary individuals**.
-
-These are not added as a separate tree-only collection. Up to four RAD individuals per focal species also serve as nationwide target-capture representatives. Under the nominal full design:
-
-- nationwide bank = 290;
-- focal RAD = 168;
-- same-individual overlap = 20;
-- additional focal plants beyond the nationwide bank ≈148;
-- full national-tree + initial focal-RAD programme ≈ **438 unique physical plants**.
-
-The species tree can be completed before the full 438-plant programme: the first publishable nationwide genomic wave is the 240-individual two-per-species target-capture panel.
-
-## RAD assay boundary
-
-The focal RAD enzyme/complexity pilot remains nested within the five mandatory systems:
-
-- Stage A: 5 systems ×1 DNA ×3 candidates = **15 shallow libraries**;
-- Stage B: 5 systems ×2 independent individuals ×top-2 protocols =20 primary +5 cross-batch repeats = **25 libraries**;
-- genotype concordance gate ≥0.95;
-- core-locus recovery gate ≥0.90.
-
-If later Level 2 selects high-ploidy taxa for population RAD, run a separate ploidy/complexity-stratum assay check. Mixed-ploidy RAD is never allowed to define the nationwide species tree.
 
 ## M01 remains nested
 
-`C. brevicaule` and `C. irumtiense` are already included in the nationwide target-capture panel and initial focal RAD programme. M01 adds floral material in Okinawa Honto, Amami Oshima, Miyako and Ishigaki: six developmentally matched floral collections/population, five primary RNA replicates and one reserve.
+`C. brevicaule` and `C. irumtiense` are already included in Level 1 and Level 3. M01 adds six developmentally matched floral collections/population, five primary RNA replicates and one reserve in Okinawa Honto, Amami Oshima, Miyako and Ishigaki. Further islands remain conditional on E1/E2 promotion.
 
-Further islands remain conditional on E1/E2 promotion. RAD-only outliers are not final selection evidence, and genomics alone cannot identify the selective agent.
+RAD-only outliers are not final selection evidence, and genomics alone cannot identify the selective agent.
 
 ## Start here
 
-1. `docs/CHAPTER3_NATIONWIDE_SPECIES_TREE_SAMPLING_V4.md` — authoritative species/individual sampling architecture.
-2. `data/planning/chapter3_nationwide_species_tree_sampling_v4.json` — machine-readable v4 contract.
-3. `data/planning/chapter3_nationwide_species_tree_budget_v4.csv` — 120-species / 290-individual planning budget and nested RAD totals.
-4. `docs/CHAPTER3_SCOPE_AND_HANDOFF_V1.md` — frozen Chapter 3 claim boundaries.
-5. `data/planning/chapter3_sampling_priorities_v1.csv` — frozen P01-P05 inherited from Chapter 2.
-6. `data/planning/chapter3_mechanistic_demonstration_v1.json` — M01 evidence ladder.
-7. `docs/CHAPTER3_RADSEQ_END_TO_END_V1.md` — RAD laboratory/analysis safeguards.
-8. `data/intake/chapter3_individual_intake_v1.csv` — empty biological intake ledger.
-9. `data/intake/chapter3_radseq_library_intake_v1.csv` — empty RAD library/QC ledger.
+1. `docs/CHAPTER3_NATIONWIDE_SPECIES_TREE_SAMPLING_V4.md` — authoritative species/individual architecture.
+2. `docs/CHAPTER3_FIELD_PRIORITY_CALENDAR_V5.md` — operational field priority and seasonal calendar.
+3. `data/planning/chapter3_field_priority_v5.json` — machine-readable field-priority contract.
+4. `data/planning/chapter3_field_campaign_priority_v5.csv` — six campaign blocks.
+5. `data/planning/chapter3_nationwide_species_tree_sampling_v4.json` — machine-readable nationwide-tree contract.
+6. `data/planning/chapter3_nationwide_species_tree_budget_v4.csv` — target-capture/RAD budget.
+7. `docs/CHAPTER3_SCOPE_AND_HANDOFF_V1.md` — frozen claim boundaries.
+8. `data/planning/chapter3_sampling_priorities_v1.csv` — frozen P01-P05 inherited from Chapter 2.
+9. `data/planning/chapter3_mechanistic_demonstration_v1.json` — M01 evidence ladder.
+10. `docs/CHAPTER3_RADSEQ_END_TO_END_V1.md` — RAD laboratory/analysis safeguards.
 
-v1-v3 inverse-sampling, 38×3, zero-baseline, transition-first, eight-anchor and inventory-first files remain design history only. Transition-neighbourhood logic from v3 remains useful at Level 2/3 after the nationwide tree is built.
+Older v1-v3 inverse-sampling, 38×3, zero-baseline and transition-first plans remain design history only. Their transition-neighbourhood logic is retained downstream at Level 2/3, after the nationwide tree exists.
 
 ## Current state
 
