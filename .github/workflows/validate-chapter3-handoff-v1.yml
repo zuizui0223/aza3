@@ -5,22 +5,22 @@ on:
     paths:
       - "README.md"
       - "docs/CHAPTER3_SCOPE_AND_HANDOFF_V1.md"
-      - "docs/CHAPTER3_ZERO_BASELINE_SAMPLING_PLAN_V2.md"
+      - "docs/CHAPTER3_TRANSITION_FIRST_SAMPLING_PLAN_V3.md"
       - "docs/CHAPTER3_RADSEQ_END_TO_END_V1.md"
       - "docs/M01_FLORAL_PIGMENTATION_MECHANISTIC_DEMONSTRATION_V1.md"
       - "data/contracts/chapter3_eazami_handoff_contract_v1.json"
       - "data/planning/chapter3_sampling_priorities_v1.csv"
       - "data/planning/chapter3_mechanistic_demonstration_v1.json"
-      - "data/planning/chapter3_zero_baseline_sampling_v2.json"
-      - "data/planning/chapter3_zero_baseline_population_targets_v2.csv"
+      - "data/planning/chapter3_transition_first_sampling_v3.json"
       - "data/intake/chapter3_individual_intake_v1.csv"
       - "data/intake/chapter3_radseq_library_intake_v1.csv"
+      - "analysis/build_nmns_transition_candidate_universe_v3.py"
       - "analysis/validate_chapter3_handoff_v1.py"
       - "analysis/validate_mechanistic_demonstration_v1.py"
-      - "analysis/validate_zero_baseline_sampling_v2.py"
+      - "analysis/validate_transition_first_sampling_v3.py"
       - "tests/test_validate_chapter3_handoff_v1.py"
       - "tests/test_validate_mechanistic_demonstration_v1.py"
-      - "tests/test_validate_zero_baseline_sampling_v2.py"
+      - "tests/test_validate_transition_first_sampling_v3.py"
       - ".github/workflows/validate-chapter3-handoff-v1.yml"
   push:
     branches: [main]
@@ -46,7 +46,7 @@ jobs:
         run: |
           python analysis/validate_mechanistic_demonstration_v1.py
           python tests/test_validate_mechanistic_demonstration_v1.py -v
-      - name: Validate zero-baseline sampling v2
+      - name: Validate transition-first sampling v3
         run: |
-          python analysis/validate_zero_baseline_sampling_v2.py
-          python tests/test_validate_zero_baseline_sampling_v2.py -v
+          python analysis/validate_transition_first_sampling_v3.py
+          python tests/test_validate_transition_first_sampling_v3.py -v
