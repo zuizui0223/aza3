@@ -16,10 +16,13 @@ class MechanisticDemonstrationTests(unittest.TestCase):
         rows = target.validate_core_priority_independence()
         self.assertEqual([row["priority_id"] for row in rows], ["P01", "P02", "P03", "P04", "P05"])
 
-    def test_m01_is_independent_not_p06(self) -> None:
+    def test_m01_is_embedded_not_p06(self) -> None:
         m01 = target.validate_m01_contract()
         self.assertEqual(m01["demonstration_id"], "M01")
-        self.assertEqual(m01["role"]["core_priority_status"], "INDEPENDENT_NOT_P06")
+        self.assertEqual(m01["role"]["architecture"], "BREADTH_TO_DEPTH")
+        self.assertEqual(m01["role"]["core_priority_status"], "EMBEDDED_CASE_NOT_P06")
+        self.assertIn("same Chapter 3 identifiability problem", m01["role"]["dissertation_role"])
+        self.assertIn("P01-P05 provide the breadth test", m01["role"]["general_problem_bridge"])
         self.assertIn("worked example", m01["role"]["not_primary_subject"])
 
     def test_competing_histories_are_not_preferred(self) -> None:
@@ -28,6 +31,15 @@ class MechanisticDemonstrationTests(unittest.TestCase):
         self.assertEqual([row["history_id"] for row in histories], ["H1", "H2", "H3"])
         self.assertTrue(all(row["prior_status"] == "COMPETING_NOT_PREFERRED" for row in histories))
         self.assertIn("gained or regained", histories[1]["statement"])
+
+    def test_core_connection_runs_from_species_tip_to_causal_ecology(self) -> None:
+        m01 = target.validate_m01_contract()
+        connection = m01["core_connection"]
+        self.assertIn("not yet a historical event", connection["stage_1_species_tip_contrast"])
+        self.assertIn("individual/population ancestry", connection["stage_2_linked_history"])
+        self.assertIn("pigment chemistry", connection["stage_3_transition_decomposition"])
+        self.assertIn("population genomics", connection["stage_4_selection_layer"])
+        self.assertIn("separate functional or agent-specific ecological design", connection["stage_5_causal_ecology"])
 
     def test_evidence_ladder_preserves_claim_ceilings(self) -> None:
         m01 = target.validate_m01_contract()
