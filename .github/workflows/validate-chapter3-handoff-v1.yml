@@ -37,7 +37,7 @@ jobs:
         run: |
           python analysis/validate_chapter3_handoff_v1.py
           python tests/test_validate_chapter3_handoff_v1.py -v
-      - name: Validate independent M01 mechanistic demonstration
+      - name: Validate embedded M01 depth demonstration
         run: |
           python analysis/validate_mechanistic_demonstration_v1.py
           python tests/test_validate_mechanistic_demonstration_v1.py -v
