@@ -1,0 +1,120 @@
+{
+  "contract_version": "chapter3_radseq_pilot_execution_v1",
+  "status_date": "2026-09-02",
+  "parent_contract": "data/planning/chapter3_radseq_end_to_end_v1.json",
+  "purpose": "convert the RAD end-to-end design into an executable technical pilot without opening biological inference or production sequencing",
+  "candidate_protocols": [
+    {
+      "protocol_id": "RAD_C01_AVAII_MSPI",
+      "enzymes": "AvaII + MspI",
+      "status": "SCREEN_CANDIDATE_NOT_WINNER",
+      "rationale": "plant ddRAD literature reports broad tag recovery across diverse angiosperm genome sizes; included as a high-complexity candidate",
+      "initial_screen_size_window_bp": "400-700",
+      "size_window_status": "SCREEN_ONLY_NOT_PRODUCTION_FROZEN"
+    },
+    {
+      "protocol_id": "RAD_C02_ECORI_MSPI",
+      "enzymes": "EcoRI + MspI",
+      "status": "SCREEN_CANDIDATE_NOT_WINNER",
+      "rationale": "classic ddRAD candidate with broad plant use and an intermediate expected tag density",
+      "initial_screen_size_window_bp": "400-700",
+      "size_window_status": "SCREEN_ONLY_NOT_PRODUCTION_FROZEN"
+    },
+    {
+      "protocol_id": "RAD_C03_PSTI_MSPI",
+      "enzymes": "PstI + MspI",
+      "status": "SCREEN_CANDIDATE_NOT_WINNER",
+      "rationale": "widely used rare/common-cutter plant candidate; retained because methylation sensitivity and reduced complexity may improve some Cirsium strata",
+      "initial_screen_size_window_bp": "400-700",
+      "size_window_status": "SCREEN_ONLY_NOT_PRODUCTION_FROZEN"
+    }
+  ],
+  "stage_A_screen": {
+    "anchor_systems": 8,
+    "templates_per_anchor": 1,
+    "candidate_protocols_per_template": 3,
+    "planned_libraries": 24,
+    "sequencing_rule": "shallow sequence all 24 libraries together with balanced indexing; compare protocols only after equal-read downsampling",
+    "hard_failures": [
+      "failed or grossly abnormal library in any mandatory anchor system",
+      "persistent adapter-dimer or off-window fragment dominance after standard cleanup",
+      "severe read-retention failure not explained by a documented technical incident",
+      "protocol-specific loss of either Cirsium brevicaule or Cirsium irumtiense anchor"
+    ],
+    "ranking_metrics": [
+      "usable loci per anchor after equal-read downsampling",
+      "dispersion of usable locus count among the eight anchors",
+      "anchor-system shared-locus counts at 6-of-8, 7-of-8 and 8-of-8 concept occupancy",
+      "fragment-size profile consistency",
+      "depth evenness and high-depth repeat/paralog tail",
+      "retained-read fraction"
+    ],
+    "advancement_rule": "advance the best two nonfailed protocols by technical Pareto ranking; if no two protocols are technically viable, redesign enzyme/size-window candidates before Stage B rather than lowering biological QC gates"
+  },
+  "stage_B_reproducibility": {
+    "anchor_systems": 8,
+    "biological_templates_per_anchor": 2,
+    "advanced_protocols": 2,
+    "primary_libraries": 32,
+    "technical_repeat_libraries": 8,
+    "planned_libraries_total": 40,
+    "repeat_balance": "one preregistered technical repeat per anchor system; four repeats assigned to TOP1 and four to TOP2, prepared in an independent library batch from the original",
+    "batch_design": "each protocol is represented in at least two independent library-preparation batches; anchor identity, ploidy/genome-size class and focal status are interleaved rather than confounded with batch",
+    "technical_concordance_gate": {
+      "minimum_overlap_genotype_concordance": 0.95,
+      "minimum_core_locus_recovery": 0.90,
+      "comparison_rule": "calculate after the frozen pilot genotype/depth filters and only on callable overlapping loci; report pairwise values rather than only a pooled mean"
+    },
+    "single_protocol_gate": [
+      "all eight anchor systems yield analyzable libraries",
+      "every preregistered technical repeat meets genotype concordance >=0.95 or has a documented rebuildable technical failure",
+      "every preregistered technical repeat meets core-locus recovery >=0.90 or has a documented rebuildable technical failure",
+      "equal-depth usable-locus recovery does not show a protocol-specific failure of the large-genome, small-genome or high-ploidy anchor class",
+      "6-of-8/7-of-8/8-of-8 anchor shared-locus curves are sufficient to justify attempting the all-Japan strict shared-locus sensitivity"
+    ],
+    "decision_rule": "if exactly one protocol passes all single-protocol gates, freeze it for the corresponding production stratum; if both pass, choose by shared-locus recovery plus lower anchor dispersion without using trait outcomes; if neither passes across all anchors but one or both work within coherent strata, stratify production protocols and cancel a single all-Japan SNP matrix"
+  },
+  "pilot_depth_saturation": {
+    "downsampling_fractions": [0.2, 0.4, 0.6, 0.8, 1.0],
+    "metrics": [
+      "usable locus count",
+      "r80 loci within focal/population-like subsets",
+      "anchor-system shared-locus count",
+      "median locus depth",
+      "technical concordance"
+    ],
+    "plateau_rule": "a production read target may be frozen only when the pilot provides a visible locus-recovery plateau; operationally, the chosen target should lie at or above the first depth where additional sequencing yields less than 10 percent additional usable loci for the relevant analysis stratum and technical concordance has already passed",
+    "no_plateau_rule": "if the pilot never approaches a plateau, top up the pilot or redesign complexity before committing the full biological panel"
+  },
+  "stacks_pilot_rule": {
+    "within_population_parameter_optimization": "use r80-style optimization within focal or population-like subsets; do not treat r80 across deeply divergent Japan38 concepts as the same estimand",
+    "m_grid": [2,3,4,5,6],
+    "M_grid": [1,2,3,4,5,6],
+    "n_grid_rule": "for the chosen M, evaluate n = M-1, M, M+1 where nonnegative",
+    "cross_concept_gate": "for the all-Japan sensitivity, summarize homologous catalog-locus recovery by anchor-concept occupancy (6/8, 7/8, 8/8) rather than selecting Stacks parameters to maximize a tree topology",
+    "freeze_rule": "freeze primary parameters and filters before any P01-P05 trait-history result is inspected"
+  },
+  "production_opening_conditions": [
+    "Stage A completed and two protocols advanced or a documented redesign completed",
+    "Stage B completed",
+    "technical-concordance gate passed for the chosen production protocol or protocol stratum",
+    "enzyme pair and size window frozen",
+    "production read target frozen from saturation analysis",
+    "primary Stacks parameters and analysis-specific occupancy matrices frozen",
+    "ploidy handling defined for every production concept or unresolved cytotypes explicitly excluded from dosage-dependent analyses"
+  ],
+  "current_state": {
+    "stage_A_authorized": false,
+    "stage_A_completed": false,
+    "stage_B_authorized": false,
+    "stage_B_completed": false,
+    "winner_protocol_frozen": false,
+    "production_open": false
+  },
+  "evidence_basis": [
+    "Yang et al. 2016 Plant Methods DOI 10.1186/s13007-016-0139-1",
+    "Paris et al. 2017 Methods in Ecology and Evolution DOI 10.1111/2041-210X.12775",
+    "Peterson/Arnold ddRAD amplification and locus-recovery reproducibility literature",
+    "2024 PLOS ONE ddRAD-versus-WGS genotyping accuracy DOI 10.1371/journal.pone.0298565"
+  ]
+}
