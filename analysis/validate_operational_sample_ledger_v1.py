@@ -66,8 +66,11 @@ def validate_core() -> list[dict[str, str]]:
 
     if "two Moreyra tree codes" not in lookup["JPN_20"]["population_rule"]:
         raise AssertionError("JPN20 paper-concept collapse rule drift")
-    if "Russian reference" not in lookup["JPN_38"]["population_rule"]:
-        raise AssertionError("JPN38 Japanese-provenance repair drift")
+    jpn38 = lookup["JPN_38"]
+    if jpn38["existing_reference_class"] != "Japanese_distributed_taxon_sampled_outside_Japan":
+        raise AssertionError("JPN38 outside-Japan reference provenance drift")
+    if "wild Japanese individuals" not in jpn38["population_rule"]:
+        raise AssertionError("JPN38 wild-Japan replacement target drift")
     return data
 
 
