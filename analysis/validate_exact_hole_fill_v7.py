@@ -24,9 +24,15 @@ FILES = {
     6: [ROOT / "data/planning/chapter3_holefill_priority6_add_own_trait_link_v7.csv"],
     7: [ROOT / "data/planning/chapter3_holefill_priority7_tree_filled_v7.csv"],
 }
-P1_SECTORS = ROOT / "data/planning/chapter3_holefill_priority1_sample_sectors_v7.csv"
-P2_SECTORS = ROOT / "data/planning/chapter3_holefill_priority2_sample_sectors_v7.csv"
-P3_SECTORS = ROOT / "data/planning/chapter3_holefill_priority3_sample_sectors_v7.csv"
+SECTOR_FILES = {
+    1: ROOT / "data/planning/chapter3_holefill_priority1_sample_sectors_v7.csv",
+    2: ROOT / "data/planning/chapter3_holefill_priority2_sample_sectors_v7.csv",
+    3: ROOT / "data/planning/chapter3_holefill_priority3_sample_sectors_v7.csv",
+    4: ROOT / "data/planning/chapter3_holefill_priority4_sample_sectors_v7.csv",
+    5: ROOT / "data/planning/chapter3_holefill_priority5_sample_sectors_v7.csv",
+    6: ROOT / "data/planning/chapter3_holefill_priority6_sample_sectors_v7.csv",
+    7: ROOT / "data/planning/chapter3_holefill_priority7_sample_sectors_v7.csv",
+}
 EXTENSION = ROOT / "data/planning/chapter3_holefill_taxonomy_extension_v7.csv"
 CONFLICTS = ROOT / "data/planning/chapter3_holefill_taxonomy_conflicts_v7.csv"
 
@@ -36,27 +42,62 @@ def read_rows(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(handle))
 
 
-def validate_sector_file(path: Path, expected_priority: int, expected_species: set[str], expected_n: int, expected_samples: int) -> None:
+def assert_no_exact_coordinate(text: str, species: str) -> None:
+    if re.search(r"[-+]?\d{1,3}\.\d{3,}", text or ""):
+        raise AssertionError(f"exact coordinate prematurely frozen for {species}")
+
+
+def validate_two_sample_sector_file(path: Path, priority: int, expected_species: set[str], expected_n: int, expected_samples: int) -> None:
     rows = read_rows(path)
     if len(rows) != expected_n:
-        raise AssertionError(f"P{expected_priority} sector ledger count drift: {len(rows)}")
+        raise AssertionError(f"P{priority} sector ledger count drift: {len(rows)}")
     if {r["species_binomial"] for r in rows} != expected_species:
-        raise AssertionError(f"P{expected_priority} sector species do not match exact hole set")
+        raise AssertionError(f"P{priority} sector species do not match exact hole set")
     if sum(int(r["new_tree_samples_needed"]) for r in rows) != expected_samples:
-        raise AssertionError(f"P{expected_priority} sector sample total drift")
-    coordinate_pattern = re.compile(r"[-+]?\d{1,3}\.\d{3,}")
+        raise AssertionError(f"P{priority} sector sample total drift")
     for row in rows:
         for field in ("nmns_distribution_source", "sample_A_sector", "sample_B_sector", "sector_design"):
             if not row.get(field, "").strip():
-                raise AssertionError(f"P{expected_priority} sector field {field} blank for {row['species_binomial']}")
+                raise AssertionError(f"P{priority} sector field {field} blank for {row['species_binomial']}")
         if row.get("locality_freeze_gate") != "CURRENT_OCCURRENCE_PLUS_PERMISSION_REQUIRED":
-            raise AssertionError(f"P{expected_priority} exact-locality gate drift for {row['species_binomial']}")
-        if coordinate_pattern.search(row["sample_A_sector"]) or coordinate_pattern.search(row["sample_B_sector"]):
-            raise AssertionError(f"exact coordinate prematurely frozen for {row['species_binomial']}")
+            raise AssertionError(f"P{priority} exact-locality gate drift for {row['species_binomial']}")
+        assert_no_exact_coordinate(row["sample_A_sector"], row["species_binomial"])
+        assert_no_exact_coordinate(row["sample_B_sector"], row["species_binomial"])
+
+
+def validate_singleton_complements(path: Path, expected_species: set[str]) -> None:
+    rows = read_rows(path)
+    if len(rows) != 26 or {r["species_binomial"] for r in rows} != expected_species:
+        raise AssertionError("P6 singleton-complement ledger drift")
+    if sum(int(r["new_tree_samples_needed"]) for r in rows) != 26:
+        raise AssertionError("P6 singleton-complement sample total drift")
+    for row in rows:
+        for field in ("nmns_distribution_source", "own_sample_sector_rule", "sector_design"):
+            if not row.get(field, "").strip():
+                raise AssertionError(f"P6 field {field} blank for {row['species_binomial']}")
+        if row.get("public_locality_audit_gate") != "REQUIRED_BEFORE_FINAL_SECTOR_FREEZE":
+            raise AssertionError(f"P6 public-locality audit gate drift for {row['species_binomial']}")
+        if row.get("locality_freeze_gate") != "CURRENT_OCCURRENCE_PLUS_PERMISSION_REQUIRED":
+            raise AssertionError(f"P6 exact-locality gate drift for {row['species_binomial']}")
+        assert_no_exact_coordinate(row["own_sample_sector_rule"], row["species_binomial"])
+
+
+def validate_p7_optional(path: Path, expected_species: set[str]) -> None:
+    rows = read_rows(path)
+    if len(rows) != 1 or {r["species_binomial"] for r in rows} != expected_species:
+        raise AssertionError("P7 optional-trait-link ledger drift")
+    row = rows[0]
+    if int(row["tree_new_samples_needed"]) != 0 or int(row["optional_trait_link_samples"]) != 1:
+        raise AssertionError("P7 tree/trait-link sample counts drift")
+    if row.get("public_locality_audit_gate") != "REQUIRED_BEFORE_OPTIONAL_SECTOR_FREEZE":
+        raise AssertionError("P7 public-locality audit gate drift")
+    if row.get("locality_freeze_gate") != "CURRENT_OCCURRENCE_PLUS_PERMISSION_REQUIRED":
+        raise AssertionError("P7 exact-locality gate drift")
+    assert_no_exact_coordinate(row.get("optional_own_trait_link_sector_rule", ""), row["species_binomial"])
 
 
 def main() -> int:
-    paths = [SUMMARY, DOC, P1_SECTORS, P2_SECTORS, P3_SECTORS, EXTENSION, CONFLICTS] + [p for ps in FILES.values() for p in ps]
+    paths = [SUMMARY, DOC, EXTENSION, CONFLICTS] + list(SECTOR_FILES.values()) + [p for ps in FILES.values() for p in ps]
     for path in paths:
         if not path.exists() or path.stat().st_size == 0:
             raise AssertionError(f"missing v7 hole-fill artifact: {path.relative_to(ROOT)}")
@@ -92,9 +133,16 @@ def main() -> int:
     if sum(expected_samples.values()) != 228:
         raise AssertionError("internal sample arithmetic error")
 
-    validate_sector_file(P1_SECTORS, 1, {r["species_binomial"] for r in by_priority[1]}, 33, 66)
-    validate_sector_file(P2_SECTORS, 2, {r["species_binomial"] for r in by_priority[2]}, 6, 12)
-    validate_sector_file(P3_SECTORS, 3, {r["species_binomial"] for r in by_priority[3]}, 44, 88)
+    for priority in (1, 2, 3, 4, 5):
+        validate_two_sample_sector_file(
+            SECTOR_FILES[priority],
+            priority,
+            {r["species_binomial"] for r in by_priority[priority]},
+            expected_species[priority],
+            expected_samples[priority],
+        )
+    validate_singleton_complements(SECTOR_FILES[6], {r["species_binomial"] for r in by_priority[6]})
+    validate_p7_optional(SECTOR_FILES[7], {r["species_binomial"] for r in by_priority[7]})
 
     p2 = {row["species_binomial"] for row in by_priority[2]}
     p3 = {row["species_binomial"] for row in by_priority[3]}
@@ -126,12 +174,10 @@ def main() -> int:
     print("chapter3_exact_hole_fill_v7_valid=true")
     print("published_core_species=128")
     print("new_tree_samples=228")
-    print("priority1_sector_species=33")
-    print("priority1_sector_samples=66")
-    print("priority2_sector_species=6")
-    print("priority2_sector_samples=12")
-    print("priority3_sector_species=44")
-    print("priority3_sector_samples=88")
+    print("two_sample_sector_species=101")
+    print("two_sample_sector_samples=202")
+    print("priority6_singleton_complements=26")
+    print("priority7_optional_trait_link=1")
     print("extension_species=26")
     print("extension_new_samples_if_admitted=51")
     print("taxonomy_gate_concepts=3")
