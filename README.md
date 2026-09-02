@@ -68,6 +68,8 @@ RAD roles are bounded:
 
 Primary de novo assembly is Stacks 2. `m/M/n`, missing-data filters and locus filters are optimized on outcome-blind technical metrics and then frozen. Trait states cannot be used to tune the RAD pipeline.
 
+The blank `data/intake/chapter3_radseq_library_intake_v1.csv` schema records DNA QC, extraction/library batch, protocol/index, sequencing run, read retention, locus depth/missingness and technical-replicate concordance. It must remain empty until production RAD is separately opened.
+
 ## Operational acquisition
 
 `docs/CHAPTER3_OPERATIONAL_SAMPLE_LEDGER_V1.md` contains one row for every Japan38 concept plus the M01 focal/outgroup populations.
@@ -82,13 +84,14 @@ Primary de novo assembly is Stacks 2. `m/M/n`, missing-data filters and locus fi
 4. `docs/CHAPTER3_RADSEQ_END_TO_END_V1.md` — RAD pilot, library design, QC, Stacks, missingness, ploidy and inference boundaries.
 5. `data/planning/chapter3_radseq_end_to_end_v1.json` — machine-readable RAD contract.
 6. `data/planning/chapter3_radseq_pilot_anchor_ledger_v1.csv` — eight-system RAD assay-pilot anchors.
-7. `data/planning/chapter3_inverse_sampling_design_v1.json` — machine-readable inverse sampling design.
-8. `data/planning/chapter3_core_operational_sample_ledger_v1.csv` — Japan38 operational ledger.
-9. `data/planning/m01_operational_population_ledger_v1.csv` — M01 focal/outgroup ledger.
-10. `data/planning/chapter3_sampling_priorities_v1.csv` — frozen P01-P05.
-11. `data/planning/chapter3_mechanistic_demonstration_v1.json` — M01 evidence ladder and claim ceilings.
-12. `docs/M01_FLORAL_PIGMENTATION_MECHANISTIC_DEMONSTRATION_V1.md` — readable M01 design.
-13. `data/intake/chapter3_individual_intake_v1.csv` — currently empty same-individual intake ledger.
+7. `data/intake/chapter3_radseq_library_intake_v1.csv` — empty production-library QC/batch/read/locus ledger.
+8. `data/planning/chapter3_inverse_sampling_design_v1.json` — machine-readable inverse sampling design.
+9. `data/planning/chapter3_core_operational_sample_ledger_v1.csv` — Japan38 operational ledger.
+10. `data/planning/m01_operational_population_ledger_v1.csv` — M01 focal/outgroup ledger.
+11. `data/planning/chapter3_sampling_priorities_v1.csv` — frozen P01-P05.
+12. `data/planning/chapter3_mechanistic_demonstration_v1.json` — M01 evidence ladder and claim ceilings.
+13. `docs/M01_FLORAL_PIGMENTATION_MECHANISTIC_DEMONSTRATION_V1.md` — readable M01 design.
+14. `data/intake/chapter3_individual_intake_v1.csv` — currently empty same-individual biological intake ledger.
 
 ## Current authorization state
 
@@ -111,6 +114,7 @@ RAD production:
 - RAD pilot completed: **false**;
 - enzyme pair frozen: **false**;
 - production RAD authorized: **false**;
+- RAD library records admitted: **0**;
 - M01 RAD-only selection claim authorized: **false**.
 
 Run the Chapter 3 validators before accepting any change to these boundaries.
