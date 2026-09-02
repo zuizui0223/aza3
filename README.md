@@ -140,6 +140,7 @@ Earlier inverse-sampling, eight-anchor pilot and physical-inventory documents re
 
 ## Current state
 
+- own biological data admitted: **0**;
 - confirmed physical samples: **0**;
 - S0 started: **false**;
 - S1 sampling authorized: **false**;
