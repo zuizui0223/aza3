@@ -1,6 +1,6 @@
-# aza3 — own-data discrimination after EAzami Chapter 2
+# aza3 — Japan-wide Cirsium tree to population and mechanism
 
-This repository starts Chapter 3 from the uncertainty left by the completed public-data Chapter 2. It does not treat future RAD-seq, target-capture, transcriptomic or field data as retroactive confirmation.
+This repository starts Chapter 3 from the uncertainty left by the completed public-data Chapter 2. It does not treat future target-capture, RAD-seq, transcriptomic or field data as retroactive confirmation.
 
 ## Locked starting point
 
@@ -8,147 +8,156 @@ EAzami Chapter 2 remains frozen at merge `62fa8c5c913c2b236e710f6bad366e80676aa7
 
 Within its admitted public topology ensemble:
 
-- orientation requires at least four state changes;
+- orientation requires **at least four** state changes;
 - phyllary posture requires at least three;
 - stickiness requires at least five;
 - minimum counts are better resolved than individual event placements;
-- species-tip compression hides within-species state multiplicity.
+- **species-tip compression** hides within-species state multiplicity.
 
 ## One question, breadth and depth
 
-> Which trait histories still survive when species-tip states are returned to linked individuals, populations and nuclear ancestry, and how far can a retained transition be decomposed into mechanism without confusing history, selection and causation?
+> What is the own-data evolutionary history of the Japanese Cirsium radiation, where did capitulum traits change on that history, and how far can selected transitions be decomposed from population history to molecular mechanism?
 
 ### P01-P05 breadth
 
-The frozen core asks where apparent transitions in orientation, phyllary posture, stickiness and related morphology remain identifiable after adding same-individual phenotype, population replication, cytotype and nuclear ancestry.
+P01-P05 ask where apparent transitions in orientation, phyllary posture, stickiness and related morphology survive when the analysis is rebuilt on own individual-linked phenotype, cytotype and nuclear ancestry.
 
 ### M01 depth — embedded worked case, not P06
 
-The white versus bluish-purple floral-pigmentation contrast in `Cirsium brevicaule` and `C. irumtiense` is one **embedded worked case** of the same identifiability problem. M01 follows one retained contrast through ancestral/transition history, pigment chemistry, same-individual corolla expression and population-genomic evidence consistent with selection after background controls.
+The white versus bluish-purple floral-pigmentation contrast in `Cirsium brevicaule` and `C. irumtiense` remains an **embedded worked case**, **not P06**. It follows one retained contrast through history, pigment chemistry, corolla expression and selection-consistent genomic evidence without presupposing loss, regain or a selective agent.
 
-Loss, regain/re-evolution and selective-agent attribution are output-dependent claims, not assumptions.
+## Authoritative sampling v4: nationwide species tree first
 
-## Transition-first sampling v3 — authoritative new-sampling plan
+New sampling is governed by `docs/CHAPTER3_NATIONWIDE_SPECIES_TREE_SAMPLING_V4.md` and `data/planning/chapter3_nationwide_species_tree_sampling_v4.json`.
 
-Physical biological samples currently equal **0**. New sampling is governed by `docs/CHAPTER3_TRANSITION_FIRST_SAMPLING_PLAN_V3.md` and `data/planning/chapter3_transition_first_sampling_v3.json`.
+The primary genomic product is now:
 
-### Japan38 = hypothesis-origin subset, not sampling universe
+> **a Japan-wide nuclear Cirsium species-tree/network built with target capture.**
 
-Moreyra et al. sampled 38 Japanese species, and Chapter 2 P01-P05 were discovered on that subset. The current NMNS `日本のアザミ` index returns **161 authority records**; those records include infraspecific/duplicate taxonomic units and are not treated as 161 independent species or transitions.
+RAD is nested underneath that tree for population ancestry and reticulation; it is not the method used to define the nationwide cross-species scaffold.
 
-Therefore Chapter 3 no longer starts from `38 concepts × n individuals`.
+## How many species and individuals?
 
-The acquisition order is:
+Current NMNS public resources use different scopes: a 2025 article describes approximately **120 species**, while the thistle database currently returns **161 authority records**, including infraspecific and unpublished/new-name entries. Therefore 161 database rows are not treated as 161 independent species.
 
-> authority-wide digital trait screen → nuclear placement where needed → transition-neighbourhood selection → population RAD
+Planning baseline:
 
-A reproducible NMNS candidate-universe builder is provided in `analysis/build_nmns_transition_candidate_universe_v3.py`. Authority catchphrases are converted only to short screening states plus source hashes; authority states are not same-individual observations or ancestral states.
+- **120 primary species concepts** as the working nationwide count;
+- final operational count must be frozen by taxonomic reconciliation before destructive collection;
+- if the final primary-species count exceeds 125, reopen the individual budget rather than reducing replication.
 
-## Two kinds of overlap
+### Nationwide target-capture bank
 
-**Same-individual multitrait overlap is desirable.** Every RAD individual scores orientation, phyllary posture, stickiness, colour and cytotype so P04 can test shared history without unlinking phenotype from ancestry.
+Every admitted species receives **two independent biological individuals** where possible.
 
-**Evolutionary-neighbourhood overlap is not replication.** P03 requires at least **four non-overlapping candidate orientation-transition neighbourhoods**. Two populations of one species do not count as two transition replicates, and JPN36 can occupy at most one P03 neighbourhood slot.
+At 120 species:
 
-## Fixed focal population layer
+- base: 120 ×2 = **240 individuals**;
+- up to 30 widespread/variable taxa receive +1 = **+30**;
+- up to 10 complex/polyploid/hybrid-suspected taxa receive +2 = **+20**;
+- nominal full panel = **290 target-capture candidates**.
 
-Default focal population bank = **12 primary RAD +3 preregistered reserves =15 physical plants/population**.
+At 125 species with the same enrichment envelope, the planning ceiling is **300 individuals**.
 
-Minimum defensible launch:
+The two base individuals should come from different populations or clearly separated geographic occurrences whenever feasible. A conservation-limited species may remain one-sample with an explicit `SINGLE_SAMPLE_LIMITED` flag; it is not replaced by a convenience relative.
 
-- JPN36 `C. sieboldii`: 3 populations =45 physical /36 RAD;
-- JPN06 `C. dipsacolepis`: 2 populations =30 /24;
-- JPN15 `C. lineare`: 2 populations =30 /24;
-- `C. brevicaule`: Okinawa Honto + Amami Oshima =30 /24;
-- `C. irumtiense`: Miyako + Ishigaki =30 /24.
+### Target-capture sequencing waves
 
-**Minimum =165 physical /132 primary RAD.**
+**Wave 1:** sequence the two base individuals/species first — nominally **240 individuals** at 120 species.
 
-Target mainland replication is JPN36=4 populations and JPN06/JPN15=3 populations each while M01 remains at two discovery populations/lineage. This gives **210 physical /168 primary RAD**.
+**Wave 2:** sequence up to **50 preregistered enrichment individuals** for widespread/variable or complex taxa.
 
-For M01, floral RNA/pigment sampling is nested within the same discovery plants: six floral collections/population, five primary RNA-seq libraries and one reserve.
+The intended full nationwide nuclear panel is therefore **290–300 individuals**, not 38×3 RAD samples.
 
-## RAD assay pilot is nested inside the five mandatory systems
+Use a **Comp1061-compatible nuclear target-capture assay**, or an explicitly crosswalked equivalent, so the own-data panel remains compatible with the existing Moreyra/EAzami nuclear scaffold.
 
-Do not collect unrelated taxa solely to test enzymes.
+## Every tree sample is also a trait sample
 
-- Stage A-focal: 5 systems ×1 DNA ×3 enzyme candidates = **15 shallow libraries**;
-- Stage B-focal: 5 systems ×2 independent biological templates ×top-2 protocols =20 primary +5 independent-batch repeats = **25 libraries**;
-- technical gates remain genotype concordance ≥0.95 and core-locus recovery ≥0.90.
+The nationwide tree must not recreate species-tip compression. Every newly collected sequenced individual links one immutable ID to:
 
-This qualifies only the focal stratum. If later transition neighbourhoods introduce tetraploid/high-ploidy material, a second stratum-specific assay check is required before production RAD.
+- taxon and population;
+- voucher/diagnostic images;
+- capitulum orientation;
+- phyllary posture plus calibrated image;
+- stickiness/gland state;
+- flower colour;
+- developmental stage;
+- silica/fresh leaf DNA;
+- cytotype or genome-size evidence status;
+- deidentified authorization/conservation IDs.
 
-## Non-Moreyra species enter through placement, not assumption
+Thus Level 1 provides both the own nuclear tree and the individual-linked phenotype scaffold for P01-P05.
 
-A taxon outside the current Comp1061 backbone can be scientifically valuable, but geography or similar morphology does not make it a close relative.
+## Analysis hierarchy
 
-The authority screen may nominate an initial batch of **up to 12 non-backbone concepts**. For each, collect two placement representatives where feasible and use a Comp1061-compatible target-capture nuclear placement assay. Only after stable placement may that concept enter population RAD as a transition comparator.
+1. **Level 0 — taxonomic census:** reconcile the NMNS authority universe into operational species concepts.
+2. **Level 1 — nationwide target capture:** build the Japanese nuclear species-tree/network ensemble.
+3. **Level 2 — trait history:** remap orientation, phyllary, stickiness and cross-module histories on the own-data nationwide ensemble.
+4. **Level 3 — population RAD:** expand only focal lineages/transition neighbourhoods where shallow ancestry, introgression or morph history can discriminate competing histories.
+5. **Level 4 — M01:** add pigment/RNA and later candidate-region confirmation to the embedded floral-pigmentation case.
 
-Ambiguous/hybrid/polyploid placement remains explicit; it is not forced into a sister pair.
+## Nested focal RAD programme
 
-## Transition-neighbourhood sampling
+Current target population-RAD design:
 
-P01 keeps JPN36 as the fixed phyllary focal system. P02 keeps JPN06-JPN15 as the fixed stickiness contrast.
+- `C. sieboldii`: 4 populations ×12 = **48**;
+- `C. dipsacolepis`: 3 ×12 = **36**;
+- `C. lineare`: 3 ×12 = **36**;
+- `C. brevicaule`: 2 ×12 = **24**;
+- `C. irumtiense`: 2 ×12 = **24**.
 
-P03 does not sequence 38 or 161 units uniformly. It selects at least four **distinct orientation-transition neighbourhoods** from the admitted expanded nuclear scaffold. Each neighbourhood must contain an explicit state contrast and the placed comparator lineages needed to distinguish terminal from deeper placement.
+Total initial focal RAD = **168 primary individuals**.
 
-Chapter 2 did not assign posterior weights to equally parsimonious histories, so v3 does **not** use the old `80% transition probability mass` language.
+These are not added as a separate tree-only collection. Up to four RAD individuals per focal species also serve as nationwide target-capture representatives. Under the nominal full design:
 
-For an added non-focal comparator taxon, the default population design is:
+- nationwide bank = 290;
+- focal RAD = 168;
+- same-individual overlap = 20;
+- additional focal plants beyond the nationwide bank ≈148;
+- full national-tree + initial focal-RAD programme ≈ **438 unique physical plants**.
 
-- 2 populations;
-- 10 primary RAD +2 reserve/population;
-- 20 primary RAD /24 physical per taxon.
+The species tree can be completed before the full 438-plant programme: the first publishable nationwide genomic wave is the 240-individual two-per-species target-capture panel.
 
-For within-species polymorphism, prefer at least three populations and at least 10 primary individuals per observed state across at least two populations where feasible, so morph is not identical to locality.
+## RAD assay boundary
 
-P04 reuses the same A1/A3 plants. P05 is measurement-first and does not open extra RAD merely to increase continuous-trait n.
+The focal RAD enzyme/complexity pilot remains nested within the five mandatory systems:
 
-## Method roles
+- Stage A: 5 systems ×1 DNA ×3 candidates = **15 shallow libraries**;
+- Stage B: 5 systems ×2 independent individuals ×top-2 protocols =20 primary +5 cross-batch repeats = **25 libraries**;
+- genotype concordance gate ≥0.95;
+- core-locus recovery gate ≥0.90.
 
-- Moreyra/expanded Comp1061-compatible target capture: cross-species placement and scaffold;
-- RAD: population ancestry, admixture, reticulation and morph/population history inside qualified neighbourhoods;
-- same-individual phenotype: transition localization;
-- M01 RNA/pigment: molecular decomposition;
-- candidate resequencing/capture/WGS: selection-consistent locus evidence.
+If later Level 2 selects high-ploidy taxa for population RAD, run a separate ploidy/complexity-stratum assay check. Mixed-ploidy RAD is never allowed to define the nationwide species tree.
 
-RAD is therefore an instrument for shallow ancestry/history discrimination, not the definitive Japanese species tree or an adaptation test.
+## M01 remains nested
 
-## Individual field package
+`C. brevicaule` and `C. irumtiense` are already included in the nationwide target-capture panel and initial focal RAD programme. M01 adds floral material in Okinawa Honto, Amami Oshima, Miyako and Ishigaki: six developmentally matched floral collections/population, five primary RNA replicates and one reserve.
 
-Every admitted RAD plant links one immutable ID to taxon/population, voucher/diagnostic images, orientation, phyllary posture and calibrated image, stickiness/gland state, flower colour, developmental stage, silica leaf, cytotype/genome-size evidence status and deidentified authorization/conservation IDs.
-
-Spread individuals across the occupied patch; use ≥10 m spacing where biologically sensible and avoid obvious connected/clonal ramets. Reserves replace technical failures, not inconvenient biological outcomes.
-
-## M01 expansion remains conditional
-
-Do not add Iriomote, Yonaguni and extra Amami populations merely for island coverage. Open that expansion only after ancestral-state/pigment history is interpretable at the stated claim ceiling and the corolla-expression association replicates across both discovery populations within each lineage.
-
-RAD supplies the population/background layer; final candidate-region selection evidence requires an independent non-RAD confirmation route. Genomics alone cannot identify the selective agent.
+Further islands remain conditional on E1/E2 promotion. RAD-only outliers are not final selection evidence, and genomics alone cannot identify the selective agent.
 
 ## Start here
 
-1. `docs/CHAPTER3_TRANSITION_FIRST_SAMPLING_PLAN_V3.md` — authoritative transition-first sampling design.
-2. `data/planning/chapter3_transition_first_sampling_v3.json` — machine-readable v3 contract.
-3. `analysis/build_nmns_transition_candidate_universe_v3.py` — authority-wide candidate-universe builder.
-4. `docs/CHAPTER3_SCOPE_AND_HANDOFF_V1.md` — frozen Chapter 3 question and claim boundaries.
-5. `data/planning/chapter3_sampling_priorities_v1.csv` — frozen P01-P05 discovered from Chapter 2.
+1. `docs/CHAPTER3_NATIONWIDE_SPECIES_TREE_SAMPLING_V4.md` — authoritative species/individual sampling architecture.
+2. `data/planning/chapter3_nationwide_species_tree_sampling_v4.json` — machine-readable v4 contract.
+3. `data/planning/chapter3_nationwide_species_tree_budget_v4.csv` — 120-species / 290-individual planning budget and nested RAD totals.
+4. `docs/CHAPTER3_SCOPE_AND_HANDOFF_V1.md` — frozen Chapter 3 claim boundaries.
+5. `data/planning/chapter3_sampling_priorities_v1.csv` — frozen P01-P05 inherited from Chapter 2.
 6. `data/planning/chapter3_mechanistic_demonstration_v1.json` — M01 evidence ladder.
-7. `docs/CHAPTER3_RADSEQ_END_TO_END_V1.md` — general RAD laboratory/analysis safeguards where compatible with v3.
+7. `docs/CHAPTER3_RADSEQ_END_TO_END_V1.md` — RAD laboratory/analysis safeguards.
 8. `data/intake/chapter3_individual_intake_v1.csv` — empty biological intake ledger.
 9. `data/intake/chapter3_radseq_library_intake_v1.csv` — empty RAD library/QC ledger.
 
-v1/v2 inverse-sampling, 38×3, eight-anchor and physical-inventory documents remain visible as design history but do not authorize or constrain new field acquisition.
+v1-v3 inverse-sampling, 38×3, zero-baseline, transition-first, eight-anchor and inventory-first files remain design history only. Transition-neighbourhood logic from v3 remains useful at Level 2/3 after the nationwide tree is built.
 
 ## Current state
 
 - own biological data admitted: **0**;
 - physical samples: **0**;
-- A0 authority snapshot frozen: **false**;
-- A1 field sampling authorized: **false**;
-- focal RAD pilot authorized: **false**;
-- A2 target-capture augmentation authorized: **false**;
-- A3 transition-neighbourhood RAD authorized: **false**;
+- operational nationwide species census frozen: **false**;
+- nationwide collection authorized: **false**;
+- target-capture Wave 1 authorized: **false**;
+- target-capture Wave 2 authorized: **false**;
+- population RAD authorized: **false**;
 - M01 expansion authorized: **false**;
 - regain claim authorized: **false**;
 - selection claim authorized: **false**;
