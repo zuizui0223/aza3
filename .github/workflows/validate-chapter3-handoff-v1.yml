@@ -21,6 +21,7 @@ on:
       - "data/planning/chapter3_holefill_priority3_norikura_series_v7.csv"
       - "data/planning/chapter3_holefill_priority3_hamaazami_block_v7.csv"
       - "data/planning/chapter3_holefill_priority3_yamaazami_block_v7.csv"
+      - "data/planning/chapter3_holefill_priority3_sample_sectors_v7.csv"
       - "data/planning/chapter3_holefill_priority4_partial_blocks_v7.csv"
       - "data/planning/chapter3_holefill_priority5_local_gaps_v7.csv"
       - "data/planning/chapter3_holefill_priority6_add_own_trait_link_v7.csv"
