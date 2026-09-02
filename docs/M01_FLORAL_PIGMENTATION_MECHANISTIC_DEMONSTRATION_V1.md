@@ -1,14 +1,16 @@
 # M01 — floral pigmentation mechanistic demonstration v1
 
-Status date: 2026-09-01
+Status date: 2026-09-02
 
 ## Why M01 exists
 
-The core Chapter 3 programme asks where trait-state changes remain identifiable once public species-tip histories are replaced by own ancestry data linked to the same individuals. M01 extends that logic one layer downward: after a trait contrast is defined, can the contrast be decomposed into historical direction, biochemical state, molecular regulation and selection-consistent genomic evidence?
+The core Chapter 3 programme asks where trait-state changes remain identifiable once public species-tip histories are replaced by own ancestry data linked to the same individuals. Its general problem is therefore an identifiability problem: species-tip coding can hide within-species state multiplicity, and minimum transition counts can be better resolved than the biological location and meaning of individual transitions.
 
-M01 is an independent mechanistic demonstration, not P06. It is not derived from the locked Chapter 2 P01-P05 priority ranking and cannot reorder or replace that ranking. Failure, ambiguity or cancellation of M01 leaves the core history-discrimination programme intact.
+M01 applies that **same problem one layer deeper**. After one trait-state contrast is localized well enough to study, can it be decomposed into historical direction, biochemical state, molecular regulation and selection-consistent genomic evidence?
 
-The worked example is floral pigmentation in `Cirsium brevicaule` and `Cirsium irumtiense`. These taxa are useful because they provide a conspicuous white versus bluish-purple corolla contrast that can be followed from phenotype to pigment and gene expression. The dissertation question is not “why are these two species different?” in isolation. The pair is used to demonstrate what a trait transition means when followed below the topology level.
+M01 is an **embedded worked case**, not an independent dissertation theme and not P06. It is not derived from the locked Chapter 2 P01-P05 priority ranking and cannot reorder or replace that ranking. P01-P05 provide the breadth test across Japanese Cirsium; M01 provides a depth test of what one apparent trait transition can mean biologically. Failure, ambiguity or cancellation of M01 leaves the core history-discrimination programme intact.
+
+The worked example is floral pigmentation in `Cirsium brevicaule` and `Cirsium irumtiense`. These taxa are useful because they provide a conspicuous white versus bluish-purple corolla contrast that can be followed from phenotype to pigment and gene expression. The dissertation question is not “why are these two species different?” in isolation. The pair is used to demonstrate whether the same individual/population-history logic that motivates aza3 can be extended from **where a trait changed** to **what changed mechanistically**.
 
 ## External premise, not focal result
 
@@ -79,6 +81,18 @@ Maximum claim: the candidate region shows selection-consistent evidence beyond t
 Evidence: E3 plus a separately authorized, preregistered direct perturbation and fitness design.
 
 Maximum claim: only the molecular or fitness effect directly estimated by that experiment. Pollinator, antagonist, climate or another agent can be named causally only if an agent-specific ecological design directly supports that attribution.
+
+## How M01 connects back to the core
+
+M01 is not allowed to become a disconnected floral-colour project. Its contribution is judged by whether it demonstrates the same sequence of inference that aza3 requires elsewhere:
+
+1. **species-tip contrast** — a visible difference is observed;
+2. **individual/population history** — linked ancestry determines whether the apparent contrast corresponds to a robust historical transition;
+3. **transition decomposition** — chemistry and expression identify what biological layer changed;
+4. **selection layer** — population genomics tests whether the implicated mechanism departs from a frozen demographic/background expectation;
+5. **causal ecology, if ever attempted** — a separate experiment is required to name a selective agent or fitness effect.
+
+Thus P01-P05 ask broadly whether trait histories survive better ancestry and individual linkage, while M01 tests deeply whether one retained contrast can be carried from history to mechanism without silently upgrading correlation into causation.
 
 ## Sampling that M01 actually requires
 
