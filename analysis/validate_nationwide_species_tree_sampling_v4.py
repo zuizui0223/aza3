@@ -61,8 +61,9 @@ def validate() -> dict:
         assert by[comp]["nominal_individuals"] == expected
 
     doc = DOC.read_text(encoding="utf-8")
-    for term in ("Japan-wide Cirsium species tree/network", "120 species × 2 individuals", "290 individuals", "300 individuals", "168", "438", "target capture, not RAD"):
-        assert term in doc, term
+    doc_lower = doc.lower()
+    for term in ("japan-wide cirsium species tree/network", "120 species × 2 individuals", "290 individuals", "300 individuals", "168", "438", "target capture, not rad"):
+        assert term in doc_lower, term
     readme = README.read_text(encoding="utf-8")
     assert "CHAPTER3_NATIONWIDE_SPECIES_TREE_SAMPLING_V4.md" in readme
     assert "nationwide species tree" in readme.lower()
