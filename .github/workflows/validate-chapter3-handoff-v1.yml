@@ -13,6 +13,7 @@ on:
       - "data/planning/chapter3_mechanistic_demonstration_v1.json"
       - "data/planning/chapter3_exact_hole_fill_summary_v7.json"
       - "data/planning/chapter3_holefill_priority1_empty_blocks_v7.csv"
+      - "data/planning/chapter3_holefill_priority1_sample_sectors_v7.csv"
       - "data/planning/chapter3_holefill_priority2_broken_tips_v7.csv"
       - "data/planning/chapter3_holefill_priority3_kaganoazami_block_v7.csv"
       - "data/planning/chapter3_holefill_priority3_sawaazami_block_v7.csv"
