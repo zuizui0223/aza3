@@ -7,6 +7,7 @@ on:
       - "docs/CHAPTER3_SCOPE_AND_HANDOFF_V1.md"
       - "docs/CHAPTER3_NATIONWIDE_SPECIES_TREE_SAMPLING_V4.md"
       - "docs/CHAPTER3_FIELD_PRIORITY_CALENDAR_V5.md"
+      - "docs/CHAPTER3_BACKBONE_HOLE_FILL_V6.md"
       - "docs/CHAPTER3_RADSEQ_END_TO_END_V1.md"
       - "docs/M01_FLORAL_PIGMENTATION_MECHANISTIC_DEMONSTRATION_V1.md"
       - "data/contracts/chapter3_eazami_handoff_contract_v1.json"
@@ -16,16 +17,20 @@ on:
       - "data/planning/chapter3_nationwide_species_tree_budget_v4.csv"
       - "data/planning/chapter3_field_priority_v5.json"
       - "data/planning/chapter3_field_campaign_priority_v5.csv"
+      - "data/planning/chapter3_backbone_hole_fill_v6.json"
+      - "data/planning/chapter3_moreyra_anchor_repair_v6.csv"
       - "data/intake/chapter3_individual_intake_v1.csv"
       - "data/intake/chapter3_radseq_library_intake_v1.csv"
       - "analysis/validate_chapter3_handoff_v1.py"
       - "analysis/validate_mechanistic_demonstration_v1.py"
       - "analysis/validate_nationwide_species_tree_sampling_v4.py"
       - "analysis/validate_field_priority_v5.py"
+      - "analysis/validate_backbone_hole_fill_v6.py"
       - "tests/test_validate_chapter3_handoff_v1.py"
       - "tests/test_validate_mechanistic_demonstration_v1.py"
       - "tests/test_validate_nationwide_species_tree_sampling_v4.py"
       - "tests/test_validate_field_priority_v5.py"
+      - "tests/test_validate_backbone_hole_fill_v6.py"
       - ".github/workflows/validate-chapter3-handoff-v1.yml"
   push:
     branches: [main]
@@ -59,3 +64,7 @@ jobs:
         run: |
           python analysis/validate_field_priority_v5.py
           python tests/test_validate_field_priority_v5.py -v
+      - name: Validate backbone hole-fill priority v6
+        run: |
+          python analysis/validate_backbone_hole_fill_v6.py
+          python tests/test_validate_backbone_hole_fill_v6.py -v
