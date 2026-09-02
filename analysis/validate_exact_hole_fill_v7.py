@@ -25,6 +25,7 @@ FILES = {
     7: [ROOT / "data/planning/chapter3_holefill_priority7_tree_filled_v7.csv"],
 }
 P1_SECTORS = ROOT / "data/planning/chapter3_holefill_priority1_sample_sectors_v7.csv"
+P2_SECTORS = ROOT / "data/planning/chapter3_holefill_priority2_sample_sectors_v7.csv"
 EXTENSION = ROOT / "data/planning/chapter3_holefill_taxonomy_extension_v7.csv"
 CONFLICTS = ROOT / "data/planning/chapter3_holefill_taxonomy_conflicts_v7.csv"
 
@@ -34,8 +35,27 @@ def read_rows(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(handle))
 
 
+def validate_sector_file(path: Path, expected_priority: int, expected_species: set[str], expected_n: int, expected_samples: int) -> None:
+    rows = read_rows(path)
+    if len(rows) != expected_n:
+        raise AssertionError(f"P{expected_priority} sector ledger count drift: {len(rows)}")
+    if {r["species_binomial"] for r in rows} != expected_species:
+        raise AssertionError(f"P{expected_priority} sector species do not match exact hole set")
+    if sum(int(r["new_tree_samples_needed"]) for r in rows) != expected_samples:
+        raise AssertionError(f"P{expected_priority} sector sample total drift")
+    coordinate_pattern = re.compile(r"[-+]?\d{1,3}\.\d{3,}")
+    for row in rows:
+        for field in ("nmns_distribution_source", "sample_A_sector", "sample_B_sector", "sector_design"):
+            if not row.get(field, "").strip():
+                raise AssertionError(f"P{expected_priority} sector field {field} blank for {row['species_binomial']}")
+        if row.get("locality_freeze_gate") != "CURRENT_OCCURRENCE_PLUS_PERMISSION_REQUIRED":
+            raise AssertionError(f"P{expected_priority} exact-locality gate drift for {row['species_binomial']}")
+        if coordinate_pattern.search(row["sample_A_sector"]) or coordinate_pattern.search(row["sample_B_sector"]):
+            raise AssertionError(f"exact coordinate prematurely frozen for {row['species_binomial']}")
+
+
 def main() -> int:
-    paths = [SUMMARY, DOC, P1_SECTORS, EXTENSION, CONFLICTS] + [p for ps in FILES.values() for p in ps]
+    paths = [SUMMARY, DOC, P1_SECTORS, P2_SECTORS, EXTENSION, CONFLICTS] + [p for ps in FILES.values() for p in ps]
     for path in paths:
         if not path.exists() or path.stat().st_size == 0:
             raise AssertionError(f"missing v7 hole-fill artifact: {path.relative_to(ROOT)}")
@@ -71,27 +91,9 @@ def main() -> int:
     if sum(expected_samples.values()) != 228:
         raise AssertionError("internal sample arithmetic error")
 
-    # Priority-1 execution is no longer an abstract two-sample quota: every species
-    # must have source-bounded A/B range sectors, but exact localities remain unfrozen.
-    sector_rows = read_rows(P1_SECTORS)
-    if len(sector_rows) != 33:
-        raise AssertionError(f"P1 sector ledger must contain 33 species, got {len(sector_rows)}")
-    if sum(int(r["new_tree_samples_needed"]) for r in sector_rows) != 66:
-        raise AssertionError("P1 sector ledger must allocate exactly 66 new tree samples")
-    p1_species = {r["species_binomial"] for r in by_priority[1]}
-    if {r["species_binomial"] for r in sector_rows} != p1_species:
-        raise AssertionError("P1 sample-sector species do not match the exact P1 hole set")
-    coordinate_pattern = re.compile(r"[-+]?\d{1,3}\.\d{3,}")
-    for row in sector_rows:
-        for field in ("nmns_distribution_source", "sample_A_sector", "sample_B_sector", "sector_design"):
-            if not row.get(field, "").strip():
-                raise AssertionError(f"P1 sector field {field} is blank for {row['species_binomial']}")
-        if row.get("locality_freeze_gate") != "CURRENT_OCCURRENCE_PLUS_PERMISSION_REQUIRED":
-            raise AssertionError(f"P1 exact-locality gate drift for {row['species_binomial']}")
-        if coordinate_pattern.search(row["sample_A_sector"]) or coordinate_pattern.search(row["sample_B_sector"]):
-            raise AssertionError(f"exact coordinate prematurely frozen for {row['species_binomial']}")
+    validate_sector_file(P1_SECTORS, 1, {r["species_binomial"] for r in by_priority[1]}, 33, 66)
+    validate_sector_file(P2_SECTORS, 2, {r["species_binomial"] for r in by_priority[2]}, 6, 12)
 
-    # Key focal systems must be nested in the correct tree slots.
     p2 = {row["species_binomial"] for row in by_priority[2]}
     p3 = {row["species_binomial"] for row in by_priority[3]}
     p6 = {row["species_binomial"] for row in by_priority[6]}
@@ -124,6 +126,8 @@ def main() -> int:
     print("new_tree_samples=228")
     print("priority1_sector_species=33")
     print("priority1_sector_samples=66")
+    print("priority2_sector_species=6")
+    print("priority2_sector_samples=12")
     print("extension_species=26")
     print("extension_new_samples_if_admitted=51")
     print("taxonomy_gate_concepts=3")
