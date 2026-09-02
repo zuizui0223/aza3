@@ -182,12 +182,12 @@ def validate_narrative() -> None:
     if missing:
         raise AssertionError(f"Chapter 3 scope missing M01 boundary language: {missing}")
 
-    readme = README_PATH.read_text(encoding="utf-8")
+    readme = README_PATH.read_text(encoding="utf-8").lower()
     required_readme = [
         "one question, breadth and depth",
-        "P01-P05",
+        "p01-p05",
         "embedded worked case",
-        "not P06",
+        "not p06",
         "species-tip compression",
     ]
     missing = [needle for needle in required_readme if needle not in readme]
