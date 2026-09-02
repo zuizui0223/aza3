@@ -18,6 +18,9 @@ class RadseqEndToEndTests(unittest.TestCase):
         self.assertEqual(sum(int(r["biological_templates"]) for r in rows), 16)
         self.assertTrue(all(r["counts_toward_core_biological_n"] == "false" for r in rows))
 
+    def test_library_intake_is_empty_before_production(self) -> None:
+        target.validate_empty_library_intake()
+
     def test_rad_products_keep_bounded_roles(self) -> None:
         d = target.validate_contract()
         products = d["primary_products"]
