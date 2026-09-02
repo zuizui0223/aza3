@@ -1,12 +1,14 @@
 {
   "contract_version": "chapter3_mechanistic_demonstration_v1",
-  "status_date": "2026-09-01",
+  "status_date": "2026-09-02",
   "demonstration_id": "M01",
-  "title": "Floral pigmentation as a mechanistic demonstration of trait-history decomposition",
+  "title": "Floral pigmentation as an embedded mechanistic demonstration of trait-history decomposition",
   "role": {
-    "core_priority_status": "INDEPENDENT_NOT_P06",
-    "dissertation_role": "worked mechanistic example of how a localized trait-state contrast can be decomposed into history, biochemical phenotype, regulatory mechanism and selection-consistent genomic evidence",
-    "core_independence": "failure, ambiguity or cancellation of M01 does not reorder, replace, validate or invalidate the locked P01-P05 core history-discrimination programme",
+    "architecture": "BREADTH_TO_DEPTH",
+    "core_priority_status": "EMBEDDED_CASE_NOT_P06",
+    "dissertation_role": "embedded depth test of the same Chapter 3 identifiability problem: after own ancestry and same-individual data localize a trait-state contrast, ask what biochemical, regulatory and selection-consistent genomic changes underlie that contrast",
+    "general_problem_bridge": "P01-P05 provide the breadth test across Japanese Cirsium by asking where apparent species-tip transitions survive individual and population ancestry; M01 provides a depth test of what one retained trait-state contrast consists of biologically",
+    "core_independence": "M01 is conceptually embedded in the Chapter 3 question, but failure, ambiguity or cancellation of M01 does not reorder, replace, validate or invalidate the locked P01-P05 core history-discrimination programme",
     "not_primary_subject": "Cirsium brevicaule and Cirsium irumtiense are the worked example, not the taxonomic subject of Chapter 3"
   },
   "literature_anchor": {
@@ -85,6 +87,13 @@
       "maximum_claim": "only the causal molecular or fitness effect directly estimated by that experiment; selective-agent attribution still requires direct agent-specific ecological evidence"
     }
   ],
+  "core_connection": {
+    "stage_1_species_tip_contrast": "the visible contrast is treated as a candidate trait-state difference, not yet a historical event",
+    "stage_2_linked_history": "individual/population ancestry and the admitted topology ensemble determine whether the contrast corresponds to a robust transition",
+    "stage_3_transition_decomposition": "pigment chemistry and same-individual expression determine what biological layer differs",
+    "stage_4_selection_layer": "population genomics tests whether the implicated mechanism departs from a frozen demographic/background expectation",
+    "stage_5_causal_ecology": "a separate functional or agent-specific ecological design is required to name fitness effects or a selective agent"
+  },
   "sampling_contract": {
     "mandatory_same_individual_fields": [
       "immutable individual_id",
