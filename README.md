@@ -1,6 +1,6 @@
 # aza3 — Japan-wide Cirsium tree to population and mechanism
 
-This repository starts Chapter 3 from the uncertainty left by the completed public-data Chapter 2. It does not treat future target-capture, RAD-seq, transcriptomic or field data as retroactive confirmation.
+This repository starts Chapter 3 from the uncertainty left by the completed public-data Chapter 2. Future target-capture, RAD-seq, transcriptomic or field data are not treated as retroactive confirmation.
 
 ## Locked starting point
 
@@ -14,7 +14,7 @@ Within its admitted public topology ensemble:
 - minimum counts are better resolved than individual event placements;
 - **species-tip compression** hides within-species state multiplicity.
 
-## One question, breadth and depth
+## one question, breadth and depth
 
 > What is the own-data evolutionary history of the Japanese Cirsium radiation, where did capitulum traits change on that history, and how far can selected transitions be decomposed from population history to molecular mechanism?
 
@@ -26,116 +26,148 @@ P01-P05 ask where apparent transitions in orientation, phyllary posture, stickin
 
 The white versus bluish-purple floral-pigmentation contrast in `Cirsium brevicaule` and `C. irumtiense` remains an **embedded worked case**, **not P06**. It follows one retained contrast through history, pigment chemistry, corolla expression and selection-consistent genomic evidence without presupposing loss, regain or a selective agent.
 
-## Nationwide species tree first
+## Primary genomic product
 
-The primary genomic product is:
+The first Chapter 3 genomic product is:
 
 > **a Japan-wide nuclear Cirsium species-tree/network built with Comp1061-compatible target capture.**
 
-The current planning baseline is approximately **120 primary species concepts**, but the final operational list must be frozen from the NMNS authority universe before destructive collection.
+The existing Moreyra Japanese target-capture material is reused as a public skeleton. New collection is therefore a **hole-fill problem**, not a blanket `all species x2 new plants` recollection.
 
-The nationwide analysis still targets two primary representatives/species, but **new collection is now hole-filled against the existing Moreyra 38-species public skeleton rather than collecting 240 new plants blindly**.
+## Exact hole-fill v7 — authoritative sampling ledger
 
-## Backbone hole-fill v6 — authoritative Level-1 acquisition priority
+`docs/CHAPTER3_EXACT_BACKBONE_HOLE_FILL_LEDGER_V7.md` and `data/planning/chapter3_exact_hole_fill_summary_v7.json` are authoritative for Level-1 acquisition priority.
 
-`docs/CHAPTER3_BACKBONE_HOLE_FILL_V6.md` defines which new samples are actually needed.
+The current NMNS snapshot contains:
 
-At the nominal 120-species baseline:
+- **161 authority records**;
+- **154 unique species-binomial strings**;
+- **128 species** in the current `PUBLISHED_OR_NO_NEW_LABEL` core screen;
+- **25 新称** species in a separate unpublished-new-name extension lane;
+- **1 仮称** species in a separate provisional lane.
 
-### H1 — species absent from the Moreyra public skeleton
+At the current species-level crosswalk, the Moreyra Japanese material covers **33 of the 128 core species**. Thus the older `120 - 38 = 82` and `211 new individuals` arithmetic is superseded.
 
-- approximately 82 species are absent from the 38-tip Japanese public scaffold;
-- collect **2 new wild Japanese individuals/species**;
-- nominal new material = **164 individuals**.
+### Exact published-core acquisition priorities
 
-These are true empty species slots. Their exact branch position is inferred from target capture; it is never assigned from geography or morphology in advance.
+| Priority | Tree hole | Species | New tree samples |
+| --- | --- | ---: | ---: |
+| **P1** | taxonomic block has zero Moreyra species | 33 | **66** |
+| **P2** | broken/weak public species tip | 6 | **12** |
+| **P3** | block coverage <=25% | 44 | **88** |
+| **P4** | block coverage <=50% | 16 | **32** |
+| **P5** | local gap in a better-covered block | 2 | **4** |
+| **P6** | adequate public singleton; add one own trait-linked representative | 26 | **26** |
+| **P7** | public tree already has >=2 representatives | 1 | **0** |
+| **Total** |  | **128** | **228 new tree samples** |
 
-### H2 — weak or broken Moreyra tips
+For P7 `C. incomptum`, one additional own wild phenotype-linked individual is recommended for Chapter 3 trait linkage but is not required to fill the nuclear tree slot.
 
-Nine current Moreyra concepts need high-priority repair:
+The biological priority is:
 
-- identity blocked: JPN29 `C. verutum`, JPN31 `C. yuki-uenoanum`, JPN33 `C. effusum`;
-- cultivated/foreign provenance requiring wild-Japan replacement: JPN32 `C. buergeri`, JPN34 `C. microspicatum`, JPN35 `C. nipponicum`, JPN36 `C. sieboldii`, JPN37 `C. kamtschaticum`, JPN38 `C. pendulum`.
+> **P1 empty blocks -> P2 broken tips -> P3 sparse blocks -> P4 partial blocks -> P5 local gaps -> P6 own trait-linked complements -> P7 optional trait link.**
 
-Collect **2 new wild Japanese individuals/concept** = **18 individuals**. Old accessions remain labelled sensitivity samples where appropriate; they do not occupy a primary wild-Japan slot.
+Field season and route efficiency may reorder taxa within one priority class, but they do not redefine the tree holes.
 
-### H3 — adequate public tip but no own trait-linked individual
+## Priority 1 — entire classification blocks missing
 
-The remaining nominal 29 adequate public tips keep one Moreyra representative and receive **one new voucher-linked wild Japanese individual** each.
+P1 contains 33 core species in NMNS taxonomic blocks with zero current Moreyra species-level representation. Each receives two new wild Japanese individuals where feasible. The exact list is frozen in `data/planning/chapter3_holefill_priority1_empty_blocks_v7.csv`.
 
-Nominal H3 = **29 individuals**.
+Examples include the entire current blocks containing `C. apoense / C. pectinellum / C. yezoalpinum`, the seven-species Oni-azami block, the five-species Kirishima-azami block, `C. hachijoense / C. toyoshimae`, and the Fuji-azami section entry in the current source snapshot.
 
-### Level-1 arithmetic
+These block names define coverage gaps only. They do **not** predetermine the nuclear placement of the new samples.
 
-- Phase A: H1 + H2 = **182 new individuals**;
-- Phase B: H3 = **+29**;
-- total new material = **211 individuals**;
-- retain 29 adequate Moreyra public representatives;
-- primary nationwide matrix = **240 representatives = two/species at 120 species**.
+## Priority 2 — six broken public tips
 
-General formula:
+Two new wild Japanese representatives are required for:
 
-`new = 2*(N-38) + (38-R) + 2R = 2N - 38 + R`,
+- `C. pendulum`;
+- `C. sieboldii`;
+- `C. nipponicum`;
+- `C. kamtschaticum`;
+- `C. buergeri`;
+- `C. microspicatum`.
 
-where `N` is the frozen Japanese species count and `R` is the number of public concepts requiring two-new-sample repair. At `N=120, R=9`, new = **211**.
+Old cultivated/foreign accessions remain provenance or geographic sensitivity samples when interpretable; they do not occupy the primary Japanese wild slots.
 
-This is the governing acquisition rule: **fill an empty or broken species slot before adding redundant depth to a tip that is already represented.**
+## Priority 3 — five sparse blocks
 
-## Geographic hole order
+P3 contains 44 missing species in five blocks with <=25% current Moreyra coverage:
 
-Within H1, prioritize lineage-space that is poorly represented in the 38-tip scaffold:
+- Kaganoazami block: **17** missing species;
+- Sawaazami block: **8**;
+- Norikura-series block: **7**;
+- Hamaazami block: **4** (`C. boninense`, `C. brevicaule`, `C. irimtiense`, `C. spinosum` in the current source snapshot);
+- Yamaazami block: **8**.
 
-1. **isolated island lineages** — e.g. `C. boninense`, `C. hachijoense`, `C. sadoense`, `C. brevicaule`, `C. irumtiense`, `C. umezawanum`;
-2. **Hokkaido/northern radiation gaps** — e.g. `C. apoense`, `C. yezoalpinum`, `C. pectinellum`, `C. albrechtii`, `C. boreale`, `C. iito-kojianum`;
-3. **alpine/narrow mainland gaps** — e.g. `C. zawoense`, `C. ugoense`, `C. fauriei`, `C. babanum`, `C. furusei`;
-4. **western regional radiations** — e.g. `C. calcicola`, `C. ashiuense`, `C. taishakuense`, `C. kirishimense`, `C. nishimeraense`, `C. austrokiusianum`.
+Each block has its own exact CSV in `data/planning/`.
 
-These are verified examples, not the final operational census.
+## What two new samples mean
 
-## Every new tree sample is also a trait sample
+For P1-P5 and P2 repair taxa, default sampling is **two independent wild Japanese biological individuals**.
 
-Every new nationwide-tree individual links one immutable ID to taxon/population, voucher/images, orientation, phyllary posture/calibrated image, stickiness/gland state, flower colour, developmental stage, DNA source and cytotype/genome-size evidence status.
+- For a broad range, use different verified populations/range sectors and maximize separation where feasible.
+- For a narrow endemic or conservation-limited species, use two spatially separated independent plants from the authorized population and flag the limitation rather than inventing a second locality.
+- Exact sites are not inferred from NMNS prose; current occurrence, conservation and permission checks must be frozen before collection.
+
+For P6, retain the usable Moreyra public accession as representative A and add one own wild, voucher-linked, phenotype-linked representative B.
+
+## Taxonomy is a separate gate
+
+The 25 `新称` species and one `仮称` species are not silently promoted into the 128-species core. If all 26 extension units are later admitted, they require **51 additional new samples**.
+
+Three Moreyra paper concepts are not assigned new collection slots until concept reconciliation:
+
+- JPN29 `C. verutum`;
+- JPN31 `C. yuki-uenoanum`;
+- JPN33 `C. effusum`.
+
+No convenience replacement is permitted.
+
+## Every new tree plant is also a trait plant
+
+Each own target-capture individual links one immutable ID to taxon/population, voucher/diagnostic images, orientation, phyllary posture/calibrated image, stickiness/gland state, flower colour, developmental stage, DNA source and cytotype/genome-size evidence status.
 
 Thus the expanded tree does not recreate species-tip compression.
 
-## Focal RAD is nested inside the hole fill
+## Focal RAD is nested into the hole fill
 
-Do not collect separate tree-only plants when the population bank already supplies the needed Level-1 representative.
+Do not collect separate tree-only plants when the focal population bank already supplies the needed representative.
 
-- `C. sieboldii`: its two H2 repair individuals come from the P01 RAD bank;
-- `C. dipsacolepis`: its one H3 own tree representative comes from its RAD bank;
+- `C. sieboldii`: its two P2 replacement representatives come from the P01 RAD bank;
+- `C. dipsacolepis`: its P6 own representative comes from its RAD bank;
 - `C. lineare`: same;
-- `C. brevicaule`: its two H1 tree representatives are one from Okinawa Honto and one from Amami Oshima;
-- `C. irumtiense`: its two H1 tree representatives are one from Miyako and one from Ishigaki.
+- `C. brevicaule`: its two P3 tree samples are one Okinawa-Honto and one Amami-Oshima discovery individual;
+- `C. irimtiense`: its two P3 tree samples are one Miyako and one Ishigaki discovery individual.
 
-Full focal RAD target remains 168 primary individuals, but it is downstream of Level-1 coverage and is not a substitute for species-tree hole filling.
-
-## Target-capture staging
-
-The first technical qualification batch is drawn from actual H1/H2 samples and remains in the nationwide matrix. No separate pilot taxa are collected.
-
-After H1/H2 coverage is established, add H3 own trait-linked representatives. Third/fourth target-capture individuals are H4 enrichment and open only after the first nationwide tree/network identifies non-monophyly, strong discordance, ploidy/hybrid problems or major geographic structure.
+RAD remains a population-ancestry/reticulation instrument below the nationwide target-capture scaffold. It is not the method used to define the nationwide species tree.
 
 ## Analysis hierarchy
 
 1. **Level 0 — taxonomic census:** reconcile the NMNS authority universe into operational species concepts.
-2. **Level 1 — backbone hole fill + nationwide target capture:** combine compatible Moreyra public anchors with H1/H2/H3 own samples to build the Japanese nuclear tree/network.
-3. **Level 2 — trait history:** remap orientation, phyllary, stickiness and cross-module histories on the expanded nationwide ensemble.
-4. **Level 3 — population RAD:** deepen only focal lineages/transition neighbourhoods where shallow ancestry, introgression or morph history can discriminate competing histories.
+2. **Level 1 — exact backbone hole fill + target capture:** combine compatible Moreyra public anchors with P1-P7 own samples to build the Japanese nuclear tree/network.
+3. **Level 2 — trait history:** remap orientation, phyllary, stickiness and cross-module histories on the own-data nationwide ensemble.
+4. **Level 3 — population RAD:** deepen only focal lineages/transition neighbourhoods where shallow ancestry, introgression or morph history discriminates competing histories.
 5. **Level 4 — M01:** add pigment/RNA and later candidate-region confirmation to the embedded floral-pigmentation case.
 
 ## Start here
 
-1. `docs/CHAPTER3_BACKBONE_HOLE_FILL_V6.md` — authoritative new-sample hole-fill priority.
-2. `data/planning/chapter3_backbone_hole_fill_v6.json` — machine-readable hole-fill contract.
-3. `data/planning/chapter3_moreyra_anchor_repair_v6.csv` — nine broken/weak public tips requiring repair.
-4. `docs/CHAPTER3_NATIONWIDE_SPECIES_TREE_SAMPLING_V4.md` — nationwide species-tree architecture.
-5. `docs/CHAPTER3_FIELD_PRIORITY_CALENDAR_V5.md` — seasonal logistics only; subordinate to the hole-fill priority.
-6. `data/planning/chapter3_sampling_priorities_v1.csv` — frozen P01-P05 inherited from Chapter 2.
-7. `data/planning/chapter3_mechanistic_demonstration_v1.json` — M01 evidence ladder.
-8. `docs/CHAPTER3_RADSEQ_END_TO_END_V1.md` — RAD safeguards.
+1. `docs/CHAPTER3_EXACT_BACKBONE_HOLE_FILL_LEDGER_V7.md` — authoritative exact species-level hole-fill plan.
+2. `data/planning/chapter3_exact_hole_fill_summary_v7.json` — exact 128-species / 228-new-sample contract.
+3. `data/planning/chapter3_holefill_priority1_empty_blocks_v7.csv` — 33 species in fully empty blocks.
+4. `data/planning/chapter3_holefill_priority2_broken_tips_v7.csv` — six broken public tips.
+5. `data/planning/chapter3_holefill_priority3_*_v7.csv` — five sparse-block ledgers, 44 species total.
+6. `data/planning/chapter3_holefill_priority4_partial_blocks_v7.csv` — 16 partial-block holes.
+7. `data/planning/chapter3_holefill_priority5_local_gaps_v7.csv` — two local gaps.
+8. `data/planning/chapter3_holefill_priority6_add_own_trait_link_v7.csv` — 26 own complements.
+9. `data/planning/chapter3_holefill_priority7_tree_filled_v7.csv` — current tree-filled slot.
+10. `data/planning/chapter3_holefill_taxonomy_extension_v7.csv` — 25 new-name + one provisional extension units.
+11. `data/planning/chapter3_holefill_taxonomy_conflicts_v7.csv` — JPN29/JPN31/JPN33 concept gates.
+12. `data/planning/chapter3_sampling_priorities_v1.csv` — frozen P01-P05 inherited from Chapter 2.
+13. `data/planning/chapter3_mechanistic_demonstration_v1.json` — M01 evidence ladder.
+14. `docs/CHAPTER3_RADSEQ_END_TO_END_V1.md` — population-RAD safeguards.
 
-Older v1-v3 inverse-sampling, 38×3, zero-baseline and transition-first plans remain design history only.
+v1-v6 inverse-sampling, 38x3, zero-baseline, transition-first, calendar-first and nominal `120/82/211` files remain design history only and do not govern new collection.
 
 ## Current state
 
@@ -143,7 +175,6 @@ Older v1-v3 inverse-sampling, 38×3, zero-baseline and transition-first plans re
 - physical samples: **0**;
 - operational nationwide species census frozen: **false**;
 - nationwide collection authorized: **false**;
-- H1/H2/H3/H4 acquisition open: **false**;
 - target-capture sequencing authorized: **false**;
 - population RAD authorized: **false**;
 - M01 expansion authorized: **false**;
@@ -151,4 +182,4 @@ Older v1-v3 inverse-sampling, 38×3, zero-baseline and transition-first plans re
 - selection claim authorized: **false**;
 - pollinator-agent claim authorized: **false**.
 
-Run the Chapter 3 validators before accepting changes to these boundaries.
+Run the current Chapter 3 validators before accepting changes to these boundaries.
