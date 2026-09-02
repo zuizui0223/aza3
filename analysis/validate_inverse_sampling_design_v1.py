@@ -114,7 +114,7 @@ def validate_narrative() -> None:
     if "CHAPTER3_INVERSE_SAMPLING_DESIGN_V1.md" not in readme:
         raise AssertionError("README does not route to inverse sampling design")
     scope = SCOPE_PATH.read_text(encoding="utf-8")
-    if "claim-backward sampling" not in scope:
+    if "claim-backward sampling architecture" not in scope.lower():
         raise AssertionError("scope does not state claim-backward sampling architecture")
 
 
