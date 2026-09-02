@@ -1,6 +1,6 @@
 # aza3 — own-data discrimination after EAzami Chapter 2
 
-This repository starts Chapter 3 from the uncertainty left by the completed public-data Chapter 2. It does not treat future RAD-seq, genomic, transcriptomic or field data as retroactive confirmation.
+This repository starts Chapter 3 from the uncertainty left by the completed public-data Chapter 2. It does not treat future RAD-seq, target-capture, transcriptomic or field data as retroactive confirmation.
 
 ## Locked starting point
 
@@ -24,130 +24,132 @@ The frozen core asks where apparent transitions in orientation, phyllary posture
 
 ### M01 depth — embedded worked case, not P06
 
-The white versus bluish-purple floral-pigmentation contrast in `Cirsium brevicaule` and `C. irumtiense` is used as one **embedded worked case** of the same identifiability problem. M01 follows one retained contrast through:
-
-1. ancestral-state / transition history;
-2. pigment chemistry;
-3. same-individual corolla expression;
-4. population-genomic evidence consistent with selection after background controls.
+The white versus bluish-purple floral-pigmentation contrast in `Cirsium brevicaule` and `C. irumtiense` is one **embedded worked case** of the same identifiability problem. M01 follows one retained contrast through ancestral/transition history, pigment chemistry, same-individual corolla expression and population-genomic evidence consistent with selection after background controls.
 
 Loss, regain/re-evolution and selective-agent attribution are output-dependent claims, not assumptions.
 
-## Zero physical samples: authoritative sampling plan v2
+## Transition-first sampling v3 — authoritative new-sampling plan
 
-The current sampling design starts from **zero physical biological material**. The authoritative field/genomic plan is `docs/CHAPTER3_ZERO_BASELINE_SAMPLING_PLAN_V2.md` with machine-readable contract `data/planning/chapter3_zero_baseline_sampling_v2.json`.
+Physical biological samples currently equal **0**. New sampling is governed by `docs/CHAPTER3_TRANSITION_FIRST_SAMPLING_PLAN_V3.md` and `data/planning/chapter3_transition_first_sampling_v3.json`.
 
-The earlier `38 x 3` design is **not the first sampling step**. It is retained only as historical design context / an optional late all-Japan RAD sensitivity.
+### Japan38 = hypothesis-origin subset, not sampling universe
 
-### S0 — direct trait and occurrence reconnaissance
+Moreyra et al. sampled 38 Japanese species, and Chapter 2 P01-P05 were discovered on that subset. The current NMNS `日本のアザミ` index returns **161 authority records**; those records include infraspecific/duplicate taxonomic units and are not treated as 161 independent species or transitions.
 
-Before broad RAD expansion, repair individual/population phenotype coverage across Japan38. Target two populations x five flowering plants per concept where feasible; use one population x >=5 for narrow endemics. Destructive collection is not required. Bank up to three silica leaves per concept only when easy and authorized.
+Therefore Chapter 3 no longer starts from `38 concepts × n individuals`.
 
-S0 freezes the direct trait/polymorphism table used to nominate P03/P04 transition neighbourhoods.
+The acquisition order is:
 
-### S1 — minimum focal launch
+> authority-wide digital trait screen → nuclear placement where needed → transition-neighbourhood selection → population RAD
 
-Default population bank = **15 physical plants = 12 primary RAD +3 preregistered reserves**.
+A reproducible NMNS candidate-universe builder is provided in `analysis/build_nmns_transition_candidate_universe_v3.py`. Authority catchphrases are converted only to short screening states plus source hashes; authority states are not same-individual observations or ancestral states.
 
-Minimum S1:
+## Two kinds of overlap
 
-- JPN36 `C. sieboldii`: 3 populations = 45 physical /36 initial RAD;
-- JPN06 `C. dipsacolepis`: 2 populations = 30 /24;
-- JPN15 `C. lineare`: 2 populations = 30 /24;
-- `C. brevicaule`: Okinawa Honto + Amami Oshima = 30 /24;
-- `C. irumtiense`: Miyako + Ishigaki = 30 /24.
+**Same-individual multitrait overlap is desirable.** Every RAD individual scores orientation, phyllary posture, stickiness, colour and cytotype so P04 can test shared history without unlinking phenotype from ancestry.
 
-**S1 minimum = 165 physical plants /132 initial RAD individuals.**
+**Evolutionary-neighbourhood overlap is not replication.** P03 requires at least **four non-overlapping candidate orientation-transition neighbourhoods**. Two populations of one species do not count as two transition replicates, and JPN36 can occupy at most one P03 neighbourhood slot.
 
-This number is a consequence of population replication, not a study-level quota.
+## Fixed focal population layer
 
-For M01 discovery, collect developmentally matched floral material from six plants/population, sequence five primary RNA replicates and retain one molecular reserve. Record sexual morph in `C. irumtiense`.
+Default focal population bank = **12 primary RAD +3 preregistered reserves =15 physical plants/population**.
 
-### RAD assay pilot is nested inside S1
+Minimum defensible launch:
 
-Do not collect biologically irrelevant taxa merely to test enzymes.
+- JPN36 `C. sieboldii`: 3 populations =45 physical /36 RAD;
+- JPN06 `C. dipsacolepis`: 2 populations =30 /24;
+- JPN15 `C. lineare`: 2 populations =30 /24;
+- `C. brevicaule`: Okinawa Honto + Amami Oshima =30 /24;
+- `C. irumtiense`: Miyako + Ishigaki =30 /24.
 
-The first focal-stratum pilot uses the five mandatory S1 systems: JPN36, JPN06, JPN15, `C. brevicaule`, `C. irumtiense`.
+**Minimum =165 physical /132 primary RAD.**
 
-- Stage A-focal: 5 systems x1 qualified DNA x3 enzyme candidates = **15 shallow libraries**;
-- Stage B-focal: 5 systems x2 independent biological templates xTOP2 protocols =20 primary +5 independent-batch technical repeats = **25 libraries**;
-- technical gates remain genotype concordance >=0.95 and core-locus recovery >=0.90.
+Target mainland replication is JPN36=4 populations and JPN06/JPN15=3 populations each while M01 remains at two discovery populations/lineage. This gives **210 physical /168 primary RAD**.
 
-This qualifies only the focal production stratum. If later S2/S4 introduces polyploid/high-ploidy concepts, run a second stratum-specific protocol check before those samples are sequenced.
+For M01, floral RNA/pigment sampling is nested within the same discovery plants: six floral collections/population, five primary RNA-seq libraries and one reserve.
 
-### S2 — P03/P04 transition-neighbourhood RAD
+## RAD assay pilot is nested inside the five mandatory systems
 
-After S0 is frozen, use the fixed target-capture topology ensemble and direct trait states to select the smallest concept neighbourhood set covering **>=80% cumulative transition-placement uncertainty** for each trait, plus every directly observed polymorphic concept. Take the union across orientation, phyllary and stickiness.
+Do not collect unrelated taxa solely to test enzymes.
 
-Default S2 per concept = two populations, six primary RAD +two reserves/population = 12 primary +4 reserves/concept. The number of S2 concepts is an output of the frozen uncertainty-cover rule, not a quota.
+- Stage A-focal: 5 systems ×1 DNA ×3 enzyme candidates = **15 shallow libraries**;
+- Stage B-focal: 5 systems ×2 independent biological templates ×top-2 protocols =20 primary +5 independent-batch repeats = **25 libraries**;
+- technical gates remain genotype concordance ≥0.95 and core-locus recovery ≥0.90.
 
-### S3 — conditional M01 expansion
+This qualifies only the focal stratum. If later transition neighbourhoods introduce tetraploid/high-ploidy material, a second stratum-specific assay check is required before production RAD.
 
-Only after M01 E1/E2 succeeds, add:
+## Non-Moreyra species enter through placement, not assumption
 
-- `C. brevicaule`: one intermediate Amami-group + one southern Amami-group population;
-- `C. irumtiense`: Iriomote + Yonaguni.
+A taxon outside the current Comp1061 backbone can be scientifically valuable, but geography or similar morphology does not make it a close relative.
 
-S3 adds 60 physical /48 initial RAD. Final M01 bank = eight populations x15 =120 physical, with 96 initial RAD and 24 reserves.
+The authority screen may nominate an initial batch of **up to 12 non-backbone concepts**. For each, collect two placement representatives where feasible and use a Comp1061-compatible target-capture nuclear placement assay. Only after stable placement may that concept enter population RAD as a transition comparator.
 
-RAD supplies population/background structure. Candidate-region selection evidence must use a separate non-RAD confirmation assay.
+Ambiguous/hybrid/polyploid placement remains explicit; it is not forced into a sister pair.
 
-### S4 — all-Japan RAD sensitivity, optional and last
+## Transition-neighbourhood sampling
 
-Only if still needed after S1/S2 and only if shared-locus/ploidy gates pass, use the S0 silica bank to build a Japan-wide RAD sensitivity. This product is not the primary species tree.
+P01 keeps JPN36 as the fixed phyllary focal system. P02 keeps JPN06-JPN15 as the fixed stickiness contrast.
 
-The Moreyra 2025 target-capture framework remains the cross-species nuclear scaffold.
+P03 does not sequence 38 or 161 units uniformly. It selects at least four **distinct orientation-transition neighbourhoods** from the admitted expanded nuclear scaffold. Each neighbourhood must contain an explicit state contrast and the placed comparator lineages needed to distinguish terminal from deeper placement.
+
+Chapter 2 did not assign posterior weights to equally parsimonious histories, so v3 does **not** use the old `80% transition probability mass` language.
+
+For an added non-focal comparator taxon, the default population design is:
+
+- 2 populations;
+- 10 primary RAD +2 reserve/population;
+- 20 primary RAD /24 physical per taxon.
+
+For within-species polymorphism, prefer at least three populations and at least 10 primary individuals per observed state across at least two populations where feasible, so morph is not identical to locality.
+
+P04 reuses the same A1/A3 plants. P05 is measurement-first and does not open extra RAD merely to increase continuous-trait n.
+
+## Method roles
+
+- Moreyra/expanded Comp1061-compatible target capture: cross-species placement and scaffold;
+- RAD: population ancestry, admixture, reticulation and morph/population history inside qualified neighbourhoods;
+- same-individual phenotype: transition localization;
+- M01 RNA/pigment: molecular decomposition;
+- candidate resequencing/capture/WGS: selection-consistent locus evidence.
+
+RAD is therefore an instrument for shallow ancestry/history discrimination, not the definitive Japanese species tree or an adaptation test.
 
 ## Individual field package
 
-Every admitted RAD plant links one immutable ID to:
+Every admitted RAD plant links one immutable ID to taxon/population, voucher/diagnostic images, orientation, phyllary posture and calibrated image, stickiness/gland state, flower colour, developmental stage, silica leaf, cytotype/genome-size evidence status and deidentified authorization/conservation IDs.
 
-- taxon and population;
-- voucher or diagnostic images;
-- orientation;
-- phyllary posture / calibrated image;
-- stickiness / gland-exudate state;
-- flower colour;
-- developmental stage;
-- silica leaf DNA;
-- cytotype/genome-size evidence status;
-- deidentified authorization/conservation IDs.
+Spread individuals across the occupied patch; use ≥10 m spacing where biologically sensible and avoid obvious connected/clonal ramets. Reserves replace technical failures, not inconvenient biological outcomes.
 
-Spread sampling across the occupied patch; use >=10 m spacing where feasible and avoid obvious connected/clonal ramets. Reserves may replace technical failures, not inconvenient biological outcomes.
+## M01 expansion remains conditional
 
-## RAD analysis boundary
+Do not add Iriomote, Yonaguni and extra Amami populations merely for island coverage. Open that expansion only after ancestral-state/pigment history is interpretable at the stated claim ceiling and the corolla-expression association replicates across both discovery populations within each lineage.
 
-RAD is an instrument for population ancestry, structure and network sensitivity, not an unconditional species-tree or adaptation instrument.
-
-- primary assembly: Stacks 2 de novo within qualified strata;
-- m/M/n and missingness/locus filters are tuned on technical metrics before trait outcomes;
-- mixed ploidies are not forced through one diploid caller;
-- RAD-only two-species FST or one outlier scan is not final M01 selection evidence.
+RAD supplies the population/background layer; final candidate-region selection evidence requires an independent non-RAD confirmation route. Genomics alone cannot identify the selective agent.
 
 ## Start here
 
-1. `docs/CHAPTER3_ZERO_BASELINE_SAMPLING_PLAN_V2.md` — authoritative zero-material field/RAD plan.
-2. `data/planning/chapter3_zero_baseline_sampling_v2.json` — machine-readable v2 contract.
-3. `data/planning/chapter3_zero_baseline_population_targets_v2.csv` — S1/S3 population targets.
-4. `docs/CHAPTER3_SCOPE_AND_HANDOFF_V1.md` — Chapter 3 question and claim boundaries.
-5. `data/planning/chapter3_sampling_priorities_v1.csv` — frozen P01-P05.
+1. `docs/CHAPTER3_TRANSITION_FIRST_SAMPLING_PLAN_V3.md` — authoritative transition-first sampling design.
+2. `data/planning/chapter3_transition_first_sampling_v3.json` — machine-readable v3 contract.
+3. `analysis/build_nmns_transition_candidate_universe_v3.py` — authority-wide candidate-universe builder.
+4. `docs/CHAPTER3_SCOPE_AND_HANDOFF_V1.md` — frozen Chapter 3 question and claim boundaries.
+5. `data/planning/chapter3_sampling_priorities_v1.csv` — frozen P01-P05 discovered from Chapter 2.
 6. `data/planning/chapter3_mechanistic_demonstration_v1.json` — M01 evidence ladder.
-7. `docs/CHAPTER3_RADSEQ_END_TO_END_V1.md` — general RAD laboratory/analysis safeguards retained where compatible with v2.
+7. `docs/CHAPTER3_RADSEQ_END_TO_END_V1.md` — general RAD laboratory/analysis safeguards where compatible with v3.
 8. `data/intake/chapter3_individual_intake_v1.csv` — empty biological intake ledger.
 9. `data/intake/chapter3_radseq_library_intake_v1.csv` — empty RAD library/QC ledger.
 
-Earlier inverse-sampling, eight-anchor pilot and physical-inventory documents remain visible as design history but are superseded for new field acquisition by zero-baseline v2.
+v1/v2 inverse-sampling, 38×3, eight-anchor and physical-inventory documents remain visible as design history but do not authorize or constrain new field acquisition.
 
 ## Current state
 
 - own biological data admitted: **0**;
-- confirmed physical samples: **0**;
-- S0 started: **false**;
-- S1 sampling authorized: **false**;
+- physical samples: **0**;
+- A0 authority snapshot frozen: **false**;
+- A1 field sampling authorized: **false**;
 - focal RAD pilot authorized: **false**;
-- S2 open: **false**;
-- M01 S3 open: **false**;
-- all-Japan S4 open: **false**;
+- A2 target-capture augmentation authorized: **false**;
+- A3 transition-neighbourhood RAD authorized: **false**;
+- M01 expansion authorized: **false**;
 - regain claim authorized: **false**;
 - selection claim authorized: **false**;
 - pollinator-agent claim authorized: **false**.
