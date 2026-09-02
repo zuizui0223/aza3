@@ -1,15 +1,14 @@
 #!/usr/bin/env python3
-"""Build the authority-wide Japanese Cirsium candidate universe for v3.
+"""Build the authority-wide Japanese Cirsium candidate universe from NMNS data.js.
 
-This script is intentionally not a live CI dependency. It is run when a fresh
-NMNS snapshot is requested. It stores derived categorical screening states and
-hashes rather than redistributing authority catchphrase prose.
+The current NMNS list page is populated client-side from data/data.js, so this
+builder reads that source directly. It stores only short derived fields and hashes;
+source prose is not redistributed.
 """
 from __future__ import annotations
 
 import argparse
 import hashlib
-import io
 import json
 import re
 from pathlib import Path
@@ -17,7 +16,7 @@ from pathlib import Path
 import pandas as pd
 import requests
 
-DEFAULT_URL = "https://www.kahaku.go.jp/research/db/botany/azami/list.html?word=all"
+DEFAULT_DATA_JS_URL = "https://www.kahaku.go.jp/research/db/botany/azami/data/data.js"
 INFRA_MARKERS = {"var.", "subsp.", "ssp.", "f."}
 
 
@@ -27,8 +26,15 @@ def clean(value: object) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
+def normalize_species_seed(value: object) -> str:
+    text = clean(value)
+    if text.startswith("Cirsiumi "):
+        text = "Cirsium " + text.split(" ", 1)[1]
+    return text
+
+
 def normalize_taxon(species: object, infra: object = "") -> str:
-    s = clean(species)
+    s = normalize_species_seed(species)
     i = clean(infra)
     raw = f"{s} {i}".strip()
     raw = re.sub(r"^C\.\s+", "Cirsium ", raw)
@@ -80,14 +86,15 @@ def classify_stickiness(text: str) -> str:
     return "unknown_from_index"
 
 
-def find_table(html: str) -> pd.DataFrame:
-    for table in pd.read_html(io.StringIO(html)):
-        cols = [clean(c) for c in table.columns]
-        if "種名" in cols and "キャッチフレーズ" in cols:
-            table = table.copy()
-            table.columns = cols
-            return table
-    raise ValueError("NMNS thistle table not found")
+def parse_data_js(content: bytes) -> list[dict]:
+    text = content.decode("utf-8")
+    match = re.search(r"var\s+data\s*=\s*(\[.*\])\s*;?\s*$", text, re.S)
+    if not match:
+        raise ValueError("NMNS data.js does not contain expected `var data = [...]` payload")
+    records = json.loads(match.group(1))
+    if not isinstance(records, list):
+        raise ValueError("NMNS data.js payload is not a list")
+    return records
 
 
 def load_moreyra_map(path: str | None) -> set[str]:
@@ -106,36 +113,52 @@ def load_moreyra_map(path: str | None) -> set[str]:
 
 def main() -> None:
     p = argparse.ArgumentParser()
-    p.add_argument("--url", default=DEFAULT_URL)
+    p.add_argument("--data-js-url", default=DEFAULT_DATA_JS_URL)
     p.add_argument("--moreyra-map")
     p.add_argument("--out-dir", required=True)
     args = p.parse_args()
 
-    response = requests.get(args.url, timeout=60)
+    response = requests.get(
+        args.data_js_url,
+        timeout=60,
+        headers={"User-Agent": "Mozilla/5.0 aza3-research-snapshot/1.0"},
+    )
     response.raise_for_status()
-    table = find_table(response.text)
+    records = parse_data_js(response.content)
     moreyra = load_moreyra_map(args.moreyra_map)
 
     rows = []
-    for idx, row in table.iterrows():
-        species = clean(row.get("種名", ""))
-        infra = clean(row.get("変種名", ""))
-        phrase = clean(row.get("キャッチフレーズ", ""))
-        concept = normalize_taxon(species, infra)
-        binomial = " ".join(concept.split()[:2])
+    for rec in records:
+        seed_raw = clean(rec.get("seed", ""))
+        species_seed = normalize_species_seed(seed_raw)
+        infra = clean(rec.get("var", ""))
+        phrase = clean(rec.get("catch", ""))
+        concept = normalize_taxon(species_seed, infra)
+        tokens = species_seed.split()
+        binomial = " ".join(tokens[:2]) if len(tokens) >= 2 else species_seed
+        name = clean(rec.get("name", ""))
+        if "新称" in name:
+            name_status = "UNPUBLISHED_NEW_NAME"
+        elif "仮称" in name:
+            name_status = "PROVISIONAL_NAME"
+        else:
+            name_status = "PUBLISHED_OR_NO_NEW_LABEL"
         rows.append({
-            "authority_record_id": f"NMNS_{idx+1:03d}",
-            "japanese_name": clean(row.get("和名", "")),
+            "authority_record_id": f"NMNS_{clean(rec.get('no',''))}",
+            "japanese_name": name,
+            "source_species_string": seed_raw,
             "authority_taxon_concept": concept,
             "species_binomial": binomial,
-            "infraspecific_record": any(m in concept.split() for m in INFRA_MARKERS),
-            "distribution_summary": clean(row.get("分布", "")),
+            "name_status": name_status,
+            "infraspecific_record": bool(infra),
+            "taxonomic_block": clean(rec.get("class", "")),
+            "distribution_summary": clean(rec.get("dist", "")),
             "orientation_screen": classify_orientation(phrase),
             "phyllary_screen": classify_phyllary(phrase),
             "stickiness_screen": classify_stickiness(phrase),
             "source_catchphrase_sha256": hashlib.sha256(phrase.encode("utf-8")).hexdigest(),
             "represented_in_moreyra_binomial_screen": binomial in moreyra if moreyra else "UNKNOWN_MAP_NOT_SUPPLIED",
-            "screening_claim_boundary": "authority categorical screening only; requires taxonomic reconciliation and individual validation before Chapter 3 inference",
+            "screening_claim_boundary": "authority categorical screening only; taxonomic reconciliation and individual validation required before Chapter 3 inference",
         })
 
     out = Path(args.out_dir)
@@ -143,15 +166,17 @@ def main() -> None:
     frame = pd.DataFrame(rows)
     frame.to_csv(out / "nmns_transition_candidate_universe_v3.csv", index=False, encoding="utf-8")
     summary = {
-        "contract_version": "nmns_transition_candidate_universe_v3",
-        "source_url": args.url,
-        "source_html_sha256": hashlib.sha256(response.content).hexdigest(),
+        "contract_version": "nmns_transition_candidate_universe_v3_data_js",
+        "source_url": args.data_js_url,
+        "source_data_js_sha256": hashlib.sha256(response.content).hexdigest(),
         "n_authority_records": int(len(frame)),
         "record_count_is_species_count": False,
-        "n_unique_normalized_concepts": int(frame["authority_taxon_concept"].nunique()),
         "n_unique_species_binomials": int(frame["species_binomial"].nunique()),
+        "n_published_or_no_new_label_species_binomials": int(frame.loc[frame["name_status"].eq("PUBLISHED_OR_NO_NEW_LABEL"), "species_binomial"].nunique()),
+        "n_unpublished_new_name_species_binomials": int(frame.loc[frame["name_status"].eq("UNPUBLISHED_NEW_NAME"), "species_binomial"].nunique()),
+        "n_provisional_name_species_binomials": int(frame.loc[frame["name_status"].eq("PROVISIONAL_NAME"), "species_binomial"].nunique()),
         "moreyra_map_supplied": bool(args.moreyra_map),
-        "claim_boundary": "candidate universe for transition-first screening, not a phylogeny or a set of independent evolutionary origins",
+        "claim_boundary": "current NMNS species-binomial screening universe, not a final accepted-species census or phylogeny",
     }
     (out / "nmns_transition_candidate_universe_v3.json").write_text(
         json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
