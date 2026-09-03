@@ -34,12 +34,13 @@ def main():
  red=defaultdict(list)
  for r in rows(SOURCE): red[r['core_species_crosswalk']].append(r)
  out=[]
+ full_scopes={'FULL_SPECIES','AUTHORITY_CROSSWALK_REQUIRED','AUTHORITY_SPELLING_CROSSWALK'}
  for sp in sorted(core):
   hits=red.get(sp,[])
-  full=[h for h in hits if h['scope_match'] in {'FULL_SPECIES','AUTHORITY_CROSSWALK_REQUIRED'}]
+  full=[h for h in hits if h['scope_match'] in full_scopes]
   infra=[h for h in hits if h['scope_match'].startswith('INFRASPECIFIC')]
   cats='|'.join(sorted({h['category'] for h in hits})) if hits else ''
-  if any(h['category']=='EX' and h['scope_match']=='FULL_SPECIES' for h in hits): mode='HISTORICAL_MATERIAL_ONLY'
+  if any(h['category']=='EX' and h['scope_match'] in full_scopes for h in hits): mode='HISTORICAL_MATERIAL_ONLY'
   elif any(h['category']=='CR' for h in full): mode='HERBARIUM_OR_MINIMAL_AUTHORIZED_WILD'
   elif any(h['category'] in {'EN','VU'} for h in full): mode='CONSERVATION_GATE_REQUIRED'
   elif any(h['category']=='NT' for h in full): mode='CONSERVATION_REVIEW'
