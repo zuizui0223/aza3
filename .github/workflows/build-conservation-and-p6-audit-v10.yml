@@ -1,0 +1,48 @@
+name: Build conservation and P6 audit v10
+
+on:
+  pull_request:
+    paths:
+      - "analysis/build_core_conservation_screen_v10.py"
+      - "analysis/audit_p6_biosample_localities_v10.py"
+      - "data/planning/chapter3_national_redlist_cirsium_source_v10.csv"
+      - "data/planning/chapter3_holefill_priority*_v7.csv"
+      - ".github/workflows/build-conservation-and-p6-audit-v10.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Build 128-species national conservation screen
+        run: python analysis/build_core_conservation_screen_v10.py
+      - name: Audit P6 BioSample localities
+        run: python analysis/audit_p6_biosample_localities_v10.py
+      - name: Validate outputs
+        run: |
+          python - <<'PY'
+          import csv
+          with open('data/planning/chapter3_core_conservation_screen_v10.csv',encoding='utf-8') as f:c=list(csv.DictReader(f))
+          with open('data/planning/chapter3_p6_biosample_locality_audit_v10.csv',encoding='utf-8') as f:p=list(csv.DictReader(f))
+          assert len(c)==128
+          assert len(p)==26
+          assert all(r['public_sensitive_coordinates_copied_to_repo']=='false' for r in p)
+          assert any(r['acquisition_mode']=='HISTORICAL_MATERIAL_ONLY' for r in c)
+          assert any(r['acquisition_mode']=='LOCALITY_AND_SUBTAXON_GATE' for r in c)
+          print('v10_outputs_valid=true')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: chapter3-conservation-and-p6-audit-v10
+          path: |
+            data/planning/chapter3_core_conservation_screen_v10.csv
+            data/planning/chapter3_p6_biosample_locality_audit_v10.csv
+          retention-days: 14
