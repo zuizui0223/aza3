@@ -1,0 +1,33 @@
+redlist_no,category,japanese_name,redlist_scientific_name,core_species_crosswalk,scope_match,acquisition_implication,source
+VP0026,EX,トヨシマアザミ,Cirsium toyoshimae,Cirsium toyoshimae,FULL_SPECIES,HISTORICAL_MATERIAL_ONLY,Environment Ministry Red List 5th edition vascular plants 2025
+VP0536,CR,シライワアザミ,Cirsium akimotoi,Cirsium akimotoi,FULL_SPECIES,HERBARIUM_OR_MINIMAL_AUTHORIZED_WILD,Environment Ministry Red List 5th edition vascular plants 2025
+VP0537,CR,アポイアザミ,Cirsium apoense,Cirsium apoense,FULL_SPECIES,HERBARIUM_OR_MINIMAL_AUTHORIZED_WILD,Environment Ministry Red List 5th edition vascular plants 2025
+VP0538,CR,タカサゴアザミ,Cirsium japonicum var. australe,Cirsium japonicum,INFRASPECIFIC_ONLY,LOCALITY_AND_SUBTAXON_GATE,Environment Ministry Red List 5th edition vascular plants 2025
+VP0539,CR,ウゼンヒメアザミ,Cirsium katoanum,Cirsium katoanum,FULL_SPECIES,HERBARIUM_OR_MINIMAL_AUTHORIZED_WILD,Environment Ministry Red List 5th edition vascular plants 2025
+VP0540,CR,ヘイケモリアザミ,Cirsium lucens var. bracteosum,Cirsium lucens,INFRASPECIFIC_ONLY,LOCALITY_AND_SUBTAXON_GATE,Environment Ministry Red List 5th edition vascular plants 2025
+VP0541,CR,イナベアザミ,Cirsium magofukui,Cirsium magofukui,FULL_SPECIES,HERBARIUM_OR_MINIMAL_AUTHORIZED_WILD,Environment Ministry Red List 5th edition vascular plants 2025
+VP0542,CR,ヒュウガアザミ,Cirsium masami-saitoanum,Cirsium masami-saitoanum,FULL_SPECIES,HERBARIUM_OR_MINIMAL_AUTHORIZED_WILD,Environment Ministry Red List 5th edition vascular plants 2025
+VP0543,CR,ニッポウアザミ,Cirsium nippoense,Cirsium nippoense,FULL_SPECIES,HERBARIUM_OR_MINIMAL_AUTHORIZED_WILD,Environment Ministry Red List 5th edition vascular plants 2025
+VP0544,CR,アレチアザミ,Cirsium segetum,Cirsium segetum,FULL_SPECIES,HERBARIUM_OR_MINIMAL_AUTHORIZED_WILD,Environment Ministry Red List 5th edition vascular plants 2025
+VP1039,EN,アイズヒメアザミ,Cirsium aidzuense,Cirsium aidzuense,FULL_SPECIES,CONSERVATION_GATE_REQUIRED,Environment Ministry Red List 5th edition vascular plants 2025
+VP1040,EN,アシノクラアザミ,Cirsium ashinokuraense,Cirsium ashinokuraense,FULL_SPECIES,CONSERVATION_GATE_REQUIRED,Environment Ministry Red List 5th edition vascular plants 2025
+VP1041,EN,チカブミアザミ,Cirsium chikabumiense,Cirsium chikabumiense,FULL_SPECIES,CONSERVATION_GATE_REQUIRED,Environment Ministry Red List 5th edition vascular plants 2025
+VP1042,EN,コイブキアザミ,Cirsium confertissimum,Cirsium confertissimum,FULL_SPECIES,CONSERVATION_GATE_REQUIRED,Environment Ministry Red List 5th edition vascular plants 2025
+VP1043,EN,ガンジュアザミ,Cirsium ganjuense,Cirsium ganjuense,FULL_SPECIES,CONSERVATION_GATE_REQUIRED,Environment Ministry Red List 5th edition vascular plants 2025
+VP1044,EN,ハッポウアザミ,Cirsium happoense,Cirsium happoense,FULL_SPECIES,CONSERVATION_GATE_REQUIRED,Environment Ministry Red List 5th edition vascular plants 2025
+VP1045,EN,カツラカワアザミ,Cirsium opacum,Cirsium opacum,FULL_SPECIES,CONSERVATION_GATE_REQUIRED,Environment Ministry Red List 5th edition vascular plants 2025
+VP1046,EN,ニセツクシアザミ,Cirsium pseudosuffultum,Cirsium pseudosuffultum,FULL_SPECIES,CONSERVATION_GATE_REQUIRED,Environment Ministry Red List 5th edition vascular plants 2025
+VP1047,EN,タネガシマアザミ,Cirsium tanegashimense,Cirsium tanegashimense,FULL_SPECIES,CONSERVATION_GATE_REQUIRED,Environment Ministry Red List 5th edition vascular plants 2025
+VP1048,EN,ワタムキアザミ,Cirsium tashiroi var. tashiroi,Cirsium tashiroi,INFRASPECIFIC_NOMINATE,LOCALITY_AND_SUBTAXON_GATE,Environment Ministry Red List 5th edition vascular plants 2025
+VP1049,EN,ウスバアザミ,Cirsium tenue,Cirsium tenue,FULL_SPECIES,CONSERVATION_GATE_REQUIRED,Environment Ministry Red List 5th edition vascular plants 2025
+VP1740,VU,アキヨシアザミ,Cirsium dipsacolepis var. calcicola,Cirsium calcicola,AUTHORITY_CROSSWALK_REQUIRED,CONSERVATION_GATE_REQUIRED,Environment Ministry Red List 5th edition vascular plants 2025
+VP1741,VU,オゼヌマアザミ,Cirsium homolepis,Cirsium homolepis,FULL_SPECIES,CONSERVATION_GATE_REQUIRED,Environment Ministry Red List 5th edition vascular plants 2025
+VP1742,VU,オガアザミ,Cirsium horiianum,Cirsium horiianum,FULL_SPECIES,CONSERVATION_GATE_REQUIRED,Environment Ministry Red List 5th edition vascular plants 2025
+VP1743,VU,サドアザミ,Cirsium nipponicum var. sadoense,Cirsium sadoense,AUTHORITY_CROSSWALK_REQUIRED,CONSERVATION_GATE_REQUIRED,Environment Ministry Red List 5th edition vascular plants 2025
+VP1744,VU,ヒダアザミ,Cirsium tashiroi var. hidaense,Cirsium tashiroi,INFRASPECIFIC_ONLY,LOCALITY_AND_SUBTAXON_GATE,Environment Ministry Red List 5th edition vascular plants 2025
+VP2153,NT,サツママアザミ,Cirsium austrokiushianum,Cirsium austrokiushianum,FULL_SPECIES,CONSERVATION_REVIEW,Environment Ministry Red List 5th edition vascular plants 2025
+VP2154,NT,オガサワラアザミ,Cirsium boninense,Cirsium boninense,FULL_SPECIES,CONSERVATION_REVIEW,Environment Ministry Red List 5th edition vascular plants 2025
+VP2155,NT,チョウカイアザミ,Cirsium chokaiense,Cirsium chokaiense,FULL_SPECIES,CONSERVATION_REVIEW,Environment Ministry Red List 5th edition vascular plants 2025
+VP2156,NT,ミヤマコアザミ,Cirsium japonicum var. ibukiense,Cirsium japonicum,INFRASPECIFIC_ONLY,LOCALITY_AND_SUBTAXON_GATE,Environment Ministry Red List 5th edition vascular plants 2025
+VP2157,NT,テリハアザミ,Cirsium lucens,Cirsium lucens,FULL_SPECIES,CONSERVATION_REVIEW,Environment Ministry Red List 5th edition vascular plants 2025
+VP2158,NT,ヤクシマアザミ,Cirsium yakusimense,Cirsium yakusimense,FULL_SPECIES,CONSERVATION_REVIEW,Environment Ministry Red List 5th edition vascular plants 2025
