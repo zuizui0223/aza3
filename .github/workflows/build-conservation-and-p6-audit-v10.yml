@@ -5,7 +5,9 @@ on:
     paths:
       - "analysis/build_core_conservation_screen_v10.py"
       - "analysis/audit_p6_biosample_localities_v10.py"
+      - "analysis/build_p6_best_evidence_v10.py"
       - "data/planning/chapter3_national_redlist_cirsium_source_v10.csv"
+      - "data/planning/chapter3_p6_public_locality_audit_batch1_v8.csv"
       - "data/planning/chapter3_holefill_priority*_v7.csv"
       - ".github/workflows/build-conservation-and-p6-audit-v10.yml"
   workflow_dispatch:
@@ -26,17 +28,22 @@ jobs:
         run: python analysis/build_core_conservation_screen_v10.py
       - name: Audit P6 BioSample localities
         run: python analysis/audit_p6_biosample_localities_v10.py
+      - name: Integrate P6 best evidence and conservation mode
+        run: python analysis/build_p6_best_evidence_v10.py
       - name: Validate outputs
         run: |
           python - <<'PY'
           import csv
           with open('data/planning/chapter3_core_conservation_screen_v10.csv',encoding='utf-8') as f:c=list(csv.DictReader(f))
           with open('data/planning/chapter3_p6_biosample_locality_audit_v10.csv',encoding='utf-8') as f:p=list(csv.DictReader(f))
-          assert len(c)==128
-          assert len(p)==26
+          with open('data/planning/chapter3_p6_best_evidence_v10.csv',encoding='utf-8') as f:b=list(csv.DictReader(f))
+          assert len(c)==128 and len(p)==26 and len(b)==26
           assert all(r['public_sensitive_coordinates_copied_to_repo']=='false' for r in p)
+          assert all(r['exact_coordinates_public_repo']=='false' for r in b)
           assert any(r['acquisition_mode']=='HISTORICAL_MATERIAL_ONLY' for r in c)
           assert any(r['acquisition_mode']=='LOCALITY_AND_SUBTAXON_GATE' for r in c)
+          assert any(r['best_public_locality_resolution']=='PRECISE_SECTOR' for r in b)
+          assert any(r['own_sampling_decision']=='PUBLIC_LOCALITY_UNRESOLVED_NO_COMPLEMENT_GUESS' for r in b)
           print('v10_outputs_valid=true')
           PY
       - uses: actions/upload-artifact@v4
@@ -45,4 +52,5 @@ jobs:
           path: |
             data/planning/chapter3_core_conservation_screen_v10.csv
             data/planning/chapter3_p6_biosample_locality_audit_v10.csv
+            data/planning/chapter3_p6_best_evidence_v10.csv
           retention-days: 14
