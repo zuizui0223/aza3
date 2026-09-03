@@ -1,0 +1,99 @@
+{
+  "contract_id": "chapter3_p02_stickiness_radseq_contract_v1",
+  "status": "PRE_DATA_FROZEN_MIGRATED",
+  "aza3_priority": "P02",
+  "aza3_issue": 8,
+  "source_provenance": {
+    "repository": "zuizui0223/EAzami",
+    "source_issue": 154,
+    "source_pr": 155,
+    "source_pr_head": "b3f91d98952b4f04bd27282e33d31b80694e248a",
+    "original_priority_label": "P01",
+    "renumbering_reason": "aza3 freezes JPN36 phyllary posture as P01 and JPN06-JPN15 stickiness as P02"
+  },
+  "chapter2_premise": {
+    "stickiness_minimum_changes": 5,
+    "jpn06_terminal_concentration": 0.995,
+    "jpn06_jpn15_public_sister_contrast": true,
+    "claim_boundary": "public historical design premise only; not own-data evidence"
+  },
+  "question": "Does the Chapter 2 JPN06 terminal stickiness placement and JPN06-JPN15 sister contrast survive own-data ancestry, ploidy, locus-sharing and network sensitivities?",
+  "focal_concepts": [
+    {
+      "paper_concept": "JPN_06",
+      "taxon": "Cirsium dipsacolepis",
+      "chapter2_state": "nonsticky",
+      "minimum_individuals": 16,
+      "recommended_individuals": 24,
+      "minimum_populations": 2,
+      "recommended_populations": 3
+    },
+    {
+      "paper_concept": "JPN_15",
+      "taxon": "Cirsium lineare",
+      "chapter2_state": "sticky",
+      "minimum_individuals": 16,
+      "recommended_individuals": 24,
+      "minimum_populations": 2,
+      "recommended_populations": 3
+    }
+  ],
+  "total_sampling_target": {
+    "minimum_individuals": 32,
+    "recommended_individuals": 48,
+    "minimum_population_replication_per_taxon": 2,
+    "recommended_population_replication_per_taxon": 3
+  },
+  "current_readiness": {
+    "minimum_current_populations_verified_for_jpn06": false,
+    "minimum_current_populations_verified_for_jpn15": false,
+    "collection_authorized": false,
+    "reason": "EAzami public availability audit did not verify >=2 current authorization-ready populations for either concept"
+  },
+  "same_individual_required_fields": [
+    "individual_id",
+    "paper_concept",
+    "field_taxon_name",
+    "population_id",
+    "deidentified_locality_id",
+    "voucher_id",
+    "rad_tissue_id",
+    "stickiness_state",
+    "gland_exudate_documentation_id",
+    "orientation_state",
+    "phyllary_posture_state",
+    "cytotype_status",
+    "genome_size_status",
+    "authorization_record_id"
+  ],
+  "radseq_admission_gates": [
+    "independent_population_replication",
+    "same_individual_identity_complete",
+    "cytotype_or_ploidy_aware_admission",
+    "shared_homologous_locus_coverage",
+    "restriction_site_dropout_sensitivity",
+    "homeolog_paralog_collapse_screen",
+    "admixture_diagnostic",
+    "network_sensitivity",
+    "sister_stability",
+    "terminal_localization",
+    "strict_locus_final"
+  ],
+  "predeclared_falsifiers": [
+    "JPN06-JPN15 sister relationship is not retained across admitted own-data sensitivities",
+    "JPN06 terminal concentration is materially reduced or relocated across admitted own-data histories",
+    "strict-locus, ploidy-aware or network sensitivity reverses the focal placement"
+  ],
+  "decision_rules": {
+    "retain_chapter2_history": "all admission gates pass and the sister relation plus terminal concentration remain qualitatively stable across the admitted sensitivity set",
+    "revise_chapter2_history": "one or more predeclared falsifiers is met after upstream admission gates pass",
+    "ancestry_only": "cross-species RAD admission fails; retain Comp1061 as primary cross-species scaffold and report population ancestry/within-cytotype structure only"
+  },
+  "conditional_next_test": "P02b within-JPN15 stickiness neutralization versus sham with enemy access/damage and reproductive-fitness endpoints",
+  "claim_boundary": [
+    "RAD-seq placement is historical evidence, not adaptation",
+    "a sister contrast does not establish defence function",
+    "minimum changes are not independent-origin counts",
+    "no manipulation proceeds without site-specific authorization and conservation review"
+  ]
+}
