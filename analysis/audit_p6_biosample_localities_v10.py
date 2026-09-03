@@ -8,9 +8,23 @@ P=ROOT/'data'/'planning'
 MEMBERSHIP_URL='https://raw.githubusercontent.com/zuizui0223/EAzami/af36bce7a42a7fcfdafde22e4a78b30d93075f23/data/evidence/moreyra2025_japan_38_membership_audit_2026-08-10.csv'
 P6=P/'chapter3_holefill_priority6_add_own_trait_link_v7.csv'
 OUT=P/'chapter3_p6_biosample_locality_audit_v10.csv'
+USER_AGENT='aza3-P6-locality-audit/1.0'
+
+def request(url, attempts=4):
+ last=None
+ for i in range(attempts):
+  try:
+   req=urllib.request.Request(url,headers={'User-Agent':USER_AGENT})
+   with urllib.request.urlopen(req,timeout=30) as r: data=r.read()
+   time.sleep(0.4)
+   return data
+  except Exception as e:
+   last=e
+   time.sleep(1.0*(i+1))
+ raise last
 
 def read_csv_url(url):
- with urllib.request.urlopen(url,timeout=30) as r: txt=r.read().decode('utf-8')
+ txt=request(url).decode('utf-8')
  return list(csv.DictReader(txt.splitlines()))
 
 def local_rows(path):
@@ -18,19 +32,18 @@ def local_rows(path):
 
 def fetch_biosample(acc):
  term=urllib.parse.quote(f'{acc}[Accession]')
- with urllib.request.urlopen(f'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=biosample&term={term}',timeout=30) as r:
-  root=ET.fromstring(r.read())
+ root=ET.fromstring(request(f'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=biosample&tool=aza3&term={term}'))
  ids=[x.text for x in root.findall('.//Id') if x.text]
- if not ids:return {}
- with urllib.request.urlopen(f'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=biosample&id={ids[0]}',timeout=30) as r:
-  root=ET.fromstring(r.read())
+ if not ids:return {},'ACCESSION_NOT_FOUND'
+ root=ET.fromstring(request(f'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=biosample&tool=aza3&id={ids[0]}'))
  attrs={}
  for a in root.findall('.//Attribute'):
   name=a.attrib.get('attribute_name') or a.attrib.get('harmonized_name') or ''
   if name:attrs[name]=a.text or ''
- return attrs
+ return attrs,''
 
-def resolution(geo):
+def resolution(geo,error=''):
+ if error:return 'FETCH_FAILED'
  s=(geo or '').strip()
  if not s:return 'NO_PUBLIC_LOCALITY'
  if re.search(r'pref|province|city|shi|gun|island|mount|mt\.?|honto|shima',s,re.I):return 'PRECISE_SECTOR'
@@ -40,26 +53,26 @@ def resolution(geo):
 
 def main():
  membership=read_csv_url(MEMBERSHIP_URL)
- by_jpn={r['paper_japan_member_id'].replace('JPN_','JPN_'):r for r in membership}
+ by_jpn={r['paper_japan_member_id']:r for r in membership}
  p6=local_rows(P6)
  out=[]
- for i,r in enumerate(p6):
+ for r in p6:
   jpn=r['moreyra_jpns'].split('|')[0]
   m=by_jpn.get(jpn,{})
   acc=(m.get('biosamples') or '').split('|')[0]
-  attrs={}
-  error=''
+  attrs={}; error=''
   if acc:
-   try: attrs=fetch_biosample(acc)
-   except Exception as e:error=type(e).__name__
-   time.sleep(0.35)
+   try: attrs,error=fetch_biosample(acc)
+   except Exception as e:error=f'{type(e).__name__}:{str(e)[:80]}'
+  else:error='NO_BIOSAMPLE_ACCESSION'
   geo=attrs.get('geo_loc_name') or attrs.get('geographic location') or attrs.get('geographic location (country and/or sea)') or attrs.get('country') or ''
   latlon=attrs.get('lat_lon') or attrs.get('latitude and longitude') or ''
+  res=resolution(geo,error)
   out.append({
    'species_binomial':r['species_binomial'],'moreyra_jpn':jpn,'biosample':acc,
    'geo_loc_name_public':geo,'lat_lon_present_public':'true' if latlon else 'false',
-   'locality_resolution':resolution(geo),'audit_error':error,
-   'complement_rule': 'CHOOSE_COMPLEMENT_AFTER_SECTOR_RECONCILIATION' if resolution(geo)=='PRECISE_SECTOR' else 'DO_NOT_GUESS_COMPLEMENT',
+   'locality_resolution':res,'audit_error':error,
+   'complement_rule':'CHOOSE_COMPLEMENT_AFTER_SECTOR_RECONCILIATION' if res=='PRECISE_SECTOR' else 'DO_NOT_GUESS_COMPLEMENT',
    'public_sensitive_coordinates_copied_to_repo':'false'
   })
  with OUT.open('w',encoding='utf-8',newline='') as f:
