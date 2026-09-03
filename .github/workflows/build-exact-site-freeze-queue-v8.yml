@@ -3,8 +3,9 @@ name: Build exact-site freeze queue v8
 on:
   pull_request:
     paths:
+      - "analysis/build_core_conservation_screen_v10.py"
       - "analysis/build_exact_site_freeze_queue_v8.py"
-      - "data/planning/chapter3_conservation_override_v9.csv"
+      - "data/planning/chapter3_national_redlist_cirsium_source_v10.csv"
       - "data/planning/chapter3_holefill_priority1_sample_sectors_v7.csv"
       - "data/planning/chapter3_holefill_priority2_sample_sectors_v7.csv"
       - "data/planning/chapter3_holefill_priority3_sample_sectors_v7.csv"
@@ -27,6 +28,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+      - name: Build full national conservation screen
+        run: python analysis/build_core_conservation_screen_v10.py
       - name: Build queue
         run: python analysis/build_exact_site_freeze_queue_v8.py
       - name: Audit queue shape
@@ -50,5 +53,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: chapter3-exact-site-freeze-queue-v8
-          path: data/planning/chapter3_exact_site_freeze_queue_v8.csv
+          path: |
+            data/planning/chapter3_core_conservation_screen_v10.csv
+            data/planning/chapter3_exact_site_freeze_queue_v8.csv
           retention-days: 14
