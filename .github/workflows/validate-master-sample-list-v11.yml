@@ -1,0 +1,68 @@
+name: Validate Chapter 3 master sample list v11
+
+on:
+  pull_request:
+    paths:
+      - 'analysis/build_chapter3_master_sample_manifest_v11.py'
+      - 'analysis/build_core_conservation_screen_v10.py'
+      - 'analysis/build_exact_site_freeze_queue_v8.py'
+      - 'data/planning/chapter3_master_sample_blocks_v11.csv'
+      - 'data/planning/chapter3_p02_recommended_sample_manifest_v1.csv'
+      - 'data/planning/m01_operational_population_ledger_v1.csv'
+      - 'data/planning/chapter3_holefill_priority*_sample_sectors_v7.csv'
+      - 'data/planning/chapter3_national_redlist_cirsium_source_v10.csv'
+      - 'docs/CHAPTER3_MASTER_SAMPLE_LIST_V11.md'
+      - '.github/workflows/validate-master-sample-list-v11.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile builders
+        run: |
+          python -m py_compile analysis/build_core_conservation_screen_v10.py
+          python -m py_compile analysis/build_exact_site_freeze_queue_v8.py
+          python -m py_compile analysis/build_chapter3_master_sample_manifest_v11.py
+      - name: Build national conservation screen
+        run: python analysis/build_core_conservation_screen_v10.py
+      - name: Build 229-slot tree queue
+        run: python analysis/build_exact_site_freeze_queue_v8.py
+      - name: Build de-duplicated master manifest
+        run: python analysis/build_chapter3_master_sample_manifest_v11.py
+      - name: Verify public-safe shape and exact counts
+        run: |
+          python - <<'PY'
+          import csv, json
+          from pathlib import Path
+          p=Path('data/planning')
+          rows=list(csv.DictReader((p/'chapter3_master_sample_manifest_v11.csv').open(encoding='utf-8')))
+          s=json.loads((p/'chapter3_master_sample_summary_v11.json').read_text(encoding='utf-8'))
+          assert len(rows)==451
+          assert len({r['master_sample_id'] for r in rows})==451
+          assert s['active_minimum_unique_physical_sources']==314
+          assert s['with_p02_recommended_depth']==330
+          assert s['with_m01_discovery_reserves']==342
+          assert s['with_optional_p7_trait_link']==343
+          assert s['tree_focal_overlap_rows']==6
+          assert s['exact_coordinates_allowed_in_public_manifest'] is False
+          assert 'latitude' not in rows[0] and 'longitude' not in rows[0] and 'gps' not in rows[0]
+          assert all(r['public_exact_coordinates_allowed']=='false' for r in rows)
+          print('master_sample_list_v11: PASS')
+          PY
+      - name: Upload master sample list
+        uses: actions/upload-artifact@v4
+        with:
+          name: chapter3-master-sample-list-v11
+          path: |
+            data/planning/chapter3_master_sample_manifest_v11.csv
+            data/planning/chapter3_master_sample_summary_v11.json
+            data/planning/chapter3_exact_site_freeze_queue_v8.csv
