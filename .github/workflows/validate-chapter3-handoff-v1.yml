@@ -9,6 +9,7 @@ on:
       - "docs/CHAPTER3_EXACT_SITE_FREEZE_V8.md"
       - "docs/CHAPTER3_RADSEQ_END_TO_END_V1.md"
       - "docs/M01_FLORAL_PIGMENTATION_MECHANISTIC_DEMONSTRATION_V1.md"
+      - "docs/CHAPTER3_ACSP_PROSPECTIVE_VALIDATION_V1.md"
       - "data/contracts/chapter3_eazami_handoff_contract_v1.json"
       - "data/planning/chapter3_sampling_priorities_v1.csv"
       - "data/planning/chapter3_mechanistic_demonstration_v1.json"
@@ -34,14 +35,20 @@ on:
       - "data/planning/chapter3_holefill_priority7_sample_sectors_v7.csv"
       - "data/planning/chapter3_holefill_taxonomy_extension_v7.csv"
       - "data/planning/chapter3_holefill_taxonomy_conflicts_v7.csv"
+      - "data/planning/chapter3_acsp_prospective_validation_cohort_v1.csv"
+      - "data/planning/chapter3_acsp_prospective_validation_contract_v1.json"
+      - "data/planning/chapter3_acsp_field_handoff_prefill_v1.csv"
+      - "data/planning/chapter3_acsp_patch_handoff_template_v1.csv"
       - "data/intake/chapter3_individual_intake_v1.csv"
       - "data/intake/chapter3_radseq_library_intake_v1.csv"
       - "analysis/validate_chapter3_handoff_v1.py"
       - "analysis/validate_mechanistic_demonstration_v1.py"
       - "analysis/validate_exact_hole_fill_v7.py"
+      - "analysis/validate_acsp_prospective_validation_v1.py"
       - "tests/test_validate_chapter3_handoff_v1.py"
       - "tests/test_validate_mechanistic_demonstration_v1.py"
       - "tests/test_validate_exact_hole_fill_v7.py"
+      - "tests/test_validate_acsp_prospective_validation_v1.py"
       - ".github/workflows/validate-chapter3-handoff-v1.yml"
   push:
     branches: [main]
@@ -71,3 +78,7 @@ jobs:
         run: |
           python analysis/validate_exact_hole_fill_v7.py
           python tests/test_validate_exact_hole_fill_v7.py -v
+      - name: Validate frozen ACSP prospective cohort mirror
+        run: |
+          python analysis/validate_acsp_prospective_validation_v1.py
+          python tests/test_validate_acsp_prospective_validation_v1.py -v
