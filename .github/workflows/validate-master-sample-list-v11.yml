@@ -7,6 +7,7 @@ on:
       - 'analysis/build_core_conservation_screen_v10.py'
       - 'analysis/build_exact_site_freeze_queue_v8.py'
       - 'data/planning/chapter3_master_sample_blocks_v11.csv'
+      - 'data/planning/chapter3_master_sample_summary_v11.json'
       - 'data/planning/chapter3_p02_recommended_sample_manifest_v1.csv'
       - 'data/planning/m01_operational_population_ledger_v1.csv'
       - 'data/planning/chapter3_holefill_priority*_sample_sectors_v7.csv'
@@ -38,6 +39,8 @@ jobs:
         run: python analysis/build_exact_site_freeze_queue_v8.py
       - name: Build de-duplicated master manifest
         run: python analysis/build_chapter3_master_sample_manifest_v11.py
+      - name: Verify frozen summary is regenerated exactly
+        run: git diff --exit-code -- data/planning/chapter3_master_sample_summary_v11.json
       - name: Verify public-safe shape and exact counts
         run: |
           python - <<'PY'
