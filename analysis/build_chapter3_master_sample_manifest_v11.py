@@ -163,7 +163,7 @@ def append_p02(rows: list[dict[str, str]]) -> None:
 
 
 def m01_stage(role: str) -> str:
-    if role in {"DISCOVERY_AND_E3"}:
+    if role == "DISCOVERY_AND_E3":
         return "ACTIVE_M01_DISCOVERY"
     if role == "E3_EXPANSION":
         return "CONDITIONAL_M01_E3"
@@ -176,11 +176,12 @@ def m01_stage(role: str) -> str:
 
 def append_m01(rows: list[dict[str, str]]) -> None:
     m01 = read_rows(M01)
+    # Sector tokens match the public-safe Japanese range-sector strings in v7.
     discovery_tree_token = {
-        "M01_BREV_OKI": ("Cirsium brevicaule", "Okinawa"),
-        "M01_BREV_AMAMI": ("Cirsium brevicaule", "Amami"),
-        "M01_IRUM_MIYAKO": ("Cirsium irumtiense", "Miyako"),
-        "M01_IRUM_ISHIGAKI": ("Cirsium irumtiense", "Ishigaki"),
+        "M01_BREV_OKI": ("Cirsium brevicaule", "沖縄島"),
+        "M01_BREV_AMAMI": ("Cirsium brevicaule", "奄美大島"),
+        "M01_IRUM_MIYAKO": ("Cirsium irumtiense", "宮古島"),
+        "M01_IRUM_ISHIGAKI": ("Cirsium irumtiense", "石垣島"),
     }
     for r in m01:
         n_primary = int(r["primary_individuals"])
