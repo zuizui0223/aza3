@@ -1,6 +1,11 @@
 from __future__ import annotations
 
+import sys
 import unittest
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 
 from analysis.validate_acsp_prospective_validation_v1 import validate
 
