@@ -1,0 +1,4 @@
+protocol_id,enzyme_pair,stage_a_status,initial_screen_size_window_bp,expected_role,decision_boundary,source_basis
+RAD_C01_AVAII_MSPI,AvaII + MspI,SCREEN_CANDIDATE_NOT_WINNER,400-700,high-complexity plant ddRAD candidate,"advance only by equal-depth technical metrics across all anchor classes; never by biological topology or trait outcome","Yang et al. 2016 Plant Methods 12:39"
+RAD_C02_ECORI_MSPI,EcoRI + MspI,SCREEN_CANDIDATE_NOT_WINNER,400-700,classic/intermediate-complexity ddRAD candidate,"advance only by equal-depth technical metrics across all anchor classes; never by biological topology or trait outcome","Yang et al. 2016 Plant Methods 12:39"
+RAD_C03_PSTI_MSPI,PstI + MspI,SCREEN_CANDIDATE_NOT_WINNER,400-700,reduced-complexity methylation-sensitive plant candidate,"advance only by equal-depth technical metrics across all anchor classes; never by biological topology or trait outcome","Yang et al. 2016 Plant Methods 12:39"

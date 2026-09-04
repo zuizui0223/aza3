@@ -1,0 +1,17 @@
+species_binomial,japanese_names,region_bucket,nmns_taxonomic_block,same_block_moreyra_anchors,moreyra_jpns,new_tree_samples_needed
+Cirsium austrokiusianum,サツママアザミ,KYUSHU,ナンブアザミ節キセルアザミ亜節,JPN_36:Cirsium sieboldii,,2
+Cirsium hidapaludosum,ヒダキセルアザミ,CHUBU,ナンブアザミ節キセルアザミ亜節,JPN_36:Cirsium sieboldii,,2
+Cirsium muraii,キンカアザミ,TOHOKU,ナンブアザミ節ダキバヒメアザミ亜節リシリアザミ列,JPN_07:Cirsium domonii | JPN_35:Cirsium nipponicum,,2
+Cirsium sendaicum,マツシマアザミ,TOHOKU,ナンブアザミ節ダキバヒメアザミ亜節リシリアザミ列,JPN_07:Cirsium domonii | JPN_35:Cirsium nipponicum,,2
+Cirsium togaense,トガアザミ,TOHOKU,ナンブアザミ節ダキバヒメアザミ亜節リシリアザミ列,JPN_07:Cirsium domonii | JPN_35:Cirsium nipponicum,,2
+Cirsium umezawanum,リシリアザミ,RISHIRI|HOKKAIDO,ナンブアザミ節ダキバヒメアザミ亜節リシリアザミ列,JPN_07:Cirsium domonii | JPN_35:Cirsium nipponicum,,2
+Cirsium iito-kojianum,アッケシアザミ,HOKKAIDO,ナンブアザミ節チシマアザミ亜節チシマアザミ列,JPN_37:Cirsium kamtschaticum,,2
+Cirsium ashiuense,アシウアザミ,KINKI,ナンブアザミ節ナンブアザミ亜節ナンブアザミ列,JPN_01|JPN_20:Cirsium incomptum | JPN_25:Cirsium shidokimontanum | JPN_21:Cirsium yoshinoi,,2
+Cirsium hokkokuense,ホッコクアザミ,CHUBU,ナンブアザミ節ナンブアザミ亜節ナンブアザミ列,JPN_01|JPN_20:Cirsium incomptum | JPN_25:Cirsium shidokimontanum | JPN_21:Cirsium yoshinoi,,2
+Cirsium makinoi,ナンブアザミ | ナンブアザミ変種シロウマアザミ,TOHOKU|KANTO|CHUBU,ナンブアザミ節ナンブアザミ亜節ナンブアザミ列,JPN_01|JPN_20:Cirsium incomptum | JPN_25:Cirsium shidokimontanum | JPN_21:Cirsium yoshinoi,,2
+Cirsium sadoense,サドアザミ,SADO|CHUBU,ナンブアザミ節ナンブアザミ亜節ナンブアザミ列,JPN_01|JPN_20:Cirsium incomptum | JPN_25:Cirsium shidokimontanum | JPN_21:Cirsium yoshinoi,,2
+Cirsium tanegashimense,タネガシマアザミ,OSUMI_ISLANDS|KYUSHU,ナンブアザミ節ニッポウアザミ亜節,JPN_19:Cirsium nippoense,,2
+Cirsium grayanum,マルバヒレアザミ,HOKKAIDO|TOHOKU,ナンブアザミ節ミネアザミ亜節,JPN_03:Cirsium alpicola,,2
+Cirsium grandirosuliferum,リョウノウアザミ,CHUBU,ナンブアザミ節リョウノウアザミ亜節,JPN_09:Cirsium gyojanum,,2
+Cirsium yoshidae,タキアザミ,KINKI,ナンブアザミ節リョウノウアザミ亜節,JPN_09:Cirsium gyojanum,,2
+Cirsium calcicola,アキヨシアザミ,CHUGOKU,モリアザミ節,JPN_06:Cirsium dipsacolepis,,2

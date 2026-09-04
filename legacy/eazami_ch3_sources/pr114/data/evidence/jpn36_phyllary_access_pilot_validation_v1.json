@@ -1,0 +1,40 @@
+{
+  "contract_version": "jpn36_phyllary_access_pilot_validation_v1",
+  "status_date": "2026-08-27",
+  "source_protocol": "data/evidence/jpn36_phyllary_access_pilot_contract_v1.json",
+  "fdt8_alignment": {
+    "field_first_target": "JPN_36",
+    "taxon": "Cirsium sieboldii",
+    "natural_phyllary_state": "appressed",
+    "natural_stickiness_state": "nonsticky_or_nearly_nonsticky",
+    "ufboot_terminal_forced_fraction": 0.754,
+    "non_destructive_proxy_vs_sham": true,
+    "joint_endpoint_families": [
+      "enemy access/damage",
+      "legitimate visitor access/effective contact",
+      "mature/filled/viable achene output"
+    ]
+  },
+  "protocol_schema_ready": true,
+  "authorization_schema_ready": true,
+  "sample_allocation": {
+    "biological_unit": "individual plant",
+    "pairs": 12,
+    "individuals": 24,
+    "arms": ["access_proxy", "sham"],
+    "ratio_within_pair": "1:1",
+    "one_head_per_individual": true,
+    "randomization_seed": "JPN36-PHYLLARY-ACCESS-V1-20260827"
+  },
+  "field_execution_authorized": false,
+  "empirical_result_available": false,
+  "blocking_gates": [
+    "site-specific land-manager and manipulation approval record",
+    "conservation review and flowering-individual census",
+    "terminal collection and viability-assay approval",
+    "v1 device qualification and frozen natural-range access target"
+  ],
+  "next_gate": "Complete observation-only reference/state confirmation, qualify one frozen active/sham device, and supply a deidentified authorization record before deterministic pair allocation.",
+  "claim_boundary": "Protocol and schema readiness only. No field execution, manipulation safety, enemy exclusion, pollinator effect, reproductive effect, historical mechanism or adaptation has been demonstrated.",
+  "migration_note": "Condensed from the exact EAzami PR114 validation artifact; the original validator source is archived separately."
+}

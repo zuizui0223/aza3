@@ -1,0 +1,149 @@
+{
+  "contract_version": "chapter3_transition_first_sampling_v3",
+  "status_date": "2026-09-02",
+  "authoritative_for_new_sampling": true,
+  "supersedes": [
+    "chapter3_inverse_sampling_design_v1",
+    "chapter3_zero_baseline_sampling_v2"
+  ],
+  "core_principle": "sample transition-discriminating phylogenetic neighbourhoods and populations, not a fixed number of species",
+  "candidate_universe": {
+    "authority_source": "https://www.kahaku.go.jp/research/db/botany/azami/list.html?word=all",
+    "source_record_count_observed_2026_09_02": 161,
+    "record_count_interpretation": "authority records, not 161 guaranteed independent species; retain varieties/synonyms/infraspecific concepts until reconciliation",
+    "moreyra_japan_subset": 38,
+    "moreyra_subset_role": "HYPOTHESIS_ORIGIN_SUBSET_NOT_SAMPLING_UNIVERSE",
+    "literature_context": "Moreyra et al. 2025 states that Japan harbours more than 100 Cirsium species and sampled 38 Japanese species"
+  },
+  "overlap_policy": {
+    "same_individual_multitrait_reuse": "REQUIRED_AND_EFFICIENT",
+    "same_neighbourhood_as_independent_transition_replicate": "PROHIBITED",
+    "p03_minimum_nonoverlapping_neighbourhoods": 4,
+    "single_neighbourhood_maximum_p03_slots": 1
+  },
+  "A0_authority_screen": {
+    "field_sampling_required": false,
+    "outputs": [
+      "authority taxon concept and Japanese name",
+      "infraspecific status",
+      "distribution summary",
+      "orientation state where explicit",
+      "phyllary posture where explicit",
+      "stickiness where explicit",
+      "source-text hash",
+      "Moreyra/Comp1061 representation status"
+    ],
+    "authority_trait_state_ceiling": "screening prior only; not an individual measurement or ancestral state"
+  },
+  "A1_fixed_focal_population_layer": {
+    "population_bank": {
+      "primary_rad_per_population": 12,
+      "reserve_per_population": 3,
+      "physical_per_population": 15
+    },
+    "minimum_launch": [
+      {"system": "JPN36 Cirsium sieboldii", "populations": 3, "physical": 45, "primary_rad": 36},
+      {"system": "JPN06 Cirsium dipsacolepis", "populations": 2, "physical": 30, "primary_rad": 24},
+      {"system": "JPN15 Cirsium lineare", "populations": 2, "physical": 30, "primary_rad": 24},
+      {"system": "Cirsium brevicaule", "populations": 2, "physical": 30, "primary_rad": 24},
+      {"system": "Cirsium irumtiense", "populations": 2, "physical": 30, "primary_rad": 24}
+    ],
+    "minimum_launch_total": {"populations": 11, "physical": 165, "primary_rad": 132},
+    "target_replication": [
+      {"system": "JPN36 Cirsium sieboldii", "populations": 4, "physical": 60, "primary_rad": 48},
+      {"system": "JPN06 Cirsium dipsacolepis", "populations": 3, "physical": 45, "primary_rad": 36},
+      {"system": "JPN15 Cirsium lineare", "populations": 3, "physical": 45, "primary_rad": 36},
+      {"system": "Cirsium brevicaule", "populations": 2, "physical": 30, "primary_rad": 24},
+      {"system": "Cirsium irumtiense", "populations": 2, "physical": 30, "primary_rad": 24}
+    ],
+    "target_total": {"populations": 14, "physical": 210, "primary_rad": 168},
+    "m01_nested_rna": "six floral collections/population, five primary RNA-seq libraries plus one reserve"
+  },
+  "A1_rad_assay_pilot": {
+    "systems": [
+      "JPN36 Cirsium sieboldii",
+      "JPN06 Cirsium dipsacolepis",
+      "JPN15 Cirsium lineare",
+      "Cirsium brevicaule",
+      "Cirsium irumtiense"
+    ],
+    "stage_A": {"systems": 5, "templates_per_system": 1, "enzyme_candidates": 3, "libraries": 15},
+    "stage_B": {"systems": 5, "biological_templates_per_system": 2, "advanced_protocols": 2, "primary_libraries": 20, "technical_repeats": 5, "total_libraries": 25},
+    "minimum_overlap_genotype_concordance": 0.95,
+    "minimum_core_locus_recovery": 0.90,
+    "scope": "FOCAL_STRATUM_ONLY",
+    "polyploid_rule": "if A2/A3 introduces high-ploidy or polyploid concepts, require a second stratum-specific assay check before their production RAD"
+  },
+  "A2_backbone_augmentation": {
+    "initial_nonbackbone_taxon_cap": 12,
+    "placement_representatives_per_taxon": 2,
+    "primary_assay": "Comp1061-compatible target capture or separately justified compatible nuclear placement assay",
+    "nomination_requirements": [
+      "explicit authority trait state relevant to a core module or direct polymorphism evidence",
+      "nonredundant state contrast or missing phylogenetic bracket",
+      "field/voucher identity can be established",
+      "no close-relative claim based on geography alone"
+    ],
+    "rad_before_stable_placement": false,
+    "ambiguous_placement_rule": "retain network/hybrid/polyploid uncertainty; do not force a sister pair"
+  },
+  "A3_transition_neighbourhoods": {
+    "P01": "JPN36 is fixed; add comparator taxa only when nuclear placement distinguishes terminal versus internal/alternative-edge histories",
+    "P02": "JPN06-JPN15 is fixed; add species only for a specified topology/network ambiguity",
+    "P03": {
+      "minimum_neighbourhoods": 4,
+      "must_be_nonoverlapping": true,
+      "selection_basis": "discrete history discrimination across the admitted topology/minimum-history ensemble, not posterior probability mass",
+      "requirements": [
+        "explicit orientation-state contrast",
+        "distinct candidate transition edge/neighbourhood from other slots",
+        "placed comparator lineage(s) sufficient to distinguish terminal versus deeper placement",
+        "two populations of one species do not count as two evolutionary-transition slots",
+        "JPN36 can count at most once"
+      ]
+    },
+    "P04": "reuse A1/A3 same individuals; no separate quota unless reconstruction-aware null identifies a coverage gap",
+    "P05": "measurement-first on A1/A3 plants; no RAD expansion solely for continuous-trait sample size"
+  },
+  "added_neighbourhood_population_default": {
+    "populations_per_taxon": 2,
+    "primary_rad_per_population": 10,
+    "reserve_per_population": 2,
+    "physical_per_taxon_default": 24,
+    "primary_rad_per_taxon_default": 20,
+    "narrow_endemic_exception": "one verified population allowed with explicit limitation",
+    "within_species_polymorphism_rule": "prefer >=3 populations and >=10 primary individuals per observed state across >=2 populations where feasible so morph is not identical to locality"
+  },
+  "m01_expansion": {
+    "open_only_after": [
+      "ancestral-state/pigment history distinguishes H1/H2 from H3 at the stated ceiling",
+      "corolla-expression association replicates across both discovery populations within each lineage"
+    ],
+    "added_populations": [
+      "one intermediate Amami-group C. brevicaule population",
+      "one southern Amami-group C. brevicaule population",
+      "Iriomote C. irumtiense",
+      "Yonaguni C. irumtiense"
+    ],
+    "population_bank": "12 primary RAD +3 reserve per population",
+    "selection_boundary": "RAD supplies background population structure; candidate-region evidence requires independent non-RAD confirmation"
+  },
+  "method_roles": {
+    "target_capture": "cross-species placement/scaffold",
+    "rad": "population ancestry, admixture, reticulation and morph/population history inside qualified neighbourhoods",
+    "phenotype": "same-individual transition localization",
+    "rna_pigment": "M01 mechanistic decomposition",
+    "candidate_resequencing": "selection-consistent locus evidence"
+  },
+  "current_state": {
+    "physical_samples": 0,
+    "A0_authority_snapshot_frozen": false,
+    "A1_field_collection_authorized": false,
+    "focal_rad_pilot_authorized": false,
+    "A2_target_capture_augmentation_authorized": false,
+    "A3_transition_neighbourhood_rad_authorized": false,
+    "m01_expansion_authorized": false,
+    "selection_claim_authorized": false,
+    "pollinator_agent_claim_authorized": false
+  }
+}
