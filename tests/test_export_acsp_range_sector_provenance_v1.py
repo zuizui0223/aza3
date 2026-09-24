@@ -2,7 +2,9 @@
 from __future__ import annotations
 
 import copy
+import csv
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -74,11 +76,17 @@ class AcspRangeSectorProvenanceTests(unittest.TestCase):
             target.build_provenance(rows, upstream_snapshot_commit="a" * 40)
 
     def test_ready_label_or_slot_identity_cannot_drift(self) -> None:
-        rows = _ready_rows()
-        rows["CIR06"]["range_sector_label"] = "different sector"
-        # load_registry owns identity validation; emulate the same invariant directly.
-        expected = target.EXPECTED["CIR06"]["range_sector_label"]
-        self.assertNotEqual(rows["CIR06"]["range_sector_label"], expected)
+        source = target.load_registry()
+        rows = [dict(source[unit]) for unit in target.EXPECTED_UNITS]
+        rows[1]["range_sector_label"] = "different sector"
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "registry.csv"
+            with path.open("w", newline="", encoding="utf-8") as handle:
+                writer = csv.DictWriter(handle, fieldnames=list(target.REQUIRED_COLUMNS))
+                writer.writeheader()
+                writer.writerows(rows)
+            with self.assertRaisesRegex(ValueError, "range_sector_label drifted"):
+                target.load_registry(path)
 
 
 if __name__ == "__main__":
