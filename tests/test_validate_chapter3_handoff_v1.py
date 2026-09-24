@@ -38,7 +38,16 @@ class Chapter3HandoffTests(unittest.TestCase):
     def test_protocols_are_not_authorized(self) -> None:
         rows = target.validate_protocol_registry()
         self.assertTrue(all(row["field_execution_authorized"] == "false" for row in rows))
+        self.assertEqual([row["protocol_id"] for row in rows], ["F01", "F02", "F03"])
         self.assertIn("NOT_FIELD_AUTHORIZED", rows[0]["technical_state"])
+        self.assertIn("QUALIFICATION_REQUIRED", rows[2]["technical_state"])
+
+    def test_p03b_orientation_protocol_is_frozen_but_not_authorized(self) -> None:
+        p = target.validate_p03b_orientation_protocol()
+        self.assertFalse(p["field_execution_authorized"])
+        self.assertEqual(p["primary_endpoint"]["name"], "mature_viable_achene_output")
+        self.assertEqual(p["exposure_measurement"]["wetting"]["status"], "PRIMARY_MECHANISM")
+        self.assertEqual(p["exposure_measurement"]["uvb"]["status"], "SEPARATE_SUBEXPERIMENT")
 
     def test_intake_is_empty_and_narrative_is_bounded(self) -> None:
         target.validate_empty_intake()
