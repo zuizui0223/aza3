@@ -9,6 +9,8 @@ on:
       - "data/planning/chapter3_sampling_priorities_v1.csv"
       - "data/planning/chapter3_bounded_prior_registry_v1.csv"
       - "data/planning/chapter3_protocol_registry_v1.csv"
+      - "data/planning/p03b_orientation_causal_protocol_v1.json"
+      - "docs/P03B_ORIENTATION_CAUSAL_PROTOCOL_V1.md"
       - "data/intake/chapter3_individual_intake_v1.csv"
       - "analysis/validate_chapter3_handoff_v1.py"
       - "tests/test_validate_chapter3_handoff_v1.py"

@@ -38,6 +38,14 @@ Functional meta-analysis supplies endpoint and sham choices, not focal effects. 
 
 JPN15 stickiness neutralization remains a prospective necessity test. The JPN06-JPN15 species contrast alone is not causal, and JPN15 conservation status prohibits opportunistic wild manipulation.
 
+### P03b orientation causal lane
+
+The orientation follow-up is now registered as **F03** with a frozen scientific design but no field authorization. Its core estimand is randomized reversible head-angle assignment versus a structure-matched sham, carried to mature viable-achene output. Direct wetting/water-entry measurement is the primary mechanism measurement; thermal response, effective pollination and antagonists are competing or parallel pathways.
+
+Destructive pollen assays use a separate mechanism cohort so they cannot mechanically reduce the primary seed-fitness endpoint. UV-B is a separate subexperiment unless an independently qualified device isolates UV exposure without changing wetting, temperature, display or visitor access.
+
+Focal taxon/site, device tolerances and confirmatory sample size remain unfrozen until the P03 ancestry, rights and device-qualification gates pass. `field_execution_authorized=false`.
+
 ### WP5 — frozen cross-layer inference
 
 Predeclare the topology ensemble, trait-history rules, network sensitivities and function models before examining their joint result. A topology update may reject a Chapter 2 placement, but it cannot by itself establish function, selection, adaptation, convergence or developmental modularity.

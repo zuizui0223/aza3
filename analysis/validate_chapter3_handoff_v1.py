@@ -12,6 +12,7 @@ CONTRACT_PATH = ROOT / "data" / "contracts" / "chapter3_eazami_handoff_contract_
 PRIORITY_PATH = ROOT / "data" / "planning" / "chapter3_sampling_priorities_v1.csv"
 PRIOR_PATH = ROOT / "data" / "planning" / "chapter3_bounded_prior_registry_v1.csv"
 PROTOCOL_PATH = ROOT / "data" / "planning" / "chapter3_protocol_registry_v1.csv"
+P03B_PROTOCOL_PATH = ROOT / "data" / "planning" / "p03b_orientation_causal_protocol_v1.json"
 INTAKE_PATH = ROOT / "data" / "intake" / "chapter3_individual_intake_v1.csv"
 SCOPE_PATH = ROOT / "docs" / "CHAPTER3_SCOPE_AND_HANDOFF_V1.md"
 README_PATH = ROOT / "README.md"
@@ -174,7 +175,7 @@ def validate_bounded_priors() -> list[dict[str, str]]:
 
 def validate_protocol_registry() -> list[dict[str, str]]:
     rows = read_rows(PROTOCOL_PATH)
-    if [row["protocol_id"] for row in rows] != ["F01", "F02"]:
+    if [row["protocol_id"] for row in rows] != ["F01", "F02", "F03"]:
         raise AssertionError("protocol registry membership drift")
     for row in rows:
         if row["field_execution_authorized"] != "false" or row["tissue_collection_authorized"] != "false":
@@ -185,7 +186,38 @@ def validate_protocol_registry() -> list[dict[str, str]]:
         raise AssertionError("JPN36 readiness state drift")
     if rows[1]["technical_state"] != "DESIGN_CANDIDATE_NOT_PROTOCOL_READY":
         raise AssertionError("JPN15 design candidate was promoted to a protocol")
+    if rows[2]["technical_state"] != "DESIGN_FROZEN_DEVICE_AND_SAMPLE_SIZE_QUALIFICATION_REQUIRED":
+        raise AssertionError("P03b orientation protocol readiness drift")
+    if "viable-achene" not in rows[2]["next_gate"]:
+        raise AssertionError("P03b final-fitness gate missing from registry")
     return rows
+
+
+def validate_p03b_orientation_protocol() -> dict:
+    p = load_json(P03B_PROTOCOL_PATH)
+    if p.get("protocol_version") != "p03b_orientation_causal_protocol_v1":
+        raise AssertionError("P03b protocol version drift")
+    if p.get("protocol_id") != "F03" or p.get("programme_id") != "P03b":
+        raise AssertionError("P03b protocol identity drift")
+    if p.get("field_execution_authorized") is not False or p.get("tissue_collection_authorized") is not False:
+        raise AssertionError("P03b field/tissue execution was authorized by a design contract")
+    treatments = [x.get("id") for x in p.get("core_treatments", [])]
+    if treatments != ["NATURAL_SHAM", "REORIENTED"]:
+        raise AssertionError("P03b treatment set drift")
+    if p["primary_endpoint"]["name"] != "mature_viable_achene_output":
+        raise AssertionError("P03b primary final-fitness endpoint drift")
+    wet = p["exposure_measurement"]["wetting"]
+    if wet["status"] != "PRIMARY_MECHANISM" or "directly" not in wet["requirement"]:
+        raise AssertionError("P03b direct wetting measurement gate drift")
+    if p["exposure_measurement"]["uvb"]["status"] != "SEPARATE_SUBEXPERIMENT":
+        raise AssertionError("P03b UV-B was folded into the core experiment")
+    if not p["analysis_plan"]["mediation_rule"].startswith("causal mediation language is prohibited"):
+        raise AssertionError("P03b mediation claim boundary drift")
+    if p["sample_size_gate"]["status"] != "UNFROZEN_BEFORE_TARGET_AND_VARIANCE_INPUT":
+        raise AssertionError("P03b sample-size gate was prematurely opened")
+    if p["focal_target_gate"]["target_taxon"] != "UNFROZEN" or p["focal_target_gate"]["target_population"] != "UNFROZEN":
+        raise AssertionError("P03b focal target was frozen without P03/rights gate")
+    return p
 
 
 def validate_empty_intake() -> None:
@@ -219,7 +251,7 @@ def validate_narrative() -> None:
 
 
 def main() -> int:
-    paths = [CONTRACT_PATH, PRIORITY_PATH, PRIOR_PATH, PROTOCOL_PATH, INTAKE_PATH, SCOPE_PATH, README_PATH]
+    paths = [CONTRACT_PATH, PRIORITY_PATH, PRIOR_PATH, PROTOCOL_PATH, P03B_PROTOCOL_PATH, INTAKE_PATH, SCOPE_PATH, README_PATH]
     for path in paths:
         if not path.exists() or path.stat().st_size == 0:
             raise AssertionError(f"missing or empty Chapter 3 handoff file: {path.relative_to(ROOT)}")
@@ -227,6 +259,7 @@ def main() -> int:
     priorities = validate_sampling_priorities()
     priors = validate_bounded_priors()
     protocols = validate_protocol_registry()
+    p03b = validate_p03b_orientation_protocol()
     validate_empty_intake()
     validate_narrative()
     print("chapter3_eazami_handoff_valid=true")
@@ -234,6 +267,7 @@ def main() -> int:
     print(f"sampling_priorities={len(priorities)}")
     print(f"bounded_prior_rows={len(priors)}")
     print(f"protocol_rows={len(protocols)}")
+    print(f"p03b_protocol_state={p03b['technical_state']}")
     print("own_biological_records_admitted=0")
     print("field_execution_authorized=false")
     return 0
