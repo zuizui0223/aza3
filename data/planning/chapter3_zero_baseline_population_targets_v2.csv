@@ -1,0 +1,19 @@
+target_id,stage,system,taxon_concept,population_role,geographic_rule,physical_target,primary_rad,reserve,floral_rna_collect,floral_rna_primary,status
+S1_JPN36_P1,S1,P01_phyllary,JPN_36 Cirsium sieboldii,MINIMUM_CORE_1,verified geographically distinct Honshu/Shikoku wetland population,15,12,3,0,0,PLANNED_NOT_AUTHORIZED
+S1_JPN36_P2,S1,P01_phyllary,JPN_36 Cirsium sieboldii,MINIMUM_CORE_2,verified geographically distinct Honshu/Shikoku wetland population,15,12,3,0,0,PLANNED_NOT_AUTHORIZED
+S1_JPN36_P3,S1,P01_phyllary,JPN_36 Cirsium sieboldii,MINIMUM_CORE_3,verified geographically distinct Honshu/Shikoku wetland population,15,12,3,0,0,PLANNED_NOT_AUTHORIZED
+S1_JPN36_P4,S1,P01_phyllary,JPN_36 Cirsium sieboldii,TARGET_EXPANSION,optional fourth population spanning range or documented pre-genotype polymorphism,15,12,3,0,0,OPTIONAL_TARGET
+S1_JPN06_P1,S1,P02_stickiness,JPN_06 Cirsium dipsacolepis,MINIMUM_CORE_1,verified extant geographically separated grassland population,15,12,3,0,0,PLANNED_NOT_AUTHORIZED
+S1_JPN06_P2,S1,P02_stickiness,JPN_06 Cirsium dipsacolepis,MINIMUM_CORE_2,verified extant geographically separated grassland population,15,12,3,0,0,PLANNED_NOT_AUTHORIZED
+S1_JPN06_P3,S1,P02_stickiness,JPN_06 Cirsium dipsacolepis,TARGET_EXPANSION,third verified population if conservation and access permit,15,12,3,0,0,OPTIONAL_TARGET
+S1_JPN15_P1,S1,P02_stickiness,JPN_15 Cirsium lineare,MINIMUM_CORE_1,one verified Japanese regional population,15,12,3,0,0,PLANNED_NOT_AUTHORIZED
+S1_JPN15_P2,S1,P02_stickiness,JPN_15 Cirsium lineare,MINIMUM_CORE_2,second geographically separated Japanese regional population,15,12,3,0,0,PLANNED_NOT_AUTHORIZED
+S1_JPN15_P3,S1,P02_stickiness,JPN_15 Cirsium lineare,TARGET_EXPANSION,third region such as western Honshu Shikoku or Kyushu chosen before genotyping,15,12,3,0,0,OPTIONAL_TARGET
+S1_BREV_OKI,S1,M01,Cirsium brevicaule,DISCOVERY_1,Okinawa Honto verified coastal population,15,12,3,6,5,PLANNED_NOT_AUTHORIZED
+S1_BREV_AMAMI,S1,M01,Cirsium brevicaule,DISCOVERY_2,Amami Oshima verified coastal population,15,12,3,6,5,PLANNED_NOT_AUTHORIZED
+S1_IRUM_MIYAKO,S1,M01,Cirsium irumtiense,DISCOVERY_1,Miyako verified coastal population,15,12,3,6,5,PLANNED_NOT_AUTHORIZED
+S1_IRUM_ISHIGAKI,S1,M01,Cirsium irumtiense,DISCOVERY_2,Ishigaki verified coastal population,15,12,3,6,5,PLANNED_NOT_AUTHORIZED
+S3_BREV_AMAMI_INT,S3,M01,Cirsium brevicaule,E3_EXPANSION,one verified intermediate Amami-group population fixed before E2 candidate inspection,15,12,3,0,0,CONDITIONAL_CLOSED
+S3_BREV_AMAMI_S,S3,M01,Cirsium brevicaule,E3_EXPANSION,one verified southern Amami-group population fixed before E2 candidate inspection,15,12,3,0,0,CONDITIONAL_CLOSED
+S3_IRUM_IRIOMOTE,S3,M01,Cirsium irumtiense,E3_EXPANSION,Iriomote verified population,15,12,3,0,0,CONDITIONAL_CLOSED
+S3_IRUM_YONAGUNI,S3,M01,Cirsium irumtiense,E3_EXPANSION,Yonaguni verified population,15,12,3,0,0,CONDITIONAL_CLOSED

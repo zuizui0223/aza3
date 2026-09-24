@@ -1,0 +1,9 @@
+anchor_id,taxon_concept,role,biological_templates,assay_only_material_allowed,counts_toward_core_biological_n,ploidy_or_genome_role,why_in_pilot,production_gate
+RAD_A01,JPN_03 Cirsium alpicola,high_ploidy_anchor,2,true,false,known high-ploidy concept,tests locus assembly and allele-count behavior at a high-ploidy extreme,must produce interpretable library without forcing diploid calls
+RAD_A02,JPN_05 Cirsium aomorense,diploid_anchor,2,true,false,known diploid concept,provides diploid benchmark outside the focal P01/P02 systems,must provide stable loci and replicate concordance
+RAD_A03,JPN_06 Cirsium dipsacolepis,P02_focal,2,true,false,diploid focal,tests the exact stickiness-history system that will require population depth,must pass production protocol and replicate QC
+RAD_A04,JPN_15 Cirsium lineare,P02_focal,2,true,false,cytotype recorded before production,pairs with JPN06 to test shared protocol performance across the P02 contrast,must pass production protocol and replicate QC
+RAD_A05,JPN_35 Cirsium nipponicum,polyploid_anchor,2,true,false,known tetraploid concept,tests homeolog/paralog and dosage-sensitive behavior,must not be forced through the diploid production caller
+RAD_A06,JPN_36 Cirsium sieboldii,P01_focal,2,true,false,known diploid concept,tests the highest-priority phyllary system and cultivated-to-wild provenance repair lineage,must pass production protocol and replicate QC
+RAD_A07,Cirsium brevicaule,M01_large_genome_anchor,2,true,false,reported 2C approximately 1.93 pg,tests whether the same restriction protocol yields usable complexity in the larger-genome M01 lineage,must pass single-protocol viability or trigger M01 protocol stratification
+RAD_A08,Cirsium irumtiense,M01_small_genome_anchor,2,true,false,reported 2C approximately 0.69 pg,tests whether the same restriction protocol yields usable complexity in the smaller-genome M01 lineage,must pass single-protocol viability or trigger M01 protocol stratification

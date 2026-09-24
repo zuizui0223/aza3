@@ -1,0 +1,37 @@
+{
+  "contract_version": "chapter3_master_sample_manifest_v11",
+  "full_prospective_rows": 451,
+  "stage_counts": {
+    "ACTIVE_TREE_REQUIRED": 228,
+    "OPTIONAL_TREE_TRAIT": 1,
+    "ACTIVE_P02_MINIMUM": 30,
+    "RECOMMENDED_P02_EXTENSION": 16,
+    "ACTIVE_M01_DISCOVERY": 56,
+    "RECOMMENDED_M01_RESERVE": 12,
+    "CONDITIONAL_M01_E3": 60,
+    "MATERIAL_GAP_DEPENDENT_E1": 18,
+    "OPTIONAL_M01_CONTROL": 6,
+    "CONDITIONAL_P01B_FUNCTION": 24
+  },
+  "active_minimum_unique_physical_sources": 314,
+  "with_p02_recommended_depth": 330,
+  "with_m01_discovery_reserves": 342,
+  "with_optional_p7_trait_link": 343,
+  "conditional_after_active_core": {
+    "m01_e3_expansion": 60,
+    "m01_e1_material_gap_dependent": 18,
+    "m01_optional_controls": 6,
+    "p01b_function": 24
+  },
+  "tree_required_slots": 228,
+  "tree_optional_trait_link_slots": 1,
+  "tree_focal_overlap_rows": 6,
+  "exact_coordinates_allowed_in_public_manifest": false,
+  "authoritative_block_source": "data/planning/chapter3_master_sample_blocks_v11.csv",
+  "notes": [
+    "314 is the active minimum unique physical-source count, not a target for 314 destructive wild collections.",
+    "P02 and M01 tree representatives are nested and therefore not double counted.",
+    "Historical/herbarium acquisitions are representation sources but cannot supply the full live-trait bundle.",
+    "Conditional M01 and P01b rows are not current collection requirements."
+  ]
+}

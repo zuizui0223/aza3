@@ -1,0 +1,135 @@
+{
+  "contract_version": "chapter3_nationwide_species_tree_sampling_v4",
+  "status_date": "2026-09-02",
+  "authoritative_for_new_sampling": true,
+  "primary_product": "JAPAN_WIDE_NUCLEAR_SPECIES_TREE_AND_NETWORK",
+  "design_statement": "Build the Japan-wide species-level nuclear scaffold first; map capitulum-trait histories second; add population RAD only inside focal lineages and transition neighbourhoods; keep M01 as an embedded mechanistic depth case.",
+  "taxonomic_census": {
+    "nmns_authority_records_snapshot": 161,
+    "nmns_2025_public_species_estimate": "approximately 120 species",
+    "planning_species_baseline": 120,
+    "planning_species_upper_envelope": 125,
+    "count_status": "PLANNING_BASELINE_NOT_FINAL_OPERATIONAL_CENSUS",
+    "freeze_rule": "Before destructive field collection, reconcile the current NMNS authority records into an operational accepted species-concept list; retain varieties, unpublished/new-name records, synonyms and taxonomic conflicts as explicit statuses rather than counting every database row as a species.",
+    "budget_reopen_rule": "If the frozen operational census exceeds 125 primary species concepts, reopen the nationwide individual budget before collection rather than silently reducing per-species replication."
+  },
+  "nationwide_sampling": {
+    "base_rule": "Every admitted species concept receives two independent biological individuals where conservation and access permit.",
+    "base_individuals_per_species": 2,
+    "nominal_base_total_at_120_species": 240,
+    "geographic_rule": "The two base individuals should come from different populations or clearly separated geographic occurrences where feasible; two adjacent ramets from one patch are not a substitute for geographic replication.",
+    "rare_taxon_exception": "A single authorized individual may represent a very rare or legally constrained species, but it remains SINGLE_SAMPLE_LIMITED and cannot be replaced by a convenience relative.",
+    "enrichment": [
+      {
+        "tier": "T2_WIDESPREAD_OR_VARIABLE",
+        "nominal_taxa": 30,
+        "additional_individuals_per_taxon": 1,
+        "nominal_additional_individuals": 30,
+        "triggers": [
+          "broad geographic range",
+          "documented within-species capitulum polymorphism",
+          "multiple cytotypes or genome-size classes suspected",
+          "replicate non-monophyly or strong gene-tree discordance in the first wave"
+        ]
+      },
+      {
+        "tier": "T3_COMPLEX",
+        "nominal_taxa": 10,
+        "additional_individuals_per_taxon": 2,
+        "nominal_additional_individuals": 20,
+        "triggers": [
+          "hybrid or introgression suspicion",
+          "polyploid or allopolyploid uncertainty",
+          "taxonomic complex requiring multiple geographic representatives",
+          "high leverage for P01-P05 or M01 transition placement"
+        ]
+      }
+    ],
+    "nominal_full_bank_at_120_species": 290,
+    "full_bank_envelope_if_125_species": 300,
+    "interpretation": "290-300 is a planning envelope for a nationwide bank, not a requirement to force exactly 120-125 species after taxonomic reconciliation."
+  },
+  "target_capture": {
+    "role": "PRIMARY_CROSS_SPECIES_SCAFFOLD",
+    "assay": "Comp1061-compatible nuclear target capture or an explicitly crosswalked equivalent",
+    "wave_1": {
+      "rule": "Sequence the two base individuals for every admitted species concept first.",
+      "nominal_individuals_at_120_species": 240
+    },
+    "wave_2": {
+      "rule": "Sequence up to 50 preregistered enrichment individuals only for taxa assigned to T2/T3 before inspecting focal trait-history outcomes.",
+      "nominal_max_additional_individuals": 50
+    },
+    "nominal_full_target_capture_individuals": 290,
+    "species_tree_rules": [
+      "retain individual-level sequences through QC and gene-tree inference rather than collapsing field individuals before checking concordance",
+      "infer a coalescent-aware species-tree ensemble and retain gene-tree discordance",
+      "run reticulation/network sensitivity for lineages showing replicate non-monophyly or cytonuclear/genome-wide conflict",
+      "do not assume species monophyly merely because a taxonomic name is shared",
+      "do not concatenate plastid and nuclear histories into one organismal tree"
+    ],
+    "mixed_ploidy_rule": "Use target capture as the primary cross-ploidy scaffold; retain phased/homeolog-aware sensitivity where feasible and do not let mixed-ploidy RAD calling define the nationwide species tree."
+  },
+  "same_individual_measurements": {
+    "required_on_every_new_field_individual": [
+      "immutable individual ID",
+      "taxon determination and population ID",
+      "voucher or diagnostic image",
+      "capitulum orientation",
+      "phyllary posture plus calibrated image",
+      "stickiness/gland state",
+      "flower colour",
+      "phenological/developmental stage",
+      "silica/fresh leaf DNA source",
+      "cytotype or genome-size evidence status",
+      "deidentified authorization/conservation IDs"
+    ],
+    "purpose": "The national tree is simultaneously the individual-linked phenotype scaffold for P01-P05; species-tree sampling must not recreate species-tip compression by omitting the phenotype of the sequenced individual."
+  },
+  "population_rad": {
+    "role": "NESTED_SHALLOW_ANCESTRY_AND_RETICULATION",
+    "not_role": "NOT_THE_NATIONWIDE_SPECIES_TREE",
+    "target_focal_design": [
+      {"system": "Cirsium sieboldii", "populations": 4, "primary_rad_per_population": 12, "primary_rad": 48},
+      {"system": "Cirsium dipsacolepis", "populations": 3, "primary_rad_per_population": 12, "primary_rad": 36},
+      {"system": "Cirsium lineare", "populations": 3, "primary_rad_per_population": 12, "primary_rad": 36},
+      {"system": "Cirsium brevicaule", "populations": 2, "primary_rad_per_population": 12, "primary_rad": 24},
+      {"system": "Cirsium irumtiense", "populations": 2, "primary_rad_per_population": 12, "primary_rad": 24}
+    ],
+    "target_focal_primary_rad_total": 168,
+    "nesting_rule": "For each focal species, choose up to four nationwide target-capture representatives from the same population-RAD individuals; do not collect separate tree-only plants when the same verified individual can serve both roles.",
+    "nominal_tree_rad_overlap_individuals": 20,
+    "nominal_additional_unique_focal_plants_beyond_290_bank": 148,
+    "nominal_total_unique_physical_plants_if_full_v4_is_completed": 438,
+    "rad_extension_rule": "After the nationwide species-tree ensemble and trait histories are frozen, add RAD to further transition neighbourhoods only where population ancestry or introgression can distinguish competing histories."
+  },
+  "m01": {
+    "status": "EMBEDDED_DEPTH_CASE_NOT_P06",
+    "discovery_population_rad_is_included_in_168": true,
+    "rna_rule": "Within Okinawa Honto, Amami Oshima, Miyako and Ishigaki discovery populations, collect six developmentally matched floral samples per population, sequence five primary RNA replicates and retain one reserve.",
+    "expansion_rule": "Additional M01 islands/populations remain conditional on E1/E2 promotion and are not required to complete the nationwide species tree."
+  },
+  "analysis_levels": [
+    "LEVEL_0_TAXONOMIC_CENSUS",
+    "LEVEL_1_NATIONWIDE_TARGET_CAPTURE_SPECIES_TREE_NETWORK",
+    "LEVEL_2_TRAIT_HISTORY_MAPPING_ON_NATIONWIDE_ENSEMBLE",
+    "LEVEL_3_NESTED_POPULATION_RAD_FOR_FOCAL_TRANSITIONS",
+    "LEVEL_4_M01_MECHANISTIC_DECOMPOSITION"
+  ],
+  "supersedes_for_sampling": [
+    "chapter3_transition_first_sampling_v3",
+    "chapter3_zero_baseline_sampling_v2",
+    "chapter3_inverse_sampling_design_v1"
+  ],
+  "current_state": {
+    "operational_species_census_frozen": false,
+    "physical_samples": 0,
+    "nationwide_collection_authorized": false,
+    "target_capture_wave_1_authorized": false,
+    "target_capture_wave_2_authorized": false,
+    "population_rad_authorized": false,
+    "m01_expansion_authorized": false,
+    "regain_claim_authorized": false,
+    "selection_claim_authorized": false
+  }
+}

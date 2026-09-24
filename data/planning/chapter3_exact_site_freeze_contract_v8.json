@@ -1,0 +1,79 @@
+{
+  "contract_version": "chapter3_exact_site_freeze_v8",
+  "authoritative_for_exact_site_freeze": true,
+  "source_plan": "chapter3_exact_hole_fill_v7",
+  "queue": {
+    "builder": "analysis/build_exact_site_freeze_queue_v8.py",
+    "required_tree_slots": 228,
+    "optional_trait_link_slots": 1,
+    "total_execution_slots": 229,
+    "two_sample_species_slots": {
+      "species": 101,
+      "samples": 202,
+      "priorities": ["P1", "P2", "P3", "P4", "P5"]
+    },
+    "public_singleton_complements": {
+      "species": 26,
+      "samples": 26,
+      "priority": "P6",
+      "requires_public_accession_locality_audit": true
+    },
+    "tree_filled_optional": {
+      "species": "Cirsium incomptum",
+      "tree_samples_required": 0,
+      "optional_own_trait_link_samples": 1
+    }
+  },
+  "public_repo_locality_policy": {
+    "exact_coordinates_allowed": false,
+    "sensitive_locality_description_allowed": false,
+    "public_fields": [
+      "range_sector",
+      "current_occurrence_evidence_id",
+      "conservation_review_status",
+      "land_manager_status",
+      "permission_status",
+      "target_locality_id",
+      "freeze_status"
+    ],
+    "private_fields": [
+      "exact_coordinates",
+      "sensitive_access_instructions",
+      "rare_species_microhabitat_description"
+    ],
+    "private_storage_requirement": "exact site data must remain outside the public repository and be referenced only by target_locality_id"
+  },
+  "freeze_gate": {
+    "required_status": "FROZEN_FOR_FIELD_COLLECTION",
+    "all_required": [
+      "public locality audit complete when required",
+      "current occurrence supported by dated evidence",
+      "conservation review complete",
+      "land manager identified or explicitly not applicable",
+      "collection permission approved or explicitly not required",
+      "tissue collection permission approved or explicitly not required",
+      "field window checked",
+      "target_locality_id assigned",
+      "private exact-site record created"
+    ],
+    "prohibited_shortcuts": [
+      "database distribution text alone cannot freeze an exact site",
+      "historical occurrence alone cannot establish current presence",
+      "a second locality cannot be invented for a narrow endemic",
+      "P6 own complement cannot be frozen before auditing the existing public accession locality",
+      "exact coordinates must not be committed to the public repository"
+    ]
+  },
+  "status_vocabulary": {
+    "current_occurrence_status": ["NOT_CHECKED", "SUPPORTED_CURRENT", "HISTORICAL_ONLY", "NOT_FOUND_CURRENT", "CONFLICT", "REVIEW_REQUIRED"],
+    "review_status": ["NOT_CHECKED", "CLEAR", "RESTRICTION_PRESENT", "BLOCKED", "NOT_APPLICABLE"],
+    "permission_status": ["NOT_CHECKED", "APPROVED", "NOT_REQUIRED", "PENDING", "DENIED", "BLOCKED"],
+    "freeze_status": ["NOT_FROZEN", "EVIDENCE_IN_PROGRESS", "PERMISSION_IN_PROGRESS", "FROZEN_FOR_FIELD_COLLECTION", "BLOCKED", "CANCELLED"]
+  },
+  "current_state": {
+    "queue_generated": true,
+    "required_slots_frozen": 0,
+    "optional_slots_frozen": 0,
+    "collection_authorized_by_contract_alone": false
+  }
+}

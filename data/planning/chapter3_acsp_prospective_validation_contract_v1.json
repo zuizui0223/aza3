@@ -1,0 +1,59 @@
+{
+  "schema_version": "chapter3-acsp-prospective-validation-contract-v1",
+  "status": "FROZEN_PRE_PATCH_PRE_FIELD",
+  "upstream": {
+    "repository": "zuizui0223/acsp",
+    "branch": "research/occurrence-anchored-local-discovery-v1",
+    "head_at_mirror": "ceef90cde0295a7f36b6af5383ebdcfb745f8bef",
+    "cohort_path": "validation/cirsium_aza3_prospective_validation_cohort_v1.csv",
+    "cohort_blob_sha": "30f01ec0703963a74c3d4d4b084f6be5ac4204a7",
+    "cohort_contract_path": "validation/cirsium_aza3_prospective_validation_cohort_contract_v1.json",
+    "cohort_contract_blob_sha": "ce70df76eccf2233fdda77a10c84fa1fe72ccd55",
+    "selector_family_contract_path": "validation/cirsium_structural_selector_family_contract_v1.json",
+    "selector_family_contract_blob_sha": "71c859ab1d1928c730e06acc9b09fa55819844fd"
+  },
+  "aza3_mirror_table": "data/planning/chapter3_acsp_prospective_validation_cohort_v1.csv",
+  "aza3_prefill_table": "data/planning/chapter3_acsp_field_handoff_prefill_v1.csv",
+  "cohort_size": 13,
+  "field_outcomes_opened": false,
+  "candidate_patches_built": false,
+  "public_exact_coordinates_written": false,
+  "regime_counts": {
+    "LOCAL_CONTINUATION": 9,
+    "SENTINEL": 4
+  },
+  "anchor_replication_counts": {
+    "ZERO_PRIMARY_ANCHOR": 4,
+    "SINGLE_PRIMARY_ANCHOR": 4,
+    "MULTIPLE_PRIMARY_ANCHORS": 5
+  },
+  "method_arm_counts": {
+    "STRUCTURAL_LOCAL": 8,
+    "STRUCTURAL_SENTINEL": 4,
+    "SPATIAL_BASELINE_ONLY": 1
+  },
+  "authority_split": {
+    "aza3": [
+      "biological priority and tree-slot identity",
+      "conservation and permission routing",
+      "private exact-site freeze after verified current occurrence",
+      "target-capture, RAD and M01 assay acquisition"
+    ],
+    "acsp": [
+      "occurrence-evidence typing",
+      "structural ecological family assignment frozen before outcomes",
+      "candidate-patch generation or abstention",
+      "annular/spatial/broad-support comparator assignment"
+    ]
+  },
+  "freeze_rules": {
+    "outcome_dependent_taxon_replacement_allowed": false,
+    "outcome_dependent_feature_family_switch_allowed": false,
+    "outcome_dependent_method_arm_switch_allowed": false,
+    "patch_id_may_be_written_before_field_outcome_only": true,
+    "field_detection_may_not_rewrite_upstream_selection": true,
+    "access_failure_is_biological_nondetection": false,
+    "permission_block_is_biological_nondetection": false
+  },
+  "claim_boundary": "This mirror freezes the prospective validation cohort and method assignments. It does not establish occupancy, collectability, access, field efficiency, ACSP superiority, or any Chapter 3 evolutionary conclusion."
+}

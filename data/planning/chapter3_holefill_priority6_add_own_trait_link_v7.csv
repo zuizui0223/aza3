@@ -1,0 +1,27 @@
+species_binomial,japanese_names,region_bucket,nmns_taxonomic_block,same_block_moreyra_anchors,moreyra_jpns,new_tree_samples_needed
+Cirsium magofukui,イナベアザミ,CHUBU|KINKI,ナンブアザミ節イナベアザミ亜節,JPN_16:Cirsium magofukui,JPN_16,1
+Cirsium fuagataense,リクゼンアザミ,TOHOKU|CHUBU,ナンブアザミ節カガノアザミ亜節,JPN_08:Cirsium fuagataense | JPN_11:Cirsium ishidzuchiense | JPN_13:Cirsium kasaianum | JPN_14:Cirsium kiotoense | JPN_28:Cirsium uzenense,JPN_08,1
+Cirsium ishidzuchiense,イシヅチアザミ,SHIKOKU,ナンブアザミ節カガノアザミ亜節,JPN_08:Cirsium fuagataense | JPN_11:Cirsium ishidzuchiense | JPN_13:Cirsium kasaianum | JPN_14:Cirsium kiotoense | JPN_28:Cirsium uzenense,JPN_11,1
+Cirsium kasaianum,ナトリアザミ,TOHOKU,ナンブアザミ節カガノアザミ亜節,JPN_08:Cirsium fuagataense | JPN_11:Cirsium ishidzuchiense | JPN_13:Cirsium kasaianum | JPN_14:Cirsium kiotoense | JPN_28:Cirsium uzenense,JPN_13,1
+Cirsium kiotoense,オハラメアザミ,KINKI,ナンブアザミ節カガノアザミ亜節,JPN_08:Cirsium fuagataense | JPN_11:Cirsium ishidzuchiense | JPN_13:Cirsium kasaianum | JPN_14:Cirsium kiotoense | JPN_28:Cirsium uzenense,JPN_14,1
+Cirsium uzenense,ウゼンアザミ,TOHOKU|CHUBU,ナンブアザミ節カガノアザミ亜節,JPN_08:Cirsium fuagataense | JPN_11:Cirsium ishidzuchiense | JPN_13:Cirsium kasaianum | JPN_14:Cirsium kiotoense | JPN_28:Cirsium uzenense,JPN_28,1
+Cirsium pseudosuffltum,ニセツクシアザミ,SHIKOKU,ナンブアザミ節サワアザミ亜節,JPN_24:Cirsium pseudosuffltum | JPN_30:Cirsium yezoense,JPN_24,1
+Cirsium yezoense,サワアザミ,HOKKAIDO|KANTO|CHUBU|KINKI,ナンブアザミ節サワアザミ亜節,JPN_24:Cirsium pseudosuffltum | JPN_30:Cirsium yezoense,JPN_30,1
+Cirsium amplexifolium,ダキバヒメアザミ,TOHOKU|CHUBU,ナンブアザミ節ダキバヒメアザミ亜節ダキバヒメアザミ列,JPN_04:Cirsium amplexifolium,JPN_04,1
+Cirsium domonii,リョウウアザミ,TOHOKU,ナンブアザミ節ダキバヒメアザミ亜節リシリアザミ列,JPN_07:Cirsium domonii | JPN_35:Cirsium nipponicum,JPN_07,1
+Cirsium norikurense,ノリクラアザミ,CHUBU,ナンブアザミ節ナンブアザミ亜節キソアザミ列,JPN_22:Cirsium norikurense,JPN_22,1
+Cirsium shidokimontanum,シドキヤマアザミ,TOHOKU|KANTO|CHUBU,ナンブアザミ節ナンブアザミ亜節ナンブアザミ列,JPN_01|JPN_20:Cirsium incomptum | JPN_25:Cirsium shidokimontanum | JPN_21:Cirsium yoshinoi,JPN_25,1
+Cirsium yoshinoi,ヨシノアザミ,KINKI|CHUGOKU|SHIKOKU,ナンブアザミ節ナンブアザミ亜節ナンブアザミ列,JPN_01|JPN_20:Cirsium incomptum | JPN_25:Cirsium shidokimontanum | JPN_21:Cirsium yoshinoi,JPN_21,1
+Cirsium matsumurae,ハクサンアザミ,CHUBU|KINKI,ナンブアザミ節ナンブアザミ亜節ノリクラアザミ列,JPN_18:Cirsium matsumurae,JPN_18,1
+Cirsium nippoense,ニッポウアザミ,KYUSHU,ナンブアザミ節ニッポウアザミ亜節,JPN_19:Cirsium nippoense,JPN_19,1
+Cirsium japonicum,ノアザミ | ノアザミ変種オニオオノアザミ | ノアザミ変種トゲアザミ,CHUBU|SHIKOKU|KYUSHU,ナンブアザミ節ノアザミ亜節ノアザミ列,JPN_12:Cirsium japonicum,JPN_12,1
+Cirsium aomorense,アオモリアザミ,HOKKAIDO|TOHOKU,ナンブアザミ節ノアザミ亜節ノハラアザミ列,JPN_05:Cirsium aomorense | JPN_23:Cirsium oligophyllum,JPN_05,1
+Cirsium oligophyllum,ノハラアザミ | ノハラアザミ変種ニッコウアザミ,TOHOKU|KANTO|CHUBU,ナンブアザミ節ノアザミ亜節ノハラアザミ列,JPN_05:Cirsium aomorense | JPN_23:Cirsium oligophyllum,JPN_23,1
+Cirsium maritimum,ハマアザミ,SHIKOKU|KYUSHU,ナンブアザミ節ハマアザミ亜節,JPN_17:Cirsium maritimum,JPN_17,1
+Cirsium aidzuense,アイヅヒメアザミ,TOHOKU|KANTO,ナンブアザミ節ヒメアザミ亜節,JPN_02:Cirsium aidzuense | JPN_32:Cirsium buergeri | JPN_27:Cirsium suzukaense,JPN_02,1
+Cirsium suzukaense,スズカアザミ,CHUBU|KINKI,ナンブアザミ節ヒメアザミ亜節,JPN_02:Cirsium aidzuense | JPN_32:Cirsium buergeri | JPN_27:Cirsium suzukaense,JPN_27,1
+Cirsium alpicola,ミネアザミ,HOKKAIDO|TOHOKU,ナンブアザミ節ミネアザミ亜節,JPN_03:Cirsium alpicola,JPN_03,1
+Cirsium spicatum,ヤマアザミ,SHIKOKU|KYUSHU,ナンブアザミ節ヤマアザミ亜節,JPN_34:Cirsium microspicatum | JPN_26:Cirsium spicatum,JPN_26,1
+Cirsium gyojanum,ギョウジャアザミ,SHIKOKU,ナンブアザミ節リョウノウアザミ亜節,JPN_09:Cirsium gyojanum,JPN_09,1
+Cirsium dipsacolepis,モリアザミ,SHIKOKU|KYUSHU,モリアザミ節,JPN_06:Cirsium dipsacolepis,JPN_06,1
+Cirsium lineare,ヤナギアザミ,CHUGOKU|SHIKOKU|KYUSHU,ヤナギアザミ節,JPN_15:Cirsium lineare,JPN_15,1

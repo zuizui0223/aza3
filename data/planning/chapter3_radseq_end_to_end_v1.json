@@ -1,0 +1,159 @@
+{
+  "contract_version": "chapter3_radseq_end_to_end_v1",
+  "status_date": "2026-09-02",
+  "role": "RAD-seq is a population-ancestry and trait-history-localization instrument, not an unconditional species-tree or adaptation instrument",
+  "primary_products": {
+    "R1_focal_population_ancestry": "primary RAD product for P01/P02/M01: within-lineage population structure, ancestry, admixture/network sensitivity and trait-history localization",
+    "R2_all_japan_sensitivity": "secondary strict-shared-locus topology/network sensitivity for P03/P04 only if a single production protocol and shared-locus gate survive the pilot",
+    "R3_mixed_ploidy_overlay": "within-cytotype or ploidy-aware population inference overlaid on the target-capture species backbone; no pooled diploid matrix across ploidies",
+    "R4_m01_selection_support": "RAD may estimate population structure and the demographic/background null for M01 E3, but RAD-only selection outliers are not final E3 evidence"
+  },
+  "pilot": {
+    "required": true,
+    "anchor_ledger": "data/planning/chapter3_radseq_pilot_anchor_ledger_v1.csv",
+    "anchor_biological_templates": 16,
+    "stage_A_enzyme_screen": {
+      "rule": "screen at least three candidate rare/common-cutter combinations on one qualified DNA template per anchor concept; use shallow sequencing and fragment-size/library-complexity diagnostics",
+      "candidate_pair_policy": "enzyme pairs are not frozen in v1; choose candidates using available in-silico digestion and empirical plant ddRAD considerations, then freeze the winning pair before production",
+      "size_selection_policy": "the size window is empirical and frozen with the enzyme pair; do not retune it after biological outcomes are visible"
+    },
+    "stage_B_reproducibility_screen": {
+      "rule": "carry the best two candidate protocols into the full 16-template anchor set and add cross-batch technical library repeats on preregistered sentinels",
+      "technical_repeat_minimum": 8,
+      "metrics": [
+        "retained reads after demultiplexing and trimming",
+        "fragment-size distribution and adapter carryover",
+        "usable locus count after equal-depth downsampling",
+        "median and dispersion of depth per locus",
+        "shared-locus recovery within focal pairs and across anchors",
+        "technical-replicate genotype or allele-depth concordance",
+        "heterozygosity/depth signatures of paralog or homeolog collapse"
+      ]
+    },
+    "single_protocol_viability_gate": "one protocol is used across the full production panel only if all mandatory anchors remain usable and the strict shared-locus product is not driven by one genome-size or ploidy class",
+    "stratification_fallback": "if the single-protocol gate fails, split protocol strata (for example core Japan38 versus M01 Ryukyu) and prohibit concatenating different RAD protocols into one SNP matrix; retain target capture as the cross-stratum species scaffold"
+  },
+  "dna_and_library": {
+    "preferred_tissue": "fresh or rapidly silica-dried leaf; old herbarium DNA is not mixed into the primary production batch unless a separately validated degraded-DNA protocol is frozen",
+    "centralized_extraction_preferred": true,
+    "qc_before_digest": [
+      "fluorometric DNA concentration",
+      "purity metrics recorded",
+      "fragment-integrity check",
+      "equal input mass after normalization"
+    ],
+    "whole_genome_amplification_allowed": false,
+    "indexing": "unique sample indexing; ambiguous index assignments are discarded",
+    "paired_end_required": true,
+    "read_configuration": "same paired-end read configuration for the entire production stratum; exact read length is frozen after pilot",
+    "pcr_rule": "minimize and freeze PCR cycle count after pilot; if a UMI/degenerate-base duplicate scheme is adopted it must be applied uniformly within a production stratum",
+    "batch_randomization": "taxa, populations, phenotype states, cytotype classes and M01 lineages are spread across extraction, digestion/ligation, PCR and sequencing batches; no focal population may be confounded with one batch or lane",
+    "production_technical_duplicates": "5-10 percent of libraries; selected before outcomes and placed in different library/sequencing batches; technical duplicates never increase biological n",
+    "resequence_rule": "resequence low-yield samples only when library complexity and identity QC indicate a technical yield failure; do not replace biologically inconvenient samples"
+  },
+  "sequencing_depth": {
+    "no_fixed_read_count_before_pilot": true,
+    "depth_rule": "downsample pilot reads to build saturation curves for usable loci, depth distribution and technical-replicate concordance; freeze a production reads-per-sample target before trait-history analysis",
+    "balance_rule": "pool libraries equimolarly after QC and monitor read-count imbalance by taxon, population, genome-size and batch"
+  },
+  "bioinformatics": {
+    "raw_qc": [
+      "strict sample/index demultiplexing",
+      "adapter and low-quality trimming",
+      "per-sample raw/retained read counts",
+      "MultiQC-style batch summaries",
+      "contamination and gross depth outlier screening"
+    ],
+    "primary_assembly": "Stacks 2 de novo assembly because no single lineage-matched nuclear reference is assumed across Japan38",
+    "stacks_parameter_freeze": {
+      "optimization_basis": "outcome-blind pilot/technical metrics using r80-style broadly replicated loci, replicate concordance and paralog burden",
+      "m_grid": [2,3,4,5,6],
+      "M_grid": [1,2,3,4,5,6],
+      "n_rule": "test n near the selected M (M-1, M, M+1 where nonnegative) rather than accepting defaults without evaluation",
+      "freeze_timing": "freeze primary m/M/n and genotype filters before inspecting P01-P05 trait-history outcomes",
+      "sensitivity": "retain adjacent parameter sets as an assembly sensitivity rather than reporting only one optimized matrix"
+    },
+    "reference_sensitivity": "reference-aligned Stacks/gstacks is allowed only for lineage-matched or sufficiently close qualified nuclear references; do not map all Cirsium to one distant reference and interpret mapping failure as biology",
+    "missing_data_policy": "do not select one universal missing-data threshold post hoc; construct predeclared analysis-specific occupancy matrices and report how results change across them",
+    "paralog_homeolog_filters": [
+      "extreme locus depth",
+      "excess observed heterozygosity relative to the relevant cytotype/population",
+      "allele counts incompatible with the recorded ploidy/inheritance model",
+      "technical-replicate discordance"
+    ]
+  },
+  "analysis_matrices": {
+    "focal_population_matrix": {
+      "purpose": "P01/P02 and within-lineage M01 population ancestry",
+      "occupancy_target": "optimize and report broadly replicated within-population loci (r80-style primary sensitivity) while retaining a less stringent prespecified comparison",
+      "one_snp_per_locus_matrix": "required for methods assuming approximate marker independence",
+      "haplotype_or_locus_matrix": "retained for distance/network and sequence-based sensitivity where appropriate"
+    },
+    "all_japan_strict_matrix": {
+      "purpose": "P03/P04 secondary topology/network sensitivity only",
+      "gate": "build only if the pilot supports one production protocol and shared-locus recovery remains adequate across phylogenetic, genome-size and ploidy classes",
+      "claim_ceiling": "secondary sensitivity/network; never the definitive Japanese species tree",
+      "fallback": "if shared loci collapse with divergence, cancel the all-Japan RAD topology product and map focal RAD population clusters onto the frozen target-capture species scaffold"
+    },
+    "mixed_ploidy_matrices": {
+      "diploid": "Stacks discrete genotypes may be used after standard QC",
+      "polyploid": "use allele read depth and a ploidy-aware probabilistic approach such as polyRAD or another preregistered genotype-likelihood/dosage method when the inheritance model is supportable",
+      "unknown_cytotype": "exclude from pooled dosage-dependent inference until cytotype is resolved",
+      "cross_ploidy": "no single diploid genotype caller or dosage matrix across mixed cytotypes; cross-ploidy organismal history remains anchored by target capture"
+    }
+  },
+  "population_and_history_inference": {
+    "minimum_outputs": [
+      "PCA or equivalent genotype-space visualization",
+      "population ancestry/admixture sensitivity",
+      "pairwise differentiation and within-population diversity with missingness sensitivity",
+      "distance/network representation where reticulation is plausible",
+      "technical-batch and missingness covariate audit"
+    ],
+    "trait_history_rule": "trait states are never used to tune RAD assembly or sample filters; ancestry/network products are frozen first, then P01-P05 historical discriminators are evaluated",
+    "species_tree_rule": "Moreyra/Comp1061 target capture remains the primary cross-species scaffold unless a separate future contract explicitly replaces it"
+  },
+  "m01_selection_boundary": {
+    "rad_allowed": [
+      "within-lineage neutral population structure",
+      "demographic/background stratification",
+      "candidate-region context if the candidate is independently nominated from E2 and the locus is demonstrably callable"
+    ],
+    "rad_not_sufficient": [
+      "two-species FST outlier",
+      "single RAD outlier scan",
+      "claim of a selective sweep without independent locus/reference qualification",
+      "claim that a pollinator or climate variable is the selective agent"
+    ],
+    "promotion_rule": "if E2 nominates a replicable mechanism, final E3 candidate-region evidence should preferentially use a lineage-aware non-RAD confirmation route such as targeted capture/amplicon resequencing or qualified low-pass/whole-genome resequencing; RAD remains the population-structure background",
+    "dropout_audit": "test whether locus presence/missingness differs systematically among populations or phenotype states; a candidate signal coupled to restriction-site dropout is not admitted as selection evidence"
+  },
+  "stop_rules": [
+    "no pilot -> no production library",
+    "single protocol fails genome-size/ploidy anchors -> stratify protocols or abandon all-Japan RAD matrix",
+    "population or phenotype confounded with library batch -> no biological population comparison until a balanced design is restored",
+    "technical repeats fail the frozen concordance gate -> rebuild/resequence affected batch before inference",
+    "shared-locus collapse with divergence -> no all-Japan RAD topology claim",
+    "cytotype unresolved -> no pooled dosage-dependent mixed-ploidy analysis",
+    "cut-site dropout correlated with candidate population/phenotype -> no RAD-only selection claim",
+    "RAD result conflicts with target-capture scaffold -> investigate reticulation/dropout; do not silently replace the species scaffold",
+    "trait outcome may not be used to retune m/M/n, missingness, MAF or locus filters"
+  ],
+  "current_state": {
+    "rad_pilot_completed": false,
+    "enzyme_pair_frozen": false,
+    "size_window_frozen": false,
+    "production_read_target_frozen": false,
+    "single_protocol_viability_passed": false,
+    "production_rad_authorized": false,
+    "m01_rad_only_selection_claim_authorized": false
+  },
+  "method_references": [
+    "Paris et al. 2017 Methods in Ecology and Evolution DOI 10.1111/2041-210X.12775",
+    "Stacks 2 current manual and populations documentation",
+    "Clark et al. 2019 polyRAD G3 9:663-677",
+    "Arnold et al. 2013/2014 amplification and RAD-specific bias literature",
+    "Lowry et al./related restriction-site dropout and missing-data literature",
+    "2026 Molecular Ecology RAD versus WGS comparison PMID 41562436"
+  ]
+}

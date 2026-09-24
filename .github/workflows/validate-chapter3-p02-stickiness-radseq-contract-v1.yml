@@ -1,0 +1,24 @@
+name: Validate Chapter 3 P02 stickiness RAD-seq contract
+
+on:
+  pull_request:
+    paths:
+      - 'data/planning/chapter3_p02_stickiness_radseq_contract_v1.json'
+      - 'data/planning/chapter3_p02_same_individual_schema_v1.csv'
+      - 'data/planning/chapter3_p02_decision_matrix_v1.csv'
+      - 'data/planning/chapter3_p02_recommended_sample_manifest_v1.csv'
+      - 'docs/CHAPTER3_P02_STICKINESS_RADSEQ_EXECUTION_V1.md'
+      - 'analysis/validate_chapter3_p02_stickiness_radseq_contract_v1.py'
+      - '.github/workflows/validate-chapter3-p02-stickiness-radseq-contract-v1.yml'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate migrated P02 contract
+        run: python analysis/validate_chapter3_p02_stickiness_radseq_contract_v1.py

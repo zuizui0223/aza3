@@ -1,0 +1,44 @@
+source_type,source_ref,source_path_or_title,classification,destination,status,notes
+issue,EAzami#2,Field sampling paired white/coloured populations,MIGRATE_PROSPECTIVE_LEGACY,aza3#9 + M01/doctoral mainline,MIGRATED_ROUTING,Old broad sampling targets preserved as legacy; current aza3 exact hole-fill/M01 governs
+issue,EAzami#3,Pigment chemistry floral RNA-seq and causal-region genotyping,MIGRATE_ACTIVE_M01_EXTENSION,aza3 M01 + aza3#11,MIGRATED_ROUTING,Mechanism chain retained; old >=3 transition completion criterion is extension not current M01 requirement
+issue,EAzami#4,RAD-seq + ploidy sampling population history and reticulation,MIGRATE_PROSPECTIVE_LEGACY,aza3 RAD contract + aza3#9,MIGRATED_ROUTING,Old Tier-A panel superseded by current exact hole-fill and end-to-end RAD programme
+issue,EAzami#9,Systematic evidence map Cirsium phylogeny reticulation cytogenetics,KEEP_EAZAMI_PUBLIC,EAzami,KEEP,Public literature/evidence audit remains source repository
+issue,EAzami#10,Population-history evidence and demographic model design,MIXED_SPLIT,EAzami public evidence + aza3 M01/ancestry design,MIGRATED_ROUTING,Public findings stay; prospective demographic alternatives move as legacy/conditional design
+issue,EAzami#18,Maximum public nuclear tree from raw reads,KEEP_EAZAMI_PUBLIC,EAzami,KEEP,Public-data reconstruction
+issue,EAzami#23,Azami-EAzami trait bridge and ASR,MIXED_SPLIT,EAzami ASR + aza3 future direct validation,MIGRATED_ROUTING,Public ASR stays; direct botanical validation belongs aza3
+issue,EAzami#27,Doctoral mainline with causal validation,MIGRATE_ACTIVE_EXECUTION,aza3#11,MIGRATED,EAzami public evidence remains provenance; execution successor created
+issue,EAzami#154,JPN06-JPN15 stickiness same-individual RAD,MIGRATE_ACTIVE_P02,aza3#8,MIGRATED,Renumbered old EAzami P01 -> aza3 P02
+pr,EAzamiPR#155,Stickiness RAD-seq falsification contract,MIGRATE_ACTIVE_P02,aza3 P02 native contract,MIGRATED,Seven source files transformed to aza3 numbering/contracts
+pr,EAzamiPR#114,JPN36 phyllary-access pilot,MIGRATE_ACTIVE_CONDITIONAL,aza3#10,MIGRATED_ROUTING,P01b conditional functional follow-up; exact source assets tracked for archive
+pr,EAzamiPR#111,State-aware module-function bridge,MIXED_SPLIT,EAzami evidence bridge + aza3 P01b/P02b,MIGRATED_ROUTING,Experiment logic moves; literature/history premise stays source
+pr,EAzamiPR#112,FDT8 field-feasibility execution order,MIGRATE_EXECUTION_REFERENCE,aza3#10/#11,MIGRATED_ROUTING,Feasibility ranking is source design; current aza3 conservation screen supersedes details
+pr,EAzamiPR#156,Standalone Chapter 2 closure,KEEP_EAZAMI_PUBLIC,EAzami,KEEP,Explicit repository boundary; no Chapter 3 result is submission gate
+file,EAzami@af36bce,sampling/SAMPLE_ID_CONVENTION.md,MIGRATE_INFRASTRUCTURE,legacy/eazami_ch3_sources/sampling/,PENDING_COPY,Preserve old ID convention; current aza3 immutable-ID schemas govern
+file,EAzami@af36bce,sampling/SAMPLING_DESIGN.md,MIGRATE_PROSPECTIVE_LEGACY,legacy/eazami_ch3_sources/sampling/,PENDING_COPY,Legacy sampling design only
+file,EAzami@af36bce,sampling/aim13_individual_sample_ledger_v1.csv,MIGRATE_EXECUTION_LEDGER,legacy/eazami_ch3_sources/sampling/,PENDING_COPY,Old core-190/Aim1-3 ledger; do not override v7/v10
+file,EAzami@af36bce,sampling/doctoral_field_tranche1_population_manifest_v1.csv,MIGRATE_EXECUTION_LEDGER,legacy/eazami_ch3_sources/sampling/,PENDING_COPY,Field tranche source
+file,EAzami@af36bce,sampling/aim2_capitulum_field_ledger_v1.csv,MIGRATE_DEFERRED_CAUSAL_PROTOCOL,legacy/eazami_ch3_sources/sampling/,PENDING_COPY,Re-gate after aza3 history localization
+file,EAzami@af36bce,sampling/aim2_capitulum_observation_bout_ledger_v1.csv,MIGRATE_DEFERRED_CAUSAL_PROTOCOL,legacy/eazami_ch3_sources/sampling/,PENDING_COPY,Re-gate after aza3 history localization
+file,EAzami@af36bce,sampling/aim2_orientation_eligible_heads_v1.csv,MIGRATE_DEFERRED_CAUSAL_PROTOCOL,legacy/eazami_ch3_sources/sampling/,PENDING_COPY,P03b candidate only after orientation transition localization
+file,EAzami@af36bce,sampling/aim2_orientation_treatment_assignment_v1.csv,MIGRATE_DEFERRED_CAUSAL_PROTOCOL,legacy/eazami_ch3_sources/sampling/,PENDING_COPY,P03b candidate only after orientation transition localization
+file,EAzami@af36bce,sampling/aim2_plant_display_predation_ledger_v1.csv,MIGRATE_DEFERRED_CAUSAL_PROTOCOL,legacy/eazami_ch3_sources/sampling/,PENDING_COPY,Conditional display test
+file,EAzami@af36bce,sampling/aim2_assurance_antagonist_factorial_ledger_v1.csv,MIGRATE_DEFERRED_CAUSAL_PROTOCOL,legacy/eazami_ch3_sources/sampling/,PENDING_COPY,Conditional factorial
+file,EAzami@af36bce,sampling/aim2_seed_recruitment_gate_ledger_v1.csv,MIGRATE_DEFERRED_CAUSAL_PROTOCOL,legacy/eazami_ch3_sources/sampling/,PENDING_COPY,Only after seed-output contrast
+file,EAzami@af36bce,sampling/jpn36_phyllary_access_assignment_v1.csv,MIGRATE_P01B_SOURCE,legacy/eazami_ch3_sources/pr114/,PENDING_COPY,Exact frozen source
+file,EAzami@af36bce,sampling/jpn36_phyllary_access_eligible_heads_v1.csv,MIGRATE_P01B_SOURCE,legacy/eazami_ch3_sources/pr114/,PENDING_COPY,Exact frozen source
+file,EAzami@af36bce,sampling/jpn36_phyllary_access_observations_v1.csv,MIGRATE_P01B_SOURCE,legacy/eazami_ch3_sources/pr114/,PENDING_COPY,Exact frozen source
+file,EAzami@af36bce,sampling/FIXED_WHITE_A1_SAMPLE_INTAKE_V0_1.csv,MIGRATE_LEGACY_PANEL,legacy/eazami_ch3_sources/sampling/,PENDING_COPY,Historical colour sampling design; non-authoritative
+file,EAzami@af36bce,sampling/FIXED_WHITE_TARGET_CAPTURE_PANEL_V0_1.csv,MIGRATE_LEGACY_PANEL,legacy/eazami_ch3_sources/sampling/,PENDING_COPY,Historical colour target-capture design; non-authoritative
+file,EAzami@af36bce,sampling/JAPAN_WIDE_PHYLOGENY_ORIENTATION_ADDITION_PANEL_V1.csv,MIGRATE_LEGACY_PANEL,legacy/eazami_ch3_sources/sampling/,PENDING_COPY,Historical nationwide panel; superseded by exact 128-species hole fill
+file,EAzami@af36bce,sampling/RADSEQ_PANEL_V0_1.csv,MIGRATE_LEGACY_PANEL,legacy/eazami_ch3_sources/sampling/,PENDING_COPY,Superseded by current RAD contract
+file,EAzami@af36bce,sampling/RADSEQ_PANEL_V0_2_EIG.csv,MIGRATE_LEGACY_PANEL,legacy/eazami_ch3_sources/sampling/,PENDING_COPY,Superseded by current RAD contract
+file,EAzami@af36bce,data/evidence/japan_radseq_phase_a_sampling_targets_v1.csv,MIGRATE_LEGACY_PANEL,legacy/eazami_ch3_sources/data/evidence/,PENDING_COPY,Old population-genomics targets; source only
+file,EAzami@af36bce,docs/AIM2_FIELD_NESTING_PLAN_2026-08-18.md,MIGRATE_DEFERRED_CAUSAL_PROTOCOL,legacy/eazami_ch3_sources/docs/,PENDING_COPY,Source protocol
+file,EAzami@af36bce,docs/AIM2_TRANCHE1_JOINT_OBSERVATION_PROTOCOL_2026-08-20.md,MIGRATE_DEFERRED_CAUSAL_PROTOCOL,legacy/eazami_ch3_sources/docs/,PENDING_COPY,Source protocol
+file,EAzami@af36bce,docs/DOCTORAL_NEXT_DATA_GATE_2026-08-19.md,MIGRATE_EXECUTION_REFERENCE,legacy/eazami_ch3_sources/docs/,PENDING_COPY,Historical gate; current aza3 supersedes
+file,EAzami@af36bce,analysis/validate_aim2_orientation_causal_design_v1.py,MIGRATE_DEFERRED_CAUSAL_PROTOCOL,legacy/eazami_ch3_sources/analysis/,PENDING_COPY,Do not activate until P03 history gate
+file,EAzami@af36bce,.github/workflows/validate-aim2-orientation-causal-design-v1.yml,MIGRATE_DEFERRED_CAUSAL_PROTOCOL,legacy/eazami_ch3_sources/workflows/,PENDING_COPY,Archive source workflow; do not run as active aza3 CI
+file,EAzami@af36bce,sampling/chang2026_takaoense6_read2tree_panel_v1.csv,KEEP_EAZAMI_PUBLIC,EAzami,KEEP,Public-read reconstruction panel
+file,EAzami@af36bce,sampling/read2tree_oma_marker_profiles_v0_1.csv,KEEP_EAZAMI_PUBLIC,EAzami,KEEP,Public-read reconstruction
+file,EAzami@af36bce,sampling/read2tree_oma_reference_set_v0_1.csv,KEEP_EAZAMI_PUBLIC,EAzami,KEEP,Public-read reconstruction
+file,EAzami@af36bce,sampling/read2tree_oma_reference_set_v0_2.csv,KEEP_EAZAMI_PUBLIC,EAzami,KEEP,Public-read reconstruction

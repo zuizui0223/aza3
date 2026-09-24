@@ -1,0 +1,2 @@
+priority,species_binomial,japanese_names,nmns_distribution_source,optional_own_trait_link_sector_rule,tree_new_samples_needed,optional_trait_link_samples,public_locality_audit_gate,locality_freeze_gate
+P7,Cirsium incomptum,トネアザミ | トネアザミ変種アブクマアザミ | トネアザミ変種イガアザミ,東北地方南部～中部地方，太平洋側地域 || 千葉県，東京都，神奈川県，静岡県 || 福島県,Moreyra 2 public representativesのlocalityを照合後、未代表のNMNS documented range sectorから確認済み野生個体1つを選ぶ,0,1,REQUIRED_BEFORE_OPTIONAL_SECTOR_FREEZE,CURRENT_OCCURRENCE_PLUS_PERMISSION_REQUIRED

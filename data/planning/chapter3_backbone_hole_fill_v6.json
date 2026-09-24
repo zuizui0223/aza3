@@ -1,0 +1,106 @@
+{
+  "contract_version": "chapter3_backbone_hole_fill_v6",
+  "status_date": "2026-09-02",
+  "authoritative_for_level1_acquisition_priority": true,
+  "parent_design": "data/planning/chapter3_nationwide_species_tree_sampling_v4.json",
+  "principle": "treat the Moreyra Japanese target-capture samples as a reusable public skeleton; fill empty species slots and repair weak Japanese tips before collecting redundant new duplicates of already adequate public anchors",
+  "planning_species_count": 120,
+  "public_skeleton_species": 38,
+  "hole_classes": [
+    {
+      "hole_id": "H1_ABSENT_FROM_PUBLIC_SKELETON",
+      "priority_rank": 1,
+      "nominal_species": 82,
+      "new_individuals_per_species": 2,
+      "nominal_new_individuals": 164,
+      "placement": "two wild Japanese individuals, preferably from different populations or separated occurrences; exact branch placement is an inference from target capture and must not be assumed before sequencing",
+      "claim": "fills a missing species tip in the nationwide scaffold"
+    },
+    {
+      "hole_id": "H2_WEAK_OR_BROKEN_MOREYRA_TIP",
+      "priority_rank": 2,
+      "nominal_species": 9,
+      "new_individuals_per_species": 2,
+      "nominal_new_individuals": 18,
+      "placement": "replace the primary Japanese representation with two voucher-linked wild Japanese individuals; retain the old public accession only as a labelled sensitivity sample when appropriate",
+      "claim": "repairs provenance or identity rather than adding a new species"
+    },
+    {
+      "hole_id": "H3_SINGLE_GOOD_PUBLIC_TIP_NEEDS_OWN_TRAIT_LINK",
+      "priority_rank": 3,
+      "nominal_species": 29,
+      "new_individuals_per_species": 1,
+      "nominal_new_individuals": 29,
+      "placement": "keep the adequate Moreyra accession as one species-tree representative and add one new wild Japanese voucher-linked individual carrying the Chapter 3 phenotype/cytotype package",
+      "claim": "converts a single public species tip into a two-representative public-plus-own species unit"
+    },
+    {
+      "hole_id": "H4_COMPLEXITY_ENRICHMENT",
+      "priority_rank": 4,
+      "nominal_species": null,
+      "new_individuals_per_species": "1-2 additional only after first nationwide tree",
+      "nominal_new_individuals": "data-driven",
+      "placement": "widespread, non-monophyletic, polyploid, hybrid-suspected, or strongly discordant taxa only",
+      "claim": "network and species-boundary sensitivity, not baseline coverage"
+    }
+  ],
+  "weak_tip_registry": {
+    "identity_blocked": ["JPN_29 Cirsium verutum", "JPN_31 Cirsium yuki-uenoanum", "JPN_33 Cirsium effusum"],
+    "wild_japan_provenance_repair": ["JPN_32 Cirsium buergeri", "JPN_34 Cirsium microspicatum", "JPN_35 Cirsium nipponicum", "JPN_36 Cirsium sieboldii", "JPN_37 Cirsium kamtschaticum", "JPN_38 Cirsium pendulum"],
+    "count": 9
+  },
+  "nominal_counts_at_120_species": {
+    "phase_A_empty_and_broken_holes_new_individuals": 182,
+    "phase_B_good_public_tip_trait_link_new_individuals": 29,
+    "new_individuals_to_reach_two_representatives_per_species_using_public_skeleton": 211,
+    "adequate_public_moreyra_representatives_retained_in_primary_matrix": 29,
+    "primary_two_representative_nationwide_matrix": 240
+  },
+  "formula": {
+    "symbols": "N=final admitted Japanese species count; M=38 Moreyra Japanese concepts; R=number of Moreyra concepts requiring two-new-sample repair",
+    "new_samples_for_two_representative_baseline": "2*(N-M) + (M-R)*1 + R*2 = 2*N - M + R",
+    "at_N120_M38_R9": 211
+  },
+  "geographic_hole_priority": [
+    {
+      "priority": "G1_ISOLATED_ISLAND_LINEAGES",
+      "verified_examples": ["Cirsium boninense", "Cirsium hachijoense", "Cirsium sadoense", "Cirsium brevicaule", "Cirsium irumtiense", "Cirsium umezawanum"],
+      "why": "island endemics or isolated lineages can occupy long or otherwise unsampled branches and should not wait behind redundant mainland duplicates",
+      "sample_rule": "two representatives per admitted species; use different islands when the species spans islands, otherwise separated localities away from obvious hybrid zones"
+    },
+    {
+      "priority": "G2_HOKKAIDO_NORTHERN_GAP",
+      "verified_examples": ["Cirsium apoense", "Cirsium yezoalpinum", "Cirsium pectinellum", "Cirsium albrechtii", "Cirsium boreale", "Cirsium iito-kojianum"],
+      "why": "the northern Japanese radiation is much richer than the current 38-tip representation",
+      "sample_rule": "two populations/occurrences per species where feasible"
+    },
+    {
+      "priority": "G3_ALPINE_AND_NARROW_MAINLAND_GAPS",
+      "verified_examples": ["Cirsium zawoense", "Cirsium ugoense", "Cirsium fauriei", "Cirsium babanum", "Cirsium furusei"],
+      "why": "short-range alpine lineages are easily omitted and may break long apparent branches in the sparse backbone",
+      "sample_rule": "two independent occurrences where feasible; one-sample conservation-limited status is preferable to substitution"
+    },
+    {
+      "priority": "G4_WESTERN_REGIONAL_RADIATIONS",
+      "verified_examples": ["Cirsium calcicola", "Cirsium ashiuense", "Cirsium taishakuense", "Cirsium kirishimense", "Cirsium nishimeraense", "Cirsium austrokiusianum"],
+      "why": "fills Kinki-Chugoku-Kyushu regional radiations that are sparsely represented by the current public skeleton",
+      "sample_rule": "two representatives per admitted species before focal population depth"
+    }
+  ],
+  "nested_focal_overlap": {
+    "JPN_36_Cirsium_sieboldii": "its two Level-1 repair individuals are drawn from the RAD population bank; no separate tree-only plants",
+    "JPN_06_Cirsium_dipsacolepis": "the one new Chapter-3 trait-linked tree representative is drawn from the RAD population bank",
+    "JPN_15_Cirsium_lineare": "the one new Chapter-3 trait-linked tree representative is drawn from the RAD population bank",
+    "Cirsium_brevicaule": "the two Level-1 missing-tip representatives are one from each M01 discovery population",
+    "Cirsium_irumtiense": "the two Level-1 missing-tip representatives are one from each M01 discovery population"
+  },
+  "field_decision_rule": "when choosing between a new taxon that fills H1/H2 and extra depth in an already represented taxon, fill H1/H2 first unless the extra sample is required by a predeclared focal RAD/RNA protocol being executed on the same visit",
+  "current_state": {
+    "physical_samples": 0,
+    "operational_species_census_frozen": false,
+    "H1_open": false,
+    "H2_open": false,
+    "H3_open": false,
+    "H4_open": false
+  }
+}

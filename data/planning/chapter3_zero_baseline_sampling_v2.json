@@ -1,0 +1,215 @@
+{
+  "contract_version": "chapter3_zero_baseline_sampling_v2",
+  "status_date": "2026-09-02",
+  "starting_material": "ZERO_PHYSICAL_SAMPLES",
+  "design_principle": "sample from inference downward: direct trait reconnaissance first, focal population RAD second, transition-neighbourhood expansion third, M01 expansion only after mechanism promotion, optional all-Japan RAD sensitivity last",
+  "species_scaffold": {
+    "primary": "Moreyra et al. 2025 target-capture nuclear framework",
+    "rad_role": "population ancestry, admixture/reticulation and transition-history localization below the species scaffold",
+    "prohibited": "RAD is not the unconditional definitive Japan-wide species tree"
+  },
+  "S0_trait_reconnaissance": {
+    "target_concepts": 38,
+    "target_populations_per_concept": 2,
+    "target_flowering_individuals_per_population": 5,
+    "narrow_endemic_rule": "one verified population x >=5 flowering individuals when only one population is accessible",
+    "destructive_collection_required": false,
+    "optional_silica_bank": "up to 3 outcome-blind individuals/concept when authorized; bank only, no automatic sequencing",
+    "output": "frozen individual/population trait table before S2 nomination"
+  },
+  "S1_focal_launch": {
+    "default_population_bank": {
+      "physical_individuals": 15,
+      "primary_rad": 12,
+      "reserves": 3
+    },
+    "reduced_conservation_panel": {
+      "physical_individuals": 10,
+      "primary_rad": 8,
+      "reserves": 2,
+      "claim_status": "REDUCED_PANEL_LOWER_CEILING"
+    },
+    "systems": [
+      {
+        "system": "JPN36_Cirsium_sieboldii",
+        "purpose": "P01 phyllary-history localization plus polymorphism-aware ancestry",
+        "minimum_populations": 3,
+        "target_populations": 4,
+        "minimum_physical": 45,
+        "minimum_primary_rad": 36,
+        "target_physical": 60,
+        "target_primary_rad": 48
+      },
+      {
+        "system": "JPN06_Cirsium_dipsacolepis",
+        "purpose": "P02 focal stickiness-history ancestry",
+        "minimum_populations": 2,
+        "target_populations": 3,
+        "minimum_physical": 30,
+        "minimum_primary_rad": 24,
+        "target_physical": 45,
+        "target_primary_rad": 36
+      },
+      {
+        "system": "JPN15_Cirsium_lineare",
+        "purpose": "P02 comparator ancestry",
+        "minimum_populations": 2,
+        "target_populations": 3,
+        "minimum_physical": 30,
+        "minimum_primary_rad": 24,
+        "target_physical": 45,
+        "target_primary_rad": 36
+      },
+      {
+        "system": "M01_Cirsium_brevicaule_discovery",
+        "populations": ["Okinawa_Honto", "Amami_Oshima"],
+        "minimum_populations": 2,
+        "minimum_physical": 30,
+        "minimum_primary_rad": 24,
+        "rna_collect_per_population": 6,
+        "rna_primary_per_population": 5
+      },
+      {
+        "system": "M01_Cirsium_irumtiense_discovery",
+        "populations": ["Miyako", "Ishigaki"],
+        "minimum_populations": 2,
+        "minimum_physical": 30,
+        "minimum_primary_rad": 24,
+        "rna_collect_per_population": 6,
+        "rna_primary_per_population": 5,
+        "extra_field_record": "sexual_morph"
+      }
+    ],
+    "derived_minimum": {
+      "physical_plants": 165,
+      "initial_rad_individuals": 132
+    },
+    "derived_target_mainland_replication": {
+      "physical_plants": 210,
+      "initial_rad_individuals": 168,
+      "m01_status": "discovery_only"
+    }
+  },
+  "S1_rad_pilot_nested": {
+    "pilot_stratum": "FOCAL_DIPLOID_RYUKYU",
+    "systems": [
+      "JPN36_Cirsium_sieboldii",
+      "JPN06_Cirsium_dipsacolepis",
+      "JPN15_Cirsium_lineare",
+      "Cirsium_brevicaule",
+      "Cirsium_irumtiense"
+    ],
+    "stage_A": {
+      "systems": 5,
+      "templates_per_system": 1,
+      "candidate_protocols": 3,
+      "libraries": 15
+    },
+    "stage_B": {
+      "systems": 5,
+      "independent_templates_per_system": 2,
+      "advanced_protocols": 2,
+      "primary_libraries": 20,
+      "technical_repeats": 5,
+      "libraries_total": 25
+    },
+    "technical_gates": {
+      "minimum_overlap_genotype_concordance": 0.95,
+      "minimum_core_locus_recovery": 0.90
+    },
+    "polyploid_boundary": "this pilot does not qualify high-ploidy/polyploid S2/S4 strata; run a separate stratum check before their production sequencing"
+  },
+  "S2_transition_neighbourhood": {
+    "opens_after": "S0 trait table frozen",
+    "nomination_algorithm": [
+      "reconstruct admissible transition-edge set for orientation, phyllary and stickiness on fixed public topology ensemble",
+      "include all directly observed polymorphic concepts",
+      "for each trait add the smallest concept neighbourhood set covering >=80% cumulative transition-placement uncertainty",
+      "take union across traits before sequencing"
+    ],
+    "per_concept": {
+      "populations": 2,
+      "primary_rad_per_population": 6,
+      "reserve_per_population": 2,
+      "primary_rad_per_concept": 12,
+      "reserves_per_concept": 4
+    },
+    "illustrative_totals": {
+      "8_concepts": {"primary_rad": 96, "reserves": 32},
+      "12_concepts": {"primary_rad": 144, "reserves": 48}
+    },
+    "concept_count_is_fixed_in_advance": false,
+    "concept_count_rule": "output of frozen uncertainty-cover algorithm"
+  },
+  "S3_m01_expansion": {
+    "opens_only_if": [
+      "E1 ancestral-state/pigment comparison interpretable",
+      "E2 expression association replicates across two discovery populations within each focal lineage"
+    ],
+    "added_populations": {
+      "Cirsium_brevicaule": ["one_intermediate_Amami_group", "one_southern_Amami_group"],
+      "Cirsium_irumtiense": ["Iriomote", "Yonaguni"]
+    },
+    "added_physical": 60,
+    "added_initial_rad": 48,
+    "final_m01_physical": 120,
+    "final_m01_initial_rad": 96,
+    "final_m01_reserves": 24,
+    "selection_boundary": "RAD supplies population/background structure; candidate-region selection evidence requires a non-RAD confirmation assay"
+  },
+  "S4_optional_all_japan_rad": {
+    "priority": "LAST_OPTIONAL",
+    "opens_only_if": [
+      "dissertation still requires all-Japan RAD sensitivity after S1/S2",
+      "single-protocol or explicitly compatible stratum shared-locus gate passes"
+    ],
+    "sampling": "use S0 bank; up to 3 wild individuals/concept split across >=2 populations where feasible",
+    "claim_ceiling": "secondary topology/network sensitivity only",
+    "stop_rule": "cancel if restriction-site dropout or mixed ploidy prevents a defensible common matrix"
+  },
+  "individual_sampling": {
+    "within_population_spacing": ">=10 m where feasible; avoid obvious connected/clonal ramets",
+    "sampling_geometry": "spread across occupied patch rather than edge cluster",
+    "same_individual_traits_before_genotyping": [
+      "orientation",
+      "phyllary_posture",
+      "stickiness_or_gland_exudate",
+      "flower_colour",
+      "phenology_developmental_stage"
+    ],
+    "dna_tissue": "silica-dried leaf from all admitted RAD individuals",
+    "voucher_rule": "voucher where legal plus diagnostic images for every individual"
+  },
+  "cytotype_sampling": {
+    "default_focal_population": "target direct flow/genome-size confirmation on 3 individuals/population when fresh logistics permit",
+    "suspected_mixed_cytotype": "increase direct cytotype sampling and do not pool unresolved individuals in dosage-dependent analysis",
+    "polyploid_s2_s4": "cytotype qualification required before dosage-dependent pooled inference",
+    "genome_size_not_ploidy": true
+  },
+  "field_burden": {
+    "distributed_collection": true,
+    "investigator_priority": [
+      "four M01 discovery populations",
+      "JPN36 focal populations",
+      "JPN06/JPN15 sites requiring careful identification/conservation handling"
+    ],
+    "collaborator_priority": [
+      "S0 breadth reconnaissance",
+      "many S2/S4 leaf-photo packages"
+    ]
+  },
+  "supersedes_for_new_sampling": [
+    "38x3_as_first_sampling_step",
+    "8_anchor_16_template_assay_pilot_as_first_field_acquisition",
+    "physical_inventory_audit_as_a_substitute_for_zero-baseline field planning"
+  ],
+  "current_state": {
+    "physical_samples_confirmed": 0,
+    "S0_started": false,
+    "S1_sampling_authorized": false,
+    "S1_rad_pilot_authorized": false,
+    "S2_open": false,
+    "S3_open": false,
+    "S4_open": false
+  }
+}

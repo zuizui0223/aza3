@@ -1,0 +1,187 @@
+{
+  "contract_version": "chapter3_inverse_sampling_design_v1",
+  "status_date": "2026-09-02",
+  "design_principle": "claim-backward, nested and outcome-blind sampling: define the maximum admissible claim first, then collect the smallest sample set that can discriminate that claim while banking inexpensive material for later gated analyses",
+  "source_boundaries": {
+    "chapter2_source_merge": "62fa8c5c913c2b236e710f6bad366e80676aa78f",
+    "core_priority_file": "data/planning/chapter3_sampling_priorities_v1.csv",
+    "m01_contract_file": "data/planning/chapter3_mechanistic_demonstration_v1.json",
+    "phase_a_source_role": "the pinned EAzami Phase A plan supplies prior minimum/recommended population counts; this design removes samples that do not map to current P01-P05 or M01 claims and stages expensive assays behind evidence gates"
+  },
+  "core_breadth_panel": {
+    "purpose": "discriminate P01-P04 histories with own same-library ancestry while reusing the same individuals for P05 calibrated morphology wherever possible",
+    "all_japan_floor": {
+      "concepts": 38,
+      "biological_individuals_per_concept": 3,
+      "total_individuals": 114,
+      "allocation_rule": "use independently collected wild individuals; where feasible split 2+1 across two populations rather than three plants from one patch; do not replace a blocked concept after inspecting topology leverage",
+      "claim_supported": "P03 all-Japan topology/network sensitivity and P04 cross-module same-individual history",
+      "claim_not_supported": "population-genomic selection, definitive species tree or adaptation"
+    },
+    "focal_oversampling": [
+      {
+        "priority_id": "P01",
+        "concept": "JPN_36 Cirsium sieboldii",
+        "minimum_total_individuals": 30,
+        "recommended_total_individuals": 40,
+        "minimum_population_design": "3 populations x 10 primary individuals",
+        "recommended_population_design": "4 populations x 10 primary individuals",
+        "extra_over_three_individual_floor_minimum": 27,
+        "extra_over_three_individual_floor_recommended": 37,
+        "reason": "terminal-versus-internal phyllary placement must survive within-species population ancestry rather than one local accession"
+      },
+      {
+        "priority_id": "P02",
+        "concept": "JPN_06 Cirsium dipsacolepis",
+        "minimum_total_individuals": 16,
+        "recommended_total_individuals": 24,
+        "minimum_population_design": "2 populations x 8 primary individuals",
+        "recommended_population_design": "3 populations x 8 primary individuals",
+        "extra_over_three_individual_floor_minimum": 13,
+        "extra_over_three_individual_floor_recommended": 21,
+        "reason": "the JPN06-JPN15 contrast must be separated from local population structure or introgression"
+      },
+      {
+        "priority_id": "P02",
+        "concept": "JPN_15 Cirsium lineare",
+        "minimum_total_individuals": 16,
+        "recommended_total_individuals": 24,
+        "minimum_population_design": "2 populations x 8 primary individuals",
+        "recommended_population_design": "3 populations x 8 primary individuals",
+        "extra_over_three_individual_floor_minimum": 13,
+        "extra_over_three_individual_floor_recommended": 21,
+        "reason": "the JPN06-JPN15 contrast must be separated from local population structure or introgression"
+      }
+    ],
+    "derived_totals": {
+      "minimum_primary_individuals": 167,
+      "recommended_primary_individuals": 193,
+      "calculation": "114 all-Japan floor plus focal top-ups for JPN36, JPN06 and JPN15; P04 reuses these individuals and P05 initially reuses their calibrated images rather than adding fresh field samples"
+    },
+    "p04_measurement_rule": "orientation, phyllary posture, stickiness, voucher/diagnostic images, population and cytotype status are recorded before DNA results are inspected on every core individual where the state is observable",
+    "p05_rule": "no additional fresh-collection quota is opened in v1; obtain calibrated capitulum images from the core individuals first, then supplement with rights-cleared voucher/herbarium images under a separately frozen taxon-balanced measurement design if direct-measurement coverage remains inadequate",
+    "technical_replication": "library/process duplicates are 5-10 percent of libraries, selected before outcome inspection; they are technical replicates and do not count toward biological n"
+  },
+  "m01_depth_panel": {
+    "principle": "do not collect the full E3 panel before E1/E2 are scientifically viable; bank cheap leaf/photo material early, but stage RNA and population-genomic sequencing behind explicit gates",
+    "stage_m1_history_and_expression_discovery": {
+      "goal": "reach at most E1-E2 without confounding species with a single locality",
+      "focal_population_roles": [
+        {
+          "lineage": "Cirsium brevicaule",
+          "role_1": "Okinawa Honto central-Ryukyu population",
+          "role_2": "one independently authorized Amami-group population, preferably Amami Oshima when feasible"
+        },
+        {
+          "lineage": "Cirsium irumtiense",
+          "role_1": "Miyako northern-range population",
+          "role_2": "one core Yaeyama population, preferably Ishigaki or Iriomote depending authorization and RNA logistics"
+        }
+      ],
+      "per_population_field_bank": {
+        "primary_individuals": 15,
+        "predeclared_technical_reserves": 3,
+        "physical_individuals_if_one_trip_final_bank_is_desired": 18,
+        "mandatory_for_all": [
+          "immutable individual ID",
+          "diagnostic/voucher-linked images",
+          "standardized corolla phenotype",
+          "silica or equivalent leaf DNA material"
+        ],
+        "reserve_rule": "reserve identities are fixed before laboratory QC and may replace only technical failures, never weak or inconvenient biological outcomes"
+      },
+      "rna_subset": {
+        "selected_populations": 4,
+        "collect_individuals_per_population": 6,
+        "sequence_primary_individuals_per_population": 5,
+        "planned_libraries_at_one_frozen_developmental_stage": 20,
+        "rule": "same-individual pigment and RNA material, identical floral developmental stage and matched collection window; a second developmental stage is optional follow-up, not required for the first E2 contrast"
+      },
+      "pigment_subset": {
+        "primary_individuals_per_population": 3,
+        "total_focal_individuals": 12,
+        "rule": "quantify homologous pigment chemistry on individuals nested inside the photographed/DNA panel; do not infer anthocyanin identity from RGB colour alone"
+      },
+      "ancestral_state_outgroup_panel": {
+        "minimum_nonfocal_concepts": 6,
+        "target_structure": "at least four Nipponocirsium concepts because Arenicola is sister to Nipponocirsium, plus at least two Sinocirsium concepts as the next bracketing lineage",
+        "minimum_individuals_per_concept": 3,
+        "minimum_nonfocal_individuals": 18,
+        "polymorphism_rule": "if a concept is colour-polymorphic, represent at least three individuals per observed colour state rather than collapsing the concept to one state",
+        "acquisition_rule": "fresh/cultivated collaborator material with documented identity and rights is acceptable for chemistry; the user does not need to field-collect all outgroups personally"
+      },
+      "promotion_gate": "do not open E3 sequencing unless ancestral-state/pigment comparison is interpretable and the E2 expression association replicates across the two populations within each focal lineage"
+    },
+    "stage_m2_population_genomic_selection": {
+      "goal": "reach at most E3 selection-consistent evidence",
+      "final_population_design": {
+        "Cirsium brevicaule": [
+          "Amami Oshima terminal/deep-divergence endpoint",
+          "one intermediate Amami-group population",
+          "one southern Amami-group population such as Okinoerabu or Yoron when verified",
+          "Okinawa Honto endpoint"
+        ],
+        "Cirsium irumtiense": [
+          "Miyako northern endpoint",
+          "Ishigaki",
+          "Iriomote",
+          "Yonaguni terminal/deep-divergence endpoint"
+        ]
+      },
+      "primary_individuals_per_population": 15,
+      "populations_per_lineage": 4,
+      "primary_individuals_per_lineage": 60,
+      "primary_individuals_total": 120,
+      "recommended_collection_per_population_with_reserve": 18,
+      "recommended_physical_bank_total": 144,
+      "pilot_status": "12 individuals per population may be used for a structure/QC pilot but is not the final E3 panel",
+      "sampling_geometry": "avoid obvious close relatives and collect across the occupied patch; exact spacing is site-specific and frozen before collection, not tuned after genotypes are seen",
+      "sequencing_platform_gate": "do not lock a cross-lineage selection platform before E2 candidate nomination and reference/orthology qualification; preferred E3 routes are lineage-aware resequencing against qualified references or a validated capture/resequencing design, whereas RAD-only cross-species FST is not sufficient",
+      "demography_gate": "fit neutral within-lineage population structure/demographic background before interpreting phenotype-linked candidate regions",
+      "no_agent_claim": "even a successful E3 result does not identify butterflies, flies, climate or another selective agent"
+    }
+  },
+  "field_burden_control": {
+    "investigator_need_not_visit_every_population": true,
+    "distributed_collection_allowed": "authorized collaborators may collect under the same protocol; individual identity, voucher/diagnostic images, population IDs and authorization IDs must be retained",
+    "personal_priority": "if investigator field time is limited, personally secure the four M01 discovery populations and the hardest core focal populations; use collaborator acquisition for the remaining all-Japan breadth concepts and terminal island endpoints",
+    "no_required_manipulation": "M01 E0-E3 requires no bagging, artificial-flower experiment, single-visit pollination assay or long camera deployment"
+  },
+  "assay_staging": [
+    {
+      "gate": "G0 identity/authorization",
+      "action": "collect nothing until taxon, population, permissions and immutable IDs are frozen"
+    },
+    {
+      "gate": "G1 core breadth",
+      "action": "sequence the 114-individual all-Japan floor plus outcome-blind focal top-ups needed for P01/P02"
+    },
+    {
+      "gate": "G2 M01 E1",
+      "action": "run ancestral-state and pigment-chemistry discrimination using the four focal discovery populations plus bracketing outgroup concepts"
+    },
+    {
+      "gate": "G3 M01 E2",
+      "action": "sequence 20 primary corolla RNA libraries only if G2 remains interpretable; validate across two populations per lineage"
+    },
+    {
+      "gate": "G4 M01 E3",
+      "action": "expand/sequence the 4-population-per-lineage 120-individual population-genomic panel only if E2 produces a replicable candidate mechanism and orthology/reference QC passes"
+    }
+  ],
+  "stop_rules": [
+    "do not replace inaccessible taxa or populations after observing their expected topology or candidate-gene leverage",
+    "do not promote three individuals per concept into a population-genomic claim",
+    "do not spend E3 sequencing budget when E1/E2 fails the predeclared promotion gate",
+    "do not use one population per species for RNA as evidence of a species-level expression mechanism",
+    "do not use taxon-level colour coding for a polymorphic concept when individual states are available",
+    "do not treat technical reserve replacement as biological resampling",
+    "do not use M01 population genomics to identify a selective agent"
+  ],
+  "current_state": {
+    "sampling_authorized": false,
+    "biological_records_admitted": 0,
+    "inverse_design_frozen_for_outcome_inspection": false,
+    "e3_population_genomic_sequencing_open": false
+  }
+}

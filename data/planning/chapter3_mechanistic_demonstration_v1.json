@@ -1,0 +1,144 @@
+{
+  "contract_version": "chapter3_mechanistic_demonstration_v1",
+  "status_date": "2026-09-02",
+  "demonstration_id": "M01",
+  "title": "Floral pigmentation as an embedded mechanistic demonstration of trait-history decomposition",
+  "role": {
+    "architecture": "BREADTH_TO_DEPTH",
+    "core_priority_status": "EMBEDDED_CASE_NOT_P06",
+    "dissertation_role": "embedded depth test of the same Chapter 3 identifiability problem: after own ancestry and same-individual data localize a trait-state contrast, ask what biochemical, regulatory and selection-consistent genomic changes underlie that contrast",
+    "general_problem_bridge": "P01-P05 provide the breadth test across Japanese Cirsium by asking where apparent species-tip transitions survive individual and population ancestry; M01 provides a depth test of what one retained trait-state contrast consists of biologically",
+    "core_independence": "M01 is conceptually embedded in the Chapter 3 question, but failure, ambiguity or cancellation of M01 does not reorder, replace, validate or invalidate the locked P01-P05 core history-discrimination programme",
+    "not_primary_subject": "Cirsium brevicaule and Cirsium irumtiense are the worked example, not the taxonomic subject of Chapter 3"
+  },
+  "literature_anchor": {
+    "citation": "Chang et al. 2026, BMC Plant Biology 26:545",
+    "doi": "10.1186/s12870-026-08097-6",
+    "admission_status": "REFERENCE_PREMISE_ONLY",
+    "accepted_premises": [
+      "Cirsium brevicaule and Cirsium irumtiense are supported as distinct Ryukyu lineages/species separated across the Miyako Strait",
+      "the reported corolla contrast is white in C. brevicaule and bluish-purple in C. irumtiense",
+      "reported 2C genome sizes differ strongly, approximately 1.93 pg in C. brevicaule and 0.69 pg in C. irumtiense"
+    ],
+    "not_estimands": [
+      "basic species delimitation is not re-tested as the primary aim",
+      "matK rbcL trnL-F and ITS are not treated as sufficient to replace the published phylogenomic backbone",
+      "published lineage separation does not establish the ancestral floral pigment state, the molecular mechanism of the colour difference, selection on that mechanism or the identity of a selective agent"
+    ]
+  },
+  "worked_example": {
+    "trait": "floral anthocyanin pigmentation",
+    "focal_concepts": [
+      "Cirsium brevicaule",
+      "Cirsium irumtiense"
+    ],
+    "primary_question": "Can the observed floral-pigmentation contrast be decomposed into ancestral-state history, pigment chemistry, same-individual corolla expression and genomic evidence without presupposing loss or regain?"
+  },
+  "competing_histories": [
+    {
+      "history_id": "H1",
+      "label": "ancestral_pigment_loss",
+      "statement": "the relevant ancestor was pigmented and the C. brevicaule lineage subsequently lost or strongly reduced floral anthocyanin pigmentation",
+      "prior_status": "COMPETING_NOT_PREFERRED",
+      "support_rule": "topology-robust ancestral-state inference supports a pigmented ancestor and a loss/reduction on the C. brevicaule side",
+      "falsifier": "the admitted topology and trait ensemble does not support a pigmented ancestor or does not localize loss/reduction to the C. brevicaule side"
+    },
+    {
+      "history_id": "H2",
+      "label": "ancestral_unpigmented_secondary_gain",
+      "statement": "the relevant ancestor was unpigmented and the C. irumtiense lineage subsequently gained or regained floral anthocyanin pigmentation",
+      "prior_status": "COMPETING_NOT_PREFERRED",
+      "support_rule": "topology-robust ancestral-state inference supports an unpigmented ancestor and a gain on the C. irumtiense side",
+      "falsifier": "the admitted topology and trait ensemble does not support an unpigmented ancestor or does not localize gain to the C. irumtiense side"
+    },
+    {
+      "history_id": "H3",
+      "label": "simple_on_off_history_not_identified",
+      "statement": "the data support neither a simple H1 nor H2 history because ancestral state, transition placement, pigment chemistry or reticulation remains ambiguous or indicates a more complex history",
+      "prior_status": "COMPETING_NOT_PREFERRED",
+      "support_rule": "H1 and H2 fail their predeclared support rules or multiple chemically or phylogenetically distinct transitions remain admissible",
+      "falsifier": "one of H1 or H2 meets its frozen support rule across the admitted topology and trait ensemble"
+    }
+  ],
+  "evidence_ladder": [
+    {
+      "level": "E0",
+      "required_evidence": "phenotypic contrast only or unresolved ancestral-state reconstruction",
+      "maximum_claim": "a white versus bluish-purple contrast exists; no loss, regain, re-evolution or mechanistic claim"
+    },
+    {
+      "level": "E1",
+      "required_evidence": "topology-robust ancestral-state inference plus homologous pigment chemistry across appropriately sampled focal and related taxa",
+      "maximum_claim": "a loss, secondary gain or unresolved history may be identified; no molecular mechanism or selection claim"
+    },
+    {
+      "level": "E2",
+      "required_evidence": "E1 plus same-individual corolla pigment chemistry and replicated corolla RNA-seq or independently validated expression for anthocyanin structural and regulatory genes",
+      "maximum_claim": "a molecular-expression mechanism is associated with the trait transition; expression difference alone is not a causal regulatory variant, adaptation or selective-agent result"
+    },
+    {
+      "level": "E3",
+      "required_evidence": "E2 plus orthology and mapping-bias qualification, replicated population genomic data, a frozen demographic/background-structure null and concordant support from multiple nonredundant selection statistics at a phenotype/expression-linked candidate region",
+      "maximum_claim": "the candidate mechanism shows selection-consistent genomic evidence beyond the frozen background model; this is not proof of adaptation and does not identify pollinators or any other selective agent"
+    },
+    {
+      "level": "E4",
+      "required_evidence": "E3 plus separately authorized direct functional perturbation and fitness evidence under a preregistered causal design",
+      "maximum_claim": "only the causal molecular or fitness effect directly estimated by that experiment; selective-agent attribution still requires direct agent-specific ecological evidence"
+    }
+  ],
+  "core_connection": {
+    "stage_1_species_tip_contrast": "the visible contrast is treated as a candidate trait-state difference, not yet a historical event",
+    "stage_2_linked_history": "individual/population ancestry and the admitted topology ensemble determine whether the contrast corresponds to a robust transition",
+    "stage_3_transition_decomposition": "pigment chemistry and same-individual expression determine what biological layer differs",
+    "stage_4_selection_layer": "population genomics tests whether the implicated mechanism departs from a frozen demographic/background expectation",
+    "stage_5_causal_ecology": "a separate functional or agent-specific ecological design is required to name fitness effects or a selective agent"
+  },
+  "sampling_contract": {
+    "mandatory_same_individual_fields": [
+      "immutable individual_id",
+      "accepted taxon concept",
+      "population_id and deidentified locality key",
+      "voucher or voucher-linked diagnostic images",
+      "standardized corolla phenotype or spectrum",
+      "pigment-chemistry sample when destructive sampling is authorized",
+      "corolla RNA sample when authorized and developmentally matched",
+      "DNA sample and genomic library ID when authorized",
+      "authorization and conservation review IDs"
+    ],
+    "field_manipulation_required": false,
+    "pollinator_observation_required": false,
+    "minimal_field_role": "authorized collection of linked voucher or diagnostic images, leaf DNA material and developmentally matched floral material for pigment chemistry and RNA; manipulative pollination experiments are not required for M01 E0-E3",
+    "selection_lane_population_requirement": "population replication within each focal lineage is required; a two-species FST contrast alone is not admitted as evidence of selection"
+  },
+  "selection_contract": {
+    "candidate_nomination": "candidate regions must be linked prospectively to the pigment/expression mechanism or tested under a genome-wide procedure with frozen multiplicity control",
+    "background_null": "neutral population structure and demographic history must be estimated before focal selection interpretation",
+    "mapping_and_orthology_gate": "the strong reported genome-size difference requires explicit orthology, callable-region and mapping-bias checks before cross-lineage locus interpretation",
+    "minimum_evidence": "multiple nonredundant statistics plus phenotype/expression concordance; any single outlier statistic is insufficient",
+    "prohibited_shortcuts": [
+      "two-species FST outlier alone",
+      "branch-specific dN/dS alone",
+      "post-hoc threshold tuning after seeing candidate genes",
+      "treating absence of a sweep signature as evidence that historical selection did not occur"
+    ],
+    "selective_agent_boundary": "genomics alone cannot identify butterflies, flies, bees, climate or any other ecological factor as the selective agent"
+  },
+  "stop_rules": [
+    "if ancestral state is not robust across the admitted topology and trait ensemble, stop loss/regain language at E0",
+    "if pigment chemistry is not homologously comparable, do not interpret visual colour as a single anthocyanin transition",
+    "if corolla RNA is not developmentally matched or biologically replicated, stop at chemistry and history",
+    "if orthology, callable regions or mapping bias cannot be qualified, do not run or interpret cross-lineage selection scans as selection evidence",
+    "if population replication or a demographic background model is absent, stop selection claims below E3",
+    "if only genomic evidence is available, do not name pollinators or another ecological factor as the causal selective agent",
+    "do not require M01 success for P01-P05 to remain valid"
+  ],
+  "current_state": {
+    "own_m01_biological_records_admitted": 0,
+    "tissue_collection_authorized": false,
+    "field_manipulation_authorized": false,
+    "pollinator_agent_claim_authorized": false,
+    "regain_claim_authorized": false,
+    "selection_claim_authorized": false
+  }
+}

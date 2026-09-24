@@ -1,0 +1,51 @@
+{
+  "contract_version": "chapter3_exact_hole_fill_v7",
+  "source_snapshot": {
+    "nmns_authority_records": 161,
+    "nmns_unique_species_binomials": 154,
+    "published_or_no_new_label_core_species": 128,
+    "unpublished_new_name_species": 25,
+    "provisional_name_species": 1
+  },
+  "published_core_hole_fill": {
+    "moreyra_current_species_level_coverage": 33,
+    "priority_1_empty_block_species": 33,
+    "priority_1_new_samples": 66,
+    "priority_2_broken_public_tip_species": 6,
+    "priority_2_new_samples": 12,
+    "priority_3_sparse_block_species": 44,
+    "priority_3_new_samples": 88,
+    "priority_4_partial_block_species": 16,
+    "priority_4_new_samples": 32,
+    "priority_5_local_gap_species": 2,
+    "priority_5_new_samples": 4,
+    "priority_6_public_single_add_one_own_species": 26,
+    "priority_6_new_samples": 26,
+    "priority_7_public_two_plus_tree_filled_species": 1,
+    "priority_7_new_tree_samples": 0,
+    "new_tree_samples_total": 228,
+    "optional_additional_own_trait_link_for_priority_7": 1
+  },
+  "extension_lane": {
+    "unpublished_new_name_species": 25,
+    "provisional_name_species": 1,
+    "new_samples_if_all_extension_units_are_admitted": 51,
+    "status": "NOT_IN_PUBLISHED_CORE_UNTIL_NOMENCLATURAL_CENSUS_IS_FROZEN"
+  },
+  "taxonomy_gate": {
+    "moreyra_paper_concepts_not_in_current_nmns_species_screen": [
+      "JPN_29 Cirsium verutum",
+      "JPN_31 Cirsium yuki-uenoanum",
+      "JPN_33 Cirsium effusum"
+    ],
+    "status": "DO_NOT_ASSIGN_COLLECTION_SLOTS_UNTIL_CONCEPT_RECONCILIATION"
+  },
+  "sampling_rule": "P1 empty taxonomic blocks -> P2 broken public tips -> P3 sparse blocks <=25% coverage -> P4 partial blocks <=50% -> P5 local gaps -> P6 add one own trait-linked complement to adequate public singletons -> P7 tree-filled slot optional own trait link",
+  "site_rule": "Exact localities are not frozen from database text. For two-new-sample species, use two verified wild populations or range sectors where feasible; for narrow/conservation-limited taxa, use spatially separated independent plants with the limitation explicitly flagged.",
+  "current_state": {
+    "physical_samples": 0,
+    "collection_authorized": false,
+    "target_capture_authorized": false,
+    "taxonomy_extension_admitted": false
+  }
+}

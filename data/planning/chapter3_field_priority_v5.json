@@ -1,0 +1,63 @@
+{
+  "contract_version": "chapter3_field_priority_v5",
+  "status_date": "2026-09-02",
+  "parent_design": "data/planning/chapter3_nationwide_species_tree_sampling_v4.json",
+  "primary_field_objective": "MAXIMIZE_NATIONWIDE_SPECIES_TREE_TAXON_BREADTH_BEFORE_POPULATION_DEPTH",
+  "planning_species_baseline": 120,
+  "nationwide_tree": {
+    "base_individuals_per_species": 2,
+    "wave1_nominal_individuals": 240,
+    "wave2_max_additional_individuals": 50,
+    "full_nominal_target_capture": 290,
+    "trip_level_rule": "a missing admitted species for Level 1 outranks extra focal RAD depth beyond the preregistered population bank"
+  },
+  "priority_classes": {
+    "A": "short flowering window, high alpine, narrow range, island endemic or conservation-coordinated taxon",
+    "B": "focal P01/P02/M01 system with multi-level reuse",
+    "C": "route-efficient admitted nationwide tree taxon",
+    "D": "second/third/fourth individual, extra focal population or network enrichment after breadth"
+  },
+  "focal_rad_staging": {
+    "population_bank": {"primary_rad": 12, "reserve": 3, "physical": 15},
+    "starter": {
+      "Cirsium sieboldii_populations": 2,
+      "Cirsium dipsacolepis_populations": 2,
+      "Cirsium lineare_populations": 2,
+      "Cirsium brevicaule_populations": 2,
+      "Cirsium irumtiense_populations": 2,
+      "populations_total": 10,
+      "primary_rad_total": 120,
+      "physical_total": 150
+    },
+    "conditional_completion": {
+      "Cirsium sieboldii_additional_populations": 2,
+      "Cirsium dipsacolepis_additional_populations": 1,
+      "Cirsium lineare_additional_populations": 1,
+      "additional_primary_rad": 48,
+      "full_primary_rad": 168,
+      "opening_rule": "open after nationwide Level-1 tree admission and Level-2 trait-history remapping shows that the added population depth remains discriminating"
+    }
+  },
+  "target_capture_technical_batch": {
+    "species": 12,
+    "individuals_per_species": 2,
+    "libraries": 24,
+    "counts_toward_wave1": true,
+    "purpose": "qualify extraction/capture/QC across geography, DNA quality and cytotype/genome-size classes without creating a separate biological quota"
+  },
+  "campaigns": [
+    {"id": "C1", "window": "2026-09", "focus": "northern_and_alpine", "priority": "A"},
+    {"id": "C2", "window": "2026-09_to_2026-10", "focus": "central_Honshu_and_Shikoku", "priority": "B+C"},
+    {"id": "C3", "window": "2026-10_to_2026-11", "focus": "western_Honshu_Shikoku_Kyushu", "priority": "B+C"},
+    {"id": "C4", "window": "2027-02_to_2027-03", "focus": "Ryukyu", "priority": "B+C"},
+    {"id": "C5", "window": "2027-07_to_2027-09", "focus": "Hokkaido_and_alpine_completion", "priority": "A"},
+    {"id": "C6", "window": "2027-09_to_2027-11", "focus": "nationwide_mainland_gap_fill", "priority": "C+D"}
+  ],
+  "current_state": {
+    "physical_samples": 0,
+    "operational_species_census_frozen": false,
+    "field_sampling_authorized": false,
+    "target_capture_authorized": false,
+    "rad_completion_authorized": false
+  }
+}
