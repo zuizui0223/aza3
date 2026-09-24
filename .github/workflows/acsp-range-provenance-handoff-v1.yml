@@ -1,0 +1,49 @@
+name: ACSP range-sector provenance handoff v1
+
+on:
+  pull_request:
+    paths:
+      - 'analysis/export_acsp_range_sector_provenance_v1.py'
+      - 'data/planning/chapter3_acsp_range_sector_readiness_v1.csv'
+      - 'tests/test_export_acsp_range_sector_provenance_v1.py'
+      - '.github/workflows/acsp-range-provenance-handoff-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile exporter
+        run: python -m py_compile analysis/export_acsp_range_sector_provenance_v1.py
+      - name: Test fail-closed handoff
+        run: python -m unittest tests/test_export_acsp_range_sector_provenance_v1.py
+      - name: Check current readiness without exporting provenance
+        run: |
+          python analysis/export_acsp_range_sector_provenance_v1.py --check-only > /tmp/acsp_range_readiness.json
+          python - <<'PY'
+          import json
+          value = json.load(open('/tmp/acsp_range_readiness.json'))
+          assert value['status'] == 'BLOCKED_UPSTREAM_EXACT_SITE_FREEZE'
+          assert value['ready_unit_count'] == 0
+          assert value['blocked_unit_count'] == 4
+          assert value['p02_first_validated_wild_population_dependency_units'] == ['CIR12', 'CIR13']
+          assert value['exact_coordinates_read'] is False
+          assert value['sensitive_access_instructions_read'] is False
+          assert set(value['blockers_by_unit']) == {'CIR02', 'CIR06', 'CIR12', 'CIR13'}
+          PY
+      - name: Verify normal export refuses blocked registry
+        run: |
+          set +e
+          python analysis/export_acsp_range_sector_provenance_v1.py --out-json /tmp/should-not-exist.json
+          code=$?
+          set -e
+          test "$code" -eq 2
+          test ! -e /tmp/should-not-exist.json
