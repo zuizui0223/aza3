@@ -165,6 +165,24 @@ Question: genomic source of a strongly localized phyllary change.
 E. Polymorphic populations and contact zones
 Highest information value because they preserve segregating variation and allow direct tests of ancestry–phenotype linkage and recombination.
 
+### Active Phase-A sampling panel
+
+The active population-genomic discovery panel is frozen in `AZA3_NATURE_GENOMIC_SAMPLING_PANEL_V1.md` and `aza3_nature_genomic_sampling_panel_v1.csv`.
+
+It retains the previously recommended **298 individuals** but changes their inferential role from generic population history to discrimination among the four genomic-source models.
+
+Phase-A systems:
+- *C. pendulum* — 60;
+- *C. sieboldii* — 40;
+- *C. lineare* — 24;
+- *C. dipsacolepis* — 24;
+- *C. brevicaule* — 75;
+- *C. irumtiense* — 75.
+
+*C. sieboldii* is the primary same-species test of genomic combinatorial reuse because current source evidence indicates colour polymorphism plus variation/relevance across orientation, phyllary and stickiness modules. These states must be remeasured on the sequenced individuals; species-level authority states cannot substitute for individual phenotype.
+
+The six morph-labelled public *C. japonicum* var. *takaoense* transcriptomes are retained as a Phase-B molecular anchor, not population replication.
+
 ## 5. Genomic data tiers
 
 Tier 1 — ancestry and triage
