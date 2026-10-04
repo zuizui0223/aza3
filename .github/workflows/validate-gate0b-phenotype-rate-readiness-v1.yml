@@ -1,0 +1,31 @@
+name: Validate aza3 Gate0B phenotype-rate readiness
+
+on:
+  pull_request:
+    paths:
+      - "docs/GATE0B_PHENOTYPE_RATE_READINESS_V1.md"
+      - "data/contracts/aza3_gate0b_rate_estimand_v1.json"
+      - "data/planning/aza3_gate0b_trait_recovery_priority_v1.csv"
+      - "docs/AZA3_NATURE_SCALE_MASTER_PLAN_V1.md"
+      - "analysis/validate_gate0b_phenotype_rate_readiness_v1.py"
+      - ".github/workflows/validate-gate0b-phenotype-rate-readiness-v1.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: validate-gate0b-phenotype-rate-readiness-v1-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: |
+          python -m py_compile analysis/validate_gate0b_phenotype_rate_readiness_v1.py
+          python analysis/validate_gate0b_phenotype_rate_readiness_v1.py
