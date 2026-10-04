@@ -95,41 +95,51 @@ EAzami orientation, phyllary posture and stickiness remain an independent second
 Falsifier:
 If the dominant radiation is not unusually fast after age, topology, coverage and sampling controls, the Nature-scale accelerated-evolvability claim is weakened. The project can still study the genomic origin of repeated traits, but not exceptional innovation rate.
 
-## 3. Four competing genomic source models
+## 3. Three genomic-origin models plus one deployment-mechanism axis
 
-### G1 — repeated de novo mutation
-Each repeated phenotype is produced by a new lineage-specific mutation or regulatory solution.
+The current hypotheses separate **where the trait-associated variation came from** from **how an existing genomic toolkit is deployed**. This avoids treating regulatory/homeolog reuse as mutually exclusive with standing variation or introgression.
+
+### Source model G1 — repeated de novo origin
+Each repeated phenotype is produced by a new lineage-specific mutation or newly derived regulatory variant.
 
 Predictions:
-- repeated phenotype events use different causal variants;
-- local genealogies mostly follow background ancestry;
-- relevant variants are compatible with recent lineage-specific origin.
+- repeated phenotype events use different recent causal variants/haplotypes;
+- local genealogies mostly follow background ancestry at the focal region;
+- the phenotype-associated variant is compatible with post-divergence origin.
 
-### G2 — ancestral standing variation
+### Source model G2 — ancestral standing variation
 Trait-associated variants predate focal lineage splits and are repeatedly sorted among descendants.
 
 Predictions:
-- old homologous haplotypes recur in separated lineages with the same state;
-- trait-associated variant age predates focal divergence;
-- phenotype sharing can occur without recent gene flow.
+- homologous old haplotypes recur in separated lineages with the same state;
+- trait-associated variant/coalescent age predates the focal divergence;
+- phenotype sharing persists after excluding plausible recent gene flow.
 
-### G3 — introgressive reuse
+### Source model G3 — introgressive reuse
 Trait-associated haplotypes move between lineages after divergence.
 
 Predictions:
 - phenotype-associated regions have local genealogies discordant with genome-wide ancestry;
-- explicit gene-flow/local-ancestry tests support exchange involving state-sharing populations;
-- shared phenotype blocks are more similar than expected from genomic background.
+- explicit gene-flow/local-ancestry evidence supports exchange involving state-sharing populations;
+- the phenotype-associated block is unusually shared relative to genomic background.
 
-### G4 — polyploid, homeolog or regulatory reuse
-Existing toolkits generate alternate states through dosage, homeolog sorting or regulatory reweighting.
+### Deployment axis D1 — coding versus regulatory / dosage / homeolog reuse
+This axis is **not a fourth mutually exclusive source model**.
 
-Predictions:
-- phenotype associates with cytotype, dosage, allele-specific or homeolog-specific expression;
-- the core biochemical/developmental toolkit remains present across states;
-- state changes need not require new coding-sequence innovation.
+A variant may be ancestrally retained or introgressed and then deployed through:
+- cis-regulatory change;
+- trans-regulatory change;
+- copy number or dosage;
+- homeolog-specific retention/expression;
+- structural variation;
+- coding change.
 
-Different capitulum modules may have different winning models.
+Predictions for regulatory/homeolog reuse include:
+- the core biochemical/developmental toolkit remains present across phenotype states;
+- phenotype differences align with expression, dosage or homeolog usage more strongly than with repeated pathway loss;
+- different source histories (G2 or G3) can converge on the same deployment mechanism.
+
+For every focal event, aza3 will assign a **source class** and, where data permit, a separate **deployment class**. Multiple source models may remain plausible; deployment mechanisms can coexist with either standing variation or introgression.
 
 ## 4. Sampling strategy — sample evolutionary decisions, not species lists
 
@@ -256,18 +266,28 @@ neutralization → arthropod-guild access/community → pollination/antagonism �
 
 The Nature package does not require every trait to have a complete molecular and ecological chain. One or two traits can provide deep causal exemplars while broader traits test genomic reuse.
 
-## 8. How the four genomic models are classified
+## 8. Two-axis classification
 
-For each repeated phenotype event, end with one of:
+For each repeated phenotype event, first classify the **origin/source** of the phenotype-associated variation:
 
 - DE_NOVO_COMPATIBLE
 - STANDING_VARIATION_COMPATIBLE
 - INTROGRESSIVE_REUSE_COMPATIBLE
-- POLYPLOID_REGULATORY_REUSE_COMPATIBLE
-- MULTIPLE_MODELS_REMAIN
-- NOT_IDENTIFIABLE
+- MULTIPLE_SOURCE_MODELS_REMAIN
+- SOURCE_NOT_IDENTIFIABLE
 
-Do not force all events into one source class.
+Then, where molecular data permit, classify the **deployment mechanism** independently:
+
+- CODING_CHANGE_COMPATIBLE
+- CIS_REGULATORY_REUSE_COMPATIBLE
+- TRANS_REGULATORY_REUSE_COMPATIBLE
+- DOSAGE_OR_COPY_NUMBER_COMPATIBLE
+- HOMEOLOG_SPECIFIC_REUSE_COMPATIBLE
+- STRUCTURAL_VARIANT_COMPATIBLE
+- MULTIPLE_DEPLOYMENT_MODELS_REMAIN
+- DEPLOYMENT_NOT_IDENTIFIABLE
+
+Do not force regulatory/homeolog reuse to compete against standing variation or introgression when both can be true.
 
 ## 9. Generality
 
@@ -319,7 +339,7 @@ A failure of genomic reuse can still produce a strong alternative conclusion: ra
 2. Freeze population sampling around replicated phenotype-history discriminators.
 3. Run Tier-1 same-individual ancestry + phenotype + cytotype panel.
 4. Select focal replicated transitions before deep sequencing.
-5. Run Tier-2 dense resequencing to discriminate the four genomic source models.
+5. Run Tier-2 dense resequencing to discriminate the three source models plus the deployment-mechanism axis.
 6. Use colour as the molecular flagship.
 7. Use orientation as the ecological causal flagship.
 8. Test genomic combinatorial reuse across modules.
@@ -336,4 +356,4 @@ A failure of genomic reuse can still produce a strong alternative conclusion: ra
 - Do not use RAD alone for fine-scale haplotype-origin claims.
 - Do not require every capitulum trait to have the same genomic source.
 - Do not call repeated phenotypes adaptive without representative fitness evidence.
-- Do not add analyses that cannot discriminate the four genomic models or test Gate 0.
+- Do not add analyses that cannot discriminate the three source models and the deployment axis or test Gate 0.
