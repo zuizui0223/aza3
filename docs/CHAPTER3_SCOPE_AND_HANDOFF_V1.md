@@ -1,5 +1,7 @@
 # Chapter 3 scope and EAzami handoff v1
 
+> **Strategic update (2026-10-04):** this document remains the operational contract for rights, same-individual linkage, ancestry, cytotype and manipulation boundaries. The active scientific question and priority order are now defined by `AZA3_NATURE_SCALE_MASTER_PLAN_V1.md` and `aza3_nature_sampling_priorities_v2.csv`; EAzami result-to-hypothesis logic is frozen in `eazami_to_aza3_hypothesis_bridge_v1.csv`.
+
 Status date: 2026-08-28
 
 ## Role in the dissertation
