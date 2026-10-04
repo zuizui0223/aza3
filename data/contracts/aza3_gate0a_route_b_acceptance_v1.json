@@ -1,0 +1,76 @@
+{
+  "contract_version": "aza3_gate0a_route_b_acceptance_v1",
+  "status_date": "2026-10-04",
+  "opens_when": "Route A author/source dated-tree bundle remains unavailable",
+  "source_inputs": {
+    "raw_reads": "NCBI BioProject PRJNA957074",
+    "source_publication": "Moreyra et al. 2025, DOI 10.1016/j.ympev.2025.108285",
+    "source_crosswalk": "EAzami public Moreyra/Chang accession and Japan38 concept registries",
+    "current_trait_scaffold_role": "trait crosswalk/topology sensitivity only; not the dated input tree"
+  },
+  "frozen_rebuild_requirements": [
+    "freeze sample admission, duplicate-tip handling and synonym reconciliation before phenotype-rate analysis",
+    "recover Compositae1061 targets from raw reads under versioned settings",
+    "freeze orthology/paralogy adjudication and locus-retention rules",
+    "infer the concatenated nuclear topology and retain topology uncertainty",
+    "apply only defensibly mapped published CP1-CP3 dating constraints",
+    "do not derive dates from Japan38 relative depth or substitutions/site scaling",
+    "validate Japanese history structure and published temporal landmarks before Gate 0B"
+  ],
+  "broad_topology_acceptance": [
+    "dominant Japanese radiation recovered as the major Japanese history",
+    "Cirsium lineare retained as a separate Japanese history",
+    "Cirsium dipsacolepis treated as a separate-history hypothesis and not silently forced into the dominant radiation"
+  ],
+  "temporal_landmark_validation": [
+    {
+      "landmark": "Cirsium crown",
+      "published_mean_ma": 9.5,
+      "published_interval_ma": [
+        7.2,
+        12.2
+      ],
+      "acceptance": "rebuild estimate must fall within published 95% interval"
+    },
+    {
+      "landmark": "dominant Japanese radiation / jump-dispersal node",
+      "published_mean_ma": 2.4,
+      "published_interval_ma": [
+        1.7,
+        3.6
+      ],
+      "acceptance": "rebuild estimate must fall within published 95% interval"
+    },
+    {
+      "landmark": "Cirsium dipsacolepis separate arrival",
+      "published_mean_ma": 1,
+      "published_interval_ma": [
+        0.4,
+        2.2
+      ],
+      "acceptance": "if homologous node is recovered, estimate must fall within published 95% interval"
+    },
+    {
+      "landmark": "Cirsium lineare East Asia-to-Japan expansion",
+      "published_mean_ma": 1.4,
+      "published_interval_ma": [
+        0.7,
+        2.7
+      ],
+      "acceptance": "if homologous node is recovered, estimate must fall within published 95% interval"
+    }
+  ],
+  "gate0a_pass_rule": {
+    "required": "dated ensemble rather than one unsupported point tree",
+    "minimum_status": "DATED_ENSEMBLE_REBUILT_VALIDATED",
+    "gate0b_rate_test_authorized_only_after_pass": true
+  },
+  "failure_states": [
+    "topology_not_reconciled",
+    "calibration_nodes_not_defensible",
+    "temporal_landmarks_not_reproduced",
+    "dated_uncertainty_not_propagated",
+    "local_context_only"
+  ],
+  "claim_boundary": "A validated independent rebuild supports Gate 0 rate testing. It is not automatically an exact reproduction of the Moreyra RelTime analysis."
+}
