@@ -1,0 +1,66 @@
+{
+  "contract_version": "aza3_gate0b_rate_estimand_v1",
+  "status_date": "2026-10-04",
+  "current_status": "COVERAGE_GATE_OPEN_RATE_TEST_NOT_AUTHORIZED",
+  "current_coverage": {
+    "japan38_paper_concepts": 38,
+    "exact_japan38_trait_concepts_strict_spatial": 14,
+    "paper_concepts_represented_at_binomial_level": 17,
+    "distinct_japan38_trait_taxa_n_ge_10": 6,
+    "distinct_japan38_binomials_absent_from_current_azami_source_pool": 18,
+    "detected_but_removed_before_strict_spatial_cohort": [
+      "Cirsium amplexifolium",
+      "Cirsium matsumurae",
+      "Cirsium microspicatum"
+    ]
+  },
+  "primary_axes": [
+    "presentation_angle",
+    "floral_lightness",
+    "floral_chroma",
+    "head_elongation",
+    "head_compactness"
+  ],
+  "secondary_axes": [
+    "floral_hue",
+    "involucre_form",
+    "projection_prominence",
+    "projection_pattern"
+  ],
+  "primary_estimand": {
+    "name": "total_multivariate_rate_ratio",
+    "formula": "R_total = sum_m sigma2_J,m / sum_m sigma2_BG,m",
+    "japanese_rate": "dated phylogenetic evolutionary rate for each core axis in dominant Japanese radiation",
+    "background_rate": "corresponding non-Japanese Cirsium rate on the same dated global tree",
+    "scale_rule": "standardize each axis using non-Japanese background distribution before rate estimation",
+    "null": "R_total = 1",
+    "outcome_selection_prohibited": true
+  },
+  "uncertainty_propagation": [
+    "dated-tree uncertainty",
+    "observation-level phenotype uncertainty",
+    "Japan exact-concept matching",
+    "observed missingness pattern",
+    "background trait covariance as sensitivity"
+  ],
+  "admission_sequence": [
+    "Gate0A dated ensemble passes",
+    "trait recovery frozen before rate outcomes",
+    "outcome-blind precision simulation under current coverage",
+    "primary R_total analysis only if identifiable"
+  ],
+  "secondary_eazami_discrete_layer": [
+    "orientation time-normalized state-change accumulation",
+    "phyllary posture time-normalized state-change accumulation",
+    "stickiness time-normalized state-change accumulation",
+    "trait-specific CTMC rate estimates where identifiable"
+  ],
+  "prohibited_shortcuts": [
+    "claim acceleration from six >=10-observation Japanese taxa alone",
+    "assign broad binomial images to named infraspecific concepts",
+    "select fastest single trait after outcome inspection",
+    "equate image armature proxies with botanical phyllary/spine states",
+    "treat discrete Japanese trait rates as globally exceptional without a homologous comparator"
+  ],
+  "claim_boundary": "Gate 0B tests whether phenotypic accumulation is accelerated. It does not identify the genomic mechanism or adaptive value."
+}
