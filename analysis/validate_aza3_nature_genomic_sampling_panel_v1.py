@@ -7,6 +7,7 @@ DOC=ROOT/"docs"/"AZA3_NATURE_GENOMIC_SAMPLING_PANEL_V1.md"
 PANEL=ROOT/"data"/"planning"/"aza3_nature_genomic_sampling_panel_v1.csv"
 README=ROOT/"README.md"
 MASTER=ROOT/"docs"/"AZA3_NATURE_SCALE_MASTER_PLAN_V1.md"
+INTAKE=ROOT/"data"/"intake"/"aza3_nature_individual_intake_v1.csv"
 
 def need(t,x):
     if x not in t:
@@ -18,6 +19,9 @@ def main():
     m=MASTER.read_text(encoding="utf-8")
     with PANEL.open(encoding="utf-8-sig",newline="") as f:
         rows=list(csv.DictReader(f))
+    with INTAKE.open(encoding="utf-8-sig",newline="") as f:
+        reader=csv.DictReader(f)
+        intake_fields=reader.fieldnames or []
 
     phase_a=[x for x in rows if x["phase"]=="A"]
     counts={x["panel_id"]:int(x["recommended_n"]) for x in phase_a}
@@ -69,6 +73,17 @@ def main():
     need(r,"aza3_nature_genomic_sampling_panel_v1.csv")
     need(m,"AZA3_NATURE_GENOMIC_SAMPLING_PANEL_V1.md")
 
+    required_intake={
+        "individual_id","taxon_concept","population_id","deidentified_locality_key",
+        "voucher_id","diagnostic_image_id","colour_state","orientation_deg_gravity",
+        "orientation_state","phyllary_posture","stickiness_state","leaf_dna_tissue_id",
+        "tier1_library_id","tier2_library_id","cytotype_x","relative_genome_size_2C",
+        "flow_cytometry_record_id","plastid_sample_id","floral_rna_sample_id",
+        "pigment_sample_id","access_authorization_id","collection_authorization_id",
+        "conservation_review_id","phase","panel_id","admission_status","exclusion_reason"
+    }
+    assert required_intake.issubset(set(intake_fields))
+
     print(json.dumps({
         "status":"ok",
         "phaseA_total":298,
@@ -77,7 +92,8 @@ def main():
         "molecular_flagship_public_anchor":"takaoense_6_transcriptomes",
         "tier1_role":"ancestry_triage",
         "tier2_role":"genomic_source_discrimination",
-        "field_authorization":False
+        "field_authorization":False,
+        "same_individual_intake_fields":len(intake_fields)
     },indent=2))
 
 if __name__=="__main__":
