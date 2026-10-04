@@ -6,6 +6,8 @@ ROOT=Path(__file__).resolve().parents[1]
 DOC=ROOT/"docs"/"GATE0B_PHENOTYPE_RATE_READINESS_V1.md"
 CON=ROOT/"data"/"contracts"/"aza3_gate0b_rate_estimand_v1.json"
 REC=ROOT/"data"/"planning"/"aza3_gate0b_trait_recovery_priority_v1.csv"
+AUDIT=ROOT/"data"/"evidence"/"aza3_gate0b_japan_trait_coverage_audit_v1.json"
+QUEUE=ROOT/"data"/"planning"/"aza3_gate0b_lowcost_recovery_queue_v1.csv"
 MASTER=ROOT/"docs"/"AZA3_NATURE_SCALE_MASTER_PLAN_V1.md"
 
 def need(t,x):
@@ -16,6 +18,9 @@ def main():
     d=DOC.read_text(encoding="utf-8")
     m=MASTER.read_text(encoding="utf-8")
     c=json.loads(CON.read_text(encoding="utf-8"))
+    a=json.loads(AUDIT.read_text(encoding="utf-8"))
+    with QUEUE.open(encoding="utf-8-sig",newline="") as f:
+        qrows=list(csv.DictReader(f))
     with REC.open(encoding="utf-8-sig",newline="") as f:
         rows=list(csv.DictReader(f))
 
@@ -50,6 +55,14 @@ def main():
     assert "Cirsium yuki-uenoanum" in taxa
     assert "Cirsium effusum" in taxa
     assert len(rows)>=20
+    assert a["detector_positive_japan38_binomials"]==18
+    assert a["replication_threshold_counts"]=={
+        "n_ge_1":18,"n_ge_2":13,"n_ge_3":11,"n_ge_5":11,
+        "n_ge_10":9,"n_ge_20":6,"n_ge_50":5
+    }
+    assert len(a["low_replication_taxa"])==7
+    assert qrows[0]["queue_id"]=="Q0"
+    assert any(x["taxon"]=="Cirsium dipsacolepis" and x["queue_id"]=="Q1" for x in qrows)
 
     print(json.dumps({
         "status":"ok",
@@ -59,7 +72,9 @@ def main():
         "absent_source_pool":18,
         "primary_axes":5,
         "primary_estimand":"R_total",
-        "recovery_rows":len(rows)
+        "recovery_rows":len(rows),
+        "exhaustive_n_ge_10":9,
+        "low_replication_taxa":7
     },indent=2))
 
 if __name__=="__main__":
