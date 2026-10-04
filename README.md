@@ -25,8 +25,9 @@ This is a hypothesis programme, not a result. EAzami establishes repeated phenot
 1. `docs/AZA3_NATURE_SCALE_MASTER_PLAN_V1.md` — active Nature plan; Gate 0 is split into **0A dated-tree recovery** and **0B phenotype-rate testing** before the four genomic source models.
 2. `data/planning/eazami_to_aza3_hypothesis_bridge_v1.csv` — explicit EAzami-result → aza3-hypothesis map, including falsifiers and claim ceilings.
 3. `docs/GATE0A_DATED_TREE_READINESS_AND_RECOVERY_V1.md` + `data/planning/aza3_gate0a_recovery_routes_v1.csv` — current first executable gate; author-source recovery before independent rebuild.
-4. `data/planning/aza3_nature_sampling_priorities_v2.csv` — canonical sampling order ranked by hypothesis discrimination rather than taxonomic coverage.
-5. The original `data/planning/chapter3_sampling_priorities_v1.csv` remains preserved as the narrower history-resolution plan and is not the current strategic ranking.
+4. `docs/GATE0B_PHENOTYPE_RATE_READINESS_V1.md` + `data/contracts/aza3_gate0b_rate_estimand_v1.json` — frozen phenotype numerator and total-rate ratio; currently blocked by Japanese trait coverage.
+5. `data/planning/aza3_nature_sampling_priorities_v2.csv` — canonical sampling order ranked by hypothesis discrimination rather than taxonomic coverage.
+6. The original `data/planning/chapter3_sampling_priorities_v1.csv` remains preserved as the narrower history-resolution plan and is not the current strategic ranking.
 
 ### Read the origin of this question first
 
