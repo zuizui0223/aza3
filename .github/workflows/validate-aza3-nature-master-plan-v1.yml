@@ -6,6 +6,7 @@ on:
       - "README.md"
       - "docs/AZA3_NATURE_SCALE_MASTER_PLAN_V1.md"
       - "data/planning/aza3_nature_sampling_priorities_v2.csv"
+      - "data/planning/eazami_to_aza3_hypothesis_bridge_v1.csv"
       - "analysis/validate_aza3_nature_master_plan_v1.py"
       - ".github/workflows/validate-aza3-nature-master-plan-v1.yml"
   workflow_dispatch:
