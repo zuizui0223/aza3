@@ -22,15 +22,10 @@ This is a hypothesis programme, not a result. EAzami establishes repeated phenot
 
 ### Current Nature-scale execution plan
 
-1. `docs/AZA3_NATURE_SCALE_MASTER_PLAN_V1.md` — Gate 0, four genomic source models, data tiers, causal exemplars, generality test and falsifiers.
-2. `data/planning/aza3_nature_sampling_priorities_v2.csv` — sampling ordered by hypothesis discrimination rather than taxonomic coverage.
-3. The original `data/planning/chapter3_sampling_priorities_v1.csv` remains preserved as the narrower history-resolution plan and is not deleted.
-
-### Active execution documents
-
-1. `docs/AZA3_NATURE_SCALE_MASTER_PLAN_V1.md` — **active strategic and execution plan**. Gate 0 tests whether phenotypic innovation is genuinely rapid; subsequent tiers discriminate de novo mutation, ancestral standing variation, introgressive reuse and polyploid/homeolog/regulatory reuse.
+1. `docs/AZA3_NATURE_SCALE_MASTER_PLAN_V1.md` — **active strategic and execution plan**: Gate 0, four genomic-source models, data tiers, causal exemplars, generality test and falsifiers.
 2. `data/planning/eazami_to_aza3_hypothesis_bridge_v1.csv` — exact EAzami-result → aza3-hypothesis mapping.
-3. `data/planning/aza3_nature_sampling_priorities_v1.csv` — active sampling priority from rate premise through genomic reuse and independent replication.
+3. `data/planning/aza3_nature_sampling_priorities_v2.csv` — **canonical active sampling order**, ranked by hypothesis discrimination rather than taxonomic coverage.
+4. `data/planning/chapter3_sampling_priorities_v1.csv` — preserved narrower history-resolution plan; operational history only, not the current strategic ranking.
 
 ### Read the origin of this question first
 
