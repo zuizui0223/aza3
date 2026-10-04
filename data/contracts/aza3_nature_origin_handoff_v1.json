@@ -1,0 +1,112 @@
+{
+  "contract_version": "aza3_nature_origin_handoff_v1",
+  "status_date": "2026-10-04",
+  "purpose": "Freeze the conceptual provenance from Azami spatial phenotype mapping and EAzami evolutionary-history analysis to the aza3 Nature-scale evolvability question.",
+  "source_repositories": {
+    "azami": {
+      "repository": "zuizui0223/azami",
+      "source_main_sha": "b463dbc938e454baa54b2e480f7f1d8badd7795d",
+      "role": "global phenotype-space and environment-association layer",
+      "source_files": [
+        "README.md",
+        "analysis/v3/BIOLOGICAL_AXIS_RESULT_SUMMARY_20260910.md"
+      ],
+      "frozen_context": {
+        "observations": 46276,
+        "taxa": 259,
+        "measured_endpoints": 22,
+        "biological_constructs": 11,
+        "headline_patterns": [
+          "floral_chroma x short-wave radiation survives biological reaggregation and full robustness sequence",
+          "presentation_angle x annual precipitation survives biological reaggregation and full robustness sequence"
+        ]
+      }
+    },
+    "eazami": {
+      "repository": "zuizui0223/EAzami",
+      "source_main_sha": "f406c32ac6d4a8da49777d7973a92f48146bd6df",
+      "role": "young-radiation history, recurrence, functional synthesis and historical-cause ceiling",
+      "source_files": [
+        "docs/chapter2/MANUSCRIPT_JEB_V10_FUNCTIONAL_ASSEMBLY_ORIGIN_DECOUPLING.md",
+        "docs/chapter2/EAzAMI_V10_TO_AZA3_CAUSAL_PROGRAMME_V1.md",
+        "data/evidence/meta_simulation_resolution_audit_v1.csv",
+        "data/evidence/preliminary_hypothesis_registry_v1.csv"
+      ],
+      "frozen_context": {
+        "sampled_japanese_concepts": 38,
+        "dominant_radiation_concepts": 36,
+        "orientation_minimum_changes": "4-6",
+        "phyllary_minimum_changes": 3,
+        "stickiness_minimum_changes": 5,
+        "robust_shared_transition_localization": "0/3",
+        "orientation_historical_regime_match": "99/376",
+        "robust_historical_climate_classes": "0/324",
+        "robust_sea_level_classes": "0/21",
+        "species_tip_compression_systems": "4/4"
+      }
+    },
+    "aza3_previous_main": {
+      "repository": "zuizui0223/aza3",
+      "source_main_sha": "d8becd9d2ca221e88b37832bc573ab0072733b18",
+      "role": "original Chapter-3 own-data discrimination plan",
+      "source_files": [
+        "README.md",
+        "docs/CHAPTER3_SCOPE_AND_HANDOFF_V1.md",
+        "data/contracts/chapter3_eazami_handoff_contract_v1.json"
+      ]
+    }
+  },
+  "conceptual_turning_points": [
+    {
+      "stage": "Azami",
+      "initial_question": "How is capitulum phenotype diversity distributed across geography and environment?",
+      "result": "Different capitulum dimensions map to different environmental axes; one whole-capitulum ecological syndrome is insufficient."
+    },
+    {
+      "stage": "EAzami_initial",
+      "initial_question": "When did capitulum components change and what historical environmental triggers caused them?",
+      "result": "Multiple components changed repeatedly at unequal evolutionary depths and without robust shared transition localization."
+    },
+    {
+      "stage": "EAzami_reversal",
+      "initial_question": "How deep in time are the transitions?",
+      "result": "The young age of the radiation makes the density of repeated phenotypic change itself the more surprising phenomenon."
+    },
+    {
+      "stage": "historical_trigger_ceiling",
+      "initial_question": "Can a recurring coarse climate or sea-level trigger explain the repeated changes?",
+      "result": "No recurring coarse tested historical trigger is identified under current public-data uncertainty."
+    },
+    {
+      "stage": "aza3_nature_question",
+      "initial_question": "What made repeated phenotypic innovation possible?",
+      "result": "Test whether rapid capitulum diversification was fueled by reuse, sorting, exchange or regulatory deployment of pre-existing genomic variation rather than repeated de novo invention."
+    }
+  ],
+  "nature_scale_question": "Why could a young thistle radiation repeatedly generate so much reproductive-phenotype diversity in so little evolutionary time?",
+  "high_risk_working_hypothesis": "The radiation inherited, exchanged and recombined a reusable genomic toolkit, allowing capitulum components to be repeatedly reassembled instead of reinvented de novo.",
+  "competing_models": [
+    "repeated_de_novo_mutation",
+    "ancestral_standing_variation",
+    "introgressive_reuse",
+    "polyploid_homeolog_or_regulatory_reuse"
+  ],
+  "required_evidence_chain": [
+    "repeated phenotype",
+    "same-individual population genomic history",
+    "source/age of trait-associated variation",
+    "module-specific reuse or independent origin",
+    "representative functional or fitness consequence"
+  ],
+  "claim_boundaries": [
+    "The Japanese Cirsium radiation is not yet demonstrated to be an adaptive radiation.",
+    "Reticulation is not yet shown to cause capitulum diversity or species richness.",
+    "Standing variation is not yet shown to cause repeated capitulum states.",
+    "Phenotypic mosaicism is not proof of genetic or developmental modularity.",
+    "Ploidy is not yet shown to increase evolvability.",
+    "No capitulum trait is assumed to share the same genomic architecture as another.",
+    "Repeated phenotypes are not assumed to be adaptive."
+  ],
+  "design_implication": "Prioritize populations and phenotype contrasts that discriminate among de novo mutation, ancestral standing variation, introgression and polyploid/regulatory reuse, with same-individual phenotype, DNA, cytotype and voucher linkage.",
+  "stop_rule": "If a planned analysis cannot materially increase or decrease confidence in the source-of-evolvability hypotheses, it is peripheral to the Nature-scale aza3 programme."
+}
