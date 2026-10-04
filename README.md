@@ -26,11 +26,17 @@ This is a hypothesis programme, not a result. EAzami establishes repeated phenot
 2. `data/planning/aza3_nature_sampling_priorities_v2.csv` — sampling ordered by hypothesis discrimination rather than taxonomic coverage.
 3. The original `data/planning/chapter3_sampling_priorities_v1.csv` remains preserved as the narrower history-resolution plan and is not deleted.
 
+### Active execution documents
+
+1. `docs/AZA3_NATURE_SCALE_MASTER_PLAN_V1.md` — **active strategic and execution plan**. Gate 0 tests whether phenotypic innovation is genuinely rapid; subsequent tiers discriminate de novo mutation, ancestral standing variation, introgressive reuse and polyploid/homeolog/regulatory reuse.
+2. `data/planning/eazami_to_aza3_hypothesis_bridge_v1.csv` — exact EAzami-result → aza3-hypothesis mapping.
+3. `data/planning/aza3_nature_sampling_priorities_v1.csv` — active sampling priority from rate premise through genomic reuse and independent replication.
+
 ### Read the origin of this question first
 
 1. `docs/AZAMI_EAZAMI_TO_AZA3_NATURE_ORIGIN_HANDOFF_V1.md` — narrative research-origin handoff: how the question changed from spatial phenotype ecology to evolutionary depth and finally to the source of rapid phenotypic innovation.
 2. `data/contracts/aza3_nature_origin_handoff_v1.json` — machine-readable source commits, turning points, competing models and claim boundaries.
-3. `docs/CHAPTER3_SCOPE_AND_HANDOFF_V1.md` — original own-data Chapter-3 scope, retained as the operational ancestry/phenotype/cytotype layer.
+3. `docs/CHAPTER3_SCOPE_AND_HANDOFF_V1.md` — original own-data Chapter-3 scope, retained as the **operational ancestry/phenotype/cytotype layer** under the Nature master plan; its old priority order is no longer the strategic priority order.
 
 The programme-level evidence chain is:
 
