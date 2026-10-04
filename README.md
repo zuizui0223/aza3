@@ -20,6 +20,12 @@ Competing genomic explanations are retained explicitly:
 
 This is a hypothesis programme, not a result. EAzami establishes repeated phenotypic reassembly, not its genomic cause.
 
+### Current Nature-scale execution plan
+
+1. `docs/AZA3_NATURE_SCALE_MASTER_PLAN_V1.md` — Gate 0, four genomic source models, data tiers, causal exemplars, generality test and falsifiers.
+2. `data/planning/aza3_nature_sampling_priorities_v2.csv` — sampling ordered by hypothesis discrimination rather than taxonomic coverage.
+3. The original `data/planning/chapter3_sampling_priorities_v1.csv` remains preserved as the narrower history-resolution plan and is not deleted.
+
 ### Read the origin of this question first
 
 1. `docs/AZAMI_EAZAMI_TO_AZA3_NATURE_ORIGIN_HANDOFF_V1.md` — narrative research-origin handoff: how the question changed from spatial phenotype ecology to evolutionary depth and finally to the source of rapid phenotypic innovation.
