@@ -1,0 +1,42 @@
+{
+  "contract_version": "aza3_gate0a_dated_tree_readiness_v1",
+  "status_date": "2026-10-04",
+  "purpose": "Prevent time-rate claims before a defensible taxon-reconciled dated topology ensemble exists.",
+  "current_state": {
+    "japan38_scaffold": "undated_phylogram_substitutions_per_site",
+    "japan38_topology_sensitivity_trees": 1000,
+    "public_exact_moreyra_dated_tree_recovered": false,
+    "broad_japanese_radiation_context_ma": 2.4,
+    "broad_japanese_radiation_interval_ma": [
+      1.7,
+      3.6
+    ],
+    "gate0b_rate_test_authorized": false
+  },
+  "preferred_routes": [
+    "A_author_source_tree_recovery",
+    "B_independent_dated_reconstruction",
+    "C_local_dated_context_only"
+  ],
+  "pass_states": [
+    "DATED_ENSEMBLE_RECOVERED",
+    "DATED_ENSEMBLE_REBUILT_VALIDATED"
+  ],
+  "nonpass_states": [
+    "LOCAL_DATED_CONTEXT_ONLY",
+    "NOT_IDENTIFIABLE"
+  ],
+  "prohibited_shortcuts": [
+    "scale Japan38 substitutions/site tree directly to 2.4 Ma",
+    "assign published node ages to guessed descendant sets",
+    "treat one local dated subclade as the Japan-wide chronogram",
+    "choose the primary rate statistic after outcome inspection"
+  ],
+  "gate0b_candidate_estimands": [
+    "discrete_transition_accumulation_per_branch_time",
+    "phenotypic_disparity_through_time",
+    "novel_capitulum_combination_accumulation_per_time",
+    "branch_time_matched_recurrence_density"
+  ],
+  "claim_boundary": "Exceptional evolvability is not an established EAzami result. Gate 0A supplies the temporal denominator needed to test it."
+}
