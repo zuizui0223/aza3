@@ -7,6 +7,7 @@ on:
       - "docs/AZA3_NATURE_SCALE_MASTER_PLAN_V1.md"
       - "docs/AZA3_NATURE_GENOMIC_SAMPLING_PANEL_V1.md"
       - "data/planning/aza3_nature_genomic_sampling_panel_v1.csv"
+      - "data/intake/aza3_nature_individual_intake_v1.csv"
       - "analysis/validate_aza3_nature_genomic_sampling_panel_v1.py"
       - ".github/workflows/validate-aza3-nature-genomic-sampling-panel-v1.yml"
   workflow_dispatch:
