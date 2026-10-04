@@ -11,12 +11,7 @@ aza3 now preserves two nested roles:
 
 The current high-risk working hypothesis is that rapid capitulum diversification was enabled by **reuse, sorting, exchange and regulatory redeployment of pre-existing genomic variation**, rather than by repeated de novo invention alone.
 
-Competing genomic explanations are retained explicitly:
-
-- repeated de novo mutation;
-- ancestral standing variation;
-- introgressive reuse;
-- polyploid/homeolog/regulatory reuse.
+Active genomic inference separates three **origin/source** alternatives—repeated de novo mutation, ancestral standing variation and introgressive reuse—from a separate **deployment-mechanism** axis covering regulatory, dosage, structural and homeolog-specific reuse. The original four-route formulation remains preserved in the conceptual-origin record.
 
 This is a hypothesis programme, not a result. EAzami establishes repeated phenotypic reassembly, not its genomic cause.
 
