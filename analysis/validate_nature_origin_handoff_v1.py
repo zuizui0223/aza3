@@ -63,10 +63,10 @@ def main():
     assert len(c["claim_boundaries"])>=7
 
     banned=[
-        "standing variation caused repeated capitulum states",
-        "reticulation caused the radiation",
-        "ploidy increases evolvability",
-        "the Japanese Cirsium radiation is an adaptive radiation",
+        "standing variation caused repeated capitulum states.",
+        "reticulation caused the radiation.",
+        "ploidy is shown to increase evolvability.",
+        "the Japanese Cirsium radiation is demonstrated to be an adaptive radiation.",
     ]
     low=(r+"\n"+d).lower()
     for b in banned:
