@@ -1,0 +1,31 @@
+name: Validate aza3 Nature genomic sampling panel
+
+on:
+  pull_request:
+    paths:
+      - "README.md"
+      - "docs/AZA3_NATURE_SCALE_MASTER_PLAN_V1.md"
+      - "docs/AZA3_NATURE_GENOMIC_SAMPLING_PANEL_V1.md"
+      - "data/planning/aza3_nature_genomic_sampling_panel_v1.csv"
+      - "analysis/validate_aza3_nature_genomic_sampling_panel_v1.py"
+      - ".github/workflows/validate-aza3-nature-genomic-sampling-panel-v1.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: validate-aza3-nature-genomic-sampling-panel-v1-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: |
+          python -m py_compile analysis/validate_aza3_nature_genomic_sampling_panel_v1.py
+          python analysis/validate_aza3_nature_genomic_sampling_panel_v1.py
