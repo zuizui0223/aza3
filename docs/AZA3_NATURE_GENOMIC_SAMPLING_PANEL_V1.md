@@ -7,12 +7,13 @@
 
 Sample populations that discriminate the genomic source of repeated capitulum innovation rather than merely maximizing taxonomic coverage.
 
-The panel tests four competing source models:
+The panel tests three competing genomic-origin models:
 
 - repeated de novo mutation;
 - ancestral standing variation;
-- introgressive reuse;
-- polyploid/homeolog/regulatory reuse.
+- introgressive reuse.
+
+A separate deployment-mechanism axis tests coding versus regulatory, dosage, structural or homeolog-specific reuse. Deployment is not mutually exclusive with standing variation or introgression.
 
 It also creates the same-individual data needed to test whether different capitulum modules carry separable genomic histories.
 
@@ -130,12 +131,7 @@ Tier 1 may be RAD/GBS-like or another common reduced-representation design. It i
 
 Selection must be frozen after Tier-1 QC but before fine-scale outcome inspection.
 
-Tier-2 targets should maximize discrimination among:
-
-- de novo mutation;
-- standing variation;
-- introgressive reuse;
-- regulatory/polyploid reuse.
+Tier-2 targets should maximize discrimination among the three genomic-origin models (de novo, standing variation, introgressive reuse) and, separately, identify the deployment mechanism where molecular data permit.
 
 Required analyses can include:
 
