@@ -63,18 +63,34 @@ Only a recovered or independently validated dated ensemble opens Gate 0B.
 
 ### Gate 0B — test phenotype accumulation rate
 
-Required evidence:
-- dated or calibratable nuclear topology ensemble;
-- population/morph-aware tips where feasible;
-- direct or authority-backed capitulum traits;
-- secondary Japanese histories and/or continental sister contexts;
-- explicit sampling and age controls.
+Gate 0B is currently **not authorized** because exact Japanese continuous-trait coverage is still sparse even though the global Azami phenotype atlas is broad.
 
-Freeze at least one time-aware primary statistic before outcome inspection:
-- transition accumulation per unit branch time;
-- disparity-through-time for continuous traits;
-- rate of novel capitulum-state combinations;
-- branch-length-matched recurrence density.
+Current strict-spatial overlap:
+- 14 exact Japan38 concepts with Azami trait matches;
+- 17 concepts represented only at binomial level;
+- 6 distinct Japan38 trait taxa with at least 10 observations;
+- 18 of 36 Japan38 species binomials absent from the current exhaustive Azami source pool.
+
+The primary future test is frozen in `GATE0B_PHENOTYPE_RATE_READINESS_V1.md` and `aza3_gate0b_rate_estimand_v1.json`.
+
+Primary core axes:
+- presentation angle;
+- floral lightness;
+- floral chroma;
+- head elongation;
+- head compactness.
+
+Primary estimand:
+
+`R_total = sum_m sigma2_J,m / sum_m sigma2_BG,m`
+
+where sigma2_J,m is the dated evolutionary-rate estimate for core axis m in the dominant Japanese radiation and sigma2_BG,m is the corresponding non-Japanese *Cirsium* background rate on the same dated tree and standardized scale.
+
+The null is `R_total = 1`. Calibration must use parametric simulation on the actual dated Japanese subtree while propagating coverage, missingness, measurement error and dated-tree uncertainty.
+
+Before trait-rate outcomes are opened, an outcome-blind precision simulation determines whether the recovered Japanese coverage is sufficient to identify `R_total`. If not, the result is `COVERAGE_NOT_IDENTIFIABLE` and trait recovery continues.
+
+EAzami orientation, phyllary posture and stickiness remain an independent secondary layer for time-normalized transition summaries once a dated ensemble exists. They do not substitute for the primary global continuous comparator because homologous global state coding is unavailable for all three modules.
 
 Falsifier:
 If the dominant radiation is not unusually fast after age, topology, coverage and sampling controls, the Nature-scale accelerated-evolvability claim is weakened. The project can still study the genomic origin of repeated traits, but not exceptional innovation rate.

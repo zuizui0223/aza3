@@ -1,0 +1,63 @@
+{
+  "contract_version": "aza3_gate0b_japan_trait_coverage_audit_v1",
+  "status_date": "2026-10-04",
+  "source": {
+    "repo": "zuizui0223/azami",
+    "full_exhaustive_run": 29216617585,
+    "full_exhaustive_artifact_id": 8269246732,
+    "full_exhaustive_artifact_digest": "sha256:5f18b42d18cfcb81691c38ce0f04bcef754e6a67382025ea90110dbc50ae194b",
+    "japan38_summary_artifact_id": 9263360258,
+    "japan38_summary_artifact_digest": "sha256:1fa35c17d4aba672e2f8a2a0c33a3792715f7a09e1dd64d3871b25a6c7524b19"
+  },
+  "detector_positive_japan38_binomials": 18,
+  "replication_threshold_counts": {
+    "n_ge_1": 18,
+    "n_ge_2": 13,
+    "n_ge_3": 11,
+    "n_ge_5": 11,
+    "n_ge_10": 9,
+    "n_ge_20": 6,
+    "n_ge_50": 5
+  },
+  "low_replication_taxa": [
+    {
+      "taxon": "Cirsium amplexifolium",
+      "n": 1,
+      "japan38_member_ids": "JPN_04"
+    },
+    {
+      "taxon": "Cirsium buergeri",
+      "n": 1,
+      "japan38_member_ids": "JPN_32"
+    },
+    {
+      "taxon": "Cirsium matsumurae",
+      "n": 1,
+      "japan38_member_ids": "JPN_18",
+      "identity_note": "paper concept is var. dubium; binomial image not automatically exact"
+    },
+    {
+      "taxon": "Cirsium microspicatum",
+      "n": 1,
+      "japan38_member_ids": "JPN_34"
+    },
+    {
+      "taxon": "Cirsium spicatum",
+      "n": 1,
+      "japan38_member_ids": "JPN_26"
+    },
+    {
+      "taxon": "Cirsium nipponicum",
+      "n": 2,
+      "japan38_member_ids": "JPN_20|JPN_21|JPN_35",
+      "identity_note": "one binomial source maps to three paper concepts; no automatic variety assignment"
+    },
+    {
+      "taxon": "Cirsium norikurense",
+      "n": 2,
+      "japan38_member_ids": "JPN_22"
+    }
+  ],
+  "current_interpretation": "The existing exhaustive image source already contains 18 Japan38 binomials, but the rate numerator remains replication-limited. Targeted recovery should first increase information for weakly represented existing taxa while separately pursuing high-value source-pool gaps.",
+  "claim_boundary": "Detector-positive image counts are not independent populations, exact infraspecific identities, evolutionary rates or adaptation evidence."
+}
