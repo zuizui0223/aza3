@@ -37,5 +37,12 @@
     "NOT_IDENTIFIABLE"
   ],
   "prohibited_inference": "No module-specific genomic architecture or genotype-phenotype claim is authorized by this pilot.",
-  "current_authorization": false
+  "current_authorization": false,
+  "flow_cytometry_qc_contract": "data/contracts/c_sieboldii_flow_cytometry_qc_v1.json",
+  "flow_cytometry_gate": {
+    "required_before_interpreting_2C_reference_interaction": true,
+    "pass_class": "FLOW_2C_PASS",
+    "heterogeneity_flag": "GENOME_SIZE_HETEROGENEITY_FLAG",
+    "boundary": "2C is a reference-bias QC covariate/stratifier, not a capitulum-causality result."
+  }
 }
