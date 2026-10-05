@@ -20,21 +20,24 @@ jobs:
   focal-original-target:
     runs-on: ubuntu-latest
     timeout-minutes: 60
+    defaults:
+      run:
+        shell: bash -el {0}
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Create frozen HybPiper environment
+        uses: mamba-org/setup-micromamba@v2
         with:
-          python-version: "3.12"
-
-      - name: Install bounded HybPiper dependencies
-        run: |
-          set -euo pipefail
-          sudo apt-get update
-          sudo apt-get install -y \
-            sra-toolkit bwa samtools spades ncbi-blast+ exonerate parallel mafft
-          python -m pip install --upgrade pip
-          python -m pip install "hybpiper==2.3.4"
+          environment-name: r1b0
+          init-shell: bash
+          cache-environment: true
+          create-args: >-
+            python=3.12
+            hybpiper=2.3.4
+            sra-tools
+            -c conda-forge
+            -c bioconda
 
       - name: Freeze software versions
         run: |
