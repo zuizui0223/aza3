@@ -67,6 +67,33 @@ Therefore:
 
 The EAzami public-repository audit is handed off in `data/contracts/aza3_eazami_moreyra_locus_handoff_v1.json`.
 
+## Existing empirical Stage-1 receipt
+
+A previously accepted EAzami Japan38 compatibility artifact already contains the focal public `C. sieboldii` sample (`J38S037`, `SRR30887308`) processed in the same public Compositae1061 compatibility space.
+
+Source matrix artifact:
+- workflow run: `32806058893`
+- artifact id: `9557421855`
+- artifact digest: `sha256:9a80e07e6b7dfbb182ef64a0eff63f4d0050d3dce00658170de5f95d5a6dece7`
+
+Observed focal recovery:
+- raw recovered loci: **988 / 1,061 = 0.9312**;
+- 39-sample median raw recovery: **997 loci**;
+- focal ascending rank: **15 / 39** — not an extreme low-recovery sample;
+- after the current 39-sample occupancy/paralogy gate, `C. sieboldii` retained **680 / 681** eligible public-layer loci;
+- it retained **482 / 482** eligible reproducible-531 loci;
+- it retained **236 / 236** eligible loci from the frozen conservative-241 layer.
+
+The five frozen 241 loci absent from the current 236-locus panel were removed by the **panel-wide** current occupancy/paralogy gate before focal comparison; they are not five `C. sieboldii`-specific failures.
+
+This supports the bounded Stage-1 statement:
+
+> **FOCAL_PUBLIC_TARGET_CAPTURE_RECOVERY_NOT_A_FAILURE**
+
+It does **not** authorize `PUBLIC_TRANSFER_GREEN`, because genome-reference localization is still untested. The exact receipt is frozen in `data/evidence/r1b0_sieboldii_public_recovery_empirical_v1.json`.
+
+A new aza3 rerun remains useful as an independent reproduction of this pre-existing artifact result.
+
 ## Candidate whole-genome references
 
 Use the same three resources frozen in Gate R1:
