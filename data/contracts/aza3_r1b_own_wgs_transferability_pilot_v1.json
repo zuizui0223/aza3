@@ -1,7 +1,7 @@
 {
   "contract_version": "aza3_r1b_own_wgs_transferability_pilot_v1",
   "status_date": "2026-10-05",
-  "status": "DESIGN_FROZEN_NOT_COLLECTION_AUTHORIZATION",
+  "status": "DESIGN_FROZEN__TECHNICAL_EXECUTION_POSSIBLE__BIOLOGICAL_SAMPLE_SELECTION_BLOCKED_BY_CS",
   "focal_taxon": "Cirsium sieboldii",
   "primary_n": 8,
   "allowed_n": [
@@ -64,8 +64,21 @@
     "local_window_invariance",
     "open_phenotype_labels_for_technical_bias_only"
   ],
-  "hard_stop": "Do not sequence the full 298-individual Phase-A panel before this pilot is classified.",
+  "hard_stop": "Do not sequence the full 298-individual Phase-A panel, and do not choose C. sieboldii Nature-test individuals, before Gate CS and this transferability pilot are classified.",
   "green_action": "Retain existing public references for Phase-A/Tier-2 discovery; do not build a focal reference merely for completeness.",
   "amber_action": "Build focal C. sieboldii HiFi + chromosome-scale reference before Nature Fig.3 local-history inference.",
-  "red_action": "Focal reference mandatory; escalate to mini-pangenome/graph if focal-form reference bias persists."
+  "red_action": "Focal reference mandatory; escalate to mini-pangenome/graph if focal-form reference bias persists.",
+  "combinatorial_substrate_gate": "data/contracts/c_sieboldii_combinatorial_substrate_gate_v1.json",
+  "sample_selection_gate": {
+    "required_before_biological_sample_selection": true,
+    "allowed_before_gate": "reference-transferability-only sequencing of already authorized samples",
+    "biological_use_open_if": [
+      "CS_GREEN",
+      "CS_GREEN_LOCAL_SET"
+    ],
+    "nature_reassembly_priority_open_if": [
+      "CS_GREEN"
+    ],
+    "amber_rule": "If CS_AMBER, do not treat the 8-individual WGS as a natural-reassembly test; verify an alternative focal system."
+  }
 }
