@@ -41,7 +41,8 @@
     "orientation_angle_range_deg_min": 30,
     "white_nonwhite_min_per_state_if_binary_used": 3,
     "primary_pair_required_occupied_cells_of_4": 3,
-    "continuous_primary_pair_abs_spearman_max": 0.8
+    "continuous_primary_pair_abs_spearman_max": 0.8,
+    "orientation_binary_min_per_extreme_state": 3
   },
   "decisions": [
     "CS_GREEN",
@@ -62,5 +63,13 @@
     "distant population balancing cannot be called segregation",
     "stickiness cannot rescue the gate post hoc",
     "natural reassembly requires both directly observed combinations and genomic segregation"
-  ]
+  ],
+  "orientation_geometry": {
+    "zero_deg": "vertically_upward",
+    "ninety_deg": "horizontal",
+    "one_eighty_deg": "vertically_downward",
+    "descriptive_upright_max_deg": 60,
+    "descriptive_nodding_min_deg": 120,
+    "intermediate_rule": "60<angle<120 retained continuously but excluded from binary-cell occupancy"
+  }
 }
