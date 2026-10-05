@@ -1,0 +1,66 @@
+{
+  "contract_version": "aza3_c_sieboldii_combinatorial_substrate_gate_v1",
+  "status_date": "2026-10-05",
+  "status": "REQUIRED_BEFORE_BIOLOGICAL_WGS_SAMPLE_SELECTION",
+  "focal_taxon": "Cirsium sieboldii",
+  "nature_question": "Must an integrated complex organ evolve as an integrated unit?",
+  "public_evidence_ceiling": [
+    "species-wide upright-flowering plants reported",
+    "normal heads become upright after flowering",
+    "white-flowered form formally recognized",
+    "species-wide variation in capitulum size and phyllary-row number reported",
+    "same-population independent multi-component segregation not yet demonstrated"
+  ],
+  "primary_pair": [
+    "floral_colour",
+    "anthesis_orientation"
+  ],
+  "secondary_pairs": [
+    [
+      "anthesis_orientation",
+      "phyllary_involucre_state"
+    ],
+    [
+      "floral_colour",
+      "phyllary_involucre_state"
+    ]
+  ],
+  "exploratory_only": [
+    "stickiness"
+  ],
+  "primary_orientation_stage": [
+    "A1_early_anthesis",
+    "A2_full_anthesis"
+  ],
+  "census": {
+    "target_flowering_individuals": 30,
+    "minimum_complete_primary_pair_A1_A2": 20,
+    "minimum_individuals_per_occupied_binary_cell": 3
+  },
+  "variability_thresholds": {
+    "orientation_angle_range_deg_min": 30,
+    "white_nonwhite_min_per_state_if_binary_used": 3,
+    "primary_pair_required_occupied_cells_of_4": 3,
+    "continuous_primary_pair_abs_spearman_max": 0.8
+  },
+  "decisions": [
+    "CS_GREEN",
+    "CS_GREEN_LOCAL_SET",
+    "CS_AMBER",
+    "CS_RED_PHENOLOGY",
+    "CS_RED_NO_COMBINATORIAL_SUBSTRATE",
+    "NOT_IDENTIFIABLE"
+  ],
+  "wgs_relationship": {
+    "technical_reference_pilot": "authorized_by_R1B0",
+    "biological_sample_selection": "blocked_until_CS_classified",
+    "full_40_individual_C_sieboldii_panel": "blocked_until_substrate_value_verified"
+  },
+  "hard_stops": [
+    "post-anthesis upright heads cannot define an upright-flowering morph",
+    "species authority states cannot substitute for same-individual phenotype",
+    "distant population balancing cannot be called segregation",
+    "stickiness cannot rescue the gate post hoc",
+    "natural reassembly requires both directly observed combinations and genomic segregation"
+  ]
+}
