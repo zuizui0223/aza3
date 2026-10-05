@@ -11,7 +11,7 @@ Primary estimand:
   using six normalized environmental-block RMS effect-magnitude signatures.
 
 The null is evaluated exactly across all distinct assignments of module labels
-with the observed module sizes (1,3,2,3): 1680 assignments.
+with the observed module sizes (1,3,2,3): 5040 assignments.
 """
 from __future__ import annotations
 import argparse, csv, itertools, json, math
@@ -136,7 +136,7 @@ def summarize(path: Path, scale: str):
     null=[]
     for mapping in unique_label_assignments():
         null.append(stat_for_labels(pairs,mapping)[0])
-    assert len(null)==1680
+    assert len(null)==5040
     p=(sum(x>=obs-1e-15 for x in null))/len(null)  # exact, observed included
     cent=module_centroids(fp)
     centroid_pairs=[]
