@@ -1,0 +1,95 @@
+name: Validate C sieboldii substrate gate
+
+on:
+  pull_request:
+    paths:
+      - "README.md"
+      - "docs/C_SIEBOLDII_COMBINATORIAL_SUBSTRATE_GATE_V1.md"
+      - "data/contracts/c_sieboldii_combinatorial_substrate_gate_v1.json"
+      - "data/evidence/c_sieboldii_combinatorial_substrate_public_audit_v1.json"
+      - "data/templates/c_sieboldii_combinatorial_census_v1.csv"
+      - "analysis/classify_c_sieboldii_combinatorial_substrate_v1.py"
+      - "analysis/validate_c_sieboldii_combinatorial_substrate_gate_v1.py"
+      - ".github/workflows/validate-c-sieboldii-substrate-gate-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate contracts
+        run: |
+          python -m py_compile analysis/classify_c_sieboldii_combinatorial_substrate_v1.py
+          python -m py_compile analysis/validate_c_sieboldii_combinatorial_substrate_gate_v1.py
+          python analysis/validate_c_sieboldii_combinatorial_substrate_gate_v1.py
+
+      - name: Smoke-test positive primary substrate
+        run: |
+          python - <<'PY'
+          import csv
+          fields="observation_id,population_id,local_set_id,date,genet_or_individual_id,head_id,flower_stage,colour_L,colour_a,colour_b,colour_chroma,colour_white_descriptive,orientation_deg_gravity,phyllary_rows,outer_phyllary_angle_deg,involucre_diameter_mm,involucre_length_mm,stickiness_score,gland_exudate_status,voucher_or_image_id,habitat_microzone,taxonomic_confidence,repeat_head_followup_id,notes".split(",")
+          rows=[]
+          # 24 A2 individuals: 3 cells x8, deliberately not deterministic in continuous chroma/angle.
+          specs=[
+              (True,[20,30,40,50,55,45,35,25],[4,5,6,7,8,9,10,11]),       # white/upright
+              (True,[130,140,150,160,170,145,155,165],[5,7,6,9,8,10,11,12]), # white/nodding
+              (False,[125,135,145,155,165,175,150,160],[20,22,19,25,23,24,21,26]), # coloured/nodding
+          ]
+          i=0
+          for white,angs,chromas in specs:
+              for a,c in zip(angs,chromas):
+                  i+=1
+                  r={k:"" for k in fields}
+                  r.update({
+                    "observation_id":f"O{i:02d}","population_id":"POP1","date":"2026-09-20",
+                    "genet_or_individual_id":f"G{i:02d}","head_id":f"H{i:02d}","flower_stage":"A2",
+                    "colour_chroma":str(c),"colour_white_descriptive":"true" if white else "false",
+                    "orientation_deg_gravity":str(a),"taxonomic_confidence":"high"
+                  })
+                  rows.append(r)
+          with open("positive.csv","w",newline="") as fh:
+              w=csv.DictWriter(fh,fieldnames=fields); w.writeheader(); w.writerows(rows)
+          PY
+          python analysis/classify_c_sieboldii_combinatorial_substrate_v1.py --input positive.csv --output positive.json
+          python - <<'PY'
+          import json
+          d=json.load(open("positive.json"))
+          assert d["decision"]=="CS_GREEN", d
+          PY
+
+      - name: Smoke-test post-anthesis reorientation cannot rescue gate
+        run: |
+          python - <<'PY'
+          import csv
+          fields="observation_id,population_id,local_set_id,date,genet_or_individual_id,head_id,flower_stage,colour_L,colour_a,colour_b,colour_chroma,colour_white_descriptive,orientation_deg_gravity,phyllary_rows,outer_phyllary_angle_deg,involucre_diameter_mm,involucre_length_mm,stickiness_score,gland_exudate_status,voucher_or_image_id,habitat_microzone,taxonomic_confidence,repeat_head_followup_id,notes".split(",")
+          rows=[]
+          # Flowering heads all nodding. Upright heads exist only at P and must be ignored.
+          for i in range(1,13):
+              for stage,angle in [("A2",150),("P",25)]:
+                  r={k:"" for k in fields}
+                  r.update({
+                    "observation_id":f"O{i}_{stage}","population_id":"POP1","date":"2026-09-20",
+                    "genet_or_individual_id":f"G{i}","head_id":f"H{i}_{stage}","flower_stage":stage,
+                    "colour_chroma":str(5 if i<=6 else 22),
+                    "colour_white_descriptive":"true" if i<=6 else "false",
+                    "orientation_deg_gravity":str(angle),"taxonomic_confidence":"high"
+                  })
+                  rows.append(r)
+          with open("phenology.csv","w",newline="") as fh:
+              w=csv.DictWriter(fh,fieldnames=fields); w.writeheader(); w.writerows(rows)
+          PY
+          python analysis/classify_c_sieboldii_combinatorial_substrate_v1.py --input phenology.csv --output phenology.json
+          python - <<'PY'
+          import json
+          d=json.load(open("phenology.json"))
+          assert d["decision"]!="CS_GREEN", d
+          assert d["population_results"][0]["upright_extreme_n"]==0
+          PY
