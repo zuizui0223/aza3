@@ -74,7 +74,8 @@
         "chromosome_or_contig_placement_concordance",
         "cross_reference_per_locus_divergence_rank_correlation",
         "cross_reference_locus_dropout",
-        "cross_reference_sample_distance_concordance"
+        "cross_reference_sample_distance_concordance",
+        "within_reference_individual_hap1_hap2_placement_sensitivity"
       ]
     }
   ],
@@ -131,5 +132,36 @@
     "sha256": "d561c6e393b1964fdd4b3acf14fda8b10f2f43923b1074cd35f86bfed07ebf73",
     "derivation": "No paralog warning in the recovered author matrix plus raw sequence occupancy >=0.80 across the public author dataset.",
     "role": "Primary high-stringency reference-transfer comparison layer."
+  },
+  "genome_reference_internal_controls": [
+    {
+      "taxon": "Cirsium heterophyllum",
+      "hap1": "GCA_965225835.1",
+      "hap2": "GCA_965225975.1",
+      "comparison_role": "within_individual_reference_haplotype_sensitivity"
+    },
+    {
+      "taxon": "Cirsium dissectum",
+      "hap1": "GCA_965276805.1",
+      "hap2": "GCA_965276745.1",
+      "comparison_role": "within_individual_reference_haplotype_sensitivity",
+      "known_haplotypic_inversions": [
+        "Chr1",
+        "Chr6",
+        "Chr7"
+      ]
+    }
+  ],
+  "genome_reference_metadata": {
+    "heterophyllum_hap1_chromosome_scale_scaffolds": 17,
+    "dissectum_hap1_chromosome_scale_scaffolds": 17,
+    "correction": "Any prior 19-chromosome description is superseded by NCBI accession-level assembly reports.",
+    "nipponicum_figshare": {
+      "filename": "C.nipponicum_softmasked_genome.fa",
+      "file_id": 48979489,
+      "size_bytes": 948012384,
+      "md5": "e9390e23ffd0dc5e3da8271db4d1d3ca",
+      "download_url": "https://ndownloader.figshare.com/files/48979489"
+    }
   }
 }
