@@ -1,0 +1,22 @@
+{
+  "audit_version": "comp1061_public_target_audit_v1",
+  "status_date": "2026-10-05",
+  "source_repository": "carol-siniscalchi/Comp1061-Angio353",
+  "source_path": "comp1061_hybpiper_reference.fasta",
+  "source_blob_sha": "4f89e234007f367ffa8aa5e2be536bc44f31f445",
+  "file_size_bytes": 1162856,
+  "fasta_sequence_records": 2597,
+  "distinct_loci": 1061,
+  "reference_prefixes": [
+    "lett",
+    "saff",
+    "sunf"
+  ],
+  "header_rule": "<reference_prefix>-<locus_id>",
+  "interpretation": [
+    "The original Compositae1061 HybPiper reference contains 1061 loci represented by up to three reference taxa.",
+    "The 350 nuclear loci reported in Moreyra et al. 2025 are a downstream retained data set, not the full bait/reference locus universe.",
+    "R1B-0 must measure locus recovery from the 1061-locus universe before applying a clean-locus/paralogy filter."
+  ],
+  "claim_boundary": "This audit describes the public reference FASTA only; it does not reproduce the Moreyra C. tioganum-augmented intermediate target file."
+}
