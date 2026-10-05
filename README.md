@@ -24,13 +24,17 @@ This is a hypothesis programme, not a result. EAzami establishes repeated phenot
 
 1. `docs/AZA3_NATURE_SCALE_MASTER_PLAN_V1.md` — active Nature plan; Gate 0 is split into **0A dated-tree recovery** and **0B phenotype-rate testing** before the four genomic source models.
 2. `data/planning/eazami_to_aza3_hypothesis_bridge_v1.csv` — explicit EAzami-result → aza3-hypothesis map, including falsifiers and claim ceilings.
-3. `docs/GATE0A_DATED_TREE_READINESS_AND_RECOVERY_V1.md` + `data/planning/aza3_gate0a_recovery_routes_v1.csv` — current first executable gate; author-source recovery before independent rebuild.
-4. `docs/GATE0B_PHENOTYPE_RATE_READINESS_V1.md` + `data/contracts/aza3_gate0b_rate_estimand_v1.json` — frozen phenotype numerator and total-rate ratio; currently blocked by Japanese trait coverage.
-5. `data/planning/aza3_nature_sampling_priorities_v2.csv` — canonical sampling order ranked by hypothesis discrimination rather than taxonomic coverage.
-6. `docs/AZA3_NATURE_GENOMIC_SAMPLING_PANEL_V1.md` + `data/planning/aza3_nature_genomic_sampling_panel_v1.csv` — active 298-individual Phase-A genomic hypothesis-discrimination panel; *C. sieboldii* is the primary same-species combinatorial-reuse system.
-7. `docs/ADAPTIVE_VARIANT_IDENTIFICATION_PROGRAM_V1.md` + `data/planning/adaptive_variant_evidence_ladder_v1.csv` — colour-led variant-to-fitness-to-reuse ladder; *takaoense* is the Phase-B molecular anchor.
-8. `docs/TAKAOENSE_PHASEB_PREFIELD_CANDIDATE_REDUCTION_V1.md` + `data/contracts/takaoense_phaseb_prefield_contract_v1.json` — one-pass public 6-sample coding/haplotype candidate reduction before new W/BP population sampling.
-9. The original `data/planning/chapter3_sampling_priorities_v1.csv` remains preserved as the narrower history-resolution plan and is not the current strategic ranking.
+3. `docs/GATE0A_DATED_TREE_READINESS_AND_RECOVERY_V1.md` + `data/planning/aza3_gate0a_recovery_routes_v1.csv` — dated-tree recovery route for the optional acceleration context.
+4. `docs/GATE0B_PHENOTYPE_RATE_READINESS_V1.md` + `data/contracts/aza3_gate0b_rate_estimand_v1.json` — frozen phenotype-rate test; currently blocked by Japanese trait coverage.
+5. `docs/REFERENCE_GENOME_AND_PUBLIC_DATA_READINESS_V1.md` + `data/contracts/aza3_reference_public_data_readiness_v1.json` + `data/planning/reference_public_resource_inventory_v1.csv` — **Gate R1**; article-linked public-data audit is complete.
+6. `docs/REFERENCE_TRANSFER_PUBLIC_PREFLIGHT_V1.md` + `docs/R1B0_EXECUTION_RUNBOOK_V1.md` + `data/contracts/aza3_reference_transfer_public_preflight_v1.json` + `data/contracts/aza3_eazami_moreyra_locus_handoff_v1.json` + `data/planning/reference_public_preflight_runs_v1.csv` — **R1B-0**; an executable bounded preflight using public Moreyra target-capture data, including `C. sieboldii` run `SRR30887308`. It separates the reproducible public 1,061 named-locus universe from the paper-reported but unrecovered 1,064-target universe and uses the frozen Moreyra-compatible 241-locus set as the primary high-stringency layer.
+7. `data/planning/aza3_nature_sampling_priorities_v2.csv` — canonical sampling order ranked by hypothesis discrimination rather than taxonomic coverage.
+8. `docs/AZA3_NATURE_GENOMIC_SAMPLING_PANEL_V1.md` + `data/planning/aza3_nature_genomic_sampling_panel_v1.csv` — active 298-individual Phase-A genomic hypothesis-discrimination panel; *C. sieboldii* is the primary same-species combinatorial-reuse system.
+9. `docs/ADAPTIVE_VARIANT_IDENTIFICATION_PROGRAM_V1.md` + `data/planning/adaptive_variant_evidence_ladder_v1.csv` — colour-led variant-to-fitness-to-reuse ladder; *takaoense* is the Phase-B molecular anchor.
+10. `docs/TAKAOENSE_PHASEB_PREFIELD_CANDIDATE_REDUCTION_V1.md` + `data/contracts/takaoense_phaseb_prefield_contract_v1.json` — one-pass public 6-sample coding/haplotype candidate reduction before new W/BP population sampling.
+11. The original `data/planning/chapter3_sampling_priorities_v1.csv` remains preserved as the narrower history-resolution plan and is not the current strategic ranking.
+
+Gate R1 is independent of whether Gate 0 ultimately supports an acceleration claim: reference transferability is a prerequisite for module-specific local genealogy, haplotype and structural inference either way.
 
 ### Read the origin of this question first
 

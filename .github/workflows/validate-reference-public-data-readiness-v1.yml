@@ -1,0 +1,81 @@
+name: Validate reference public-data readiness
+
+on:
+  pull_request:
+    paths:
+      - "README.md"
+      - "docs/REFERENCE_GENOME_AND_PUBLIC_DATA_READINESS_V1.md"
+      - "docs/REFERENCE_TRANSFER_PUBLIC_PREFLIGHT_V1.md"
+      - "docs/R1B0_EXECUTION_RUNBOOK_V1.md"
+      - "data/contracts/aza3_reference_public_data_readiness_v1.json"
+      - "data/contracts/aza3_reference_transfer_public_preflight_v1.json"
+      - "data/contracts/aza3_eazami_moreyra_locus_handoff_v1.json"
+      - "data/contracts/r1b0_primary_metric_registry_v1.csv"
+      - "data/templates/r1b0_target_recovery_results_v1.csv"
+      - "data/templates/r1b0_reference_localization_results_v1.csv"
+      - "data/planning/reference_public_resource_inventory_v1.csv"
+      - "data/planning/reference_public_preflight_runs_v1.csv"
+      - "data/evidence/comp1061_public_target_audit_v1.json"
+      - "data/evidence/r1b0_genome_reference_byte_contract_v1.json"
+      - "data/evidence/moreyra_conservative_241_no_warning_loci_v1.txt"
+      - "analysis/validate_reference_public_data_readiness_v1.py"
+      - "analysis/build_reconstructed_cirsium_target_v1.py"
+      - "analysis/summarize_hybpiper_recovery_v1.py"
+      - ".github/workflows/validate-reference-public-data-readiness-v1.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: validate-reference-public-data-readiness-v1-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate contracts
+        run: |
+          python -m py_compile analysis/validate_reference_public_data_readiness_v1.py
+          python -m py_compile analysis/build_reconstructed_cirsium_target_v1.py
+          python analysis/validate_reference_public_data_readiness_v1.py
+      - name: Smoke-test Cirsium target reconstruction helper
+        run: |
+          set -euo pipefail
+          tmp="$(mktemp -d)"
+          mkdir -p "$tmp/tiog/g1/sample/sequences/FNA" "$tmp/tiog/g2/sample/sequences/FNA"
+          cat > "$tmp/original.fasta" <<'EOF'
+          >lett-g1
+          AAAA
+          >saff-g1
+          AAAT
+          >sunf-g2
+          CCCC
+          EOF
+          cat > "$tmp/tiog/g1/sample/sequences/FNA/g1.FNA" <<'EOF'
+          >tiog
+          AAAAGG
+          EOF
+          cat > "$tmp/tiog/g2/sample/sequences/FNA/g2.FNA" <<'EOF'
+          >tiog
+          CCCCGG
+          EOF
+          python analysis/build_reconstructed_cirsium_target_v1.py \
+            --original-target "$tmp/original.fasta" \
+            --tioganum-root "$tmp/tiog" \
+            --output "$tmp/reconstructed.fasta" \
+            --report "$tmp/report.json"
+          grep -q '^>tiog-g1$' "$tmp/reconstructed.fasta"
+          grep -q '^>tiog-g2$' "$tmp/reconstructed.fasta"
+          python - "$tmp/report.json" <<'PY'
+          import json, sys
+          d=json.load(open(sys.argv[1]))
+          assert d["original_distinct_loci"] == 2
+          assert d["tioganum_genes_appended"] == 2
+          assert d["target_loci_without_tioganum_sequence"] == 0
+          PY

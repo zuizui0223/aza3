@@ -1,0 +1,55 @@
+name: R1B0 focal public-data smoke
+
+on:
+  pull_request:
+    paths:
+      - "analysis/run_r1b0_focal_public_smoke_v1.sh"
+      - ".github/workflows/r1b0-focal-public-smoke-v1.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: r1b0-focal-public-smoke-v1-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  focal-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install bounded dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y sra-toolkit bwa samtools curl
+      - name: Fetch frozen public Compositae1061 target
+        run: |
+          curl -L --fail --retry 3 \
+            -o comp1061_hybpiper_reference.fasta \
+            https://raw.githubusercontent.com/carol-siniscalchi/Comp1061-Angio353/main/comp1061_hybpiper_reference.fasta
+          test "$(grep -c '^>' comp1061_hybpiper_reference.fasta)" -eq 2597
+      - name: Run focal C. sieboldii technical smoke
+        run: |
+          bash analysis/run_r1b0_focal_public_smoke_v1.sh \
+            SRR30887308 \
+            r1b0_focal_smoke \
+            comp1061_hybpiper_reference.fasta
+      - name: Show result
+        if: always()
+        run: |
+          cat r1b0_focal_smoke/summary.md || true
+          cat r1b0_focal_smoke/summary.json || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: r1b0-focal-public-smoke
+          path: |
+            r1b0_focal_smoke/summary.*
+            r1b0_focal_smoke/*receipt.json
+            r1b0_focal_smoke/target_audit.json
+            r1b0_focal_smoke/tool_versions.txt
+            r1b0_focal_smoke/flagstat.txt
+            r1b0_focal_smoke/idxstats.tsv
+          if-no-files-found: warn
