@@ -169,7 +169,7 @@ def main():
     assert hap["controls"]["dissectum"]["unique_status_agreement_fraction"]>0.99
 
     # Own-WGS pilot is the next scientific gate.
-    assert wgs["status"]=="DESIGN_FROZEN_NOT_COLLECTION_AUTHORIZATION"
+    assert wgs["status"]=="DESIGN_FROZEN__TECHNICAL_EXECUTION_POSSIBLE__BIOLOGICAL_SAMPLE_SELECTION_BLOCKED_BY_CS"
     assert wgs["primary_n"]==8
     assert wgs["target_depth_x"]==8
     assert wgs["routing_thresholds"]["chromosome_reference_pairwise_distance_rank_correlation_min"]==0.95
