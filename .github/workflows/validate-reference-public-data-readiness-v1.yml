@@ -11,6 +11,7 @@ on:
       - "data/contracts/aza3_reference_transfer_public_preflight_v1.json"
       - "data/contracts/aza3_eazami_moreyra_locus_handoff_v1.json"
       - "data/contracts/r1b0_primary_metric_registry_v1.csv"
+      - "data/contracts/r1_estimand_reference_requirements_v1.csv"
       - "data/templates/r1b0_target_recovery_results_v1.csv"
       - "data/templates/r1b0_reference_localization_results_v1.csv"
       - "data/planning/reference_public_resource_inventory_v1.csv"
