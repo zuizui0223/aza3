@@ -36,7 +36,7 @@ def main():
     assert c["variability_thresholds"]["continuous_primary_pair_abs_spearman_max"]==0.8
 
     assert a["audit_decision"]=="PUBLIC_EVIDENCE_SUPPORTS_SPECIES_WIDE_MULTIPLICITY_BUT_NOT_A_VERIFIED_COMBINATORIAL_POPULATION_SUBSTRATE"
-    assert "orientation" in a["key_confound"]\n    assert c["public_locality_prescreen"]=="data/evidence/c_sieboldii_public_locality_prescreen_v1.json"\n    assert c["public_prescreen_status"]=="TARGETED_CS0_LOCALITIES_IDENTIFIED__SUBSTRATE_NOT_YET_VERIFIED"\n    assert [x["rank"] for x in c["cs0_priority_localities"]]==[1,2]\n    assert c["cs0_priority_localities"][0]["locality"].startswith("Kurumayama Moor")\n    assert c["cs0_priority_localities"][1]["locality"].startswith("Tsukude Plateau")\n    assert loc["status"]=="PUBLIC_PRESCREEN_SUPPORTS_TARGETED_CS0__NO_COMBINATORIAL_SUBSTRATE_YET"\n    assert loc["white_form"]["type_locality"]=="Nagano Prefecture, Kirigamine, Kurumayama Moor"\n    assert loc["decision"]["public_gate_class"]=="NOT_IDENTIFIABLE_FOR_COMBINATORIAL_SUBSTRATE"
+    assert "orientation" in a["key_confound"]\n    assert c["public_locality_prescreen"]=="data/evidence/c_sieboldii_public_locality_prescreen_v1.json"\n    assert c["public_prescreen_status"]=="TARGETED_CS0_LOCALITIES_IDENTIFIED__SUBSTRATE_NOT_YET_VERIFIED"\n    assert [x["rank"] for x in c["cs0_priority_localities"]]==[1,2]\n    assert c["cs0_priority_localities"][0]["locality"].startswith("Kurumayama Moor")\n    assert c["cs0_priority_localities"][1]["locality"].startswith("Kiyooka-Mukaiyama Wetland")\n    assert loc["status"]=="PUBLIC_PRESCREEN_SUPPORTS_TARGETED_CS0__NO_COMBINATORIAL_SUBSTRATE_YET"\n    assert loc["white_form"]["type_locality"]=="Nagano Prefecture, Kirigamine, Kurumayama Moor"\n    assert loc["decision"]["public_gate_class"]=="NOT_IDENTIFIABLE_FOR_COMBINATORIAL_SUBSTRATE"
 
     assert "combinatorial_substrate_gate" in w
     assert w["sample_selection_gate"]["required_before_biological_sample_selection"] is True
@@ -62,7 +62,7 @@ def main():
         "CS_GREEN",
         "CS_GREEN_LOCAL_SET",
         "CS_RED_PHENOLOGY",
-        "post-flowering upright heads",\n        "Priority 1 — Kurumayama Moor / Kirigamine, Nagano",\n        "Priority 2 — Tsukude Plateau wetland local set, Aichi",
+        "post-flowering upright heads",\n        "Priority 1 — Kurumayama Moor / Kirigamine, Nagano",\n        "Priority 2 — Kiyooka-Mukaiyama Wetland, Tsukude, Aichi",
         "do not sequence 40",
     ):
         need(d,x)
