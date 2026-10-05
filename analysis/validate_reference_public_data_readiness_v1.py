@@ -91,6 +91,8 @@ def main():
     assert pcon["focal_run"]["run"] == "SRR30887308"
     assert pcon["focal_run"]["biosample"] == "SAMN44017917"
     assert pcon["focal_run"]["taxon"] == "Cirsium sieboldii"
+    assert pcon["focal_run"]["raw_read_mapping_rate_role"] == "TECHNICAL_QC_ONLY__NOT_REFERENCE_TRANSFERABILITY_ESTIMAND"
+    assert "3:2 ratio" in pcon["focal_run"]["experiment_design_note"]
     assert len(pruns) == 10
 
     target_versions = {x["id"]: x for x in pcon["target_reference_versions"]}
