@@ -70,7 +70,7 @@
       ]
     }
   ],
-  "clean_locus_principle": "Freeze a paralogy-safe locus subset before opening focal C. sieboldii transferability results; apply the same rule to every sample and both target-reference versions.",
+  "clean_locus_principle": "Freeze the automatic paralogy-safe locus subset before opening focal C. sieboldii transferability results; apply identical target/reference rules to every sample. Preserve the published Moreyra orthology rule as a separate historical-replication layer rather than forcing its final 350-locus count.",
   "decision_classes": {
     "PUBLIC_TRANSFER_GREEN": "Target-file sensitivity is small or bounded, clean-locus placement is broadly reference-invariant, and Japanese comparison-panel relationships are stable; proceed to 6-10-individual focal WGS R1B pilot.",
     "PUBLIC_TRANSFER_AMBER": "Public loci remain useful for topology/orthology but target-file dependence, reference-specific dropout or distance distortion remains; plan focal C. sieboldii reference in parallel with a small WGS bias audit.",
@@ -85,5 +85,23 @@
     "module-specific local genealogy",
     "genotype-phenotype association"
   ],
-  "stop_rule": "One bounded target-capture transferability preflight only; do not turn PRJNA957074 into a new aza3 phylogenomics project."
+  "stop_rule": "One bounded target-capture transferability preflight only; do not turn PRJNA957074 into a new aza3 phylogenomics project.",
+  "published_moreyra_orthology_rule": {
+    "discard_if_paralog_warnings_gt": 10,
+    "intermediate_warning_range": "1-10",
+    "intermediate_action": "HybPiper paralog retriever + aligned gene-tree inspection",
+    "discard_conditions": [
+      "more than one paralog",
+      "ortholog/paralog misassignment"
+    ],
+    "final_missing_data_lt": 0.5,
+    "final_species_presence_gte": 0.8,
+    "published_final_loci": 350,
+    "boundary": "The 350-locus count arose from the full Moreyra dataset and manual curation; R1B-0 must not force a 350-locus result on its reduced public comparison panel."
+  },
+  "clean_locus_layers": [
+    "ALL_1061_TARGET_LOCI",
+    "PUBLISHED_RULE_COMPATIBLE",
+    "AUTO_STRICT_CLEAN"
+  ]
 }
