@@ -149,7 +149,7 @@ Current limitation:
 
 New target:
 
-- retain the protected ancestry core: C. brevicaule 60 + C. irumtiense 60;
+- use the active Phase-A panel: C. brevicaule 75 + C. irumtiense 75;
 - 4–5 island populations per taxon where feasible;
 - same-individual nuclear ancestry + plastid + cytotype + calibrated colour;
 - floral RNA/pigment subset after population ancestry is resolved.
@@ -164,7 +164,7 @@ Role: independent replicated W/coloured system after extant morph/population ver
 
 Existing species placement is not enough because the public nuclear anchor is continental and not morph-linked.
 
-Protected ancestry target from the existing doctoral gate: 40 individuals.
+Active Phase-A target: 60 individuals.
 
 ### C4 — C. sieboldii
 
@@ -172,7 +172,7 @@ Role: independent replicated W/coloured system and bridge to the phyllary progra
 
 Existing Moreyra material is not a morph-linked Japanese population sample.
 
-Protected ancestry target from the existing doctoral gate: 30 individuals.
+Active Phase-A target: 40 individuals.
 
 ## 4. Discovery and validation design
 
@@ -297,7 +297,7 @@ That would support genetic redundancy as the source of evolvability instead of g
 ## 8. Immediate next data priorities
 
 1. Preserve Gate 0A/0B as the independent test of whether phenotype accumulation is genuinely rapid.
-2. Protect the existing population-genomic core: brevicaule 60, irumtiense 60, pendulum 40, sieboldii 30.
+2. Use the active Phase-A 298-individual panel as the ancestry base: brevicaule 75, irumtiense 75, pendulum 60, sieboldii 40, lineare 24, dipsacolepis 24.
 3. Add a population-replicated takaoense W/BP molecular panel rather than more species-tip sequencing.
 4. Use dense resequencing/WGS on the strongest replicated colour systems; RAD remains ancestry/triage only.
 5. Collect floral RNA + pigment on the same individual IDs used for ancestry/genotype whenever feasible.
