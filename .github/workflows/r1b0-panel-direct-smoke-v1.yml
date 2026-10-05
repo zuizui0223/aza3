@@ -1,0 +1,54 @@
+name: R1B0 ten-run direct target panel
+
+on:
+  pull_request:
+    paths:
+      - "analysis/run_r1b0_panel_direct_smoke_v1.sh"
+      - ".github/workflows/r1b0-panel-direct-smoke-v1.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: r1b0-panel-direct-smoke-v1-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  panel-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y sra-toolkit bwa samtools curl
+      - name: Fetch frozen public target
+        run: |
+          curl -L --fail --retry 3 \
+            -o comp1061_hybpiper_reference.fasta \
+            https://raw.githubusercontent.com/carol-siniscalchi/Comp1061-Angio353/main/comp1061_hybpiper_reference.fasta
+          test "$(grep -c '^>' comp1061_hybpiper_reference.fasta)" -eq 2597
+      - name: Run ten-run direct mapping panel
+        run: |
+          bash analysis/run_r1b0_panel_direct_smoke_v1.sh \
+            r1b0_panel_direct_smoke \
+            comp1061_hybpiper_reference.fasta
+      - name: Show compact result
+        if: always()
+        run: |
+          cat r1b0_panel_direct_smoke/panel_comparison.md || true
+          cat r1b0_panel_direct_smoke/panel_summary.csv || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: r1b0-ten-run-direct-panel
+          path: |
+            r1b0_panel_direct_smoke/panel_comparison.*
+            r1b0_panel_direct_smoke/panel_summary.csv
+            r1b0_panel_direct_smoke/per_locus_long.csv.gz
+            r1b0_panel_direct_smoke/target_audit.json
+            r1b0_panel_direct_smoke/per_run/*/flagstat.txt
+            r1b0_panel_direct_smoke/per_run/*/idxstats.tsv
+          if-no-files-found: warn
