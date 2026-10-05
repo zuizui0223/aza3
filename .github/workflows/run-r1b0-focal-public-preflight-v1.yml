@@ -1,0 +1,104 @@
+name: Run R1B-0 focal public preflight
+
+on:
+  pull_request:
+    paths:
+      - "analysis/summarize_hybpiper_recovery_v1.py"
+      - ".github/workflows/run-r1b0-focal-public-preflight-v1.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: run-r1b0-focal-public-preflight-v1-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  focal-original-target:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: aza3-r1b0
+          cache-environment: true
+          create-args: >-
+            python=3.12
+            hybpiper=2.3.4
+            sra-tools
+            bwa
+            samtools
+
+      - name: Freeze software versions
+        shell: bash -el {0}
+        run: |
+          set -euo pipefail
+          hybpiper --version
+          fasterq-dump --version
+          bwa 2>&1 | head -n 3 || true
+          samtools --version | head -n 2
+
+      - name: Fetch and audit original Compositae1061 target
+        shell: bash -el {0}
+        run: |
+          set -euo pipefail
+          curl -L --fail --retry 3 \
+            https://raw.githubusercontent.com/carol-siniscalchi/Comp1061-Angio353/main/comp1061_hybpiper_reference.fasta \
+            -o comp1061_hybpiper_reference.fasta
+          python - <<'PY'
+          from pathlib import Path
+          p=Path("comp1061_hybpiper_reference.fasta")
+          headers=[x[1:] for x in p.read_text().splitlines() if x.startswith(">")]
+          loci={h.split("-",1)[1] for h in headers}
+          assert len(headers)==2597, len(headers)
+          assert len(loci)==1061, len(loci)
+          print({"records":len(headers),"loci":len(loci),"bytes":p.stat().st_size})
+          PY
+
+      - name: Download focal Cirsium sieboldii public run
+        shell: bash -el {0}
+        run: |
+          set -euo pipefail
+          mkdir -p sra reads
+          prefetch SRR30887308 --max-size 2G --output-directory sra
+          fasterq-dump sra/SRR30887308/SRR30887308.sra \
+            --split-files --threads 4 --outdir reads
+          wc -l reads/SRR30887308_1.fastq reads/SRR30887308_2.fastq
+          du -h reads/SRR30887308_*.fastq
+
+      - name: Run HybPiper against ORIGINAL_COMP1061
+        shell: bash -el {0}
+        run: |
+          set -euo pipefail
+          hybpiper assemble \
+            -t_dna comp1061_hybpiper_reference.fasta \
+            -r reads/SRR30887308_1.fastq reads/SRR30887308_2.fastq \
+            --bwa \
+            --prefix SRR30887308__ORIGINAL_COMP1061 \
+            --cpu 4
+
+      - name: Summarize focal target recovery
+        shell: bash -el {0}
+        run: |
+          set -euo pipefail
+          python analysis/summarize_hybpiper_recovery_v1.py \
+            --root SRR30887308__ORIGINAL_COMP1061 \
+            --expected-loci 1061 \
+            --output r1b0_focal_original_target_recovery_v1.json
+          echo "===== PRIMARY R1B-0 FOCAL EMPIRICAL RESULT ====="
+          cat r1b0_focal_original_target_recovery_v1.json | python -c 'import json,sys; d=json.load(sys.stdin); print(json.dumps({k:d[k] for k in ["expected_target_loci","recovered_distinct_fna_loci","recovered_fraction","total_recovered_bp","median_recovered_bp","paralog_named_files","paralog_nonempty_line_total"]},indent=2))'
+          echo "===== HYBPIPER TOP LEVEL ====="
+          find SRR30887308__ORIGINAL_COMP1061 -maxdepth 2 -type f | sort | head -n 100
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: r1b0-focal-original-target-${{ github.run_id }}
+          path: |
+            r1b0_focal_original_target_recovery_v1.json
+            SRR30887308__ORIGINAL_COMP1061/*.txt
+            SRR30887308__ORIGINAL_COMP1061/*.tsv
+            SRR30887308__ORIGINAL_COMP1061/*.log
+          if-no-files-found: warn
