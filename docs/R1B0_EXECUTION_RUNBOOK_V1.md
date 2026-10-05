@@ -10,9 +10,9 @@ Execute the bounded public-data preflight without turning it into a new phylogen
 
 The workflow has three compute phases:
 
-1. reconstruct a Cirsium-adapted Compositae1061 target from public data;
-2. run the frozen ten-sample Japanese comparison panel against the original and reconstructed target files;
-3. localize a pre-frozen clean-locus subset against the three candidate genome references.
+1. establish focal recovery against the reproducible public 1,061-locus Compositae1061 compatibility reference;
+2. test sensitivity to adding public Cirsium tioganum source sequences **without claiming reconstruction of the unrecovered historical 1,064-target file**;
+3. localize the frozen 241-locus high-stringency compatibility layer (plus prespecified sensitivities) against the three candidate genome references.
 
 No phenotype or module-specific genomic claim is opened by this workflow.
 
@@ -51,10 +51,21 @@ Original target:
 Public target audit:
 `data/evidence/comp1061_public_target_audit_v1.json`
 
-Expected original-target structure:
+Expected public-target structure:
 - 2,597 FASTA records;
-- 1,061 distinct loci;
+- 1,061 reproducible named loci;
 - source prefixes `lett`, `saff`, `sunf`.
+
+Historical provenance boundary:
+- Moreyra 2023/2025 report 1,064 mapped target loci;
+- the public author matrices and public FASTA expose 1,061 named loci;
+- the three-locus difference is unresolved;
+- do not call the public 1,061 FASTA the exact author target.
+
+Frozen high-stringency compatibility layer:
+- `data/evidence/moreyra_conservative_241_no_warning_loci_v1.txt`
+- 241 loci
+- SHA256 `d561c6e393b1964fdd4b3acf14fda8b10f2f43923b1074cd35f86bfed07ebf73`.
 
 Cirsium augmentation source:
 - run `SRR25265669`;
@@ -74,7 +85,7 @@ The GitHub blob SHA frozen by aza3 is:
 
 Do not substitute another Compositae1061 target without recording it as a separate target version.
 
-## Phase 1 — reconstruct the Cirsium-adapted target
+## Phase 1 — optional public Cirsium-source compatibility target
 
 ### 1A. Download tioganum reads
 
@@ -128,7 +139,7 @@ Required receipt fields include:
 - target loci without a recovered tioganum sequence.
 
 Classification boundary:
-`RECONSTRUCTED_CIRSIUM_TARGET` is a public-data reconstruction of the published logic, **not** a byte-identical claim about the authors' intermediate target file.
+the output is `PUBLIC_1061_PLUS_TIOGANUM_COMPATIBILITY`. It adds source sequences only to the 1,061 public locus IDs. It **does not reconstruct or explain the unresolved paper-reported 1,064-target universe** and is not a byte-identical author-file claim.
 
 ## Phase 2 — target-file sensitivity on the frozen public panel
 
@@ -136,8 +147,8 @@ For each run in `reference_public_preflight_runs_v1.csv`:
 
 1. download paired reads;
 2. apply the frozen trimming policy;
-3. run HybPiper once with `ORIGINAL_COMP1061`;
-4. run HybPiper once with `RECONSTRUCTED_CIRSIUM_TARGET`.
+3. run HybPiper once with `PUBLIC_COMP1061_1061`;
+4. run HybPiper once with `PUBLIC_1061_PLUS_TIOGANUM_COMPATIBILITY`.
 
 Example:
 
@@ -161,28 +172,23 @@ For each sample × target version, record:
 - HybPiper log;
 - software/version receipt.
 
-Primary target-sensitivity output:
-`sample × 1061-locus` recovery matrix.
+Primary target-sensitivity outputs:
+- `sample × 1,061 named-locus` broad recovery matrix;
+- recovery of the frozen `MOREYRA_COMPATIBILITY_241` layer.
 
-Do **not** begin from the published 350 loci. The 350 are a downstream curated subset of the 1,061-locus target universe.
+Do **not** equate either with the published final 350, and do not treat 1,061 as the exact historical target count.
 
 ## Phase 3 — orthology layers
 
-### Layer A — ALL_1061_TARGET_LOCI
+### Layer A — PUBLIC_1061_BROAD_RECOVERY
 
 Used only for recovery/dropout diagnostics.
 
-### Layer B — PUBLISHED_RULE_COMPATIBLE
+### Layer B — MOREYRA_COMPATIBILITY_241
 
-Reproduce the published Moreyra logic as far as the frozen ten-sample panel permits:
+Primary high-stringency transfer layer imported from the EAzami public-author-repository audit. It contains 241 loci with zero public paralog warnings and raw sequence occupancy >=0.80.
 
-- >10 paralog warnings: discard;
-- 1–10 warnings: recover candidate paralogs and inspect gene-tree placement;
-- discard loci with multiple unresolved paralogs or ortholog/paralog misassignment;
-- require <50% missing data;
-- require >=80% sample presence.
-
-The published full dataset yielded 350 loci. The ten-sample preflight is **not required to yield 350**.
+This is **not** the published 350-locus matrix.
 
 ### Layer C — AUTO_STRICT_CLEAN
 
