@@ -1,0 +1,170 @@
+name: R1B0 C. sieboldii public smoke
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/run-r1b0-csieboldii-smoke.yml"
+      - "docs/R1B0_EXECUTION_RUNBOOK_V1.md"
+      - "data/evidence/comp1061_public_target_audit_v1.json"
+  workflow_dispatch:
+
+concurrency:
+  group: r1b0-csieboldii-smoke-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Miniforge
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -L --retry 5 -o /tmp/miniforge.sh \
+            https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
+          bash /tmp/miniforge.sh -b -p "$HOME/miniforge"
+          echo "$HOME/miniforge/bin" >> "$GITHUB_PATH"
+
+      - name: Create R1B0 environment
+        shell: bash
+        run: |
+          set -euo pipefail
+          "$HOME/miniforge/bin/conda" create -y -n r1b0 \
+            -c conda-forge -c bioconda \
+            python=3.12 hybpiper=2.3.4 sra-tools fastp
+          "$HOME/miniforge/bin/conda" run -n r1b0 hybpiper --version
+          "$HOME/miniforge/bin/conda" run -n r1b0 fasterq-dump --version
+          "$HOME/miniforge/bin/conda" run -n r1b0 fastp --version
+
+      - name: Fetch and audit original Compositae1061 target
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p r1b0_smoke
+          curl -L --retry 5 \
+            -o r1b0_smoke/comp1061_hybpiper_reference.fasta \
+            https://raw.githubusercontent.com/carol-siniscalchi/Comp1061-Angio353/main/comp1061_hybpiper_reference.fasta
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          p=Path("r1b0_smoke/comp1061_hybpiper_reference.fasta")
+          headers=[x[1:] for x in p.read_text().splitlines() if x.startswith(">")]
+          loci={h.split("-",1)[1] for h in headers}
+          prefixes={h.split("-",1)[0] for h in headers}
+          out={
+              "file_bytes":p.stat().st_size,
+              "sequence_records":len(headers),
+              "distinct_loci":len(loci),
+              "reference_prefixes":sorted(prefixes),
+          }
+          print(json.dumps(out,indent=2))
+          assert out["sequence_records"]==2597, out
+          assert out["distinct_loci"]==1061, out
+          assert prefixes=={"lett","saff","sunf"}, out
+          Path("r1b0_smoke/target_audit.json").write_text(json.dumps(out,indent=2)+"\n")
+          PY
+
+      - name: Download focal SRA object
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -L --retry 8 --retry-all-errors \
+            -o r1b0_smoke/SRR30887308.sra \
+            https://sra-pub-run-odp.s3.amazonaws.com/sra/SRR30887308/SRR30887308
+          echo "4ab8540f122074512893acdf25ce4e21  r1b0_smoke/SRR30887308.sra" | md5sum -c -
+          ls -lh r1b0_smoke/SRR30887308.sra
+
+      - name: Convert and trim reads
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p r1b0_smoke/reads r1b0_smoke/trimmed
+          "$HOME/miniforge/bin/conda" run -n r1b0 fasterq-dump \
+            --split-files --threads 4 --outdir r1b0_smoke/reads \
+            r1b0_smoke/SRR30887308.sra
+          "$HOME/miniforge/bin/conda" run -n r1b0 fastp \
+            -i r1b0_smoke/reads/SRR30887308_1.fastq \
+            -I r1b0_smoke/reads/SRR30887308_2.fastq \
+            -o r1b0_smoke/trimmed/SRR30887308_R1.fastq \
+            -O r1b0_smoke/trimmed/SRR30887308_R2.fastq \
+            --detect_adapter_for_pe \
+            --qualified_quality_phred 20 \
+            --length_required 50 \
+            --thread 4 \
+            --json r1b0_smoke/fastp.json \
+            --html r1b0_smoke/fastp.html
+          rm -f r1b0_smoke/reads/SRR30887308_1.fastq r1b0_smoke/reads/SRR30887308_2.fastq
+
+      - name: Run focal HybPiper smoke
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd r1b0_smoke
+          "$HOME/miniforge/bin/conda" run -n r1b0 hybpiper assemble \
+            -t_dna comp1061_hybpiper_reference.fasta \
+            -r trimmed/SRR30887308_R1.fastq trimmed/SRR30887308_R2.fastq \
+            --bwa \
+            --prefix SRR30887308__ORIGINAL_COMP1061 \
+            --cpu 4 \
+            2>&1 | tee hybpiper_smoke.log
+
+      - name: Summarize smoke result
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          root=Path("r1b0_smoke")
+          sample=root/"SRR30887308__ORIGINAL_COMP1061"
+          genes=sample/"genes_with_seqs.txt"
+          recovered=[]
+          if genes.exists():
+              recovered=[x.strip() for x in genes.read_text().splitlines() if x.strip()]
+          paralog_files=[str(p.relative_to(root)) for p in root.rglob("*paralog*") if p.is_file()]
+          summary={
+              "status":"completed" if genes.exists() else "hybpiper_output_missing",
+              "run":"SRR30887308",
+              "taxon":"Cirsium sieboldii",
+              "target_version":"ORIGINAL_COMP1061",
+              "target_loci":1061,
+              "genes_with_sequences":len(recovered),
+              "recovery_fraction":(len(recovered)/1061 if recovered else 0.0),
+              "paralog_related_files":paralog_files,
+              "genes_with_seqs_path":str(genes) if genes.exists() else None,
+          }
+          print(json.dumps(summary,indent=2))
+          (root/"smoke_summary.json").write_text(json.dumps(summary,indent=2)+"\n")
+          if not genes.exists():
+              raise SystemExit("HybPiper did not produce genes_with_seqs.txt")
+          PY
+
+      - name: Remove raw sequence payload before artifact upload
+        if: always()
+        shell: bash
+        run: |
+          rm -f r1b0_smoke/SRR30887308.sra
+          rm -rf r1b0_smoke/reads r1b0_smoke/trimmed
+
+      - name: Upload smoke receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r1b0-csieboldii-original-comp1061-${{ github.run_id }}
+          path: |
+            r1b0_smoke/smoke_summary.json
+            r1b0_smoke/target_audit.json
+            r1b0_smoke/fastp.json
+            r1b0_smoke/fastp.html
+            r1b0_smoke/hybpiper_smoke.log
+            r1b0_smoke/SRR30887308__ORIGINAL_COMP1061/genes_with_seqs.txt
+            r1b0_smoke/SRR30887308__ORIGINAL_COMP1061/**/*paralog*
+          if-no-files-found: warn
+          retention-days: 14
