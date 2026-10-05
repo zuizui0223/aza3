@@ -174,7 +174,7 @@ def main():
     assert wgs["target_depth_x"]==8
     assert wgs["routing_thresholds"]["chromosome_reference_pairwise_distance_rank_correlation_min"]==0.95
     assert wgs["routing_thresholds"]["homologous_windows_structure_preserved_fraction_min"]==0.80
-    assert wgs["hard_stop"]=="Do not sequence the full 298-individual Phase-A panel before this pilot is classified."
+    assert wgs["hard_stop"]=="Do not sequence the full 298-individual Phase-A panel, and do not choose C. sieboldii Nature-test individuals, before Gate CS and this transferability pilot are classified."
     need(wgsdoc,"Frozen routing thresholds")
     need(wgsdoc,"0.95")
     need(wgsdoc,"80%")
