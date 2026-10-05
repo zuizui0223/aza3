@@ -15,7 +15,8 @@
     "fixed_ecological_module_alignment": "not_supported",
     "trait_specific_ecological_anchors": "supported_for_chroma_rsds_and_presentation_bio12",
     "synchronized_historical_module": "not_supported",
-    "genomic_reassembly": "not_yet_tested"
+    "genomic_reassembly": "not_yet_tested",
+    "focal_same_population_combinatorial_substrate": "not_yet_verified"
   },
   "competing_models": {
     "fixed_evolutionary_integration": "present phenotype modules persist as shared genomic/local-history units",
@@ -35,6 +36,18 @@
     "environmental associations are not selection",
     "historical nonsynchrony is not genetic independence",
     "genomic modularity requires same-individual dense data and reference-stable inference",
-    "adaptation requires direct fitness evidence"
+    "adaptation requires direct fitness evidence",
+    "species-wide state multiplicity is not a verified within-population combinatorial substrate"
+  ],
+  "focal_system_gate": "data/contracts/c_sieboldii_combinatorial_substrate_gate_v1.json",
+  "execution_order": [
+    "retain_fig1_ecological_module_null",
+    "classify_C_sieboldii_combinatorial_substrate_gate",
+    "if_CS_GREEN_or_LOCAL_SET_run_8_individual_reference_transferability_WGS_on_verified_system",
+    "if_CS_AMBER_or_RED_verify_alternative_focal_system",
+    "freeze_fixed_vs_reconfigurable_genomic_estimands_after_WGS_GREEN",
+    "test_component_specific_genomic_histories",
+    "open_natural_reassembly_prediction_test",
+    "open_representative_fitness_chain"
   ]
 }
