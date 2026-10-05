@@ -6,6 +6,7 @@ on:
       - "README.md"
       - "docs/REFERENCE_GENOME_AND_PUBLIC_DATA_READINESS_V1.md"
       - "docs/REFERENCE_TRANSFER_PUBLIC_PREFLIGHT_V1.md"
+      - "docs/R1B0_EXECUTION_RUNBOOK_V1.md"
       - "data/contracts/aza3_reference_public_data_readiness_v1.json"
       - "data/contracts/aza3_reference_transfer_public_preflight_v1.json"
       - "data/planning/reference_public_resource_inventory_v1.csv"
