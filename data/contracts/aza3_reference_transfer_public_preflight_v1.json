@@ -21,12 +21,14 @@
   },
   "target_reference_versions": [
     {
-      "id": "ORIGINAL_COMP1061",
+      "id": "PUBLIC_COMP1061_1061",
       "source": "github:carol-siniscalchi/Comp1061-Angio353/comp1061_hybpiper_reference.fasta",
-      "status": "PUBLIC"
+      "status": "PUBLIC",
+      "role": "compatibility_reference",
+      "claim_boundary": "Public 1061-locus reference; not the exact author 1064-target universe."
     },
     {
-      "id": "RECONSTRUCTED_CIRSIUM_TARGET",
+      "id": "PUBLIC_1061_PLUS_TIOGANUM_COMPATIBILITY",
       "source_run": "SRR25265669",
       "source_taxon_label": "Cirsium tioganum",
       "current_ncbi_taxon": "Cirsium scariosum var. americanum",
@@ -34,7 +36,9 @@
       "source_biosample": "SAMN34240347",
       "source_bases": 36939020978,
       "reconstruction_rule": "Recover homologous exons from the high-coverage source with the public original Compositae1061 target and append them by locus, reproducing the published logic without claiming byte identity to the authors' intermediate file.",
-      "status": "RECONSTRUCTABLE_PUBLICLY"
+      "status": "RECONSTRUCTABLE_PUBLICLY",
+      "role": "compatibility_sensitivity",
+      "claim_boundary": "Adds tioganum homologs to the public 1061 locus IDs. It does not establish or reproduce the unresolved three-locus difference behind the paper-reported 1064 target count."
     }
   ],
   "genome_references": [
@@ -74,7 +78,7 @@
       ]
     }
   ],
-  "clean_locus_principle": "Freeze the automatic paralogy-safe locus subset before opening focal C. sieboldii transferability results; apply identical target/reference rules to every sample. Preserve the published Moreyra orthology rule as a separate historical-replication layer rather than forcing its final 350-locus count.",
+  "clean_locus_principle": "Report broad recovery across the reproducible public 1061 named loci, use the frozen Moreyra-compatible conservative 241 no-warning/high-occupancy set as the primary historical high-stringency layer, and freeze any additional AUTO_STRICT_CLEAN rule before opening focal C. sieboldii transferability results. None is the unpublished final 350-locus matrix.",
   "decision_classes": {
     "PUBLIC_TRANSFER_GREEN": "Target-file sensitivity is small or bounded, clean-locus placement is broadly reference-invariant, and Japanese comparison-panel relationships are stable; proceed to 6-10-individual focal WGS R1B pilot.",
     "PUBLIC_TRANSFER_AMBER": "Public loci remain useful for topology/orthology but target-file dependence, reference-specific dropout or distance distortion remains; plan focal C. sieboldii reference in parallel with a small WGS bias audit.",
@@ -101,16 +105,31 @@
     "final_missing_data_lt": 0.5,
     "final_species_presence_gte": 0.8,
     "published_final_loci": 350,
-    "boundary": "The 350-locus count arose from the full Moreyra dataset and manual curation; R1B-0 must not force a 350-locus result on its reduced public comparison panel."
+    "boundary": "The published 350-locus set depends on manual gene-tree decisions and final alignment filtering and remains unrecovered. The public author repository also reports 1064 mapped target loci while only 1061 named loci are reproducibly identified; R1B-0 must preserve that discrepancy rather than force 350 or 1064 identities."
   },
   "clean_locus_layers": [
-    "ALL_1061_TARGET_LOCI",
-    "PUBLISHED_RULE_COMPATIBLE",
+    "PUBLIC_1061_BROAD_RECOVERY",
+    "MOREYRA_COMPATIBILITY_241",
     "AUTO_STRICT_CLEAN"
   ],
   "primary_metric_registry": "data/contracts/r1b0_primary_metric_registry_v1.csv",
   "result_schemas": {
     "target_recovery": "data/templates/r1b0_target_recovery_results_v1.csv",
     "reference_localization": "data/templates/r1b0_reference_localization_results_v1.csv"
+  },
+  "locus_handoff_contract": "data/contracts/aza3_eazami_moreyra_locus_handoff_v1.json",
+  "historical_target_universe": {
+    "paper_reported_mapped_loci": 1064,
+    "reproducible_public_named_loci": 1061,
+    "exact_author_1064_target_recovered": false,
+    "unresolved_difference": 3,
+    "boundary": "Do not equate the public 1061-locus HybPiper reference with the exact target/reference used in Moreyra et al. 2023/2025. The authors' public summary files consistently report 1064 mapped target loci, while the reproducible named-locus universe is 1061."
+  },
+  "fixed_compatibility_layer": {
+    "path": "data/evidence/moreyra_conservative_241_no_warning_loci_v1.txt",
+    "count": 241,
+    "sha256": "d561c6e393b1964fdd4b3acf14fda8b10f2f43923b1074cd35f86bfed07ebf73",
+    "derivation": "No paralog warning in the recovered author matrix plus raw sequence occupancy >=0.80 across the public author dataset.",
+    "role": "Primary high-stringency reference-transfer comparison layer."
   }
 }
