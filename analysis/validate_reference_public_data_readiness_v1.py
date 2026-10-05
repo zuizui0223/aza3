@@ -15,6 +15,7 @@ TARGET_AUDIT = ROOT/"data"/"evidence"/"comp1061_public_target_audit_v1.json"
 BYTE_REF = ROOT/"data"/"evidence"/"r1b0_genome_reference_byte_contract_v1.json"
 LOCI241 = ROOT/"data"/"evidence"/"moreyra_conservative_241_no_warning_loci_v1.txt"
 METRICS = ROOT/"data"/"contracts"/"r1b0_primary_metric_registry_v1.csv"
+ESTIMANDS = ROOT/"data"/"contracts"/"r1_estimand_reference_requirements_v1.csv"
 RECOVERY_SCHEMA = ROOT/"data"/"templates"/"r1b0_target_recovery_results_v1.csv"
 LOCALIZATION_SCHEMA = ROOT/"data"/"templates"/"r1b0_reference_localization_results_v1.csv"
 README = ROOT/"README.md"
@@ -41,6 +42,7 @@ def main():
     taudit=json.loads(TARGET_AUDIT.read_text(encoding="utf-8"))
     bref=json.loads(BYTE_REF.read_text(encoding="utf-8"))
     metrics=csvrows(METRICS)
+    estimands=csvrows(ESTIMANDS)
     readme=README.read_text(encoding="utf-8")
 
     assert con["status"]=="R1A_RESOURCE_AUDIT_COMPLETE__R1B_TRANSFERABILITY_PILOT_PENDING"
@@ -133,6 +135,15 @@ def main():
         "SRR30887291":"Cirsium tanakae",
     }.items():
         assert byrun[run]["taxon"]==taxon
+
+    # Reference sufficiency is estimand-specific rather than one all-or-none gate.
+    assert [x["estimand_id"] for x in estimands]==["R1E1","R1E2","R1E3","R1E4","R1E5","R1E6","R1E7"]
+    est={x["estimand_id"]:x for x in estimands}
+    assert est["R1E3"]["current_status"]=="PENDING_STAGE2_AND_OWN_WGS"
+    assert est["R1E5"]["current_status"]=="FOCAL_REFERENCE_REQUIRED_BY_DEFAULT"
+    assert est["R1E6"]["current_status"]=="FOCAL_REFERENCE_OR_PANGENOME_REQUIRED"
+    assert "central Nature Fig.3 claim remains closed" in est["R1E3"]["claim_ceiling"]
+    assert "cross-species short-read mapping cannot establish focal SV reuse" in est["R1E6"]["claim_ceiling"]
 
     # Metrics were frozen before any empirical R1B-0 focal result.
     assert [m["metric_id"] for m in metrics]==["M01","M02","M03","M04","M05","M06","M07"]
