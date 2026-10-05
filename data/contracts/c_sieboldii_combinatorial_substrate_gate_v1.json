@@ -71,5 +71,22 @@
     "descriptive_upright_max_deg": 60,
     "descriptive_nodding_min_deg": 120,
     "intermediate_rule": "60<angle<120 retained continuously but excluded from binary-cell occupancy"
-  }
+  },
+  "public_locality_prescreen": "data/evidence/c_sieboldii_public_locality_prescreen_v1.json",
+  "public_prescreen_status": "TARGETED_CS0_LOCALITIES_IDENTIFIED__SUBSTRATE_NOT_YET_VERIFIED",
+  "cs0_priority_localities": [
+    {
+      "rank": 1,
+      "locality": "Kurumayama Moor / Kirigamine, Nagano",
+      "role": "white-form verification priority",
+      "rationale": "Type locality of C. sieboldii f. leucanthum and current public locality support; verify white/non-white frequency and A1-A2 orientation distribution."
+    },
+    {
+      "rank": 2,
+      "locality": "Tsukude Plateau wetland local set, Aichi",
+      "role": "dense intraspecific-variation census priority",
+      "rationale": "Multiple historical herbarium records and local reports of within-region morphological variation; verify A1-A2 orientation and search for colour variation."
+    }
+  ],
+  "public_prescreen_ceiling": "Public sources do not establish same-population colour x anthesis-orientation co-segregation; Gate CS remains observationally open."
 }
