@@ -20,10 +20,20 @@ def read_fasta(path: Path):
     if name is not None:
         yield name, "".join(seq)
 
+def read_locus_list(path: Path) -> list[str]:
+    vals=[x.strip() for x in path.read_text(encoding="utf-8").splitlines() if x.strip()]
+    if len(vals) != len(set(vals)):
+        raise ValueError(f"duplicate loci in frozen list: {path}")
+    return vals
+
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--root", required=True, type=Path)
-    ap.add_argument("--expected-loci", type=int, default=1061)
+    ap.add_argument("--expected-loci", type=int, default=1061,
+                    help="Broad public named-locus universe; compatibility only, not historical author target count.")
+    ap.add_argument("--frozen-loci", type=Path, default=None,
+                    help="Optional frozen high-stringency locus list, e.g. Moreyra-compatible 241.")
+    ap.add_argument("--frozen-loci-id", default="MOREYRA_COMPATIBILITY_241")
     ap.add_argument("--output", required=True, type=Path)
     args=ap.parse_args()
 
@@ -35,7 +45,6 @@ def main():
         if not records:
             continue
         gene=p.stem
-        # HybPiper normally yields one coding sequence per gene/sample.
         best=max((s for _,s in records), key=len)
         if gene not in genes or len(best)>len(genes[gene]):
             genes[gene]=best
@@ -58,9 +67,12 @@ def main():
     out={
         "status":"ok",
         "root":str(args.root),
-        "expected_target_loci":args.expected_loci,
+        "broad_locus_universe_id":"PUBLIC_1061_BROAD_RECOVERY",
+        "expected_public_named_loci":args.expected_loci,
+        "historical_author_target_count_reported":1064,
+        "historical_target_identity_status":"EXACT_1064_TARGET_UNRECOVERED__THREE_LOCUS_DIFFERENCE_UNRESOLVED",
         "recovered_distinct_fna_loci":len(genes),
-        "recovered_fraction":len(genes)/args.expected_loci if args.expected_loci else None,
+        "public_1061_recovery_fraction":len(genes)/args.expected_loci if args.expected_loci else None,
         "total_recovered_bp":sum(lengths),
         "median_recovered_bp":None if not lengths else sorted(lengths)[len(lengths)//2],
         "min_recovered_bp":None if not lengths else min(lengths),
@@ -69,10 +81,23 @@ def main():
         "paralog_nonempty_line_total":warning_lines,
         "paralog_files_with_content":warning_files,
         "gene_source_files":sources,
+        "claim_boundary":"Compatibility recovery only. Public 1061 named loci are not the exact historical author 1064-target file or the published final 350-locus matrix."
     }
+
+    if args.frozen_loci is not None:
+        frozen=read_locus_list(args.frozen_loci)
+        recovered=sorted(set(genes) & set(frozen))
+        out["frozen_locus_layer_id"]=args.frozen_loci_id
+        out["frozen_loci_path"]=str(args.frozen_loci)
+        out["frozen_loci_count"]=len(frozen)
+        out["frozen_loci_recovered"]=len(recovered)
+        out["frozen_loci_recovery_fraction"]=len(recovered)/len(frozen) if frozen else None
+        out["frozen_loci_missing"]=sorted(set(frozen)-set(genes))
+
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(out,indent=2)+"\n",encoding="utf-8")
-    print(json.dumps({k:v for k,v in out.items() if k not in {"gene_source_files","paralog_files_with_content"}},indent=2))
+    print(json.dumps({k:v for k,v in out.items()
+                      if k not in {"gene_source_files","paralog_files_with_content","frozen_loci_missing"}},indent=2))
 
 if __name__=="__main__":
     main()
