@@ -33,7 +33,7 @@ The same BioProject also contains public target-capture runs for several aza3-re
 
 This matters because reference behaviour can be compared across a small phylogenetic gradient instead of judging C. sieboldii in isolation.
 
-## Moreyra target-file reconstruction is possible from public assets
+## Public compatibility target versus the unrecovered author target
 
 Moreyra et al. did not use only the generic Compositae1061 reference. Their workflow used:
 
@@ -54,9 +54,18 @@ The public SRA contains the reported high-coverage augmentation source under the
 - reported bases: 36,939,020,978
 - average run read length: 302 bp
 
-Therefore a Cirsium-adapted target can be reconstructed from public materials if the exact intermediate target file cannot be recovered.
+The public materials support a **compatibility reconstruction**: Cirsium tioganum homologs can be appended to the public 1,061-locus Compositae1061 reference. This is useful for testing whether a closer Cirsium source sequence changes locus recovery.
 
-The reconstructed file must be labelled `RECONSTRUCTED_CIRSIUM_TARGET`, not treated as byte-identical to the authors' original intermediate file.
+However, the author repository and both the 2023 and 2025 Moreyra papers consistently report **1,064 mapped target loci**, whereas the public Compositae1061 FASTA and the named-locus columns recover **1,061 loci**. The identities of the extra three historical target loci are not publicly resolved.
+
+Therefore:
+
+- `PUBLIC_COMP1061_1061` = the reproducible public 1,061-locus compatibility reference;
+- `PUBLIC_1061_PLUS_TIOGANUM_COMPATIBILITY` = the same 1,061 locus IDs with added Cirsium-source sequences where recovered;
+- neither is the exact historical author 1,064-target file;
+- the 1,064-versus-1,061 difference remains an explicit unresolved provenance item, not three inferred loci.
+
+The EAzami public-repository audit is handed off in `data/contracts/aza3_eazami_moreyra_locus_handoff_v1.json`.
 
 ## Candidate whole-genome references
 
@@ -72,8 +81,10 @@ Use the same three resources frozen in Gate R1:
 
 Run the frozen public comparison panel twice:
 
-A. `ORIGINAL_COMP1061`  
-B. `RECONSTRUCTED_CIRSIUM_TARGET`
+A. `PUBLIC_COMP1061_1061`  
+B. `PUBLIC_1061_PLUS_TIOGANUM_COMPATIBILITY`
+
+This is a **compatibility sensitivity**, not an attempt to manufacture the unrecovered historical 1,064-target file.
 
 Use the same HybPiper version and trimming policy across all samples.
 
@@ -126,22 +137,22 @@ The published Moreyra et al. (2025) orthology procedure is now recoverable from 
 
 That process yielded the published 350-locus phylogenomic dataset.
 
-R1B-0 therefore reports three layers:
+EAzami already reconstructed reproducible public locus sets from the authors' released HybPiper stats, sequence-length matrix and paralog report. aza3 reuses those frozen sets rather than rebuilding them after seeing the focal result:
 
-1. **all 1,061 target loci** for transparent target-recovery diagnostics;
-2. **PUBLISHED_RULE_COMPATIBLE** loci, using the published warning/missingness/presence logic as far as the frozen public comparison panel permits;
-3. **AUTO_STRICT_CLEAN** loci, defined by a reproducible automated rule for the reference-transfer estimand, excluding unresolved multi-copy placement and problematic paralogy without using C. sieboldii-specific performance.
+1. **PUBLIC_1061_BROAD_RECOVERY** — all 1,061 reproducible named loci; recovery/dropout diagnostics only.
+2. **MOREYRA_COMPATIBILITY_241** — 241 loci with zero public paralog warnings and raw sequence occupancy >=0.80; this is the **primary high-stringency reference-transfer layer**. Frozen file: `data/evidence/moreyra_conservative_241_no_warning_loci_v1.txt`; SHA256 `d561c6e393b1964fdd4b3acf14fda8b10f2f43923b1074cd35f86bfed07ebf73`.
+3. **AUTO_STRICT_CLEAN** — optional additional aza3-specific automatic layer, frozen before opening focal transferability results.
 
-The automatic clean-locus rule must be frozen before looking at C. sieboldii-specific reference performance and applied identically to all samples and both target-reference versions.
+For sensitivity only, the reproducible 531-locus warning<=10/high-occupancy set can also be used.
 
-The 350-locus number is **not** hard-coded as the expected R1B-0 output: it came from the full Moreyra taxon set and manual gene-tree curation. A smaller comparison panel may admit a different number while following the same logic.
+The published final 350-locus matrix is **not** any of these sets. Its identities depend on manual gene-tree decisions and remain unrecovered. Likewise, the paper-reported 1,064-target universe must not be silently collapsed to 1,061.
 
 ## Exact R1B-0 estimands
 
 ### Target-file estimands
 1. loci recovered per sample;
 2. recovered target length per locus;
-3. Cirsium-target gain over original-target recovery;
+3. Cirsium-source compatibility gain over public-1061 recovery;
 4. paralog-warning burden;
 5. sample × target-file locus dropout.
 
@@ -160,13 +171,13 @@ R1B-0 asks only:
 > Is C. sieboldii an outlier in target-file or genome-reference transferability relative to other Japanese Cirsium samples?
 
 A useful result would be:
-- the same broad clean-locus set is recovered under both target files;
+- the broad 1,061 recovery pattern and the frozen 241-locus high-stringency layer are stable across compatibility target versions;
 - one or more genome references uniquely localize most clean loci;
 - pairwise relationships among the Japanese comparison panel are stable;
 - C. sieboldii does not show exceptional target- or reference-specific dropout.
 
 An adverse result would be:
-- C. sieboldii depends strongly on the Cirsium-adapted target for locus recovery;
+- C. sieboldii depends strongly on Cirsium-source augmentation for recovery within the public 1,061 named-locus universe;
 - C. sieboldii loses a large or nonrandom subset of loci under one or more congener genome references;
 - inferred sample-distance structure changes materially with reference;
 - many loci have reference-specific multiple placements or strong sequence-identity distortion.
