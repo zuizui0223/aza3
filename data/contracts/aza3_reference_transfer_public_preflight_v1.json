@@ -103,5 +103,10 @@
     "ALL_1061_TARGET_LOCI",
     "PUBLISHED_RULE_COMPATIBLE",
     "AUTO_STRICT_CLEAN"
-  ]
+  ],
+  "primary_metric_registry": "data/contracts/r1b0_primary_metric_registry_v1.csv",
+  "result_schemas": {
+    "target_recovery": "data/templates/r1b0_target_recovery_results_v1.csv",
+    "reference_localization": "data/templates/r1b0_reference_localization_results_v1.csv"
+  }
 }
