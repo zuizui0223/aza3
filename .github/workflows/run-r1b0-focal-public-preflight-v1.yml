@@ -23,28 +23,29 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: mamba-org/setup-micromamba@v2
+      - uses: actions/setup-python@v5
         with:
-          environment-name: aza3-r1b0
-          cache-environment: true
-          create-args: >-
-            python=3.12
-            hybpiper=2.3.4
-            sra-tools
-            bwa
-            samtools
+          python-version: "3.12"
+
+      - name: Install bounded HybPiper dependencies
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y \
+            sra-toolkit bwa samtools spades ncbi-blast+ exonerate parallel mafft
+          python -m pip install --upgrade pip
+          python -m pip install "hybpiper==2.3.4"
 
       - name: Freeze software versions
-        shell: bash -el {0}
         run: |
           set -euo pipefail
           hybpiper --version
           fasterq-dump --version
           bwa 2>&1 | head -n 3 || true
           samtools --version | head -n 2
+          spades.py --version
 
       - name: Fetch and audit original Compositae1061 target
-        shell: bash -el {0}
         run: |
           set -euo pipefail
           curl -L --fail --retry 3 \
@@ -61,7 +62,6 @@ jobs:
           PY
 
       - name: Download focal Cirsium sieboldii public run
-        shell: bash -el {0}
         run: |
           set -euo pipefail
           mkdir -p sra reads
@@ -72,7 +72,6 @@ jobs:
           du -h reads/SRR30887308_*.fastq
 
       - name: Run HybPiper against PUBLIC_COMP1061_1061
-        shell: bash -el {0}
         run: |
           set -euo pipefail
           hybpiper assemble \
@@ -83,7 +82,6 @@ jobs:
             --cpu 4
 
       - name: Summarize focal target recovery
-        shell: bash -el {0}
         run: |
           set -euo pipefail
           python analysis/summarize_hybpiper_recovery_v1.py \
