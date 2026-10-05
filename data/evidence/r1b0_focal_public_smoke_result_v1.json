@@ -1,0 +1,101 @@
+{
+  "evidence_version": "r1b0_focal_public_smoke_result_v1",
+  "status_date": "2026-10-05",
+  "status": "FOCAL_ORIGINAL_TARGET_TECHNICAL_SMOKE_PASS",
+  "execution": {
+    "repository": "zuizui0223/aza3",
+    "workflow_run_id": 37252988217,
+    "workflow_job_id": 111584259021,
+    "artifact_id": 11321891751,
+    "artifact_sha256": "a3a123b6a95b052d0da30f67fc1b17a66edaf1b8d58be1f421d7e3a87608c0d0",
+    "branch": "research/r1b0-focal-smoke-run-v1",
+    "head_sha": "277774ba13445ca6e3048db8ef15b43c50506cb9"
+  },
+  "focal_run": {
+    "run": "SRR30887308",
+    "experiment": "SRX26291290",
+    "biosample": "SAMN44017917",
+    "taxon": "Cirsium sieboldii",
+    "read_pairs": 2625581,
+    "read1_bases": 328197625,
+    "read2_bases": 328197625,
+    "read_length": 125,
+    "library_strategy": "Targeted-Capture",
+    "bait_kit": "COS/Compositae1061",
+    "library_pool_note": "NCBI design states unenriched libraries were mixed with target-enriched libraries at 3:2."
+  },
+  "target": {
+    "source": "carol-siniscalchi/Comp1061-Angio353/comp1061_hybpiper_reference.fasta",
+    "sequence_records": 2597,
+    "distinct_loci": 1061,
+    "total_target_bp": 1113514,
+    "reference_prefixes": [
+      "lett",
+      "saff",
+      "sunf"
+    ]
+  },
+  "direct_mapping": {
+    "bwa_version": "0.7.17-r1188",
+    "samtools_version": "1.19.2",
+    "total_flagstat_records": 5253497,
+    "primary_reads": 5251162,
+    "supplementary_alignments": 2335,
+    "mapped_reads": 1280356,
+    "mapped_percent": 24.37,
+    "primary_mapped_reads": 1278021,
+    "properly_paired_reads": 1052392,
+    "properly_paired_percent": 20.04,
+    "reads_with_mate_mapped": 1080366,
+    "singletons": 197655,
+    "singletons_percent": 3.76,
+    "target_records_with_any_mapped_read": 2247,
+    "target_loci_with_any_mapped_read": 1033,
+    "target_locus_hit_fraction": 0.9736098020735156
+  },
+  "locus_read_count_distribution": {
+    "zero_hit_loci": 28,
+    "loci_ge_1": 1033,
+    "loci_ge_2": 1029,
+    "loci_ge_5": 1014,
+    "loci_ge_10": 1006,
+    "loci_ge_20": 996,
+    "loci_ge_50": 977,
+    "loci_ge_100": 936,
+    "loci_ge_200": 854,
+    "loci_ge_500": 636,
+    "loci_ge_1000": 389,
+    "loci_ge_2000": 169,
+    "loci_ge_5000": 39,
+    "q05_mapped_reads_per_locus": 8,
+    "q10": 73,
+    "q25": 273,
+    "median": 683,
+    "q75": 1421,
+    "q90": 2816,
+    "q95": 4172,
+    "q99": 8219.8,
+    "max": 22927
+  },
+  "target_reference_record_hit_pattern": {
+    "two_reference_loci": {
+      "total": 586,
+      "zero_hit": 28,
+      "one_record_hit": 126,
+      "two_records_hit": 432
+    },
+    "three_reference_loci": {
+      "total": 475,
+      "zero_hit": 0,
+      "one_record_hit": 21,
+      "two_records_hit": 126,
+      "three_records_hit": 328
+    }
+  },
+  "interpretation": {
+    "primary": "The public C. sieboldii library is not grossly incompatible with the original generic Compositae1061 nucleotide target: reads reach 1033/1061 target loci, and 1006/1061 loci have at least 10 mapped reads in this direct-mapping smoke.",
+    "augmentation_upper_bound": "At an any-hit definition, only 28/1061 loci can be newly rescued by target-file augmentation, so the maximum possible gross locus-recovery gain is 2.64 percentage points. This does not bound improvements in assembly quality, allelic balance, paralog resolution, or sequence identity.",
+    "mapping_fraction_boundary": "The 24.37% read mapping fraction should not be interpreted as low capture efficiency because the public design explicitly mixed unenriched and target-enriched libraries at a 3:2 ratio.",
+    "decision_ceiling": "This is a technical smoke pass only. It does not authorize PUBLIC_TRANSFER_GREEN, local ancestry, haplotype age, recombination blocks, structural-variant reuse, module-specific local genealogy, or genotype-phenotype association."
+  }
+}
