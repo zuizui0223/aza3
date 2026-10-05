@@ -4,6 +4,8 @@ on:
   pull_request:
     paths:
       - "analysis/summarize_hybpiper_recovery_v1.py"
+      - "data/evidence/moreyra_conservative_241_no_warning_loci_v1.txt"
+      - "data/contracts/aza3_eazami_moreyra_locus_handoff_v1.json"
       - ".github/workflows/run-r1b0-focal-public-preflight-v1.yml"
   workflow_dispatch:
 
@@ -63,13 +65,13 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p sra reads
-          prefetch SRR30887308 --max-size 2G --output-directory sra
+          prefetch --max-size 2G --output-directory sra SRR30887308
           fasterq-dump sra/SRR30887308/SRR30887308.sra \
             --split-files --threads 4 --outdir reads
           wc -l reads/SRR30887308_1.fastq reads/SRR30887308_2.fastq
           du -h reads/SRR30887308_*.fastq
 
-      - name: Run HybPiper against ORIGINAL_COMP1061
+      - name: Run HybPiper against PUBLIC_COMP1061_1061
         shell: bash -el {0}
         run: |
           set -euo pipefail
@@ -77,7 +79,7 @@ jobs:
             -t_dna comp1061_hybpiper_reference.fasta \
             -r reads/SRR30887308_1.fastq reads/SRR30887308_2.fastq \
             --bwa \
-            --prefix SRR30887308__ORIGINAL_COMP1061 \
+            --prefix SRR30887308__PUBLIC_COMP1061_1061 \
             --cpu 4
 
       - name: Summarize focal target recovery
@@ -85,20 +87,22 @@ jobs:
         run: |
           set -euo pipefail
           python analysis/summarize_hybpiper_recovery_v1.py \
-            --root SRR30887308__ORIGINAL_COMP1061 \
+            --root SRR30887308__PUBLIC_COMP1061_1061 \
             --expected-loci 1061 \
-            --output r1b0_focal_original_target_recovery_v1.json
+            --frozen-loci data/evidence/moreyra_conservative_241_no_warning_loci_v1.txt \
+            --frozen-loci-id MOREYRA_COMPATIBILITY_241 \
+            --output r1b0_focal_public1061_recovery_v1.json
           echo "===== PRIMARY R1B-0 FOCAL EMPIRICAL RESULT ====="
-          cat r1b0_focal_original_target_recovery_v1.json | python -c 'import json,sys; d=json.load(sys.stdin); print(json.dumps({k:d[k] for k in ["expected_target_loci","recovered_distinct_fna_loci","recovered_fraction","total_recovered_bp","median_recovered_bp","paralog_named_files","paralog_nonempty_line_total"]},indent=2))'
+          cat r1b0_focal_public1061_recovery_v1.json | python -c 'import json,sys; d=json.load(sys.stdin); print(json.dumps({k:d[k] for k in ["expected_public_named_loci","historical_author_target_count_reported","recovered_distinct_fna_loci","public_1061_recovery_fraction","frozen_loci_count","frozen_loci_recovered","frozen_loci_recovery_fraction","total_recovered_bp","median_recovered_bp","paralog_named_files","paralog_nonempty_line_total"]},indent=2))'
           echo "===== HYBPIPER TOP LEVEL ====="
-          find SRR30887308__ORIGINAL_COMP1061 -maxdepth 2 -type f | sort | head -n 100
+          find SRR30887308__PUBLIC_COMP1061_1061 -maxdepth 2 -type f | sort | head -n 100
 
       - uses: actions/upload-artifact@v4
         with:
-          name: r1b0-focal-original-target-${{ github.run_id }}
+          name: r1b0-focal-public1061-241-${{ github.run_id }}
           path: |
-            r1b0_focal_original_target_recovery_v1.json
-            SRR30887308__ORIGINAL_COMP1061/*.txt
-            SRR30887308__ORIGINAL_COMP1061/*.tsv
-            SRR30887308__ORIGINAL_COMP1061/*.log
+            r1b0_focal_public1061_recovery_v1.json
+            SRR30887308__PUBLIC_COMP1061_1061/*.txt
+            SRR30887308__PUBLIC_COMP1061_1061/*.tsv
+            SRR30887308__PUBLIC_COMP1061_1061/*.log
           if-no-files-found: warn
