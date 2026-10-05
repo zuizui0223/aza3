@@ -1,6 +1,6 @@
 # R1B own-data WGS transferability pilot v1
 
-**Status:** DESIGN FROZEN — NOT COLLECTION AUTHORIZATION  
+**Status:** DESIGN FROZEN — BIOLOGICAL SAMPLE SELECTION BLOCKED BY GATE CS  
 **Date:** 2026-10-05
 
 ## Purpose
@@ -9,7 +9,11 @@ This pilot is not a GWAS and not the Nature Figure-3 experiment.
 
 Its sole purpose is to determine whether dense genomic inference in focal *Cirsium sieboldii* individuals is stable enough across existing public references to justify proceeding without first building a focal chromosome-scale reference.
 
-The pilot opens only after the bounded public R1B-0 preflight has been classified, or earlier only if own samples already exist under valid authorization.
+The reference-transferability design is technically ready after R1B-0.
+
+However, selection of *C. sieboldii* individuals for the **biological Nature test** is blocked by `C_SIEBOLDII_COMBINATORIAL_SUBSTRATE_GATE_V1.md`.
+
+Gate CS must first establish whether directly observed capitulum components actually co-segregate within one natural population or a tightly matched local set. If already-authorized samples are sequenced before Gate CS, they remain a reference-transferability dataset only.
 
 ## Target sample size
 
@@ -21,7 +25,16 @@ Eight is chosen for reference-bias discrimination, not statistical power for gen
 
 ## Biological sampling logic
 
-Prefer two polymorphic or closely paired populations, four individuals per population.
+**Do not choose the biological pilot population before Gate CS is classified.**
+
+Priority by Gate CS result:
+
+1. `CS_GREEN`: use the verified within-population combinatorial substrate as first choice;
+2. `CS_GREEN_LOCAL_SET`: use the verified local set but retain population as an explicit factor;
+3. `CS_AMBER`: the technical WGS pilot may proceed, but *C. sieboldii* is not authorized as the Nature Fig.4 natural-reassembly system;
+4. `CS_RED_*`: do not center the Nature genomic test on *C. sieboldii*.
+
+After a GREEN route, prefer two polymorphic or closely paired populations, four individuals per population.
 
 Within each population, maximize directly observed contrast across capitulum modules, prioritizing:
 
