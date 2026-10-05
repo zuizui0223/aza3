@@ -6,6 +6,9 @@ ROOT = Path(__file__).resolve().parents[1]
 DOC = ROOT / "docs" / "REFERENCE_GENOME_AND_PUBLIC_DATA_READINESS_V1.md"
 CONTRACT = ROOT / "data" / "contracts" / "aza3_reference_public_data_readiness_v1.json"
 INV = ROOT / "data" / "planning" / "reference_public_resource_inventory_v1.csv"
+PREFLIGHT_DOC = ROOT / "docs" / "REFERENCE_TRANSFER_PUBLIC_PREFLIGHT_V1.md"
+PREFLIGHT_CONTRACT = ROOT / "data" / "contracts" / "aza3_reference_transfer_public_preflight_v1.json"
+PREFLIGHT_RUNS = ROOT / "data" / "planning" / "reference_public_preflight_runs_v1.csv"
 README = ROOT / "README.md"
 
 def need(text, token):
@@ -16,6 +19,9 @@ def main():
     doc = DOC.read_text(encoding="utf-8")
     con = json.loads(CONTRACT.read_text(encoding="utf-8"))
     rows = list(csv.DictReader(INV.open(encoding="utf-8")))
+    pdoc = PREFLIGHT_DOC.read_text(encoding="utf-8")
+    pcon = json.loads(PREFLIGHT_CONTRACT.read_text(encoding="utf-8"))
+    pruns = list(csv.DictReader(PREFLIGHT_RUNS.open(encoding="utf-8")))
     readme = README.read_text(encoding="utf-8")
 
     assert con["status"] == "R1A_RESOURCE_AUDIT_COMPLETE__R1B_TRANSFERABILITY_PILOT_PENDING"
@@ -50,7 +56,6 @@ def main():
     ):
         need(doc, token)
 
-    # Fail closed on the exact inferential boundaries.
     for token in (
         "Target-capture loci from PRJNA957074 may inform broad topology and orthology but cannot by themselves establish fine local ancestry, haplotype age, recombination blocks, or structural-variant reuse.",
         "Young-leaf transcriptomes from PRJNA1158676 and PRJNA1311153 may inform coding orthology and expressed haplotypes but cannot establish intergenic regulatory architecture or genome-wide local ancestry.",
@@ -64,14 +69,60 @@ def main():
     assert focal[0]["status"] == "MISSING_PUBLIC"
     assert "audit-bounded" in focal[0]["claim_ceiling"]
 
+    # R1B-0 public target-capture preflight must stay bounded.
+    assert pcon["status"] == "EXECUTABLE_PUBLIC_DATA_PREFLIGHT"
+    assert pcon["source_bioproject"] == "PRJNA957074"
+    assert pcon["focal_run"]["run"] == "SRR30887308"
+    assert pcon["focal_run"]["biosample"] == "SAMN44017917"
+    assert pcon["focal_run"]["taxon"] == "Cirsium sieboldii"
+    assert len(pruns) == 10
+
+    runs = {r["run"]: r for r in pruns}
+    required_runs = {
+        "SRR30887308": "Cirsium sieboldii",
+        "SRR30887271": "Cirsium japonicum",
+        "SRR30887240": "Cirsium lineare",
+        "SRR25265660": "Cirsium nipponicum",
+        "SRR25265649": "Cirsium pendulum",
+        "SRR30887259": "Cirsium dipsacolepis",
+        "SRR30887291": "Cirsium tanakae",
+    }
+    for run, taxon in required_runs.items():
+        assert run in runs, run
+        assert runs[run]["taxon"] == taxon, (run, runs[run]["taxon"], taxon)
+
+    for token in (
+        "SRR30887308",
+        "PUBLIC_TRANSFER_GREEN",
+        "PUBLIC_TRANSFER_AMBER",
+        "PUBLIC_TRANSFER_RED",
+        "Target-capture data interrogate a sparse, bait-defined subset of the genome.",
+        "Do not expand it into a new phylogenomics project.",
+    ):
+        need(pdoc, token)
+
+    forbidden = {
+        "local ancestry",
+        "recombination blocks",
+        "haplotype age",
+        "structural variant reuse",
+        "module-specific local genealogy",
+        "genotype-phenotype association",
+    }
+    if not forbidden.issubset(set(pcon["prohibited_inferences"])):
+        raise AssertionError("R1B-0 inference ceiling was relaxed")
+
     need(readme, "REFERENCE_GENOME_AND_PUBLIC_DATA_READINESS_V1.md")
     need(readme, "reference_public_resource_inventory_v1.csv")
 
     print(json.dumps({
         "status": "ok",
         "r1a": "resource_audit_complete",
-        "r1b": "transferability_pilot_pending",
+        "r1b0": "public_target_capture_preflight_executable",
+        "r1b": "own_wgs_transferability_pilot_pending",
         "resource_rows": len(rows),
+        "public_preflight_runs": len(pruns),
+        "public_focal_run": pcon["focal_run"]["run"],
         "focal_system": con["focal_system"],
         "decision": con["current_decision"],
     }, indent=2))
