@@ -1,0 +1,108 @@
+{
+  "contract_version": "aza3_r1b1_wgs_transferability_pilot_v1",
+  "status_date": "2026-10-05",
+  "status": "DESIGN_FROZEN_NOT_COLLECTION_AUTHORIZATION",
+  "parent_gate": "R1B0",
+  "focal_taxon": "Cirsium sieboldii",
+  "sample_target": {
+    "core": 8,
+    "preferred": 10
+  },
+  "sample_selection_priority": [
+    "mixed_population_module_variation",
+    "within_population_phenotype_contrasts",
+    "nearby_paired_populations",
+    "broad_geographic_endpoints"
+  ],
+  "minimum_design": {
+    "populations": 2,
+    "individuals_per_population": 2,
+    "within_population_contrast_pairs_target": 2
+  },
+  "sequencing": {
+    "type": "short_read_WGS",
+    "layout": "paired_end",
+    "preferred_read_length": "PE150",
+    "nominal_depth_x": "8-10",
+    "purpose": "reference_bias_and_genotype_likelihood_diagnostics"
+  },
+  "references": [
+    {
+      "id": "heterophyllum_hap1",
+      "accession": "GCA_965225835.1",
+      "role": "primary_coordinate_backbone"
+    },
+    {
+      "id": "heterophyllum_hap2",
+      "accession": "GCA_965225975.1",
+      "role": "same_individual_reference_noise_control"
+    },
+    {
+      "id": "dissectum_hap1",
+      "accession": "GCA_965276805.1",
+      "role": "independent_coordinate_sensitivity"
+    },
+    {
+      "id": "dissectum_hap2",
+      "accession": "GCA_965276745.1",
+      "role": "same_individual_reference_noise_control"
+    },
+    {
+      "id": "nipponicum",
+      "source": "10.6084/m9.figshare.26927092",
+      "role": "east_asian_sequence_annotation_anchor"
+    }
+  ],
+  "staged_unblinding": [
+    "A_phenotype_blind_technical_metrics",
+    "B_population_labels",
+    "C_capitulum_phenotype_labels"
+  ],
+  "required_same_individual_fields": [
+    "individual_id",
+    "population_id",
+    "voucher_or_diagnostic_image",
+    "standardized_colour",
+    "presentation_angle",
+    "phyllary_state",
+    "stickiness_state",
+    "genome_size_2C_or_missing",
+    "cytotype_or_missing",
+    "leaf_DNA_sample",
+    "authorization_record"
+  ],
+  "primary_metrics": [
+    "mapped_pair_fraction",
+    "unique_mapping_fraction",
+    "depth_distribution",
+    "callable_fraction",
+    "heterozygous_allele_balance",
+    "genotype_likelihood_missingness",
+    "genotype_likelihood_PCA_concordance",
+    "pairwise_distance_matrix_concordance",
+    "kinship_rank_concordance",
+    "window_callable_fraction_concordance",
+    "window_local_structure_concordance_where_estimable",
+    "reference_x_population_callability_interaction",
+    "reference_x_phenotype_missingness_interaction"
+  ],
+  "baseline_logic": "Between-species reference disagreement is interpreted relative to hap1-vs-hap2 disagreement from the same reference individuals using identical WGS reads and mapping policy.",
+  "decisions": {
+    "WGS_TRANSFER_GREEN": "Genome-wide and window-level structure is stable relative to haplotype-reference noise and no phenotype-linked mapping/callability artefact is detected.",
+    "WGS_TRANSFER_AMBER": "Genome-wide structure is stable but local windows exceed the haplotype-noise baseline; focal C. sieboldii reference required before Nature Fig.3 local-history claims.",
+    "WGS_TRANSFER_RED": "Population/relatedness structure or phenotype-linked callability changes materially with reference; focal reference mandatory and pangenome route considered if linear-reference bias persists.",
+    "NOT_IDENTIFIABLE": "Coverage or sampling cannot distinguish reference artefact from biology."
+  },
+  "claim_ceiling": [
+    "reference_framework_adequacy_only",
+    "no_causal_variant",
+    "no_adaptive_locus",
+    "no_haplotype_age",
+    "no_trait_introgression",
+    "no_recombination_block_reuse",
+    "no_SV_reuse",
+    "no_genomic_modularity",
+    "no_genotype_phenotype_association"
+  ],
+  "stop_rule": "Do not scale to the full Phase-A panel before the WGS reference-transferability decision."
+}\n
