@@ -25,6 +25,8 @@ NCBI SRA query of Moreyra et al. BioProject `PRJNA957074` identifies one public 
 - reported bases: 656,395,250
 - average read length: 250 bp
 
+The NCBI Run Browser experiment design adds an important technical boundary: **unenriched libraries were mixed with target-enriched libraries at a 3:2 ratio before sequencing**. Therefore raw read-to-target mapping percentage contains a designed off-target component and is **technical QC only**, not a reference-transferability estimand. The primary Stage-1 quantities are HybPiper locus recovery, recovered length, paralogy and locus dropout.
+
 The same BioProject also contains public target-capture runs for several aza3-relevant or nearby Japanese taxa. The exact frozen panel is:
 
 `data/planning/reference_public_preflight_runs_v1.csv`
