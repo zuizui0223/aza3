@@ -28,7 +28,8 @@ This is a hypothesis programme, not a result. EAzami establishes repeated phenot
 4. `docs/GATE0B_PHENOTYPE_RATE_READINESS_V1.md` + `data/contracts/aza3_gate0b_rate_estimand_v1.json` — frozen phenotype numerator and total-rate ratio; currently blocked by Japanese trait coverage.
 5. `data/planning/aza3_nature_sampling_priorities_v2.csv` — canonical sampling order ranked by hypothesis discrimination rather than taxonomic coverage.
 6. `docs/AZA3_NATURE_GENOMIC_SAMPLING_PANEL_V1.md` + `data/planning/aza3_nature_genomic_sampling_panel_v1.csv` — active 298-individual Phase-A genomic hypothesis-discrimination panel; *C. sieboldii* is the primary same-species combinatorial-reuse system.
-7. The original `data/planning/chapter3_sampling_priorities_v1.csv` remains preserved as the narrower history-resolution plan and is not the current strategic ranking.
+7. `docs/ADAPTIVE_VARIANT_IDENTIFICATION_PROGRAM_V1.md` + `data/planning/adaptive_variant_evidence_ladder_v1.csv` — colour-led variant-to-fitness-to-reuse ladder; *takaoense* is the Phase-B molecular anchor.
+8. The original `data/planning/chapter3_sampling_priorities_v1.csv` remains preserved as the narrower history-resolution plan and is not the current strategic ranking.
 
 ### Read the origin of this question first
 

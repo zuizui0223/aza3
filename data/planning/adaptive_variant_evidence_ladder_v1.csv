@@ -1,0 +1,8 @@
+level_id,level_name,minimum_evidence,allowed_term,not_allowed,opens_next
+AV0,linked_biological_unit,"same-individual phenotype + genotype + population + voucher + cytotype where relevant",linked_individual_record,"gene claim; adaptation claim",AV1
+AV1,trait_association,"ancestry/cytotype-controlled locus or haplotype association replicated where possible",trait-associated_locus,"causal gene; selected locus; adaptive allele",AV2
+AV2,molecular_mediation,"mechanistically concordant floral expression/pigment/sequence effect",candidate_causal_locus_or_route,"adaptive allele; variant origin",AV3
+AV3,variant_origin,"local genealogy/haplotype age/local ancestry classifies de novo vs standing vs introgressive vs regulatory/polyploid reuse",variant_source_class,"adaptation; selection",AV4
+AV4,selection_evidence,"ancestry-aware selection evidence or direct genotype-specific selection",selected_candidate_locus,"adaptation without fitness",AV5
+AV5,fitness_consequence,"predeclared genotype/phenotype x environment effect on mature/filled viable achenes with mediator",adaptive_variant_candidate_with_direct_fitness_support,"reusable module without replication",AV6
+AV6,recurrent_reuse,"same locus/haplotype/regulatory module contributes across at least two independently resolved phenotype histories",reusable_adaptive_genomic_module,"genus-wide rule without independent generality test",N06
