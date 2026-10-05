@@ -65,7 +65,22 @@
       "reference-specific local ancestry or local-PCA signals",
       "reference-specific allele-balance distortion"
     ],
-    "negative_control_principle": "Reference transfer is acceptable only when the biological conclusion, not merely global mapping rate, is stable across at least two chromosome-scale congener backbones and the East-Asian sequence anchor where technically comparable."
+    "negative_control_principle": "Reference transfer is acceptable only when the biological conclusion, not merely global mapping rate, is stable across the primary congener backbones and East-Asian sequence anchor where technically comparable, and when the claimed among-reference differences exceed same-individual hap1-vs-hap2 sensitivity.",
+    "reference_internal_controls": [
+      {
+        "taxon": "Cirsium heterophyllum",
+        "primary_hap1": "GCA_965225835.1",
+        "hap2_control": "GCA_965225975.1",
+        "purpose": "bound same-individual reference-haplotype sensitivity"
+      },
+      {
+        "taxon": "Cirsium dissectum",
+        "primary_hap1": "GCA_965276805.1",
+        "hap2_control": "GCA_965276745.1",
+        "purpose": "bound same-individual reference-haplotype sensitivity; NCBI assembly comments report haplotypic inversions on chromosomes 1, 6 and 7"
+      }
+    ],
+    "reference_metadata_boundary": "NCBI accession-level reports identify 17 chromosome-scale scaffolds for both hap1 assemblies. Any prior 19-chromosome description is superseded."
   },
   "decision_classes": {
     "GREEN_EXISTING_REFERENCE_SUFFICIENT": {
