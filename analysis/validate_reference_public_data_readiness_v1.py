@@ -12,6 +12,7 @@ HANDOFF = ROOT/"data"/"contracts"/"aza3_eazami_moreyra_locus_handoff_v1.json"
 INV = ROOT/"data"/"planning"/"reference_public_resource_inventory_v1.csv"
 RUNS = ROOT/"data"/"planning"/"reference_public_preflight_runs_v1.csv"
 TARGET_AUDIT = ROOT/"data"/"evidence"/"comp1061_public_target_audit_v1.json"
+BYTE_REF = ROOT/"data"/"evidence"/"r1b0_genome_reference_byte_contract_v1.json"
 LOCI241 = ROOT/"data"/"evidence"/"moreyra_conservative_241_no_warning_loci_v1.txt"
 METRICS = ROOT/"data"/"contracts"/"r1b0_primary_metric_registry_v1.csv"
 RECOVERY_SCHEMA = ROOT/"data"/"templates"/"r1b0_target_recovery_results_v1.csv"
@@ -38,6 +39,7 @@ def main():
     inv=csvrows(INV)
     runs=csvrows(RUNS)
     taudit=json.loads(TARGET_AUDIT.read_text(encoding="utf-8"))
+    bref=json.loads(BYTE_REF.read_text(encoding="utf-8"))
     metrics=csvrows(METRICS)
     readme=README.read_text(encoding="utf-8")
 
@@ -77,6 +79,27 @@ def main():
     vals=[x.strip() for x in LOCI241.read_text(encoding="utf-8").splitlines() if x.strip()]
     assert len(vals)==241 and len(set(vals))==241
     assert hashlib.sha256(LOCI241.read_bytes()).hexdigest()==SHA241
+
+    # Genome reference bytes are frozen before localization.
+    assert pcon["genome_reference_byte_contract"]=="data/evidence/r1b0_genome_reference_byte_contract_v1.json"
+    prim={x.get("accession",x.get("accession_or_doi")):x for x in bref["primary_references"]}
+    assert prim["GCA_965225835.1"]["compressed_md5"]=="9b5e78bc4736baec58f688262e3f0cca"
+    assert prim["GCA_965225835.1"]["uncompressed_md5"]=="2b38c89fbd7c052ff731ea56a8d40f61"
+    assert prim["GCA_965225835.1"]["chromosome_count"]==17
+    assert prim["GCA_965276805.1"]["compressed_md5"]=="833d314a3cd6b148db017fba37d72b7d"
+    assert prim["GCA_965276805.1"]["uncompressed_md5"]=="7d6f4d0382f991c5cda53ce82308eba9"
+    assert prim["GCA_965276805.1"]["chromosome_count"]==17
+    nip=prim["10.6084/m9.figshare.26927092"]
+    assert nip["figshare_file_id"]==48979489
+    assert nip["md5"]=="e9390e23ffd0dc5e3da8271db4d1d3ca"
+    controls={x["accession"]:x for x in bref["within_individual_haplotype_controls"]}
+    assert controls["GCA_965225975.1"]["compressed_md5"]=="f2c131de0c37d88b8ddfb24ba15ca33b"
+    assert controls["GCA_965225975.1"]["uncompressed_md5"]=="12fb5d97949287ad43daacdc42c30f9b"
+    assert controls["GCA_965276745.1"]["compressed_md5"]=="eb3bb9a68dc278ec9bd5c587d60a82ea"
+    assert controls["GCA_965276745.1"]["uncompressed_md5"]=="9436bc6f958406d7642292c9f0258661"
+    assert "17 chromosomes" in runbook
+    need(runbook,"9b5e78bc4736baec58f688262e3f0cca")
+    need(runbook,"833d314a3cd6b148db017fba37d72b7d")
 
     # Focal public run and target provenance.
     assert pcon["status"]=="EXECUTABLE_PUBLIC_DATA_PREFLIGHT"
