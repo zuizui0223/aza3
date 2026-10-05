@@ -106,7 +106,7 @@ jobs:
           echo "===== PRIMARY R1B-0 FOCAL EMPIRICAL RESULT ====="
           cat r1b0_focal_public1061_recovery_v1.json | python -c 'import json,sys; d=json.load(sys.stdin); print(json.dumps({k:d[k] for k in ["expected_public_named_loci","historical_author_target_count_reported","recovered_distinct_fna_loci","public_1061_recovery_fraction","frozen_loci_count","frozen_loci_recovered","frozen_loci_recovery_fraction","total_recovered_bp","median_recovered_bp","paralog_named_files","paralog_nonempty_line_total"]},indent=2))'
           echo "===== HYBPIPER TOP LEVEL ====="
-          find SRR30887308__PUBLIC_COMP1061_1061 -maxdepth 2 -type f | sort | head -n 100
+          find SRR30887308__PUBLIC_COMP1061_1061 -maxdepth 2 -type f | sort | sed -n "1,100p"
 
       - name: Materialize frozen C. nipponicum 180-locus genome-derived pack
         run: |
