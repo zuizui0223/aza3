@@ -1,0 +1,40 @@
+{
+  "contract_version": "aza3_nature_single_question_v2",
+  "status_date": "2026-10-05",
+  "status": "ACTIVE_CONCEPTUAL_TARGET__GENOMIC_ANSWER_PENDING",
+  "one_question": "Must an integrated complex organ evolve as an integrated unit?",
+  "working_answer": "Phenotypic integration can be repeatedly reconstructed from components whose coupling is not persistently shared across ecology, history and genomic inheritance.",
+  "working_label": "reconfigurable_integration",
+  "rejected_or_demoted_framings": [
+    "ecological modules necessarily align with genomic modules",
+    "combinatorial reuse alone is the Nature-scale novelty",
+    "accelerated evolutionary rate is a prerequisite for the main mechanism"
+  ],
+  "existing_evidence": {
+    "present_phenotypic_module_cohesion": "supported",
+    "fixed_ecological_module_alignment": "not_supported",
+    "trait_specific_ecological_anchors": "supported_for_chroma_rsds_and_presentation_bio12",
+    "synchronized_historical_module": "not_supported",
+    "genomic_reassembly": "not_yet_tested"
+  },
+  "competing_models": {
+    "fixed_evolutionary_integration": "present phenotype modules persist as shared genomic/local-history units",
+    "reconfigurable_integration": "present phenotype integration coexists with separable component genomic histories and recombinant reassembly"
+  },
+  "nature_kill_shot": "Natural or segregating genomic mosaics independently predict component states/new capitulum combinations while preserving a coherent integrated reproductive phenotype.",
+  "primary_falsifier": "All focal components follow the same local genomic ancestry and phenotype combinations track one inseparable genomic background.",
+  "figure_contract": [
+    "Fig1: present integration plus failure of one fixed ecological partition and robust component-specific ecological anchors",
+    "Fig2: repeated, unequal-depth, nonsynchronized component histories",
+    "Fig3: same-individual test of genomic co-inheritance versus separable local histories",
+    "Fig4: natural genomic reassembly and prospective/out-of-sample combination prediction",
+    "Fig5: representative function-to-fitness chain showing coherent reproductive performance after component reassembly"
+  ],
+  "claim_boundaries": [
+    "cross-level modularity mismatch is not itself claimed as unprecedented",
+    "environmental associations are not selection",
+    "historical nonsynchrony is not genetic independence",
+    "genomic modularity requires same-individual dense data and reference-stable inference",
+    "adaptation requires direct fitness evidence"
+  ]
+}
