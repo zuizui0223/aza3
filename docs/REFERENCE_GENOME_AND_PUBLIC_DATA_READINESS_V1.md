@@ -41,6 +41,14 @@ Canonical machine-readable inventory:
 - umbrella project reports about 167 Gb of SRA data
 - Ensembl Genebuild is available for the hap1 assembly
 
+NCBI Datasets resolves both hap1 assemblies to **17 chromosome-scale scaffolds**, consistent with a haploid complement of 17:
+- `C. heterophyllum` hap1: 944,019,485 bp; contig N50 2,674,182 bp; scaffold N50 50,939,392 bp;
+- `C. dissectum` hap1: 1,069,227,339 bp; contig N50 3,154,544 bp; scaffold N50 59,465,939 bp.
+
+The earlier 19-chromosome description was incorrect and is superseded by the accession-level NCBI assembly report.
+
+The hap2 assemblies are retained as **same-individual reference controls**. This is particularly important for `C. dissectum`, whose NCBI assembly comments explicitly report haplotypic inversions between hap1 and hap2 on chromosomes 1, 6 and 7. A locus-placement result that changes merely by switching haplotypes of the same reference individual cannot be treated as robust evidence of lineage-specific genomic structure.
+
 These are high-value chromosome-coordinate and synteny backbones. They are not assumed to be unbiased focal haplotype references.
 
 ### 2. East-Asian whole-genome resource
@@ -145,6 +153,12 @@ The first mapping-QC pass should remain phenotype-blind where operationally poss
 1. `C. heterophyllum GCA_965225835.1`;
 2. `C. dissectum GCA_965276805.1`;
 3. the public `C. nipponicum` assembly.
+
+Reference-internal sensitivity controls:
+- `C. heterophyllum GCA_965225975.1` (hap2);
+- `C. dissectum GCA_965276745.1` (hap2).
+
+The hap2 controls do not replace the three primary references. They quantify how much locus placement can change within one diploid reference individual before any among-species reference effect is interpreted.
 
 ### Required outputs
 
