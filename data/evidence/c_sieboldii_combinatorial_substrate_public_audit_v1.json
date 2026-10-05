@@ -1,0 +1,72 @@
+{
+  "evidence_version": "c_sieboldii_combinatorial_substrate_public_audit_v1",
+  "status_date": "2026-10-05",
+  "focal_taxon": "Cirsium sieboldii",
+  "public_sources": [
+    {
+      "source": "National Museum of Nature and Science Japan Cirsium database",
+      "url": "https://www.kahaku.go.jp/research/db/botany/azami/detail.html?no=46",
+      "supports": [
+        "normal capitula flower nodding",
+        "capitula become upright after flowering",
+        "upright-flowering plants are reported from multiple places",
+        "white-flowered form is recognized",
+        "2n=2x=34"
+      ],
+      "does_not_support": [
+        "same-population co-segregation of white and coloured states",
+        "same-population co-segregation of anthesis-upright and nodding states",
+        "independent multi-component assortment"
+      ]
+    },
+    {
+      "source": "World Flora Online / accepted infraspecific form",
+      "url": "https://www.worldfloraonline.org/taxon/wfo-0000059633",
+      "supports": [
+        "Cirsium sieboldii f. leucanthum T.Shimizu is an accepted included form"
+      ],
+      "does_not_support": [
+        "population frequency or co-segregation"
+      ]
+    },
+    {
+      "source": "Nagano botanical nomenclatural summary citing Shimizu 1989",
+      "url": "https://shinshu-plants.jp/bn/BBSN_055_167.pdf",
+      "supports": [
+        "Cirsium sieboldii f. leucanthum type locality: Nagano, Kirigamine, Kurumayama Moor"
+      ],
+      "does_not_support": [
+        "ordinary coloured and white plants sampled together",
+        "orientation state of the type population"
+      ]
+    },
+    {
+      "source": "Flora of Mikawa field account",
+      "url": "https://mikawanoyasou.org/data/kiseruazami.htm",
+      "supports": [
+        "heads can move from downward during flowering to upright toward fruit dispersal",
+        "within-region variation in hairiness is observed"
+      ],
+      "does_not_support": [
+        "genetic upright-flowering polymorphism",
+        "multi-component capitulum segregation"
+      ]
+    },
+    {
+      "source": "Herbarium-based synonymy study of Cirsium paludigenum and C. sieboldii",
+      "url": "https://zenodo.org/doi/10.5281/zenodo.6450084",
+      "supports": [
+        "C. sieboldii is variable in capitulum size and number of phyllary rows",
+        "species-level morphological variation is broader than some earlier diagnoses"
+      ],
+      "does_not_support": [
+        "same-population quantitative phyllary segregation",
+        "linkage or independence among colour, orientation and phyllary states"
+      ]
+    }
+  ],
+  "audit_decision": "PUBLIC_EVIDENCE_SUPPORTS_SPECIES_WIDE_MULTIPLICITY_BUT_NOT_A_VERIFIED_COMBINATORIAL_POPULATION_SUBSTRATE",
+  "key_confound": "orientation must be standardized at anthesis because ordinary heads reorient upward after flowering",
+  "immediate_action": "Run Gate CS observation-only combinatorial census before biological WGS sample selection.",
+  "claim_boundary": "Absence of published same-population evidence is not evidence that such populations do not exist."
+}
