@@ -216,6 +216,22 @@ Opened only for interpretable focal systems:
 - structural-variant validation;
 - targeted long-read/reference improvement if necessary.
 
+### Adaptive-variant evidence ladder
+
+The colour/molecular flagship follows `ADAPTIVE_VARIANT_IDENTIFICATION_PROGRAM_V1.md`.
+
+The terminology is deliberately tiered:
+
+- AV1 only → **trait-associated locus**;
+- AV1 + AV2 → **candidate causal locus / molecular route**;
+- AV1 + AV2 + AV4 → **selected candidate locus**;
+- AV1 + AV2 + AV5 → **adaptive-variant candidate with direct fitness support**;
+- AV1–AV6 across replicated histories → **reusable adaptive genomic module**.
+
+A selection scan, environmental association or anthocyanin-pathway hit alone is never sufficient for an adaptive-gene claim.
+
+The Phase-A 298-individual panel supplies ancestry and replicated phenotype histories. *C. japonicum* var. *takaoense* is a Phase-B molecular anchor: its six public W/BP-labelled transcriptomes are used first, followed only if justified by a population-replicated 20–30 W + 20–30 BP design with floral RNA, pigment and dense genotype.
+
 ## 6. The Nature kill shot — genomic combinatorial reuse
 
 The strongest result is not merely that standing variation exists.
@@ -247,6 +263,8 @@ Primary ecological test: orientation × rain/wetting.
 Colour:
 genotype/regulation → pigment → optical phenotype.
 Then discriminate pollinator signalling versus radiation/thermal/UV function.
+
+Colour is the primary **adaptive-variant molecular flagship**. The target is not a flower-colour candidate gene; it is a variant whose phenotype effect, genomic origin and environment-dependent reproductive-fitness consequence are all linked, followed by a cross-system test of recurrent reuse.
 
 Phyllary:
 access manipulation → antagonist access/damage → legitimate visitor process → viable seed.
