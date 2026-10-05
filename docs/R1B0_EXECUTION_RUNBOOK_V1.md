@@ -201,10 +201,18 @@ Before viewing focal `C. sieboldii` transferability:
 
 Use assembled clean-locus sequences, not raw target-capture reads, for the primary cross-reference localization test.
 
-Candidate genome references:
-1. `C. heterophyllum GCA_965225835.1`;
-2. `C. dissectum GCA_965276805.1`;
-3. public `C. nipponicum` assembly.
+Primary candidate genome references:
+1. `C. heterophyllum GCA_965225835.1` (hap1; 17 chromosome-scale scaffolds);
+2. `C. dissectum GCA_965276805.1` (hap1; 17 chromosome-scale scaffolds);
+3. public `C. nipponicum` assembly — Figshare file `48979489`, `C.nipponicum_softmasked_genome.fa`, MD5 `e9390e23ffd0dc5e3da8271db4d1d3ca`.
+
+Reference-internal controls:
+4. `C. heterophyllum GCA_965225975.1` (hap2);
+5. `C. dissectum GCA_965276745.1` (hap2).
+
+The two hap2 controls answer a different question from the three primary references: how much can locus placement change merely by switching haplotypes from the **same diploid individual**? This is a negative-control scale for interpreting among-species reference differences. NCBI reports explicit haplotypic inversions in the `C. dissectum` pair on chromosomes 1, 6 and 7.
+
+Do not infer that a cross-reference placement difference is biologically meaningful unless it exceeds or is qualitatively distinct from this within-individual haplotype sensitivity.
 
 For each locus sequence, align independently to each reference. Example:
 
@@ -222,7 +230,11 @@ Record:
 - sequence identity/edit distance;
 - chromosome/contig coordinate;
 - relative ordering/synteny between chromosome-scale references;
-- locus dropout.
+- locus dropout;
+- hap1-vs-hap2 placement stability within `C. heterophyllum`;
+- hap1-vs-hap2 placement stability within `C. dissectum`.
+
+The primary three-reference comparison is interpreted only after the within-individual haplotype baseline is known.
 
 ## Phase 5 — decision
 
