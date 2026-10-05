@@ -44,15 +44,26 @@
   "genome_references": [
     {
       "taxon": "Cirsium heterophyllum",
-      "assembly": "GCA_965225835.1"
+      "assembly": "GCA_965225835.1",
+      "filename": "GCA_965225835.1_daCirHete1.hap1.1_genomic.fna.gz",
+      "compressed_md5": "9b5e78bc4736baec58f688262e3f0cca",
+      "uncompressed_md5": "2b38c89fbd7c052ff731ea56a8d40f61",
+      "chromosome_count": 17
     },
     {
       "taxon": "Cirsium dissectum",
-      "assembly": "GCA_965276805.1"
+      "assembly": "GCA_965276805.1",
+      "filename": "GCA_965276805.1_daCirDiss1.hap1.1_genomic.fna.gz",
+      "compressed_md5": "833d314a3cd6b148db017fba37d72b7d",
+      "uncompressed_md5": "7d6f4d0382f991c5cda53ce82308eba9",
+      "chromosome_count": 17
     },
     {
       "taxon": "Cirsium nipponicum",
-      "source": "PRJNA1127082 + 10.6084/m9.figshare.26927092"
+      "source": "10.6084/m9.figshare.26927092",
+      "filename": "C.nipponicum_softmasked_genome.fa",
+      "figshare_file_id": 48979489,
+      "md5": "e9390e23ffd0dc5e3da8271db4d1d3ca"
     }
   ],
   "stages": [
@@ -138,12 +149,18 @@
       "taxon": "Cirsium heterophyllum",
       "hap1": "GCA_965225835.1",
       "hap2": "GCA_965225975.1",
+      "hap2_filename": "GCA_965225975.1_daCirHete1.hap2.1_genomic.fna.gz",
+      "hap2_compressed_md5": "f2c131de0c37d88b8ddfb24ba15ca33b",
+      "hap2_uncompressed_md5": "12fb5d97949287ad43daacdc42c30f9b",
       "comparison_role": "within_individual_reference_haplotype_sensitivity"
     },
     {
       "taxon": "Cirsium dissectum",
       "hap1": "GCA_965276805.1",
       "hap2": "GCA_965276745.1",
+      "hap2_filename": "GCA_965276745.1_daCirDiss1.hap2.1_genomic.fna.gz",
+      "hap2_compressed_md5": "eb3bb9a68dc278ec9bd5c587d60a82ea",
+      "hap2_uncompressed_md5": "9436bc6f958406d7642292c9f0258661",
       "comparison_role": "within_individual_reference_haplotype_sensitivity",
       "known_haplotypic_inversions": [
         "Chr1",
@@ -162,6 +179,8 @@
       "size_bytes": 948012384,
       "md5": "e9390e23ffd0dc5e3da8271db4d1d3ca",
       "download_url": "https://ndownloader.figshare.com/files/48979489"
-    }
-  }
+    },
+    "byte_integrity_rule": "R1B-0 localization is fail-closed unless every genome file matches the frozen byte contract; for NCBI .gz references verify both compressed and decompressed MD5."
+  },
+  "genome_reference_byte_contract": "data/evidence/r1b0_genome_reference_byte_contract_v1.json"
 }
