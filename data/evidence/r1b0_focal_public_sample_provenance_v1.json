@@ -1,0 +1,32 @@
+{
+  "audit_version": "r1b0_focal_public_sample_provenance_v1",
+  "status_date": "2026-10-05",
+  "taxon": "Cirsium sieboldii",
+  "run": "SRR30887308",
+  "experiment": "SRX26291290",
+  "biosample": "SAMN44017917",
+  "library_name": "Cirsium_sieboldii_366",
+  "bioproject": "PRJNA957074",
+  "public_metadata": {
+    "collection_date": "2021-09-27",
+    "tissue": "Leaf",
+    "geo_loc_name_status": "MISSING_OR_NOT_EXPOSED_IN_CURRENT_BIOSAMPLE_EFETCH",
+    "lat_lon_status": "MISSING_OR_NOT_APPLICABLE_IN_CURRENT_BIOSAMPLE_EFETCH",
+    "submitting_center": "IBB-CSIC"
+  },
+  "paper_statement": "Moreyra et al. 2025 states that Table S1 contains detailed sample information, BioSample accessions, herbaria codes and voucher information.",
+  "supplementary_status": "TABLE_S1_NOT_RECOVERED_IN_CURRENT_AUDIT_ENVIRONMENT",
+  "authorized_use": [
+    "target-capture pipeline smoke test",
+    "captured-locus reference-transferability preflight",
+    "orthology and target-file sensitivity"
+  ],
+  "prohibited_use": [
+    "population provenance inference",
+    "phenotype assignment",
+    "local adaptation inference",
+    "within-species association",
+    "field population representation"
+  ],
+  "decision": "TECHNICAL_PREFLIGHT_ONLY_UNTIL_TABLE_S1_PROVENANCE_IS_RECOVERED"
+}
