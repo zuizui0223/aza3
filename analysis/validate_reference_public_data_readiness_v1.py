@@ -18,6 +18,10 @@ METRICS = ROOT/"data"/"contracts"/"r1b0_primary_metric_registry_v1.csv"
 ESTIMANDS = ROOT/"data"/"contracts"/"r1_estimand_reference_requirements_v1.csv"
 RECOVERY_SCHEMA = ROOT/"data"/"templates"/"r1b0_target_recovery_results_v1.csv"
 LOCALIZATION_SCHEMA = ROOT/"data"/"templates"/"r1b0_reference_localization_results_v1.csv"
+STAGE2_RESULT = ROOT/"data"/"evidence"/"r1b0_stage2_primary_reference_result_v1.json"
+HAP_RESULT = ROOT/"data"/"evidence"/"r1b0_haplotype_control_result_v1.json"
+WGS_CONTRACT = ROOT/"data"/"contracts"/"aza3_r1b_own_wgs_transferability_pilot_v1.json"
+WGS_DOC = ROOT/"docs"/"R1B_OWN_WGS_TRANSFERABILITY_PILOT_V1.md"
 README = ROOT/"README.md"
 
 SHA241 = "d561c6e393b1964fdd4b3acf14fda8b10f2f43923b1074cd35f86bfed07ebf73"
@@ -43,10 +47,15 @@ def main():
     bref=json.loads(BYTE_REF.read_text(encoding="utf-8"))
     metrics=csvrows(METRICS)
     estimands=csvrows(ESTIMANDS)
+    stage2=json.loads(STAGE2_RESULT.read_text(encoding="utf-8"))
+    hap=json.loads(HAP_RESULT.read_text(encoding="utf-8"))
+    wgs=json.loads(WGS_CONTRACT.read_text(encoding="utf-8"))
+    wgsdoc=WGS_DOC.read_text(encoding="utf-8")
     readme=README.read_text(encoding="utf-8")
 
-    assert con["status"]=="R1A_RESOURCE_AUDIT_COMPLETE__R1B_TRANSFERABILITY_PILOT_PENDING"
-    assert con["current_decision"]=="PROCEED_TO_R1B_TRANSFERABILITY_PILOT"
+    assert con["status"]=="R1A_COMPLETE__R1B0_PUBLIC_PREFLIGHT_SUPPORTIVE__R1B_OWN_WGS_PILOT_AUTHORIZED"
+    assert con["current_decision"]=="PROCEED_TO_OWN_WGS_TRANSFERABILITY_PILOT"
+    assert con["reference_build_decision"]=="DO_NOT_BUILD_FOCAL_C_SIEBOLDII_REFERENCE_YET"
     assert con["focal_system"]=="Cirsium sieboldii"
 
     observed={r["accession_or_doi"] for r in inv}
@@ -104,7 +113,10 @@ def main():
     need(runbook,"833d314a3cd6b148db017fba37d72b7d")
 
     # Focal public run and target provenance.
-    assert pcon["status"]=="EXECUTABLE_PUBLIC_DATA_PREFLIGHT"
+    assert pcon["status"]=="PUBLIC_PREFLIGHT_SUPPORTIVE__OWN_WGS_PILOT_AUTHORIZED"
+    assert pcon["routing_decision"]=="PROCEED_TO_OWN_WGS_TRANSFERABILITY_PILOT"
+    assert pcon["full_public_transfer_green"] is False
+    assert pcon["focal_reference_build_now"] is False
     assert pcon["focal_run"]["run"]=="SRR30887308"
     assert pcon["focal_run"]["biosample"]=="SAMN44017917"
     assert pcon["focal_run"]["taxon"]=="Cirsium sieboldii"
@@ -139,11 +151,33 @@ def main():
     # Reference sufficiency is estimand-specific rather than one all-or-none gate.
     assert [x["estimand_id"] for x in estimands]==["R1E1","R1E2","R1E3","R1E4","R1E5","R1E6","R1E7"]
     est={x["estimand_id"]:x for x in estimands}
-    assert est["R1E3"]["current_status"]=="PENDING_STAGE2_AND_OWN_WGS"
+    assert est["R1E3"]["current_status"]=="PENDING_OWN_WGS"
     assert est["R1E5"]["current_status"]=="FOCAL_REFERENCE_REQUIRED_BY_DEFAULT"
     assert est["R1E6"]["current_status"]=="FOCAL_REFERENCE_OR_PANGENOME_REQUIRED"
     assert "central Nature Fig.3 claim remains closed" in est["R1E3"]["claim_ceiling"]
     assert "cross-species short-read mapping cannot establish focal SV reuse" in est["R1E6"]["claim_ceiling"]
+
+    # Empirical public preflight and within-individual haplotype controls.
+    assert stage2["decision"]["target_recovery_stage"]=="GREEN"
+    assert stage2["decision"]["primary_reference_viability"]=="SUPPORTIVE"
+    assert stage2["primary_reference_localization"]["common_unique_all_three_fraction"]==0.9
+    assert stage2["primary_reference_localization"]["common_unique_at_least_two_fraction"]==0.9739130434782609
+    assert hap["decision"]=="HAPLOTYPE_CONTROL_GREEN__PROCEED_TO_OWN_WGS_PILOT"
+    assert hap["controls"]["heterophyllum"]["classification"]=="LOW_HAPLOTYPE_REFERENCE_NOISE"
+    assert hap["controls"]["dissectum"]["classification"]=="LOW_HAPLOTYPE_REFERENCE_NOISE"
+    assert hap["controls"]["heterophyllum"]["unique_status_agreement_fraction"]>0.97
+    assert hap["controls"]["dissectum"]["unique_status_agreement_fraction"]>0.99
+
+    # Own-WGS pilot is the next scientific gate.
+    assert wgs["status"]=="DESIGN_FROZEN_NOT_COLLECTION_AUTHORIZATION"
+    assert wgs["primary_n"]==8
+    assert wgs["target_depth_x"]==8
+    assert wgs["routing_thresholds"]["chromosome_reference_pairwise_distance_rank_correlation_min"]==0.95
+    assert wgs["routing_thresholds"]["homologous_windows_structure_preserved_fraction_min"]==0.80
+    assert wgs["hard_stop"]=="Do not sequence the full 298-individual Phase-A panel before this pilot is classified."
+    need(wgsdoc,"Frozen routing thresholds")
+    need(wgsdoc,"0.95")
+    need(wgsdoc,"80%")
 
     # Metrics were frozen before any empirical R1B-0 focal result.
     assert [m["metric_id"] for m in metrics]==["M01","M02","M03","M04","M05","M06","M07"]
@@ -207,7 +241,9 @@ def main():
         "primary_compatibility_loci":241,
         "public_preflight_runs":len(runs),
         "focal_run":pcon["focal_run"]["run"],
-        "next":"await_or_execute_focal_hybpiper_public1061_and_241_recovery",
+        "public_preflight":"supportive_for_own_wgs_entry",
+        "haplotype_control":"green",
+        "next":"execute_8_individual_own_wgs_transferability_pilot",
     },indent=2))
 
 if __name__=="__main__":
