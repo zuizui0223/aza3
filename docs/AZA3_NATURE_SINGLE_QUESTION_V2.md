@@ -117,6 +117,24 @@ The preregistered result is:
 
 A focal *C. sieboldii* chromosome reference is therefore not built first.
 
+## Focal-system prerequisite — verify that reassembly substrate exists
+
+The genomic mechanism cannot be tested merely because *C. sieboldii* has several states somewhere across its range.
+
+The public audit currently supports species-wide variation but does not establish same-population independent segregation. Orientation is especially vulnerable to a phenology artefact because ordinary nodding heads become upright after flowering.
+
+Therefore:
+
+`docs/C_SIEBOLDII_COMBINATORIAL_SUBSTRATE_GATE_V1.md`
+
+is required before selecting *C. sieboldii* as the Nature Fig.3–4 biological population.
+
+A `CS_GREEN` result preserves the strongest within-population natural-reassembly route.
+
+`CS_GREEN_LOCAL_SET` retains a weaker local reassembly route.
+
+`CS_AMBER` or `CS_RED_*` means *C. sieboldii* may remain useful for historical/genomic-source questions but should not be forced into the Nature kill shot.
+
 ## The decisive aza3 test
 
 The genomic result must distinguish two biological models.
@@ -280,9 +298,10 @@ That outcome would support persistent/fixed evolutionary integration instead.
 ## Immediate execution order
 
 1. Keep the Fig. 1 ecological-module null; do not search for another grouping that makes it significant.
-2. Complete the 8-individual *C. sieboldii* WGS reference-transferability pilot.
-3. If WGS_TRANSFER_GREEN, freeze the genomic fixed-vs-reconfigurable estimands before scaling.
-4. Sample polymorphic/nearby populations for same-individual component phenotypes and dense genotypes.
-5. Test component-specific genomic histories before any fitness interpretation.
-6. Open the natural-reassembly/prediction test only after component genomic separation is established.
-7. Keep Gate 0 acceleration as context, not a prerequisite.
+2. Run Gate CS: verify whether *C. sieboldii* actually contains a same-population or tightly local multi-component substrate at standardized anthesis.
+3. If Gate CS is GREEN, select those verified individuals/populations for the 8-individual WGS reference-transferability pilot.
+4. If WGS_TRANSFER_GREEN, freeze the genomic fixed-vs-reconfigurable estimands before scaling.
+5. If Gate CS is AMBER/RED, verify an alternative focal system rather than forcing *C. sieboldii* into the reassembly claim.
+6. Test component-specific genomic histories before any fitness interpretation.
+7. Open the natural-reassembly/prediction test only after component genomic separation is established.
+8. Keep Gate 0 acceleration as context, not a prerequisite.
