@@ -1,7 +1,7 @@
 {
   "contract_version": "aza3_reference_transfer_public_preflight_v1",
   "status_date": "2026-10-05",
-  "status": "EXECUTABLE_PUBLIC_DATA_PREFLIGHT",
+  "status": "PUBLIC_PREFLIGHT_SUPPORTIVE__OWN_WGS_PILOT_AUTHORIZED",
   "parent_gate": "aza3_reference_public_data_readiness_v1",
   "source_bioproject": "PRJNA957074",
   "frozen_run_panel": "data/planning/reference_public_preflight_runs_v1.csv",
@@ -182,5 +182,16 @@
     },
     "byte_integrity_rule": "R1B-0 localization is fail-closed unless every genome file matches the frozen byte contract; for NCBI .gz references verify both compressed and decompressed MD5."
   },
-  "genome_reference_byte_contract": "data/evidence/r1b0_genome_reference_byte_contract_v1.json"
+  "genome_reference_byte_contract": "data/evidence/r1b0_genome_reference_byte_contract_v1.json",
+  "empirical_results": {
+    "focal_smoke": "data/evidence/r1b0_focal_public_smoke_result_v1.json",
+    "author_matrix_recovery": "data/evidence/r1b0_author_matrix_focal_recovery_v1.json",
+    "independent_stage2": "data/evidence/r1b0_stage2_primary_reference_result_v1.json",
+    "haplotype_controls": "data/evidence/r1b0_haplotype_control_result_v1.json"
+  },
+  "routing_decision": "PROCEED_TO_OWN_WGS_TRANSFERABILITY_PILOT",
+  "full_public_transfer_green": false,
+  "full_public_transfer_green_reason": "Dense multi-individual genome-wide and local-window reference invariance remains untested; the public preflight only establishes sufficient reference viability to justify the own-WGS pilot.",
+  "focal_reference_build_now": false,
+  "focal_reference_reopen_condition": "Own-WGS returns AMBER/RED because genome-wide or local-window inference is materially reference-dependent or phenotype/cytotype-linked technical bias appears."
 }
