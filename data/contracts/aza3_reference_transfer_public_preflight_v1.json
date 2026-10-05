@@ -13,7 +13,11 @@
     "bases": 656395250,
     "library_strategy": "Targeted-Capture",
     "library_selection": "Hybrid Selection",
-    "layout": "PAIRED"
+    "layout": "PAIRED",
+    "experiment_design_note": "NCBI Run Browser states that unenriched libraries were mixed with target-enriched libraries at a 3:2 ratio before sequencing.",
+    "raw_read_mapping_rate_role": "TECHNICAL_QC_ONLY__NOT_REFERENCE_TRANSFERABILITY_ESTIMAND",
+    "read_structure": "2 x 125 bp biological reads; 2,625,581 spots; 656,395,250 total bases",
+    "run_browser_gc_percent": 42.6
   },
   "target_reference_versions": [
     {
