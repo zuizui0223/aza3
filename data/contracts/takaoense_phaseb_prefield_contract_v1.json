@@ -1,0 +1,82 @@
+{
+  "contract_version": "takaoense_phaseb_prefield_contract_v1",
+  "status_date": "2026-10-05",
+  "samples": [
+    {
+      "code": "FC",
+      "run": "SRR35152718",
+      "morph": "BP"
+    },
+    {
+      "code": "WY",
+      "run": "SRR35152717",
+      "morph": "W"
+    },
+    {
+      "code": "FB",
+      "run": "SRR35152738",
+      "morph": "W"
+    },
+    {
+      "code": "TJ",
+      "run": "SRR35152736",
+      "morph": "BP"
+    },
+    {
+      "code": "NH",
+      "run": "SRR35152735",
+      "morph": "BP"
+    },
+    {
+      "code": "LT",
+      "run": "SRR35152734",
+      "morph": "W"
+    }
+  ],
+  "sample_design_boundary": "one plant per locality; morph and geography may be confounded; young-leaf RNA is not a matched floral expression design",
+  "allowed_analyses": [
+    "sample_genealogy_context",
+    "expressed_coding_haplotype_screen",
+    "candidate_gene_local_genealogy",
+    "pathway_retention_check"
+  ],
+  "prohibited_claims": [
+    "differential floral expression",
+    "causal colour gene",
+    "adaptive gene",
+    "regulatory reactivation",
+    "gene deletion from transcript absence"
+  ],
+  "candidate_gene_families": [
+    "CHS",
+    "CHI",
+    "F3H",
+    "F3H_family_hydroxylases",
+    "DFR",
+    "ANS_LDOX",
+    "glycosyltransferase_candidates",
+    "MYB_bHLH_WD40_regulators"
+  ],
+  "decision_classes": [
+    "STRUCTURAL_CODING_CANDIDATE",
+    "REGULATORY_ROUTE_FAVOURED",
+    "ANCESTRY_CONFOUNDED",
+    "MULTIPLE_CANDIDATES",
+    "NOT_IDENTIFIABLE"
+  ],
+  "av_ladder_role": "pre_AV1_candidate_reduction_only",
+  "next_population_panel": {
+    "white_target_n": "20-30",
+    "bluish_purple_target_n": "20-30",
+    "minimum_populations_per_state": 2,
+    "mixed_populations_preferred": true,
+    "required_linkage": [
+      "same-individual dense genotype",
+      "cytotype",
+      "standardized colour",
+      "floral RNA subset",
+      "pigment chemistry subset"
+    ]
+  },
+  "stop_rule": "one targeted public-data candidate-reduction pass only; no untargeted public RNA fishing after classification unless a prespecified candidate decision requires it"
+}
