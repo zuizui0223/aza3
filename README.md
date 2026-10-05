@@ -2,6 +2,8 @@
 
 ## Nature-scale programme
 
+> **Strategic update (2026-10-05):** the active Nature conceptual target is now the single question **“Must an integrated complex organ evolve as an integrated unit?”** See `docs/AZA3_NATURE_SINGLE_QUESTION_V2.md`. The previous reuse/combinatorial programme remains the genomic mechanism layer, but ecological-module alignment is no longer assumed after the exact Fig.1 test in `data/evidence/aza3_fig1_ecological_module_alignment_result_v1.json`.
+
 aza3 now preserves two nested roles:
 
 1. the original Chapter-3 role: use own same-individual ancestry, phenotype and cytotype data to discriminate histories left unresolved by EAzami;
