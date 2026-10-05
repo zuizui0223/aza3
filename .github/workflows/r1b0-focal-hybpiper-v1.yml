@@ -1,0 +1,62 @@
+name: R1B0 focal HybPiper recovery
+
+on:
+  pull_request:
+    paths:
+      - "analysis/run_r1b0_focal_hybpiper_v1.sh"
+      - ".github/workflows/r1b0-focal-hybpiper-v1.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: r1b0-focal-hybpiper-v1-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  focal-hybpiper:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            sra-toolkit bwa samtools spades ncbi-blast+ exonerate parallel mafft trimal fastp
+      - name: Install HybPiper
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "hybpiper==2.3.4"
+          hybpiper --version
+      - name: Fetch frozen public target
+        run: |
+          curl -L --fail --retry 3 \
+            -o comp1061_hybpiper_reference.fasta \
+            https://raw.githubusercontent.com/carol-siniscalchi/Comp1061-Angio353/main/comp1061_hybpiper_reference.fasta
+          test "$(grep -c '^>' comp1061_hybpiper_reference.fasta)" -eq 2597
+      - name: Run focal HybPiper
+        run: |
+          bash analysis/run_r1b0_focal_hybpiper_v1.sh \
+            SRR30887308 \
+            r1b0_focal_hybpiper \
+            comp1061_hybpiper_reference.fasta
+      - name: Show result
+        if: always()
+        run: |
+          cat r1b0_focal_hybpiper/summary.md || true
+          cat r1b0_focal_hybpiper/summary.json || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: r1b0-focal-hybpiper
+          path: |
+            r1b0_focal_hybpiper/summary.*
+            r1b0_focal_hybpiper/fastp.json
+            r1b0_focal_hybpiper/hybpiper_assemble.log
+            r1b0_focal_hybpiper/hybpiper_version.txt
+            r1b0_focal_hybpiper/output_files.txt
+            r1b0_focal_hybpiper/sieboldii_original_comp1061/**/sequences/FNA/*.FNA
+            r1b0_focal_hybpiper/sieboldii_original_comp1061/**/*paralog*
+          if-no-files-found: warn
