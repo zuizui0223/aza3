@@ -105,4 +105,7 @@ jobs:
             SRR30887308__PUBLIC_COMP1061_1061/*.txt
             SRR30887308__PUBLIC_COMP1061_1061/*.tsv
             SRR30887308__PUBLIC_COMP1061_1061/*.log
+            SRR30887308__PUBLIC_COMP1061_1061/**/sequences/FNA/*.FNA
+            SRR30887308__PUBLIC_COMP1061_1061/**/*genes_with_seqs*.txt
+            SRR30887308__PUBLIC_COMP1061_1061/**/*paralog*
           if-no-files-found: warn
