@@ -50,16 +50,21 @@ Primary CS0 task:
 - measure A1–A2 orientation continuously on all accessible flowering individuals;
 - do **not** infer orientation polymorphism from the white-form record itself.
 
-### Priority 2 — Tsukude Plateau wetland local set, Aichi
+### Priority 2 — Kiyooka-Mukaiyama Wetland, Tsukude, Aichi
 
 Reason:
-- multiple historical *C. sieboldii* herbarium records from former Tsukude-mura;
-- local field accounts describe abundant wetland populations and within-region morphological variation.
+- a public field account documents *C. sieboldii* at Kiyooka-Mukaiyama Wetland;
+- boardwalk/observation infrastructure is present and the prefecture describes the wetland as easy to observe;
+- the wider Tsukude region has multiple historical *C. sieboldii* records and documented intraspecific variation.
 
 Primary CS0 task:
-- measure A1–A2 orientation distribution;
-- search prospectively for colour variation;
-- treat hairiness variation only as evidence that local individual variation exists, not as a capitulum-module result.
+- run the standardized A1–A2 orientation census here first;
+- prospectively screen colour on every censused individual;
+- retain hairiness variation only as evidence that local individual variation exists, not as a capitulum-module result.
+
+Access boundary:
+- observation from existing public access infrastructure only for Gate CS;
+- tissue collection remains separately unauthorized.
 
 Public-source ceiling:
 **neither locality currently demonstrates same-population colour × anthesis-orientation co-segregation.**
