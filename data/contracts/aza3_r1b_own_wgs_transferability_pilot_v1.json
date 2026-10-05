@@ -44,5 +44,28 @@
     "pass_class": "FLOW_2C_PASS",
     "heterogeneity_flag": "GENOME_SIZE_HETEROGENEITY_FLAG",
     "boundary": "2C is a reference-bias QC covariate/stratifier, not a capitulum-causality result."
-  }
+  },
+  "parent_public_preflight_status": "PUBLIC_PREFLIGHT_SUPPORTIVE__OWN_WGS_PILOT_AUTHORIZED",
+  "public_preflight_evidence": [
+    "data/evidence/r1b0_stage2_primary_reference_result_v1.json",
+    "data/evidence/r1b0_haplotype_control_result_v1.json"
+  ],
+  "routing_thresholds": {
+    "chromosome_reference_pairwise_distance_rank_correlation_min": 0.95,
+    "pc1_pc2_procrustes_correlation_min": 0.95,
+    "median_absolute_callable_fraction_difference_max": 0.03,
+    "unexplained_individual_callable_fraction_difference_max": 0.08,
+    "homologous_windows_structure_preserved_fraction_min": 0.8,
+    "phenotype_linked_missingness_warning_absolute_difference": 0.05
+  },
+  "analysis_order": [
+    "phenotype_blind_global_qc",
+    "cross_reference_global_invariance",
+    "local_window_invariance",
+    "open_phenotype_labels_for_technical_bias_only"
+  ],
+  "hard_stop": "Do not sequence the full 298-individual Phase-A panel before this pilot is classified.",
+  "green_action": "Retain existing public references for Phase-A/Tier-2 discovery; do not build a focal reference merely for completeness.",
+  "amber_action": "Build focal C. sieboldii HiFi + chromosome-scale reference before Nature Fig.3 local-history inference.",
+  "red_action": "Focal reference mandatory; escalate to mini-pangenome/graph if focal-form reference bias persists."
 }
