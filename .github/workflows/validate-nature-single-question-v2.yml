@@ -1,0 +1,27 @@
+name: Validate Nature single question v2
+
+on:
+  pull_request:
+    paths:
+      - "README.md"
+      - "docs/AZA3_NATURE_SINGLE_QUESTION_V2.md"
+      - "data/contracts/aza3_nature_single_question_v2.json"
+      - "data/evidence/aza3_fig1_ecological_module_alignment_result_v1.json"
+      - "analysis/validate_nature_single_question_v2.py"
+      - ".github/workflows/validate-nature-single-question-v2.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: |
+          python -m py_compile analysis/validate_nature_single_question_v2.py
+          python analysis/validate_nature_single_question_v2.py
