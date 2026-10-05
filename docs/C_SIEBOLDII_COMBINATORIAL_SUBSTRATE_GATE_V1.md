@@ -83,6 +83,20 @@ Primary:
 - gravity-referenced capitulum axis angle at A1–A2;
 - photograph must show gravity reference or a standardized vertical frame.
 
+Frozen angular convention:
+
+- **0° = vertically upward**;
+- **90° = horizontal**;
+- **180° = vertically downward**.
+
+The continuous angle is primary.
+
+For the transparent 2×2 gate summary only:
+
+- descriptive `upright` = angle <= **60°**;
+- descriptive `nodding` = angle >= **120°**;
+- 60–120° = intermediate and excluded from binary-cell occupancy while retained in continuous analyses.
+
 Do not replace angle with observer labels such as “upright” or “nodding” in the primary analysis.
 
 ### P — phyllary / involucre
@@ -159,7 +173,7 @@ For C and O separately, the gate requires nontrivial individual-level spread.
 
 Orientation:
 - A1–A2 angle range must exceed **30 degrees** after excluding obvious measurement failures;
-- at least 3 individuals must occur on each side of a predeclared descriptive angle split if a binary display is used.
+- at least 3 A1–A2 individuals must satisfy the frozen descriptive upright threshold (<=60°) and at least 3 must satisfy the nodding threshold (>=120°) for orientation to contribute to the binary combination gate.
 
 Colour:
 - continuous colour spread must exceed the frozen technical-error envelope;
@@ -176,7 +190,7 @@ For C × O, a decisive within-population substrate requires:
 - every counted occupied cell contains at least **3 individuals**;
 - no occupied-cell pattern is created solely by A3/P phenology.
 
-The continuous C and O measurements remain the primary stored data; the 2×2 display is only a transparent gate summary.
+The continuous C and O measurements remain the primary stored data; the 2×2 display is only a transparent gate summary. Intermediate-orientation individuals are retained in the continuous correlation and range calculations but do not create binary cells.
 
 ### Step 3 — is coupling incomplete?
 
