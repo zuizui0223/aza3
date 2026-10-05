@@ -4,6 +4,8 @@ on:
   pull_request:
     paths:
       - "analysis/summarize_hybpiper_recovery_v1.py"
+      - "analysis/compare_focal_cnipg_loci_v1.py"
+      - "data/contracts/aza3_eazami_cnipg_reference_handoff_v1.json"
       - "data/evidence/moreyra_conservative_241_no_warning_loci_v1.txt"
       - "data/contracts/aza3_eazami_moreyra_locus_handoff_v1.json"
       - ".github/workflows/run-r1b0-focal-public-preflight-v1.yml"
@@ -25,6 +27,14 @@ jobs:
         shell: bash -el {0}
     steps:
       - uses: actions/checkout@v4
+
+      - name: Checkout frozen EAzami durable reference pack source
+        uses: actions/checkout@v4
+        with:
+          repository: zuizui0223/EAzami
+          ref: f406c32ac6d4a8da49777d7973a92f48146bd6df
+          path: eazami
+          persist-credentials: false
 
       - name: Create frozen HybPiper environment
         uses: mamba-org/setup-micromamba@v2
@@ -98,6 +108,33 @@ jobs:
           echo "===== HYBPIPER TOP LEVEL ====="
           find SRR30887308__PUBLIC_COMP1061_1061 -maxdepth 2 -type f | sort | head -n 100
 
+      - name: Materialize frozen C. nipponicum 180-locus genome-derived pack
+        run: |
+          set -euo pipefail
+          python eazami/analysis/materialize_frozen_public_candidate_locus_pack.py \
+            --candidate CNIPG \
+            --output r1b0_cnipg_pack
+          python - <<'PY'
+          import json
+          d=json.load(open("r1b0_cnipg_pack/durable_materialization.json"))
+          assert d["candidate_id"]=="CNIPG"
+          assert d["tip_id"]=="AUG_ULLEUNG_CNIP2024"
+          assert d["strict_locus_count"]==180
+          print(json.dumps(d,indent=2))
+          PY
+
+      - name: Compare focal loci with East-Asian C. nipponicum genome-derived loci
+        run: |
+          set -euo pipefail
+          python analysis/compare_focal_cnipg_loci_v1.py \
+            --focal-root SRR30887308__PUBLIC_COMP1061_1061 \
+            --cnipg-root r1b0_cnipg_pack \
+            --frozen-loci data/evidence/moreyra_conservative_241_no_warning_loci_v1.txt \
+            --output-json r1b0_focal_cnipg_sequence_compatibility_v1.json \
+            --output-csv r1b0_focal_cnipg_sequence_compatibility_v1.csv
+          echo "===== FOCAL vs CNIPG SEQUENCE COMPATIBILITY ====="
+          cat r1b0_focal_cnipg_sequence_compatibility_v1.json
+
       - uses: actions/upload-artifact@v4
         with:
           name: r1b0-focal-public1061-241-${{ github.run_id }}
@@ -109,4 +146,8 @@ jobs:
             SRR30887308__PUBLIC_COMP1061_1061/**/sequences/FNA/*.FNA
             SRR30887308__PUBLIC_COMP1061_1061/**/*genes_with_seqs*.txt
             SRR30887308__PUBLIC_COMP1061_1061/**/*paralog*
+            r1b0_cnipg_pack/durable_materialization.json
+            r1b0_cnipg_pack/strict_recovered_loci.txt
+            r1b0_focal_cnipg_sequence_compatibility_v1.json
+            r1b0_focal_cnipg_sequence_compatibility_v1.csv
           if-no-files-found: warn
