@@ -79,13 +79,15 @@
       "rank": 1,
       "locality": "Kurumayama Moor / Kirigamine, Nagano",
       "role": "white-form verification priority",
-      "rationale": "Type locality of C. sieboldii f. leucanthum and current public locality support; verify white/non-white frequency and A1-A2 orientation distribution."
+      "access": "Natural Monument; permitted-path observation only unless separate authorization is obtained.",
+      "rationale": "Type locality of C. sieboldii f. leucanthum and current public locality support; verify white/non-white frequency and measure A1-A2 orientation where visible."
     },
     {
       "rank": 2,
-      "locality": "Tsukude Plateau wetland local set, Aichi",
-      "role": "dense intraspecific-variation census priority",
-      "rationale": "Multiple historical herbarium records and local reports of within-region morphological variation; verify A1-A2 orientation and search for colour variation."
+      "locality": "Kiyooka-Mukaiyama Wetland, Tsukude, Aichi",
+      "role": "primary standardized orientation-census priority",
+      "access": "Boardwalk/observation infrastructure present.",
+      "rationale": "Public field record of C. sieboldii at this wetland and high observation feasibility; measure A1-A2 orientation on a spatially spread census and prospectively screen colour."
     }
   ],
   "public_prescreen_ceiling": "Public sources do not establish same-population colour x anthesis-orientation co-segregation; Gate CS remains observationally open."
