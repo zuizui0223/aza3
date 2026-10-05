@@ -256,15 +256,18 @@ The two hap2 controls answer a different question from the three primary referen
 
 Do not infer that a cross-reference placement difference is biologically meaningful unless it exceeds or is qualitatively distinct from this within-individual haplotype sensitivity.
 
-For each locus sequence, align independently to each reference. Example:
+For each locus sequence, align independently to each reference using **spliced mapping**. HybPiper FNA output represents concatenated coding sequence, so an unspliced assembly-to-assembly preset such as `asm20` is not appropriate for genomic reference localization.
+
+Frozen primary Stage-2 preset:
 
 ```bash
-minimap2 -x asm20 -a reference.fa clean_loci.fasta > loci.sam
-samtools view -bS loci.sam | samtools sort -o loci.sorted.bam
-samtools index loci.sorted.bam
+minimap2 -x splice:hq -G 500k --secondary=yes -N 10 -t 4 \
+  reference.fa clean_loci.fasta > loci.paf
 ```
 
-The final preset may be revised after a small blind benchmark, but it must then be frozen for all samples/references.
+The PAF is summarized with `analysis/summarize_r1b0_reference_localization_v1.py` using the predeclared primary thresholds `query coverage >= 0.70` and `MAPQ >= 20` for a high-confidence placement.
+
+Do not tune the preset separately by species or after viewing focal `C. sieboldii` results. Any alternative preset is a separately labelled sensitivity analysis and must be applied identically to all query sets and references.
 
 Record:
 - unique/multiple placement;
