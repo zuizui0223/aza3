@@ -55,7 +55,7 @@ jobs:
           set -euo pipefail
           mkdir -p prior
           gh run download 37282907706             --repo "${GITHUB_REPOSITORY}"             --name r1b0-stage2-primary-references-37282907706             --dir prior
-          echo "1998a227a61184a99a85ea56e76c472f24c84e6f86a4fad3605917a4b9f177b3  prior/focal_241.fasta" | sha256sum -c -
+          echo "1998a227a61184a99a85ea56e76c472f24c84e6f86a4fad3605917a4b9f177b  prior/focal_241.fasta" | sha256sum -c -
           test -s prior/localization/focal__heterophyllum_hap1.tsv
           test -s prior/localization/focal__dissectum_hap1.tsv
 
