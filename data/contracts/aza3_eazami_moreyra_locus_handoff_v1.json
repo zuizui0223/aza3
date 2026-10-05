@@ -1,0 +1,77 @@
+{
+  "contract_version": "aza3_eazami_moreyra_locus_handoff_v1",
+  "status_date": "2026-10-05",
+  "purpose": "Reuse the already-audited public Moreyra locus universe from EAzami for aza3 R1B-0 reference-transfer testing without treating any reconstructed set as the unpublished final 350-locus matrix.",
+  "source_repository": "zuizui0223/EAzami",
+  "source_main_sha": "f406c32ac6d4a8da49777d7973a92f48146bd6df",
+  "source_workflow_run": 31557261287,
+  "source_artifact": {
+    "id": 9126428776,
+    "name": "moreyra-author-repository-audit-31557261287",
+    "digest": "sha256:9503762705a12bdf9bc28496cb6f5a273e388a86f3b1b255634c30012a35ad4d",
+    "expired": false
+  },
+  "public_author_repository": "ldmoreyra/A-thorny-tale",
+  "recovered_public_files": [
+    {
+      "name": "hybpiper_stats_exonerate.tsv",
+      "sha256": "deb845dbaef8f3d40155f69f29b7bb590b07af14f915c3937afdff5b00a39bd7"
+    },
+    {
+      "name": "seq_lengths_exonerate.tsv",
+      "sha256": "d98168c1fcc204a491a2f4a804635488c748e0a7a7fed1272f8c04e220285eda"
+    },
+    {
+      "name": "paralog_report.xlsx",
+      "sha256": "e3cfbfc28c91fa7cd23a2a942865327a9a3dd2f3b25154b9c2872a9af3c08e5d"
+    }
+  ],
+  "historical_target_counts": {
+    "paper_reported_mapped_target_loci": 1064,
+    "public_named_loci_recovered_from_author_matrices": 1061,
+    "public_original_hybpiper_reference_loci": 1061,
+    "unresolved_difference": 3,
+    "interpretation": "The 1061 public named-locus universe is reproducible, but the papers consistently report 1064 mapped target loci. The exact author target/reference file underlying the 1064 count is not present in the public author repository."
+  },
+  "reproducible_locus_sets": {
+    "public_1061": {
+      "count": 1061,
+      "sha256": "d019a37197a9549d4a8160358c93284906f4f590a098d78e81004f04bd185b75"
+    },
+    "reproducible_531": {
+      "count": 531,
+      "sha256": "3d6a1994758eb6e6cf2934435d2482fbd56cad1b526b5fd17a7891e138fc3d53"
+    },
+    "conservative_241": {
+      "count": 241,
+      "sha256": "d561c6e393b1964fdd4b3acf14fda8b10f2f43923b1074cd35f86bfed07ebf73",
+      "aza3_path": "data/evidence/moreyra_conservative_241_no_warning_loci_v1.txt"
+    },
+    "manual_review_290": {
+      "count": 290,
+      "sha256": "f04f11206928b60ef97c0abf3bde44978ea3805d350e2b562442fe02be20e076"
+    }
+  },
+  "derivation": {
+    "public_1061": "All named loci in the recovered public paralog/sequence-length matrices.",
+    "reproducible_531": "Paralog warning class <=10 plus raw sequence occupancy >=0.80; reproducible without manual gene-tree decisions.",
+    "conservative_241": "No paralog warning plus raw sequence occupancy >=0.80.",
+    "manual_review_290": "1-10 warning class plus occupancy >=0.80; requires the paper's manual gene-tree review before any promotion."
+  },
+  "published_final_alignment_count": 350,
+  "exact_final_350_locus_names_recovered": false,
+  "claim_boundaries": [
+    "Do not call the 241-locus set the published Moreyra final matrix.",
+    "Do not force R1B-0 to reproduce 350 loci.",
+    "Do not treat the unresolved 1064-vs-1061 difference as three identified biological loci.",
+    "Use conservative_241 as a high-stringency compatibility layer and public_1061 as a broad recovery layer."
+  ],
+  "r1b0_use": {
+    "broad_layer": "PUBLIC_1061",
+    "primary_high_stringency_layer": "MOREYRA_COMPATIBILITY_241",
+    "sensitivity_layers": [
+      "REPRODUCIBLE_531"
+    ],
+    "manual_review_layer": "not primary unless the manual gene-tree decisions are independently reproduced"
+  }
+}
