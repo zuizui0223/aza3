@@ -85,6 +85,48 @@ The GitHub blob SHA frozen by aza3 is:
 
 Do not substitute another Compositae1061 target without recording it as a separate target version.
 
+### Genome reference byte integrity
+
+The complete byte contract is:
+
+`data/evidence/r1b0_genome_reference_byte_contract_v1.json`
+
+Before Phase 4, download and verify the exact reference files.
+
+**C. heterophyllum hap1**
+- `GCA_965225835.1_daCirHete1.hap1.1_genomic.fna.gz`
+- compressed MD5: `9b5e78bc4736baec58f688262e3f0cca`
+- decompressed FASTA MD5: `2b38c89fbd7c052ff731ea56a8d40f61`
+- 17 chromosomes in the current NCBI accession-level assembly report.
+
+**C. dissectum hap1**
+- `GCA_965276805.1_daCirDiss1.hap1.1_genomic.fna.gz`
+- compressed MD5: `833d314a3cd6b148db017fba37d72b7d`
+- decompressed FASTA MD5: `7d6f4d0382f991c5cda53ce82308eba9`
+- 17 chromosomes in the current NCBI accession-level assembly report.
+
+**C. nipponicum**
+- `C.nipponicum_softmasked_genome.fa`
+- Figshare file `48979489`
+- MD5: `e9390e23ffd0dc5e3da8271db4d1d3ca`.
+
+Within-individual controls are likewise frozen:
+- `GCA_965225975.1_daCirHete1.hap2.1_genomic.fna.gz`: compressed MD5 `f2c131de0c37d88b8ddfb24ba15ca33b`; decompressed MD5 `12fb5d97949287ad43daacdc42c30f9b`.
+- `GCA_965276745.1_daCirDiss1.hap2.1_genomic.fna.gz`: compressed MD5 `eb3bb9a68dc278ec9bd5c587d60a82ea`; decompressed MD5 `9436bc6f958406d7642292c9f0258661`.
+
+Fail closed: accession equality alone is not enough. If any downloaded file fails the frozen checksum, do not enter genome-reference localization.
+
+Example:
+
+```bash
+curl -L --fail -o heterophyllum_hap1.fna.gz \
+  https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/965/225/835/GCA_965225835.1_daCirHete1.hap1.1/GCA_965225835.1_daCirHete1.hap1.1_genomic.fna.gz
+echo "9b5e78bc4736baec58f688262e3f0cca  heterophyllum_hap1.fna.gz" | md5sum -c -
+gunzip -c heterophyllum_hap1.fna.gz > heterophyllum_hap1.fna
+echo "2b38c89fbd7c052ff731ea56a8d40f61  heterophyllum_hap1.fna" | md5sum -c -
+```
+
+
 ## Phase 1 — optional public Cirsium-source compatibility target
 
 ### 1A. Download tioganum reads
