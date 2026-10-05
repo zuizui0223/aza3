@@ -15,7 +15,25 @@
     "library_selection": "Hybrid Selection",
     "layout": "PAIRED"
   },
-  "references": [
+  "target_reference_versions": [
+    {
+      "id": "ORIGINAL_COMP1061",
+      "source": "github:carol-siniscalchi/Comp1061-Angio353/comp1061_hybpiper_reference.fasta",
+      "status": "PUBLIC"
+    },
+    {
+      "id": "RECONSTRUCTED_CIRSIUM_TARGET",
+      "source_run": "SRR25265669",
+      "source_taxon_label": "Cirsium tioganum",
+      "current_ncbi_taxon": "Cirsium scariosum var. americanum",
+      "source_experiment": "SRX21011548",
+      "source_biosample": "SAMN34240347",
+      "source_bases": 36939020978,
+      "reconstruction_rule": "Recover homologous exons from the high-coverage source with the public original Compositae1061 target and append them by locus, reproducing the published logic without claiming byte identity to the authors' intermediate file.",
+      "status": "RECONSTRUCTABLE_PUBLICLY"
+    }
+  ],
+  "genome_references": [
     {
       "taxon": "Cirsium heterophyllum",
       "assembly": "GCA_965225835.1"
@@ -29,23 +47,35 @@
       "source": "PRJNA1127082 + 10.6084/m9.figshare.26927092"
     }
   ],
-  "estimands": [
-    "mapped_pair_fraction",
-    "unique_mapping_fraction",
-    "target_locus_breadth",
-    "target_locus_depth_distribution",
-    "mismatch_or_edit_distance_distribution",
-    "heterozygous_allele_balance",
-    "callable_target_locus_fraction",
-    "cross_reference_per_locus_coverage_rank_correlation",
-    "cross_reference_sample_distance_concordance",
-    "cross_reference_locus_dropout"
+  "stages": [
+    {
+      "stage": "target_file_sensitivity",
+      "estimands": [
+        "loci_recovered",
+        "recovered_target_length_per_locus",
+        "cirsium_target_gain_over_original",
+        "paralog_warning_burden",
+        "sample_by_target_locus_dropout"
+      ]
+    },
+    {
+      "stage": "genome_reference_localization",
+      "estimands": [
+        "clean_locus_unique_localization_fraction",
+        "alignment_span_and_identity",
+        "chromosome_or_contig_placement_concordance",
+        "cross_reference_per_locus_divergence_rank_correlation",
+        "cross_reference_locus_dropout",
+        "cross_reference_sample_distance_concordance"
+      ]
+    }
   ],
+  "clean_locus_principle": "Freeze a paralogy-safe locus subset before opening focal C. sieboldii transferability results; apply the same rule to every sample and both target-reference versions.",
   "decision_classes": {
-    "PUBLIC_TRANSFER_GREEN": "Captured-locus mapping/callability and Japanese comparison-panel relationships are broadly reference-invariant; proceed to 6-10-individual focal WGS R1B pilot.",
-    "PUBLIC_TRANSFER_AMBER": "Public loci are usable for topology/orthology but reference-specific dropout or distance distortion remains; plan focal C. sieboldii reference in parallel with small WGS bias audit.",
-    "PUBLIC_TRANSFER_RED": "C. sieboldii or the Japanese radiation is strongly and inconsistently represented across congener references; focal C. sieboldii long-read chromosome assembly becomes a prerequisite.",
-    "NOT_IDENTIFIABLE": "Target definitions or public-data comparability are inadequate; stop public-data expansion and proceed to own-data R1B design."
+    "PUBLIC_TRANSFER_GREEN": "Target-file sensitivity is small or bounded, clean-locus placement is broadly reference-invariant, and Japanese comparison-panel relationships are stable; proceed to 6-10-individual focal WGS R1B pilot.",
+    "PUBLIC_TRANSFER_AMBER": "Public loci remain useful for topology/orthology but target-file dependence, reference-specific dropout or distance distortion remains; plan focal C. sieboldii reference in parallel with a small WGS bias audit.",
+    "PUBLIC_TRANSFER_RED": "C. sieboldii or the Japanese radiation is strongly and inconsistently represented across target/reference choices; focal C. sieboldii long-read chromosome assembly becomes a prerequisite.",
+    "NOT_IDENTIFIABLE": "Target reconstruction or public-data comparability is inadequate; stop public-data expansion and proceed to own-data R1B design."
   },
   "prohibited_inferences": [
     "local ancestry",
@@ -55,5 +85,5 @@
     "module-specific local genealogy",
     "genotype-phenotype association"
   ],
-  "stop_rule": "One bounded captured-locus reference-transfer preflight only; do not turn PRJNA957074 into a new aza3 phylogenomics project."
+  "stop_rule": "One bounded target-capture transferability preflight only; do not turn PRJNA957074 into a new aza3 phylogenomics project."
 }
