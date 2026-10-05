@@ -16,6 +16,7 @@ on:
       - "data/planning/reference_public_resource_inventory_v1.csv"
       - "data/planning/reference_public_preflight_runs_v1.csv"
       - "data/evidence/comp1061_public_target_audit_v1.json"
+      - "data/evidence/r1b0_genome_reference_byte_contract_v1.json"
       - "data/evidence/moreyra_conservative_241_no_warning_loci_v1.txt"
       - "analysis/validate_reference_public_data_readiness_v1.py"
       - "analysis/build_reconstructed_cirsium_target_v1.py"
