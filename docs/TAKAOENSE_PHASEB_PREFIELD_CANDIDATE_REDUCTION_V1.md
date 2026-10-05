@@ -20,6 +20,27 @@ These are **one plant per locality** and the RNA was not collected as a matched 
 
 Therefore this panel can reduce hypotheses before new field sampling, but it cannot establish colour causation or adaptation.
 
+## Existing six-sample confounding that must shape new sampling
+
+The existing morph-linked metadata screen already shows strong altitude/geography structure:
+
+- mean altitude BP = 1,160.67 m;
+- mean altitude W = 357.00 m;
+- BP − W mean difference = 803.67 m;
+- all three BP samples rank above all three W samples in altitude.
+
+This is **not** evidence of altitude adaptation. It means the public 3-vs-3 panel cannot separate morph from geography.
+
+Therefore the new Phase-B population panel must deliberately seek:
+
+1. W and BP individuals from the same population where polymorphism exists;
+2. high-elevation W populations;
+3. low-elevation BP populations;
+4. geographically close W/BP population pairs;
+5. cytotype, voucher, floral RNA, pigment and leaf DNA linked to the same IDs.
+
+A design that simply adds more high-BP and low-W samples reproduces the existing confounding and does not qualify for AV1.
+
 ## Primary pre-field question
 
 > Do the six public morph-labelled transcriptomes contain shared coding/haplotype differences that nominate a tractable molecular route, or does the public panel leave regulatory/ancestry explanations unresolved?
