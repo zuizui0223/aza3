@@ -1,0 +1,59 @@
+{
+  "contract_version": "aza3_reference_transfer_public_preflight_v1",
+  "status_date": "2026-10-05",
+  "status": "EXECUTABLE_PUBLIC_DATA_PREFLIGHT",
+  "parent_gate": "aza3_reference_public_data_readiness_v1",
+  "source_bioproject": "PRJNA957074",
+  "frozen_run_panel": "data/planning/reference_public_preflight_runs_v1.csv",
+  "focal_run": {
+    "taxon": "Cirsium sieboldii",
+    "run": "SRR30887308",
+    "experiment": "SRX26291290",
+    "biosample": "SAMN44017917",
+    "bases": 656395250,
+    "library_strategy": "Targeted-Capture",
+    "library_selection": "Hybrid Selection",
+    "layout": "PAIRED"
+  },
+  "references": [
+    {
+      "taxon": "Cirsium heterophyllum",
+      "assembly": "GCA_965225835.1"
+    },
+    {
+      "taxon": "Cirsium dissectum",
+      "assembly": "GCA_965276805.1"
+    },
+    {
+      "taxon": "Cirsium nipponicum",
+      "source": "PRJNA1127082 + 10.6084/m9.figshare.26927092"
+    }
+  ],
+  "estimands": [
+    "mapped_pair_fraction",
+    "unique_mapping_fraction",
+    "target_locus_breadth",
+    "target_locus_depth_distribution",
+    "mismatch_or_edit_distance_distribution",
+    "heterozygous_allele_balance",
+    "callable_target_locus_fraction",
+    "cross_reference_per_locus_coverage_rank_correlation",
+    "cross_reference_sample_distance_concordance",
+    "cross_reference_locus_dropout"
+  ],
+  "decision_classes": {
+    "PUBLIC_TRANSFER_GREEN": "Captured-locus mapping/callability and Japanese comparison-panel relationships are broadly reference-invariant; proceed to 6-10-individual focal WGS R1B pilot.",
+    "PUBLIC_TRANSFER_AMBER": "Public loci are usable for topology/orthology but reference-specific dropout or distance distortion remains; plan focal C. sieboldii reference in parallel with small WGS bias audit.",
+    "PUBLIC_TRANSFER_RED": "C. sieboldii or the Japanese radiation is strongly and inconsistently represented across congener references; focal C. sieboldii long-read chromosome assembly becomes a prerequisite.",
+    "NOT_IDENTIFIABLE": "Target definitions or public-data comparability are inadequate; stop public-data expansion and proceed to own-data R1B design."
+  },
+  "prohibited_inferences": [
+    "local ancestry",
+    "recombination blocks",
+    "haplotype age",
+    "structural variant reuse",
+    "module-specific local genealogy",
+    "genotype-phenotype association"
+  ],
+  "stop_rule": "One bounded captured-locus reference-transfer preflight only; do not turn PRJNA957074 into a new aza3 phylogenomics project."
+}
