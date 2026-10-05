@@ -120,6 +120,27 @@ The pilot passes only if the **biological relationship structure and the window-
 
 A high global mapping rate alone is not a pass.
 
+## Frozen routing thresholds
+
+These are engineering/routing thresholds, not biological significance tests.
+
+Between the two chromosome-scale primary references:
+
+- pairwise sample-distance rank correlation >= **0.95**;
+- PC1-PC2 configuration Procrustes correlation >= **0.95**;
+- median absolute per-individual callable-fraction difference <= **0.03**;
+- no unexplained individual callable-fraction difference > **0.08**.
+
+At the local-window layer:
+
+- at least **80% of evaluable homologous windows** must preserve the same nearest-neighbour sample relation or equivalent pre-frozen local-structure class.
+
+After phenotype labels are opened:
+
+- an absolute phenotype-linked missingness/callability difference > **0.05** is a technical warning and prevents an automatic GREEN classification.
+
+The public *C. nipponicum* assembly remains a sequence-sensitivity anchor; its contig coordinates are not required to reproduce chromosome coordinates exactly.
+
 ## Decision classes
 
 ### OWN_WGS_GREEN
