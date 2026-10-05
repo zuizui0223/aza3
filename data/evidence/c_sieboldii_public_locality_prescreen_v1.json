@@ -48,8 +48,9 @@
   "decision": {
     "public_gate_class": "NOT_IDENTIFIABLE_FOR_COMBINATORIAL_SUBSTRATE",
     "cs0_priority": [
-      "Kurumayama Moor / Kirigamine: verify white vs non-white frequency and A1-A2 orientation variation",
-      "Tsukude Plateau wetland local set: verify A1-A2 orientation variation and search for colour variation"
+      "Kurumayama Moor / Kirigamine: verify white vs non-white frequency and record A1-A2 orientation opportunistically from permitted paths",
+      "Kiyooka-Mukaiyama Wetland, Tsukude: run the primary standardized A1-A2 orientation census and prospectively screen colour",
+      "Other Tsukude wetlands only if the first two routes are not identifiable"
     ],
     "reason": "Public sources establish both trait dimensions somewhere in the species but do not establish same-population or tightly matched local-set co-segregation."
   },
@@ -58,5 +59,28 @@
     "white-form locality does not imply orientation polymorphism",
     "regional morphological variation does not imply combinatorial segregation",
     "no Nature natural-reassembly claim before same-individual CS census"
-  ]
+  ],
+  "access_feasibility": {
+    "kurumayama_moor": {
+      "observation_mode": "boardwalk_or_rope_boundary_only",
+      "restriction": "Natural Monument wetland; entry and plant collection are prohibited without appropriate authorization.",
+      "implication": "High biological priority for white-form verification, but census completeness may be limited by visibility from permitted paths.",
+      "source": "https://www.city.suwa.lg.jp/site/bunkazai/41074.html"
+    },
+    "kiyooka_mukaiyama": {
+      "observation_mode": "boardwalk_observation",
+      "restriction": "Observation infrastructure is present; no tissue collection is implied by Gate CS.",
+      "implication": "Highest practical priority for standardized A1-A2 orientation census and prospective colour screening.",
+      "sources": [
+        "https://www.pref.aichi.jp/shinshiroshitara/nature/bog/kiyookamukaiyama.html",
+        "https://mikawanoyasou.org/data/kiseruazami.htm"
+      ]
+    },
+    "naganoyama": {
+      "observation_mode": "roadside_or_boundary_only",
+      "restriction": "Wetland interior is roped off and entry is not allowed; designated Natural Monument.",
+      "implication": "Lower CS0 priority than Kiyooka-Mukaiyama for a 20-30 individual standardized census.",
+      "source": "https://www.pref.aichi.jp/soshiki/shinshiroshitara/0000075448.html"
+    }
+  }
 }
