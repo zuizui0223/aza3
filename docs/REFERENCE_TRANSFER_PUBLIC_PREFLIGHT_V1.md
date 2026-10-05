@@ -114,14 +114,25 @@ It does **not** infer focal-population local ancestry.
 
 Paralogy is a major confound in Asteraceae target capture and in the Moreyra workflow.
 
-R1B-0 therefore reports two layers:
+The published Moreyra et al. (2025) orthology procedure is now recoverable from the article and is the primary historical replication layer:
 
-1. **all-recovered loci** for transparent recovery diagnostics;
-2. **clean loci** for reference-transfer comparison.
+1. discard genes with **more than 10 HybPiper paralog warnings**;
+2. for genes with **1–10 warnings**, recover alternative copies with HybPiper paralog retriever;
+3. align and inspect gene trees to retain loci for which ortholog/paralog designation is biologically coherent;
+4. discard genes with more than one paralog or obvious ortholog/paralog misassignment;
+5. retain loci with **<50% missing data** and **>=80% species presence**.
 
-The clean-locus set must be frozen before looking at C. sieboldii-specific reference performance. At minimum, loci with unresolved multi-copy placement or strong paralog warnings are excluded from the primary reference-concordance metric.
+That process yielded the published 350-locus phylogenomic dataset.
 
-The exact paralog rule may reproduce Moreyra's published filtering or be stricter, but it must be applied identically to all samples and both target-file versions.
+R1B-0 therefore reports three layers:
+
+1. **all 1,061 target loci** for transparent target-recovery diagnostics;
+2. **PUBLISHED_RULE_COMPATIBLE** loci, using the published warning/missingness/presence logic as far as the frozen public comparison panel permits;
+3. **AUTO_STRICT_CLEAN** loci, defined by a reproducible automated rule for the reference-transfer estimand, excluding unresolved multi-copy placement and problematic paralogy without using C. sieboldii-specific performance.
+
+The automatic clean-locus rule must be frozen before looking at C. sieboldii-specific reference performance and applied identically to all samples and both target-reference versions.
+
+The 350-locus number is **not** hard-coded as the expected R1B-0 output: it came from the full Moreyra taxon set and manual gene-tree curation. A smaller comparison panel may admit a different number while following the same logic.
 
 ## Exact R1B-0 estimands
 
