@@ -1,0 +1,30 @@
+name: Validate takaoense Phase-B pre-field screen
+
+on:
+  pull_request:
+    paths:
+      - "README.md"
+      - "docs/TAKAOENSE_PHASEB_PREFIELD_CANDIDATE_REDUCTION_V1.md"
+      - "data/contracts/takaoense_phaseb_prefield_contract_v1.json"
+      - "analysis/validate_takaoense_phaseb_prefield_v1.py"
+      - ".github/workflows/validate-takaoense-phaseb-prefield-v1.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: validate-takaoense-phaseb-prefield-v1-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: |
+          python -m py_compile analysis/validate_takaoense_phaseb_prefield_v1.py
+          python analysis/validate_takaoense_phaseb_prefield_v1.py
