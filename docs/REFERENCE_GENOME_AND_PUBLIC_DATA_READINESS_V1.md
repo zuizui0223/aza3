@@ -1,6 +1,6 @@
 # aza3 Gate R1 — reference genome and paper-linked public-data readiness v1
 
-**Status:** R1A RESOURCE AUDIT COMPLETE — R1B TRANSFERABILITY PILOT PENDING  
+**Status:** R1A COMPLETE — R1B-0 PUBLIC PREFLIGHT SUPPORTIVE — OWN-WGS PILOT NEXT  
 **Date:** 2026-10-05
 
 ## Why this gate exists
@@ -115,6 +115,38 @@ No public chromosome-scale or whole-genome `C. sieboldii` reference was identifi
 This is an audit-bounded statement, not a claim that no private or unindexed sequence resource exists.
 
 A focal assembly is therefore a possible downstream requirement, not an automatic first action.
+
+## R1B-0 empirical outcome
+
+The public-data preflight is now complete enough to route the next action.
+
+Key focal results:
+
+- direct mapping smoke: 1,033/1,061 public Compositae1061 loci receive reads;
+- independent HybPiper rerun: 988/1,061 loci recovered;
+- frozen high-stringency compatibility layer: 238/241 loci recovered;
+- *C. sieboldii* versus genome-derived *C. nipponicum* coding sequences: median informative identity 0.9942 across 177 common loci;
+- among 230 focal loci with records in all three primary references, 207 (90.0%) are uniquely high-confidence in all three and 224 (97.39%) in at least two;
+- same-individual hap1/hap2 placement noise is low:
+  - *C. heterophyllum*: unique-status agreement 0.9703;
+  - *C. dissectum*: 0.9915.
+
+The preregistered haplotype-control decision is:
+
+`HAPLOTYPE_CONTROL_GREEN__PROCEED_TO_OWN_WGS_PILOT`
+
+This does **not** mean the Nature Figure-3 reference problem is solved. Dense multi-individual genome-wide and local-window inference has not yet been tested.
+
+Current routing:
+
+> **Do not build a focal C. sieboldii reference yet. Run the 8-individual own-WGS transferability pilot first.**
+
+A focal HiFi + chromosome-scale assembly is reopened only if that own-WGS pilot returns AMBER or RED.
+
+Canonical next-step design:
+
+`docs/R1B_OWN_WGS_TRANSFERABILITY_PILOT_V1.md`
+
 
 ## What changed after inspecting article-linked public data
 
