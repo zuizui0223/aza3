@@ -46,6 +46,23 @@ Each pilot individual must link:
 - cytotype or explicit failure code;
 - DNA extraction ID.
 
+## 2C flow-cytometry QC
+
+The assay contract is `data/contracts/c_sieboldii_flow_cytometry_qc_v1.json`.
+
+Use propidium iodide for the primary absolute-DNA assay and measure at least 5,000 nuclei per preparation. Peak CV <=3% is the target; >5% requires remeasurement or a documented NOT_IDENTIFIABLE classification. Use at least two independent preparations per focal individual.
+
+`Solanum lycopersicum` at a working 2C=2.0 pg is the initial internal-standard candidate because it matches the recent East-Asian `Cirsium` study. It is **not mandatory** if the sample and standard G1 peaks overlap. Run standard-only/sample-only checks first and switch to a validated non-overlapping standard if needed.
+
+This is necessary because diploid `Cirsium` with 2n=34 can vary strongly in absolute DNA content. A chromosome count is therefore not a sufficient genome-architecture control.
+
+Use 2C only as:
+- a sample-level mapping/callability QC covariate;
+- a reference-interaction covariate;
+- a stratification flag if the cohort contains reproducible genome-size heterogeneity.
+
+Do not interpret 2C as a capitulum-causality result.
+
 ## Sequencing design
 
 Target **~8× mean nuclear depth per individual** on a common short-read WGS platform.
