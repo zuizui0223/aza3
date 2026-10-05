@@ -10,6 +10,9 @@ PREFLIGHT_DOC = ROOT / "docs" / "REFERENCE_TRANSFER_PUBLIC_PREFLIGHT_V1.md"
 PREFLIGHT_CONTRACT = ROOT / "data" / "contracts" / "aza3_reference_transfer_public_preflight_v1.json"
 PREFLIGHT_RUNS = ROOT / "data" / "planning" / "reference_public_preflight_runs_v1.csv"
 TARGET_AUDIT = ROOT / "data" / "evidence" / "comp1061_public_target_audit_v1.json"
+METRICS = ROOT / "data" / "contracts" / "r1b0_primary_metric_registry_v1.csv"
+RECOVERY_SCHEMA = ROOT / "data" / "templates" / "r1b0_target_recovery_results_v1.csv"
+LOCALIZATION_SCHEMA = ROOT / "data" / "templates" / "r1b0_reference_localization_results_v1.csv"
 README = ROOT / "README.md"
 
 def need(text, token):
@@ -24,6 +27,9 @@ def main():
     pcon = json.loads(PREFLIGHT_CONTRACT.read_text(encoding="utf-8"))
     pruns = list(csv.DictReader(PREFLIGHT_RUNS.open(encoding="utf-8")))
     taudit = json.loads(TARGET_AUDIT.read_text(encoding="utf-8"))
+    metrics = list(csv.DictReader(METRICS.open(encoding="utf-8")))
+    recovery_header = RECOVERY_SCHEMA.read_text(encoding="utf-8").splitlines()[0].split(",")
+    localization_header = LOCALIZATION_SCHEMA.read_text(encoding="utf-8").splitlines()[0].split(",")
     readme = README.read_text(encoding="utf-8")
 
     assert con["status"] == "R1A_RESOURCE_AUDIT_COMPLETE__R1B_TRANSFERABILITY_PILOT_PENDING"
@@ -141,6 +147,14 @@ def main():
         "Do not expand it into a new phylogenomics project.",
     ):
         need(pdoc, token)
+
+    assert pcon["primary_metric_registry"] == "data/contracts/r1b0_primary_metric_registry_v1.csv"
+    assert pcon["result_schemas"]["target_recovery"] == "data/templates/r1b0_target_recovery_results_v1.csv"
+    assert pcon["result_schemas"]["reference_localization"] == "data/templates/r1b0_reference_localization_results_v1.csv"
+    assert [m["metric_id"] for m in metrics] == ["M01","M02","M03","M04","M05","M06","M07"]
+    assert all(m["status"] == "FROZEN_BEFORE_RESULTS" for m in metrics)
+    assert recovery_header[:4] == ["run","taxon","target_version","hybpiper_version"]
+    assert localization_header[:6] == ["run","taxon","target_version","clean_layer","locus","genome_reference"]
 
     forbidden = {
         "local ancestry",
