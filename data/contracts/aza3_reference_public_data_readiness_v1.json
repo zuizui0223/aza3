@@ -1,7 +1,7 @@
 {
   "contract_version": "aza3_reference_public_data_readiness_v1",
   "status_date": "2026-10-05",
-  "status": "R1A_RESOURCE_AUDIT_COMPLETE__R1B_TRANSFERABILITY_PILOT_PENDING",
+  "status": "R1A_COMPLETE__R1B0_PUBLIC_PREFLIGHT_SUPPORTIVE__R1B_OWN_WGS_PILOT_AUTHORIZED",
   "nature_role": "Determine whether existing public Cirsium resources can support module-specific local genealogy and ancestry inference in focal Japanese systems without reference-induced artefact.",
   "focal_system": "Cirsium sieboldii",
   "resource_inventory": "data/planning/reference_public_resource_inventory_v1.csv",
@@ -125,5 +125,9 @@
     "Shared chromosome number does not establish equivalent genome architecture; same-individual genome-size/cytotype information remains required.",
     "No focal C. sieboldii reference should be built until R1B shows that existing resources are insufficient for the intended estimand, unless an independent design need already requires it."
   ],
-  "current_decision": "PROCEED_TO_R1B_TRANSFERABILITY_PILOT"
+  "current_decision": "PROCEED_TO_OWN_WGS_TRANSFERABILITY_PILOT",
+  "public_preflight_result": "data/evidence/r1b0_stage2_primary_reference_result_v1.json",
+  "haplotype_control_result": "data/evidence/r1b0_haplotype_control_result_v1.json",
+  "reference_build_decision": "DO_NOT_BUILD_FOCAL_C_SIEBOLDII_REFERENCE_YET",
+  "reference_build_reopen_rule": "Reopen focal long-read reference only if the own-WGS pilot shows phenotype/population-linked callability bias or materially reference-dependent local-history signals."
 }
