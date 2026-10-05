@@ -100,6 +100,18 @@ def main():
     stages = [x["stage"] for x in pcon["stages"]]
     assert stages == ["target_file_sensitivity", "genome_reference_localization"]
 
+    orth = pcon["published_moreyra_orthology_rule"]
+    assert orth["discard_if_paralog_warnings_gt"] == 10
+    assert orth["intermediate_warning_range"] == "1-10"
+    assert orth["final_missing_data_lt"] == 0.5
+    assert orth["final_species_presence_gte"] == 0.8
+    assert orth["published_final_loci"] == 350
+    assert pcon["clean_locus_layers"] == [
+        "ALL_1061_TARGET_LOCI",
+        "PUBLISHED_RULE_COMPATIBLE",
+        "AUTO_STRICT_CLEAN",
+    ]
+
     runs = {r["run"]: r for r in pruns}
     required_runs = {
         "SRR30887308": "Cirsium sieboldii",
@@ -119,6 +131,9 @@ def main():
         "SRR25265669",
         "ORIGINAL_COMP1061",
         "RECONSTRUCTED_CIRSIUM_TARGET",
+        "more than 10 HybPiper paralog warnings",
+        "PUBLISHED_RULE_COMPATIBLE",
+        "AUTO_STRICT_CLEAN",
         "PUBLIC_TRANSFER_GREEN",
         "PUBLIC_TRANSFER_AMBER",
         "PUBLIC_TRANSFER_RED",
