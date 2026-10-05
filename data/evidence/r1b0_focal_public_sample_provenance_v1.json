@@ -12,7 +12,11 @@
     "tissue": "Leaf",
     "geo_loc_name_status": "MISSING_OR_NOT_EXPOSED_IN_CURRENT_BIOSAMPLE_EFETCH",
     "lat_lon_status": "MISSING_OR_NOT_APPLICABLE_IN_CURRENT_BIOSAMPLE_EFETCH",
-    "submitting_center": "IBB-CSIC"
+    "submitting_center": "IBB-CSIC",
+    "run_browser_experiment_design": "DNA from silica-dried leaf/herbarium material; COS1061 enrichment; unenriched libraries mixed with target-enriched libraries at 3:2 before sequencing.",
+    "run_browser_read_structure": "2 biological reads per spot; 125 bp each",
+    "run_browser_spots": 2625581,
+    "run_browser_gc_percent": 42.6
   },
   "paper_statement": "Moreyra et al. 2025 states that Table S1 contains detailed sample information, BioSample accessions, herbaria codes and voucher information.",
   "supplementary_status": "TABLE_S1_NOT_RECOVERED_IN_CURRENT_AUDIT_ENVIRONMENT",
@@ -28,5 +32,6 @@
     "within-species association",
     "field population representation"
   ],
-  "decision": "TECHNICAL_PREFLIGHT_ONLY_UNTIL_TABLE_S1_PROVENANCE_IS_RECOVERED"
+  "decision": "TECHNICAL_PREFLIGHT_ONLY_UNTIL_TABLE_S1_PROVENANCE_IS_RECOVERED",
+  "interpretation_boundary": "Because unenriched and enriched libraries were mixed 3:2, raw target mapping fraction cannot be interpreted as capture/reference success; use HybPiper locus recovery and downstream orthology/reference-concordance metrics."
 }
