@@ -31,7 +31,32 @@ The same BioProject also contains public target-capture runs for several aza3-re
 
 This matters because reference behaviour can be compared across a small phylogenetic gradient instead of judging C. sieboldii in isolation.
 
-## Candidate references
+## Moreyra target-file reconstruction is possible from public assets
+
+Moreyra et al. did not use only the generic Compositae1061 reference. Their workflow used:
+
+1. the original Compositae1061 target reference; plus
+2. the corresponding exons recovered from the highest-coverage `Cirsium tioganum` sample.
+
+The original HybPiper reference is publicly available as:
+
+`github:carol-siniscalchi/Comp1061-Angio353/comp1061_hybpiper_reference.fasta`
+
+The public SRA contains the reported high-coverage augmentation source under the current NCBI taxon name `Cirsium scariosum var. americanum`:
+
+- historical/sample name: `Cirsium tioganum`
+- run: `SRR25265669`
+- experiment: `SRX21011548`
+- BioSample: `SAMN34240347`
+- library: `Cirsium-tioganum_21`
+- reported bases: 36,939,020,978
+- average run read length: 302 bp
+
+Therefore a Cirsium-adapted target can be reconstructed from public materials if the exact intermediate target file cannot be recovered.
+
+The reconstructed file must be labelled `RECONSTRUCTED_CIRSIUM_TARGET`, not treated as byte-identical to the authors' original intermediate file.
+
+## Candidate whole-genome references
 
 Use the same three resources frozen in Gate R1:
 
@@ -39,42 +64,99 @@ Use the same three resources frozen in Gate R1:
 2. `C. dissectum` — `GCA_965276805.1`
 3. `C. nipponicum` — public assembly from PRJNA1127082 / Figshare DOI `10.6084/m9.figshare.26927092`
 
+## Two-stage R1B-0 pipeline
+
+### Stage 1 — target-file sensitivity
+
+Run the frozen public comparison panel twice:
+
+A. `ORIGINAL_COMP1061`  
+B. `RECONSTRUCTED_CIRSIUM_TARGET`
+
+Use the same HybPiper version and trimming policy across all samples.
+
+For each sample × target file record:
+- number of loci recovered;
+- exon length recovered per locus;
+- fraction of expected target length;
+- depth or read support where recoverable;
+- paralog warnings;
+- loci failing recovery.
+
+Primary question:
+
+> Does adding Cirsium-specific target sequences materially change locus recovery for C. sieboldii relative to the other Japanese samples?
+
+If yes, target-file choice itself is a measurable transfer-bias source and must be propagated into later reference comparisons.
+
+### Stage 2 — genome-reference localization
+
+Use only a frozen clean-locus subset after Stage 1.
+
+For each recovered orthologous locus, localize the sequence independently against:
+- `GCA_965225835.1`;
+- `GCA_965276805.1`;
+- the public `C. nipponicum` assembly.
+
+Record:
+- unique vs multiple placement;
+- alignment span;
+- sequence identity/edit distance;
+- chromosome/contig coordinate;
+- syntenic consistency between the two chromosome-scale references;
+- locus dropout by reference.
+
+This stage asks whether homologous Cirsium loci have stable genomic placements and divergence rankings across available references.
+
+It does **not** infer focal-population local ancestry.
+
+## Clean-locus rule
+
+Paralogy is a major confound in Asteraceae target capture and in the Moreyra workflow.
+
+R1B-0 therefore reports two layers:
+
+1. **all-recovered loci** for transparent recovery diagnostics;
+2. **clean loci** for reference-transfer comparison.
+
+The clean-locus set must be frozen before looking at C. sieboldii-specific reference performance. At minimum, loci with unresolved multi-copy placement or strong paralog warnings are excluded from the primary reference-concordance metric.
+
+The exact paralog rule may reproduce Moreyra's published filtering or be stricter, but it must be applied identically to all samples and both target-file versions.
+
 ## Exact R1B-0 estimands
 
-Because PRJNA957074 is target capture, R1B-0 is restricted to the captured-locus compartment.
+### Target-file estimands
+1. loci recovered per sample;
+2. recovered target length per locus;
+3. Cirsium-target gain over original-target recovery;
+4. paralog-warning burden;
+5. sample × target-file locus dropout.
 
-For each run × reference:
-
-1. fraction of read pairs mapped;
-2. fraction mapped uniquely under the same mapping policy;
-3. target-locus breadth covered;
-4. target-locus depth distribution;
-5. mismatch/edit-distance distribution where the mapper exposes it;
-6. allele-balance distribution at callable heterozygous sites;
-7. number/fraction of target loci passing frozen callability criteria.
-
-Across references:
-
-8. rank correlation of per-locus coverage;
-9. concordance of genotype-likelihood PCA or distance matrix;
-10. concordance of per-locus divergence ordering among Japanese taxa;
-11. reference-specific locus dropout.
+### Whole-genome reference estimands
+6. fraction of clean loci uniquely localized;
+7. alignment-span and identity distributions;
+8. chromosome/contig placement concordance;
+9. cross-reference rank correlation of per-locus divergence;
+10. reference-specific locus dropout;
+11. pairwise sample-distance concordance across reference choices.
 
 ## Focal decision for C. sieboldii
 
 R1B-0 asks only:
 
-> Is C. sieboldii an outlier in reference-specific mapping or locus dropout relative to other Japanese Cirsium samples?
+> Is C. sieboldii an outlier in target-file or genome-reference transferability relative to other Japanese Cirsium samples?
 
 A useful result would be:
-- one or more references retain the same broad locus set;
-- pairwise genetic relationships among the Japanese comparison panel are stable;
-- C. sieboldii does not show exceptional reference-specific dropout.
+- the same broad clean-locus set is recovered under both target files;
+- one or more genome references uniquely localize most clean loci;
+- pairwise relationships among the Japanese comparison panel are stable;
+- C. sieboldii does not show exceptional target- or reference-specific dropout.
 
 An adverse result would be:
-- C. sieboldii loses a large or nonrandom subset of loci under one or more congener references;
-- inferred pairwise relationships shift materially with the reference;
-- one reference produces systematic allele-balance or callability distortion.
+- C. sieboldii depends strongly on the Cirsium-adapted target for locus recovery;
+- C. sieboldii loses a large or nonrandom subset of loci under one or more congener genome references;
+- inferred sample-distance structure changes materially with reference;
+- many loci have reference-specific multiple placements or strong sequence-identity distortion.
 
 ## What R1B-0 can authorize
 
@@ -103,28 +185,28 @@ Target-capture data interrogate a sparse, bait-defined subset of the genome. The
 
 ### PUBLIC_TRANSFER_GREEN
 
-Captured-locus mapping/callability is broadly stable across references and the Japanese comparison-panel relationship matrix is reference-invariant.
+Target-file sensitivity is small or well-bounded, captured-locus localization is broadly stable across references, and the Japanese comparison-panel relationship matrix is reference-invariant.
 
 Next:
 run the 6–10-individual focal WGS R1B pilot.
 
 ### PUBLIC_TRANSFER_AMBER
 
-Global captured-locus signal is usable, but substantial reference-specific locus dropout or distance distortion remains.
+Public loci are usable for topology/orthology, but target-file dependence, reference-specific dropout or distance distortion remains.
 
 Next:
 retain public resources for orthology/topology; design focal C. sieboldii reference in parallel with a small WGS bias audit.
 
 ### PUBLIC_TRANSFER_RED
 
-C. sieboldii or the Japanese radiation is strongly and inconsistently represented across congener references.
+C. sieboldii or the Japanese radiation is strongly and inconsistently represented across target/reference choices.
 
 Next:
 focal C. sieboldii HiFi + chromosome scaffolding becomes a prerequisite for dense local-history work.
 
 ### NOT_IDENTIFIABLE
 
-Public target-capture structure, target definitions or recoverable metadata are insufficient for a comparable three-reference test.
+Public target-capture structure, target reconstruction, or recoverable metadata are insufficient for a comparable test.
 
 Next:
 skip further public-data fishing and proceed to the own-data R1B design.
