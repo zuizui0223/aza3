@@ -35,6 +35,38 @@ Therefore:
 
 > **species-wide state multiplicity is not evidence of a combinatorial population substrate.**
 
+## Public-locality prescreen and CS0 priority
+
+A bounded public-source prescreen now ranks localities for **observation only**. It does not classify Gate CS.
+
+### Priority 1 — Kurumayama Moor / Kirigamine, Nagano
+
+Reason:
+- type locality of *C. sieboldii* f. *leucanthum*;
+- current public locality information still lists Shirobana-kiseruazami from the Kurumayama area.
+
+Primary CS0 task:
+- verify whether white and non-white flowering individuals coexist;
+- measure A1–A2 orientation continuously on all accessible flowering individuals;
+- do **not** infer orientation polymorphism from the white-form record itself.
+
+### Priority 2 — Tsukude Plateau wetland local set, Aichi
+
+Reason:
+- multiple historical *C. sieboldii* herbarium records from former Tsukude-mura;
+- local field accounts describe abundant wetland populations and within-region morphological variation.
+
+Primary CS0 task:
+- measure A1–A2 orientation distribution;
+- search prospectively for colour variation;
+- treat hairiness variation only as evidence that local individual variation exists, not as a capitulum-module result.
+
+Public-source ceiling:
+**neither locality currently demonstrates same-population colour × anthesis-orientation co-segregation.**
+
+The machine-readable prescreen is:
+`data/evidence/c_sieboldii_public_locality_prescreen_v1.json`.
+
 ## Gate question
 
 > Does one natural *C. sieboldii* population, or a tightly matched local population set, contain directly observed individuals that independently vary in at least two capitulum components at the same flowering stage?
