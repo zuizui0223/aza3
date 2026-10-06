@@ -56,5 +56,13 @@
     "open_representative_fitness_chain"
   ],
   "fig3_test_contract": "data/contracts/aza3_fig3_reconfigurable_integration_test_v1.json",
-  "diversification_context": "The young radiation supplies a stringent shallow-timescale test and repeated component histories; Fig3 R support does not by itself establish that reconfigurability caused an elevated diversification rate."
+  "diversification_context": "The young radiation supplies a stringent shallow-timescale test and repeated component histories; Fig3 R support does not by itself establish that reconfigurability caused an elevated diversification rate.",
+  "novelty_target": "Directly compete a predeclared phenotypic-module inheritance model against a complexity-matched module-breaking genomic model in the same natural individuals, using untouched phenotype prediction and prospectively registered natural mosaics as the discriminator.",
+  "not_novel_alone": [
+    "cross_level_modularity_mismatch",
+    "different_traits_mapping_to_different_loci",
+    "mosaic_evolution",
+    "standing_variation_reuse",
+    "module_boundary_change"
+  ]
 }
