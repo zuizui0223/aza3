@@ -8,6 +8,9 @@ on:
       - "data/templates/fig3_heldout_prediction_registry_v1.csv"
       - "analysis/score_fig3_heldout_prediction_v1.py"
       - "analysis/validate_fig3_reconfigurable_integration_test_v1.py"
+      - "docs/FIG3_PROSPECTIVE_POWER_RULE_V1.md"
+      - "data/contracts/aza3_fig3_prospective_power_v1.json"
+      - "analysis/simulate_fig3_validation_power_v1.py"
       - ".github/workflows/validate-fig3-reconfigurable-integration-test-v1.yml"
   workflow_dispatch:
 
@@ -27,7 +30,16 @@ jobs:
         run: |
           python -m py_compile analysis/score_fig3_heldout_prediction_v1.py
           python -m py_compile analysis/validate_fig3_reconfigurable_integration_test_v1.py
+          python -m py_compile analysis/simulate_fig3_validation_power_v1.py
           python analysis/validate_fig3_reconfigurable_integration_test_v1.py
+          python analysis/simulate_fig3_validation_power_v1.py --reps 500 --sign-draws 499 --output-json power_smoke.json --output-csv power_smoke.csv
+          python - <<'PY'
+          import json
+          d=json.load(open("power_smoke.json"))
+          assert d["standardized_delta_grid"]==[0.2,0.3,0.4,0.5,0.7]
+          assert d["validation_n_grid"]==[20,24,30,36,40,50,60]
+          assert d["primary_requirement"]["delta"]==0.4
+          PY
 
       - name: Build synthetic registries
         run: |
