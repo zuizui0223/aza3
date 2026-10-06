@@ -51,21 +51,21 @@ def main():
     assert "multi-trait modules" in c["primary_estimand"]["analysis_scope"]
     assert c["kill_shot_estimand"]["correct_validation_mosaic_min"]==3
     assert c["validation_blinding"]["scoring_rule"].startswith("Observed validation phenotypes are joined only after")
-    assert c["model_fairness"]["candidate_block_pool"].startswith("identical TRAIN-derived")
+    assert c["model_fairness"]["candidate_block_pool"].startswith("identical TRAIN-derived")\n    assert c["module_baselines"]["M_local"]["role"].startswith("sensitivity baseline")\n    assert "non-negative held-out advantage over M_local" in c["module_baselines"]["strong_R_rule"]
     assert "same complexity budget" in c["model_fairness"]["R_effect_structure"]
     assert cs["primary_pair"]==["floral_colour","anthesis_orientation"]
     assert wgs["sample_selection_gate"]["required_before_biological_sample_selection"] is True
 
     pred_required={
       "individual_id","validation_unit","split","prediction_registry_frozen_at","prediction_model_version",
-      "model_F_prediction_object","model_M_prediction_object","model_R_prediction_object",
+      "model_F_prediction_object","model_M_prediction_object","model_Mlocal_prediction_object","model_R_prediction_object",
       "colour_genomic_state","orientation_genomic_state","prospective_mosaic_registered",
       "reference_stable","taxonomic_confidence","technical_exclusion_reason",
       "admitted_construct_count","admitted_multi_trait_module_count"
     }
     score_required={
       "individual_id","validation_unit","prediction_registry_sha256","observed_phenotype_source",
-      "model_F_joint_log_score","model_M_joint_log_score","model_R_joint_log_score",
+      "model_F_joint_log_score","model_M_joint_log_score","model_Mlocal_joint_log_score","model_R_joint_log_score",
       "d_RM_i","d_MF_i","prospective_mosaic_registered","colour_prediction_correct",
       "orientation_prediction_correct","reference_stable","taxonomic_confidence","technical_exclusion_reason"
     }
