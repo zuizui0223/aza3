@@ -118,7 +118,8 @@
     "validation_n_below_20_closes_prospective_Fig4_claim",
     "CS_GREEN_LOCAL_SET_does_not_authorize_within_population_reassembly_wording",
     "FIG3_R_STRONG_does_not_establish_adaptation",
-    "single_trait_presentation_cannot_contribute_to_R_vs_M_core_model_advantage"
+    "single_trait_presentation_cannot_contribute_to_R_vs_M_core_model_advantage",
+    "untouched_validation_requires_pre_unblinding_prediction_registry_hash_and_separate_unlock_receipt"
   ],
   "model_fairness": {
     "candidate_block_pool": "identical TRAIN-derived block pool for F, M and R",
@@ -136,5 +137,11 @@
     "within_population_phenotype_label_permutations",
     "reference_substitution_sensitivity",
     "module_label_permutation_preserving_module_sizes"
-  ]
+  ],
+  "validation_blinding": {
+    "prediction_registry": "Predictions, model log-score objects that do not require observed phenotype, genomic states and prospective mosaic flags are frozen while validation phenotype labels remain hidden.",
+    "unlock_receipt": "A separate immutable unlock receipt records when validation phenotype labels are opened.",
+    "scoring_rule": "Observed validation phenotypes are joined only after the frozen prediction registry hash and unlock receipt exist.",
+    "prohibited": "A single editable table containing both pre-unblinding predictions and post-unblinding correctness without an immutable pre-unblinding hash is not admissible."
+  }
 }
