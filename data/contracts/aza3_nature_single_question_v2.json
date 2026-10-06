@@ -40,7 +40,8 @@
     "adaptation requires direct fitness evidence",
     "species-wide state multiplicity is not a verified within-population combinatorial substrate",
     "colour_orientation_separability_alone_is_not_reconfigurable_integration",
-    "R_must_outpredict_frozen_phenotypic_module_model_for_FIG3_R_STRONG"
+    "R_must_outpredict_frozen_phenotypic_module_model_for_FIG3_R_STRONG",
+    "reconfigurable_integration_does_not_by_itself_establish_faster_diversification"
   ],
   "focal_system_gate": "data/contracts/c_sieboldii_combinatorial_substrate_gate_v1.json",
   "execution_order": [
@@ -54,5 +55,6 @@
     "open_prospective_natural_mosaic_prediction_only_after_predictive_genomic_separation",
     "open_representative_fitness_chain"
   ],
-  "fig3_test_contract": "data/contracts/aza3_fig3_reconfigurable_integration_test_v1.json"
+  "fig3_test_contract": "data/contracts/aza3_fig3_reconfigurable_integration_test_v1.json",
+  "diversification_context": "The young radiation supplies a stringent shallow-timescale test and repeated component histories; Fig3 R support does not by itself establish that reconfigurability caused an elevated diversification rate."
 }
