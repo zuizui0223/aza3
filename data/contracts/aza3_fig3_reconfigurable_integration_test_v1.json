@@ -119,7 +119,8 @@
     "CS_GREEN_LOCAL_SET_does_not_authorize_within_population_reassembly_wording",
     "FIG3_R_STRONG_does_not_establish_adaptation",
     "single_trait_presentation_cannot_contribute_to_R_vs_M_core_model_advantage",
-    "untouched_validation_requires_pre_unblinding_prediction_registry_hash_and_separate_unlock_receipt"
+    "untouched_validation_requires_pre_unblinding_prediction_registry_hash_and_separate_unlock_receipt",
+    "R_must_not_depend_on_global_module_misspecification"
   ],
   "model_fairness": {
     "candidate_block_pool": "identical TRAIN-derived block pool for F, M and R",
@@ -143,5 +144,22 @@
     "unlock_receipt": "A separate immutable unlock receipt records when validation phenotype labels are opened.",
     "scoring_rule": "Observed validation phenotypes are joined only after the frozen prediction registry hash and unlock receipt exist.",
     "prohibited": "A single editable table containing both pre-unblinding predictions and post-unblinding correctness without an immutable pre-unblinding hash is not admissible."
+  },
+  "module_baselines": {
+    "M_global": {
+      "definition": "frozen Azami global phenotypic-module partition",
+      "role": "primary preregistered conventional-module baseline"
+    },
+    "M_local": {
+      "definition": "phenotype-only module partition re-estimated using TRAIN phenotypes only, before genotype-linked discovery and without VALIDATION phenotypes",
+      "role": "sensitivity baseline guarding against global-module misspecification",
+      "constraints": [
+        "same admitted construct set as F/M_global/R",
+        "module number chosen by a prospectively frozen phenotype-only rule",
+        "no genotype, candidate-block or validation-phenotype information",
+        "complexity matched to R under the same effective parameter budget"
+      ]
+    },
+    "strong_R_rule": "FIG3_R_STRONG requires R to beat M_global under the primary E1 rule and to have non-negative held-out advantage over M_local; if M_local beats R materially, classify R_PARTIAL or NOT_IDENTIFIABLE rather than claiming module-boundary breakage."
   }
 }
