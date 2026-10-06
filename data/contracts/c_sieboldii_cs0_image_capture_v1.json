@@ -1,0 +1,87 @@
+{
+  "contract_version": "c_sieboldii_cs0_image_capture_v1",
+  "status_date": "2026-10-06",
+  "status": "PROSPECTIVE__OBSERVATION_ONLY",
+  "source_azami_commit": "b463dbc938e454baa54b2e480f7f1d8badd7795d",
+  "source_contracts": [
+    "analysis/v3/biological_trait_axis_contract_20260910.csv",
+    "legacy/ch1_global/v2/ontology/ch1_continuous_trait_contract.csv"
+  ],
+  "captures": {
+    "whole_head_side": {
+      "required_if_visible": true,
+      "source_min_dimension_px": 96,
+      "requirements": [
+        "whole_capitulum_outline",
+        "floral_end_visible",
+        "gravity_reference_or_standard_vertical",
+        "natural_posture_no_repositioning"
+      ],
+      "constructs": [
+        "presentation_angle",
+        "head_elongation",
+        "head_compactness"
+      ]
+    },
+    "corolla_colour": {
+      "required_if_visible": true,
+      "source_min_dimension_px": 96,
+      "requirements": [
+        "visible_fresh_corolla",
+        "usable_exposure",
+        "same_device_mode_within_census",
+        "colour_reference_where_nonintrusively_feasible"
+      ],
+      "constructs": [
+        "floral_lightness",
+        "floral_chroma",
+        "floral_hue"
+      ]
+    },
+    "involucre_highres": {
+      "required_for_future_multi_module_candidates_if_visible": true,
+      "source_min_dimension_px": 150,
+      "requirements": [
+        "side_or_controlled_oblique",
+        "usable_involucre_contour",
+        "no_plant_repositioning",
+        "pose_recorded"
+      ],
+      "constructs": [
+        "involucre_form",
+        "projection_prominence",
+        "projection_pattern"
+      ],
+      "projection_pattern_extra_rule": "pose_control_pass_required"
+    }
+  },
+  "minimal_strong_fig3_image_route": {
+    "modules": [
+      "colour",
+      "head_form"
+    ],
+    "constructs": [
+      "floral_lightness",
+      "floral_chroma",
+      "floral_hue",
+      "head_elongation",
+      "head_compactness"
+    ],
+    "construct_count": 5,
+    "multi_trait_module_count": 2
+  },
+  "field_priority": [
+    "unbiased_population_census",
+    "primary_colour_and_A1_A2_orientation",
+    "whole_head_and_colour_capture",
+    "high_resolution_involucre_capture"
+  ],
+  "hard_boundaries": [
+    "no_plant_repositioning",
+    "no_off_path_access",
+    "no_tissue_collection_authorized",
+    "missing_construct_image_does_not_invalidate_primary_Gate_CS",
+    "missing_construct_cannot_be_imputed_from_another_individual_or_stage",
+    "construct_admission_frozen_before_genomic_discovery"
+  ]
+}
