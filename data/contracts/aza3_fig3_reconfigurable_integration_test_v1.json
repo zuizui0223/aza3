@@ -52,7 +52,10 @@
     "strongest_route_min_total_usable": 60,
     "strongest_validation": "independent_segregating_population",
     "fallback_validation": "prospectively_frozen_spatial_block_holdout",
-    "legacy_40_status": "DISCOVERY_ONLY_UNLESS_EXPANDED_FOR_UNTOUCHED_VALIDATION"
+    "legacy_40_status": "DISCOVERY_ONLY_UNLESS_EXPANDED_FOR_UNTOUCHED_VALIDATION",
+    "min_total_role": "design_floor_for_40_train_plus_20_untouched_validation__NOT_a_power_derived_target",
+    "final_n_rule": "After OWN_WGS_GREEN, estimate final n prospectively using genotype-only pilot quantities (callability, MAF/heterozygosity, LD/effective block count, relatedness/population structure) plus a frozen grid of biologically meaningful effect sizes. Validation phenotypes and phenotype-linked genomic results cannot enter the power calculation.",
+    "power_decision": "If the feasible n cannot achieve the frozen power target for discriminating M from R under the simulation grid, the Nature predictive route is NOT_IDENTIFIABLE rather than underpowered positive fishing."
   },
   "models": {
     "F": {
