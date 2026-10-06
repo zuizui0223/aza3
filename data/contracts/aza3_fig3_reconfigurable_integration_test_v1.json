@@ -110,5 +110,22 @@
     "CS_GREEN_LOCAL_SET_does_not_authorize_within_population_reassembly_wording",
     "FIG3_R_STRONG_does_not_establish_adaptation",
     "single_trait_presentation_cannot_contribute_to_R_vs_M_core_model_advantage"
+  ],
+  "model_fairness": {
+    "candidate_block_pool": "identical TRAIN-derived block pool for F, M and R",
+    "preprocessing": "identical genotype representation, scaling, ancestry/callability covariates and missing-data policy",
+    "tuning": "identical nested TRAIN-only tuning procedure; VALIDATION cannot choose hyperparameters",
+    "complexity_budget": "M and R must be matched by effective parameter budget / regularization degrees of freedom; R cannot win by receiving more unconstrained parameters",
+    "distinction_only": "the intended difference is the structure of the block-by-construct effect matrix",
+    "F_effect_structure": "rank-1 whole-organ effect structure",
+    "M_effect_structure": "effects constrained to the frozen phenotypic-module partition",
+    "R_effect_structure": "effects may cross/break frozen module boundaries under the same complexity budget",
+    "sensitivity": "report a complexity-matched null in which module labels are permuted while preserving module sizes"
+  },
+  "negative_controls": [
+    "matched_genomic_windows_for_callability_MAF_LD",
+    "within_population_phenotype_label_permutations",
+    "reference_substitution_sensitivity",
+    "module_label_permutation_preserving_module_sizes"
   ]
 }
