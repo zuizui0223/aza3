@@ -59,6 +59,8 @@ def main():
         reason=[]
         if (r.get("split") or "").strip().upper()!="VALIDATION":
             reason.append("not_validation")
+        if bval(r.get("phenotype_labels_opened")) is not True:
+            reason.append("phenotype_labels_not_opened")
         if (r.get("taxonomic_confidence") or "").strip().casefold()!="high":
             reason.append("taxonomic_confidence_not_high")
         if bval(r.get("reference_stable")) is not True:
