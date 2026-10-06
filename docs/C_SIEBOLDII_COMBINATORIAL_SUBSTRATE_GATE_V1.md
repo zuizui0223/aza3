@@ -72,6 +72,27 @@ Public-source ceiling:
 The machine-readable prescreen is:
 `data/evidence/c_sieboldii_public_locality_prescreen_v1.json`.
 
+## Taxonomic identity gate
+
+The primary Gate CS calculation is restricted to individuals scored as **taxonomic_confidence = high** for focal *Cirsium sieboldii*.
+
+This is essential because flowering orientation is itself taxonomically informative in nearby look-alikes. In particular:
+
+- the current Japanese treatment recognizes *C. austrokiusianum* (Satsuma-maa-azami) in Kyushu, where heads usually flower upright;
+- the current Japanese treatment recognizes *C. hidapaludosum* (Hida-kiseru-azami) in Hida, with heads upright from bud through fruiting.
+
+Therefore orientation cannot be used to confirm focal identity and then reused as the phenotype under test.
+
+Rules:
+
+- high-confidence focal individuals: admissible to the primary gate;
+- medium-confidence individuals: sensitivity-only;
+- unresolved individuals: descriptive only and never fill primary 2×2 cells;
+- excluding uncertain taxa must occur **before** evaluating sample size, cell occupancy or colour–orientation coupling.
+
+The field diagnostic is:
+`docs/C_SIEBOLDII_CS0_TAXONOMIC_DIAGNOSTIC_V1.md`.
+
 ## Gate question
 
 > Does one natural *C. sieboldii* population, or a tightly matched local population set, contain directly observed individuals that independently vary in at least two capitulum components at the same flowering stage?
