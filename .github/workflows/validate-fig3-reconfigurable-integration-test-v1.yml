@@ -34,7 +34,7 @@ jobs:
           python - <<'PY'
           import csv
 
-          fields="individual_id,validation_unit,split,phenotype_labels_opened,construct_admission_frozen,admitted_construct_count,admitted_multi_trait_module_count,model_F_joint_log_score,model_M_joint_log_score,model_R_joint_log_score,d_MF,d_RM,module_colour_M_log_score,module_colour_R_log_score,module_head_form_M_log_score,module_head_form_R_log_score,module_involucre_M_log_score,module_involucre_R_log_score,colour_genomic_state,orientation_genomic_state,prospective_mosaic_registered,colour_prediction_correct,orientation_prediction_correct,reference_stable,taxonomic_confidence,technical_exclusion_reason".split(",")
+          fields="individual_id,validation_unit,split,phenotype_labels_opened,construct_admission_frozen,admitted_construct_count,admitted_multi_trait_module_count,model_F_joint_log_score,model_M_joint_log_score,model_R_joint_log_score,d_MF,d_RM,module_colour_M_log_score,module_colour_R_log_score,module_head_form_M_log_score,module_head_form_R_log_score,module_involucre_M_log_score,module_involucre_R_log_score,colour_genomic_state,orientation_genomic_state,prospective_mosaic_registered,mosaic_registry_commit_sha,mosaic_registry_frozen_at_utc,mosaic_prediction_hash,colour_prediction_correct,orientation_prediction_correct,reference_stable,taxonomic_confidence,technical_exclusion_reason".split(",")
 
           def write(name,n,F,M,R,constructs=5,modules=2,mosaics=0,module_mode="R"):
               rows=[]
@@ -57,6 +57,9 @@ jobs:
                     "module_involucre_M_log_score":"","module_involucre_R_log_score":"",
                     "colour_genomic_state":"C1","orientation_genomic_state":"O2",
                     "prospective_mosaic_registered":"true" if i<mosaics else "false",
+                    "mosaic_registry_commit_sha":"abc123frozen" if i<mosaics else "",
+                    "mosaic_registry_frozen_at_utc":"2026-10-06T00:00:00Z" if i<mosaics else "",
+                    "mosaic_prediction_hash":f"hash_{i}" if i<mosaics else "",
                     "colour_prediction_correct":"true","orientation_prediction_correct":"true",
                     "reference_stable":"true","taxonomic_confidence":"high",
                     "technical_exclusion_reason":""
@@ -130,4 +133,25 @@ jobs:
           d=json.load(open("small.json"))
           assert d["eligible_validation_n"]==19
           assert d["decision"]=="NOT_IDENTIFIABLE", d
+          PY
+
+      - name: Smoke-test post-hoc mosaic labels cannot create R strong
+        run: |
+          python - <<'PY'
+          import csv
+          rows=list(csv.DictReader(open("rstrong.csv")))
+          for r in rows:
+              r["mosaic_registry_commit_sha"]=""
+              r["mosaic_registry_frozen_at_utc"]=""
+              r["mosaic_prediction_hash"]=""
+          with open("posthoc.csv","w",newline="") as fh:
+              w=csv.DictWriter(fh,fieldnames=rows[0].keys()); w.writeheader(); w.writerows(rows)
+          PY
+          python analysis/score_fig3_heldout_prediction_v1.py --input posthoc.csv --output posthoc.json
+          python - <<'PY'
+          import json
+          d=json.load(open("posthoc.json"))
+          assert d["decision"]=="FIG3_R_PARTIAL", d
+          assert d["prospective_mosaic_registered_n"]==0
+          assert d["prospective_mosaic_registered_missing_provenance_n"]==3
           PY
