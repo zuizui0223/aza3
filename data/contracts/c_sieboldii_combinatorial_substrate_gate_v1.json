@@ -88,9 +88,16 @@
       "role": "primary standardized orientation-census priority",
       "access": "Boardwalk/observation infrastructure present.",
       "rationale": "Public field record of C. sieboldii at this wetland and high observation feasibility; measure A1-A2 orientation on a spatially spread census and prospectively screen colour."
+    },
+    {
+      "rank": 3,
+      "locality": "Kashibaru Wetland, Karatsu, Saga",
+      "role": "upright-flowering validation priority",
+      "access": "Boardwalk/designated observation areas; plant collection prohibited; some zones inaccessible.",
+      "rationale": "A 2022 local report states that upward-facing flowering Maa-azami predominated, but the site flora also contains Satsuma-maa-azami, so every scored individual requires explicit focal-taxon verification."
     }
   ],
-  "public_prescreen_ceiling": "Public sources do not establish same-population colour x anthesis-orientation co-segregation; Gate CS remains observationally open.",
+  "public_prescreen_ceiling": "Public sources now support local-area and population-level anthesis-orientation variation, but still do not establish same-population colour x orientation co-segregation in verified focal C. sieboldii.",
   "locality_priority_ledger": "data/planning/c_sieboldii_cs0_locality_priority_v1.csv",
   "field_card": "docs/C_SIEBOLDII_CS0_FIELD_CARD_V1.md",
   "public_flowering_window": {
