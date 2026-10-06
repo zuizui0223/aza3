@@ -9,6 +9,8 @@ on:
       - "data/evidence/c_sieboldii_combinatorial_substrate_public_audit_v1.json"
       - "data/evidence/c_sieboldii_public_locality_prescreen_v1.json"
       - "data/templates/c_sieboldii_combinatorial_census_v1.csv"
+      - "data/planning/c_sieboldii_cs0_locality_priority_v1.csv"
+      - "docs/C_SIEBOLDII_CS0_FIELD_CARD_V1.md"
       - "analysis/classify_c_sieboldii_combinatorial_substrate_v1.py"
       - "analysis/validate_c_sieboldii_combinatorial_substrate_gate_v1.py"
       - ".github/workflows/validate-c-sieboldii-substrate-gate-v1.yml"
