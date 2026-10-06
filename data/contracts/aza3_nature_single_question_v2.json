@@ -64,5 +64,14 @@
     "mosaic_evolution",
     "standing_variation_reuse",
     "module_boundary_change"
-  ]
+  ],
+  "figure_roles": {
+    "Fig1": "setup_required__establish_present_integration",
+    "Fig2": "setup_required__show_cross_level_partition_is_not_assumed",
+    "Fig3": "core_required__F_vs_M_vs_R_untouched_prediction",
+    "Fig4": "core_required_for_strongest_claim__prospective_natural_mosaics",
+    "Fig5": "independent_extension__functional_or_fitness_coherence_after_reassembly"
+  },
+  "nature_core_success": "The central evolutionary-unit claim is closed by FIG3_R_STRONG plus the preregistered Fig4 prospective-mosaic criterion. Fig5 is not an AND prerequisite for that claim.",
+  "fig5_extension": "If the functional/fitness chain succeeds, the claim extends from reconfigurable inheritance to reassembly compatible with coherent reproductive function. If it fails or is not yet executed, do not reinterpret the genomic result; simply keep the functional extension closed."
 }
