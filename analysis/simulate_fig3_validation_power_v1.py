@@ -4,14 +4,7 @@ import argparse, csv, json, math, random
 from pathlib import Path
 
 def sign_flip_p(ds, rng, sign_draws):
-    n=len(ds)
     obs=sum(ds)
-    if n<=20:
-        ge=0; total=1<<n
-        for mask in range(total):
-            s=sum(d if (mask>>i)&1 else -d for i,d in enumerate(ds))
-            if s>=obs-1e-15: ge+=1
-        return ge/total
     ge=1
     total=sign_draws+1
     for _ in range(sign_draws):
@@ -62,13 +55,13 @@ def main():
     out={
         "result_version":"aza3_fig3_estimand_level_power_v1",
         "simulation_reps":args.reps,
-        "seed":args.seed,\n        "sign_flip_draws_for_n_gt_20":args.sign_draws,
+        "seed":args.seed,\n        "monte_carlo_sign_flip_draws_per_power_replicate":args.sign_draws,
         "standardized_delta_grid":deltas,
         "validation_n_grid":ns,
         "primary_requirement":{"delta":0.40,"power_gte":0.80,"minimum_validation_usable_n":min_primary},
         "secondary_benchmark":{"delta":0.50,"power_gte":0.90,"minimum_validation_usable_n":min_secondary},
         "usable_fraction":args.usable_fraction,
-        "boundary":"Estimand-level validation-discrimination power only. TRAIN genomic-discovery adequacy must be assessed separately from genotype-only pilot quantities."
+        "boundary":"Estimand-level validation-discrimination power only. Power uses Monte Carlo random-sign nulls for computational feasibility; the final held-out scorer retains its frozen exact/Monte-Carlo rule. TRAIN genomic-discovery adequacy must be assessed separately from genotype-only pilot quantities."
     }
     args.output_json.parent.mkdir(parents=True,exist_ok=True)
     args.output_json.write_text(json.dumps(out,indent=2)+"\n",encoding="utf-8")
