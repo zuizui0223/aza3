@@ -62,7 +62,8 @@
     "species authority states cannot substitute for same-individual phenotype",
     "distant population balancing cannot be called segregation",
     "stickiness cannot rescue the gate post hoc",
-    "natural reassembly requires both directly observed combinations and genomic segregation"
+    "natural reassembly requires both directly observed combinations and genomic segregation",
+    "taxonomically unresolved individuals cannot fill primary combinatorial cells"
   ],
   "orientation_geometry": {
     "zero_deg": "vertically_upward",
@@ -104,5 +105,12 @@
     "authoritative_species": "August-October",
     "mikawa_field_account": "September-October",
     "operational_note": "Early October remains within the documented species/field flowering window, but current-site flowering must be verified before census."
+  },
+  "taxonomic_diagnostic": "docs/C_SIEBOLDII_CS0_TAXONOMIC_DIAGNOSTIC_V1.md",
+  "primary_taxonomic_rule": {
+    "required_confidence": "high",
+    "medium_role": "sensitivity_only",
+    "unresolved_role": "descriptive_only",
+    "occupancy_rule": "Only high-confidence focal C. sieboldii individuals can contribute to primary CS_GREEN or CS_GREEN_LOCAL_SET thresholds."
   }
 }
