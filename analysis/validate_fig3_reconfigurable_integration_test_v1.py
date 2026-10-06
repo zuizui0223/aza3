@@ -52,6 +52,9 @@ def main():
     assert c["baseline_estimand"]["id"]=="E1B_MODULE_VS_WHOLE_ORGAN"
     assert c["kill_shot_estimand"]["id"]=="E3_PROSPECTIVE_COLOUR_ORIENTATION_MOSAICS"
     assert c["kill_shot_estimand"]["correct_validation_mosaic_min"]==3
+    assert c["kill_shot_estimand"]["preregistration_provenance"]==[
+        "mosaic_registry_commit_sha","mosaic_registry_frozen_at_utc","mosaic_prediction_hash"
+    ]
     assert set(c["decisions"])=={
         "FIG3_R_STRONG","FIG3_R_PARTIAL","FIG3_MODULE_INHERITANCE_SUPPORTIVE",
         "FIG3_WHOLE_ORGAN_SUPPORTIVE","NOT_IDENTIFIABLE"
@@ -70,7 +73,8 @@ def main():
         "module_head_form_M_log_score","module_head_form_R_log_score",
         "module_involucre_M_log_score","module_involucre_R_log_score",
         "colour_genomic_state","orientation_genomic_state",
-        "prospective_mosaic_registered","colour_prediction_correct",
+        "prospective_mosaic_registered","mosaic_registry_commit_sha",
+        "mosaic_registry_frozen_at_utc","mosaic_prediction_hash","colour_prediction_correct",
         "orientation_prediction_correct","reference_stable",
         "taxonomic_confidence","technical_exclusion_reason"
     }
@@ -87,6 +91,9 @@ def main():
         "FIG3_MODULE_INHERITANCE_SUPPORTIVE",
         "FIG3_WHOLE_ORGAN_SUPPORTIVE",
         "Do not reinterpret NOT_IDENTIFIABLE as support for F or M.",
+        "same TRAIN-derived candidate genomic-block pool",
+        "same effective parameter/regularization budget",
+        "design floor, not a power-derived target",
     ):
         need(d,x)
 
