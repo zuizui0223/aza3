@@ -20,6 +20,18 @@ Never use upright or nodding orientation itself to decide that the plant is foca
 4. Define the census direction/route before choosing individuals.
 5. Do not start from conspicuous white or upright plants.
 
+## Image capture for future genomic testing
+
+Use `docs/C_SIEBOLDII_CS0_IMAGE_CAPTURE_V1.md`.
+
+After the unbiased census route is frozen, acquire the following on the **same scored individual/head** where visibility permits:
+
+1. whole-head natural side profile with gravity reference;
+2. usable-exposure corolla colour image, with colour reference where non-intrusively feasible;
+3. high-resolution side/oblique involucre contour.
+
+Gate CS remains colour × A1/A2 orientation. Missing image-derived constructs do not invalidate that primary gate, but they cannot be imputed later from another individual.
+
 ## Individual census
 
 Target **30 flowering individuals** if visible and distinguishable.
