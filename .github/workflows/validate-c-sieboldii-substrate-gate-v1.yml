@@ -11,6 +11,7 @@ on:
       - "data/templates/c_sieboldii_combinatorial_census_v1.csv"
       - "data/planning/c_sieboldii_cs0_locality_priority_v1.csv"
       - "docs/C_SIEBOLDII_CS0_FIELD_CARD_V1.md"
+      - "docs/C_SIEBOLDII_CS0_TAXONOMIC_DIAGNOSTIC_V1.md"
       - "analysis/classify_c_sieboldii_combinatorial_substrate_v1.py"
       - "analysis/validate_c_sieboldii_combinatorial_substrate_gate_v1.py"
       - ".github/workflows/validate-c-sieboldii-substrate-gate-v1.yml"
@@ -170,4 +171,58 @@ jobs:
           assert x["local_set_confounding_pass"] is False
           assert x["local_set_population_support"]["white_populations"]==1
           assert x["local_set_population_support"]["nonwhite_populations"]==1
+          PY
+
+      - name: Smoke-test unresolved taxa cannot manufacture substrate
+        run: |
+          python - <<'PY'
+          import csv
+          fields="observation_id,population_id,local_set_id,date,genet_or_individual_id,head_id,flower_stage,colour_L,colour_a,colour_b,colour_chroma,colour_white_descriptive,orientation_deg_gravity,phyllary_rows,outer_phyllary_angle_deg,involucre_diameter_mm,involucre_length_mm,stickiness_score,gland_exudate_status,voucher_or_image_id,habitat_microzone,taxonomic_confidence,repeat_head_followup_id,notes".split(",")
+          rows=[]; i=0
+
+          # Twelve confirmed focal plants: all non-white and nodding.
+          for a in (130,135,140,145,150,155,160,165,170,150,145,155):
+              i+=1
+              r={k:"" for k in fields}
+              r.update({
+                "observation_id":f"H{i:02d}","population_id":"POP_TAX","date":"2026-10-01",
+                "genet_or_individual_id":f"G{i:02d}","head_id":f"HH{i:02d}",
+                "flower_stage":"A2","colour_chroma":str(22+(i%3)),
+                "colour_white_descriptive":"false","orientation_deg_gravity":str(a),
+                "taxonomic_confidence":"high"
+              })
+              rows.append(r)
+
+          # Eighteen unresolved plants would manufacture all missing cells if admitted.
+          unresolved=[
+              (True,25),(True,35),(True,45),(True,50),(True,55),(True,40),
+              (True,130),(True,140),(True,150),(True,160),(True,170),(True,145),
+              (False,20),(False,30),(False,40),(False,45),(False,50),(False,55),
+          ]
+          for white,a in unresolved:
+              i+=1
+              r={k:"" for k in fields}
+              r.update({
+                "observation_id":f"U{i:02d}","population_id":"POP_TAX","date":"2026-10-01",
+                "genet_or_individual_id":f"G{i:02d}","head_id":f"HH{i:02d}",
+                "flower_stage":"A2","colour_chroma":"6" if white else "23",
+                "colour_white_descriptive":"true" if white else "false",
+                "orientation_deg_gravity":str(a),"taxonomic_confidence":"unresolved"
+              })
+              rows.append(r)
+
+          with open("taxonomic_confounded.csv","w",newline="") as fh:
+              w=csv.DictWriter(fh,fieldnames=fields); w.writeheader(); w.writerows(rows)
+          PY
+          python analysis/classify_c_sieboldii_combinatorial_substrate_v1.py --input taxonomic_confounded.csv --output taxonomic_confounded.json
+          python - <<'PY'
+          import json
+          d=json.load(open("taxonomic_confounded.json"))
+          assert d["decision"] not in {"CS_GREEN","CS_GREEN_LOCAL_SET"}, d
+          x=d["population_results"][0]
+          assert x["stage_eligible_A1_A2_n"]==30, x
+          assert x["excluded_taxonomic_confidence_n"]==18, x
+          assert x["n_complete_A1_A2"]==12, x
+          assert x["upright_extreme_n"]==0, x
+          assert x["primary_CO_pass"] is False, x
           PY
