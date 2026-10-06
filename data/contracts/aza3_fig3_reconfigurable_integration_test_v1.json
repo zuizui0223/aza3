@@ -96,7 +96,13 @@
     "id": "E3_PROSPECTIVE_COLOUR_ORIENTATION_MOSAICS",
     "correct_validation_mosaic_min": 3,
     "rule": "mosaic status registered before validation phenotype labels open; both primary component predictions correct; reference-stable; taxonomically high-confidence",
-    "analysis_scope": "E3 remains the preregistered colour x A1-A2 orientation natural-mosaic demonstration and is evaluated separately from the E1 multi-trait-module score."
+    "analysis_scope": "E3 remains the preregistered colour x A1-A2 orientation natural-mosaic demonstration and is evaluated separately from the E1 multi-trait-module score.",
+    "preregistration_provenance": [
+      "mosaic_registry_commit_sha",
+      "mosaic_registry_frozen_at_utc",
+      "mosaic_prediction_hash"
+    ],
+    "unblinding_rule": "The mosaic registry and prediction hash must be committed before validation phenotype labels are opened. Rows lacking immutable preregistration provenance cannot count toward the >=3 mosaic kill-shot threshold."
   },
   "decisions": {
     "FIG3_R_STRONG": "R beats M in untouched prediction; full construct/module admission passes; stable phenotype-predictive genomic separability; at least 3 correct prospective mosaics.",
