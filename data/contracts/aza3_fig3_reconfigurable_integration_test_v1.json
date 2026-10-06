@@ -161,5 +161,17 @@
       ]
     },
     "strong_R_rule": "FIG3_R_STRONG requires R to beat M_global under the primary E1 rule and to have non-negative held-out advantage over M_local; if M_local beats R materially, classify R_PARTIAL or NOT_IDENTIFIABLE rather than claiming module-boundary breakage."
+  },
+  "evolvability_bridge_estimand": {
+    "id": "E4_HELDOUT_COMBINATION_SPACE",
+    "status": "secondary_bridge_not_required_for_FIG3_R_STRONG",
+    "definition": "Using frozen TRAIN fits and the observed validation genotype distribution, compare the number/effective diversity of joint phenotype combinations assigned non-negligible predictive probability by R versus M_global and M_local.",
+    "required_controls": [
+      "same validation genotypes for every model",
+      "same admitted construct set",
+      "same phenotype discretization or continuous diversity functional frozen before validation outcomes",
+      "no use of observed validation phenotype frequencies to choose thresholds"
+    ],
+    "interpretation": "If R supports a larger held-out reachable phenotype-combination space than module-constrained baselines, this links inheritance reconfigurability to evolvability. It is supportive, not a substitute for E1 or E3."
   }
 }
