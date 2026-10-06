@@ -25,6 +25,14 @@ def main():
     assert c["status"]=="ACTIVE_CONCEPTUAL_TARGET__GENOMIC_ANSWER_PENDING"
     assert c["one_question"]=="Must an integrated complex organ evolve as an integrated unit?"
     assert c["working_label"]=="reconfigurable_integration"
+    assert set(c["competing_models"])=={
+        "whole_organ_fixed_integration",
+        "phenotypic_module_inheritance",
+        "reconfigurable_integration",
+    }
+    assert c["fig3_test_contract"]=="data/contracts/aza3_fig3_reconfigurable_integration_test_v1.json"
+    assert "R_must_outpredict_frozen_phenotypic_module_model_for_FIG3_R_STRONG" in c["claim_boundaries"]
+    assert "colour_orientation_separability_alone_is_not_reconfigurable_integration" in c["claim_boundaries"]
 
     assert f["decision"]=="FIXED_ECOLOGICAL_MODULE_ALIGNMENT_NOT_SUPPORTED"
     assert f["test"]["among_taxon"]["exact_one_sided_p"] > 0.05
@@ -44,6 +52,11 @@ def main():
         "do not search for another grouping that makes it significant",
         "cross-level mismatch itself is unprecedented",
         "C_SIEBOLDII_COMBINATORIAL_SUBSTRATE_GATE_V1.md",
+        "The Nature-scale comparison is **R versus M**, not merely R versus F.",
+        "at least five admitted constructs",
+        "at least 20 untouched validation individuals",
+        "Colour × anthesis orientation",
+        "cannot establish FIG3_R_STRONG",
     ):
         need(d,x)
 
@@ -59,7 +72,8 @@ def main():
         "fig1_ecological_module_alignment":"not_supported",
         "phenotypic_module_cohesion":"supported",
         "genomic_answer":"pending",
-        "next_gate":"Gate_CS_then_8_individual_own_WGS_transferability_pilot"
+        "next_gate":"Gate_CS_then_8_individual_own_WGS_transferability_pilot_then_F_M_R_prediction",
+        "fig3_primary_comparison":"R_vs_frozen_phenotypic_module_M"
     },indent=2))
 
 if __name__=="__main__":

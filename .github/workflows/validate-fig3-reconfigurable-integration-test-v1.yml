@@ -1,0 +1,169 @@
+name: Validate Fig3 reconfigurable-integration contract
+
+on:
+  pull_request:
+    paths:
+      - "docs/FIG3_RECONFIGURABLE_INTEGRATION_TEST_V1.md"
+      - "data/contracts/aza3_fig3_reconfigurable_integration_test_v1.json"
+      - "data/templates/fig3_heldout_prediction_registry_v1.csv"
+      - "analysis/score_fig3_heldout_prediction_v1.py"
+      - "analysis/validate_fig3_reconfigurable_integration_test_v1.py"
+      - "docs/FIG3_PROSPECTIVE_POWER_RULE_V1.md"
+      - "data/contracts/aza3_fig3_prospective_power_v1.json"
+      - "analysis/simulate_fig3_validation_power_v1.py"
+      - ".github/workflows/validate-fig3-reconfigurable-integration-test-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate frozen contract
+        run: |
+          python -m py_compile analysis/score_fig3_heldout_prediction_v1.py
+          python -m py_compile analysis/validate_fig3_reconfigurable_integration_test_v1.py
+          python -m py_compile analysis/simulate_fig3_validation_power_v1.py
+          python analysis/validate_fig3_reconfigurable_integration_test_v1.py
+          python analysis/simulate_fig3_validation_power_v1.py --reps 500 --sign-draws 499 --output-json power_smoke.json --output-csv power_smoke.csv
+          python - <<'PY'
+          import json
+          d=json.load(open("power_smoke.json"))
+          assert d["standardized_delta_grid"]==[0.2,0.3,0.4,0.5,0.7]
+          assert d["validation_n_grid"]==[20,24,30,36,40,50,60]
+          assert d["primary_requirement"]["delta"]==0.4
+          PY
+
+      - name: Build synthetic registries
+        run: |
+          python - <<'PY'
+          import csv
+
+          fields="individual_id,validation_unit,split,phenotype_labels_opened,construct_admission_frozen,admitted_construct_count,admitted_multi_trait_module_count,model_F_joint_log_score,model_M_joint_log_score,model_R_joint_log_score,d_MF,d_RM,module_colour_M_log_score,module_colour_R_log_score,module_head_form_M_log_score,module_head_form_R_log_score,module_involucre_M_log_score,module_involucre_R_log_score,colour_genomic_state,orientation_genomic_state,prospective_mosaic_registered,mosaic_registry_commit_sha,mosaic_registry_frozen_at_utc,mosaic_prediction_hash,colour_prediction_correct,orientation_prediction_correct,reference_stable,taxonomic_confidence,technical_exclusion_reason".split(",")
+
+          def write(name,n,F,M,R,constructs=5,modules=2,mosaics=0,module_mode="R"):
+              rows=[]
+              for i in range(n):
+                  if module_mode=="R":
+                      cM,cR,hM,hR="-1.2","-0.8","-1.3","-0.9"
+                  elif module_mode=="M":
+                      cM,cR,hM,hR="-0.8","-1.2","-0.9","-1.3"
+                  else:
+                      cM,cR,hM,hR="","","",""
+                  rows.append({
+                    "individual_id":f"V{i+1:02d}","validation_unit":"POP2","split":"VALIDATION",
+                    "phenotype_labels_opened":"true","construct_admission_frozen":"true",
+                    "admitted_construct_count":str(constructs),
+                    "admitted_multi_trait_module_count":str(modules),
+                    "model_F_joint_log_score":str(F),"model_M_joint_log_score":str(M),"model_R_joint_log_score":str(R),
+                    "d_MF":str(M-F),"d_RM":str(R-M),
+                    "module_colour_M_log_score":cM,"module_colour_R_log_score":cR,
+                    "module_head_form_M_log_score":hM,"module_head_form_R_log_score":hR,
+                    "module_involucre_M_log_score":"","module_involucre_R_log_score":"",
+                    "colour_genomic_state":"C1","orientation_genomic_state":"O2",
+                    "prospective_mosaic_registered":"true" if i<mosaics else "false",
+                    "mosaic_registry_commit_sha":"abc123frozen" if i<mosaics else "",
+                    "mosaic_registry_frozen_at_utc":"2026-10-06T00:00:00Z" if i<mosaics else "",
+                    "mosaic_prediction_hash":f"hash_{i}" if i<mosaics else "",
+                    "colour_prediction_correct":"true","orientation_prediction_correct":"true",
+                    "reference_stable":"true","taxonomic_confidence":"high",
+                    "technical_exclusion_reason":""
+                  })
+              with open(name,"w",newline="") as fh:
+                  w=csv.DictWriter(fh,fieldnames=fields); w.writeheader(); w.writerows(rows)
+
+          write("rstrong.csv",20,-4,-3,-2,constructs=5,modules=2,mosaics=3,module_mode="R")
+          write("module.csv",20,-4,-2,-3,constructs=5,modules=2,mosaics=0,module_mode="M")
+          write("whole.csv",20,-2,-3,-4,constructs=5,modules=2,mosaics=0,module_mode="M")
+          write("pair_only.csv",20,-4,-3,-2,constructs=2,modules=0,mosaics=3,module_mode="none")
+          write("small.csv",19,-4,-3,-2,constructs=5,modules=2,mosaics=3,module_mode="R")
+          PY
+
+      - name: Smoke-test R strong beats module baseline
+        run: |
+          python analysis/score_fig3_heldout_prediction_v1.py --input rstrong.csv --output rstrong.json
+          python - <<'PY'
+          import json
+          d=json.load(open("rstrong.json"))
+          assert d["eligible_validation_n"]==20
+          assert d["decision"]=="FIG3_R_STRONG", d
+          assert d["full_module_admission"] is True
+          assert d["nonnegative_complete_module_count"]>=2
+          assert d["prospective_mosaic_correct_both_n"]==3
+          assert d["p_R_over_M_one_sided"]<0.05
+          PY
+
+      - name: Smoke-test module inheritance
+        run: |
+          python analysis/score_fig3_heldout_prediction_v1.py --input module.csv --output module.json
+          python - <<'PY'
+          import json
+          d=json.load(open("module.json"))
+          assert d["decision"]=="FIG3_MODULE_INHERITANCE_SUPPORTIVE", d
+          assert d["delta_RM"]<0
+          assert d["delta_MF"]>0
+          assert d["p_M_over_R_one_sided"]<0.05
+          assert d["p_M_over_F_one_sided"]<0.05
+          PY
+
+      - name: Smoke-test whole-organ inheritance
+        run: |
+          python analysis/score_fig3_heldout_prediction_v1.py --input whole.csv --output whole.json
+          python - <<'PY'
+          import json
+          d=json.load(open("whole.json"))
+          assert d["decision"]=="FIG3_WHOLE_ORGAN_SUPPORTIVE", d
+          assert d["delta_MF"]<0
+          assert d["delta_RF"]<0
+          assert d["p_F_over_M_one_sided"]<0.05
+          assert d["p_F_over_R_one_sided"]<0.05
+          PY
+
+      - name: Smoke-test colour-orientation only cannot create R strong
+        run: |
+          python analysis/score_fig3_heldout_prediction_v1.py --input pair_only.csv --output pair_only.json
+          python - <<'PY'
+          import json
+          d=json.load(open("pair_only.json"))
+          assert d["decision"]=="FIG3_R_PARTIAL", d
+          assert d["full_module_admission"] is False
+          assert d["prospective_mosaic_correct_both_n"]==3
+          PY
+
+      - name: Smoke-test insufficient validation
+        run: |
+          python analysis/score_fig3_heldout_prediction_v1.py --input small.csv --output small.json
+          python - <<'PY'
+          import json
+          d=json.load(open("small.json"))
+          assert d["eligible_validation_n"]==19
+          assert d["decision"]=="NOT_IDENTIFIABLE", d
+          PY
+
+      - name: Smoke-test post-hoc mosaic labels cannot create R strong
+        run: |
+          python - <<'PY'
+          import csv
+          rows=list(csv.DictReader(open("rstrong.csv")))
+          for r in rows:
+              r["mosaic_registry_commit_sha"]=""
+              r["mosaic_registry_frozen_at_utc"]=""
+              r["mosaic_prediction_hash"]=""
+          with open("posthoc.csv","w",newline="") as fh:
+              w=csv.DictWriter(fh,fieldnames=rows[0].keys()); w.writeheader(); w.writerows(rows)
+          PY
+          python analysis/score_fig3_heldout_prediction_v1.py --input posthoc.csv --output posthoc.json
+          python - <<'PY'
+          import json
+          d=json.load(open("posthoc.json"))
+          assert d["decision"]=="FIG3_R_PARTIAL", d
+          assert d["prospective_mosaic_registered_n"]==0
+          assert d["prospective_mosaic_registered_missing_provenance_n"]==3
+          PY

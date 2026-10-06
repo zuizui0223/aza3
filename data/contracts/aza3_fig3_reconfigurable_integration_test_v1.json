@@ -1,0 +1,140 @@
+{
+  "contract_version": "aza3_fig3_reconfigurable_integration_test_v2",
+  "status_date": "2026-10-06",
+  "status": "PROSPECTIVE__LOCKED_BEFORE_FOCAL_GENOMIC_DISCOVERY",
+  "question": "Must an integrated complex organ evolve as an integrated unit?",
+  "frozen_phenotypic_modules": {
+    "presentation": [
+      "presentation_angle"
+    ],
+    "colour": [
+      "floral_lightness",
+      "floral_chroma",
+      "floral_hue"
+    ],
+    "head_form": [
+      "head_elongation",
+      "head_compactness"
+    ],
+    "involucre_armature": [
+      "involucre_form",
+      "projection_prominence",
+      "projection_pattern"
+    ]
+  },
+  "construct_admission": {
+    "strongest_route_multi_trait_modules_min": 2,
+    "constructs_per_admitted_multi_trait_module_min": 2,
+    "admitted_constructs_total_min": 5,
+    "freeze_before_genomic_discovery": true,
+    "failure_route": "pairwise analysis may proceed but FIG3_R_STRONG is closed"
+  },
+  "prerequisites": {
+    "gate_cs_allowed": [
+      "CS_GREEN",
+      "CS_GREEN_LOCAL_SET"
+    ],
+    "gate_cs_strong_route": "CS_GREEN",
+    "reference_gate": "OWN_WGS_GREEN",
+    "primary_taxonomic_confidence": "high",
+    "same_individual_image_and_phenotype_required": true
+  },
+  "natural_mosaic_pair": [
+    "floral_colour",
+    "A1_A2_anthesis_orientation"
+  ],
+  "natural_mosaic_pair_role": "Fig4 prospective mosaic demonstration; insufficient alone for FIG3_R_STRONG because colour and presentation are different frozen phenotypic modules",
+  "sample_design": {
+    "technical_pilot_n": 8,
+    "technical_pilot_role": "reference_transferability_only",
+    "training_target_min": 40,
+    "untouched_validation_min": 20,
+    "strongest_route_min_total_usable": 60,
+    "strongest_validation": "independent_segregating_population",
+    "fallback_validation": "prospectively_frozen_spatial_block_holdout",
+    "legacy_40_status": "DISCOVERY_ONLY_UNLESS_EXPANDED_FOR_UNTOUCHED_VALIDATION",
+    "min_total_role": "design_floor_for_40_train_plus_20_untouched_validation__NOT_a_power_derived_target",
+    "final_n_rule": "After OWN_WGS_GREEN, estimate final n prospectively using genotype-only pilot quantities (callability, MAF/heterozygosity, LD/effective block count, relatedness/population structure) plus a frozen grid of biologically meaningful effect sizes. Validation phenotypes and phenotype-linked genomic results cannot enter the power calculation.",
+    "power_decision": "If the feasible n cannot achieve the frozen power target for discriminating M from R under the simulation grid, the Nature predictive route is NOT_IDENTIFIABLE rather than underpowered positive fishing."
+  },
+  "models": {
+    "F": {
+      "label": "whole_organ_fixed_integration",
+      "constraint": "all admitted constructs pass through one shared genomic state or equivalent rank-1 whole-organ effect structure"
+    },
+    "M": {
+      "label": "frozen_phenotypic_module_inheritance",
+      "constraint": "one genomic state per predeclared Azami phenotypic module; constructs within a module share that module-level state; module membership frozen"
+    },
+    "R": {
+      "label": "reconfigurable_integration",
+      "constraint": "component-specific genomic states/effect directions may break the frozen phenotypic-module partition; residual phenotypic covariance allowed"
+    }
+  },
+  "primary_estimand": {
+    "id": "E1_R_VS_MODULE_HELDOUT_PREDICTION",
+    "individual_score": "d_RM_i = log p_R(y_i|genotype_i,frozen_train_fit) - log p_M(y_i|genotype_i,frozen_train_fit)",
+    "summary": "Delta_RM = sum_i d_RM_i",
+    "test": "paired one-sided sign-flip test over untouched validation individuals",
+    "support": [
+      "Delta_RM > 0",
+      "one_sided_p_RM < 0.05",
+      "joint advantage not driven entirely by one admitted module"
+    ],
+    "analysis_scope": "E1 core joint score uses only constructs belonging to prospectively admitted multi-trait modules. Single-trait presentation is excluded from the R-vs-M core score because M and R are structurally identical for a one-trait module."
+  },
+  "baseline_estimand": {
+    "id": "E1B_MODULE_VS_WHOLE_ORGAN",
+    "individual_score": "d_MF_i = log p_M(y_i|genotype_i,frozen_train_fit) - log p_F(y_i|genotype_i,frozen_train_fit)",
+    "role": "distinguish conventional module inheritance from whole-organ inheritance"
+  },
+  "secondary_estimand": {
+    "id": "E2_PHENOTYPE_PREDICTIVE_GENOMIC_STATE_SEPARABILITY",
+    "rule": "genomic-state discordance is mechanistic only when it predicts admitted constructs and exceeds matched-window controls"
+  },
+  "kill_shot_estimand": {
+    "id": "E3_PROSPECTIVE_COLOUR_ORIENTATION_MOSAICS",
+    "correct_validation_mosaic_min": 3,
+    "rule": "mosaic status registered before validation phenotype labels open; both primary component predictions correct; reference-stable; taxonomically high-confidence",
+    "analysis_scope": "E3 remains the preregistered colour x A1-A2 orientation natural-mosaic demonstration and is evaluated separately from the E1 multi-trait-module score.",
+    "preregistration_provenance": [
+      "mosaic_registry_commit_sha",
+      "mosaic_registry_frozen_at_utc",
+      "mosaic_prediction_hash"
+    ],
+    "unblinding_rule": "The mosaic registry and prediction hash must be committed before validation phenotype labels are opened. Rows lacking immutable preregistration provenance cannot count toward the >=3 mosaic kill-shot threshold."
+  },
+  "decisions": {
+    "FIG3_R_STRONG": "R beats M in untouched prediction; full construct/module admission passes; stable phenotype-predictive genomic separability; at least 3 correct prospective mosaics.",
+    "FIG3_R_PARTIAL": "R beats M but module coverage, validation route or mosaic count is insufficient.",
+    "FIG3_MODULE_INHERITANCE_SUPPORTIVE": "M is at least as predictive as R and more predictive than F.",
+    "FIG3_WHOLE_ORGAN_SUPPORTIVE": "F is at least as predictive as M and R.",
+    "NOT_IDENTIFIABLE": "signal, reference stability, module coverage, validation n or confounding prevents discrimination."
+  },
+  "claim_boundaries": [
+    "colour_orientation_independence_alone_cannot_establish_R_STRONG",
+    "nonoverlapping_GWAS_peaks_alone_are_not_reconfigurable_integration",
+    "arbitrary_local_genealogy_discordance_alone_is_not_reconfigurable_integration",
+    "validation_n_below_20_closes_prospective_Fig4_claim",
+    "CS_GREEN_LOCAL_SET_does_not_authorize_within_population_reassembly_wording",
+    "FIG3_R_STRONG_does_not_establish_adaptation",
+    "single_trait_presentation_cannot_contribute_to_R_vs_M_core_model_advantage"
+  ],
+  "model_fairness": {
+    "candidate_block_pool": "identical TRAIN-derived block pool for F, M and R",
+    "preprocessing": "identical genotype representation, scaling, ancestry/callability covariates and missing-data policy",
+    "tuning": "identical nested TRAIN-only tuning procedure; VALIDATION cannot choose hyperparameters",
+    "complexity_budget": "M and R must be matched by effective parameter budget / regularization degrees of freedom; R cannot win by receiving more unconstrained parameters",
+    "distinction_only": "the intended difference is the structure of the block-by-construct effect matrix",
+    "F_effect_structure": "rank-1 whole-organ effect structure",
+    "M_effect_structure": "effects constrained to the frozen phenotypic-module partition",
+    "R_effect_structure": "effects may cross/break frozen module boundaries under the same complexity budget",
+    "sensitivity": "report a complexity-matched null in which module labels are permuted while preserving module sizes"
+  },
+  "negative_controls": [
+    "matched_genomic_windows_for_callability_MAF_LD",
+    "within_population_phenotype_label_permutations",
+    "reference_substitution_sensitivity",
+    "module_label_permutation_preserving_module_sizes"
+  ]
+}
