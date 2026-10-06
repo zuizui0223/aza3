@@ -201,6 +201,20 @@ Strong natural-reassembly support requires at least 3 high-confidence prospectiv
 
 A single striking recombinant is illustrative, not decisive.
 
+## E4 — bridge to evolvability
+
+E1 establishes whether inheritance can break the phenotypic-module partition. E3 shows prospective natural mosaics.
+
+A secondary bridge asks whether that reconfigurability actually expands the phenotype combinations reachable from the observed validation genotype distribution.
+
+Using frozen TRAIN fits and the same validation genotypes for every model, compare the effective diversity of joint phenotype combinations assigned non-negligible predictive probability by R, M_global and M_local.
+
+The phenotype-space functional or discretization is frozen before validation outcomes are opened.
+
+If R predicts a larger reachable joint phenotype space, this supports the proposed connection between reconfigurable inheritance and combinatorial evolvability.
+
+E4 is supportive only. It cannot substitute for E1 or E3 and is not itself a rate-of-evolution test.
+
 ## Decision classes
 
 ### FIG3_R_STRONG
