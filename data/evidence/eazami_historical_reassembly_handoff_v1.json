@@ -1,0 +1,52 @@
+{
+  "evidence_version": "aza3_eazami_historical_reassembly_handoff_v1",
+  "status_date": "2026-10-07",
+  "role": "independent_historical_evidence_for_Fig2_before_genomics",
+  "radiation": {
+    "japan_concepts": 38,
+    "concepts_in_dominant_young_radiation": 36
+  },
+  "discrete_minimum_transitions": {
+    "orientation": "4-6",
+    "phyllary_posture": 3,
+    "stickiness": 5,
+    "interpretation": "topology-conditioned minimum state-change lower bounds, not counts of independent adaptive origins"
+  },
+  "transition_depth_ordering": {
+    "topology_ensemble_n": 1000,
+    "phyllary_deeper_than_stickiness": "1000/1000",
+    "phyllary_deeper_than_orientation": "993/1000",
+    "orientation_deeper_than_stickiness": "905/1000",
+    "full_ordering": "898/1000",
+    "coverage_matched_support": [
+      "195/200",
+      "193/200"
+    ]
+  },
+  "shared_transition_localization": {
+    "robust_pairs_passing": 0,
+    "trait_pairs_tested": 3,
+    "interpretation": "no tested pair supports robust shared localization of transitions under the frozen criterion"
+  },
+  "continuous_coordinated_remodelling_negative_control": {
+    "traits": 8,
+    "observed_shared_branch_change_rho": 0.408,
+    "null_median_rho": 0.3802,
+    "p": 0.3504,
+    "interpretation": "no support for a universal coordinated branch-change axis across the continuous traits"
+  },
+  "synthesis": "Phenotypic components repeatedly changed within the young Japanese radiation, with different transition depths and no robust shared-transition localization; the historical record is more consistent with stratified/reassembled component histories than one synchronized capitulum transformation.",
+  "fig3_use": {
+    "F": "A single persistent whole-organ evolutionary history is not the only historical pattern compatible with EAzami.",
+    "M": "Historically distinct trait depths motivate testing whether conventional phenotypic modules are inherited as stable units.",
+    "R": "EAzami does not prove genomic reconfigurability; it supplies an independent historical prediction that Fig3 must test prospectively."
+  },
+  "claim_boundaries": [
+    "transition_counts_are_minimum_state_change_lower_bounds",
+    "not_counts_of_independent_origins",
+    "does_not_establish_adaptation",
+    "does_not_establish_genomic_reuse",
+    "does_not_establish_introgression",
+    "does_not_establish_reconfigurable_inheritance"
+  ]
+}
