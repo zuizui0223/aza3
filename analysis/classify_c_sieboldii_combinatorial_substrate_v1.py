@@ -57,8 +57,14 @@ def spearman(x,y):
 
 def classify_group(rows, group_id, group_type):
     complete=[]
+    stage_eligible_n=0
+    excluded_taxonomic_confidence_n=0
     for r in rows:
         if r.get("flower_stage","").strip() not in VALID_STAGES:
+            continue
+        stage_eligible_n += 1
+        if (r.get("taxonomic_confidence") or "").strip().casefold() != "high":
+            excluded_taxonomic_confidence_n += 1
             continue
         o=fnum(r.get("orientation_deg_gravity"))
         ch=fnum(r.get("colour_chroma"))
@@ -98,6 +104,8 @@ def classify_group(rows, group_id, group_type):
     return {
         "group_id":group_id,
         "group_type":group_type,
+        "stage_eligible_A1_A2_n":stage_eligible_n,
+        "excluded_taxonomic_confidence_n":excluded_taxonomic_confidence_n,
         "n_complete_A1_A2":n,
         "orientation_range_deg":orng,
         "white_n":nwhite,
@@ -138,7 +146,12 @@ def main():
     local_green=[]
     for result in setres:
         if not result["primary_CO_pass"]: continue
-        group=[r for r in rows if (r.get("local_set_id") or "").strip()==result["group_id"] and r.get("flower_stage","").strip() in VALID_STAGES]
+        group=[
+            r for r in rows
+            if (r.get("local_set_id") or "").strip()==result["group_id"]
+            and r.get("flower_stage","").strip() in VALID_STAGES
+            and (r.get("taxonomic_confidence") or "").strip().casefold()=="high"
+        ]
         pop_white=defaultdict(set); pop_orient=defaultdict(set)
         for r in group:
             p=(r.get("population_id") or "").strip()
@@ -173,6 +186,7 @@ def main():
         "population_results":popres,
         "local_set_results":setres,
         "decision":decision,
+        "taxonomic_gate":"Primary classification uses taxonomic_confidence=high focal individuals only.",
         "decision_boundary":"Automated classifier can positively authorize only CS_GREEN or CS_GREEN_LOCAL_SET for the primary C×O pair. AMBER/RED/secondary-pair decisions require the complete field-disposition audit and cannot be inferred from missing data.",
     }
     args.output.parent.mkdir(parents=True,exist_ok=True)
