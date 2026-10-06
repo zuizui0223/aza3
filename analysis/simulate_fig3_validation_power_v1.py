@@ -3,7 +3,7 @@ from __future__ import annotations
 import argparse, csv, json, math, random
 from pathlib import Path
 
-def sign_flip_p(ds):
+def sign_flip_p(ds, rng, sign_draws):
     n=len(ds)
     obs=sum(ds)
     if n<=20:
@@ -12,19 +12,19 @@ def sign_flip_p(ds):
             s=sum(d if (mask>>i)&1 else -d for i,d in enumerate(ds))
             if s>=obs-1e-15: ge+=1
         return ge/total
-    # For power simulation n>20, use normal approximation to the random-sign null.
-    # Conditional on |d_i|, random-sign sum has mean 0 and variance sum(d_i^2).
-    var=sum(d*d for d in ds)
-    if var<=0: return 1.0
-    z=obs/math.sqrt(var)
-    return 0.5*math.erfc(z/math.sqrt(2.0))
+    ge=1
+    total=sign_draws+1
+    for _ in range(sign_draws):
+        s=sum(d if rng.random()<0.5 else -d for d in ds)
+        if s>=obs: ge+=1
+    return ge/total
 
-def power(delta,n,reps,seed):
+def power(delta,n,reps,seed,sign_draws):
     rng=random.Random(seed + int(delta*10000) + n*100000)
     hit=0
     for _ in range(reps):
         ds=[rng.gauss(delta,1.0) for _ in range(n)]
-        if sum(ds)>0 and sign_flip_p(ds)<0.05:
+        if sum(ds)>0 and sign_flip_p(ds,rng,sign_draws)<0.05:
             hit+=1
     return hit/reps
 
@@ -32,7 +32,7 @@ def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--reps",type=int,default=10000)
     ap.add_argument("--seed",type=int,default=20261006)
-    ap.add_argument("--usable-fraction",type=float,default=None)
+    ap.add_argument("--usable-fraction",type=float,default=None)\n    ap.add_argument("--sign-draws",type=int,default=1999)
     ap.add_argument("--output-json",required=True,type=Path)
     ap.add_argument("--output-csv",required=True,type=Path)
     args=ap.parse_args()
@@ -42,7 +42,7 @@ def main():
     rows=[]
     for d in deltas:
         for n in ns:
-            p=power(d,n,args.reps,args.seed)
+            p=power(d,n,args.reps,args.seed,args.sign_draws)
             collected=None
             if args.usable_fraction is not None:
                 if not (0 < args.usable_fraction <= 1):
@@ -62,7 +62,7 @@ def main():
     out={
         "result_version":"aza3_fig3_estimand_level_power_v1",
         "simulation_reps":args.reps,
-        "seed":args.seed,
+        "seed":args.seed,\n        "sign_flip_draws_for_n_gt_20":args.sign_draws,
         "standardized_delta_grid":deltas,
         "validation_n_grid":ns,
         "primary_requirement":{"delta":0.40,"power_gte":0.80,"minimum_validation_usable_n":min_primary},
