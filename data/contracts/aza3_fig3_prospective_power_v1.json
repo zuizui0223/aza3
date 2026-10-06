@@ -1,0 +1,69 @@
+{
+  "contract_version": "aza3_fig3_prospective_power_v1",
+  "status_date": "2026-10-06",
+  "status": "FROZEN_BEFORE_PHENOTYPE_LINKED_GENOMIC_DISCOVERY",
+  "powered_estimand": "E1_R_VS_MODULE_HELDOUT_PREDICTION",
+  "individual_difference": "d_RM_i = log p_R(y_i|genotype_i,frozen_train_fit) - log p_M(y_i|genotype_i,frozen_train_fit)",
+  "pilot_allowed_inputs": [
+    "callable_fraction",
+    "heterozygosity_and_MAF_spectrum",
+    "LD_decay_and_effective_block_count",
+    "genomewide_relatedness",
+    "population_structure",
+    "expected_post_QC_retention_fraction",
+    "phenotype_blind_reference_missingness"
+  ],
+  "pilot_forbidden_inputs": [
+    "trait_association_effects",
+    "phenotype_linked_candidate_blocks",
+    "validation_phenotypes",
+    "observed_R_minus_M_validation_scores"
+  ],
+  "standardized_delta_grid": [
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.7
+  ],
+  "validation_n_grid": [
+    20,
+    24,
+    30,
+    36,
+    40,
+    50,
+    60
+  ],
+  "primary_power_requirement": {
+    "standardized_delta": 0.4,
+    "power_gte": 0.8,
+    "alpha_one_sided": 0.05,
+    "test": "paired_sign_flip"
+  },
+  "secondary_benchmark": {
+    "standardized_delta": 0.5,
+    "power_target": 0.9
+  },
+  "training": {
+    "usable_min": 40,
+    "final_rule": "May increase after OWN_WGS_GREEN using genotype-only effective genomic dimension / LD / callability and frozen model-complexity budget only."
+  },
+  "validation": {
+    "usable_min": 20,
+    "replacement_after_label_opening": false
+  },
+  "simulation": {
+    "estimand_level_model": "d_i ~ Normal(delta, 1)",
+    "decision_rule": "same one-sided sign-flip rule as frozen Fig3 scorer",
+    "end_to_end_simulation_after_pilot": "allowed only with genotype-only pilot quantities and frozen F/M/R pipeline"
+  },
+  "qc_inflation": "collected_n = ceil(usable_n / expected_usable_fraction)",
+  "decisions": {
+    "POWER_READY": "Primary validation power requirement and TRAIN adequacy are feasible after QC inflation.",
+    "POWER_LIMITED": "Feasible design adequately powers only larger predictive separation than the primary delta=0.40 target.",
+    "POWER_NOT_IDENTIFIABLE": "Genotype-only pilot quantities needed for design are unavailable.",
+    "POWER_INFEASIBLE": "Primary frozen power requirement cannot be met within feasible sampling ceiling."
+  },
+  "claim_boundary": "Power class is a design property and is not evidence for F, M or R."
+}
