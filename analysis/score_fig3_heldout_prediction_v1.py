@@ -79,28 +79,28 @@ def main():
         if (r.get("taxonomic_confidence") or "").strip().casefold()!="high": reason.append("taxonomic_confidence_not_high")
         if bval(r.get("reference_stable")) is not True: reason.append("reference_not_stable")
         if (r.get("technical_exclusion_reason") or "").strip(): reason.append("technical_exclusion")
-        nums=[fnum(r.get(k)) for k in ("model_F_joint_log_score","model_M_joint_log_score","model_R_joint_log_score")]
+        nums=[fnum(r.get(k)) for k in ("model_F_joint_log_score","model_M_joint_log_score","model_Mlocal_joint_log_score","model_R_joint_log_score")]
         if any(v is None for v in nums): reason.append("missing_joint_log_score")
         if reason:
             excluded.append({"individual_id":iid,"reason":";".join(reason)}); continue
         ac=intval(p.get("admitted_construct_count")); am=intval(p.get("admitted_multi_trait_module_count"))
         if ac is None or am is None:
             excluded.append({"individual_id":iid,"reason":"missing_preunblinding_construct_admission_count"}); continue
-        f_joint,m_joint,r_joint=nums
+        f_joint,m_joint,mlocal_joint,r_joint=nums
         module_deltas={}
         for module in ("colour","head_form","involucre"):
             mv=fnum(r.get(f"module_{module}_M_log_score")); rv=fnum(r.get(f"module_{module}_R_log_score"))
             if mv is not None and rv is not None: module_deltas[module]=rv-mv
         eligible.append({
-            "individual_id":iid,"d_RM":r_joint-m_joint,"d_MF":m_joint-f_joint,"d_RF":r_joint-f_joint,
+            "individual_id":iid,"d_RM":r_joint-m_joint,"d_RMlocal":r_joint-mlocal_joint,"d_MF":m_joint-f_joint,"d_RF":r_joint-f_joint,
             "module_deltas":module_deltas,"admitted_construct_count":ac,"admitted_multi_trait_module_count":am,
             "mosaic_registered":bval(p.get("prospective_mosaic_registered")) is True,
             "colour_correct":bval(r.get("colour_prediction_correct")) is True,
             "orientation_correct":bval(r.get("orientation_prediction_correct")) is True
         })
 
-    n=len(eligible); d_rm=[x["d_RM"] for x in eligible]; d_mf=[x["d_MF"] for x in eligible]; d_rf=[x["d_RF"] for x in eligible]
-    delta_rm=sum(d_rm); delta_mf=sum(d_mf); delta_rf=sum(d_rf)
+    n=len(eligible); d_rm=[x["d_RM"] for x in eligible]; d_rmlocal=[x["d_RMlocal"] for x in eligible]; d_mf=[x["d_MF"] for x in eligible]; d_rf=[x["d_RF"] for x in eligible]
+    delta_rm=sum(d_rm); delta_rmlocal=sum(d_rmlocal); delta_mf=sum(d_mf); delta_rf=sum(d_rf)
     p_rm,m_rm=sign_flip_p(d_rm); p_mr,m_mr=sign_flip_p([-x for x in d_rm])
     p_mf,m_mf=sign_flip_p(d_mf); p_fm,m_fm=sign_flip_p([-x for x in d_mf]); p_fr,m_fr=sign_flip_p([-x for x in d_rf])
     cc={x["admitted_construct_count"] for x in eligible}; mm={x["admitted_multi_trait_module_count"] for x in eligible}
@@ -123,10 +123,10 @@ def main():
         f_over_m=delta_mf<0 and p_fm is not None and p_fm<0.05
         f_over_r=delta_rf<0 and p_fr is not None and p_fr<0.05
         if r_over_m:
-            if full_module_admission and stable_nonnegative_modules>=2 and len(correct)>=3:
+            if full_module_admission and stable_nonnegative_modules>=2 and len(correct)>=3 and delta_rmlocal>=0:
                 decision="FIG3_R_STRONG"; reason="R_beats_M_with_multi_module_support_and_prospective_mosaics"
             else:
-                decision="FIG3_R_PARTIAL"; reason="R_beats_M_but_full_module_or_mosaic_requirement_not_met"
+                decision="FIG3_R_PARTIAL"; reason="R_beats_M_global_but_full_module_mosaic_or_Mlocal_sensitivity_requirement_not_met"
         elif m_over_r and m_over_f:
             decision="FIG3_MODULE_INHERITANCE_SUPPORTIVE"; reason="M_beats_R_and_F"
         elif f_over_m and f_over_r:
@@ -139,7 +139,7 @@ def main():
       "prediction_registry_sha256":pred_hash,"prediction_registry_frozen_at":frozen_at,"validation_phenotypes_opened_at":opened_at,
       "eligible_validation_n":n,"excluded_n":len(excluded),"admitted_construct_count":construct_count,
       "admitted_multi_trait_module_count":multi_module_count,"full_module_admission":full_module_admission,
-      "delta_RM":delta_rm,"delta_MF":delta_mf,"delta_RF":delta_rf,"mean_d_RM":delta_rm/n if n else None,"median_d_RM":med(d_rm),
+      "delta_RM":delta_rm,"delta_RMlocal":delta_rmlocal,"delta_MF":delta_mf,"delta_RF":delta_rf,"mean_d_RM":delta_rm/n if n else None,"median_d_RM":med(d_rm),
       "p_R_over_M_one_sided":p_rm,"p_M_over_R_one_sided":p_mr,"p_M_over_F_one_sided":p_mf,
       "p_F_over_M_one_sided":p_fm,"p_F_over_R_one_sided":p_fr,
       "sign_flip_methods":{"R_over_M":m_rm,"M_over_R":m_mr,"M_over_F":m_mf,"F_over_M":m_fm,"F_over_R":m_fr},
