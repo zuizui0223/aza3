@@ -193,65 +193,74 @@ Fig.3–4 do **not** claim that those alternative combinations are equally fit o
 
 ## Five-figure paper contract
 
-### Fig. 1 — Integration without one ecological partition
+The paper must not read as five parallel results. Fig.1–2 are the setup; Fig.3–4 answer the one question; Fig.5 establishes biological consequence.
 
-Show:
-- present phenotypic module cohesion;
-- exact null result for module-aligned environmental fingerprints;
-- two robust component-specific ecological anchors.
+### Fig. 1 — The organ is genuinely integrated
 
-Claim:
-**the capitulum is integrated, but its ecological association structure is not the same fixed partition.**
-
-### Fig. 2 — Integration without synchronized history
-
-Show:
-- recurrence;
-- unequal depth;
-- 0/3 robust shared transition localization.
+Show the strongest present-day phenotypic integration result using the frozen Azami module partition.
 
 Claim:
-**present integration does not imply shared macroevolutionary history.**
+**there is a real integrated phenotype whose evolutionary unit can be tested.**
 
-### Fig. 3 — Does integration imply genomic co-inheritance?
+Do not overload Fig.1 with all ecological associations.
 
-Primary new aza3 result.
+### Fig. 2 — Present integration does not imply one persistent cross-level partition
 
-Show same-individual:
-- direct component phenotypes;
-- genome-wide ancestry;
-- component-associated genomic regions;
-- local ancestry/local genealogy;
-- cytotype/genome-size controls.
+Compress the two pre-genomic warnings into one figure:
 
-Whole-organ prediction:
-one shared genomic state.
+- ecological fingerprints do not reproduce the frozen phenotypic-module partition under the exact null;
+- historical component changes are unequal-depth and nonsynchronized;
+- retain the two robust component-specific ecological anchors as examples, not as a new ecological-module theory.
 
-Phenotypic-module prediction:
-one genomic state per frozen Azami phenotypic module.
+Claim:
+**the observed phenotype is integrated, but existing ecology/history already make a persistent inherited partition nontrivial rather than assumed.**
 
-Reconfigurable-integration prediction:
-the frozen phenotypic-module partition is insufficient; a component-level model predicts untouched phenotypes better.
+Fig.2 motivates the genomic model comparison; it does not itself prove reconfigurability.
 
-### Fig. 4 — Natural reassembly
+### Fig. 3 — What is the inherited unit?
+
+This is the primary new aza3 result.
+
+On untouched validation individuals compare:
+
+- F: one whole-organ genomic state;
+- M: one genomic state per frozen Azami phenotypic module;
+- R: a complexity-matched genomic architecture allowed to break the frozen module boundaries.
+
+Primary claim opens only if R predicts untouched multi-construct phenotypes better than M under the frozen E1 contract.
+
+This is the conceptual center of the paper.
+
+### Fig. 4 — Prospective natural reassembly
+
+Before validation phenotypes are opened, register genomic mosaics predicted from the TRAIN-fitted component states.
 
 Show:
-- segregating/recombinant individuals;
-- ancestry mosaics;
-- component-state combinations;
-- out-of-sample prediction of component combinations if feasible.
 
-This is the causal/mechanistic centerpiece.
+- the predicted component genomic states;
+- the natural individuals carrying those mosaics;
+- observed colour and A1–A2 orientation after unblinding;
+- reference/taxonomic QC.
 
-### Fig. 5 — Function remains coherent after reassembly
+Strong route requires at least three correctly predicted prospective mosaics.
 
-Use one preregistered component route, probably orientation:
+Claim:
+**the genomic architecture predicts natural component combinations that were not used to define the model.**
 
-`orientation -> wetting/presentation -> reproductive process -> viable achenes`
+This converts reconfigurability from a retrospective description into a falsifiable prediction.
 
-The point is not to prove every component adaptive.
+### Fig. 5 — Reassembly still yields a coherent reproductive phenotype
 
-The point is to show that evolutionary reassembly can still produce a biologically coherent reproductive organ.
+Use one preregistered functional route, probably orientation:
+
+orientation -> wetting/presentation mediator -> reproductive process -> viable achenes
+
+Fig.5 is the first point at which functional or fitness coherence is claimed.
+
+It does not need to prove every component adaptive.
+
+Claim:
+**breaking the inherited module partition need not destroy organ-level reproductive function.**
 
 ## What is genuinely new and what is not
 
