@@ -137,32 +137,51 @@ A `CS_GREEN` result preserves the strongest within-population natural-reassembly
 
 ## The decisive aza3 test
 
-The genomic result must distinguish two biological models.
+The genomic result must distinguish **three**, not two, biological models.
 
-### Model F — fixed evolutionary integration
+A simple whole-organ-versus-independent-traits comparison is insufficient because Azami already supports a phenotypic module partition. If colour and presentation map to different genomic regions, that alone could simply recover ordinary modular inheritance.
 
-If the currently integrated organ is inherited/evolves as a persistent integrated unit:
+### Model F — whole-organ fixed integration
 
-- traits that form present phenotypic modules should repeatedly share genomic regions or local ancestry;
-- local genealogies for component traits should be concordant;
-- recombinant ancestry should not independently predict component states;
-- head configurations should largely follow a small number of linked whole-organ genomic backgrounds.
+All admitted focal constructs inherit through one shared genomic state or equivalent whole-organ genetic axis.
+
+### Model M — inherited phenotypic modules
+
+The frozen Azami phenotypic modules are themselves the units of genomic inheritance:
+
+- presentation;
+- colour;
+- head form;
+- involucre armature.
+
+Different modules may have different genomic histories, but constructs inside each predeclared module must share the same module-level genomic state.
+
+This is the strongest conventional modularity baseline.
 
 ### Model R — reconfigurable integration
 
-If integration is repeatedly reconstructed:
+Present phenotypic modules do not impose the genomic partition.
 
-- different component states are predicted by separable genomic regions/local histories;
-- the partitions need not reproduce present phenotypic covariance modules;
-- component-associated ancestry can assort or recombine independently within the same species/populations;
-- individuals with new genomic mosaics can carry viable new combinations of component states;
-- present organ-level integration can therefore coexist with historical and genomic decoupling.
+- construct-specific genomic states may cut across the frozen module boundaries;
+- component-associated genomic states can assort or recombine independently;
+- residual phenotypic covariance and present-day module cohesion can remain strong;
+- new genomic mosaics can therefore reconstruct familiar or novel integrated head configurations.
+
+The Nature-scale comparison is **R versus M**, not merely R versus F.
+
+The preregistered test is in:
+
+docs/FIG3_RECONFIGURABLE_INTEGRATION_TEST_V1.md
+
+The strongest route requires at least two admitted multi-trait phenotypic modules, at least five admitted constructs, a training set of at least 40 usable focal individuals, and at least 20 untouched validation individuals. The legacy 40-individual C. sieboldii allocation is therefore discovery-only unless expanded after Gate CS and the phenotype-blind WGS pilot.
+
+Colour × anthesis orientation remains the natural-mosaic demonstration, but because they belong to different frozen phenotypic modules, that pair alone cannot establish FIG3_R_STRONG.
 
 ## The Nature kill shot
 
 The strongest single result would be:
 
-> **two plants can occupy the same integrated capitulum phenotype region, or equally functional configurations, while reaching it through different combinations of component-specific local genomic histories — and those histories recombine independently in segregating natural populations.**
+> **the frozen phenotypic-module partition fails to describe genomic inheritance, and prospectively identified natural genomic mosaics predict new component combinations in untouched individuals.**
 
 Even stronger:
 
@@ -170,64 +189,82 @@ Even stronger:
 
 That turns the paper from retrospective history into a prediction about what combinations evolution can generate.
 
+Fig.3–4 do **not** claim that those alternative combinations are equally fit or equally functional. Functional coherence after reassembly is tested only in Fig.5.
+
 ## Five-figure paper contract
 
-### Fig. 1 — Integration without one ecological partition
+The paper must not read as five parallel results. Fig.1–2 are the setup; Fig.3–4 answer the one question; Fig.5 establishes biological consequence.
 
-Show:
-- present phenotypic module cohesion;
-- exact null result for module-aligned environmental fingerprints;
-- two robust component-specific ecological anchors.
+### Fig. 1 — The organ is genuinely integrated
 
-Claim:
-**the capitulum is integrated, but its ecological association structure is not the same fixed partition.**
-
-### Fig. 2 — Integration without synchronized history
-
-Show:
-- recurrence;
-- unequal depth;
-- 0/3 robust shared transition localization.
+Show the strongest present-day phenotypic integration result using the frozen Azami module partition.
 
 Claim:
-**present integration does not imply shared macroevolutionary history.**
+**there is a real integrated phenotype whose evolutionary unit can be tested.**
 
-### Fig. 3 — Does integration imply genomic co-inheritance?
+Do not overload Fig.1 with all ecological associations.
 
-Primary new aza3 result.
+### Fig. 2 — Present integration does not imply one persistent cross-level partition
 
-Show same-individual:
-- direct component phenotypes;
-- genome-wide ancestry;
-- component-associated genomic regions;
-- local ancestry/local genealogy;
-- cytotype/genome-size controls.
+Compress the two pre-genomic warnings into one figure:
 
-Fixed-module prediction:
-shared local genomic history.
+- ecological fingerprints do not reproduce the frozen phenotypic-module partition under the exact null;
+- historical component changes are unequal-depth and nonsynchronized;
+- retain the two robust component-specific ecological anchors as examples, not as a new ecological-module theory.
 
-Reconfigurable-integration prediction:
-separable local histories.
+Claim:
+**the observed phenotype is integrated, but existing ecology/history already make a persistent inherited partition nontrivial rather than assumed.**
 
-### Fig. 4 — Natural reassembly
+Fig.2 motivates the genomic model comparison; it does not itself prove reconfigurability.
+
+### Fig. 3 — What is the inherited unit?
+
+This is the primary new aza3 result.
+
+On untouched validation individuals compare:
+
+- F: one whole-organ genomic state;
+- M: one genomic state per frozen Azami phenotypic module;
+- R: a complexity-matched genomic architecture allowed to break the frozen module boundaries.
+
+Primary claim opens only if R predicts untouched multi-construct phenotypes better than M under the frozen E1 contract.
+
+This is the conceptual center of the paper.
+
+### Fig. 4 — Prospective natural reassembly
+
+Before validation phenotypes are opened, register genomic mosaics predicted from the TRAIN-fitted component states.
 
 Show:
-- segregating/recombinant individuals;
-- ancestry mosaics;
-- component-state combinations;
-- out-of-sample prediction of component combinations if feasible.
 
-This is the causal/mechanistic centerpiece.
+- the predicted component genomic states;
+- the natural individuals carrying those mosaics;
+- observed colour and A1–A2 orientation after unblinding;
+- reference/taxonomic QC.
 
-### Fig. 5 — Function remains coherent after reassembly
+Strong route requires at least three correctly predicted prospective mosaics.
 
-Use one preregistered component route, probably orientation:
+Claim:
+**the genomic architecture predicts natural component combinations that were not used to define the model.**
 
-`orientation -> wetting/presentation -> reproductive process -> viable achenes`
+This converts reconfigurability from a retrospective description into a falsifiable prediction.
 
-The point is not to prove every component adaptive.
+### Fig. 5 — Reassembly still yields a coherent reproductive phenotype
 
-The point is to show that evolutionary reassembly can still produce a biologically coherent reproductive organ.
+Use one preregistered functional route, probably orientation:
+
+orientation -> wetting/presentation mediator -> reproductive process -> viable achenes
+
+Fig.5 is the first point at which functional or fitness coherence is claimed.
+
+**Fig.5 is an independent extension, not an AND prerequisite for the central Nature evolutionary-unit claim.** The core claim is closed by FIG3_R_STRONG plus the preregistered Fig.4 prospective-mosaic criterion.
+
+It does not need to prove every component adaptive.
+
+Claim, if successful:
+**breaking the inherited module partition need not destroy organ-level reproductive function.**
+
+If Fig.5 fails or remains incomplete, the genomic reconfigurability result is not reclassified; only this functional extension remains closed.
 
 ## What is genuinely new and what is not
 
@@ -241,6 +278,12 @@ Not new on its own:
 - developmental modules can change across lineages.
 
 These are established literatures.
+
+The specific empirical gap targeted here is narrower and more testable:
+
+> **take a phenotypic-module partition defined before genomics, encode it as an explicit inheritance model, and ask whether a complexity-matched genomic model that is allowed to break those module boundaries predicts untouched natural phenotypes and prospectively registered mosaics better.**
+
+That prediction test — not the observation that different modularity definitions can disagree — is the intended novelty.
 
 The Nature-scale advance would be to close, in one natural radiation and one complex reproductive organ:
 
@@ -288,20 +331,20 @@ It must demonstrate **the evolutionary consequence of that mismatch**.
 
 The reconfigurable-integration hypothesis fails as a Nature-scale mechanism if dense same-individual genomics shows that:
 
-- all focal component traits follow the same local genomic ancestry;
-- phenotype combinations track one whole-organ genomic background;
-- recombinants do not independently assort component states;
-- apparent historical decoupling disappears once population genomic history is resolved.
+- the whole-organ Model F predicts untouched phenotypes as well as or better than more flexible alternatives; **or**
+- the frozen phenotypic-module Model M predicts untouched phenotypes as well as Model R, so present phenotypic modules are approximately the units of inheritance; **or**
+- prospective genomic mosaics do not independently predict component states.
 
-That outcome would support persistent/fixed evolutionary integration instead.
+A result in which M beats F but R does not beat M is scientifically informative modular inheritance, but it is not the proposed Nature-scale reconfigurable-integration result.
 
 ## Immediate execution order
 
 1. Keep the Fig. 1 ecological-module null; do not search for another grouping that makes it significant.
 2. Run Gate CS: verify whether *C. sieboldii* actually contains a same-population or tightly local multi-component substrate at standardized anthesis.
 3. If Gate CS is GREEN, select those verified individuals/populations for the 8-individual WGS reference-transferability pilot.
-4. If WGS_TRANSFER_GREEN, freeze the genomic fixed-vs-reconfigurable estimands before scaling.
+4. If WGS_TRANSFER_GREEN, freeze the whole-organ vs phenotypic-module vs reconfigurable estimands before scaling.
 5. If Gate CS is AMBER/RED, verify an alternative focal system rather than forcing *C. sieboldii* into the reassembly claim.
-6. Test component-specific genomic histories before any fitness interpretation.
-7. Open the natural-reassembly/prediction test only after component genomic separation is established.
-8. Keep Gate 0 acceleration as context, not a prerequisite.
+6. If Gate CS is GREEN and the focal system is retained, expand the focal mapping design only enough to preserve at least 40 TRAIN and 20 untouched VALIDATION individuals after QC; do not assume the legacy n=40 is Nature-ready.
+7. Test whether Model R predicts untouched multi-construct phenotypes better than the frozen phenotypic-module Model M.
+8. Open the natural-reassembly/prediction test only after phenotype-predictive genomic separation is established.
+9. Keep Gate 0 acceleration as context, not a prerequisite.
