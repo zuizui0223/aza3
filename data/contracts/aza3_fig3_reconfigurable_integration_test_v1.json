@@ -77,7 +77,8 @@
       "Delta_RM > 0",
       "one_sided_p_RM < 0.05",
       "joint advantage not driven entirely by one admitted module"
-    ]
+    ],
+    "analysis_scope": "E1 core joint score uses only constructs belonging to prospectively admitted multi-trait modules. Single-trait presentation is excluded from the R-vs-M core score because M and R are structurally identical for a one-trait module."
   },
   "baseline_estimand": {
     "id": "E1B_MODULE_VS_WHOLE_ORGAN",
@@ -91,7 +92,8 @@
   "kill_shot_estimand": {
     "id": "E3_PROSPECTIVE_COLOUR_ORIENTATION_MOSAICS",
     "correct_validation_mosaic_min": 3,
-    "rule": "mosaic status registered before validation phenotype labels open; both primary component predictions correct; reference-stable; taxonomically high-confidence"
+    "rule": "mosaic status registered before validation phenotype labels open; both primary component predictions correct; reference-stable; taxonomically high-confidence",
+    "analysis_scope": "E3 remains the preregistered colour x A1-A2 orientation natural-mosaic demonstration and is evaluated separately from the E1 multi-trait-module score."
   },
   "decisions": {
     "FIG3_R_STRONG": "R beats M in untouched prediction; full construct/module admission passes; stable phenotype-predictive genomic separability; at least 3 correct prospective mosaics.",
@@ -106,6 +108,7 @@
     "arbitrary_local_genealogy_discordance_alone_is_not_reconfigurable_integration",
     "validation_n_below_20_closes_prospective_Fig4_claim",
     "CS_GREEN_LOCAL_SET_does_not_authorize_within_population_reassembly_wording",
-    "FIG3_R_STRONG_does_not_establish_adaptation"
+    "FIG3_R_STRONG_does_not_establish_adaptation",
+    "single_trait_presentation_cannot_contribute_to_R_vs_M_core_model_advantage"
   ]
 }
