@@ -1,0 +1,128 @@
+name: Validate Fig3 reconfigurable-integration contract
+
+on:
+  pull_request:
+    paths:
+      - "docs/FIG3_RECONFIGURABLE_INTEGRATION_TEST_V1.md"
+      - "data/contracts/aza3_fig3_reconfigurable_integration_test_v1.json"
+      - "data/templates/fig3_heldout_prediction_registry_v1.csv"
+      - "analysis/score_fig3_heldout_prediction_v1.py"
+      - "analysis/validate_fig3_reconfigurable_integration_test_v1.py"
+      - ".github/workflows/validate-fig3-reconfigurable-integration-test-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate frozen contract
+        run: |
+          python -m py_compile analysis/score_fig3_heldout_prediction_v1.py
+          python -m py_compile analysis/validate_fig3_reconfigurable_integration_test_v1.py
+          python analysis/validate_fig3_reconfigurable_integration_test_v1.py
+
+      - name: Smoke-test R strong
+        run: |
+          python - <<'PY'
+          import csv
+          fields="individual_id,validation_unit,split,phenotype_labels_opened,model_F_joint_log_score,model_R_joint_log_score,d_i,colour_F_log_score,colour_R_log_score,orientation_F_log_score,orientation_R_log_score,colour_genomic_state,orientation_genomic_state,prospective_mosaic_registered,colour_prediction_correct,orientation_prediction_correct,reference_stable,taxonomic_confidence,technical_exclusion_reason".split(",")
+          rows=[]
+          for i in range(20):
+              rows.append({
+                "individual_id":f"V{i+1:02d}","validation_unit":"POP2","split":"VALIDATION",
+                "phenotype_labels_opened":"true",
+                "model_F_joint_log_score":"-3.0","model_R_joint_log_score":"-2.0",
+                "d_i":"1.0",
+                "colour_F_log_score":"-1.5","colour_R_log_score":"-1.0",
+                "orientation_F_log_score":"-1.5","orientation_R_log_score":"-1.0",
+                "colour_genomic_state":"C1","orientation_genomic_state":"O2",
+                "prospective_mosaic_registered":"true" if i<3 else "false",
+                "colour_prediction_correct":"true",
+                "orientation_prediction_correct":"true",
+                "reference_stable":"true","taxonomic_confidence":"high",
+                "technical_exclusion_reason":""
+              })
+          with open("rstrong.csv","w",newline="") as fh:
+              w=csv.DictWriter(fh,fieldnames=fields); w.writeheader(); w.writerows(rows)
+          PY
+          python analysis/score_fig3_heldout_prediction_v1.py --input rstrong.csv --output rstrong.json
+          python - <<'PY'
+          import json
+          d=json.load(open("rstrong.json"))
+          assert d["eligible_validation_n"]==20
+          assert d["decision"]=="FIG3_R_STRONG", d
+          assert d["prospective_mosaic_correct_both_n"]==3
+          assert d["sign_flip_one_sided_p"]<0.05
+          PY
+
+      - name: Smoke-test F supportive
+        run: |
+          python - <<'PY'
+          import csv
+          fields="individual_id,validation_unit,split,phenotype_labels_opened,model_F_joint_log_score,model_R_joint_log_score,d_i,colour_F_log_score,colour_R_log_score,orientation_F_log_score,orientation_R_log_score,colour_genomic_state,orientation_genomic_state,prospective_mosaic_registered,colour_prediction_correct,orientation_prediction_correct,reference_stable,taxonomic_confidence,technical_exclusion_reason".split(",")
+          rows=[]
+          for i in range(20):
+              rows.append({
+                "individual_id":f"V{i+1:02d}","validation_unit":"POP2","split":"VALIDATION",
+                "phenotype_labels_opened":"true",
+                "model_F_joint_log_score":"-2.0","model_R_joint_log_score":"-3.0",
+                "d_i":"-1.0",
+                "colour_F_log_score":"-1.0","colour_R_log_score":"-1.5",
+                "orientation_F_log_score":"-1.0","orientation_R_log_score":"-1.5",
+                "colour_genomic_state":"S1","orientation_genomic_state":"S1",
+                "prospective_mosaic_registered":"false",
+                "colour_prediction_correct":"false",
+                "orientation_prediction_correct":"false",
+                "reference_stable":"true","taxonomic_confidence":"high",
+                "technical_exclusion_reason":""
+              })
+          with open("fsupport.csv","w",newline="") as fh:
+              w=csv.DictWriter(fh,fieldnames=fields); w.writeheader(); w.writerows(rows)
+          PY
+          python analysis/score_fig3_heldout_prediction_v1.py --input fsupport.csv --output fsupport.json
+          python - <<'PY'
+          import json
+          d=json.load(open("fsupport.json"))
+          assert d["decision"]=="FIG3_F_SUPPORTIVE", d
+          assert d["delta_joint"]<0
+          PY
+
+      - name: Smoke-test insufficient validation is not identifiable
+        run: |
+          python - <<'PY'
+          import csv
+          fields="individual_id,validation_unit,split,phenotype_labels_opened,model_F_joint_log_score,model_R_joint_log_score,d_i,colour_F_log_score,colour_R_log_score,orientation_F_log_score,orientation_R_log_score,colour_genomic_state,orientation_genomic_state,prospective_mosaic_registered,colour_prediction_correct,orientation_prediction_correct,reference_stable,taxonomic_confidence,technical_exclusion_reason".split(",")
+          rows=[]
+          for i in range(19):
+              rows.append({
+                "individual_id":f"V{i+1:02d}","validation_unit":"POP2","split":"VALIDATION",
+                "phenotype_labels_opened":"true",
+                "model_F_joint_log_score":"-3.0","model_R_joint_log_score":"-2.0",
+                "d_i":"1.0",
+                "colour_F_log_score":"-1.5","colour_R_log_score":"-1.0",
+                "orientation_F_log_score":"-1.5","orientation_R_log_score":"-1.0",
+                "colour_genomic_state":"C1","orientation_genomic_state":"O2",
+                "prospective_mosaic_registered":"true",
+                "colour_prediction_correct":"true",
+                "orientation_prediction_correct":"true",
+                "reference_stable":"true","taxonomic_confidence":"high",
+                "technical_exclusion_reason":""
+              })
+          with open("small.csv","w",newline="") as fh:
+              w=csv.DictWriter(fh,fieldnames=fields); w.writeheader(); w.writerows(rows)
+          PY
+          python analysis/score_fig3_heldout_prediction_v1.py --input small.csv --output small.json
+          python - <<'PY'
+          import json
+          d=json.load(open("small.json"))
+          assert d["eligible_validation_n"]==19
+          assert d["decision"]=="NOT_IDENTIFIABLE", d
+          PY
