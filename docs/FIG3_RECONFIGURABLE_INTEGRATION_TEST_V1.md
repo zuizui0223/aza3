@@ -51,6 +51,18 @@ This is the strongest conventional modularity baseline.
 
 Model M is allowed the same number of admitted phenotypic modules as frozen before genomic analysis; module membership cannot be changed after seeing genotype results.
 
+## Local phenotypic-module sensitivity baseline
+
+The primary M baseline is the globally predeclared Azami module partition.
+
+To rule out the simpler explanation that this global partition is merely misspecified inside the focal population, define a second sensitivity baseline, M_local.
+
+M_local is estimated from TRAIN phenotypes only, before genotype-linked discovery and without VALIDATION phenotypes. It uses the same admitted construct set and is complexity-matched to R.
+
+M_local cannot use genotype, candidate genomic blocks or validation outcomes to choose its partition.
+
+FIG3_R_STRONG requires the primary R-over-M result and a non-negative held-out R advantage over M_local. If a phenotype-only local module model materially outpredicts R, the result cannot be described as evidence that module boundaries are evolutionarily reconfigurable.
+
 ## Model R — reconfigurable integration
 
 Admitted constructs may have component-specific genomic states and effect directions that do not have to respect the frozen Azami module partition.
