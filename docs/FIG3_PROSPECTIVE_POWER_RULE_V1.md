@@ -48,15 +48,19 @@ Interpretation:
 - 0.50: substantial;
 - 0.70: large.
 
-These labels are descriptive only. No one grid point is declared the true effect before data exist.
+These labels are descriptive only. No one grid point is declared the true effect or a biologically established minimum important difference before data exist.
 
-Primary design requirement:
+delta = 0.40 is a prospective **design benchmark**, not a claim that smaller effects are unimportant or that meeting this benchmark makes the study Nature-ready. The complete power curve is retained.
+
+Primary design benchmark:
 
 - at least 80% power at delta = 0.40;
 - report power at every frozen grid point;
 - target 90% power at delta = 0.50 as a secondary design benchmark.
 
-If feasible sampling cannot meet the primary design requirement after accounting for expected QC retention, the strongest Nature E1 route is prospectively classified as underpowered / NOT_IDENTIFIABLE rather than relaxed after seeing outcomes.
+If feasible sampling cannot meet the primary design benchmark after accounting for expected QC retention, the strongest Nature E1 route is prospectively classified as power-limited rather than relaxing the benchmark after seeing outcomes.
+
+Meeting the benchmark only authorizes the design. The scientific result still depends on the observed untouched Delta_RM, its paired uncertainty/test, module coverage and prospective mosaics.
 
 ## Validation n grid
 
