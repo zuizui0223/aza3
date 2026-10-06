@@ -110,6 +110,11 @@ def main():
             "admitted_construct_count":ac,
             "admitted_multi_trait_module_count":am,
             "mosaic_registered":bval(r.get("prospective_mosaic_registered")) is True,
+            "mosaic_preregistered":(
+                bool((r.get("mosaic_registry_commit_sha") or "").strip())
+                and bool((r.get("mosaic_registry_frozen_at_utc") or "").strip())
+                and bool((r.get("mosaic_prediction_hash") or "").strip())
+            ),
             "colour_correct":bval(r.get("colour_prediction_correct")) is True,
             "orientation_correct":bval(r.get("orientation_prediction_correct")) is True,
         })
@@ -145,7 +150,10 @@ def main():
             module_delta_totals[module]=sum(vals)
     stable_nonnegative_modules=sum(v>=0 for v in module_delta_totals.values())
 
-    registered=[r for r in eligible if r["mosaic_registered"]]
+    registered=[r for r in eligible if r["mosaic_registered"] and r["mosaic_preregistered"]]
+    registered_missing_provenance=[
+        r for r in eligible if r["mosaic_registered"] and not r["mosaic_preregistered"]
+    ]
     correct_mosaics=[r for r in registered if r["colour_correct"] and r["orientation_correct"]]
 
     if n<20:
@@ -199,6 +207,7 @@ def main():
         "module_R_minus_M_log_score_totals":module_delta_totals,
         "nonnegative_complete_module_count":stable_nonnegative_modules,
         "prospective_mosaic_registered_n":len(registered),
+        "prospective_mosaic_registered_missing_provenance_n":len(registered_missing_provenance),
         "prospective_mosaic_correct_both_n":len(correct_mosaics),
         "decision":decision,
         "decision_reason":reason,
