@@ -86,6 +86,20 @@ Secondary goal: prospectively score colour for every censused individual, includ
 
 Boundary: do not preferentially select unusually upright heads.
 
+### Kashibaru Wetland
+
+Role: orientation-validation site only.
+
+Primary goal:
+- test whether the published predominance of upward-facing **flowering** Maa-azami can be reproduced;
+- verify focal *C. sieboldii* identity on every scored individual using the diagnostic characters available from permitted observation positions.
+
+Mandatory downgrade:
+- if *C. sieboldii* cannot be separated confidently from Satsuma-maa-azami on the scored individuals, classify the site as taxonomically NOT_IDENTIFIABLE for Gate CS;
+- do not pool uncertain individuals with Kurumayama or Tsukude observations.
+
+This site cannot become the primary colour × orientation substrate merely because upright flowering is common.
+
 ## Hard stops
 
 - P/post-anthesis upright heads never count as upright-flowering morphs.
