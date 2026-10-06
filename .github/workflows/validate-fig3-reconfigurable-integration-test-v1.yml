@@ -40,16 +40,16 @@ jobs:
         run: |
           python - <<'PY'
           import csv, hashlib, json
-          pred_fields="individual_id,validation_unit,split,prediction_registry_frozen_at,prediction_model_version,model_F_prediction_object,model_M_prediction_object,model_R_prediction_object,colour_genomic_state,orientation_genomic_state,prospective_mosaic_registered,reference_stable,taxonomic_confidence,technical_exclusion_reason,admitted_construct_count,admitted_multi_trait_module_count".split(",")
-          score_fields="individual_id,validation_unit,prediction_registry_sha256,observed_phenotype_source,model_F_joint_log_score,model_M_joint_log_score,model_R_joint_log_score,d_RM_i,d_MF_i,colour_R_minus_M_log_score,orientation_R_minus_M_log_score,prospective_mosaic_registered,colour_prediction_correct,orientation_prediction_correct,reference_stable,taxonomic_confidence,technical_exclusion_reason,module_colour_M_log_score,module_colour_R_log_score,module_head_form_M_log_score,module_head_form_R_log_score".split(",")
+          pred_fields="individual_id,validation_unit,split,prediction_registry_frozen_at,prediction_model_version,model_F_prediction_object,model_M_prediction_object,model_Mlocal_prediction_object,model_R_prediction_object,colour_genomic_state,orientation_genomic_state,prospective_mosaic_registered,reference_stable,taxonomic_confidence,technical_exclusion_reason,admitted_construct_count,admitted_multi_trait_module_count".split(",")
+          score_fields="individual_id,validation_unit,prediction_registry_sha256,observed_phenotype_source,model_F_joint_log_score,model_M_joint_log_score,model_Mlocal_joint_log_score,model_R_joint_log_score,d_RM_i,d_MF_i,colour_R_minus_M_log_score,orientation_R_minus_M_log_score,prospective_mosaic_registered,colour_prediction_correct,orientation_prediction_correct,reference_stable,taxonomic_confidence,technical_exclusion_reason,module_colour_M_log_score,module_colour_R_log_score,module_head_form_M_log_score,module_head_form_R_log_score".split(",")
 
-          def make(prefix,n,F,M,R,constructs=5,modules=2,mosaics=0,module_mode="R"):
+          def make(prefix,n,F,M,ML,R,constructs=5,modules=2,mosaics=0,module_mode="R"):
               preds=[]
               for i in range(n):
                   preds.append({
                     "individual_id":f"{prefix}{i+1:02d}","validation_unit":"POP2","split":"VALIDATION",
                     "prediction_registry_frozen_at":"2026-10-06T00:00:00Z","prediction_model_version":"FMR_v1",
-                    "model_F_prediction_object":"Fobj","model_M_prediction_object":"Mobj","model_R_prediction_object":"Robj",
+                    "model_F_prediction_object":"Fobj","model_M_prediction_object":"Mobj","model_Mlocal_prediction_object":"MLobj","model_R_prediction_object":"Robj",
                     "colour_genomic_state":"C1","orientation_genomic_state":"O2",
                     "prospective_mosaic_registered":"true" if i<mosaics else "false",
                     "reference_stable":"true","taxonomic_confidence":"high","technical_exclusion_reason":"",
@@ -72,7 +72,7 @@ jobs:
                   scores.append({
                     "individual_id":p["individual_id"],"validation_unit":"POP2","prediction_registry_sha256":h,
                     "observed_phenotype_source":"synthetic","model_F_joint_log_score":str(F),
-                    "model_M_joint_log_score":str(M),"model_R_joint_log_score":str(R),
+                    "model_M_joint_log_score":str(M),"model_Mlocal_joint_log_score":str(ML),"model_R_joint_log_score":str(R),
                     "d_RM_i":str(R-M),"d_MF_i":str(M-F),
                     "colour_R_minus_M_log_score":"","orientation_R_minus_M_log_score":"",
                     "prospective_mosaic_registered":p["prospective_mosaic_registered"],
@@ -84,10 +84,10 @@ jobs:
               with open(f"{prefix}_scores.csv","w",newline="") as fh:
                   w=csv.DictWriter(fh,fieldnames=score_fields); w.writeheader(); w.writerows(scores)
 
-          make("R",20,-4,-3,-2,mosaics=3,module_mode="R")
-          make("M",20,-4,-2,-3,module_mode="M")
-          make("F",20,-2,-3,-4,module_mode="M")
-          make("SMALL",19,-4,-3,-2,mosaics=3,module_mode="R")
+          make("R",20,-4,-3,-2.5,-2,mosaics=3,module_mode="R")
+          make("M",20,-4,-2,-2,-3,module_mode="M")
+          make("F",20,-2,-3,-3,-4,module_mode="M")
+          make("SMALL",19,-4,-3,-2.5,-2,mosaics=3,module_mode="R")
           PY
 
       - name: Score R, M, F and insufficient-validation cases
