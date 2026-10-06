@@ -181,13 +181,15 @@ Colour × anthesis orientation remains the natural-mosaic demonstration, but bec
 
 The strongest single result would be:
 
-> **two plants can occupy the same integrated capitulum phenotype region, or equally functional configurations, while reaching it through different combinations of component-specific local genomic histories — and those histories recombine independently in segregating natural populations.**
+> **the frozen phenotypic-module partition fails to describe genomic inheritance, and prospectively identified natural genomic mosaics predict new component combinations in untouched individuals.**
 
 Even stronger:
 
 > a genomic mosaic not used to define the model prospectively predicts a capitulum combination not represented in the training populations.
 
 That turns the paper from retrospective history into a prediction about what combinations evolution can generate.
+
+Fig.3–4 do **not** claim that those alternative combinations are equally fit or equally functional. Functional coherence after reassembly is tested only in Fig.5.
 
 ## Five-figure paper contract
 
