@@ -27,7 +27,14 @@
     "constructs_per_admitted_multi_trait_module_min": 2,
     "admitted_constructs_total_min": 5,
     "freeze_before_genomic_discovery": true,
-    "failure_route": "pairwise analysis may proceed but FIG3_R_STRONG is closed"
+    "failure_route": "pairwise analysis may proceed but FIG3_R_STRONG is closed",
+    "image_capture_contract": "docs/C_SIEBOLDII_CS0_IMAGE_CAPTURE_V1.md",
+    "image_based_measurement_source": "Azami analysis/v3/biological_trait_axis_contract_20260910.csv",
+    "required_same_individual_capture_roles": [
+      "whole_head_side_or_oblique_with_gravity_reference",
+      "corolla_colour_with_calibration_reference_where_feasible",
+      "high_resolution_involucre_side_or_oblique_contour"
+    ]
   },
   "prerequisites": {
     "gate_cs_allowed": [
