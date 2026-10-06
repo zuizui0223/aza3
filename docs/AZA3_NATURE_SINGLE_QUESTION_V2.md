@@ -257,10 +257,14 @@ orientation -> wetting/presentation mediator -> reproductive process -> viable a
 
 Fig.5 is the first point at which functional or fitness coherence is claimed.
 
+**Fig.5 is an independent extension, not an AND prerequisite for the central Nature evolutionary-unit claim.** The core claim is closed by FIG3_R_STRONG plus the preregistered Fig.4 prospective-mosaic criterion.
+
 It does not need to prove every component adaptive.
 
-Claim:
+Claim, if successful:
 **breaking the inherited module partition need not destroy organ-level reproductive function.**
+
+If Fig.5 fails or remains incomplete, the genomic reconfigurability result is not reclassified; only this functional extension remains closed.
 
 ## What is genuinely new and what is not
 
