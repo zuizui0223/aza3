@@ -110,6 +110,18 @@ Both models receive the same global ancestry, population/spatial structure, 2C/c
 
 All genomic block selection occurs in TRAIN only.
 
+## Untouched-validation file protocol
+
+Validation is operationally blinded with three immutable artifacts.
+
+1. **Pre-unblinding prediction registry** — validation individual IDs, frozen F/M/R prediction objects, component genomic states and prospective mosaic flags; no observed validation phenotype.
+2. **Unlock receipt** — records the SHA256 of that registry and the later time at which validation phenotype labels are opened.
+3. **Post-unblinding score registry** — joins observed phenotypes to the frozen predictions and stores F/M/R log predictive densities and mosaic correctness.
+
+The scorer recomputes the prediction-registry SHA256 and refuses to score if it does not match the unlock receipt or score rows.
+
+A single editable spreadsheet containing both prospective predictions and observed validation outcomes is not admissible evidence.
+
 ## Model-comparison fairness
 
 F, M and R use the **same TRAIN-derived candidate genomic-block pool**, genotype representation, ancestry/callability covariates, preprocessing and missing-data policy.
