@@ -173,5 +173,10 @@
       "no use of observed validation phenotype frequencies to choose thresholds"
     ],
     "interpretation": "If R supports a larger held-out reachable phenotype-combination space than module-constrained baselines, this links inheritance reconfigurability to evolvability. It is supportive, not a substitute for E1 or E3."
+  },
+  "independent_pre_genomic_evidence": {
+    "fig1_module_architecture": "data/evidence/azami_module_baseline_handoff_v1.json",
+    "fig2_historical_reassembly": "data/evidence/eazami_historical_reassembly_handoff_v1.json",
+    "temporal_rule": "Both evidence layers precede focal aza3 phenotype-linked genomic discovery and cannot be redefined after Fig3 genomic results."
   }
 }
