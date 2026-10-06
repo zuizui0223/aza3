@@ -1,0 +1,10 @@
+{
+  "receipt_version": "aza3_fig3_validation_unlock_receipt_v1",
+  "status": "TEMPLATE__UNFILLED",
+  "prediction_registry_path": "data/results/fig3_validation_prediction_registry.csv",
+  "prediction_registry_sha256": null,
+  "prediction_registry_frozen_at": null,
+  "validation_phenotypes_opened_at": null,
+  "opened_by": null,
+  "rule": "validation_phenotypes_opened_at must be later than prediction_registry_frozen_at; the registry SHA256 must match the immutable pre-unblinding file used for scoring"
+}
