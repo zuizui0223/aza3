@@ -58,7 +58,8 @@
     "r_support": [
       "Delta_joint > 0",
       "one_sided_p < 0.05",
-      "joint advantage not driven solely by one primary component"
+      "colour_delta_total >= 0",
+      "orientation_delta_total >= 0"
     ]
   },
   "secondary_estimand": {
