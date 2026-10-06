@@ -4,6 +4,14 @@
 
 **This is observation-only.** No tissue collection, tagging, off-path entry or manipulation is authorized by this card.
 
+## Taxonomic rule
+
+Use `docs/C_SIEBOLDII_CS0_TAXONOMIC_DIAGNOSTIC_V1.md`.
+
+Primary Gate CS occupancy uses **high-confidence focal C. sieboldii individuals only**. Medium-confidence records are sensitivity-only; unresolved records are descriptive only.
+
+Never use upright or nodding orientation itself to decide that the plant is focal *C. sieboldii*.
+
 ## Before counting
 
 1. Confirm *C. sieboldii* identity.
