@@ -1,0 +1,91 @@
+{
+  "contract_version": "aza3_fig3_reconfigurable_integration_test_v1",
+  "status_date": "2026-10-06",
+  "status": "PROSPECTIVE__LOCKED_BEFORE_FOCAL_GENOMIC_DISCOVERY",
+  "question": "Must an integrated complex organ evolve as an integrated unit?",
+  "prerequisites": {
+    "gate_cs_allowed": [
+      "CS_GREEN",
+      "CS_GREEN_LOCAL_SET"
+    ],
+    "gate_cs_strong_route": "CS_GREEN",
+    "reference_gate": "OWN_WGS_GREEN",
+    "primary_taxonomic_confidence": "high",
+    "same_individual_phenotype_required": true
+  },
+  "trait_hierarchy": {
+    "primary": [
+      "floral_colour",
+      "A1_A2_anthesis_orientation"
+    ],
+    "secondary_open_only_if_gate_cs": "phyllary_involucre_state",
+    "exploratory_only": "stickiness"
+  },
+  "sample_design": {
+    "technical_pilot_n": 8,
+    "technical_pilot_role": "reference_transferability_only",
+    "training_target_min": 40,
+    "untouched_validation_min": 20,
+    "strongest_validation": "independent_segregating_population",
+    "fallback_validation": "prospectively_frozen_spatial_block_holdout",
+    "strongest_route_min_total_usable": 60,
+    "legacy_40_status": "DISCOVERY_ONLY_UNLESS_EXPANDED_FOR_UNTOUCHED_VALIDATION"
+  },
+  "frozen_split_rule": "TRAIN/VALIDATION individual IDs are frozen before phenotype-linked genomic discovery and cannot be changed after candidate blocks are seen.",
+  "models": {
+    "F": {
+      "label": "fixed_evolutionary_integration",
+      "constraint": "multiple blocks allowed but focal trait effects pass through one shared latent genomic score or equivalent rank-1 block-by-trait effect structure"
+    },
+    "R": {
+      "label": "reconfigurable_integration",
+      "constraint": "component-specific genomic scores allowed under the same training data and complexity budget; genomic effect rank may exceed one; residual phenotypic covariance allowed"
+    }
+  },
+  "common_covariates": [
+    "global_ancestry_or_genomewide_structure",
+    "population_or_spatial_block",
+    "2C_genome_size_QC",
+    "cytotype_if_informative",
+    "sequencing_callability_metrics",
+    "pre_frozen_batch_covariates"
+  ],
+  "primary_estimand": {
+    "id": "E1_UNTOUCHED_JOINT_PREDICTION",
+    "individual_score": "d_i = log p_R(y_i|genotype_i,frozen_train_fit) - log p_F(y_i|genotype_i,frozen_train_fit)",
+    "summary": "Delta_joint = sum_i d_i",
+    "test": "paired one-sided sign-flip test over validation individuals",
+    "r_support": [
+      "Delta_joint > 0",
+      "one_sided_p < 0.05",
+      "joint advantage not driven solely by one primary component"
+    ]
+  },
+  "secondary_estimand": {
+    "id": "E2_GENOMIC_STATE_SEPARABILITY",
+    "rule": "component-associated local genomic-state concordance is compared with matched genomic blocks; discordance alone is insufficient unless those states independently predict component phenotypes"
+  },
+  "kill_shot_estimand": {
+    "id": "E3_PROSPECTIVE_MOSAIC_PREDICTION",
+    "validation_mosaic_min": 3,
+    "rule": "prospective mosaic status is registered before validation phenotype labels are opened; both primary components must be correctly predicted under the frozen componentwise model; reference and taxonomic QC must pass"
+  },
+  "negative_controls": [
+    "matched_genomic_windows_for_callability_MAF_LD",
+    "within_population_phenotype_label_permutations",
+    "reference_substitution_sensitivity"
+  ],
+  "decisions": {
+    "FIG3_R_STRONG": "E1 supports R; both primary components have stable genomic contribution; genomic states are separable; at least 3 prospective validation mosaics correctly predicted; reference-stable.",
+    "FIG3_R_PARTIAL": "R improves prediction but one component, validation route or mosaic count is insufficient for the full kill shot.",
+    "FIG3_F_SUPPORTIVE": "Shared-state F predicts as well or better and component-specific states collapse onto the same inherited state.",
+    "NOT_IDENTIFIABLE": "Signal, reference stability, validation sample size or biological confounding prevents discrimination."
+  },
+  "claim_boundary": [
+    "different_nonoverlapping_GWAS_peaks_alone_are_not_reconfigurable_integration",
+    "arbitrary_local_genealogy_discordance_alone_is_not_reconfigurable_integration",
+    "FIG3_R_STRONG_does_not_establish_adaptation",
+    "validation_n_below_20_closes_prospective_Fig4_claim",
+    "CS_GREEN_LOCAL_SET_does_not_authorize_within_population_reassembly_wording"
+  ]
+}
