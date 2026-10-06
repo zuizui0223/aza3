@@ -55,7 +55,7 @@ def main():
         "The Nature-scale comparison is **R versus M**, not merely R versus F.",
         "at least five admitted constructs",
         "at least 20 untouched validation individuals",
-        "colour × anthesis orientation",
+        "Colour × anthesis orientation",
         "cannot establish FIG3_R_STRONG",
     ):
         need(d,x)
