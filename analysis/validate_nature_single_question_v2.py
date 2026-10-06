@@ -34,7 +34,7 @@ def main():
 
     assert r["current_decision"]=="PROCEED_TO_OWN_WGS_TRANSFERABILITY_PILOT"
     assert r["reference_build_decision"]=="DO_NOT_BUILD_FOCAL_C_SIEBOLDII_REFERENCE_YET"
-    assert w["hard_stop"]=="Do not sequence the full 298-individual Phase-A panel before this pilot is classified."
+    assert w["hard_stop"]=="Do not sequence the full 298-individual Phase-A panel, and do not choose C. sieboldii Nature-test individuals, before Gate CS and this transferability pilot are classified."
 
     for x in (
         "Must an integrated complex organ evolve as an integrated unit?",
@@ -59,7 +59,7 @@ def main():
         "fig1_ecological_module_alignment":"not_supported",
         "phenotypic_module_cohesion":"supported",
         "genomic_answer":"pending",
-        "next_gate":"8_individual_own_WGS_transferability_pilot"
+        "next_gate":"Gate_CS_then_8_individual_own_WGS_transferability_pilot"
     },indent=2))
 
 if __name__=="__main__":
