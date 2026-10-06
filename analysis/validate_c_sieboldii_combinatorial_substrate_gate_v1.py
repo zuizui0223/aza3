@@ -105,7 +105,7 @@ def main():
         "CS_RED_PHENOLOGY",
         "Taxonomic identity gate",
         "taxonomic_confidence = high",
-        "do not sequence 40",
+        "Do not sequence 40",
     ):
         need(doc, token)
 
