@@ -266,6 +266,12 @@ Not new on its own:
 
 These are established literatures.
 
+The specific empirical gap targeted here is narrower and more testable:
+
+> **take a phenotypic-module partition defined before genomics, encode it as an explicit inheritance model, and ask whether a complexity-matched genomic model that is allowed to break those module boundaries predicts untouched natural phenotypes and prospectively registered mosaics better.**
+
+That prediction test — not the observation that different modularity definitions can disagree — is the intended novelty.
+
 The Nature-scale advance would be to close, in one natural radiation and one complex reproductive organ:
 
 `present integration`
