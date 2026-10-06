@@ -90,5 +90,12 @@
       "rationale": "Public field record of C. sieboldii at this wetland and high observation feasibility; measure A1-A2 orientation on a spatially spread census and prospectively screen colour."
     }
   ],
-  "public_prescreen_ceiling": "Public sources do not establish same-population colour x anthesis-orientation co-segregation; Gate CS remains observationally open."
+  "public_prescreen_ceiling": "Public sources do not establish same-population colour x anthesis-orientation co-segregation; Gate CS remains observationally open.",
+  "locality_priority_ledger": "data/planning/c_sieboldii_cs0_locality_priority_v1.csv",
+  "field_card": "docs/C_SIEBOLDII_CS0_FIELD_CARD_V1.md",
+  "public_flowering_window": {
+    "authoritative_species": "August-October",
+    "mikawa_field_account": "September-October",
+    "operational_note": "Early October remains within the documented species/field flowering window, but current-site flowering must be verified before census."
+  }
 }
