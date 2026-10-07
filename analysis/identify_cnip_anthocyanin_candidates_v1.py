@@ -58,8 +58,41 @@ def main():
     anr_decoy=top["DECOY_ANR_ARABIDOPSIS_Q9SEV0"]["subject"]
     fls_decoy=top["DECOY_FLS1_ARABIDOPSIS_Q96330"]["subject"]
 
-    dfr_strong=bool(dfr_consensus and dfr_consensus!=anr_decoy)
-    ans_strong=bool(ans_consensus and ans_consensus!=fls_decoy)
+    def subject_hit(query,subject):
+        for h in byq[query]:
+            if h["subject"]==subject:
+                return h
+        return None
+
+    def top_second_ratio(query):
+        if len(byq[query])<2 or byq[query][1]["bitscore"]<=0:
+            return None
+        return byq[query][0]["bitscore"]/byq[query][1]["bitscore"]
+
+    def target_decoy_ratio(target_queries,decoy_query,subject):
+        th=[subject_hit(q,subject) for q in target_queries]
+        dh=subject_hit(decoy_query,subject)
+        if any(x is None for x in th) or dh is None or dh["bitscore"]<=0:
+            return None
+        return min(x["bitscore"] for x in th)/dh["bitscore"]
+
+    dfr_queries=["DFR_GERBERA_P51105","DFR_ARABIDOPSIS_P51102"]
+    ans_queries=["ANS_PETUNIA_P51092","ANS_ARABIDOPSIS_Q96323"]
+    dfr_top2={q:top_second_ratio(q) for q in dfr_queries}
+    ans_top2={q:top_second_ratio(q) for q in ans_queries}
+    dfr_decoy_ratio=target_decoy_ratio(dfr_queries,"DECOY_ANR_ARABIDOPSIS_Q9SEV0",dfr_consensus) if dfr_consensus else None
+    ans_decoy_ratio=target_decoy_ratio(ans_queries,"DECOY_FLS1_ARABIDOPSIS_Q96330",ans_consensus) if ans_consensus else None
+
+    dfr_quality=bool(dfr_consensus and all(
+        top[q]["pident"]>=60 and top[q]["qcov"]>=75 and (dfr_top2[q] or 0)>=1.5
+        for q in dfr_queries
+    ))
+    ans_quality=bool(ans_consensus and all(
+        top[q]["pident"]>=60 and top[q]["qcov"]>=75 and (ans_top2[q] or 0)>=1.5
+        for q in ans_queries
+    ))
+    dfr_strong=bool(dfr_quality and dfr_decoy_ratio is not None and dfr_decoy_ratio>=1.5)
+    ans_strong=bool(ans_quality and ans_decoy_ratio is not None and ans_decoy_ratio>=1.5)
 
     seqs=dict(read_fasta(args.proteins))
     chosen={}
@@ -83,16 +116,22 @@ def main():
             "reference_top_subjects":dfr_subjects,
             "consensus_subject":dfr_consensus,
             "ANR_decoy_top_subject":anr_decoy,
-            "classification":"ORTHOLOGY_CANDIDATE_STRONG" if dfr_strong else "AMBIGUOUS"
+            "target_top_to_second_bitscore_ratio":dfr_top2,
+            "minimum_target_to_same_subject_ANR_bitscore_ratio":dfr_decoy_ratio,
+            "sequence_thresholds":{"pident_min":60,"qcov_min":75,"top_to_second_bitscore_ratio_min":1.5,"target_to_decoy_bitscore_ratio_min":1.5},
+            "classification":"SEQUENCE_ORTHOLOGY_CANDIDATE_STRONG" if dfr_strong else "AMBIGUOUS"
         },
         "ANS":{
             "reference_top_subjects":ans_subjects,
             "consensus_subject":ans_consensus,
             "FLS_decoy_top_subject":fls_decoy,
-            "classification":"ORTHOLOGY_CANDIDATE_STRONG" if ans_strong else "AMBIGUOUS"
+            "target_top_to_second_bitscore_ratio":ans_top2,
+            "minimum_target_to_same_subject_FLS_bitscore_ratio":ans_decoy_ratio,
+            "sequence_thresholds":{"pident_min":60,"qcov_min":75,"top_to_second_bitscore_ratio_min":1.5,"target_to_decoy_bitscore_ratio_min":1.5},
+            "classification":"SEQUENCE_ORTHOLOGY_CANDIDATE_STRONG" if ans_strong else "AMBIGUOUS"
         },
         "candidate_fasta_records":chosen,
-        "boundary":"This screen nominates C. nipponicum protein candidates. Strong reference convergence plus decoy separation reduces family-level misassignment but does not by itself prove biochemical function in Cirsium."
+        "boundary":"This screen nominates C. nipponicum protein candidates. Reference convergence, top-hit separation and target-vs-decoy score margins reduce family-level misassignment but do not by themselves prove biochemical function in Cirsium."
     }
     args.output_json.parent.mkdir(parents=True,exist_ok=True)
     args.output_json.write_text(json.dumps(receipt,indent=2)+"\n",encoding="utf-8")
