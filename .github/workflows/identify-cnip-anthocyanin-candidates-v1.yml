@@ -46,9 +46,11 @@ jobs:
           def pick(pred):
               hits=[f for f in files if pred((f.get("name") or "").lower())]
               return hits[0] if hits else None
-          protein=pick(lambda n: ("protein" in n or "pep" in n) and (n.endswith(".fa") or n.endswith(".faa") or n.endswith(".fasta") or n.endswith(".fa.gz") or n.endswith(".faa.gz") or n.endswith(".fasta.gz")))
+          protein=pick(lambda n: n=="c.nipponicum_aa.fa")
           if protein is None:
-              raise SystemExit("No protein FASTA identified from Figshare metadata")
+              raise SystemExit("Expected C.nipponicum_aa.fa not found in Figshare metadata")
+          if int(protein.get("id")) != 48979486:
+              raise SystemExit("Unexpected protein FASTA file id")
           json.dump({"protein":protein,"all_files":files},open("figshare_selection.json","w"),indent=2)
           print("SELECTED",protein)
           PY
