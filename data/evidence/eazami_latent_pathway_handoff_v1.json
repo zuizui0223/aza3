@@ -1,0 +1,36 @@
+{
+  "evidence_version": "aza3_eazami_latent_pathway_handoff_v1",
+  "status_date": "2026-10-07",
+  "source_repository": "zuizui0223/EAzami",
+  "source_document": "docs/ideas/MICRO_TO_MACRO_HYPOTHESIS_PROGRAM_2026-08-15.md",
+  "source_status": "EAzami_hypothesis_not_demonstrated",
+  "hmm1": {
+    "name": "Latent-pathway / regulatory reversibility hypothesis",
+    "hypothesis": "Recent white states in young East Asian Cirsium may often reflect suppression of a retained anthocyanin/flavonoid programme rather than irreversible pathway destruction.",
+    "predictions": [
+      "recent white lineages retain intact core structural genes",
+      "regulatory/expression changes recur more often than destructive coding loss",
+      "candidate coloured reversals restore retained machinery",
+      "deep independent white lineages may use more heterogeneous routes than within-lineage polymorphisms"
+    ],
+    "falsifier": "replicated recent white lineages independently lose essential core pathway genes with no retained functional route"
+  },
+  "historical_identifiability": {
+    "takaoense_six_morph_linked_samples": {
+      "rooted_binary_resolutions": 945,
+      "published_topology_minimum_history": "1_loss_plus_1_regain_under_coloured_root",
+      "topologies_regain_required": 270,
+      "topologies_no_regain_optimum_allowed": 675,
+      "boundary": "regain is topology-sensitive and not identified by the published figure alone"
+    },
+    "arenicola": {
+      "boundary": "ancestral colour is not identified without transition-rate constraints; published time information alone does not resolve loss-versus-regain polarity"
+    }
+  },
+  "aza3_use": "Treat pathway reactivation as a mechanistic hypothesis only after an independent historical gate establishes an admissible loss->regain event or explicitly label the analysis as suppression-without-demonstrated-regain.",
+  "claim_boundary": [
+    "molecular_reactivation_like_expression_cannot_establish_historical_regain_by_itself",
+    "white_to_coloured_tip_contrast_is_not_a_reversal_without_ancestral_state_support",
+    "topology_and_rate_uncertainty_must_be_propagated_before_reactivation_language"
+  ]
+}

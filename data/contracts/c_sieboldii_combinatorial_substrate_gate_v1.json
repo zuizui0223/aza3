@@ -1,0 +1,116 @@
+{
+  "contract_version": "aza3_c_sieboldii_combinatorial_substrate_gate_v1",
+  "status_date": "2026-10-05",
+  "status": "REQUIRED_BEFORE_BIOLOGICAL_WGS_SAMPLE_SELECTION",
+  "focal_taxon": "Cirsium sieboldii",
+  "nature_question": "Must an integrated complex organ evolve as an integrated unit?",
+  "public_evidence_ceiling": [
+    "species-wide upright-flowering plants reported",
+    "normal heads become upright after flowering",
+    "white-flowered form formally recognized",
+    "species-wide variation in capitulum size and phyllary-row number reported",
+    "same-population independent multi-component segregation not yet demonstrated"
+  ],
+  "primary_pair": [
+    "floral_colour",
+    "anthesis_orientation"
+  ],
+  "secondary_pairs": [
+    [
+      "anthesis_orientation",
+      "phyllary_involucre_state"
+    ],
+    [
+      "floral_colour",
+      "phyllary_involucre_state"
+    ]
+  ],
+  "exploratory_only": [
+    "stickiness"
+  ],
+  "primary_orientation_stage": [
+    "A1_early_anthesis",
+    "A2_full_anthesis"
+  ],
+  "census": {
+    "target_flowering_individuals": 30,
+    "minimum_complete_primary_pair_A1_A2": 20,
+    "minimum_individuals_per_occupied_binary_cell": 3
+  },
+  "variability_thresholds": {
+    "orientation_angle_range_deg_min": 30,
+    "white_nonwhite_min_per_state_if_binary_used": 3,
+    "primary_pair_required_occupied_cells_of_4": 3,
+    "continuous_primary_pair_abs_spearman_max": 0.8,
+    "orientation_binary_min_per_extreme_state": 3
+  },
+  "decisions": [
+    "CS_GREEN",
+    "CS_GREEN_LOCAL_SET",
+    "CS_AMBER",
+    "CS_RED_PHENOLOGY",
+    "CS_RED_NO_COMBINATORIAL_SUBSTRATE",
+    "NOT_IDENTIFIABLE"
+  ],
+  "wgs_relationship": {
+    "technical_reference_pilot": "authorized_by_R1B0",
+    "biological_sample_selection": "blocked_until_CS_classified",
+    "full_40_individual_C_sieboldii_panel": "blocked_until_substrate_value_verified"
+  },
+  "hard_stops": [
+    "post-anthesis upright heads cannot define an upright-flowering morph",
+    "species authority states cannot substitute for same-individual phenotype",
+    "distant population balancing cannot be called segregation",
+    "stickiness cannot rescue the gate post hoc",
+    "natural reassembly requires both directly observed combinations and genomic segregation",
+    "taxonomically unresolved individuals cannot fill primary combinatorial cells"
+  ],
+  "orientation_geometry": {
+    "zero_deg": "vertically_upward",
+    "ninety_deg": "horizontal",
+    "one_eighty_deg": "vertically_downward",
+    "descriptive_upright_max_deg": 60,
+    "descriptive_nodding_min_deg": 120,
+    "intermediate_rule": "60<angle<120 retained continuously but excluded from binary-cell occupancy"
+  },
+  "public_locality_prescreen": "data/evidence/c_sieboldii_public_locality_prescreen_v1.json",
+  "public_prescreen_status": "TARGETED_CS0_LOCALITIES_IDENTIFIED__SUBSTRATE_NOT_YET_VERIFIED",
+  "cs0_priority_localities": [
+    {
+      "rank": 1,
+      "locality": "Kurumayama Moor / Kirigamine, Nagano",
+      "role": "white-form verification priority",
+      "access": "Natural Monument; permitted-path observation only unless separate authorization is obtained.",
+      "rationale": "Type locality of C. sieboldii f. leucanthum and current public locality support; verify white/non-white frequency and measure A1-A2 orientation where visible."
+    },
+    {
+      "rank": 2,
+      "locality": "Kiyooka-Mukaiyama Wetland, Tsukude, Aichi",
+      "role": "primary standardized orientation-census priority",
+      "access": "Boardwalk/observation infrastructure present.",
+      "rationale": "Public field record of C. sieboldii at this wetland and high observation feasibility; measure A1-A2 orientation on a spatially spread census and prospectively screen colour."
+    },
+    {
+      "rank": 3,
+      "locality": "Kashibaru Wetland, Karatsu, Saga",
+      "role": "upright-flowering validation priority",
+      "access": "Boardwalk/designated observation areas; plant collection prohibited; some zones inaccessible.",
+      "rationale": "A 2022 local report states that upward-facing flowering Maa-azami predominated, but the site flora also contains Satsuma-maa-azami, so every scored individual requires explicit focal-taxon verification."
+    }
+  ],
+  "public_prescreen_ceiling": "Public sources now support local-area and population-level anthesis-orientation variation, but still do not establish same-population colour x orientation co-segregation in verified focal C. sieboldii.",
+  "locality_priority_ledger": "data/planning/c_sieboldii_cs0_locality_priority_v1.csv",
+  "field_card": "docs/C_SIEBOLDII_CS0_FIELD_CARD_V1.md",
+  "public_flowering_window": {
+    "authoritative_species": "August-October",
+    "mikawa_field_account": "September-October",
+    "operational_note": "Early October remains within the documented species/field flowering window, but current-site flowering must be verified before census."
+  },
+  "taxonomic_diagnostic": "docs/C_SIEBOLDII_CS0_TAXONOMIC_DIAGNOSTIC_V1.md",
+  "primary_taxonomic_rule": {
+    "required_confidence": "high",
+    "medium_role": "sensitivity_only",
+    "unresolved_role": "descriptive_only",
+    "occupancy_rule": "Only high-confidence focal C. sieboldii individuals can contribute to primary CS_GREEN or CS_GREEN_LOCAL_SET thresholds."
+  }
+}

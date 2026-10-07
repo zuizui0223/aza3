@@ -1,0 +1,43 @@
+{
+  "contract_version": "aza3_eazami_cnipg_reference_handoff_v1",
+  "status_date": "2026-10-05",
+  "purpose": "Reuse the durable EAzami Cirsium nipponicum genome-derived Compositae1061 locus pack as the East-Asian sequence-reference layer for aza3 R1B-0, without duplicating or re-deriving its 180 strict loci.",
+  "source_repository": "zuizui0223/EAzami",
+  "source_main_sha": "f406c32ac6d4a8da49777d7973a92f48146bd6df",
+  "source_files": [
+    "data/evidence/cirsium_nipponicum_comp1061_locus_pack_result_2026-08-13.json",
+    "data/evidence/public_candidate_locus_packs_v1/manifest.json",
+    "analysis/materialize_frozen_public_candidate_locus_pack.py"
+  ],
+  "candidate_id": "CNIPG",
+  "tip_id": "AUG_ULLEUNG_CNIP2024",
+  "taxon": "Cirsium nipponicum",
+  "biological_context": "natural Ulleung Island plant used for the 2024 nuclear genome study",
+  "source_genome": {
+    "bioproject": "PRJNA1127082",
+    "figshare_doi": "10.6084/m9.figshare.26927092.v1"
+  },
+  "frozen_pack": {
+    "strict_loci": 180,
+    "frozen_candidate_loci": 241,
+    "strict_fraction": 0.7468879668049793,
+    "cross_locus_subject_collisions": 0,
+    "durable_manifest_contract": "public_candidate_locus_packs_v1",
+    "durable_tsv_sha256": "e53dcff6ab137015537d3790641ec12fb5c0e8126bdf1d796401be7184ecdf8d",
+    "strict_locus_list_sha256": "080356d51ef61010761476c565810bb382f203bbf867ff66a655da85a2311f63",
+    "source_artifact_sha256": "079e3bfaab1d5041ebc2dcb1919532c75eefde7ffe1f766ab0473845f2f9dd69"
+  },
+  "aza3_use": [
+    "intersect with focal C. sieboldii recovered Compositae1061 loci",
+    "measure pairwise sequence compatibility on identical locus IDs",
+    "provide an East-Asian sequence anchor before full chromosome-reference localization"
+  ],
+  "prohibited_inferences": [
+    "chromosome-coordinate concordance from sequence identity alone",
+    "local ancestry",
+    "haplotype age",
+    "structural-variant reuse",
+    "genotype-phenotype association"
+  ],
+  "next_gate": "Whole-genome coordinate localization against C. heterophyllum, C. dissectum and C. nipponicum remains required for the final reference-transfer decision."
+}

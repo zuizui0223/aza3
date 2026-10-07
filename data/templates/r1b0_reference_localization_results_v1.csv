@@ -1,0 +1,1 @@
+run,taxon,target_version,clean_layer,locus,genome_reference,placement_class,reference_sequence,reference_start,reference_end,strand,aligned_bp,query_bp,aligned_fraction,sequence_identity,mapq_or_equivalent,multiple_placement_count,synteny_group,include_primary_concordance,exclusion_reason

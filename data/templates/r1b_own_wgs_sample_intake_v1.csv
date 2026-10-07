@@ -1,0 +1,11 @@
+sample_id,role,population_id,voucher_or_image_id,colour_direct,orientation_deg,phyllary_direct,stickiness_direct,genome_size_2C_pg,cytotype_status,dna_extraction_id,dna_qc_status,library_id,library_batch,sequenced,notes
+SIE_P01,primary,,,,,,,,,,,,,false,
+SIE_P02,primary,,,,,,,,,,,,,false,
+SIE_P03,primary,,,,,,,,,,,,,false,
+SIE_P04,primary,,,,,,,,,,,,,false,
+SIE_P05,primary,,,,,,,,,,,,,false,
+SIE_P06,primary,,,,,,,,,,,,,false,
+SIE_P07,primary,,,,,,,,,,,,,false,
+SIE_P08,primary,,,,,,,,,,,,,false,
+SIE_R01,reserve,,,,,,,,,,,,,false,
+SIE_R02,reserve,,,,,,,,,,,,,false,

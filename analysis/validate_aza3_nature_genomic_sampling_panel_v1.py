@@ -36,9 +36,15 @@ def main():
     assert sum(counts.values())==298
 
     sie=next(x for x in rows if x["panel_id"]=="SIE")
-    assert "colour;orientation;phyllary;stickiness"==sie["phenotype_modules"]
-    assert "genomic_combinatorial_reuse" in sie["models_discriminated"]
-    assert "highest-value same-species multi-module system" in sie["genomic_role"]
+    assert "colour;anthesis-standardized orientation;phyllary;stickiness"==sie["phenotype_modules"]
+    assert "fixed_evolutionary_integration" in sie["models_discriminated"]
+    assert "reconfigurable_integration" in sie["models_discriminated"]
+    assert "Nature-central role contingent on Gate CS" in sie["genomic_role"]
+    assert "CONDITIONAL" in sie["geographic_design"]
+    assert "Gate CS" in sie["geographic_design"]
+    assert "do not pre-balance distant white/coloured populations" in sie["geographic_design"]
+    assert "do not sequence 40 until Gate CS and R1B WGS pilot pass" in sie["stop_rule"]
+    assert "post-anthesis upright heads are not an upright-flowering morph" in sie["stop_rule"]
 
     tak=next(x for x in rows if x["panel_id"]=="TAK")
     assert tak["phase"]=="B"
@@ -47,11 +53,11 @@ def main():
 
     for x in (
         "298 individuals",
-        "highest-value combinatorial system",
+        "conditional candidate for within-species reconfigurable integration",
         "Every Phase-A individual must link",
         "Tier 1 — all 298 Phase-A individuals",
         "Tier 2 — dense resequencing of selected systems",
-        "Primary candidate: *C. sieboldii*.",
+        "Primary candidate: *C. sieboldii*, **conditional on Gate CS verification of a real within-population/local combinatorial substrate**.",
         "No RAD-only causal haplotype or allele-age claim.",
         "No field collection is authorized by this document.",
     ):
