@@ -1,0 +1,26 @@
+{
+  "evidence_version": "takaoense_pathway_retention_status_v1",
+  "status_date": "2026-10-07",
+  "focal_system": "Cirsium japonicum var. takaoense public 3W + 3BP young-leaf RNA-seq",
+  "documented_statement": {
+    "source": "docs/TAKAOENSE_PHASEB_PREFIELD_CANDIDATE_REDUCTION_V1.md",
+    "text": "Existing DFR/ANS targeted searches already show homologous reads in both colour classes.",
+    "current_evidence_class": "DOCUMENTED_STATEMENT_WITHOUT_REPRODUCIBLE_RECEIPT"
+  },
+  "repository_audit": {
+    "dedicated_evidence_receipt_found": false,
+    "dedicated_DFR_ANS_analysis_script_found": false,
+    "only_validator_found": "analysis/validate_takaoense_phaseb_prefield_v1.py"
+  },
+  "reactivation_ladder_effect": {
+    "machinery_persistence_layer": "NOT_YET_PASSED",
+    "allowed_interpretation": "pathway-retention plausibility only",
+    "prohibited": [
+      "claim that DFR/ANS retention has been independently reproduced",
+      "claim that white flowers retain a functional floral anthocyanin pathway",
+      "claim regulatory suppression or reactivation"
+    ]
+  },
+  "next_action": "Re-run a prespecified targeted orthology/coverage screen from the six public reads and freeze accession-level coverage, sequence identity, orthology and checksum receipts.",
+  "tissue_boundary": "young-leaf RNA can positively support gene/transcript presence but transcript absence cannot establish genomic deletion and leaf expression cannot establish floral pathway activity"
+}
