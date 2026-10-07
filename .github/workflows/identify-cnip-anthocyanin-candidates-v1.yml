@@ -1,0 +1,100 @@
+name: Identify C nipponicum DFR ANS candidates
+
+on:
+  pull_request:
+    paths:
+      - "analysis/identify_cnip_anthocyanin_candidates_v1.py"
+      - ".github/workflows/identify-cnip-anthocyanin-candidates-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  identify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    defaults:
+      run:
+        shell: bash -el {0}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: pathway
+          init-shell: bash
+          cache-environment: true
+          create-args: >-
+            python=3.12
+            diamond
+            -c conda-forge
+            -c bioconda
+
+      - name: Discover Figshare annotation assets
+        run: |
+          set -euo pipefail
+          curl -L --fail --retry 5 https://api.figshare.com/v2/articles/26927092 -o figshare.json
+          python - <<'PY'
+          import json
+          d=json.load(open("figshare.json"))
+          files=d.get("files",[])
+          if not files:
+              raise SystemExit("Figshare API returned no files")
+          for f in files:
+              print(f.get("id"),f.get("name"),f.get("download_url"),f.get("md5"),f.get("size"))
+          def pick(pred):
+              hits=[f for f in files if pred((f.get("name") or "").lower())]
+              return hits[0] if hits else None
+          protein=pick(lambda n: ("protein" in n or "pep" in n) and (n.endswith(".fa") or n.endswith(".faa") or n.endswith(".fasta") or n.endswith(".fa.gz") or n.endswith(".faa.gz") or n.endswith(".fasta.gz")))
+          if protein is None:
+              raise SystemExit("No protein FASTA identified from Figshare metadata")
+          json.dump({"protein":protein,"all_files":files},open("figshare_selection.json","w"),indent=2)
+          print("SELECTED",protein)
+          PY
+          url=$(python -c 'import json;print(json.load(open("figshare_selection.json"))["protein"]["download_url"])')
+          curl -L --fail --retry 5 "$url" -o cnip_proteins.download
+          name=$(python -c 'import json;print(json.load(open("figshare_selection.json"))["protein"]["name"])')
+          if [[ "$name" == *.gz ]]; then gunzip -c cnip_proteins.download > cnip_proteins.fa; else cp cnip_proteins.download cnip_proteins.fa; fi
+          test -s cnip_proteins.fa
+          grep -q '^>' cnip_proteins.fa
+
+      - name: Download pathway references and decoys
+        run: |
+          set -euo pipefail
+          : > queries.fa
+          fetch () {
+            label="$1"; acc="$2"
+            curl -L --fail --retry 5 "https://rest.uniprot.org/uniprotkb/${acc}.fasta" -o q.fa
+            awk -v h="$label" 'NR==1{print ">"h;next}{print}' q.fa >> queries.fa
+          }
+          fetch DFR_GERBERA_P51105 P51105
+          fetch DFR_ARABIDOPSIS_P51102 P51102
+          fetch ANS_PETUNIA_P51092 P51092
+          fetch ANS_ARABIDOPSIS_Q96323 Q96323
+          fetch DECOY_ANR_ARABIDOPSIS_Q9SEV0 Q9SEV0
+          fetch DECOY_FLS1_ARABIDOPSIS_Q96330 Q96330
+          test "$(grep -c '^>' queries.fa)" -eq 6
+
+      - name: Identify C nipponicum candidates
+        run: |
+          set -euo pipefail
+          diamond makedb --in cnip_proteins.fa -d cnip
+          diamond blastp -q queries.fa -d cnip -o hits.tsv \
+            --outfmt 6 qseqid sseqid pident length qlen slen evalue bitscore qcovhsp scovhsp \
+            --max-target-seqs 20 --evalue 1e-10 --threads 2
+          python analysis/identify_cnip_anthocyanin_candidates_v1.py \
+            --hits hits.tsv --proteins cnip_proteins.fa \
+            --output-json candidate_receipt.json --output-fasta cnip_DFR_ANS_candidates.fa
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cnip-anthocyanin-candidate-identification-${{ github.run_id }}
+          path: |
+            figshare_selection.json
+            queries.fa
+            hits.tsv
+            candidate_receipt.json
+            cnip_DFR_ANS_candidates.fa
+          if-no-files-found: error
+          retention-days: 30
