@@ -1,0 +1,70 @@
+{
+  "evidence_version": "cnip_anthocyanin_candidate_receipt_v1",
+  "status_date": "2026-10-07",
+  "workflow": {
+    "run_id": 37570267061,
+    "head_sha": "aa14c86f2aef72049278aea39c44b542dd7816ca",
+    "artifact_id": 11459659410,
+    "artifact_digest": "sha256:ea50376bc75084223f1b0bf2225ff81ec7d8103e867da13238acb147a35f38b2"
+  },
+  "figshare": {
+    "protein_file_id": 48979486,
+    "protein_file_name": "C.nipponicum_aa.fa",
+    "protein_file_md5": "5c76467d3ad7f15df94897463633ce4a",
+    "genome_file_id": 48979489,
+    "genome_file_md5": "e9390e23ffd0dc5e3da8271db4d1d3ca"
+  },
+  "candidates": {
+    "DFR": {
+      "subject": "Cn_g13756.t1",
+      "gerbera_reference": {
+        "accession": "P51105",
+        "pident": 83.7,
+        "bitscore": 602,
+        "qcov": 93.7,
+        "top_to_second_bitscore_ratio": 2.189090909090909
+      },
+      "arabidopsis_reference": {
+        "accession": "P51102",
+        "pident": 71.1,
+        "bitscore": 489,
+        "qcov": 84.3,
+        "top_to_second_bitscore_ratio": 1.7589928057553956
+      },
+      "anr_decoy_accession": "Q9SEV0",
+      "minimum_target_to_same_subject_decoy_bitscore_ratio": 1.9027237354085602,
+      "classification": "SEQUENCE_ORTHOLOGY_CANDIDATE_STRONG"
+    },
+    "ANS": {
+      "subject": "Cn_g8152.t1",
+      "petunia_reference": {
+        "accession": "P51092",
+        "pident": 78.3,
+        "bitscore": 552,
+        "qcov": 80,
+        "top_to_second_bitscore_ratio": 2.1312741312741315
+      },
+      "arabidopsis_reference": {
+        "accession": "Q96323",
+        "pident": 75.3,
+        "bitscore": 523,
+        "qcov": 95.5,
+        "top_to_second_bitscore_ratio": 2.04296875
+      },
+      "fls1_decoy_accession": "Q96330",
+      "minimum_target_to_same_subject_decoy_bitscore_ratio": 1.9961832061068703,
+      "classification": "SEQUENCE_ORTHOLOGY_CANDIDATE_STRONG"
+    }
+  },
+  "candidate_fasta": {
+    "path": "data/evidence/cnip_DFR_ANS_candidates_v1.fa",
+    "sha256": "f0270647968e29c756163bb5a5e339a975944964807c6c83d921df14ca30254d"
+  },
+  "decision": "STAGE_A_PASS__OPEN_SIX_RUN_POSITIVE_RETENTION_SCREEN",
+  "claim_boundary": [
+    "sequence_orthology_candidate_is_not_biochemical_function",
+    "candidate_identity_does_not_establish_takaoense_retention",
+    "six_run_young_leaf_screen_can_only_add_positive_transcript_presence_evidence",
+    "absence_in_young_leaf_cannot_establish_gene_loss"
+  ]
+}

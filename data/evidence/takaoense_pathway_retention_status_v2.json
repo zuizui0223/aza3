@@ -1,0 +1,38 @@
+{
+  "evidence_version": "takaoense_pathway_retention_status_v2",
+  "status_date": "2026-10-07",
+  "focal_system": "Cirsium japonicum var. takaoense public 3W + 3BP young-leaf RNA-seq",
+  "prior_documented_statement": {
+    "source": "docs/TAKAOENSE_PHASEB_PREFIELD_CANDIDATE_REDUCTION_V1.md",
+    "statement": "Existing DFR/ANS targeted searches already show homologous reads in both colour classes.",
+    "reproducible_receipt_before_current_work": "NOT_FOUND_IN_REPOSITORY"
+  },
+  "current_reproduction": {
+    "stage_A": "PASS",
+    "stage_A_receipt": "data/evidence/cnip_anthocyanin_candidate_receipt_v1.json",
+    "frozen_candidate_fasta": "data/evidence/cnip_DFR_ANS_candidates_v1.fa",
+    "candidate_fasta_sha256": "f0270647968e29c756163bb5a5e339a975944964807c6c83d921df14ca30254d",
+    "DFR_candidate": "Cn_g13756.t1",
+    "ANS_candidate": "Cn_g8152.t1",
+    "stage_B": "RUNNING",
+    "stage_B_contract": "data/contracts/takaoense_public_pathway_retention_screen_v1.json"
+  },
+  "reactivation_ladder": {
+    "ancestral_state": "SEPARATE_HISTORY_GATE",
+    "machinery_persistence": "PENDING_STAGE_B",
+    "suppression": "NOT_TESTED",
+    "homologous_floral_reactivation": "NOT_TESTED",
+    "perturbation_rescue": "NOT_TESTED"
+  },
+  "current_allowed_language": [
+    "DFR and ANS sequence-orthology candidates are reproducibly identified in C. nipponicum",
+    "public six-run young-leaf retention screen is in progress"
+  ],
+  "prohibited_until_stage_B": [
+    "white takaoense retains DFR/ANS transcripts",
+    "anthocyanin pathway is retained in all white plants",
+    "white state is caused by regulatory suppression",
+    "coloured state is a reactivation",
+    "historical regain"
+  ]
+}

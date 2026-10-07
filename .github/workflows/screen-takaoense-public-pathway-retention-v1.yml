@@ -1,0 +1,153 @@
+name: Screen takaoense public pathway retention
+
+on:
+  pull_request:
+    paths:
+      - "data/evidence/cnip_DFR_ANS_candidates_v1.fa"
+      - "data/evidence/cnip_anthocyanin_candidate_receipt_v1.json"
+      - "data/planning/takaoense_public_six_run_pathway_panel_v1.csv"
+      - "data/contracts/takaoense_public_pathway_retention_screen_v1.json"
+      - "analysis/summarize_takaoense_public_pathway_sample_v1.py"
+      - "analysis/aggregate_takaoense_public_pathway_retention_v1.py"
+      - ".github/workflows/screen-takaoense-public-pathway-retention-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sample:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        include:
+          - {sample: FC, run: SRR35152718, morph: BP}
+          - {sample: WY, run: SRR35152717, morph: W}
+          - {sample: FB, run: SRR35152738, morph: W}
+          - {sample: TJ, run: SRR35152736, morph: BP}
+          - {sample: NH, run: SRR35152735, morph: BP}
+          - {sample: LT, run: SRR35152734, morph: W}
+    defaults:
+      run:
+        shell: bash -el {0}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: retention
+          init-shell: bash
+          cache-environment: true
+          create-args: >-
+            python=3.12
+            diamond
+            -c conda-forge
+            -c bioconda
+
+      - name: Verify frozen candidate sequences
+        run: |
+          set -euo pipefail
+          echo "f0270647968e29c756163bb5a5e339a975944964807c6c83d921df14ca30254d  data/evidence/cnip_DFR_ANS_candidates_v1.fa" | sha256sum -c -
+          grep -q '^>DFR|Cn_g13756.t1$' data/evidence/cnip_DFR_ANS_candidates_v1.fa
+          grep -q '^>ANS|Cn_g8152.t1$' data/evidence/cnip_DFR_ANS_candidates_v1.fa
+          diamond makedb --in data/evidence/cnip_DFR_ANS_candidates_v1.fa -d pathway_targets
+
+      - name: Resolve ENA FASTQ bytes
+        env:
+          RUN: ${{ matrix.run }}
+        run: |
+          set -euo pipefail
+          curl -L --fail --retry 8 --retry-all-errors --get \
+            --data-urlencode "accession=${RUN}" \
+            --data-urlencode "result=read_run" \
+            --data-urlencode "fields=run_accession,fastq_ftp,fastq_md5,fastq_bytes" \
+            --data-urlencode "format=tsv" \
+            "https://www.ebi.ac.uk/ena/portal/api/filereport" -o ena.tsv
+          python - <<'PY'
+          import csv,json,os
+          rows=list(csv.DictReader(open("ena.tsv"),delimiter="\t"))
+          if len(rows)!=1: raise SystemExit(f"expected one ENA row, got {len(rows)}")
+          r=rows[0]
+          if r["run_accession"]!=os.environ["RUN"]: raise SystemExit("run accession mismatch")
+          urls=[x for x in r["fastq_ftp"].split(";") if x]
+          md5s=[x for x in r["fastq_md5"].split(";") if x]
+          sizes=[x for x in r["fastq_bytes"].split(";") if x]
+          if not urls or len(urls)!=len(md5s) or len(urls)!=len(sizes):
+              raise SystemExit(f"incomplete FASTQ metadata: urls={len(urls)} md5={len(md5s)} sizes={len(sizes)}")
+          files=[]
+          for i,(url,md5,size) in enumerate(zip(urls,md5s,sizes),1):
+              if url.startswith("ftp://"): url="https://"+url[len("ftp://"):]
+              elif url.startswith("ftp.sra.ebi.ac.uk/"): url="https://"+url
+              elif not url.startswith("http"): raise SystemExit(f"unexpected ENA URL: {url}")
+              files.append({"index":i,"url":url,"md5":md5,"bytes":int(size)})
+          json.dump({"run":r["run_accession"],"files":files,"total_fastq_bytes":sum(x["bytes"] for x in files)},open("ena_metadata.json","w"),indent=2)
+          with open("downloads.tsv","w") as out:
+              for x in files: out.write(f'{x["index"]}\t{x["url"]}\t{x["md5"]}\t{x["bytes"]}\n')
+          print(json.dumps(json.load(open("ena_metadata.json")),indent=2))
+          PY
+
+      - name: Stream bounded target search over FASTQ files
+        run: |
+          set -euo pipefail
+          : > hits.tsv
+          while IFS=$'\t' read -r idx url md5 bytes; do
+            echo "Downloading FASTQ part $idx ($bytes compressed bytes)"
+            curl -L --fail --retry 10 --retry-all-errors "$url" -o reads.fastq.gz
+            echo "$md5  reads.fastq.gz" | md5sum -c -
+            diamond blastx -d pathway_targets -q reads.fastq.gz \
+              --sensitive --max-target-seqs 2 --evalue 1e-5 --threads 2 \
+              --outfmt 6 qseqid sseqid pident length evalue bitscore sstart send slen \
+              -o part_hits.tsv
+            cat part_hits.tsv >> hits.tsv
+            rm -f reads.fastq.gz part_hits.tsv
+          done < downloads.tsv
+          wc -l hits.tsv
+
+      - name: Summarize positive evidence
+        run: |
+          python analysis/summarize_takaoense_public_pathway_sample_v1.py \
+            --hits hits.tsv \
+            --candidates data/evidence/cnip_DFR_ANS_candidates_v1.fa \
+            --ena-metadata ena_metadata.json \
+            --sample-code ${{ matrix.sample }} \
+            --run ${{ matrix.run }} \
+            --morph ${{ matrix.morph }} \
+            --output ${{ matrix.sample }}_result.json
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: takaoense-pathway-sample-${{ matrix.sample }}-${{ github.run_id }}
+          path: |
+            ${{ matrix.sample }}_result.json
+            ena_metadata.json
+            hits.tsv
+          if-no-files-found: error
+          retention-days: 30
+
+  aggregate:
+    runs-on: ubuntu-latest
+    needs: sample
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: takaoense-pathway-sample-*-${{ github.run_id }}
+          path: collected
+          merge-multiple: true
+      - name: Aggregate six-run result
+        run: |
+          find collected -maxdepth 2 -type f -print
+          python analysis/aggregate_takaoense_public_pathway_retention_v1.py \
+            --input-dir collected --output takaoense_pathway_retention_aggregate.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: takaoense-pathway-retention-aggregate-${{ github.run_id }}
+          path: takaoense_pathway_retention_aggregate.json
+          if-no-files-found: error
+          retention-days: 30
