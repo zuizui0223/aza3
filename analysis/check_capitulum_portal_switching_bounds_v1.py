@@ -105,7 +105,7 @@ def audit(path: Path):
             raise ValueError("Duplicate or empty record_id")
         record_ids.add(record_id)
         for k in FIELDS:
-            if not row[k] and k not in {"evidence_uri"}:
+            if not row[k]:
                 raise ValueError(f"Missing required value {k}")
         if row["head_stage"] not in STAGES or row["contact_zone"] not in ZONES:
             raise ValueError("Unrecognized head stage or contact interface")
@@ -159,14 +159,45 @@ def audit(path: Path):
     }
 
 def intake_negative_tests():
-    """Check the two most dangerous event-level false conclusions."""
-    assert entry_probability(1, .7, .95, .8) > entry_probability(1, .3, .95, .8)
-    # Empty intake means unobserved, NOT 0 switch frequency.
-    import io
-    f = io.StringIO(",".join(FIELDS) + "\n")
-    assert len(list(csv.DictReader(f))) == 0
-    # An absence of filmed attempts cannot establish zero visits or zero switching.
-    return "PASS_NO_STRUCTURAL_ZERO_AND_NO_FALSE_REVERSAL"
+    """Fail closed on missing evidence, impossible blocking and incomplete routes."""
+    import tempfile
+    with tempfile.TemporaryDirectory() as d:
+        path = Path(d) / "test.csv"
+        def row(index, zone, blocked, accessed, coverage="1"):
+            return dict(zip(FIELDS, [
+                f"r{index}", "p1", "pop1", "h1", "b1", "e1", "clip1",
+                str(index), str(index), "full_anthesis", zone, "side",
+                blocked, accessed, coverage, "synthetic://fixture", "1",
+            ]))
+        def write(rows):
+            with path.open("w", newline="", encoding="utf-8") as f:
+                writer = csv.DictWriter(f, fieldnames=FIELDS)
+                writer.writeheader()
+                writer.writerows(rows)
+        first = row(1, "involucre_outer", "1", "0")
+        second = row(2, "floret_disc", "0", "1")
+        write([first, second])
+        assert audit(path)["qualified_descriptive_switches"] == 1
+        write([first, {**second, "continuous_coverage": "0"}])
+        r = audit(path)
+        assert r["qualified_descriptive_switches"] == 0
+        assert r["unknown_due_to_incomplete_coverage"] == 1
+        for corrupt in [
+            [{**first, "access_observed": "1"}, second],
+            [{**first, "evidence_uri": ""}, second],
+            [first, {**second, "attempt_index": "3"}],
+        ]:
+            write(corrupt)
+            try:
+                audit(path)
+            except ValueError:
+                pass
+            else:
+                raise AssertionError("Invalid filmed contact accepted")
+        write([])
+        assert audit(path)["status"] == "NO_REAL_ATTEMPT_SEQUENCES"
+        assert audit(path)["qualified_descriptive_switches"] is None
+    return "PASS_EVIDENCE_REVIEW_ROUTE_GAPS_AND_NO_STRUCTURAL_ZERO"
 
 def main():
     ap = argparse.ArgumentParser()
