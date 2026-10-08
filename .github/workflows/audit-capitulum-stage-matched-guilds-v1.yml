@@ -1,0 +1,48 @@
+name: Audit stage-matched Cirsium guild routes v1
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "analysis/audit_capitulum_stage_matched_guild_routes_v1.py"
+      - "analysis/validate_capitulum_video_effort_denominator_v1.py"
+      - "data/contracts/capitulum_video_effort_denominator_v1.json"
+      - "data/intake/capitulum_video_effort_denominator_v1.csv"
+      - "data/intake/capitulum_guild_access_event_ledger_v1.csv"
+      - "docs/CAPITULUM_PHENOLOGY_MATCHED_GUILD_ACCESS_FALSIFICATION_V1.md"
+      - ".github/workflows/audit-capitulum-stage-matched-guilds-v1.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  checked-video-and-simpson-counterexample:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Syntax, exact current intake and compositional false-separation tests
+        run: |
+          python -m py_compile analysis/audit_capitulum_stage_matched_guild_routes_v1.py
+          python analysis/audit_capitulum_stage_matched_guild_routes_v1.py \
+            --out work/capitulum_stage_matched_route_v1.json
+      - name: Reject false adaptive conclusions without stage-matched observations
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open("work/capitulum_stage_matched_route_v1.json"))
+          t=r["synthetic_tests"]
+          actual=r["real_data"]
+          assert t["status"]=="PASS_SYNTHETIC_STAGE_SIMPS0N_FIREWALL"
+          assert abs(t["example_pooled_overlap"]-.2)<1e-12
+          assert abs(t["example_within_stage_overlap"]-1.0)<1e-12
+          assert t["real_insect_data"]==0
+          assert actual["status"]=="NO_REAL_CONTINUOUS_BOUTS"
+          assert actual["stage_matched_equal_stratum_overlap"] is None
+          assert actual["naive_pooled_overlap"] is None
+          assert actual["ecological_claim"]=="NOT_IDENTIFIABLE"
+          print("PASS: same routes within every stage can appear separated after pooling")
+          PY
