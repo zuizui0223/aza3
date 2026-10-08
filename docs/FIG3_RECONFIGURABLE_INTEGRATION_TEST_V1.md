@@ -193,6 +193,14 @@ Discordance among arbitrary genomic windows is expected because of recombination
 
 Mechanistic support requires discordant genomic states to be the same states that independently predict the admitted focal constructs, with matched-window controls for callability, allele-frequency/heterozygosity and LD/recombination context.
 
+## E2 evidence receipt: required before scoring R_STRONG
+
+A favourable E1 R-over-M score and three correctly scored E3 mosaics are **not sufficient** for FIG3_R_STRONG when the independent phenotype-predictive E2 genomic-state separability test is missing. The scorer accepts an optional `--e2-receipt PATH.json`; if this receipt is not provided or its predeclared control flags are incomplete, a positive R result is reported as FIG3_R_PARTIAL.
+
+Receipt template: `data/templates/fig3_e2_separability_evidence_receipt_v1.json`. Required evidence: frozen TRAIN genomic block pool, trait-predictive states across at least two admitted multi-trait modules, matched-window MAF/LD/callability controls, ancestry and cytotype controls, reference-substitution sensitivity, and independent heldout phenotype prediction. The receipt must cite an existing source artifact whose SHA256 is checked, and match the frozen prediction-registry hash before phenotype unblinding.
+
+The receipt does not substitute for a review of the raw genotype analyses. It cannot establish historical evolution of module boundaries or adaptation; these are additional history/fitness layers. See `docs/FIG3_CAUSAL_CLAIM_AND_NOVELTY_GATE_V1.md`.
+
 ## Fig.4 kill-shot E3 — prospective natural mosaics
 
 Before opening VALIDATION phenotype labels, register validation individuals whose frozen colour and orientation genomic scores predict a discordant combination.
