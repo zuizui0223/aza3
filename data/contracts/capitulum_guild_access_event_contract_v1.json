@@ -65,6 +65,7 @@
     "video_clip_id",
     "time_from_bout_start_s",
     "phenological_stage",
+    "reproductive_sex_state",
     "visitor_taxon_label",
     "visitor_taxon_id",
     "behavioral_role",
@@ -141,7 +142,14 @@
       "1",
       "NA"
     ],
-    "sex_age_and_taxonomy": "Taxon identity can be unresolved. Behavioral role requires evidence, not insect order or GloBI interactionType."
+    "sex_age_and_taxonomy": "Taxon identity can be unresolved. Behavioral role requires evidence, not insect order or GloBI interactionType.",
+    "reproductive_sex_state": [
+      "female_pistillate",
+      "male_staminate",
+      "hermaphroditic",
+      "functionally_mixed",
+      "not_determined"
+    ]
   },
   "rules": [
     "approached=1 on all valid episode rows; absence requires the video-effort ledger, never inferred from no rows.",
@@ -154,7 +162,8 @@
     "Each episode has unique record_id and a stable head, bout, and clip; allow co-observed florivory without imposing insect-wide fixed guild value.",
     "World-based route refers to measured gravity frame, not head-axis frame; when field video cannot disambiguate, label undetermined.",
     "Camera detection effort must be blinded/standardized across treatments; event-triggered clips cannot estimate number of approaches without camera false-negative validation.",
-    "One row per approach episode is not an independent plant or head replication; randomization and analysis unit must remain plant or head under confirmed experimental design."
+    "One row per approach episode is not an independent plant or head replication; randomization and analysis unit must remain plant or head under confirmed experimental design.",
+    "Flower-head reproductive sex matters: Cirsium arvense is imperfectly dioecious and male heads and female heads can have distinct shapes, pollen service and seed-production endpoints. Record observed head sex, or not_determined; do not pool male-head viable achene endpoints with female-heads."
   ],
   "eligible_estimands": [
     {
@@ -208,6 +217,10 @@
     {
       "doi": "10.1139/b99-182",
       "result": "C. purpuratum plant-level flower production can raise predispersal seed predation; not head thorn selection"
+    },
+    {
+      "doi": "10.1111/j.1365-2745.2010.01678.x",
+      "result": "Cirsium arvense staminate versus pistillate heads can have different shapes, flower physiology and viable-achene outcomes; focal head sex must be known before sex-specific fitness inference."
     }
   ],
   "claim_ceiling": "OBSERVATION_CONTRACT_NOT_DATASET: no guild effect, fitness interaction, correlated evolution or adaptation inferred."
