@@ -1,0 +1,214 @@
+{
+  "version": "capitulum_guild_access_event_contract_v1",
+  "date": "2026-10-08",
+  "purpose": "Track Cirsium head-level attraction versus accessibility versus reproductive service or damage, per standardized video bout; companion to EAzami Aim2 ledgers, NOT a replacement.",
+  "authority": "No field intervention authorization; observation-only specification pending local consent/site/rights checks.",
+  "source_ledgers": [
+    {
+      "repository": "zuizui0223/EAzami",
+      "path": "sampling/aim2_capitulum_observation_bout_ledger_v1.csv",
+      "key": [
+        "individual_id",
+        "population_id",
+        "capitulum_id",
+        "observation_bout_id"
+      ],
+      "denominator": "equal verified observation minutes and detection/camera-effort coverage"
+    },
+    {
+      "repository": "zuizui0223/EAzami",
+      "path": "sampling/aim2_capitulum_field_ledger_v1.csv",
+      "key": [
+        "individual_id",
+        "population_id",
+        "capitulum_id"
+      ],
+      "outcome": "final filled/viable achenes linked to the same head"
+    },
+    {
+      "repository": "zuizui0223/EAzami",
+      "path": "sampling/aim2_plant_display_predation_ledger_v1.csv",
+      "key": [
+        "individual_id",
+        "population_id",
+        "phenology_census_id"
+      ],
+      "context": "whole-plant reproductive display, never use as head-level replicate"
+    }
+  ],
+  "unit": "One clearly distinguishable organism approach episode at one head; if same insect reapproaches within one bout, treat as repeated bouts unless identity certain.",
+  "head_traits_from_existing_field_ledger": [
+    "natural_orientation_deg",
+    "orientation_achieved_deg",
+    "capitulum_diameter_mm",
+    "involucre_spread_deg",
+    "spine_length_mm",
+    "spine_direction_deg",
+    "stickiness_score",
+    "visible_colour_standard",
+    "colour_class",
+    "uv_reflectance_file"
+  ],
+  "additional_head_trait_requirements": [
+    "true_spine_rigidity_calibrated",
+    "minimum_phyllary_access_gap_mm",
+    "head_orientation_measured_against_gravity",
+    "bud_anthesis_postanthesis_fruit repeated natural head phenotype"
+  ],
+  "required_fields": [
+    "record_id",
+    "individual_id",
+    "population_id",
+    "capitulum_id",
+    "observation_bout_id",
+    "approach_episode_id",
+    "video_clip_id",
+    "time_from_bout_start_s",
+    "phenological_stage",
+    "visitor_taxon_label",
+    "visitor_taxon_id",
+    "behavioral_role",
+    "role_evidence",
+    "entry_route_world",
+    "entry_route_head",
+    "approached",
+    "landed_or_hover_access",
+    "reproductive_zone_reached",
+    "anther_stigma_contact_observed",
+    "pollen_deposition_assay",
+    "oviposition_confirmed",
+    "predator_or_parasitoid_search_observed",
+    "linked_host_id",
+    "host_attacked_confirmed",
+    "host_killed_before_seed_damage",
+    "seed_damage_timing_assessed",
+    "seeds_saved_inferred",
+    "evidence_uri",
+    "scorer_blinded_to_head_traits"
+  ],
+  "allowed": {
+    "phenological_stage": [
+      "bud",
+      "pre_anthesis",
+      "early_anthesis",
+      "full_anthesis",
+      "late_anthesis",
+      "postanthesis",
+      "fruit_development",
+      "mature_head"
+    ],
+    "behavioral_role": [
+      "floral_forager",
+      "nectar_thief",
+      "pollen_consumer",
+      "flower_tissue_feeder",
+      "ovipositing_seed_feeder",
+      "enemy_parasitoid",
+      "enemy_predator",
+      "stem_crawler",
+      "unknown"
+    ],
+    "role_evidence": [
+      "not_assessed",
+      "video_behavior_confirmed",
+      "egg_scar_and_video",
+      "pollen_deposition_measured",
+      "emergence_rearing_verified",
+      "expert_source_verified"
+    ],
+    "entry_route_world": [
+      "above",
+      "side",
+      "below",
+      "stem_crawl",
+      "undetermined"
+    ],
+    "entry_route_head": [
+      "disc_facing",
+      "involucre_outer",
+      "involucre_gap",
+      "receptacle_base",
+      "stem_entry",
+      "undetermined"
+    ],
+    "pollen_deposition_assay": [
+      "not_assessed",
+      "negative",
+      "positive"
+    ],
+    "binary": [
+      "0",
+      "1",
+      "NA"
+    ],
+    "sex_age_and_taxonomy": "Taxon identity can be unresolved. Behavioral role requires evidence, not insect order or GloBI interactionType."
+  },
+  "rules": [
+    "approached=1 on all valid episode rows; absence requires the video-effort ledger, never inferred from no rows.",
+    "Anther/stigma contact is reproductive-structure touch, not evidence of pollen deposition or viable seed set.",
+    "A positive pollen-deposition assay requires actual contact and a traceable independent assay.",
+    "Confirmed oviposition must cite egg scars or rearing or video-confirmed ovipositor insertion; mere landing is not enough.",
+    "An enemy with observed search but no host identity cannot be recorded as species-specific parasitoid success.",
+    "host_killed_before_seed_damage may only be 1 when linked_host_id, host_attacked_confirmed=1 and seed_damage_timing_assessed=1. Otherwise record NA (unknown), not 0.",
+    "seeds_saved_inferred is an interpretation and may never be 1 from event observation alone; requires independent matched viability/damage control and causal attribution.",
+    "Each episode has unique record_id and a stable head, bout, and clip; allow co-observed florivory without imposing insect-wide fixed guild value.",
+    "World-based route refers to measured gravity frame, not head-axis frame; when field video cannot disambiguate, label undetermined.",
+    "Camera detection effort must be blinded/standardized across treatments; event-triggered clips cannot estimate number of approaches without camera false-negative validation.",
+    "One row per approach episode is not an independent plant or head replication; randomization and analysis unit must remain plant or head under confirmed experimental design."
+  ],
+  "eligible_estimands": [
+    {
+      "endpoint": "P(landed_or_hover_access | approached)",
+      "interpretation": "physical initial reach given observed approach",
+      "source": "event table conditional on same verified effort"
+    },
+    {
+      "endpoint": "P(reproductive_zone_reached | approached)",
+      "interpretation": "selective bract/thorn/guild routing, not one pooled insect effect"
+    },
+    {
+      "endpoint": "P(anther_stigma_contact_observed | reproductive_zone_reached)",
+      "interpretation": "physical floral service route, not confirmed seed set"
+    },
+    {
+      "endpoint": "P(oviposition_confirmed | approached)",
+      "interpretation": "early antagonist access only if adult oviposition stage sampled"
+    },
+    {
+      "endpoint": "P(host_attacked_confirmed | parasitoid_search_observed)",
+      "interpretation": "attack conditional on observed searching, not prevented seed damage"
+    },
+    {
+      "endpoint": "filled_achenes_per_head",
+      "interpretation": "outcome from head ledger; reconcile pollen, oviposition, early parasitoid and abiotic wetting separately"
+    }
+  ],
+  "missingness": "No events or data gaps must be distinguished via linked observation_bout_id, duration, camera error, phenology and weather. A missing guild is not guild absence.",
+  "statistical_nulls": [
+    "VISIBILITY_ONLY: pigment/UV affects arrivals but not entry|arrival when true outer architecture held fixed.",
+    "FILTER_ONLY: accessible armature/spines affect entry|arrival but not arrivals per exposure-minute.",
+    "FUNCTIONAL_COMPLEMENT: visual signalling plus barrier improves per-head effective pollination and viable achenes more than either alone.",
+    "FUNCTIONAL_SUBSTITUTION: independent outer geometries obstruct the same antagonist pathway to a similar degree, with negligible marginal benefit of adding the second.",
+    "ENEMY_SHIELDING: barrier suppresses early host-killing parasitoid attack more than initial egg establishment, increasing irreversible seed loss.",
+    "ABIOTIC_ALT: head orientation alters rain/UV/pollen viability without altering insect route-based access."
+  ],
+  "critical_prior_art": [
+    {
+      "doi": "10.1111/brv.12754",
+      "result": "trade-off mitigation and floral filters known; requires new Cirsium-specific causal demonstration"
+    },
+    {
+      "doi": "10.22543/0090-0222.2188",
+      "result": "C. discolor pollinators did not contact sticky traps, several seed predators evaded; obstacle presence does not imply realized tradeoff"
+    },
+    {
+      "doi": "10.2307/2446309",
+      "result": "C. purpuratum plant-level floral display increase, per-head visitation near constant; distinguish plant from head"
+    },
+    {
+      "doi": "10.1139/b99-182",
+      "result": "C. purpuratum plant-level flower production can raise predispersal seed predation; not head thorn selection"
+    }
+  ],
+  "claim_ceiling": "OBSERVATION_CONTRACT_NOT_DATASET: no guild effect, fitness interaction, correlated evolution or adaptation inferred."
+}
