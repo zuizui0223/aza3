@@ -42,8 +42,20 @@ CATS = {
     "dispersalvectorof": "dispersal_claim",
     "hasdispersalvector": "dispersal_claim",
 }
+ROLE_EXPECTED = {
+    "pollinates":"target", "pollinatedby":"source",
+    "visitsflowersof":"target", "flowersvisitedby":"source",
+    "eats":"target", "eatenby":"source",
+    "preyson":"target", "preyeduponby":"source",
+    "parasiteof":"target", "hasparasite":"source",
+    "hasendoparasite":"source", "endoparasiteof":"target",
+    "ectoparasiteof":"target", "hasectoparasite":"source",
+    "pathogenof":"target", "haspathogen":"source",
+    "hostof":"source", "hashost":"target",
+}
 OUT_COLS = [
     "record_key", "focal_taxon", "partner_taxon", "partner_species_rank_candidate",
+    "relation_direction_status",
     "focal_position", "interaction_type", "interaction_category",
     "source_taxon", "target_taxon", "source_taxon_id", "target_taxon_id",
     "study_title", "study_url", "study_doi", "study_citation",
@@ -109,6 +121,15 @@ def parse_row(row, side):
     if not partner:
         return None
     pos = "source" if s else "target"
+    expected_pos = ROLE_EXPECTED.get(typ)
+    if typ in ("parasitoidof", "hasparasitoid"):
+        direction_status = "DIRECT_PLANT_PARASITOID_RELATION_REQUIRES_SOURCE_REVIEW"
+    elif expected_pos and expected_pos != pos:
+        direction_status = "REVIEW_INVERTED_SEMANTIC_DIRECTION"
+    elif expected_pos:
+        direction_status = "DIRECTION_COMPATIBLE_NOT_FUNCTION_VERIFIED"
+    else:
+        direction_status = "NO_STRICT_DIRECTION_TEST"
     # Identity is occurrence/provenance oriented, not collapsed to one species edge.
     identity = (source_id or source, target_id or target, typ,
                 study_id, study_url, doi, dataset_doi, citation, src_citation, 
@@ -118,7 +139,7 @@ def parse_row(row, side):
     return dict(
         record_key=key, focal_taxon=focal, partner_taxon=partner,
         partner_species_rank_candidate=str(bool(SPECIES.match(partner))).lower(),
-        focal_position=pos,
+        focal_position=pos, relation_direction_status=direction_status,
         interaction_type=interaction, interaction_category=CATS.get(typ, "other_relation"),
         source_taxon=source, target_taxon=target,
         source_taxon_id=source_id, target_taxon_id=target_id,
@@ -233,6 +254,8 @@ def run(args):
         marker = r["source_namespace"] or r["study_source_citation"] or r["study_url"] or r["study_doi"]
         if marker:
             sources[cat].add(marker)
+    direction_status_counts = dict(collections.Counter(
+        r["relation_direction_status"] for r in records.values()).most_common())
     groups = []
     for cat in sorted(per_cat):
         groups.append({
@@ -277,6 +300,7 @@ def run(args):
         "distinct_focal_taxon_strings":len({r["focal_taxon"] for r in records.values()}),
         "unique_focal_partner_relation_provenance_edges":len(edges),
         "relation_type_counts":dict(per_type.most_common()),
+        "relation_direction_status_counts":direction_status_counts,
         "categories":groups,
         "csv_sha256":hashlib.sha256(datafile.read_bytes()).hexdigest(),
         "edge_csv_sha256":hashlib.sha256(edgefile.read_bytes()).hexdigest(),
@@ -297,7 +321,7 @@ def run(args):
         "status","terminal_by_query","query_errors","raw_rows_retrieved",
         "deduplicated_observation_rows","distinct_partner_taxon_strings",
         "partner_species_rank_name_candidates","unique_focal_partner_relation_provenance_edges",
-        "relation_type_counts","categories")},ensure_ascii=False,indent=2))
+        "relation_type_counts","relation_direction_status_counts","categories")},ensure_ascii=False,indent=2))
     print("END_CIRSIUM_GLOBI_SUMMARY",flush=True)
     if failures or not records:
         raise SystemExit(2)
