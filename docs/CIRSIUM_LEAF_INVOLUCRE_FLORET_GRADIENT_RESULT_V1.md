@@ -52,6 +52,34 @@ Summary:
 
 The purple *takaoense* morph is a **counterexample to universal leaf > whole-capitulum length variability**; head CV actually exceeds leaf CV. Yet floret CV remains low. In addition, the same paper documents visible between-lineage differences in floret length and colour: **low within-group variability is not a statement that florets never evolve.**
 
+## A second independently measured feature: where do organ lengths covary?
+
+Because the 2023 source reports the **three dimensions in the same plant**, not just species means, we can also ask whether the *quantitative developmental/size covariance structure* changes at the boundary between leaves and the reproductive organ.
+
+On the 114 parental plants, center log leaf length, log involucre length and log corolla length inside **each of the six species × sex strata** and pool the individual residuals:
+
+| Observed residual size relationship | Pearson r | conditional 95% plant-bootstrap interval |
+|---|---:|---:|
+| Leaf length ↔ involucre length | **0.157** | -0.022 to 0.330 |
+| Involucre length ↔ corolla length | **0.670** | 0.595 to 0.743 |
+| Leaf length ↔ corolla length | **0.053** | -0.141 to 0.244 |
+
+The involucre–corolla correlation exceeds the leaf–involucre correlation by **0.513** (conditional 95% bootstrap interval **0.329–0.709**). This direction also persists if any one of the three species is omitted: each leave-one-species-out result has the reproductive-head relationship much stronger than the vegetative-reproductive relationship.
+
+**Allometry challenge:** a large head could simply have a large involucre and corolla. Covariate-adjusted correlations (all variables are group-centred log values):
+
+| Relationship | Unadjusted | Adjusted for capitulum width | Additionally adjusted for upper-3-leaf size and capitulum number |
+|---|---:|---:|---:|
+| Leaf ↔ involucre | 0.157 | 0.213 | **0.258** |
+| Involucre ↔ corolla | 0.670 | 0.557 | **0.557** |
+| Leaf ↔ corolla | 0.053 | 0.090 | **0.169** |
+
+In the fullest sensitivity the observed difference is **0.299** with conditional bootstrap 95% interval **0.101–0.540**, positive in 99.8% of 3,000 draws. Again this is descriptive, **not a causal adjustment**: the head size covariate may share developmental causes with both outcomes, and controlling for it can over-adjust or induce collider bias.
+
+**Bounded biological result:** leaf dimensions show much weaker *within-individual* phenotypic integration with reproductive dimensions than do the involucre and corolla in these species. This is a concrete quantitative **candidate module boundary**, not proof of a genetic or developmental unit. In particular, within-head size integration **can coexist** with asynchronous historical changes in head orientation, phyllary posture and stickiness established by EAzami; the integration matrices and historical state changes are different estimands.
+
+Machine-readable receipt: `data/evidence/cirsium_leaf_involucre_floret_variability_result_v1.json` → `phenotypic_covariance_2023`. Independently reproducible `analysis/estimate_cirsium_leaf_head_covariance_v1.py` (requires the publisher XLSX and `artifact_tool`).
+
 ## Actual Azami reuse and its boundary
 
 `zuizui0223/azami` already measures 22 visual endpoints and nine biological constructs. On the frozen common cohort (1,734 photos/heads, 42 taxa), an image-based **angle×head elongation** among-taxon RV is **0.339617**, but **angle×bract projection prominence** among-taxon RV is **0.003174**. Some capitulum trait combinations are integrated, others nearly independent on this image scale. Neither RV is a signed evolutionary transition, direct spine measurement, or selection coefficient.
