@@ -111,17 +111,26 @@ def run(raw):
         ("phyllary_x_stickiness",("phyllary_x_stickiness",)),
     ]:
         b=bn[label];t=tn[label]
+        positive_across_layers=bool(
+            b["rho"]>0
+            and b["one_sided_stratified_p"]<0.05
+            and t["q05"]>0
+            and t["positive_fraction"]>=0.95
+        )
         crit[label]={
             "branch_length_aware_rho":b["rho"],
             "branch_length_aware_stratified_one_sided_p":b["one_sided_stratified_p"],
             "topology_only_median_rho":t["median_rho"],
+            "topology_only_q05":t["q05"],
             "topology_only_positive_fraction":t["positive_fraction"],
-            "robustly_positive_both_layers":bool(b["rho"]>0 and t["median_rho"]>0),
+            "robustly_positive_both_layers":positive_across_layers,
         }
     # Refuse to report the fragile orientation x stickiness branch-length p
     # as an unqualified coevolution discovery.
-    if crit["orientation_x_stickiness"]["robustly_positive_both_layers"]:
+    if any(v["robustly_positive_both_layers"] for v in crit.values()):
         raise ValueError("CRITICAL_SENSITIVITY_DECISION_DRIFT")
+    if "No module pair is consistently positive" not in overlaps["decision"]:
+        raise ValueError("EAZAMI_CONCLUSION_DRIFT")
     result={
         "version":"capitulum_functional_module_empirical_boundary_v1",
         "status_date":"2026-10-08",
