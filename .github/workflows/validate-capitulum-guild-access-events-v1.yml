@@ -10,6 +10,8 @@ on:
       - "data/intake/capitulum_video_effort_denominator_v1.csv"
       - "analysis/validate_capitulum_video_effort_denominator_v1.py"
       - "analysis/summarize_capitulum_guild_route_overlap_v1.py"
+      - "analysis/derive_capitulum_enemy_shielding_threshold_v1.py"
+      - "data/evidence/capitulum_herbivore_entry_portal_literature_v1.json"
       - ".github/workflows/validate-capitulum-guild-access-events-v1.yml"
   workflow_dispatch:
 
@@ -41,6 +43,7 @@ jobs:
           python -m py_compile analysis/validate_capitulum_guild_access_event_ledger_v1.py
           python -m py_compile analysis/validate_capitulum_video_effort_denominator_v1.py
           python -m py_compile analysis/summarize_capitulum_guild_route_overlap_v1.py
+          python -m py_compile analysis/derive_capitulum_enemy_shielding_threshold_v1.py
           python analysis/validate_capitulum_guild_access_event_ledger_v1.py \
             --contract data/contracts/capitulum_guild_access_event_contract_v1.json \
             --events data/intake/capitulum_guild_access_event_ledger_v1.csv \
@@ -87,6 +90,38 @@ jobs:
           assert j["status"]=="NO_REAL_VIDEO_EVENTS_OR_EFFORT"
           assert j["synthetic_tests"]["n_synthetic_tests"]==3
           print("PASS: no spurious guild selectivity or route overlap from absent field data")
+          PY
+      - name: Distinguish early damage prevention from late parasitoid emergence
+        run: |
+          python analysis/derive_capitulum_enemy_shielding_threshold_v1.py \
+            --out work/head_events/enemy_shielding_threshold.json
+          python - <<'PY'
+          import json
+          j=json.load(open("work/head_events/enemy_shielding_threshold.json"))
+          assert j["empirical_status"]=="THEORETICAL_TEST_ONLY_NOT_OBSERVED_TRAIT_ADAPTATION"
+          assert j["synthetic_test_receipt"]["status"]=="PASS_CONDITIONAL_IDENTITY"
+          assert j["synthetic_test_receipt"]["not_a_biological_fitness_estimate"] is True
+          assert j["illustrative_scenarios"][0]["increased_damage"] is True
+          assert j["illustrative_scenarios"][1]["increased_damage"] is False
+          print("PASS: conditional parasite enemy-shielding threshold, not published thistle effect")
+          PY
+      - name: Enforce taxon/host-stage source specificity and alternative host prior art
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          src=json.loads(Path("data/evidence/capitulum_herbivore_entry_portal_literature_v1.json").read_text())
+          cited=src["original_sources"]
+          bud=[x for x in cited if x["plant"]=="Cirsium oleraceum" and
+              "10.1673/031.008.6601" in x["source"]]
+          assert len(bud)==1 and "bud" in bud[0]["phenophase"]
+          assert "leaflets" in bud[0]["route"] and "NOT" not in bud[0]["status"]
+          source=[x for x in cited if x["plant"]=="Cirsium palustre" and
+                  "GENERIC_SYSTEM_DESCRIPTION" in x["status"]]
+          assert len(source)==1
+          assert "not direct species-resolved observation" in source[0]["route"] or
+                 "NOT direct species-resolved observation" in source[0]["route"]
+          print("PASS: open-floret assemblage narration cannot overwrite direct young-bud piercing study")
           PY
       - name: Retain source schema and validation receipts
         if: always()
