@@ -9,6 +9,7 @@ on:
       - "data/contracts/capitulum_video_effort_denominator_v1.json"
       - "data/intake/capitulum_video_effort_denominator_v1.csv"
       - "analysis/validate_capitulum_video_effort_denominator_v1.py"
+      - "analysis/summarize_capitulum_guild_route_overlap_v1.py"
       - ".github/workflows/validate-capitulum-guild-access-events-v1.yml"
   workflow_dispatch:
 
@@ -39,6 +40,7 @@ jobs:
         run: |
           python -m py_compile analysis/validate_capitulum_guild_access_event_ledger_v1.py
           python -m py_compile analysis/validate_capitulum_video_effort_denominator_v1.py
+          python -m py_compile analysis/summarize_capitulum_guild_route_overlap_v1.py
           python analysis/validate_capitulum_guild_access_event_ledger_v1.py \
             --contract data/contracts/capitulum_guild_access_event_contract_v1.json \
             --events data/intake/capitulum_guild_access_event_ledger_v1.csv \
@@ -70,6 +72,21 @@ jobs:
           assert d["observed_raw_arrival_rate_per_minute"] is None
           assert d["synthetic_tests"]["negative_cases"]>=11
           print("PASS: verified zero != missing/bad camera, denominator not fabricated")
+          PY
+      - name: Check pre-entry guild overlap requires real continuous video and replicate heads
+        run: |
+          python analysis/summarize_capitulum_guild_route_overlap_v1.py \
+            --contract data/contracts/capitulum_video_effort_denominator_v1.json \
+            --effort data/intake/capitulum_video_effort_denominator_v1.csv \
+            --events data/intake/capitulum_guild_access_event_ledger_v1.csv \
+            --self-test --out work/head_events/route_overlap.json
+          python - <<'PY'
+          import json
+          j=json.load(open("work/head_events/route_overlap.json"))
+          assert j["conditional_route_overlap"] is None
+          assert j["status"]=="NO_REAL_VIDEO_EVENTS_OR_EFFORT"
+          assert j["synthetic_tests"]["n_synthetic_tests"]==3
+          print("PASS: no spurious guild selectivity or route overlap from absent field data")
           PY
       - name: Retain source schema and validation receipts
         if: always()
