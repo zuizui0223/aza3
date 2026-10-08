@@ -1,0 +1,203 @@
+{
+  "version": "capitulum_module_cross_scale_robustness_v1",
+  "date": "2026-10-08",
+  "scientific_status": "REAL_IMAGE_DATA_ASSOCIATIONS__NO_CAUSAL_BIOTIC_FUNCTION_OR_ADAPTIVE_EVOLUTION",
+  "upstream": {
+    "repository": "zuizui0223/azami",
+    "traits_zip_artifact_id": 9612943217,
+    "traits_zip_sha256": "101e996b638996a0c5ae79d358bf51293c3585f0e84c4a961b91dcbedf96211e",
+    "environment_zip_artifact_id": 9633419268,
+    "environment_zip_sha256": "d7c0c466f55b67695d06ae46c21a6452dbe6cfd92a52db8042caa200429e97f4",
+    "tree_artifact_id": 8227254443,
+    "tree_zip_sha256": "499061e7a49f9455cf8c367fe26e313b7e0e33b2280d2354717e61a90ea8c6bc",
+    "code_path": "analysis/reconstruct_azami_head_functional_contrasts_v1.py"
+  },
+  "design": {
+    "common_observations": 1734,
+    "n_taxa": 42,
+    "constructs": 9,
+    "pairs": 36,
+    "complete_endpoints": 18,
+    "azami_36pair_exact_replay_max_abs_difference": 1.6653345369377348e-16,
+    "bootstrap_taxa": 3000,
+    "label_permutations_per_edge": 9999,
+    "fdr_method": "BH across all 36 taxon-level association p values",
+    "statistic": "RV unsigned, signed Pearson for independently scalar constructs; matched all nine constructs on identical observations/taxa",
+    "environmental_photo_sensitivity_covariates": [
+      "latitude",
+      "chelsa_bio12",
+      "chelsa_rsds_mean",
+      "min_dimension",
+      "sharpness",
+      "mask_quality"
+    ]
+  },
+  "observed_summary": {
+    "n_among_associations_greater_than_within": 33,
+    "n_pairwise_among_associations_BH_q_lt_005": 7,
+    "interpretation": "Association more exceptional than independent shuffling of observed taxon labels, not a phylogenetic random-evolution or adaptive selection test."
+  },
+  "target_pairs": [
+    {
+      "left": "presentation_angle",
+      "right": "head_elongation",
+      "within_rv": 0.0023426014339578446,
+      "among_rv": 0.33961701653570653,
+      "delta": 0.3372744151017488,
+      "delta_taxon_boot95": [
+        0.04380003231562306,
+        0.5766435936560108
+      ],
+      "BH36_q": 0.0012,
+      "among_rv_taxon_boot95": [
+        0.05270150723951865,
+        0.579761111659585
+      ],
+      "signed_taxon_pearson_r": -0.5827666913402879,
+      "signed_taxon_boot95": [
+        -0.7614204343896278,
+        -0.2295671038043687
+      ],
+      "partial_signed_r_after_photo_geo_climate": -0.4046880610327097,
+      "partial_r_boot95": [
+        -0.6219491327901329,
+        -0.05738270910564191
+      ],
+      "partial_r_residual_perm_p": 0.0105,
+      "jackknife_among_min": 0.20877836116729018,
+      "jackknife_among_max": 0.38012415838399405,
+      "interpretation": "Photo presentation axis vs head elongation coupled at taxon scale; biomechanical and camera-pose hypotheses both remain; no head-centred direct angle measurement."
+    },
+    {
+      "left": "floral_chroma",
+      "right": "projection_prominence",
+      "within_rv": 0.00016633527692881575,
+      "among_rv": 0.3345155786072054,
+      "delta": 0.33434924333027655,
+      "delta_taxon_boot95": [
+        0.09272999160647649,
+        0.5789173317978815
+      ],
+      "BH36_q": 0.0012,
+      "among_rv_taxon_boot95": [
+        0.09593946254966944,
+        0.582167266042443
+      ],
+      "signed_taxon_pearson_r": 0.578373217401364,
+      "signed_taxon_boot95": [
+        0.30974095937502943,
+        0.7629988636967091
+      ],
+      "partial_signed_r_after_photo_geo_climate": 0.4380766173653004,
+      "partial_r_boot95": [
+        0.12405160215212561,
+        0.6902123737138293
+      ],
+      "partial_r_residual_perm_p": 0.003,
+      "jackknife_among_min": 0.26225752487772735,
+      "jackknife_among_max": 0.37799019240917775,
+      "interpretation": "More saturated visible corolla colour co-occurs with greater 2D involucral outline projections; not anatomical thorns, protective effect, or herbivore–pollinator compensatory adaptation."
+    },
+    {
+      "left": "presentation_angle",
+      "right": "projection_prominence",
+      "within_rv": 0.0027977851724397852,
+      "among_rv": 0.003174307362952781,
+      "delta": 0.00037652219051299146,
+      "delta_taxon_boot95": [
+        -0.00950541883361544,
+        0.11879178833353805
+      ],
+      "BH36_q": 0.8133882352941176,
+      "among_rv_taxon_boot95": [
+        0.000033668758384409034,
+        0.12318270029663793
+      ],
+      "signed_taxon_pearson_r": 0.056340991852760085,
+      "signed_taxon_boot95": [
+        -0.2836171742024567,
+        0.3331731461365634
+      ],
+      "partial_signed_r_after_photo_geo_climate": -0.025332989691090872,
+      "partial_r_boot95": [
+        -0.3239105256002408,
+        0.25517728987561206
+      ],
+      "partial_r_residual_perm_p": 0.8708,
+      "interpretation": "No detectable pooled association; this cannot establish trait independence, functional substitution or lack of correlational selection."
+    },
+    {
+      "left": "projection_prominence",
+      "right": "projection_pattern",
+      "within_rv": 0.3507383835026685,
+      "among_rv": 0.09993045060779959,
+      "delta": -0.2508079328948684,
+      "delta_taxon_boot95": [
+        -0.3597482755025816,
+        -0.058629180048745774
+      ],
+      "BH36_q": 0.144,
+      "interpretation": "At observation-within-taxon scale, two image-silhouette measurements from the same involucral contour are more integrated than across taxon medians; may reflect common measurement, not function."
+    },
+    {
+      "left": "presentation_angle",
+      "right": "involucre_form",
+      "within_rv": 0.007872339265761976,
+      "among_rv": 0.09905046455367404,
+      "delta": 0.09117812528791207,
+      "delta_taxon_boot95": [
+        -0.004822401323612747,
+        0.3095970645151958
+      ],
+      "BH36_q": 0.16726153846153846,
+      "interpretation": "Heterogeneous 3D image ratios do not support significant head-orientation/involucre integration under taxon shuffled null."
+    }
+  ],
+  "exploratory_grafted_phylogeny_sensitivity": {
+    "scenarios": 52,
+    "original_tips": 216,
+    "tree_nonnegative_and_root_polytomy": true,
+    "common_42_taxa_root_attached": 17,
+    "common_42_taxa_nonroot": 25,
+    "meaning": "52 alternative trees include 50 randomized grafts; NOT 52 independent evolved Cirsium phylogenies; 17/42 focal taxa are direct children of a large polytomy in scenario 1/3.",
+    "methods": "Experimental secondary sensitivity: GLS Brownian covariance from rooted mega-tree, fixed lambda 1 versus per-pair ML lambda, with/without six covariates. Not a primary valid within-genus reconstructed genealogy; phylogenetic P not proof of selection.",
+    "unadjusted_ML_lambda_model_p_lt05_count_52": {
+      "presentation_angle__head_elongation": 52,
+      "floral_chroma__projection_prominence": 52,
+      "presentation_angle__projection_prominence": 0
+    },
+    "fixed_lambda1_p_lt05_count_52": {
+      "presentation_angle__head_elongation": 51,
+      "floral_chroma__projection_prominence": 50,
+      "presentation_angle__projection_prominence": 50
+    },
+    "decision": "The apparent orientation×projection significance under enforced lambda=1 reverses under lambda optimized from data; do not promote this as phylogenetic coupling. Other two pairs are model-consistent but tree grafting and trait sampling prevent correlated-evolution inference."
+  },
+  "biological_function_models": [
+    {
+      "state": "conspicuous_armoured",
+      "pair": "floral_chroma × projection_prominence",
+      "test": "if real spine length, armature and calibrated floral visible/UV signal jointly increase legitimate pollen contact while decreasing external herbivore successful oviposition without excluding parasitoids, potential complementary guild-selective trait association",
+      "rivals": "pigment chemistry/UV/heat; camera colour balance; shared ancestry/ecology; projected roughness not spine"
+    },
+    {
+      "state": "presentation_package",
+      "pair": "presentation_angle × head_elongation",
+      "test": "orientation×head shape modifies rain-wetting and diurnal effective pollen contact and enemy approach geometry on same head",
+      "rivals": "camera pose, flower phenophase, geography, mechanical head angle"
+    },
+    {
+      "state": "independent_selective_filter",
+      "pair": "presentation_angle × projection_prominence",
+      "test": "trait effect interaction on guild-specific routes can be strong despite weak marginal trait covariance; fitness cross-over between guild regimes required",
+      "rivals": "no direct interaction or shared development; null observed correlation isn't proof of compensation"
+    }
+  ],
+  "scope_limits": [
+    "Only head photo phenotypes, not explicit floral fitness or true spine force; GloBI has no validated same-head guild or effective pollen/seed fate in this cohort.",
+    "Taxon shuffling ignores shared evolutionary history and origin replication.",
+    "Signed correlations and partials reflect observational associations; photo/camera artefacts remain.",
+    "Among-taxon RV is not coevolutionary rate or phylogenetic transition overlap.",
+    "No user field/collection permission implied and no new biology confirmed by mechanistic simulation."
+  ]
+}
