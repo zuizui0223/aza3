@@ -20,6 +20,13 @@ The full-bidirectional extractor and artifacts are specified in `analysis/collec
 
 Do not sum dataset totals: sources may overlap, treatment of record count varies, and the GloBI live cross-source query can contain mirrors/adapters.
 
+Additional GloBI source archives verified in the independent cross-check:
+- Bees of Ireland (https://zenodo.org/records/20547080), `Cirsium vulgare` has 12 source-indexed `visits` claims, with `Bombus lapidarius visits C. vulgare` appearing **4** times. `visits` is a general interaction claim, not confirmed effective pollination.
+- US Mountain West floral visitor programme (https://zenodo.org/records/20548388), `C. arvense` is present with **76** source-level `visitsFlowersOf` records; partner-specific breakdown is not established by the top-20 pairs on the review page.
+- `globalbioticinteractions/gbif-us-bees` (https://zenodo.org/records/20547850) has **1,283** `Cirsium sp.` associated source rows, explicitly lacking species resolution. Neither the 1,283 nor the visitor abundance may be treated as *Cirsium* species richness or a population-level interaction rate.
+
+**Crucial provenance firewall:** `globalbioticinteractions/refuted-biotic-interactions-by-eol` (https://zenodo.org/records/16417164) is an archive of *refuted*, not affirmative, claims. It includes hundreds of `Cirsium arvense`-labelled statements, but **must never** be counted as confirmed pollination, herbivory, parasitism or any positive ecological relation. Exclude that source from all affirmative partner summaries unless examining contradictions separately. `globalbioticinteractions/mangal` may mirror independent Mangal records and is not an independent biological source without a matching DOI/study-level deduplication.
+
 **Source pages (review- and source-identifying):**
 - https://zenodo.org/records/16416566
 - https://zenodo.org/records/20600916
