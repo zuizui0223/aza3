@@ -347,6 +347,100 @@
       "study": "Campbell et al. 2022 Ipomopsis",
       "doi": "10.1086/716740",
       "meaning": "sequential pollination and seed predation selection is established prior art; novelty must be a distinctive whole-head conditional access architecture"
+    },
+    {
+      "study": "Ohashi, Jurgens and Thomson 2021 Biological Reviews trade-off mitigation",
+      "doi": "10.1111/brv.12754",
+      "meaning": "Temporal phenotype switching, combinational modifier traits, active exclusion, peak blunting, optima convergence already introduced; these general mechanisms are NOT novel."
+    },
+    {
+      "study": "2019 Communications Biology Merianieae 3-D pollinator functional modularity",
+      "doi": "10.1038/s42003-019-0697-7",
+      "meaning": "Adaptive floral modularity reorganization and pollinator shift already supported; generic module rearrangement is NOT novel."
+    },
+    {
+      "study": "Romstock-Volkl 1990 Cirsium heterophyllum tephritid ovipositor refuges",
+      "doi": "10.1111/j.1365-2311.1990.tb00814.x",
+      "meaning": "Existing capitulum structural refuge for herbivore larvae against parasitoids; the novel issue would be whether whole-head trait coupling changes plant fitness via that tri-trophic route."
     }
-  ]
+  ],
+  "new_observed_head_evidence": {
+    "as_of": "2026-10-08",
+    "source": "data/evidence/capitulum_module_cross_scale_robustness_v1.json",
+    "numerical_replay_action_run": 37760019587,
+    "sample": "1,734 image observations, 42 Cirsium taxon labels, same 18 endpoints and nine constructs, 36 RV pairs",
+    "statistical_scope": "3,000 taxon bootstraps, 9,999 taxon label shuffles each pair, BH for 36; separate signed taxon and 6-covariate image/geo/climate sensitivity; no phylogenetic null, fitness or botanical thorn",
+    "key_pairs": [
+      {
+        "left": "presentation_angle",
+        "right": "head_elongation",
+        "observed_signed_r": -0.5827666913402879,
+        "full_photo_climate_geo_partial_r": -0.4046880610327097,
+        "among_rv": 0.33961701653570653,
+        "q_BH36": 0.0012,
+        "evolutionary_function": "HYPOTHESIS_NOT_TESTED"
+      },
+      {
+        "left": "floral_chroma",
+        "right": "projection_prominence",
+        "observed_signed_r": 0.578373217401364,
+        "full_photo_climate_geo_partial_r": 0.4380766173653004,
+        "among_rv": 0.3345155786072054,
+        "q_BH36": 0.0012,
+        "evolutionary_function": "HYPOTHESIS_NOT_TESTED"
+      },
+      {
+        "left": "presentation_angle",
+        "right": "projection_prominence",
+        "observed_signed_r": 0.056340991852760085,
+        "full_photo_climate_geo_partial_r": -0.025332989691090872,
+        "among_rv": 0.003174307362952781,
+        "q_BH36": 0.8133882352941176,
+        "evolutionary_function": "NOT_TESTED_ADAPTIVE_INDEPENDENCE"
+      },
+      {
+        "left": "projection_prominence",
+        "right": "projection_pattern",
+        "within_rv": 0.3507383835026685,
+        "among_rv": 0.09993045060779959,
+        "delta_taxon_boot95": [
+          -0.3597482755025816,
+          -0.058629180048745774
+        ],
+        "evolutionary_function": "NOT_TESTED_PHOTO_OUTLINE_COMPONENTS"
+      }
+    ],
+    "chosen_biological_tests": [
+      {
+        "id": "A_x_armature",
+        "priority": "FIRST_ASSOCIATION_CANDIDATE",
+        "question": "Does more conspicuous flower optical display increase legitimate pollen delivery and adult seed-feeder approaches, and do independently measured armature and phyllary access traits filter the harmful arrival more than legitimate pollinators?",
+        "required_outcome": "effective pollen deposition, actual herbivore egg placement, floret damage, early parasitoid access, final viable achene count",
+        "null": "Common phylogeny/photos or pigment–microclimate covariance creates association without causal adaptive coupled function",
+        "baseline": "Validated visible+UV reflectance and actual physical spine, not image chroma and projection alone"
+      },
+      {
+        "id": "O_x_H",
+        "priority": "FIRST_PRESENTATION_CANDIDATE",
+        "question": "Does head geometry condition the effect of natural orientation on rain/UV protection and diurnal pollinator handling?",
+        "required_outcome": "head wetting, pollen viability, hourly effective flower contact, achene fitness",
+        "null": "Perspective-based image association or head allometry"
+      },
+      {
+        "id": "O_x_armature",
+        "priority": "DIRECT_GUILD_ROUTE_TEST_DESPITE_LOW_ASSOCIATION",
+        "question": "Does orienting the same bract-spine structure in world coordinates change the accessibility of aerial ovipositors, legitimate pollinators and early host parasitoids even when evolutionary morphological covariance is weak?",
+        "required_outcome": "world-vs-head-centred insect approach vectors, successful access, oviposition and pre-damage parasitism, final seeds",
+        "null": "Animals fully align to head-centred coordinates or parasitoids arrive too late to save seeds"
+      },
+      {
+        "id": "D_x_O_x_P_x_S",
+        "priority": "ONSET_ORDER_TEST",
+        "question": "Can a head restrict early seed-feeder oviposition yet later expose parasitized larvae to enemy attack via time-varying geometry?",
+        "required_outcome": "pre-established host infestation, time-resolved development/trait geometry, realized early killing and seed rescue",
+        "null": "Ontogenetic angle change unrelated to enemy interaction and ineffective late parasitism"
+      }
+    ],
+    "stop_rule": "No Nature-level adaptive reconstruction from source-image RV, trait marginal frequency, historical 0/3 co-transitions, GloBI flower visits or numerical simulators. Genetic evolution requires independent measured hereditary transitions, guild regime and corresponding fitness."
+  }
 }
