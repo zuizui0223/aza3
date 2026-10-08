@@ -44,3 +44,21 @@ These prior works directly undermine any claim that stage/time-adjusted guild ar
 First-contact failures, rerouting, actual oviposition/pollen deposition and eventual filled/viable achenes must be observed; the last is the direct maternal-fitness proxy. If only candidate activity differs, the correct claim is **temporal/olfactory sorting**, not an anatomical access gate. If access differs but final seeds do not, call it an interaction filter, not demonstrated adaptation. Evolutionary reassembly requires multiple independent lineages, heritability/ancestry and regime-specific selection, none of which follows from image RV.
 
 **Decision as of 2026-10-08:** The common-coverage code fixes a real logic bug. The previously frozen Azami 1,734 image cohort and the EAzami/GloBI original assays supply zero real matched, independently identified, continuous time–portal–viable-seed results. Keep the anatomical-adaptation claim **NOT IDENTIFIABLE** until observation; do not infer either a zero effect or a sign reversal.
+
+## 5. さらに残っていた Simpson's paradox：同じ5分間でも、頭花の選好差が擬似的な侵入口差を作る
+
+実際の昆虫接近データを使わない**合成反証ケース**を追加した。同じ 5 分間、同じ頭花段階、同じ地点で3個体の頭花を撮影する。各頭花内では送粉候補と食害候補が**全く同じ進入世界方向**を使う。ところが両ギルドが異なる頭花を好むため、頭花をプールすると経路が異なるように見える：
+
+| 3つの同時撮影頭花 | 両者が使う世界方向 | 送粉候補接近 | 種子食候補接近 |
+|---|---|---:|---:|
+| H0 | 上方 | 90 | 10 |
+| H1 | 下方 | 10 | 90 |
+| H2 | 上方 | 90 | 10 |
+
+この合成例の **5分間・全頭花プール**重複度は `20/110 + 10/190 ≈ 0.234` だが、**頭花別の重複度はすべて 1.0**。従って時間を合わせるだけでは、頭花に固有の提示方向・構造・微気象・虫の頭花選好を通じた組成効果を防げない。トゲが接触障壁となった証拠にも、昆虫ギルドの「同じ物理的入口を使わない」証拠にもならない。
+
+`analysis/audit_capitulum_common_coverage_bins_v1.py` を、5分間に両ギルドが来た**各頭花内部の経路重複度**と、その均等頭花平均 `matched_same_head_equal_weight_route_overlap` を別出力するよう拡張した。`matched_binned_route_overlap`（時刻を合わせただけの頭花プール）、`matched_same_head_equal_weight_route_overlap`（同頭花・時刻の条件付き比較）、及び時間枠の全露出頭花数を**別の評価量**として保存する。均等重みは頭花内の多数回接近が無制限に標本数を稼ぐ事態を減らすが、**同一昆虫による反復接近や、同一個体上に複数頭花があることを解決しない**。また2ギルドの来訪が確認できた頭花に条件づけるため、全頭花の母集団へ一般化できない。
+
+この結果から、直接的な頭花の防御に関する今後の判定は明瞭になる：**同時刻・同発育段階・同一頭花の内部でも、独立に同定された昆虫ギルドで実際の総苞・刺との接触率と侵入失敗率が異なるのか。** そのうえで花粉沈着・産卵・充実痩果を測る。経路の統計的重複だけでは物理的なトゲの機能も進化的な選択も同定できない。
+
+**現在の判定:** 合成反証の実装とCI検証のみ。真の同頭花・同時刻・同定済み昆虫観察は0件、実際の頭花内ギルド差は `NOT_IDENTIFIABLE`。
