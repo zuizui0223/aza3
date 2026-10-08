@@ -1,0 +1,129 @@
+{
+  "version": "cirsium_globi_full_genus_scan_result_v1",
+  "retrieval_date_utc": "2026-10-08",
+  "source": "Global Biotic Interactions live API",
+  "scope": "All GloBI records matched by sourceTaxon=Cirsium or targetTaxon=Cirsium, 1,000-row pages until both endpoints exhausted",
+  "run": {
+    "github_workflow_run_id": 37743990447,
+    "github_job_conclusion": "success",
+    "artifact_id": 11534639952,
+    "artifact_sha256": "ce0513fde35d9c1be42cef87da7a6f4b262e9b4fe237ba0b78e9bf31771b58a4",
+    "workflow_head_ref": "research/globi-cirsium-interaction-audit-v1",
+    "retrieval_at_utc": "2026-10-08T07:33:55.931211+00:00",
+    "file": "cirsium-globi-interaction-audit-expanded.zip",
+    "stable_publication_preferred": "10.5281/zenodo.3950589"
+  },
+  "query_coverage": {
+    "status": "COMPLETE_DISCOVERY_QUERY",
+    "directions": {
+      "source": "EXHAUSTED",
+      "target": "EXHAUSTED"
+    },
+    "errors": [],
+    "pages": 152,
+    "raw_api_rows": 150638,
+    "nonfocal_or_self_or_unnamed_rows": 1296,
+    "record_key_collapsed_rows": 104162,
+    "source_focal_name_strings": 229,
+    "partner_taxon_name_strings": 5267,
+    "partner_species_rank_heuristic_count": 3924,
+    "partner_species_rank_heuristic_is_not_taxonomic_validation": true,
+    "plant_partner_canonical_relation_and_source_title_claim_groups": 33523,
+    "original_mirror_sensitive_unique_source_edge_field_count": 33266,
+    "source_field_note": "The collector's source_namespace/study_source_citation/study_doi fields are all empty in returned CSV. study_title retains integrated citation text; this field must be used for provenance; no independent-study claim from record counts."
+  },
+  "observation_quality": {
+    "records_with_study_title": 104162,
+    "records_with_original_study_doi_field": 0,
+    "records_with_study_source_citation_field": 0,
+    "records_with_source_namespace_field": 0,
+    "records_with_source_or_target_body_part": 0,
+    "records_with_source_life_stage": 17291,
+    "records_with_latitude": 75038,
+    "rows_credited_to_inaturalist_observation_archive": 33182,
+    "warning": "Record keys and mirrored relations do not guarantee independent field observations. No direct head-specific location or reproductive fitness measurements in the normalized exports."
+  },
+  "role_claims_unique_source_title_groups": {
+    "nonspecific_interaction": 10844,
+    "flower_visit": 6166,
+    "host_association": 5349,
+    "feeding": 4294,
+    "pollination_claim": 4319,
+    "general_visit": 1144,
+    "other_relation": 1028,
+    "parasitism": 66,
+    "parasitoid_claim": 1,
+    "predation": 9,
+    "mutualist_claim": 72,
+    "not_a_pooled_experiment": true
+  },
+  "primary_japanese_systems": {
+    "Cirsium brevicaule": {
+      "raw_rows": 18,
+      "partner_names": 6,
+      "plausible_amami_floral_association": "Attalus chujoanus, source-labelled pollinates by Kato (2000), 28.377248 N, 129.493741 E; effective pollination not verified",
+      "excluded_geographically_inconsistent_claim": "Bombus bifarius visitsFlowersOf at 38.77650203 N, -107.0686955 W (Colorado), Bumble Bee Watch; cannot infer bee present on Japanese Ryukyu C. brevicaule"
+    },
+    "Cirsium irumtiense": {
+      "raw_rows": 0,
+      "conclusion": "NO_INDEXED_GLOBI_RECORD_NOT_ECOLOGICAL_ABSENCE"
+    },
+    "Cirsium sieboldii": {
+      "raw_rows": 16,
+      "partner_names": 8,
+      "possible_visitor": "Xylocopa appendiculata visitsFlowersOf in archival Japan study",
+      "taxonomic_typo_hold": "Xylocopa appendicutata in pollinates source must not be auto-merged"
+    },
+    "Cirsium pendulum": {
+      "raw_rows": 18,
+      "partner_names": 8,
+      "scope": "Retrieved edges are host/fungal pathogen association only; cannot infer pollinator absence"
+    },
+    "Cirsium japonicum": {
+      "raw_rows": 196,
+      "partner_names": 67,
+      "plausible_visitor_examples": [
+        "Bombus diversus",
+        "Bombus ignitus",
+        "Macroglossum stellatarum",
+        "Megachile japonica"
+      ],
+      "taxonomic_implausibility": "Platygobio gracilis is a freshwater fish (Actinopterygii, FishBase FBC:FB:SpecCode:10173) listed in pollinates/mutualistOf records against C. japonicum at Japanese sites; inadmissible as flower pollinator"
+    }
+  },
+  "japan38_authority_subset_gate": {
+    "authority_taxon_strings_compared": 22,
+    "exact_GloBI_names_present": 13,
+    "exact_GloBI_names_absent": 9,
+    "note": "Presence is just one source claim and missing means unrecorded under this API; not population-by-trait measures."
+  },
+  "parasitoid_second_hop": {
+    "run_id": 37744398343,
+    "status": "QUERY_EXHAUSTED",
+    "focal_seed_feeder_queries": 10,
+    "distinct_host_parasitoid_name_pairs": 15,
+    "source_programmes_after_citation_review": 1,
+    "source_programme": "trophiCH v1 - a food web for Switzerland, doi:10.16904/envidat.467; second citation variant appends Universal Chalcidoidea Database",
+    "same_cirsium_head_confirmed_pairs": 0,
+    "source_run_retained": "No parasitoid incidence, stage, seed fitness, or trait-mediated accessibility is identified by an insect–parasitoid edge alone."
+  },
+  "literature_positive_control": {
+    "plant": "Cirsium heterophyllum",
+    "seed_feeder": "Tephritis conura",
+    "parasitoids": [
+      "Pteromalus caudiger",
+      "Eurytoma sp. near tibialis"
+    ],
+    "reference_doi": "10.1111/j.1365-2311.1990.tb00814.x",
+    "evidence": "Measured ovipositor lengths plus position of larvae demonstrate parts of capitulum as parasitoid-free refuge",
+    "GloBI_role_gap": "Full plant-centric query has C. heterophyllum interactsWith Pteromalus caudiger but completed T. conura-specific parasitoidOf/hasParasitoid second-hop does not recover P. caudiger. Generic plant–wasp edge does not establish direct parasitoid–host edge."
+  },
+  "scientific_state": {
+    "global_GloBI_discovery": "COMPLETE_QUERY_NOT_GLOBAL_ECOLOGICAL_CENSUS",
+    "source_rank_validity": "SOME_INDEXED_CLAIMS_IMPLAUSIBLE_OR_TAXONOMY_CONFLICTED",
+    "head_specific_function": "NO_DIRECT_DATA_IN_API_EXPORT",
+    "current_orientation_spine_plant_fitness_selection": "NOT_IDENTIFIED",
+    "historical_adaptive_module_coevolution": "NOT_IDENTIFIED"
+  },
+  "immediate_biological_question": "Does developmental head reorientation and involucral access change the relative access of seed-feeding insects and their parasitoids BEFORE irreversible seed damage, and does that predict viable achene output across independent Cirsium populations?"
+}
