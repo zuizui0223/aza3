@@ -1,0 +1,352 @@
+{
+  "version": "capitulum_module_interaction_hypotheses_v1",
+  "status_date": "2026-10-08",
+  "project": "aza3, head-only functional interpretation of Azami + EAzami + GloBI without modifying frozen chapters",
+  "focal_question": "When do interacting capitulum structures evolve together, independently, or compensatorily, as a function of pollinator/seed-feeder/parasitoid access and abiotic reproductive protection?",
+  "scientific_headline_boundary": "Hypotheses and data-informed interface candidates. No new field-selection, causal mechanical spine, genetic coevolution or adaptation evidence is claimed.",
+  "modules": [
+    {
+      "id": "O",
+      "name": "capitulum_presentation_angle",
+      "measurement": "gravity-referenced anthesis angle and time-resolved angle, plus sham treatment contrast",
+      "azami_data": "presentation_angle image-vertical proxy",
+      "eazami_data": "historical discrete upward/downward state",
+      "functional_routes": [
+        "world-centred visual/pollinator approach geometry",
+        "rain/UV pollen protection and timing",
+        "herbivore and parasitoid relative approach"
+      ],
+      "cannot_infer": [
+        "static pollinator preference",
+        "final adaptive value without viable achenes"
+      ]
+    },
+    {
+      "id": "H",
+      "name": "whole_head_shape_and_floret_packing",
+      "measurement": "diameter, true 3D length/width, floret density and pollen release stage; head rank",
+      "azami_data": "head_elongation; head_compactness",
+      "eazami_data": "sparse head form",
+      "functional_routes": [
+        "visual detection range and encounter area",
+        "number of seed prey units and resource size",
+        "exposed area and self-shading"
+      ],
+      "cannot_infer": [
+        "plant-level head number is not individual head morphology",
+        "image elongation from camera pose"
+      ]
+    },
+    {
+      "id": "A",
+      "name": "floral_colour_UV_display",
+      "measurement": "calibrated pigment visible/UV, display appearance; nectar/reward independently",
+      "azami_data": "floral_lightness; floral_chroma; floral_hue",
+      "eazami_data": "unresolved nuclear-linked within-species W/C history",
+      "functional_routes": [
+        "legitimate-pollinator signal",
+        "potential seed-predator/florivore location cue",
+        "thermal/photoprotective alternative"
+      ],
+      "cannot_infer": [
+        "UV signal from visible RGB",
+        "pigment genetically reactivated from leaf RNA",
+        "effective pollination from visits"
+      ]
+    },
+    {
+      "id": "P",
+      "name": "involucral_phyllary_posture_and_access_gaps",
+      "measurement": "direct phyllary angle, bract coverage and validated entrance-gap geometry at bud/anthesis/fruit",
+      "azami_data": "involucre_form (2D proxy, not botanical phyllary angle)",
+      "eazami_data": "ascending/spreading/appressed posture, >=3 minimum changes",
+      "functional_routes": [
+        "mechanical gating of oviposition/entry",
+        "rain protection and pollen shelter",
+        "phyllary coverage of seeds and floret base"
+      ],
+      "cannot_infer": [
+        "actual thorn length from posture alone"
+      ]
+    },
+    {
+      "id": "S",
+      "name": "involucral_spine_armature",
+      "measurement": "direct spine length, direction, rigidity and encounter path, independent of posture",
+      "azami_data": "projection_prominence; projection_pattern (2D silhouette proxies only)",
+      "eazami_data": "no morphology-linked true-spine character history",
+      "functional_routes": [
+        "guild-dependent obstruction of mouthparts/ovipositors",
+        "may hinder legitimate access or enemy parasitoid probing"
+      ],
+      "cannot_infer": [
+        "thorn defence selection from projection RV",
+        "synchronic evolution of real spines from posture counts"
+      ]
+    },
+    {
+      "id": "T",
+      "name": "stickiness_and_surface_exudates",
+      "measurement": "verified natural tack/exudate, season-dependent trap surface and reversible effect vs sham",
+      "azami_data": "surface_texture/specularity validation-only, not direct stickiness",
+      "eazami_data": "sticky/nonsticky categorical history >=4–5 changes; field permission gate JPN15",
+      "functional_routes": [
+        "deterrence of ants, aphids and some adversaries",
+        "predator/trap insect usage",
+        "may bypass seed predators and pollinators"
+      ],
+      "cannot_infer": [
+        "a universal defensive effect",
+        "all visitors contacting sticky surface"
+      ]
+    },
+    {
+      "id": "R",
+      "name": "floret_functional_core",
+      "measurement": "floret maturity, anther/stigma contact, pollen viability, female and where possible male reproduction; final viable achenes",
+      "azami_data": "visible corolla colour only, not viability",
+      "eazami_data": "literature-derived reproductive fitness/context",
+      "functional_routes": [
+        "effective pollen transfer",
+        "viable seed production",
+        "seed-feeder larval resource"
+      ],
+      "cannot_infer": [
+        "all-day visit counts equal fitness"
+      ]
+    },
+    {
+      "id": "D",
+      "name": "capitulum_phenophase_and_reorientation",
+      "measurement": "repeated same-head bud/anthesis/fruit orientation and exposed entry area",
+      "azami_data": "single-photo stage not temporally followed",
+      "eazami_data": "stage labels needed to avoid taxon polymorphism error",
+      "functional_routes": [
+        "switch of access route across ovipositing adults, pollination and parasitoid searching"
+      ],
+      "cannot_infer": [
+        "ontogenetic change is phylogenetic trait change"
+      ]
+    }
+  ],
+  "comparison_models": [
+    {
+      "id": "SYNC",
+      "question": "A shared ecological function requires coupled change in multiple head modules",
+      "fitness_signature": "joint treatment synergy on prespecified viable-seed scale; positive cross-trait correlational selection in matching guild world",
+      "historical_signature": "replicated contemporaneous paired transition placements beyond a null conditioned on branch lengths/rates/missingness",
+      "limitation": "co-transition alone could reflect developmental linkage/common environmental driver"
+    },
+    {
+      "id": "SUBSTITUTE",
+      "question": "Alternative head modules can deliver the same beneficial functional outcome",
+      "fitness_signature": "two single-module configurations show comparable viable-seed returns despite different route-specific mediators, combined traits give little extra benefit or incur interference cost",
+      "historical_signature": "conditional/lagged or reciprocal transitions, not necessarily same-branch and possibly zero pooled trait covariance",
+      "limitation": "non-cochange alone is no evidence of substitution; require causal same-system function and costs"
+    },
+    {
+      "id": "PARTITION",
+      "question": "Different modules regulate different guilds or phenophases",
+      "fitness_signature": "trait- and time/guild-specific process effects with final reproductive relevance; cross-term can be near zero",
+      "historical_signature": "asynchronous transitions may occur independently across lineages",
+      "limitation": "developmental-stage dependence can mimic historical independence"
+    },
+    {
+      "id": "CONSTRAINT",
+      "question": "Apparent integration follows developmental/allometric or camera-pose dependencies",
+      "fitness_signature": "effects unchanged by manipulating ecological partners; no trait-specific mediator or seed fitness change",
+      "historical_signature": "trait covariance or shared changes persist across ecological regimes",
+      "limitation": "functional conservation can coexist with developmental correlations"
+    },
+    {
+      "id": "ABIOTIC",
+      "question": "Angle, involucre and projections track UV/rain/wind but not animal-access selection",
+      "fitness_signature": "pollen wetness/viability tracks treatment, animal guild access not mediator",
+      "historical_signature": "current environment association need not match origin environment",
+      "limitation": "do not force binary biotic versus abiotic if both routes operate"
+    }
+  ],
+  "pairs": [
+    {
+      "code": "O_H",
+      "module_ids": [
+        "O",
+        "H"
+      ],
+      "candidate_status": "among_taxon_RV_0.339617__within_0.002343",
+      "functional_hypothesis": "head elongation changes visible floret presentation and water interception depending on orientation",
+      "primary_rival": "camera-roll and pose/axis alignment",
+      "target": "time-of-day effective pollen contact, wetness, viable achenes",
+      "priority": "secondary"
+    },
+    {
+      "code": "O_P",
+      "module_ids": [
+        "O",
+        "P"
+      ],
+      "candidate_status": "EAzami_history_mosaic__Azami_O_involucre_form_RV_among_0.09905",
+      "functional_hypothesis": "joint orientation + appressed/spreading phyllary coverage can shield pollen/ovules or redirect pollinator/ovipositor access",
+      "primary_rival": "rain/UV mechanism alone or developmental stage",
+      "target": "world/head-centred access + wet pollen + matched viable achenes",
+      "priority": "high"
+    },
+    {
+      "code": "O_S",
+      "module_ids": [
+        "O",
+        "S"
+      ],
+      "candidate_status": "Azami_O_projection_prominence_RV_among_0.003174__actual_spine_not_measured",
+      "functional_hypothesis": "orientation changes mechanical thorn encounter only when guild approach route is world-centred",
+      "primary_rival": "head-centred access null and projection-is-not-spine",
+      "target": "actual spine geometry x head angle x pollinator/ovipositor/parasitoid access + viable seed",
+      "priority": "high_conditional_on_real_spine_verification"
+    },
+    {
+      "code": "P_S",
+      "module_ids": [
+        "P",
+        "S"
+      ],
+      "candidate_status": "phenotypic_proxies_only__no_spine_history",
+      "functional_hypothesis": "splayed phyllaries can expand the protective radial thorn perimeter, or posture and spine length act redundantly on the same entry route",
+      "primary_rival": "joint body-size growth and age",
+      "target": "entry probability conditional on approach route, plus reproduction",
+      "priority": "medium_after_safe_botanical_validation"
+    },
+    {
+      "code": "P_T",
+      "module_ids": [
+        "P",
+        "T"
+      ],
+      "candidate_status": "EAzami_historical_joint_no_robust_cotransition__stickiness_contextual",
+      "functional_hypothesis": "bract angle positions sticky surfaces away from pollinator corridors and on crawling-insect routes; alternative trap/coverage control",
+      "primary_rival": "sticky chemistry/season alone",
+      "target": "separate pollinator, seed predator, ant/aphid and predatory arthropod channel",
+      "priority": "medium"
+    },
+    {
+      "code": "A_S",
+      "module_ids": [
+        "A",
+        "S"
+      ],
+      "candidate_status": "Azami_chroma_projection_RV_among_0.334516__not_actual_spine",
+      "functional_hypothesis": "high visibility can raise both legitimate and illegitimate arrivals; accessible thorns may preferentially filter enemies",
+      "primary_rival": "shared taxon ecology, photo contrast and geometry correlation",
+      "target": "detected arrivals to final effective pollen and damage then filled achenes",
+      "priority": "secondary"
+    },
+    {
+      "code": "H_A",
+      "module_ids": [
+        "H",
+        "A"
+      ],
+      "candidate_status": "plant_level_display_seed_predation_prior__not_joint_head_colour_trait",
+      "functional_hypothesis": "more conspicuous head/displays raise pollinator and egg-laying opportunity; defensive barriers may rescue returns",
+      "primary_rival": "larger floret/plant resource makes more seeds even without pollinators",
+      "target": "head-level resources separate from plant-level head number, effective contacts and oviposition",
+      "priority": "medium"
+    },
+    {
+      "code": "P_S_T",
+      "module_ids": [
+        "P",
+        "S",
+        "T"
+      ],
+      "candidate_status": "no_direct_replicated_joint_test",
+      "functional_hypothesis": "mechanical and sticky barriers may compensate, specialize on different insect guilds, or jointly punish legitimate visitors",
+      "primary_rival": "one mechanistic barrier dominates and the rest are correlated ornaments",
+      "target": "safe randomized two-attribute cross first; 3-factor only if powered",
+      "priority": "later"
+    },
+    {
+      "code": "D_O_P_S",
+      "module_ids": [
+        "D",
+        "O",
+        "P",
+        "S"
+      ],
+      "candidate_status": "prospective_timed_mechanism",
+      "functional_hypothesis": "earlier enclosed/spiny state excludes seed-feeder oviposition while later exposure permits beneficial parasitoid access without impairing pollination",
+      "primary_rival": "parasitoids attack too late to rescue already damaged seeds",
+      "target": "same-head staged egg placement, early host killing, tissue damage timing and viable seeds",
+      "priority": "highest_natural_history_gate"
+    }
+  ],
+  "primary_experimental_contrast": {
+    "units": "independent plant randomization/block, repeated bouts nested within head, not independent",
+    "treatment": "orientation vs sham × reversible externally qualified phyllary/access state vs sham; real-spine arm only after direct calibration and independent safe perturbation",
+    "not_authorized": true,
+    "baseline": "independent pre-treatment guild pressure (legitimate effective pollination, adult seed-feeder oviposition, parasitoid attack opportunities) plus rain/UV/head-rank and phenophase",
+    "separate_mechanisms": [
+      "effective pollen deposition",
+      "pre-anthesis or anthesis oviposition/early larval damage",
+      "timely parasitoid oviposition and host mortality",
+      "wetting/UV pollen viability"
+    ],
+    "ultimate_endpoints": [
+      "viable filled achenes per focal capitulum",
+      "whole-plant viable seed output where measured",
+      "paternity/male fitness if measured"
+    ],
+    "operator": "Delta_OS = W11 - W10 - W01 + W00 on predeclared viable-achene scale; negative does NOT alone distinguish substitution from interference",
+    "interpretation_ladder": [
+      "source-backed ecological mechanism",
+      "causal module interaction within head",
+      "relative maternal fitness advantage",
+      "correlational selection in nature",
+      "replicated phylogenetic/population transition dependence beyond null",
+      "adaptive evolutionary origin"
+    ],
+    "guardrails": [
+      "No direct user field manipulations or collection authorized by plan",
+      "No inference that RGB brightness is actual UV/pigment",
+      "No assumption a bee/butterfly is beneficial or a fly antagonistic without behaviour",
+      "No random-vs-adaptive inference from EAzami 0/3 synchronized transitions alone",
+      "No eBird needed"
+    ]
+  },
+  "key_prior_art": [
+    {
+      "study": "Agrawal et al. 2000 Centaurea solstitialis",
+      "doi": "10.2307/3672545",
+      "meaning": "spine removal changes illegitimate but not frequency of legitimate visitor landings; 22% lower filled seeds"
+    },
+    {
+      "study": "Chen et al. Cremanthodium campanulatum",
+      "doi": "10.1080/17550874.2012.702793",
+      "meaning": "nodding shields pollen against rain/UV and improves seed set without known pollinator preference"
+    },
+    {
+      "study": "Mogford 1974 Cirsium palustre",
+      "doi": "10.1038/hdy.1974.91",
+      "meaning": "preferential pollination of white colour morph; colour is not universally just pigment cost"
+    },
+    {
+      "study": "Ohashi and Yahara 1998/2000 Cirsium purpuratum",
+      "doi": "10.2307/2446309;10.1139/b99-182",
+      "meaning": "display impacts bumblebee response and seed predation; plant-vs-head levels distinct"
+    },
+    {
+      "study": "Thomas 2003/2007 Cirsium discolor",
+      "doi": "10.22543/0090-0222.2085;10.22543/0090-0222.2188",
+      "meaning": "sticky inflorescence not universally protective; guild-dependent pathways"
+    },
+    {
+      "study": "Gómez et al. 2002 Helleborus foetidus",
+      "doi": "DOI verify independently",
+      "meaning": "pollinator–herbivore nonlinear fitness and correlational selection is already published"
+    },
+    {
+      "study": "Campbell et al. 2022 Ipomopsis",
+      "doi": "10.1086/716740",
+      "meaning": "sequential pollination and seed predation selection is established prior art; novelty must be a distinctive whole-head conditional access architecture"
+    }
+  ]
+}
