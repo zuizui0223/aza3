@@ -4,6 +4,8 @@ on:
   pull_request:
     paths:
       - "data/evidence/cirsium_capitulum_interaction_source_anchors_v1.csv"
+      - "data/evidence/eriophorum_microhabitat_role_audit_v1.csv"
+      - "analysis/validate_eriophorum_microhabitat_role_audit_v1.py"
       - "analysis/validate_cirsium_interaction_source_anchors_v1.py"
       - "analysis/collect_globi_cirsium_seed_feeder_secondhop_v1.py"
       - ".github/workflows/validate-cirsium-globi-bridge-secondhop-v1.yml"
@@ -26,6 +28,8 @@ jobs:
           python -m py_compile analysis/collect_globi_cirsium_seed_feeder_secondhop_v1.py
           python -m py_compile analysis/validate_cirsium_interaction_source_anchors_v1.py
           python analysis/validate_cirsium_interaction_source_anchors_v1.py
+          python -m py_compile analysis/validate_eriophorum_microhabitat_role_audit_v1.py
+          python analysis/validate_eriophorum_microhabitat_role_audit_v1.py
       - name: Synthetic parasitoid and role-direction tests
         run: |
           python - <<'PY'
