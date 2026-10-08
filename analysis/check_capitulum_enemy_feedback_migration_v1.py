@@ -182,7 +182,7 @@ def main():
             for m in (0.,.05,.1,.14,.15,.2,.5)
         ],
         "literature_context":{
-            "known":"Enemy-free-space and plant-mediated parasitoid accessibility are well-studied, e.g. Gurr et al. 2016 DOI 10.3389/fpls.2016.01794",
+            "known":"Enemy-free-space and plant-mediated parasitoid accessibility are well-studied, e.g. Peterson et al. 2016 DOI 10.3389/fpls.2016.01794",
             "Cirsium_primary":"Vanbergen et al. 2006 DOI 10.1111/j.1365-2656.2006.01099.x",
             "unobserved":"No study cited here directly measures thistle-phyllary-induced late parasitoid suppression together with returning herbivore dispersal and genotype-specific fitness",
         },
