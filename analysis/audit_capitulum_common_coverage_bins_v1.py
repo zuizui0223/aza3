@@ -86,6 +86,17 @@ def audit(efforts, events, sidecar, contract):
         for bin_utc in interval_bins(st,en):
             coverage[(g,bin_utc)].add(key)
 
+    # A second overlapping bout/camera on the SAME biological head cannot
+    # be treated as another replicate. Without independently reconciled insect
+    # identities it could also double-count a single arrival.
+    for (_group, _time_bin), covered_keys in coverage.items():
+        seen_heads=set()
+        for key in covered_keys:
+            head=(key[1],key[0],key[2])
+            if head in seen_heads:
+                raise ValueError("DUPLICATE_HEAD_COVERAGE_BOUTS_NEED_DEDUPLICATION")
+            seen_heads.add(head)
+
     stats=collections.defaultdict(lambda:collections.defaultdict(lambda:{
         "n":0, "route_counts":collections.Counter(), "unknown":0,
         "plants":set(), "heads":set(), "access_yes":0, "access_known":0,
@@ -265,6 +276,8 @@ def audit(efforts, events, sidecar, contract):
             "Same full-coverage bin controls clock opportunity only, not flower scent.",
             "World approach direction does not establish contact with a genuine spine.",
             "Repeated same-head arrivals are not independent trait selection replicates.",
+            "Repeated approach episodes do not identify unique insect individuals; repeated visits by one insect cannot be treated as independent insects.",
+            "A duplicated concurrent video bout for the same biological head is rejected to prevent double-counted exposure.",
             "Pooling insects across differently preferred heads can create an apparent route contrast even when routes match within every head.",
             "Equal-head-weighted overlap conditions on both guilds visiting the same head; this does not estimate the unconditional head population effect.",
             "Unknown guilds or incomplete video are not zeros.",
@@ -343,6 +356,22 @@ def synthetic_tests(contract):
     assert audit([],[],[],contract)["status"]=="NO_REAL_VALIDATED_CLOCK_VIDEO"
     partial=check(es=efforts,ss=sidecars[:-1])
     assert partial["status"]=="HOLD_MISSING_CLOCK_FOR_VALID_VIDEO_BOUT"
+    # Duplicated concurrent cameras on one biological head cannot double
+    # the independent head count or the approach exposure.
+    double=copy.deepcopy(efforts[0])
+    double["observation_bout_id"]="B_EXTRA_CAMERA"
+    double["video_recording_id"]="synthetic://extra_cam"
+    double["evidence_uri"]="synthetic://extra_cam"
+    double["zero_approaches_confirmed"]="1"
+    side_duplicate=copy.deepcopy(sidecars[0])
+    side_duplicate["observation_bout_id"]="B_EXTRA_CAMERA"
+    side_duplicate["recording_evidence_uri"]="synthetic://extra_cam"
+    try:
+        check(es=efforts+[double],ss=sidecars+[side_duplicate])
+    except ValueError as e:
+        assert "DUPLICATE_HEAD_COVERAGE_BOUTS_NEED_DEDUPLICATION" in str(e)
+    else:
+        raise AssertionError("Duplicate camera-head accepted as independent")
     # Moving arrival outside the evaluated sidecar cannot enter denominator.
     invalid=copy.deepcopy(events)
     invalid[0]["time_from_bout_start_s"]="900"
