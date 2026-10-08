@@ -5,6 +5,8 @@ on:
   pull_request:
     paths:
       - "analysis/reconstruct_azami_head_functional_contrasts_v1.py"
+      - "analysis/test_capitulum_context_specific_coupling_v1.py"
+      - "data/contracts/capitulum_conditional_coupling_splits_v1.json"
       - ".github/workflows/replay-head-module-contrasts-v1.yml"
 
 permissions:
@@ -24,6 +26,7 @@ jobs:
         run: |
           python -m pip install "pandas==2.2.3" "numpy==2.3.5" "scipy==1.17.0"
           python -m py_compile analysis/reconstruct_azami_head_functional_contrasts_v1.py
+          python -m py_compile analysis/test_capitulum_context_specific_coupling_v1.py
       - name: Retrieve pinned public Azami numerical source artifacts
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -41,11 +44,20 @@ jobs:
             --environment-zip work/azami/environment.zip \
             --out outputs/azami_capitulum_36pair_replay_v1.json \
             --bootstrap 3000 --permutations 9999 --seed 20261008
+      - name: Test frozen four contextual splits and negative-control camera quality
+        run: |
+          python analysis/test_capitulum_context_specific_coupling_v1.py \
+            --replay outputs/azami_capitulum_36pair_replay_v1.json \
+            --contract data/contracts/capitulum_conditional_coupling_splits_v1.json \
+            --out outputs/capitulum_context_12test_result_v1.json \
+            --bootstrap 3000 --permutations 9999 --seed 20261008
       - name: Preserve complete statistical null and biological claim boundary
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: azami-capitulum-36pair-biotic-modules-replay
-          path: outputs/azami_capitulum_36pair_replay_v1.json
+          path: |
+            outputs/azami_capitulum_36pair_replay_v1.json
+            outputs/capitulum_context_12test_result_v1.json
           if-no-files-found: warn
           retention-days: 30
