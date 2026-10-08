@@ -44,7 +44,7 @@
 
 EAzamiには`aim2_capitulum_field_ledger_v1.csv`、`aim2_capitulum_observation_bout_ledger_v1.csv`、`aim2_plant_display_predation_ledger_v1.csv`がある。ただし訪花数・有効接触数を頭花×時間枠単位で集計しているので、**接近と「侵入口への到達失敗」の区別には足りない**。
 
-そのため新しく、既存台帳を**一列も破壊・改変せず**、`data/intake/capitulum_guild_access_event_ledger_v1.csv`（空の29列テンプレート）と`data/contracts/capitulum_guild_access_event_contract_v1.json`、`analysis/validate_capitulum_guild_access_event_ledger_v1.py` を作成した。
+そのため新しく、既存台帳を**一列も破壊・改変せず**、`data/intake/capitulum_guild_access_event_ledger_v1.csv`（空の30列テンプレート）と`data/contracts/capitulum_guild_access_event_contract_v1.json`、`analysis/validate_capitulum_guild_access_event_ledger_v1.py` を作成した。
 
 - 観察単位：実際の昆虫の頭花への**一接近エピソード**、紐づく植物ID・頭花ID・観察時間枠ID・動画ID。
 - 経路：頭花に近づく方向（上・横・下・茎由来）と、どの器官に接するか（小花円盤・総苞外面・総苞間隙・基部）。
@@ -57,6 +57,18 @@ EAzamiには`aim2_capitulum_field_ledger_v1.csv`、`aim2_capitulum_observation_b
 ## 既知の自然頭花コンフィギュレーション
 
 EAzamiの科博形態表では、*C. kasaianum*、*C. yezoense*、*C. sieboldii* はすべて下向き頭花として記載されるが、総苞片はそれぞれ開出・斜上・圧着。**同じO状態でもPは変わる**。これらは異なる種・生息地であり、系統的独立な反復適応とは言えない。同一段階・地点での実際の侵入口と昆虫経路が異なるかを確かめる自然史比較の候補である。*C. kasaianum* の粘着性は未判定。
+
+## 生殖型の重要な対照：Cirsium arvenseでは雄性・雌性頭花の形と利益が異なる
+
+Tiley (2010, `10.1111/j.1365-2745.2010.01678.x`) によれば、*C. arvense* は不完全な雌雄異株であり、雄性／雌性頭花の形、小花と葯・柱頭の性機能が異なる。さらに雌性頭花の充実痩果数は、近くに雄性個体がいるかどうかにも左右される。**同じ種の頭花写真で見えた形態の変異を、送粉者とトゲへの同一の適応と呼ぶことはできない**。送粉機能を花粉の輸出と有効受粉に分けて測る必要がある。
+
+凍結42分類群のAzami head scalar profileから、この1種を除外して符号付き相関を再計算した感度解析では：
+- 向き×細長さ r: −0.5828（42分類群）→−0.5835（*C. arvense*除外41分類群）
+- 彩度×総苞の輪郭突出 r: +0.5784→+0.5951
+- 向き×突出 r: +0.0563→+0.0510
+- 6つの代表的な気候/撮影条件の偏相関も、それぞれ−0.4047→−0.4066、+0.4381→+0.4500、−0.0253→−0.0253。
+
+**結論：** 少なくとも主要な分類群間の記述的関係は、*C. arvense* 一種の雄雌頭花の混合だけでは説明できない。ただし、個々の写真の性表現は未ラベルであり、ほかのアザミの性機能や発育期混合は検証されていない。新しいイベント表には `reproductive_sex_state` を追加。実効雄性適応度（花粉輸出／父性）と雌性適応度（充実痩果）は別である。再現コード：`analysis/check_capitulum_dioecious_taxon_sensitivity_v1.py`。
 
 ## 生物学的結論の現在地
 
