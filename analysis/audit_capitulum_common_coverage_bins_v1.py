@@ -288,8 +288,8 @@ def synthetic_tests(contract):
         return audit(copy.deepcopy(es),copy.deepcopy(vs),copy.deepcopy(ss),
                      contract)
     result=check()
-    assert result["status"]=="COMPLETE_BINNED_DESCRIPTIVE_OVERLAP_ONLY"
-    assert result["n_qualified_comparison_bins"]==2
+    assert result["status"]=="PARTIAL_BINNED_DESCRIPTIVE_OVERLAP_ONLY"
+    assert result["n_qualified_comparison_bins"]==2\n    assert result["n_held_bins"]==2
     assert abs(result["naive_pooled_route_overlap"]-.2)<EPS
     assert abs(result["matched_binned_route_overlap"]-1.0)<EPS
     assert result["n_approach_events_in_partial_time_bins_excluded"]==0
