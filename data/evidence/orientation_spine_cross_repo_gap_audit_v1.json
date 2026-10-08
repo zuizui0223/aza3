@@ -1,0 +1,151 @@
+{
+  "version": "orientation_spine_cross_repo_gap_audit_v1",
+  "status_date": "2026-10-08",
+  "repository_scope": {
+    "owner": "zuizui0223",
+    "repositories_listed": 50,
+    "readme_level_checked": 50,
+    "deep_evidence_focus": [
+      "azami",
+      "EAzami",
+      "aza3",
+      "bita",
+      "sch",
+      "balance",
+      "slk",
+      "payoff",
+      "iwe",
+      "pollipi",
+      "insepi"
+    ],
+    "note": "Repository list and README reconnaissance for the 50 GitHub-accessible repos, then keyword code searches and source-file checks for relevant projects; NOT a file-by-file audit of every code/data object."
+  },
+  "primary_question": "Can head orientation and true involucral spines form a guild-dependent joint access barrier affecting effective pollination, seed predation and viable achenes, and is that interaction linked to correlated evolution?",
+  "classifications": {
+    "current_orientation_spine_phenotypic_covariance": "NOT_IDENTIFIABLE_FROM_SPINE_MEASUREMENTS",
+    "current_historical_joint_transition": "NOT_IDENTIFIABLE_SPINE_CORRELATED_EVOLUTION",
+    "current_focal_orientation_x_spine_fitness_interaction": "NOT_TESTED",
+    "correlated_selection_or_heritability": "NOT_TESTED",
+    "nature_prospective_hypothesis": "GUILD_SPECIFIC_BIOTIC_ACCESS_WITH_POSSIBLE_SIGN_CROSSOVER",
+    "field_execution_authorized": false,
+    "claim_ceiling": "Public-data feasibility/prior-art audit and prospective falsifiable hypothesis only. No evidence of adaptation, coevolution, selection, or direct defence by focal thistle spines."
+  },
+  "evidence": [
+    {
+      "source_repo": "zuizui0223/azami",
+      "path": "reproducibility/current_reference/upgrade/complete18_construct_pairwise.csv",
+      "source_blob_sha": "8be80b4a42fd0265ab95b8209871db0001d0352f",
+      "trait_pair": [
+        "presentation_angle",
+        "projection_prominence"
+      ],
+      "within_taxon_rv": 0.0027977851724397852,
+      "among_taxon_rv": 0.003174307362952781,
+      "context": {
+        "observations": 1734,
+        "taxa": 42
+      },
+      "boundary": "Image projection prominence and image vertical angle, not botanical spine length nor gravity orientation. RV is undirected."
+    },
+    {
+      "source_repo": "zuizui0223/EAzami",
+      "path": "data/evidence/japan38_nmns_capitulum_trait_seed_v1.csv",
+      "source_blob_sha": "c4da867491e913119d78e4b07df800965a0f021d",
+      "authority_concepts": 22,
+      "with_classifiable_orientation_and_phyllary": 8,
+      "nodding_examples": [
+        {
+          "taxon": "Cirsium kasaianum",
+          "phyllary": "spreading"
+        },
+        {
+          "taxon": "Cirsium yezoense",
+          "phyllary": "ascending"
+        },
+        {
+          "taxon": "Cirsium sieboldii",
+          "phyllary": "appressed"
+        }
+      ],
+      "boundary": "Phyllary posture is not spine morphology, and joint available n=8 is not a credible basis for a phylogenetic dependency test."
+    },
+    {
+      "source_repo": "zuizui0223/EAzami",
+      "path": "data/evidence/japan38_multitrait_history_summary_v1.json",
+      "source_blob_sha": "ddfbf0692c71ed83ac0a0d4eaa9404c338a74b57",
+      "orientation_min_steps_ufboot_range": [
+        4,
+        6
+      ],
+      "phyllary_min_steps_ufboot_range": [
+        3,
+        3
+      ],
+      "shared_transition_localization_pairs_robust": 0,
+      "shared_transition_localization_pairs_tested": 3,
+      "boundary": "Different lower-bound state histories do not exclude indirect, context-dependent correlated selection and do not prove spine coevolution."
+    },
+    {
+      "source_repo": "zuizui0223/EAzami",
+      "path": "data/evidence/cirsium_floral_herbivory_lnrr_meta_v2.json",
+      "source_blob_sha": "633f5786629e18d3332bc1a97f4954c270585b8c",
+      "independent_studies": 4,
+      "focal_taxa": [
+        "Cirsium canescens",
+        "Cirsium occidentale var. occidentale"
+      ],
+      "reduced_vs_ambient_seed_output_rr": 2.673636515996,
+      "ci95": [
+        2.388333567719,
+        2.993020872917
+      ],
+      "boundary": "Antagonist fitness pressure only. Not spine, head-angle, or interaction effect."
+    },
+    {
+      "source_repo": "zuizui0223/bita",
+      "path": "empirical/floral_defence_selectivity/README.md",
+      "independent_matched_systems": 17,
+      "defence_side_sign_switch_systems": 8,
+      "boundary": "Heterogeneous other floral systems; mechanisms plausibility and route classification only, not thistle angle-spine selection."
+    },
+    {
+      "source_repo": "zuizui0223/EAzami",
+      "path": "docs/JPN36_PHYLLARY_ACCESS_PILOT_PROTOCOL_V1_2026-08-27.md",
+      "focal": "Cirsium sieboldii",
+      "status": "PROTOCOL_READY_FIELD_UNAUTHORIZED",
+      "direct_spine_intervention": false,
+      "design": "24 plants non-destructive bract-gap proxy, paired feasibility, no angle manipulation",
+      "boundary": "Cannot relabel existing 2-arm feasibility pilot as powered/approved 2x2 factorial."
+    },
+    {
+      "source_repo": "zuizui0223/pollipi",
+      "path": "README.md",
+      "status": "FIELD_GUILD_CLASSIFICATION_NOT_VALIDATED",
+      "boundary": "Adaptive camera evidence not independent confirmed visitation, behaviour, or pollen transfer."
+    }
+  ],
+  "comparative_prior_art": [
+    {
+      "study": "Agrawal et al. 2000 Centaurea solstitialis",
+      "doi": "10.2307/3672545",
+      "finding": "Spines selectively deter illegitimate Lepidoptera, no increase in legitimate bee/fly visit probability when removed; 22% lower filled seeds after spine removal.",
+      "gap": "No head-angle manipulation and not Cirsium"
+    },
+    {
+      "study": "Ohashi and Yahara 1998 2000 Cirsium purpuratum",
+      "dois": [
+        "10.2307/2446309",
+        "10.1139/b99-182"
+      ],
+      "finding": "Plant display attracts bumblebee use yet increases pre-dispersal seed predation risk.",
+      "gap": "No joint orientation x spine experiment"
+    }
+  ],
+  "critical_falsifiers": [
+    "External-ovipositor and legitimate-visitor access rates react similarly to O x S even with verified manipulations",
+    "Effects disappear after within-head anthesis stage and reference orientation QC",
+    "Enemy entry bypasses involucre via stem/internal developmental route",
+    "Final viable-achene effects come only through rain/UV timing or plant-size contrasts",
+    "Present interaction has no corroborating genetic/phylogenetic evolutionary dependence"
+  ]
+}
