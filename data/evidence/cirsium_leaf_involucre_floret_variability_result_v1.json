@@ -1,0 +1,198 @@
+{
+  "version": "cirsium_leaf_involucre_floret_variability_result_v1",
+  "date": "2026-10-08",
+  "state": "INDEPENDENT_CROSS_ORGAN_REANALYSIS_COMPLETED__CONSTRAINT_MECHANISM_UNRESOLVED",
+  "source2023": {
+    "doi": "10.1007/s00606-023-01854-2",
+    "title": "Hybridization may endanger the rare North Apennine endemic Cirsium bertolonii",
+    "supplement": "Online Resource 6, primary morphometrics excluding achenes",
+    "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1007%2Fs00606-023-01854-2/MediaObjects/606_2023_1854_MOESM6_ESM.xlsx",
+    "raw_xlsx_sha256": "c06423cc6f9800ba4775a4428afa072ba1b3dc6fb48ccd05fdb7e42a2f03ee79",
+    "retrieval_workflow_run": 37751715445,
+    "artifact_id": 11537953289,
+    "individuals": 129,
+    "nonhybrid": 114,
+    "nonhybrid_taxa": {
+      "Cirsium acaulon": 40,
+      "Cirsium bertolonii - Monte Sagro": 34,
+      "Cirsium erisithales": 40
+    },
+    "hybrid_counts": {
+      "C. ×sagrense - Monte Sagro": 6,
+      "C. ×abetonense - Alpe Tre Potenze": 9
+    },
+    "sex_strata": [
+      {
+        "sex": "f",
+        "n": 10
+      },
+      {
+        "sex": "h",
+        "n": 30
+      },
+      {
+        "sex": "f",
+        "n": 10
+      },
+      {
+        "sex": "h",
+        "n": 24
+      },
+      {
+        "sex": "f",
+        "n": 10
+      },
+      {
+        "sex": "h",
+        "n": 30
+      }
+    ],
+    "unit": "Same individual has middle leaf, involucre, and corolla measured. Leaf and head data do NOT measure evolutionary selection, heritability, biomechanics, or ecological interactions."
+  },
+  "design": {
+    "primary_strata": "3 nonhybrid species × 2 reproductive sexes",
+    "cv": "sample SD divided by arithmetic mean, positive traits",
+    "aggregate": "geometric mean of six per-stratum leaf/organ CV ratios, each stratum equal weight",
+    "bootstrap": "3000 paired-plant resamples within each fixed species-sex stratum, seed 20261008",
+    "confidence_scope": "conditional on three sampled taxa and their localities, NOT cross-species phylogenetic or independent localities",
+    "primary_traits": [
+      "Lf_L / Inv_L",
+      "Lf_W / Inv_W",
+      "Lf_Sh / Inv_Sh",
+      "Inv_L / Cor_L"
+    ]
+  },
+  "primary2023": {
+    "length_leaf_over_involucre": {
+      "ratio": 2.3620842366775636,
+      "ci95": [
+        1.8816140077454095,
+        3.135965907555583
+      ],
+      "all_six_strata_gt_one": true
+    },
+    "width_leaf_over_involucre": {
+      "ratio": 1.6854075522495857,
+      "ci95": [
+        1.303263163509375,
+        2.0424314084692328
+      ],
+      "all_six_strata_gt_one": true
+    },
+    "aspect_leaf_over_involucre": {
+      "ratio": 1.4918644468285036,
+      "ci95": [
+        1.2260146845082858,
+        1.8558346225483264
+      ],
+      "all_six_strata_gt_one": true
+    },
+    "length_involucre_over_corolla": {
+      "ratio": 2.7864002034432622,
+      "ci95": [
+        2.221509772487495,
+        3.2570174904733054
+      ],
+      "all_six_strata_gt_one": true
+    },
+    "length_leaf_over_corolla": {
+      "ratio": 6.581711997628487,
+      "ci95": [
+        5.360046282452945,
+        7.9860286453306495
+      ],
+      "all_six_strata_gt_one": true
+    },
+    "all_six_strata_ordered_leaf_involucre_corolla": true,
+    "bootstrap_probability_all_six_ordered": 0.91,
+    "optional_log_sd_sensitivity": {
+      "leaf_length_vs_involucre_length": {
+        "ratio": 2.424203554929781,
+        "ci95": [
+          1.90548434064666,
+          3.2274229227733167
+        ]
+      },
+      "leaf_width_vs_involucre_width": {
+        "ratio": 1.67686236822977,
+        "ci95": [
+          1.321216200453342,
+          2.028553062175975
+        ]
+      },
+      "leaf_aspect_vs_involucre_aspect": {
+        "ratio": 1.461146870917032,
+        "ci95": [
+          1.200119923891734,
+          1.810008811728549
+        ]
+      }
+    }
+  },
+  "source2026": {
+    "doi": "10.1186/s12870-026-08097-6",
+    "title": "Phylotranscriptomics and genome-size evidence clarify the Taiwanese Cirsium japonicum complex and delimit C. brevicaule and allied East Asian thistles",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13020037/",
+    "tables": [
+      "Table 1",
+      "Table 2"
+    ],
+    "units": 6,
+    "caveat": "Mean±SD source tables; no individual-level organ pairing or complete group sizes recovered; units are named taxon/morphotype groups, not phylogenetically independent lineages.",
+    "leaf_longer_cv_than_head_length": 5,
+    "leaf_wider_cv_than_head_width": 4,
+    "leaf_length_cv_gt_floret_length_cv": 6,
+    "head_length_cv_gt_floret_length_cv": 6,
+    "groups": [
+      {
+        "taxon": "C. japonicum var. albescens",
+        "leaf_head_cv_ratio": 1.894,
+        "head_floret_cv_ratio": 2.802,
+        "leaf_floret_cv_ratio": 5.306
+      },
+      {
+        "taxon": "C. brevicaule",
+        "leaf_head_cv_ratio": 6.594,
+        "head_floret_cv_ratio": 1.798,
+        "leaf_floret_cv_ratio": 11.853
+      },
+      {
+        "taxon": "C. irumtiense",
+        "leaf_head_cv_ratio": 2.969,
+        "head_floret_cv_ratio": 9.903,
+        "leaf_floret_cv_ratio": 29.405
+      },
+      {
+        "taxon": "C. japonicum var. takaoense white",
+        "leaf_head_cv_ratio": 2.741,
+        "head_floret_cv_ratio": 1.303,
+        "leaf_floret_cv_ratio": 3.571
+      },
+      {
+        "taxon": "C. japonicum var. takaoense purple",
+        "leaf_head_cv_ratio": 0.735,
+        "head_floret_cv_ratio": 8.777,
+        "leaf_floret_cv_ratio": 6.452
+      },
+      {
+        "taxon": "C. japonicum var. australe",
+        "leaf_head_cv_ratio": 1.399,
+        "head_floret_cv_ratio": 1.794,
+        "leaf_floret_cv_ratio": 2.51
+      }
+    ]
+  },
+  "interpretation": {
+    "supported": "In one same-plant European Cirsium dataset, relative variation in length decreases from middle leaf to involucre to corolla within every measured species-sex stratum; independently, six East Asian/Ryukyu morph groups have lower floret-length CVs than rosette-leaf and whole-head length CVs. Whole-head stability is NOT universal (purple takaoense head-length CV exceeds leaf).",
+    "not_supported": [
+      "A numerical rate of evolutionary trait change",
+      "Genetic or developmental modularity",
+      "Causal stabilizing selection on florets",
+      "Leaf/organ comparability of actual mechanical spine defence",
+      "Adaptation due to pollinator or parasitoid guilds",
+      "Universal trend across all 250-300 Cirsium species"
+    ],
+    "next_discriminator": "Matched common-garden populations + within-plant leaf position and head phenology + direct botanical phyllary/spine force, plus legitimate pollen transfer and antagonist/parasitoid attack leading to viable achenes. Test whether internal floret variance persists as stable while external architecture's ecological fitness value switches."
+  },
+  "repo_boundary": "The frozen Azami GEB manuscript is not amended; aza3 adds independent empirical cross-organ reanalysis."
+}
