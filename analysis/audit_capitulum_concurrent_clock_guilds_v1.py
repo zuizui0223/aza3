@@ -110,7 +110,8 @@ def analyze(efforts,events,sidecar,contract):
     strata=collections.defaultdict(lambda:collections.defaultdict(
         lambda:{"n":0,"plants":set(),"heads":set(),
                 "routes":collections.Counter(),"unknown":0,
-                "taxa":collections.Counter(),"scent_sampled":False}
+                "taxa":collections.Counter(),"scent_sampled":False,
+                "access_known":0,"access_yes":0,"access_unknown":0}
     ))
     pooled={g:collections.Counter() for g in GUILDS}
     unresolved_guild=0
@@ -143,6 +144,14 @@ def analyze(efforts,events,sidecar,contract):
         datum["heads"].add((ev["population_id"],ev["individual_id"],ev["capitulum_id"]))
         datum["taxa"][ev["visitor_taxon_label"]]+=1
         datum["scent_sampled"] |= source["scored_scent"]
+        access=ev.get("reproductive_zone_reached","NA")
+        if access not in {"0","1","NA"}:
+            raise ValueError("REPRODUCTIVE_ZONE_ACCESS_IS_NOT_ASSESSED_OR_BINARY")
+        if access=="NA":
+            datum["access_unknown"]+=1
+        else:
+            datum["access_known"]+=1
+            datum["access_yes"]+=int(access=="1")
         if route=="undetermined":
             datum["unknown"]+=1
         else:
@@ -173,6 +182,17 @@ def analyze(efforts,events,sidecar,contract):
             "approaches":{g:data[g]["n"] for g in GUILDS},
             "independent_plants":{g:len(data[g]["plants"]) for g in GUILDS},
             "taxon_labels":{g:dict(data[g]["taxa"]) for g in GUILDS},
+            "access_given_independently_identified_approach":{
+                g:{
+                    "known":data[g]["access_known"],
+                    "unknown":data[g]["access_unknown"],
+                    "zone_reached":data[g]["access_yes"],
+                    "observed_proportion_if_all_assessed":(
+                        data[g]["access_yes"]/data[g]["n"]
+                        if data[g]["access_unknown"]==0 else None
+                    ),
+                } for g in GUILDS
+            },
             "scent_measured_in_any_included_bout":
                 any(data[g]["scent_sampled"] for g in GUILDS),
         })
@@ -245,6 +265,7 @@ def synthetic_tests(contract):
                     "visitor_taxon_label":f"synthetic:{guild}",
                     "evidence_uri":"synthetic://clip",
                     "entry_route_world":route,
+                    "reproductive_zone_reached":"1",
                 })
     def check(x,y,z):
         return analyze(copy.deepcopy(x),copy.deepcopy(y),copy.deepcopy(z),contract)
