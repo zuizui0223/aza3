@@ -10,6 +10,8 @@ on:
       - "data/templates/fig3_preunblinding_prediction_registry_v1.csv"
       - "data/templates/fig3_validation_unlock_receipt_v1.json"
       - "data/templates/fig3_postunblinding_score_registry_v1.csv"
+      - "data/templates/fig3_e2_separability_evidence_receipt_v1.json"
+      - "docs/FIG3_CAUSAL_CLAIM_AND_NOVELTY_GATE_V1.md"
       - "analysis/score_fig3_heldout_prediction_v1.py"
       - "analysis/validate_fig3_reconfigurable_integration_test_v1.py"
       - "analysis/simulate_fig3_validation_power_v1.py"
@@ -88,6 +90,27 @@ jobs:
           make("M",20,-4,-2,-2,-3,module_mode="M")
           make("F",20,-2,-3,-3,-4,module_mode="M")
           make("SMALL",19,-4,-3,-2.5,-2,mosaics=3,module_mode="R")
+          # Synthetic E2 is only a CI fixture. A biological receipt requires
+          # an independently reviewed genotype-based source artifact.
+          with open("R_E2_source.json","w") as fh:
+              json.dump({"fixture":"synthetic_CI_only","matched_window_controls":"dummy"},fh)
+          source_hash=hashlib.sha256(open("R_E2_source.json","rb").read()).hexdigest()
+          prediction_hash=hashlib.sha256(open("R_pred.csv","rb").read()).hexdigest()
+          e2={
+              "evidence_version":"aza3_fig3_e2_separability_receipt_v1",
+              "status":"E2_PREDICTIVE_SEPARABILITY_SUPPORTED",
+              "prediction_registry_sha256":prediction_hash,
+              "evidence_frozen_at":"2026-10-06T00:30:00Z",
+              "evidence_source_path":"R_E2_source.json",
+              "evidence_source_sha256":source_hash,
+              "training_block_pool_frozen":True,
+              "phenotype_predictive_states_in_two_multitrait_modules":True,
+              "matched_window_maf_ld_callability_controls_pass":True,
+              "ancestry_cytotype_controls_pass":True,
+              "reference_substitution_controls_pass":True,
+              "heldout_state_prediction_evidence_present":True
+          }
+          with open("R_E2.json","w") as fh: json.dump(e2,fh)
           PY
 
       - name: Score R, M, F and insufficient-validation cases
@@ -95,14 +118,26 @@ jobs:
           for x in R M F SMALL; do
             python analysis/score_fig3_heldout_prediction_v1.py               --scores ${x}_scores.csv --prediction-registry ${x}_pred.csv               --unlock-receipt ${x}_unlock.json --output ${x}.json
           done
+          python analysis/score_fig3_heldout_prediction_v1.py --scores R_scores.csv --prediction-registry R_pred.csv --unlock-receipt R_unlock.json --e2-receipt R_E2.json --output R_with_E2.json
           python - <<'PY'
           import json
-          assert json.load(open("R.json"))["decision"]=="FIG3_R_STRONG"
+          assert json.load(open("R.json"))["decision"]=="FIG3_R_PARTIAL"
+          assert json.load(open("R.json"))["e2_gate_status"]=="NOT_PROVIDED"
+          assert json.load(open("R_with_E2.json"))["decision"]=="FIG3_R_STRONG"
+          assert json.load(open("R_with_E2.json"))["e2_gate_status"]=="PASS"
           assert json.load(open("M.json"))["decision"]=="FIG3_MODULE_INHERITANCE_SUPPORTIVE"
           assert json.load(open("F.json"))["decision"]=="FIG3_WHOLE_ORGAN_SUPPORTIVE"
           assert json.load(open("SMALL.json"))["decision"]=="NOT_IDENTIFIABLE"
           assert json.load(open("R.json"))["prospective_mosaic_correct_both_n"]==3
           PY
+
+      - name: Tampered E2 source must fail
+        run: |
+          echo '#tamper' >> R_E2_source.json
+          if python analysis/score_fig3_heldout_prediction_v1.py --scores R_scores.csv --prediction-registry R_pred.csv --unlock-receipt R_unlock.json --e2-receipt R_E2.json --output tampered_e2.json; then
+            echo "tampered E2 source unexpectedly passed" >&2
+            exit 1
+          fi
 
       - name: Tampered prediction registry must fail
         run: |
