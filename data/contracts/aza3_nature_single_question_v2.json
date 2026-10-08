@@ -19,16 +19,17 @@
     "focal_same_population_combinatorial_substrate": "not_yet_verified"
   },
   "competing_models": {
-    "fixed_evolutionary_integration": "present phenotype modules persist as shared genomic/local-history units",
-    "reconfigurable_integration": "present phenotype integration coexists with separable component genomic histories and recombinant reassembly"
+    "whole_organ_fixed_integration": "all admitted constructs inherit through one shared genomic state",
+    "phenotypic_module_inheritance": "one genomic state per frozen Azami phenotypic module; constructs within each module share that inherited state",
+    "reconfigurable_integration": "component genomic states are not constrained to the frozen phenotypic-module partition and can reassemble"
   },
-  "nature_kill_shot": "Natural or segregating genomic mosaics independently predict component states/new capitulum combinations while preserving a coherent integrated reproductive phenotype.",
-  "primary_falsifier": "All focal components follow the same local genomic ancestry and phenotype combinations track one inseparable genomic background.",
+  "nature_kill_shot": "On untouched validation individuals, the reconfigurable model predicts multi-construct phenotypes better than the frozen phenotypic-module model, and prospectively registered natural genomic mosaics correctly predict new colour × anthesis-orientation combinations.",
+  "primary_falsifier": "Model M predicts untouched phenotypes as well as Model R, or Model F predicts as well as both, or prospective mosaics fail to predict component states.",
   "figure_contract": [
     "Fig1: present integration plus failure of one fixed ecological partition and robust component-specific ecological anchors",
     "Fig2: repeated, unequal-depth, nonsynchronized component histories",
-    "Fig3: same-individual test of genomic co-inheritance versus separable local histories",
-    "Fig4: natural genomic reassembly and prospective/out-of-sample combination prediction",
+    "Fig3: untouched prediction comparison of whole-organ F, frozen phenotypic-module M, and reconfigurable R genomic architectures",
+    "Fig4: prospectively registered natural genomic mosaics and out-of-sample component-combination prediction",
     "Fig5: representative function-to-fitness chain showing coherent reproductive performance after component reassembly"
   ],
   "claim_boundaries": [
@@ -37,7 +38,10 @@
     "historical nonsynchrony is not genetic independence",
     "genomic modularity requires same-individual dense data and reference-stable inference",
     "adaptation requires direct fitness evidence",
-    "species-wide state multiplicity is not a verified within-population combinatorial substrate"
+    "species-wide state multiplicity is not a verified within-population combinatorial substrate",
+    "colour_orientation_separability_alone_is_not_reconfigurable_integration",
+    "R_must_outpredict_frozen_phenotypic_module_model_for_FIG3_R_STRONG",
+    "reconfigurable_integration_does_not_by_itself_establish_faster_diversification"
   ],
   "focal_system_gate": "data/contracts/c_sieboldii_combinatorial_substrate_gate_v1.json",
   "execution_order": [
@@ -45,9 +49,29 @@
     "classify_C_sieboldii_combinatorial_substrate_gate",
     "if_CS_GREEN_or_LOCAL_SET_run_8_individual_reference_transferability_WGS_on_verified_system",
     "if_CS_AMBER_or_RED_verify_alternative_focal_system",
-    "freeze_fixed_vs_reconfigurable_genomic_estimands_after_WGS_GREEN",
-    "test_component_specific_genomic_histories",
-    "open_natural_reassembly_prediction_test",
+    "after_WGS_GREEN_freeze_F_vs_M_vs_R_genomic_test",
+    "expand_focal_mapping_only_if_needed_to_preserve_at_least_40_train_plus_20_untouched_validation_after_QC",
+    "test_R_vs_frozen_phenotypic_module_M_on_untouched_validation",
+    "open_prospective_natural_mosaic_prediction_only_after_predictive_genomic_separation",
     "open_representative_fitness_chain"
-  ]
+  ],
+  "fig3_test_contract": "data/contracts/aza3_fig3_reconfigurable_integration_test_v1.json",
+  "diversification_context": "The young radiation supplies a stringent shallow-timescale test and repeated component histories; Fig3 R support does not by itself establish that reconfigurability caused an elevated diversification rate.",
+  "novelty_target": "Directly compete a predeclared phenotypic-module inheritance model against a complexity-matched module-breaking genomic model in the same natural individuals, using untouched phenotype prediction and prospectively registered natural mosaics as the discriminator.",
+  "not_novel_alone": [
+    "cross_level_modularity_mismatch",
+    "different_traits_mapping_to_different_loci",
+    "mosaic_evolution",
+    "standing_variation_reuse",
+    "module_boundary_change"
+  ],
+  "figure_roles": {
+    "Fig1": "setup_required__establish_present_integration",
+    "Fig2": "setup_required__show_cross_level_partition_is_not_assumed",
+    "Fig3": "core_required__F_vs_M_vs_R_untouched_prediction",
+    "Fig4": "core_required_for_strongest_claim__prospective_natural_mosaics",
+    "Fig5": "independent_extension__functional_or_fitness_coherence_after_reassembly"
+  },
+  "nature_core_success": "The central evolutionary-unit claim is closed by FIG3_R_STRONG plus the preregistered Fig4 prospective-mosaic criterion. Fig5 is not an AND prerequisite for that claim.",
+  "fig5_extension": "If the functional/fitness chain succeeds, the claim extends from reconfigurable inheritance to reassembly compatible with coherent reproductive function. If it fails or is not yet executed, do not reinterpret the genomic result; simply keep the functional extension closed."
 }

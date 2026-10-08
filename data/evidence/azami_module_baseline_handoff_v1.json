@@ -1,0 +1,75 @@
+{
+  "evidence_version": "aza3_azami_module_baseline_handoff_v1",
+  "status_date": "2026-10-07",
+  "role": "independent_phenotypic_evidence_for_Fig3_module_baseline",
+  "source_project": "Azami Chapter 1 frozen analysis",
+  "source_scope": {
+    "observations": 1734,
+    "taxa": 42,
+    "constructs": 9,
+    "construct_relations": 36
+  },
+  "module_partition": {
+    "status": "predeclared_biologically_before_environmental_outcomes",
+    "modules": [
+      "presentation",
+      "colour",
+      "head_form",
+      "involucre_armature"
+    ],
+    "interpretation": "visible-phenotype organization only; not prior evidence of genetic or developmental modularity"
+  },
+  "cohesion_tests": {
+    "within_taxon_module_label_permutation_p": 0.0013,
+    "among_taxon_module_label_permutation_p": 0.0365,
+    "interpretation": "within-module construct associations exceed random module partitions at both scales"
+  },
+  "cross_scale_geometry": {
+    "spearman_rho": 0.439,
+    "qap_p": 0.0041,
+    "relations_stronger_among_taxa": 33,
+    "total_relations": 36,
+    "bootstrap_replicates": 1000,
+    "bootstrap_among_minus_within_all_positive": true,
+    "bootstrap_difference_ci95": [
+      0.038,
+      0.119
+    ],
+    "interpretation": "module organization exists, but integration geometry/strength is not fixed across biological scales"
+  },
+  "trait_specific_environment_examples": [
+    {
+      "construct": "floral_chroma",
+      "environment": "shortwave_radiation",
+      "beta": -0.345,
+      "q": 0.00225,
+      "robustness": "biological reaggregation + sampling + spatial + 52-placement phylogenetic checks"
+    },
+    {
+      "construct": "presentation_angle",
+      "environment": "annual_precipitation",
+      "beta": 0.304,
+      "q": 0.0036,
+      "robustness": "biological reaggregation + sampling + spatial + 52-placement phylogenetic checks"
+    }
+  ],
+  "named_source_artifacts": [
+    "biological_axes_within.csv",
+    "biological_axes_among_min5.csv",
+    "complete18_construct_pairwise.csv",
+    "construct_scale_integration_report.json",
+    "rv_estimator_validity_summary.json"
+  ],
+  "fig3_use": {
+    "M_global": "The frozen Azami module partition is an independently supported conventional phenotypic-module baseline, not a genomic-result-driven grouping.",
+    "F": "Whole-organ integration remains a stricter alternative because the module evidence is partial rather than one universal syndrome.",
+    "R": "R must outperform M_global and remain robust to M_local; Azami evidence alone does not imply genetic reconfigurability."
+  },
+  "claim_boundaries": [
+    "does_not_establish_genetic_modularity",
+    "does_not_establish_developmental_modularity",
+    "does_not_establish_adaptation",
+    "does_not_establish_reconfigurable_inheritance",
+    "environmental_associations_are_not_direct_selection_pressures"
+  ]
+}
