@@ -1,0 +1,33 @@
+name: Retrieve published Cirsium paired leaf and involucre data
+
+on:
+  pull_request:
+    paths:
+      - "analysis/retrieve_leaf_capitulum_source_2023.py"
+      - ".github/workflows/retrieve-leaf-capitulum-raw-2023.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  retrieve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check code before retrieving independent XLSX
+        run: python -m py_compile analysis/retrieve_leaf_capitulum_source_2023.py
+      - name: Download Springer Nature Online Resource 6 (paired leaf/head morphometrics)
+        run: python analysis/retrieve_leaf_capitulum_source_2023.py
+      - name: Archive publisher source with SHA receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: michalkova2023-leaf-capitulum-online-resource6
+          path: work/leaf_capitulum_published_source/
+          retention-days: 14
+          if-no-files-found: warn
