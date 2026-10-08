@@ -1,0 +1,61 @@
+name: Validate Cirsium head insect-access event ontology
+
+on:
+  pull_request:
+    paths:
+      - "data/contracts/capitulum_guild_access_event_contract_v1.json"
+      - "data/intake/capitulum_guild_access_event_ledger_v1.csv"
+      - "analysis/validate_capitulum_guild_access_event_ledger_v1.py"
+      - ".github/workflows/validate-capitulum-guild-access-events-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  event-semantics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Source-lock official EAzami Aim2 sheet headings (not field observations)
+        run: |
+          set -euo pipefail
+          mkdir -p work/head_events/source
+          ref=c9870e91604ed1514344ddc8f765eae5237dbf27
+          curl -fsSL --retry 2 "https://raw.githubusercontent.com/zuizui0223/EAzami/$ref/sampling/aim2_capitulum_field_ledger_v1.csv" -o work/head_events/source/field.csv
+          curl -fsSL --retry 2 "https://raw.githubusercontent.com/zuizui0223/EAzami/$ref/sampling/aim2_capitulum_observation_bout_ledger_v1.csv" -o work/head_events/source/bout.csv
+          curl -fsSL --retry 2 "https://raw.githubusercontent.com/zuizui0223/EAzami/$ref/sampling/aim2_plant_display_predation_ledger_v1.csv" -o work/head_events/source/plant.csv
+          test "$(git hash-object work/head_events/source/field.csv)" = b31bae930989b26f433da1407a60583e07ea8db1
+          test "$(git hash-object work/head_events/source/bout.csv)" = 9d36f5efe66ea2ea9d54c5298cc69fa261a76857
+          test "$(git hash-object work/head_events/source/plant.csv)" = 84c80d762ee967836f94d2ad90ec734a99148688
+      - name: Execute no-record schema check and synthetic ecological misuse tests
+        run: |
+          python -m py_compile analysis/validate_capitulum_guild_access_event_ledger_v1.py
+          python analysis/validate_capitulum_guild_access_event_ledger_v1.py \
+            --contract data/contracts/capitulum_guild_access_event_contract_v1.json \
+            --events data/intake/capitulum_guild_access_event_ledger_v1.csv \
+            --bout-header work/head_events/source/bout.csv \
+            --field-header work/head_events/source/field.csv \
+            --plant-header work/head_events/source/plant.csv \
+            --self-test | tee work/head_events/validation.json
+          python - <<'PY'
+          import json
+          d=json.load(open("work/head_events/validation.json"))
+          assert d["n_approach_episodes"]==0
+          assert d["synthetic_tests"]["n_expected_failure_checks"]>=6
+          assert d["direct_trait_impact_on_seed_fitness"]=="NOT_IDENTIFIED"
+          assert d["requires_denominator_bout_effort_and_undetected_event_recall"]
+          print("PASS: ready for real event observations; no fabricated ecological results")
+          PY
+      - name: Retain source schema and validation receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: capitulum-guild-access-ontology-check
+          path: work/head_events/
+          retention-days: 30
+          if-no-files-found: warn
