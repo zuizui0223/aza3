@@ -17,6 +17,12 @@ Xi, Eisenhauer & Sun (2015), *Journal of Animal Ecology* DOI [10.1111/1365-2656.
 
 This is **direct pre-existing evidence that a third trophic level can reduce, not increase, short-term plant seed fitness.** The earlier Cirsium-specific 1990 intracapitulum ovipositor-refuge literature (Romstöck-Völkl, DOI [10.1111/j.1365-2311.1990.tb00814.x](https://doi.org/10.1111/j.1365-2311.1990.tb00814.x)) remains additional prior art. Neither a refuge alone nor parasitoid-feeding stimulation alone is a new discovery.
 
+## Source-data availability audit — not an individual Cirsium dataset
+
+The public [Dryad record](https://doi.org/10.5061/dryad.m195j) for Xi et al. (2015) identifies three deposited spreadsheets: `Data_Figure1.xlsx`, `Data-Figure2.xlsx`, `Data_Figure3.xlsx`. The **published usage notes explicitly describe figure-level minimum, quartile, median, maximum and mean per treatment**, not observation-level insect identities, true spine measurements, exact parasitism/seed-damage timing or within-head approach events. The five-species `Cirsium setosum` figure's available summaries are therefore **NOT enough** to identify an individual-level morphological effect or to fit `q,p,g` to Cirsium. The file-stream retrieval returned HTTP 403 in this review; **no new numeric re-analysis of the spreadsheets is claimed**. An inaccessible file is not a negative biological result.
+
+The original 2015 paper's field trial also selected individual capitula for some post-treatment groups based on fly/wasp adult emergence. This selection and the multilevel enclosure design must be retained when discussing generalizability; the reported +85% aggregate mean damage is not a per-larva causal coefficient.
+
 ## 2. Two functionally opposite parasitoid pathways
 
 The former simplified same-head model `D = E(1-q)d` treats parasitoid action as removal of seed feeders **before irreversible seed damage**. It misses **koinobiont parasitoids**, whose living host continues feeding and may eat even more.
