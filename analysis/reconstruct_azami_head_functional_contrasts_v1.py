@@ -248,6 +248,21 @@ def reconstruct(xdict, labels, names, covariates, n_boot, n_perm, seed):
             r["among_rv"] > r["within_rv"] for r in rows),
         "bootstrap_draws": n_boot, "permutations_per_pair": n_perm,
         "selected_contrasts": selected, "all_pair_robustness": rows,
+        "taxon_level_context_profiles": {
+            "taxon_labels": names,
+            "scalar_construct_medians": {
+                construct: X[construct].ravel().tolist()
+                for construct in ("presentation_angle", "head_elongation",
+                                  "floral_chroma", "projection_prominence")
+            },
+            "matched_environment_and_image_quality": {
+                field: covariates[field].to_numpy(float).tolist()
+                for field in ("latitude", "longitude", "chelsa_bio12",
+                              "chelsa_rsds_mean", "min_dimension",
+                              "sharpness", "mask_quality")
+            },
+            "scope": "42 aggregate taxon medians, NOT species-specific biological interaction or native-range sampling."
+        },
         "source_limits": [
             "Taxon-label null is not a lineage-history, phylogenetic correlation, or selection null.",
             "Taxon bootstrap assumes observed taxa as exchangeable; independent evolution is unverified.",
