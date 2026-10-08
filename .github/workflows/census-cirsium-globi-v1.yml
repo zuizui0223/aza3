@@ -1,0 +1,69 @@
+name: Census Cirsium GloBI interactions (discovery only)
+
+on:
+  pull_request:
+    paths:
+      - "analysis/collect_globi_cirsium_interactions_v1.py"
+      - ".github/workflows/census-cirsium-globi-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  census:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Syntax and scientific-meaning unit checks
+        run: |
+          python -m py_compile analysis/collect_globi_cirsium_interactions_v1.py
+          python - <<'PY'
+          import importlib.util
+          spec=importlib.util.spec_from_file_location("audit","analysis/collect_globi_cirsium_interactions_v1.py")
+          m=importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(m)
+          a=m.parse_row({"sourceTaxonName":"Cirsium palustre",
+              "targetTaxonName":"Bombus pascuorum",
+              "interactionTypeName":"flowersVisitedBy",
+              "studyUrl":"https://example.org/study",
+              "studySourceId":"specimen-1"},"source")
+          assert a["focal_taxon"]=="Cirsium palustre"
+          assert a["partner_taxon"]=="Bombus pascuorum"
+          assert a["interaction_category"]=="flower_visit"
+          assert a["partner_species_rank_candidate"]=="true"
+          b=m.parse_row({"source_taxon_name":"Larinus planus",
+              "target_taxon_name":"Cirsium pitcheri",
+              "interaction_type":"eats"},"target")
+          assert b["interaction_category"]=="feeding"
+          assert b["focal_position"]=="target"
+          c=m.parse_row({"sourceTaxonName":"Cirsium palustre",
+              "targetTaxonName":"Larinus",
+              "interactionTypeName":"hostOf"},"source")
+          assert c["interaction_category"]=="host_association"
+          assert c["partner_species_rank_candidate"]=="false"
+          rust=m.parse_row({"source_taxon_name":"Cirsium oleraceum",
+              "target_taxon_name":"Puccinia cnici-oleracei",
+              "interaction_type":"parasiteOf"},"source")
+          assert rust["relation_direction_status"]=="REVIEW_INVERTED_SEMANTIC_DIRECTION"
+          assert m.parse_row({"sourceTaxonName":"Echinacea purpurea",
+              "targetTaxonName":"Bombus pascuorum","interactionTypeName":"pollinates"},"source") is None
+          print("PASS: genus filtering, reciprocal direction, visit != pollination, host != feeding")
+          PY
+      - name: Retrieve all Cirsium-side interaction types and studies, page bounded
+        run: |
+          python analysis/collect_globi_cirsium_interactions_v1.py \
+            --output-dir outputs/globi_cirsium_v1 \
+            --page-size 1000 --max-pages 128 --pause 0.35 --timeout 65
+      - name: Publish evidence artifact whether completed or source blocked
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-globi-interaction-audit
+          path: outputs/globi_cirsium_v1/
+          if-no-files-found: warn
+          retention-days: 30
