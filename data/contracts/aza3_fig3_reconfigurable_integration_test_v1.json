@@ -178,5 +178,15 @@
     "fig1_module_architecture": "data/evidence/azami_module_baseline_handoff_v1.json",
     "fig2_historical_reassembly": "data/evidence/eazami_historical_reassembly_handoff_v1.json",
     "temporal_rule": "Both evidence layers precede focal aza3 phenotype-linked genomic discovery and cannot be redefined after Fig3 genomic results."
+  },
+  "e2_receipt_gate": {
+    "status": "PROSPECTIVE_AUDIT_CHECK",
+    "template": "data/templates/fig3_e2_separability_evidence_receipt_v1.json",
+    "cli": "--e2-receipt",
+    "mandatory_for": "FIG3_R_STRONG",
+    "no_receipt_or_failed_control_decision_ceiling": "FIG3_R_PARTIAL",
+    "evidence_scope": "Phenotype-predictive genomic-state separability in at least 2 admitted multi-trait modules, using fixed TRAIN candidate blocks, matched genomic windows and reference, ancestry and cytotype controls.",
+    "provenance": "source file SHA256 verified and frozen after prediction registry but before validation phenotype unlock",
+    "boundary": "E2 status is an audited receipt not substitute for raw genotype analyses; a present-population difference in inheritance does not establish historical evolution of module boundaries."
   }
 }
