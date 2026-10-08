@@ -47,6 +47,8 @@ jobs:
           assert x["n_qualified_bins"]==2
           assert abs(x["naive_pooled_overlap"]-.2)<1e-12
           assert abs(x["same_5min_overlap"]-1.0)<1e-12
+          assert abs(x["head_composition_counterexample_pooled"]-(20/110+10/190))<1e-12
+          assert abs(x["head_composition_counterexample_within_head"]-1.0)<1e-12
           assert x["real_biological_observations"]==0
           assert p["real_data"]["status"]=="NO_REAL_VALIDATED_CLOCK_VIDEO"
           assert p["real_data"]["matched_binned_route_overlap"] is None
