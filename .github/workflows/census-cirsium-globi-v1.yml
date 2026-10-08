@@ -46,6 +46,10 @@ jobs:
               "interactionTypeName":"hostOf"},"source")
           assert c["interaction_category"]=="host_association"
           assert c["partner_species_rank_candidate"]=="false"
+          rust=m.parse_row({"source_taxon_name":"Cirsium oleraceum",
+              "target_taxon_name":"Puccinia cnici-oleracei",
+              "interaction_type":"parasiteOf"},"source")
+          assert rust["relation_direction_status"]=="REVIEW_INVERTED_SEMANTIC_DIRECTION"
           assert m.parse_row({"sourceTaxonName":"Echinacea purpurea",
               "targetTaxonName":"Bombus pascuorum","interactionTypeName":"pollinates"},"source") is None
           print("PASS: genus filtering, reciprocal direction, visit != pollination, host != feeding")
