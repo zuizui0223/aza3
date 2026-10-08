@@ -71,6 +71,12 @@ The new `analysis/collect_globi_cirsium_seed_feeder_secondhop_v1.py` uses the an
 - absent second-hop records cannot establish absent parasitoids;
 - the workflow `.github/workflows/validate-cirsium-globi-bridge-secondhop-v1.yml` contains separate offline source/semantic validation and a bounded live second-hop acquisition with archived outputs.
 
+### Strong positional control: a capitulum is not exchangeable with another head on the same plant
+
+Gijsman, Havens & Vitt (2020), DOI 10.1016/j.gecco.2020.e00945, found that *C. pitcheri* **terminal** capitula were largest and most productive; weevil *Larinus planus* evidence was concentrated disproportionately on **secondary and tertiary** heads, and infested capitula produced **60% fewer mature seeds** than heads without evidence of weevil infestation. These observations do not prove an angle or spine effect.
+
+Therefore an O × S natural-history analysis must also record **head rank on the flowering stem, branching position, emergence order, within-plant capitulum size and flowering stage**, before treating a spatially exposed or drooping head as an adaptive orientation morph. Head position is a biologically meaningful allocation/predation axis, not a disposable nuisance.
+
 ### Strong ecological discriminator: stage-specific defence
 
 A head may exclude adult seed-feeder oviposition while simultaneously restricting the later ovipositors of parasitoids of established larvae. The **fitness sign** of spines, phyllary access and orientation then depends on the *relative timing* of (i) seed-feeder egg placement, (ii) successful early parasitoid attack, and (iii) irreversible seed damage. In particular:
