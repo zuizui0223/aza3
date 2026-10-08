@@ -1,0 +1,170 @@
+{
+  "version": "capitulum_conditional_coupling_summary_v1",
+  "asof": "2026-10-08",
+  "status": "RUN_SUCCESS_NO_MODERATION_BEYOND_12_TEST_BH",
+  "provenance": {
+    "repository": "zuizui0223/aza3",
+    "PR": 44,
+    "github_actions_run": 37760980444,
+    "github_actions_url": "https://github.com/zuizui0223/aza3/actions/runs/37760980444",
+    "artifact_id": 11542301743,
+    "artifact_sha256": "055f46febd265d0e02ee2d17f040a0dca4b4c878e19a9187817f34f2d8719ad1",
+    "full_machine_readable_path": "capitulum_context_12test_result_v1.json",
+    "upstream_contract": "data/contracts/capitulum_conditional_coupling_splits_v1.json",
+    "upstream_code": "analysis/test_capitulum_context_specific_coupling_v1.py",
+    "frozen_Azami_traits_artifact": 9612943217,
+    "frozen_Azami_environment_artifact": 9633419268
+  },
+  "scientific_unit": {
+    "taxa": 42,
+    "common_observations": 1734,
+    "groups": "4 predeclared thresholds × 3 head-only pair types",
+    "permutations_per_group": 9999,
+    "bootstrap_taxa_per_group": 3000,
+    "not_independent_lineages": true,
+    "not_functional_fitness": true
+  },
+  "n_BH_sig_05": 0,
+  "first_tier_context_rows": [
+    {
+      "split": "hemisphere_proxy",
+      "left": "presentation_angle",
+      "right": "head_elongation",
+      "low_n": 25,
+      "high_n": 17,
+      "low_r": -0.62395,
+      "high_r": -0.62505,
+      "unadjusted_two_sided_permutation_p": 0.998,
+      "BH_q_across_12": 0.998
+    },
+    {
+      "split": "hemisphere_proxy",
+      "left": "floral_chroma",
+      "right": "projection_prominence",
+      "low_n": 25,
+      "high_n": 17,
+      "low_r": 0.41635,
+      "high_r": 0.51922,
+      "unadjusted_two_sided_permutation_p": 0.7266,
+      "BH_q_across_12": 0.9486545454545454
+    },
+    {
+      "split": "hemisphere_proxy",
+      "left": "presentation_angle",
+      "right": "projection_prominence",
+      "low_n": 25,
+      "high_n": 17,
+      "low_r": 0.06946,
+      "high_r": -0.01735,
+      "unadjusted_two_sided_permutation_p": 0.8106,
+      "BH_q_across_12": 0.9486545454545454
+    },
+    {
+      "split": "annual_precipitation",
+      "left": "presentation_angle",
+      "right": "head_elongation",
+      "low_n": 21,
+      "high_n": 21,
+      "low_r": -0.23461,
+      "high_r": -0.71838,
+      "unadjusted_two_sided_permutation_p": 0.1098,
+      "BH_q_across_12": 0.3447
+    },
+    {
+      "split": "annual_precipitation",
+      "left": "floral_chroma",
+      "right": "projection_prominence",
+      "low_n": 21,
+      "high_n": 21,
+      "low_r": 0.1878,
+      "high_r": 0.77273,
+      "unadjusted_two_sided_permutation_p": 0.0211,
+      "BH_q_across_12": 0.2532
+    },
+    {
+      "split": "annual_precipitation",
+      "left": "presentation_angle",
+      "right": "projection_prominence",
+      "low_n": 21,
+      "high_n": 21,
+      "low_r": 0.11156,
+      "high_r": 0.05333,
+      "unadjusted_two_sided_permutation_p": 0.8684,
+      "BH_q_across_12": 0.9486545454545454
+    },
+    {
+      "split": "surface_solar",
+      "left": "presentation_angle",
+      "right": "head_elongation",
+      "low_n": 21,
+      "high_n": 21,
+      "low_r": -0.51518,
+      "high_r": -0.67612,
+      "unadjusted_two_sided_permutation_p": 0.6041,
+      "BH_q_across_12": 0.9486545454545454
+    },
+    {
+      "split": "surface_solar",
+      "left": "floral_chroma",
+      "right": "projection_prominence",
+      "low_n": 21,
+      "high_n": 21,
+      "low_r": 0.34807,
+      "high_r": 0.73721,
+      "unadjusted_two_sided_permutation_p": 0.1149,
+      "BH_q_across_12": 0.3447
+    },
+    {
+      "split": "surface_solar",
+      "left": "presentation_angle",
+      "right": "projection_prominence",
+      "low_n": 21,
+      "high_n": 21,
+      "low_r": -0.03337,
+      "high_r": 0.13872,
+      "unadjusted_two_sided_permutation_p": 0.6228,
+      "BH_q_across_12": 0.9486545454545454
+    },
+    {
+      "split": "photo_sharpness",
+      "left": "presentation_angle",
+      "right": "head_elongation",
+      "low_n": 21,
+      "high_n": 21,
+      "low_r": -0.66596,
+      "high_r": -0.2147,
+      "unadjusted_two_sided_permutation_p": 0.1748,
+      "BH_q_across_12": 0.41952
+    },
+    {
+      "split": "photo_sharpness",
+      "left": "floral_chroma",
+      "right": "projection_prominence",
+      "low_n": 21,
+      "high_n": 21,
+      "low_r": 0.66185,
+      "high_r": 0.20774,
+      "unadjusted_two_sided_permutation_p": 0.1132,
+      "BH_q_across_12": 0.3447
+    },
+    {
+      "split": "photo_sharpness",
+      "left": "presentation_angle",
+      "right": "projection_prominence",
+      "low_n": 21,
+      "high_n": 21,
+      "low_r": 0.14115,
+      "high_r": 0.19748,
+      "unadjusted_two_sided_permutation_p": 0.8696,
+      "BH_q_across_12": 0.9486545454545454
+    }
+  ],
+  "interpretation": {
+    "hemisphere": "Presentation angle-head elongation negative in both coordinate hemispheres; chroma-projection positive in both, without subgroup contrast.",
+    "wet_chroma": "Colour chroma-projection contrast stronger among high precipitation taxa but unadjusted P=0.0211 fails q=0.2532 after 12 contrasts; no supported rainfall-driven coevolution.",
+    "solar": "No supported slope difference",
+    "photo_sharpness": "The visually observed difference between sharpness strata cannot be dismissed as a source of technical heterogeneity; not significant as evidence for technical mechanism either.",
+    "O_projection": "No general angle-projection association or detected condition-specific relationship, not proof of functional independence/compensation."
+  },
+  "conclusion": "Existing scale-specific covariance is reproducible but direct biological function/selection cannot be recovered from image morphology or broad ecosystem context splits."
+}
