@@ -197,7 +197,7 @@ def synthetic_tests():
         (x,a,{**e,"pre_entry_guild_evidence":"unresolved"},"INSECT_ROLE"),
         ({**x,"contact_surface":"unresolved"},a,e,"UNRESOLVED_SURFACE"),
         ({**x,"approach_episode_id":"E_DOES_NOT_EXIST"},a,e,"ANNOTATION_MUST_MATCH"),
-        ({**x,"actual_spine_length_mm":"-2"},a,e,"ANATOMICAL_DIMENSION"),
+        ({**x,"actual_spine_length_mm":"-2"},a,e,"POSITIVE_TRUE_SPINE_TOUCH"),
     ]
     for rr,aa,ee,needle in bad:
         try:check(rr,aa,ee)
