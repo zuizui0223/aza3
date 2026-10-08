@@ -25,6 +25,9 @@ Additional GloBI source archives verified in the independent cross-check:
 - US Mountain West floral visitor programme (https://zenodo.org/records/20548388), `C. arvense` is present with **76** source-level `visitsFlowersOf` records; partner-specific breakdown is not established by the top-20 pairs on the review page.
 - `globalbioticinteractions/gbif-us-bees` (https://zenodo.org/records/20547850) has **1,283** `Cirsium sp.` associated source rows, explicitly lacking species resolution. Neither the 1,283 nor the visitor abundance may be treated as *Cirsium* species richness or a population-level interaction rate.
 
+- Albert J. Cook Arthropod Research Collection (https://zenodo.org/records/18437460): *Megachile inermis* `interactsWith` *C. vulgare*, **35** records in the index review; no effective pollination or head location established.
+- Dorey 2023 (https://zenodo.org/records/16416973): *Bombus huntii* and *Bombus centralis* `interactsWith` genus-unresolved `Cirsium sp.`, **132** and **100** source-indexed claims, respectively; these must **never be silently reassigned to species** such as *C. arvense* or *C. vulgare*.
+
 **Crucial provenance firewall:** `globalbioticinteractions/refuted-biotic-interactions-by-eol` (https://zenodo.org/records/16417164) is an archive of *refuted*, not affirmative, claims. It includes hundreds of `Cirsium arvense`-labelled statements, but **must never** be counted as confirmed pollination, herbivory, parasitism or any positive ecological relation. Exclude that source from all affirmative partner summaries unless examining contradictions separately. `globalbioticinteractions/mangal` may mirror independent Mangal records and is not an independent biological source without a matching DOI/study-level deduplication.
 
 **Source pages (review- and source-identifying):**
@@ -51,8 +54,8 @@ The following are **publication-confirmed focal interaction names** to cross-che
 The reproducible **bounded source-check** is now committed at `data/evidence/cirsium_capitulum_interaction_source_anchors_v1.csv`, validated separately by `analysis/validate_cirsium_interaction_source_anchors_v1.py`.
 
 This is a hand-adjudicated source subset, **not** a full GloBI census:
-- **28** taxon–source-role rows across **7** named *Cirsium* taxa;
-- **4** rows from individually identified GloBI source review pages and **24** independently verified primary-literature rows;
+- **31** taxon–source-role rows across **7** named *Cirsium* species plus genus-unresolved *Cirsium* sp.;
+- **7** rows from individually identified GloBI source review pages and **24** independently verified primary-literature rows;
 - **21** rows explicitly within the capitulum, in **5** *Cirsium* species; counts are bibliographic anchors, **not** network degrees or replicated observations;
 - two indispensable organ controls: `C. arvense × Urophora cardui` is a **stem** gall, `C. arvense × Harpalus rufipes` is a **seed-eating carabid** claim, not certified pre-dispersal head feeding.
 
