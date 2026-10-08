@@ -1,0 +1,82 @@
+name: Validate Cirsium network anchor and second-hop parasitoids
+
+on:
+  pull_request:
+    paths:
+      - "data/evidence/cirsium_capitulum_interaction_source_anchors_v1.csv"
+      - "analysis/validate_cirsium_interaction_source_anchors_v1.py"
+      - "analysis/collect_globi_cirsium_seed_feeder_secondhop_v1.py"
+      - ".github/workflows/validate-cirsium-globi-bridge-secondhop-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-source-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate source-identity and biological organ scopes
+        run: |
+          python -m py_compile analysis/collect_globi_cirsium_seed_feeder_secondhop_v1.py
+          python -m py_compile analysis/validate_cirsium_interaction_source_anchors_v1.py
+          python analysis/validate_cirsium_interaction_source_anchors_v1.py
+      - name: Synthetic parasitoid and role-direction tests
+        run: |
+          python - <<'PY'
+          import importlib.util
+          spec=importlib.util.spec_from_file_location("s",
+              "analysis/collect_globi_cirsium_seed_feeder_secondhop_v1.py")
+          m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
+          a=m.parse_record({"sourceTaxonName":"Torymus chloromerus",
+              "targetTaxonName":"Xyphosia miliaria",
+              "interactionTypeName":"parasitoidOf",
+              "studyCitation":"synthetic test only"},"Xyphosia miliaria","synthetic-digest")
+          assert a["parasitoid"]=="Torymus chloromerus"
+          assert a["head_seed_feeder"]=="Xyphosia miliaria"
+          assert a["same_cirsium_head_confirmed"]=="no"
+          b=m.parse_record({"sourceTaxonName":"Xyphosia miliaria",
+              "targetTaxonName":"Pteromalus elevatus",
+              "interactionTypeName":"hasParasitoid",
+              "studyCitation":"synthetic test only"},"Xyphosia miliaria","synthetic-digest")
+          assert b["parasitoid"]=="Pteromalus elevatus"
+          assert m.parse_record({"sourceTaxonName":"Torymus chloromerus",
+              "targetTaxonName":"Xyphosia miliaria",
+              "interactionTypeName":"visitsFlowersOf"},
+              "Xyphosia miliaria","digest") is None
+          assert m.parse_record({"sourceTaxonName":"Torymus chloromerus",
+              "targetTaxonName":"Xyphosia miliaria",
+              "interactionTypeName":"parasitoidOf",
+              "argumentTypeName":"refutes"},
+              "Xyphosia miliaria","digest") is None
+          print("PASS: direction, host specificity, refutation, head-context not auto-inferred")
+          PY
+
+  discover-second-hop:
+    runs-on: ubuntu-latest
+    needs: verify-source-contract
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Query GloBI host-parasitoid links for known Cirsium head seed feeders
+        run: |
+          python analysis/collect_globi_cirsium_seed_feeder_secondhop_v1.py \
+            --anchors data/evidence/cirsium_capitulum_interaction_source_anchors_v1.csv \
+            --output-dir outputs/globi_cirsium_secondhop_v1 \
+            --page-size 200 --max-pages 3 --timeout 40
+      - name: Archive raw provenance and source-limited candidate pairs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-globi-seed-feeder-parasitoid-secondhop
+          path: outputs/globi_cirsium_secondhop_v1/
+          if-no-files-found: warn
+          retention-days: 30
