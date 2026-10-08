@@ -1,0 +1,16 @@
+{
+  "evidence_version": "aza3_fig3_e2_separability_receipt_v1",
+  "status": "TEMPLATE__UNFILLED",
+  "prediction_registry_sha256": null,
+  "evidence_frozen_at": null,
+  "evidence_source_path": null,
+  "evidence_source_sha256": null,
+  "training_block_pool_frozen": false,
+  "phenotype_predictive_states_in_two_multitrait_modules": false,
+  "matched_window_maf_ld_callability_controls_pass": false,
+  "ancestry_cytotype_controls_pass": false,
+  "reference_substitution_controls_pass": false,
+  "heldout_state_prediction_evidence_present": false,
+  "scope": "E2 only: genomic-state separability that predicts phenotypes and survives matched-window, structure, and reference controls; not historical rewiring, adaptation, or causal gene identification.",
+  "audit_rule": "The source artifact must exist, match its SHA256, and be frozen after the prediction registry and before phenotype unblinding. Template/partial receipts cannot open FIG3_R_STRONG."
+}

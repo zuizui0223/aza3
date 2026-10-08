@@ -50,6 +50,7 @@ def main():
     ap.add_argument("--scores",required=True,type=Path)
     ap.add_argument("--prediction-registry",required=True,type=Path)
     ap.add_argument("--unlock-receipt",required=True,type=Path)
+    ap.add_argument("--e2-receipt",type=Path,default=None,help="Auditable genomic-state separability evidence; required for FIG3_R_STRONG")
     ap.add_argument("--output",required=True,type=Path)
     args=ap.parse_args()
 
@@ -64,6 +65,43 @@ def main():
     if not frozen_at or not opened_at or str(opened_at)<=str(frozen_at):
         raise SystemExit("invalid prediction-freeze / phenotype-unlock chronology")
 
+    # E2 is an independent mechanistic gate, not inferred from favourable E1/E3 scores.
+    # The receipt is a provenance-checked summary of independently audited evidence:
+    # it cannot itself establish local ancestry, causality, selection, or historical rewiring.
+    e2_gate_pass=False
+    e2_gate_status="NOT_PROVIDED"
+    e2_receipt_sha256=None
+    e2_evidence_source_sha256=None
+    if args.e2_receipt is not None:
+        e2_receipt_sha256=sha256(args.e2_receipt)
+        e2=json.loads(args.e2_receipt.read_text(encoding="utf-8"))
+        if e2.get("prediction_registry_sha256")!=pred_hash:
+            raise SystemExit("E2 receipt prediction-registry hash mismatch")
+        when=e2.get("evidence_frozen_at")
+        if not when or not (str(frozen_at)<=str(when)<str(opened_at)):
+            raise SystemExit("E2 evidence receipt was not frozen between prediction freeze and phenotype unlock")
+        source_path=Path(e2.get("evidence_source_path") or "")
+        source_sha=str(e2.get("evidence_source_sha256") or "").lower()
+        if (not source_path.is_file() or len(source_sha)!=64
+                or any(ch not in "0123456789abcdef" for ch in source_sha)
+                or sha256(source_path)!=source_sha):
+            raise SystemExit("E2 evidence source missing or SHA256 does not match")
+        e2_evidence_source_sha256=source_sha
+        required_flags=(
+            "training_block_pool_frozen",
+            "phenotype_predictive_states_in_two_multitrait_modules",
+            "matched_window_maf_ld_callability_controls_pass",
+            "ancestry_cytotype_controls_pass",
+            "reference_substitution_controls_pass",
+            "heldout_state_prediction_evidence_present",
+        )
+        e2_gate_pass=(
+            e2.get("evidence_version")=="aza3_fig3_e2_separability_receipt_v1"
+            and e2.get("status")=="E2_PREDICTIVE_SEPARABILITY_SUPPORTED"
+            and all(e2.get(k) is True for k in required_flags)
+        )
+        e2_gate_status="PASS" if e2_gate_pass else "FAIL_CLOSED"
+
     preds=list(csv.DictReader(args.prediction_registry.open(encoding="utf-8-sig")))
     scores=list(csv.DictReader(args.scores.open(encoding="utf-8-sig")))
     if not preds or not scores: raise SystemExit("empty prediction or scoring registry")
@@ -74,6 +112,12 @@ def main():
     for r in scores:
         iid=(r.get("individual_id") or "").strip(); reason=[]; p=pred_by_id.get(iid)
         if p is None: reason.append("missing_preunblinding_prediction")
+        else:
+            if (p.get("split") or "").strip().upper()!="VALIDATION": reason.append("not_frozen_validation_split")
+            if not (p.get("validation_unit") or "").strip() or (p.get("validation_unit") or "").strip()!=(r.get("validation_unit") or "").strip(): reason.append("validation_unit_mismatch")
+            if (p.get("taxonomic_confidence") or "").strip().lower()!="high": reason.append("preunblinding_taxonomic_confidence_not_high")
+            if bval(p.get("reference_stable")) is not True: reason.append("preunblinding_reference_not_stable")
+            if (p.get("technical_exclusion_reason") or "").strip(): reason.append("preunblinding_technical_exclusion")
         if (r.get("prediction_registry_sha256") or "").strip().lower()!=pred_hash:
             reason.append("score_row_prediction_hash_mismatch")
         if (r.get("taxonomic_confidence") or "").strip().casefold()!="high": reason.append("taxonomic_confidence_not_high")
@@ -123,8 +167,11 @@ def main():
         f_over_m=delta_mf<0 and p_fm is not None and p_fm<0.05
         f_over_r=delta_rf<0 and p_fr is not None and p_fr<0.05
         if r_over_m:
-            if full_module_admission and stable_nonnegative_modules>=2 and len(correct)>=3 and delta_rmlocal>=0:
-                decision="FIG3_R_STRONG"; reason="R_beats_M_with_multi_module_support_and_prospective_mosaics"
+            core_strong_ready=(full_module_admission and stable_nonnegative_modules>=2 and len(correct)>=3 and delta_rmlocal>=0)
+            if core_strong_ready and e2_gate_pass:
+                decision="FIG3_R_STRONG"; reason="R_beats_M_with_modules_mosaics_and_independent_E2_evidence"
+            elif core_strong_ready:
+                decision="FIG3_R_PARTIAL"; reason="E2_predictive_genomic_separability_evidence_missing_or_fail_closed"
             else:
                 decision="FIG3_R_PARTIAL"; reason="R_beats_M_global_but_full_module_mosaic_or_Mlocal_sensitivity_requirement_not_met"
         elif m_over_r and m_over_f:
@@ -135,7 +182,7 @@ def main():
             decision="NOT_IDENTIFIABLE"; reason="no_model_meets_frozen_predictive_superiority_rule"
 
     out={
-      "result_version":"aza3_fig3_FMR_heldout_prediction_score_v3",
+      "result_version":"aza3_fig3_FMR_heldout_prediction_score_v4",
       "prediction_registry_sha256":pred_hash,"prediction_registry_frozen_at":frozen_at,"validation_phenotypes_opened_at":opened_at,
       "eligible_validation_n":n,"excluded_n":len(excluded),"admitted_construct_count":construct_count,
       "admitted_multi_trait_module_count":multi_module_count,"full_module_admission":full_module_admission,
@@ -145,8 +192,10 @@ def main():
       "sign_flip_methods":{"R_over_M":m_rm,"M_over_R":m_mr,"M_over_F":m_mf,"F_over_M":m_fm,"F_over_R":m_fr},
       "module_R_minus_M_log_score_totals":module_totals,"nonnegative_complete_module_count":stable_nonnegative_modules,
       "prospective_mosaic_registered_n":len(registered),"prospective_mosaic_correct_both_n":len(correct),
+      "e2_gate_pass":e2_gate_pass,"e2_gate_status":e2_gate_status,
+      "e2_receipt_sha256":e2_receipt_sha256,"e2_evidence_source_sha256":e2_evidence_source_sha256,
       "decision":decision,"decision_reason":reason,"excluded":excluded,
-      "claim_boundary":"Held-out F-M-R prediction only. Adaptation, causal variants, haplotype age and SV reuse require separate evidence."
+      "claim_boundary":"Held-out F-M-R prediction plus audited E2 gate, not proof of historical module-boundary evolution or adaptation. Causal regulatory rewiring, ancestral reactivation and fitness require separate evidence."
     }
     args.output.parent.mkdir(parents=True,exist_ok=True); args.output.write_text(json.dumps(out,indent=2)+"\n",encoding="utf-8")
     print(json.dumps(out,indent=2))

@@ -8,6 +8,7 @@ CON=ROOT/"data"/"contracts"/"aza3_fig3_reconfigurable_integration_test_v1.json"
 PRED=ROOT/"data"/"templates"/"fig3_preunblinding_prediction_registry_v1.csv"
 UNLOCK=ROOT/"data"/"templates"/"fig3_validation_unlock_receipt_v1.json"
 SCORE=ROOT/"data"/"templates"/"fig3_postunblinding_score_registry_v1.csv"
+E2=ROOT/"data"/"templates"/"fig3_e2_separability_evidence_receipt_v1.json"
 NATURE=ROOT/"data"/"contracts"/"aza3_nature_single_question_v2.json"
 CS=ROOT/"data"/"contracts"/"c_sieboldii_combinatorial_substrate_gate_v1.json"
 WGS=ROOT/"data"/"contracts"/"aza3_r1b_own_wgs_transferability_pilot_v1.json"
@@ -24,6 +25,7 @@ def main():
     ph=next(csv.reader(PRED.open(encoding="utf-8")))
     sh=next(csv.reader(SCORE.open(encoding="utf-8")))
     unlock=json.loads(UNLOCK.read_text(encoding="utf-8"))
+    e2_template=json.loads(E2.read_text(encoding="utf-8"))
 
     assert c["contract_version"]=="aza3_fig3_reconfigurable_integration_test_v2"
     assert c["status"]=="PROSPECTIVE__LOCKED_BEFORE_FOCAL_GENOMIC_DISCOVERY"
@@ -50,8 +52,20 @@ def main():
     assert c["primary_estimand"]["id"]=="E1_R_VS_MODULE_HELDOUT_PREDICTION"
     assert "multi-trait modules" in c["primary_estimand"]["analysis_scope"]
     assert c["kill_shot_estimand"]["correct_validation_mosaic_min"]==3
+    assert c["e2_receipt_gate"]["mandatory_for"]=="FIG3_R_STRONG"
+    assert c["e2_receipt_gate"]["no_receipt_or_failed_control_decision_ceiling"]=="FIG3_R_PARTIAL"
+    assert c["e2_receipt_gate"]["template"]=="data/templates/fig3_e2_separability_evidence_receipt_v1.json"
+    assert e2_template["evidence_version"]=="aza3_fig3_e2_separability_receipt_v1"
+    assert e2_template["status"]=="TEMPLATE__UNFILLED"
+    assert e2_template["prediction_registry_sha256"] is None
+    for key in ("training_block_pool_frozen","phenotype_predictive_states_in_two_multitrait_modules",
+                "matched_window_maf_ld_callability_controls_pass","ancestry_cytotype_controls_pass",
+                "reference_substitution_controls_pass","heldout_state_prediction_evidence_present"):
+        assert e2_template[key] is False
     assert c["validation_blinding"]["scoring_rule"].startswith("Observed validation phenotypes are joined only after")
-    assert c["model_fairness"]["candidate_block_pool"].startswith("identical TRAIN-derived")\n    assert c["module_baselines"]["M_local"]["role"].startswith("sensitivity baseline")\n    assert "non-negative held-out advantage over M_local" in c["module_baselines"]["strong_R_rule"]
+    assert c["model_fairness"]["candidate_block_pool"].startswith("identical TRAIN-derived")
+    assert c["module_baselines"]["M_local"]["role"].startswith("sensitivity baseline")
+    assert "non-negative held-out advantage over M_local" in c["module_baselines"]["strong_R_rule"]
     assert "same complexity budget" in c["model_fairness"]["R_effect_structure"]
     assert cs["primary_pair"]==["floral_colour","anthesis_orientation"]
     assert wgs["sample_selection_gate"]["required_before_biological_sample_selection"] is True
