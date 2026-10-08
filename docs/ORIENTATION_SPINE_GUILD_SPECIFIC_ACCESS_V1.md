@@ -12,6 +12,14 @@ This is deliberately NOT the claim that all nodding heads have long spines, that
 
 A more surprising prediction: **strong local correlational selection can exist even when the pooled cross-species orientation–spine correlation is near zero**, because different antagonist access routes can reverse the selected combinations across ecological regimes. This prediction is not itself proof of correlated evolution, which requires independent genetic/phylogenetic evidence.
 
+### The sharp reference-frame null
+
+Rotating a capitulum does **not** change the physical angle between its own phyllaries and its florets. It changes the involucre's 3-D placement **relative to gravity, insect flight approach, walking/stem access, and rain trajectory**. Therefore:
+
+- **Head-centred access null:** if pollinators and antagonists orient their approaches perfectly to the head's local geometry, an orientation change should not change the spine-barrier effect on successful entry, after holding floral rewards and stage fixed.
+- **World-centred access alternative:** if approach routes are gravity-biased, flight-direction-biased, or stem-constrained, orientation rotates the barrier with respect to those routes and can produce O × spine selectivity.
+- Direct discriminating mediator: distribution of approach azimuth/elevation in **world coordinates** compared with **head-centred coordinates**, followed through to effective pollination, successful enemy entry and final fitness. This is more informative than species identity or average visitation.
+
 ### Mechanistic sign competitors (no fixed preferred sign)
 
 - **Complementarity / spatially guarded pollen corridor:** a particular nodding or erect orientation plus an effective spine barrier reduces antagonist *successful* entry while legitimate visitors retain pollen/stigma contact. The joint viable-achene effect exceeds the additive expectation.
@@ -35,6 +43,7 @@ A more surprising prediction: **strong local correlational selection can exist e
 | **IWE** | Temporal mutualist-versus-antagonist exposure windows | Insect activity records without correct reproductive fate do not establish a selective mechanism |
 
 Additional comparative anchors are established, not novel:
+- Oguro & Sakai (2015), American Journal of Botany, DOI 10.3732/ajb.1400233: in 18 Asteraceae species, flower-head diameter/number, chemistry and evolutionary relatedness predict florivory; macro floral-display/antagonist selection is known, but the world- vs head-centred orientation × spine entry geometry is not resolved by that comparative analysis.
 - Agrawal et al. (2000), *Centaurea solstitialis*, DOI 10.2307/3672545: spine removal released illegitimate Lepidoptera access, did not raise legitimate bee/fly visitation probability, increased their visit duration, and decreased filled seeds 22%; **not orientation × spines and not Cirsium**.
 - Ohashi & Yahara (1998, 2000), *Cirsium purpuratum*, DOI 10.2307/2446309 and 10.1139/b99-182: floral display benefits bumblebee visitation but increases predispersal seed predation; no controlled orientation × spine intervention.
 - *Cremanthodium campanulatum* orientation experiment summarized in EAzami: nodding advantage may be via abiotic pollen protection despite unchanged pollinator preference; orientation selection need not be biotic.
