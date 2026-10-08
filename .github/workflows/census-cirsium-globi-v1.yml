@@ -58,7 +58,7 @@ jobs:
         run: |
           python analysis/collect_globi_cirsium_interactions_v1.py \
             --output-dir outputs/globi_cirsium_v1 \
-            --page-size 1000 --max-pages 32 --pause 0.35 --timeout 65
+            --page-size 1000 --max-pages 128 --pause 0.35 --timeout 65
       - name: Publish evidence artifact whether completed or source blocked
         if: always()
         uses: actions/upload-artifact@v4
