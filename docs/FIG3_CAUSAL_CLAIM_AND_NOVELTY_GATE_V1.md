@@ -23,6 +23,7 @@ R is not necessarily the biologically favored answer. Any of these outcomes is a
 2. **Dellinger et al. (2019), Merianieae:** functional floral modularity and its pattern changed with pollinator shifts, and trait-specific evolutionary rates differed. Thus "floral module boundaries can differ with pollination regimes" is not by itself new. DOI: https://doi.org/10.1038/s42003-019-0697-7
 3. **Ho & Smith (2016) and related Iochrominae analyses:** intact pigment-pathway coding sequences after floral pigment loss and possible regain of floral anthocyanins. Conservation/reappearance of floral pigmentation is not a sufficient novelty claim. https://doi.org/10.1186/s12862-016-0675-3 and https://doi.org/10.1093/molbev/msy117
 4. **Chang et al. (2026), Cirsium japonicum complex:** white and bluish-purple C. japonicum var. takaoense are useful **coexisting taxonomic phenotypes**, but colour-state contrast alone does not establish historical regain, gene reactivation, or head-wide recombination. DOI: https://doi.org/10.1186/s12870-026-08097-6
+5. **Zhang & Elomaa (2024), Gurung et al. (2024), and Claßen-Bockhoff et al. (published 2025):** the capitulum is a developmentally unusual reproductive unit, and one recent comparative morphological study argues for a *determinate floral-unit meristem* rather than an ordinary condensed inflorescence. Developmental timing, meristem growth and mechanical constraints can generate trait covariance without genomic module-boundary changes. DOIs: https://doi.org/10.1111/nph.19590 ; https://doi.org/10.1016/j.pbi.2024.102589 ; https://doi.org/10.1093/aob/mcaf144
 
 ### What the present Azami–EAzami evidence actually permits
 
@@ -56,7 +57,13 @@ A **rare but correctly predicted** colour x A1–A2 orientation mosaic is compel
 
 If genomic component scores segregate but adult capitula remain restricted to one narrow phenotypic manifold, that supports developmental/functional **filtering** rather than unlimited reassembly. Conversely, biologically viable, prospectively observed combinations outside the TRAIN manifold would suggest reassembly has an observable consequence. Define the joint phenotype-space metric and sampling-effort controls before unblinding; an E4 prediction from a model is not by itself an observed expansion in evolvability.
 
-### (iii) Functional consequence rather than decorative novelty
+### (iii) Developmental timing and higher-level meristem identity as a biological alternative
+
+A capitulum contains many florets and subtending involucral tissues. Its developmental identity is actively debated (the determinate floral-unit-meristem interpretation versus historical condensed-inflorescence models). Do not treat covariance of phyllary morphology, floret appearance, head orientation and pigmentation as automatically revealing co-inherited modules. A **heterochrony / allometry model** can produce an apparent natural trait mosaic when heads are sampled at different phases of the same reproductive trajectory. Repeated same-head imaging across bud -> early/full anthesis -> fruit, with floret freshness, bract posture, head size, orientation and plant size recorded, directly discriminates this explanation from among-genet segregation. A1–A2 stage matching is essential but not sufficient for every multi-trait construct; the position and ontogenetic history of each recorded capitulum also matter.
+
+This is not a side issue: if the evolutionary signal vanishes under developmental alignment, it is a biological finding about how apparent morphological diversity is generated, **not** evidence of inherited module reassembly.
+
+### (iv) Functional consequence rather than decorative novelty
 
 Test whether the fitness-relevant response of joint states is additive or interactive. Example for a preregistered orientation × presentation component contrast: do combinations predict measurable pollen placement, wetting/damage mediation, visitation behavior, *and viable achene output* better than a model with additive traits and environmental effects? Trait correlation with precipitation or light is insufficient evidence. Negative or context-dependent interactions are equally informative: reconfigurability may expand variation while selection removes most combinations.
 
