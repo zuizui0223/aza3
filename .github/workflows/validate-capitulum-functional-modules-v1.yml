@@ -5,6 +5,7 @@ on:
     paths:
       - "analysis/audit_capitulum_functional_module_coupling_v1.py"
       - "data/contracts/capitulum_functional_module_tradeoff_registry_v1.json"
+      - "data/evidence/aza3_head_only_module_coupling_audit_v1.json"
       - "docs/CAPITULUM_MODULE_FUNCTION_TRADEOFF_SYNC_COMPENSATION_V1.md"
       - ".github/workflows/validate-capitulum-functional-modules-v1.yml"
   workflow_dispatch:
@@ -64,6 +65,16 @@ jobs:
           assert all(not v["robustly_positive_both_layers"] for v in h.values())
           assert h["phyllary_x_stickiness"]["topology_only_q05"] < 0
           assert j["claims"]["historical_adaptive_nonsynchrony"]=="NOT_IDENTIFIED"
+          saved=json.load(open("data/evidence/aza3_head_only_module_coupling_audit_v1.json"))
+          assert saved["Azami"]["n_pairs"]==j["azami_all_36_pairs"]["n_pairs"]
+          assert saved["Azami"]["n_among_stronger"]==j["azami_all_36_pairs"]["n_among_stronger_than_within"]
+          assert all(
+              saved["EAzami"]["transition_pair_sensitivities"][key]["robust_positive"]==value["robustly_positive_both_layers"]
+              for key,value in h.items())
+          assert not any(v["robust_positive"]
+                         for v in saved["EAzami"]["transition_pair_sensitivities"].values())
+          assert saved["conclusion"]["adaptive_compensatory_nonsynchrony"]=="NOT_TESTED"
+          print("PASS: persisted frozen source audit agrees with independently regenerated values")
           print("PASS: frozen observed coupling and opposed sensitivity do not imply adaptation")
           PY
       - name: Preserve bounded evidence receipt
