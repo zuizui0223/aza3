@@ -36,7 +36,7 @@ A more surprising prediction: **strong local correlational selection can exist e
 
 Additional comparative anchors are established, not novel:
 - Agrawal et al. (2000), *Centaurea solstitialis*, DOI 10.2307/3672545: spine removal released illegitimate Lepidoptera access, did not raise legitimate bee/fly visitation probability, increased their visit duration, and decreased filled seeds 22%; **not orientation × spines and not Cirsium**.
-- Ohashi & Yahara (1998, 2000), *Cirsium purpuratum*, DOI 10.2307/2446307 [verify the bibliographic link before use] and 10.1139/b99-182: floral display benefits bumblebee visitation but increases predispersal seed predation; no controlled orientation × spine intervention.
+- Ohashi & Yahara (1998, 2000), *Cirsium purpuratum*, DOI 10.2307/2446309 and 10.1139/b99-182: floral display benefits bumblebee visitation but increases predispersal seed predation; no controlled orientation × spine intervention.
 - *Cremanthodium campanulatum* orientation experiment summarized in EAzami: nodding advantage may be via abiotic pollen protection despite unchanged pollinator preference; orientation selection need not be biotic.
 
 ## 3. Three nested, separately falsifiable predictions
