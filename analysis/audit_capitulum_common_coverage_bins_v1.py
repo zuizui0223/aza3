@@ -304,7 +304,8 @@ def synthetic_tests(contract):
                      contract)
     result=check()
     assert result["status"]=="PARTIAL_BINNED_DESCRIPTIVE_OVERLAP_ONLY"
-    assert result["n_qualified_comparison_bins"]==2\n    assert result["n_held_bins"]==2
+    assert result["n_qualified_comparison_bins"]==2
+    assert result["n_held_bins"]==2
     assert result["n_covered_bins_with_neither_identified_guild"]==2
     assert result["n_covered_bins_with_only_one_identified_guild"]==0
     assert result["n_covered_bins_with_both_identified_guilds"]==2
