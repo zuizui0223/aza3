@@ -44,12 +44,17 @@ def main():
             assert r["organ"]!="capitulum"
         if r["relation"]=="interactsWith":
             assert r["role"]=="interaction_only"
-    assert sum(r["globi_exact_record_confirmed"]=="yes" for r in rows)==4
+    assert sum(r["globi_exact_record_confirmed"]=="yes" for r in rows)==7
     # Ensure the two-hop side never treats a parasitoid's host as the plant.
     assert any(r["parasitoid_host"].startswith("tephritid assemblage") for r in rows)
     assert any(r["parasitoid_host"]=="Terellia ruficauda" for r in rows)
     eligible={r["focal_cirsium"] for r in rows if r["organ"]=="capitulum"}
     assert "Cirsium arvense" in eligible and "Cirsium palustre" in eligible
+    assert any(r["focal_cirsium"]=="Cirsium sp." and r["role"]=="interaction_only"
+               for r in rows), "unresolved genus-level plant records must stay unresolved"
+    assert any(r["focal_cirsium"]=="Cirsium vulgare"
+               and r["partner"]=="Megachile inermis" and r["role"]=="interaction_only"
+               for r in rows), "do not classify generic interactsWith as pollination"
     out={
       "validation_status":"PASS",
       "scientific_label":"SOURCE_BACKED_NONEXHAUSTIVE__GLOBI_RECORDS_SEPARATE_FROM_PRIMARY_LITERATURE",
