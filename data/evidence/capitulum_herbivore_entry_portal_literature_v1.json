@@ -1,0 +1,67 @@
+{
+  "version": "capitulum_herbivore_entry_portal_literature_v1",
+  "date": "2026-10-08",
+  "focal_organ": "Cirsium flower head: stigma/pollen/disc vs involucral bract wall vs young closed bud",
+  "contrast": "Different antagonists need not traverse same defence interface: anatomical route and reproductive stage jointly determine which putative defence can matter.",
+  "original_sources": [
+    {
+      "plant": "Cirsium palustre",
+      "consumer": "Tephritidae, including Tephritis conura",
+      "route": "eggs inserted among florets of recently opened heads",
+      "gate": "exposed floret field rather than necessarily penetrating phyllary barrier",
+      "phenophase": "recently_opened_anthesis",
+      "source": "Vanbergen et al. 2006 Journal of Animal Ecology DOI 10.1111/j.1365-2656.2006.01099.x",
+      "url": "https://besjournals.onlinelibrary.wiley.com/doi/10.1111/j.1365-2656.2006.01099.x",
+      "status": "ORIGINAL_METHODS_VERIFIED",
+      "plant_fit_effect": "larvae feed on receptacle and achenes; no specific effect of spines/angle on egg placement demonstrated"
+    },
+    {
+      "plant": "Cirsium pitcheri",
+      "consumer": "Larinus planus / carlinae weevil",
+      "route": "females chew oviposition punctures through phyllaries of flower heads; scars on phyllaries",
+      "gate": "involucral bract wall",
+      "phenophase": "immature_or_developing_heads",
+      "source": "Gijsman et al. 2020 Global Ecology and Conservation 22 e00945, DOI 10.1016/j.gecco.2020.e00945",
+      "url": "https://www.sciencedirect.com/science/article/pii/S2351989419307243",
+      "status": "ORIGINAL_METHODS_VERIFIED",
+      "plant_fit_effect": "infested heads 60% fewer mature seeds; secondary/tertiary heads suffer higher infestations than terminal; correlational infestation comparison not randomized actual spine effects"
+    },
+    {
+      "plant": "Cirsium vulgare",
+      "consumer": "Urophora stylata",
+      "route": "adult females deposit eggs in maturing buds; larvae burrow into reproductive tissue and induce seedhead gall",
+      "gate": "bud phyllary access depending stage",
+      "phenophase": "preanthesis_bud",
+      "source": "University of Idaho / IBiocontrol 2024 Introduced Thistle Agents",
+      "url": "https://ibiocontrol.org/bio/urophora-stylata/",
+      "status": "EXTENSION_BIOLOGY_REPORT_NOT_FOCAL_SPINE_EXPERIMENT",
+      "plant_fit_effect": "seedhead galls reduce seed yield; no spine-orientation field manipulation"
+    },
+    {
+      "plant": "Cirsium discolor",
+      "consumer": "multiple seed predator types and legitimate pollinator arthropods",
+      "route": "legitimate pollinators do not contact sticky traps; some seed predators avoid trap",
+      "gate": "sticky involucre exudate may be spatially bypassed",
+      "phenophase": "inflorescence phenophase across observations",
+      "source": "Thomas 2007 The Great Lakes Entomologist DOI 10.22543/0090-0222.2188; Thomas 2003 DOI 10.22543/0090-0222.2085",
+      "url": "https://scholar.valpo.edu/tgle/vol40/iss2/8/",
+      "status": "GENUS_DIRECT_FIELD_OBSERVATION_AND_DEFENCE_TEST_NULL",
+      "plant_fit_effect": "neutralizing sticky traps did not increase seed predation or decrease seed production in 2003 study"
+    }
+  ],
+  "functional_prediction": {
+    "H0_spatially_partitioned_no_conflict": "If pollinators arrive from disc and outer defences are never encountered by them, there may be NO pollination-vs-defence cost. Antagonists entering via exposed florets may also bypass bract armature. Morphological correlations do not imply functional tradeoffs.",
+    "H1_phyllary_barrier": "Direct real spine/phyllary access-gaps should preferentially change head-wall chewer/ovipositor success on buds, not necessarily floret-layer tephritid access during anthesis.",
+    "H2_orientation_stage": "Natural nodding orientation rotates the outer wall in world coordinates, altering route-conditioned successful entry only if arthropods use gravity-referenced strategies. The same head's opening phase is a separate predictor.",
+    "H3_time_enemy_shield": "After initial infestation, larger mechanical access barriers may obstruct parasitoid attack, but only pre-damage host killing can benefit viable achene production.",
+    "H4_alternative": "Head size and position select buds suitable for weevil oviposition; rain/UV and pollen presentation shape fitness, independently of insect access."
+  },
+  "new_identifiability_requirement": [
+    "Each observed arrival must be classified as approaching exposed florets, phyllary exterior, phyllary interstice, receptacle base, or stem.",
+    "Stage-conditional head position and real measured phyllary opening/spine rigidity/direction must be independently verified.",
+    "One head and plant biological unit, with approach-level events nested in effort-calibrated observation bouts.",
+    "Do not conflate interspecific route contrast with within-population adaptive selection, independently evolving lineages or common treatment outcome.",
+    "Test effective pollen contacts, confirmed adult oviposition and independently validated pre-damage parasitoid effect before seed fate."
+  ],
+  "claim_ceiling": "Evidence for different antagonist access portals across existing Cirsium studies, NOT evidence that any measured Cirsium spine orientation phenotype evolved adaptively to route partitioning."
+}
