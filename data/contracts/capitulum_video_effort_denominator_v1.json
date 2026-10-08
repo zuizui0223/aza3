@@ -27,6 +27,11 @@
     "video_review_mode",
     "approach_detection_recall_verified",
     "recall_validation_reference",
+    "other_cirsium_resource_census_status",
+    "other_cirsium_buds_count",
+    "other_cirsium_open_heads_count",
+    "other_cirsium_census_radius_m",
+    "other_cirsium_census_reference",
     "zero_approaches_confirmed",
     "valid_rate_denominator",
     "incomplete_reason",
@@ -72,6 +77,10 @@
       "0",
       "1",
       "NA"
+    ],
+    "other_cirsium_resource_census_status": [
+      "measured",
+      "not_assessed"
     ]
   },
   "rules": [
@@ -85,7 +94,10 @@
     "Approach counts must be made from continuous effort where the approach zone is visible. Approach-conditioned service ratios can be reported only for fully scored and taxonomically/behaviorally qualified episodes; unknown role is retained rather than forced to pollinator/antagonist.",
     "Do not use GloBI pollinates or insect taxonomic order as a measure of legitimate pollen deposition or enemy seed saving.",
     "n=0 eligible bout or n=0 observed field events yields NOT_IDENTIFIABLE_REAL_DATA rather than a fabricated biological null.",
-    "Plant/head IDs remain the statistical biological units: observed episodes nested in recording bouts nested in head and plant; do not treat 100 encounters on one head as 100 independent reproductive replicates."
+    "Plant/head IDs remain the statistical biological units: observed episodes nested in recording bouts nested in head and plant; do not treat 100 encounters on one head as 100 independent reproductive replicates.",
+    "Cross-species associational defense (Russell & Louda 2005) is a mandatory rival for apparent focal Cirsium head defenses. Measure other Cirsium species budding/open flower heads within a pre-specified census radius and window; do not regard conspecific heads alone as all floral resources.",
+    "When congeneric_resource_census_status=measured, nonnegative integer heads counts, positive radius in metres and citation/field record are required. A true measured zero is the literal '0'. When not assessed, counts/radius/reference stay empty, not zero.",
+    "The valid continuous-video approach denominator does not require a congener census; however, a seed-feeder trait-effect claim that disregards available alternative host heads must disclose unresolved associational defense."
   ],
   "identification_targets": [
     {
@@ -112,9 +124,14 @@
       "estimand": "viable achene output by head / total head",
       "source": "EAzami original head fate ledger and authorized viability assay",
       "not_valid_when": "observation events only, lack of sex-aware and fertilization measures"
+    },
+    {
+      "estimand": "focal_head_egg_success ~ measured_phyllary_spines + other_Cirsium_open/bud_heads + phenology + insect host race",
+      "source": "focal video/head/seed fate linked to contemporaneous heterospecific thistle-head census",
+      "not_valid_when": "Only focal host morphology and total visitor numbers are recorded or alternate Cirsium counts guessed from the focal species"
     }
   ],
-  "causal_warning": "Conditioning on approached events can select on a post-treatment variable and obscure total effects of head architecture. Report unconditional arrival per valid minute, conditional access/service by verified guild, and total viable achene outcomes as separate estimands. Process-path decomposition is not causal mediation without a justified directed graph/independent interventions.",
+  "causal_warning": "Conditioning on approached events can select on a post-treatment variable and obscure total effects of head architecture. Report unconditional arrival per valid minute, conditional access/service by verified guild, and total viable achene outcomes as separate estimands. Process-path decomposition is not causal mediation without a justified directed graph/independent interventions. Published associative defense from C. canescens flowering predicted R. conicus eggs on C. undulatum (Russell & Louda 2005, DOI 10.1007/s00442-005-0204-3); other-host flowers can confound a morphological barrier effect.",
   "sampling_unit": "head/plant, not individual approach episode",
   "frozen_source": "https://github.com/zuizui0223/EAzami/blob/c9870e91604ed1514344ddc8f765eae5237dbf27/sampling/aim2_capitulum_observation_bout_ledger_v1.csv"
 }
