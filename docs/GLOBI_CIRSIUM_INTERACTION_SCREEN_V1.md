@@ -46,6 +46,41 @@ The following are **publication-confirmed focal interaction names** to cross-che
 - *Cirsium pitcheri*: non-native *Larinus planus* oviposition/seed damage; infested heads about 60% fewer mature seeds. Gijsman et al. 2020, article `S2351989419307243`.
 - *Cirsium purpuratum*: visits by *Bombus diversus* are well documented; adult visitation alone is not an estimate of pollen transfer or reproductive fitness. Makino et al. 2007, DOI:10.1111/j.1365-2435.2006.01211.x.
 
+## Source-verified head network anchor matrix (current completed product)
+
+The reproducible **bounded source-check** is now committed at `data/evidence/cirsium_capitulum_interaction_source_anchors_v1.csv`, validated separately by `analysis/validate_cirsium_interaction_source_anchors_v1.py`.
+
+This is a hand-adjudicated source subset, **not** a full GloBI census:
+- **28** taxon–source-role rows across **7** named *Cirsium* taxa;
+- **4** rows from individually identified GloBI source review pages and **24** independently verified primary-literature rows;
+- **21** rows explicitly within the capitulum, in **5** *Cirsium* species; counts are bibliographic anchors, **not** network degrees or replicated observations;
+- two indispensable organ controls: `C. arvense × Urophora cardui` is a **stem** gall, `C. arvense × Harpalus rufipes` is a **seed-eating carabid** claim, not certified pre-dispersal head feeding.
+
+The strongest within-head parasitoid systems currently supported by *primary literature*, not asserted present in GloBI:
+- `C. arvense`: *Xyphosia miliaria*, *Terellia ruficauda* and *Urophora stylata* in heads, with *Torymus chloromerus* and *Pteromalus elevatus* as parasitoids of the tephritid assemblage (Walker et al. 2008, DOI 10.1111/j.1365-2656.2008.01406.x). Parasitoid taxa are **not** assigned to every specific fly species without a source-verified per-host statement.
+- `C. palustre`: *T. ruficauda* plus parasitoids *P. elevatus* and *T. chloromerus*; Masters et al. 2001, DOI 10.1007/s004420000569. Root-herbivore treatments altered parasitoid and fly numbers but did **not** demonstrate a significant difference in parasitism percentage.
+- `C. eriophorum`: a diverse source-compiled assemblage of head tephritids and weevils; *Pteromalus vibulenus* reported parasitizing *Rhinocyllus conicus* in this thistle, plus *Bombus lapidarius* as a visitor and wasps physically attacking phyllaries (Tofts 1999, DOI 10.1046/j.1365-2745.1999.00369.x).
+
+### Why a second GloBI query is essential
+
+Querying *Cirsium* on either side identifies a **plant–partner** relation, but a record such as `Torymus chloromerus parasitoidOf Terellia ruficauda` contains **no plant** and therefore will not appear in either plant-centric query.
+
+The new `analysis/collect_globi_cirsium_seed_feeder_secondhop_v1.py` uses the anchored **10** binomial seed-feeder names and queries GloBI in both directions for their parasitoid host relations. Crucially:
+- a host–parasitoid GloBI record cannot independently certify that the pair co-occurred in *Cirsium*;
+- a primary study must verify the same head, location, season and interaction before the three-trophic plant–host–parasitoid chain is promoted;
+- absent second-hop records cannot establish absent parasitoids;
+- the workflow `.github/workflows/validate-cirsium-globi-bridge-secondhop-v1.yml` contains separate offline source/semantic validation and a bounded live second-hop acquisition with archived outputs.
+
+### Strong ecological discriminator: stage-specific defence
+
+A head may exclude adult seed-feeder oviposition while simultaneously restricting the later ovipositors of parasitoids of established larvae. The **fitness sign** of spines, phyllary access and orientation then depends on the *relative timing* of (i) seed-feeder egg placement, (ii) successful early parasitoid attack, and (iii) irreversible seed damage. In particular:
+
+`net damaging larvae ≈ established eggs × [1 − parasitoid mortality before damage] × damaging potential`,
+
+only under the explicit approximation that early parasitism prevents future feeding. A barrier that suppresses initial egg laying might nonetheless increase damage if it reduces **early effective parasitism** sufficiently more. This is not demonstrated in *Cirsium* and must be directly falsified.
+
+An **adult flower visitor** and a **larval seed consumer** are distinct life stages, even if they belong to one insect species. The same named partner must not be assigned a static beneficial/harmful sign.
+
 ## Analysis tiers after the full GloBI export
 
 **Level 0: evidence existence.** Retain all exact source and target taxon strings, relation, provenance, date, geography, source namespace, body-part and life-stage fields. Distinct partner names are merely *species-rank name candidates*, not validated accepted species richness.
