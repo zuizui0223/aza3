@@ -140,7 +140,7 @@ def load_cohort(traits_zip: Path, env_zip: Path):
             X[name] = wide[columns].to_numpy(float)
     covariates = wide[["obs_id", "taxon_name"]].merge(
         env, on="obs_id", validate="one_to_one").groupby(
-            "taxon_name")[["latitude", "chelsa_bio12",
+            "taxon_name")[["latitude", "longitude", "chelsa_bio12",
                             "chelsa_rsds_mean"]].median().loc[names]
     ph = photo.loc[photo.obs_id.isin(set(wide.obs_id))]
     if ph.obs_id.nunique() != len(wide):
