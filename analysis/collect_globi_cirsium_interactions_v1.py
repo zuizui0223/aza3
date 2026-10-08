@@ -138,7 +138,10 @@ def parse_row(row, side):
     raw_namespace = field(row, "source_namespace", "sourceNamespace")
     namespace = raw_namespace or study_id
     raw_provenance = " ".join((raw_namespace, src_citation, study_url, study_id)).lower()
-    if "refuted-biotic-interactions" in raw_provenance:
+    argument = field(row, "argument_type", "argumentType", "argument_type_name",
+                     "argumentTypeName", "argument_type_id", "argumentTypeId").lower()
+    # Explicitly refuted assertions can occur inside ordinary datasets too.
+    if "refut" in argument or "refuted-biotic-interactions" in raw_provenance:
         # A GloBI archive of false/refuted assertions is not positive interaction evidence.
         return None
     return dict(
