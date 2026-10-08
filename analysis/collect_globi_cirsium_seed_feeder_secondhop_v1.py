@@ -21,7 +21,7 @@ from urllib.parse import urlencode
 URL="https://api.globalbioticinteractions.org/interaction.csv"
 TYPES={"parasitoidof", "hasparasitoid"}
 COLS=["head_seed_feeder","parasitoid","source_relation","source_taxon",
-      "target_taxon","dataset_id","source_reference","study_doi",
+      "target_taxon","dataset_id","source_reference","study_title","study_doi",
       "study_external_id","event_date","source_page_digest","provenance_key",
       "same_cirsium_head_confirmed","ecological_conclusion"]
 
@@ -56,8 +56,9 @@ def parse_record(row,host,page_sha):
         return None
     provenance=txt(row,"study_source_id","studySourceId","study_external_id",
                    "studyExternalId","source_namespace","sourceNamespace")
+    study_title=txt(row,"study_title","studyTitle")
     reference=txt(row,"study_source_citation","studySourceCitation",
-                  "study_citation","studyCitation","study_url","studyUrl")
+                  "study_citation","studyCitation","study_url","studyUrl") or study_title
     row_arg=txt(row,"argument_type","argumentTypeName",
                 "argument_type_name","argumentType","argument_type_id","argumentTypeId")
     if "refut" in " ".join((provenance,reference,row_arg)).lower():
@@ -73,7 +74,7 @@ def parse_record(row,host,page_sha):
       "head_seed_feeder":host,"parasitoid":parasitoid,
       "source_relation":relation, "source_taxon":src,"target_taxon":tgt,
       "dataset_id":provenance,"source_reference":reference,
-      "study_doi":doi,
+      "study_title":study_title, "study_doi":doi,
       "study_external_id":txt(row,"study_external_id","studyExternalId"),
       "event_date":event,"source_page_digest":page_sha,
       "provenance_key":key,
