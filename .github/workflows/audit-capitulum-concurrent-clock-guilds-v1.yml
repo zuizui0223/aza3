@@ -24,10 +24,18 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Fetch immutable native EAzami bout clock schema
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work
+          gh api 'repos/zuizui0223/EAzami/contents/sampling/aim2_capitulum_observation_bout_ledger_v1.csv?ref=c9870e91604ed1514344ddc8f765eae5237dbf27' --jq .content | base64 -d > work/original_EAzami_bouts.csv
+          test -s work/original_EAzami_bouts.csv
       - name: Compile and reject within-stage clock mixture counterexample
         run: |
           python -m py_compile analysis/audit_capitulum_concurrent_clock_guilds_v1.py
           python analysis/audit_capitulum_concurrent_clock_guilds_v1.py \
+            --original-bouts work/original_EAzami_bouts.csv \
             --out work/capitulum_exact_concurrent_guilds_v1.json
       - name: Assert verified absence is not converted to ecological segregation
         run: |
@@ -43,5 +51,6 @@ jobs:
           assert real["status"]=="NO_REAL_HEAD_VIDEO_OR_CLOCK_EFFORT"
           assert real["exact_concurrent_overlap"] is None
           assert real["claim_ceiling"]=="NOT_IDENTIFIABLE"
+          assert d["original_EAzami_bout_crosswalk"]["status"]=="NO_ORIGINAL_BOUTS_NO_REAL_CLOCK_SIDECAR"
           print("PASS: time-of-day segregation is not an anatomical portal effect")
           PY
