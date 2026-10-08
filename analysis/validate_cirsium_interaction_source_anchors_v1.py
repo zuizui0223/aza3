@@ -48,6 +48,17 @@ def main():
     # Ensure the two-hop side never treats a parasitoid's host as the plant.
     assert any(r["parasitoid_host"].startswith("tephritid assemblage") for r in rows)
     assert any(r["parasitoid_host"]=="Terellia ruficauda" for r in rows)
+    heterophyllum=[r for r in rows if r["focal_cirsium"]=="Cirsium heterophyllum"]
+    assert len(heterophyllum)==3
+    assert any(r["partner"]=="Tephritis conura" and
+               r["role"]=="head_seed_feeder" for r in heterophyllum)
+    assert any(r["partner"]=="Pteromalus caudiger" and
+               r["parasitoid_host"]=="Tephritis conura" for r in heterophyllum)
+    assert any(r["partner"]=="Eurytoma sp. near tibialis" and
+               r["parasitoid_host"]=="Tephritis conura" for r in heterophyllum)
+    assert all(r["globi_exact_record_confirmed"]=="no" for r in heterophyllum)
+    assert all(r["source_id"]=="10.1111/j.1365-2311.1990.tb00814.x"
+               for r in heterophyllum)
     eligible={r["focal_cirsium"] for r in rows if r["organ"]=="capitulum"}
     assert "Cirsium arvense" in eligible and "Cirsium palustre" in eligible
     assert any(r["focal_cirsium"]=="Cirsium sp." and r["role"]=="interaction_only"
