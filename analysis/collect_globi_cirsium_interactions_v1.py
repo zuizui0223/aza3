@@ -135,7 +135,12 @@ def parse_row(row, side):
                 study_id, study_url, doi, dataset_doi, citation, src_citation, 
                 source_specimen_id, target_specimen_id, event, locality, lat, lon)
     key = hashlib.sha256("\x1f".join(identity).encode()).hexdigest()[:24]
-    namespace = study_id or field(row, "source_namespace", "sourceNamespace")
+    raw_namespace = field(row, "source_namespace", "sourceNamespace")
+    namespace = raw_namespace or study_id
+    raw_provenance = " ".join((raw_namespace, src_citation, study_url, study_id)).lower()
+    if "refuted-biotic-interactions" in raw_provenance:
+        # A GloBI archive of false/refuted assertions is not positive interaction evidence.
+        return None
     return dict(
         record_key=key, focal_taxon=focal, partner_taxon=partner,
         partner_species_rank_candidate=str(bool(SPECIES.match(partner))).lower(),
@@ -313,6 +318,7 @@ def run(args):
             "Absence of records is not evidence of ecological absence.",
             "Only records explicitly marked parasitoidOf/hasParasitoid support a parasitoid-type claim, not the impact on Cirsium seed success.",
             "Species interaction counts are strongly confounded by study effort and provenance.",
+            "Sources explicitly marked refuted-biotic-interactions are excluded from affirmative positive interaction observations; external refutation studies remain a separate contradiction audit.",
         ],
     }
     (output / "summary.json").write_text(json.dumps(summary,ensure_ascii=False,indent=2)+"\n")
