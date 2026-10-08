@@ -12,9 +12,9 @@
 
 ## 重要なデータの欠落：既存のイベントには絶対時刻がない
 
-現在の `capitulum_video_effort_denominator_v1.csv` と `capitulum_guild_access_event_ledger_v1.csv` は頭花×観察boutの**相対秒数**で記録し、`phenological_stage`はあるが、採録当日の日時・日周時刻がない。したがって既存 `stage_matched_equal_stratum_overlap` は、異なる日の朝の送粉者・夕方の食害者を「同じ開花段階の異なる入口」と誤認し得る。これは実際のアザミで確認された誤りではなく、解析上の選択・交絡リスクである。
+新しく作った `capitulum_video_effort_denominator_v1.csv` と `capitulum_guild_access_event_ledger_v1.csv` のイベント・検証可能区間には、**相対秒数**はあるが日時と日周時刻が直接はない。ただし**元の `zuizui0223/EAzami/sampling/aim2_capitulum_observation_bout_ledger_v1.csv` は `observation_date`, `start_time_local`, `end_time_local` の列をすでに持つ**（2026-10-08時点でデータ行0件）。新しいsidecarは、この元の日時を捨てずに結合し、映像上の連続評価可能な15分以下の区間・タイムゾーン・証拠を定義する追加層である。元台帳に実際の行が追加された場合、日付・時刻の不一致を事前に突合してから実解析する。したがって既存 `stage_matched_equal_stratum_overlap` は、異なる日の朝の送粉者・夕方の食害者を「同じ開花段階の異なる入口」と誤認し得る。これは実際のアザミで確認された誤りではなく、解析上の選択・交絡リスクである。
 
-既存頭花・boutの列は一切変更しない。新たに **空の** `data/intake/capitulum_clock_matched_effort_sidecar_v1.csv` で固定する：
+既存頭花・boutの列は一切変更しない。元の EAzami 観察bout記録と独立sidecarのタイムスタンプが一致することは **将来の実データ導入時の必須crosswalk** であり、現行の合成テストがその実照合を済ませたという主張ではない。新たに **空の** `data/intake/capitulum_clock_matched_effort_sidecar_v1.csv` で固定する：
 
 - `individual_id, population_id, capitulum_id, observation_bout_id`: 既存の真正joinキー。
 - `video_start_local_iso, video_end_local_iso`: タイムゾーン付き実時刻。1区間 **15分以下**。検証済みの頭花+接近領域の連続映像と絶対的に同じ時間長が必要。
