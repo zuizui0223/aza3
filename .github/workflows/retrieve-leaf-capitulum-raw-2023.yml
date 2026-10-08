@@ -4,6 +4,8 @@ on:
   pull_request:
     paths:
       - "analysis/retrieve_leaf_capitulum_source_2023.py"
+      - "analysis/estimate_cirsium_cross_organ_variability_v1.py"
+      - "analysis/check_cirsium_ryukyu_cross_organ_cv_2026_v1.py"
       - ".github/workflows/retrieve-leaf-capitulum-raw-2023.yml"
   workflow_dispatch:
 
@@ -20,7 +22,11 @@ jobs:
         with:
           python-version: "3.12"
       - name: Check code before retrieving independent XLSX
-        run: python -m py_compile analysis/retrieve_leaf_capitulum_source_2023.py
+        run: |
+          python -m py_compile analysis/retrieve_leaf_capitulum_source_2023.py
+          python -m py_compile analysis/estimate_cirsium_cross_organ_variability_v1.py
+          python -m py_compile analysis/check_cirsium_ryukyu_cross_organ_cv_2026_v1.py
+          python analysis/check_cirsium_ryukyu_cross_organ_cv_2026_v1.py --out work/leaf_capitulum_published_source/ryukyu_cv_table_validation.json
       - name: Download Springer Nature Online Resource 6 (paired leaf/head morphometrics)
         run: python analysis/retrieve_leaf_capitulum_source_2023.py
       - name: Archive publisher source with SHA receipt
