@@ -61,6 +61,8 @@ jobs:
           h=j["history"]["trait_pairs_sensitive_to_branch_model"]
           assert h["orientation_x_stickiness"]["branch_length_aware_stratified_one_sided_p"] < .01
           assert h["orientation_x_stickiness"]["topology_only_median_rho"] < 0
+          assert all(not v["robustly_positive_both_layers"] for v in h.values())
+          assert h["phyllary_x_stickiness"]["topology_only_q05"] < 0
           assert j["claims"]["historical_adaptive_nonsynchrony"]=="NOT_IDENTIFIED"
           print("PASS: frozen observed coupling and opposed sensitivity do not imply adaptation")
           PY
