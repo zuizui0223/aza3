@@ -48,8 +48,8 @@ def evaluate(*, establishment_ratio: float, baseline_late_kill: float,
     finite_between(q1, 0, 1, "barrier_late_kill")
     for n,v in (("local_replacement",K),("immigration",I),
                 ("damage_per_established",d)):
-        if not math.isfinite(v) or (v<=0 if n=="immigration" else v<0):
-            raise ValueError(f"{n} must be finite and nonnegative; immigration positive")
+        if not math.isfinite(v) or (v<=0 if n in {"immigration", "damage_per_established"} else v<0):
+            raise ValueError(f"{n} must be finite and nonnegative; immigration and damage positive")
     if not isinstance(generations,int) or generations<1 or generations>200:
         raise ValueError("generations must be 1..200")
 
