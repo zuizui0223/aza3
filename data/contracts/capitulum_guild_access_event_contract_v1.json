@@ -68,6 +68,8 @@
     "reproductive_sex_state",
     "visitor_taxon_label",
     "visitor_taxon_id",
+    "pre_entry_guild",
+    "pre_entry_guild_evidence",
     "behavioral_role",
     "role_evidence",
     "entry_route_world",
@@ -149,6 +151,19 @@
       "hermaphroditic",
       "functionally_mixed",
       "not_determined"
+    ],
+    "pre_entry_guild": [
+      "legitimate_pollinator_candidate",
+      "seed_feeder_candidate",
+      "seed_feeder_parasitoid_candidate",
+      "florivore_candidate",
+      "other_known",
+      "unresolved"
+    ],
+    "pre_entry_guild_evidence": [
+      "pre_entry_taxon_and_local_life_history_verified",
+      "independently_assigned_before_access",
+      "unresolved"
     ]
   },
   "rules": [
@@ -163,7 +178,11 @@
     "World-based route refers to measured gravity frame, not head-axis frame; when field video cannot disambiguate, label undetermined.",
     "Camera detection effort must be blinded/standardized across treatments; event-triggered clips cannot estimate number of approaches without camera false-negative validation.",
     "One row per approach episode is not an independent plant or head replication; randomization and analysis unit must remain plant or head under confirmed experimental design.",
-    "Flower-head reproductive sex matters: Cirsium arvense is imperfectly dioecious and male heads and female heads can have distinct shapes, pollen service and seed-production endpoints. Record observed head sex, or not_determined; do not pool male-head viable achene endpoints with female-heads."
+    "Flower-head reproductive sex matters: Cirsium arvense is imperfectly dioecious and male heads and female heads can have distinct shapes, pollen service and seed-production endpoints. Record observed head sex, or not_determined; do not pool male-head viable achene endpoints with female-heads.",
+    "Pre-entry guild is an independently identified candidate identity at the moment of approach; 'behavioral_role' describes subsequently observed actions. Do not assign 'seed_feeder_candidate' only after egg success, or assign 'legitimate_pollinator_candidate' only after anther/stigma contact.",
+    "pre_entry_guild != unresolved requires independent pre-entry evidence (taxon plus locally applicable biology or blinded pre-access ID). GloBI pollinates alone or insect order is not sufficient.",
+    "Compute guild-specific P(oviposition | approached) including independently assigned candidate seed-feeder approaches that FAILED to lay eggs, otherwise defense efficacy is biased upward by denominator selection.",
+    "Pre-entry assignments may be unresolved: count unresolved fraction and restrict comparison to taxa with validated guild criteria, never retrospectively drop failures from denominator."
   ],
   "eligible_estimands": [
     {
@@ -190,6 +209,11 @@
     {
       "endpoint": "filled_achenes_per_head",
       "interpretation": "outcome from head ledger; reconcile pollen, oviposition, early parasitoid and abiotic wetting separately"
+    },
+    {
+      "endpoint": "P(oviposition_confirmed | approached, pre_entry_guild=seed_feeder_candidate)",
+      "interpretation": "Requires independently assigned candidate guild and unsuccessful approaches in denominator; avoids conditioning on the post-approach successful 'ovipositing_seed_feeder' label",
+      "source": "event table with paired effort denominators and pre-entry taxon evidence"
     }
   ],
   "missingness": "No events or data gaps must be distinguished via linked observation_bout_id, duration, camera error, phenology and weather. A missing guild is not guild absence.",
