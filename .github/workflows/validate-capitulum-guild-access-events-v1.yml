@@ -6,6 +6,9 @@ on:
       - "data/contracts/capitulum_guild_access_event_contract_v1.json"
       - "data/intake/capitulum_guild_access_event_ledger_v1.csv"
       - "analysis/validate_capitulum_guild_access_event_ledger_v1.py"
+      - "data/contracts/capitulum_video_effort_denominator_v1.json"
+      - "data/intake/capitulum_video_effort_denominator_v1.csv"
+      - "analysis/validate_capitulum_video_effort_denominator_v1.py"
       - ".github/workflows/validate-capitulum-guild-access-events-v1.yml"
   workflow_dispatch:
 
@@ -35,6 +38,7 @@ jobs:
       - name: Execute no-record schema check and synthetic ecological misuse tests
         run: |
           python -m py_compile analysis/validate_capitulum_guild_access_event_ledger_v1.py
+          python -m py_compile analysis/validate_capitulum_video_effort_denominator_v1.py
           python analysis/validate_capitulum_guild_access_event_ledger_v1.py \
             --contract data/contracts/capitulum_guild_access_event_contract_v1.json \
             --events data/intake/capitulum_guild_access_event_ledger_v1.csv \
@@ -50,6 +54,22 @@ jobs:
           assert d["direct_trait_impact_on_seed_fitness"]=="NOT_IDENTIFIED"
           assert d["requires_denominator_bout_effort_and_undetected_event_recall"]
           print("PASS: ready for real event observations; no fabricated ecological results")
+          PY
+      - name: Validate zero-inclusive approach denominator and stage-safe event joining
+        run: |
+          python analysis/validate_capitulum_video_effort_denominator_v1.py \
+            --contract data/contracts/capitulum_video_effort_denominator_v1.json \
+            --effort data/intake/capitulum_video_effort_denominator_v1.csv \
+            --events data/intake/capitulum_guild_access_event_ledger_v1.csv \
+            --self-test | tee work/head_events/effort_validation.json
+          python - <<'PY'
+          import json
+          d=json.load(open("work/head_events/effort_validation.json"))
+          assert d["status"]=="NOT_IDENTIFIABLE_NO_REAL_VIDEO_BOUTS"
+          assert d["n_effort_bouts"]==d["n_events_total"]==0
+          assert d["observed_raw_arrival_rate_per_minute"] is None
+          assert d["synthetic_tests"]["negative_cases"]>=11
+          print("PASS: verified zero != missing/bad camera, denominator not fabricated")
           PY
       - name: Retain source schema and validation receipts
         if: always()
