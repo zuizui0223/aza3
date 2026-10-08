@@ -7,6 +7,8 @@ on:
       - "analysis/reconstruct_azami_head_functional_contrasts_v1.py"
       - "analysis/test_capitulum_context_specific_coupling_v1.py"
       - "data/contracts/capitulum_conditional_coupling_splits_v1.json"
+      - "data/evidence/capitulum_conditional_coupling_12test_summary_v1.json"
+      - "docs/CAPITULUM_CONTEXT_RESULT_CUE_FILTER_STAGE_GATE_V1.md"
       - ".github/workflows/replay-head-module-contrasts-v1.yml"
 
 permissions:
@@ -51,6 +53,28 @@ jobs:
             --contract data/contracts/capitulum_conditional_coupling_splits_v1.json \
             --out outputs/capitulum_context_12test_result_v1.json \
             --bootstrap 3000 --permutations 9999 --seed 20261008
+      - name: Validate 12-test frozen readout and no adaptive promotion
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          frozen=json.loads(Path("data/evidence/capitulum_conditional_coupling_12test_summary_v1.json").read_text())
+          live=json.loads(Path("outputs/capitulum_context_12test_result_v1.json").read_text())
+          assert len(frozen["first_tier_context_rows"])==len(live["tests"])==12
+          assert live["n_bh_q_below_0_05"]==frozen["n_BH_sig_05"]==0
+          for old,new in zip(frozen["first_tier_context_rows"],live["tests"]):
+              assert (old["split"],old["left"],old["right"])==(new["split"],new["left"],new["right"])
+              for k_old,k_new in (
+                  ("low_r","low_r"),
+                  ("high_r","high_r"),
+                  ("unadjusted_two_sided_permutation_p","conditional_taxon_shuffle_p_two_sided"),
+                  ("BH_q_across_12","bh_q_12"),
+              ):
+                  assert abs(old[k_old]-new[k_new]) < 0.00008,(k_old,old[k_old],new[k_new])
+          assert frozen["provenance"]["frozen_Azami_traits_artifact"]==9612943217
+          assert live["scope"]["genealogy"].startswith("No phylogenetic covariance")
+          print("PASS: exact predeclared head module 12-test status and bounded claim match frozen receipt")
+          PY
       - name: Preserve complete statistical null and biological claim boundary
         if: always()
         uses: actions/upload-artifact@v4
