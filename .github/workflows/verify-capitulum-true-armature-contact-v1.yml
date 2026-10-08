@@ -1,0 +1,44 @@
+name: Verify true Cirsium armature contact v1
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "analysis/validate_capitulum_true_armature_contact_v1.py"
+      - "data/intake/capitulum_true_armature_contact_v1.csv"
+      - "data/intake/capitulum_contact_attempt_sequence_v1.csv"
+      - "data/intake/capitulum_guild_access_event_ledger_v1.csv"
+      - "docs/CAPITULUM_REAL_ARMATURE_CONTACT_GO_NO_GO_V1.md"
+      - ".github/workflows/verify-capitulum-true-armature-contact-v1.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  anatomical-verified-attempt:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Reject guessed spine contact and post-event role assignment
+        run: |
+          python -m py_compile analysis/validate_capitulum_true_armature_contact_v1.py
+          python analysis/validate_capitulum_true_armature_contact_v1.py \
+            --out work/true_armature_contact_v1.json
+      - name: Assert zero real Cirsium mechanical-contact claims
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open("work/true_armature_contact_v1.json"))
+          assert r["synthetic_tests"]["status"]=="PASS_SYNTHETIC_REAL_ARMATURE_AND_PARENT_LINK_GATES"
+          assert r["synthetic_tests"]["rejected_bad_scientific_claims"]==10
+          assert r["synthetic_tests"]["real_organismal_field_records"]==0
+          assert r["actual_intake"]["status"]=="NO_REAL_TRUE_ARMATURE_CONTACT_ANNOTATIONS"
+          assert r["actual_intake"]["n_verified_spine_touches"] is None
+          assert r["actual_intake"]["n_verified_physical_blockages"] is None
+          assert r["actual_intake"]["empirical_inference"]=="NOT_IDENTIFIABLE"
+          print("PASS: no invented true-spine barrier evidence")
+          PY
