@@ -194,5 +194,85 @@
     ],
     "next_discriminator": "Matched common-garden populations + within-plant leaf position and head phenology + direct botanical phyllary/spine force, plus legitimate pollen transfer and antagonist/parasitoid attack leading to viable achenes. Test whether internal floret variance persists as stable while external architecture's ecological fitness value switches."
   },
-  "repo_boundary": "The frozen Azami GEB manuscript is not amended; aza3 adds independent empirical cross-organ reanalysis."
+  "repo_boundary": "The frozen Azami GEB manuscript is not amended; aza3 adds independent empirical cross-organ reanalysis.",
+  "phenotypic_covariance_2023": {
+    "n_nonhybrid_plants": 114,
+    "source_same_individual_trait_pairs": [
+      "Lf_L-InV_L",
+      "Inv_L-Cor_L",
+      "Lf_L-Cor_L"
+    ],
+    "method": "Log lengths centered within each of the six parental taxon×sex strata, residual Pearson r pooled over plants; 3,000 paired plant resamples; primary 2023 source xlsx hash frozen.",
+    "unadjusted_correlations": {
+      "leaf_involucre": 0.15724528752808184,
+      "involucre_floret": 0.6698963815501738,
+      "leaf_floret": 0.05287992358389473,
+      "within_reproductive_vs_leaf_boundary_difference": 0.512651094022092
+    },
+    "unadjusted_boot_ci95": {
+      "leaf_involucre": [
+        -0.022161951290561428,
+        0.33015224450003555
+      ],
+      "involucre_floret": [
+        0.5950983460906678,
+        0.7428494343787881
+      ],
+      "leaf_floret": [
+        -0.1409676600717445,
+        0.2438836679118515
+      ],
+      "difference": [
+        0.32876125866549477,
+        0.7089689990483766
+      ]
+    },
+    "after_partialling_log_head_width": {
+      "leaf_involucre": 0.21251403002432503,
+      "involucre_floret": 0.5572697836642271,
+      "leaf_floret": 0.09006111385259873,
+      "difference": 0.3447557536399021
+    },
+    "after_partialling_log_head_width_log_upper_3_leaf_size_log1p_capitulum_count": {
+      "leaf_involucre": 0.2581037669103336,
+      "involucre_floret": 0.5572065695160174,
+      "leaf_floret": 0.16912433757586162,
+      "difference": 0.29910280260568384
+    },
+    "adjusted_ci95": {
+      "leaf_involucre": [
+        0.06060574781097141,
+        0.4326147653658369
+      ],
+      "involucre_floret": [
+        0.4435409201875084,
+        0.666851370310455
+      ],
+      "leaf_floret": [
+        -0.05163931169162897,
+        0.368714918032626
+      ],
+      "difference": [
+        0.10064359068518829,
+        0.5403946057018953
+      ]
+    },
+    "adjusted_bootstrap_fraction_difference_positive": 0.998,
+    "leave_one_taxon_out_no_adjustment": {
+      "without_acaulon": {
+        "leaf_involucre": 0.1276729402835136,
+        "involucre_floret": 0.6677356388136186
+      },
+      "without_bertolonii": {
+        "leaf_involucre": 0.25603013302734756,
+        "involucre_floret": 0.7282928343990545
+      },
+      "without_erisithales": {
+        "leaf_involucre": 0.08471327819041546,
+        "involucre_floret": 0.6111004776033307
+      }
+    },
+    "interpretation": "The same-plant phenotypic association among two reproductive head dimensions is larger than that between leaf and involucre lengths, even with descriptive covariate adjustment. The association can reflect within-head allometry, condition and developmental timing; not proof of genetic/developmental modularity or reproductive stabilizing selection.",
+    "allometry_adjustment_risk": "Controlling head width and vegetative size may block biological pathways or induce collider bias; report as sensitivity only."
+  }
 }
