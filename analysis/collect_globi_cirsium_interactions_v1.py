@@ -148,7 +148,12 @@ def fetch_csv(side, page_size, offset, timeout, attempts=3):
                 raw = response.read()
                 content_type = response.headers.get("Content-Type", "")
             decoded = raw.decode("utf-8-sig", "replace")
-            rows = list(csv.DictReader(io.StringIO(decoded, newline="")))
+            reader = csv.DictReader(io.StringIO(decoded, newline=""))
+            header = set(reader.fieldnames or [])
+            if not ({"source_taxon_name", "target_taxon_name", "interaction_type"} <= header
+                    or {"sourceTaxonName", "targetTaxonName", "interactionTypeName"} <= header):
+                raise ValueError("GloBI response lacks expected source/target/relation CSV header")
+            rows = list(reader)
             if rows and any(not isinstance(x, dict) for x in rows):
                 raise ValueError("CSV parser failed")
             if not rows and not decoded.strip():
