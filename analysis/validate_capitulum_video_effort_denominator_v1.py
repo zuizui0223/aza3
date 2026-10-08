@@ -30,6 +30,27 @@ def validate(efforts,events,spec):
     for i,b in enumerate(efforts,1):
         if any(x not in b for x in spec["columns"]):
             fail("EFFORT_SCHEMA_MISSING_FIELD")
+        # Alternative blooming Cirsium resources can redistribute flower-head
+        # weevil oviposition; do not turn an unmeasured resource into zero.
+        census=b["other_cirsium_resource_census_status"]
+        if census not in spec["allowed"]["other_cirsium_resource_census_status"]:
+            fail(f"EFFORT_{i}_UNKNOWN_OTHER_CIRSIUM_CENSUS_STATUS")
+        req=("other_cirsium_buds_count","other_cirsium_open_heads_count",
+             "other_cirsium_census_radius_m","other_cirsium_census_reference")
+        if census=="not_assessed":
+            if any(b[k].strip() for k in req):
+                fail(f"EFFORT_{i}_UNMEASURED_OTHER_CIRSIUM_MUST_NOT_BE_ZERO_OR_GUESSED")
+        else:
+            try:
+                bcount=int(b[req[0]])
+                ocount=int(b[req[1]])
+                radius=float(b[req[2]])
+            except (ValueError,TypeError):
+                fail(f"EFFORT_{i}_INVALID_OTHER_CIRSIUM_COUNTS")
+            if (not b[req[0]].isdigit() or not b[req[1]].isdigit() or
+                bcount<0 or ocount<0 or not 0<radius<float("inf") or
+                not b[req[3]].strip()):
+                fail(f"EFFORT_{i}_INVALID_OTHER_CIRSIUM_CENSUS")
         key=tuple(b[k].strip() for k in K)
         if not all(key):fail(f"EFFORT_{i}_MISSING_JOIN_ID")
         if key in index:fail(f"EFFORT_{i}_DUPLICATE_BOUT")
@@ -95,6 +116,12 @@ def validate(efforts,events,spec):
     visits=sum(visits_by_key[k] for k,b in index.items()
                if b["valid_rate_denominator"]=="1")
     return {
+      "n_measured_other_cirsium_bouts":sum(
+          b["other_cirsium_resource_census_status"]=="measured"
+          for b in index.values()),
+      "n_unassessed_other_cirsium_bouts":sum(
+          b["other_cirsium_resource_census_status"]=="not_assessed"
+          for b in index.values()),
       "status":"VALIDATED_EVENT_AND_EFFORT_LINK_ONLY" if index
                else "NOT_IDENTIFIABLE_NO_REAL_VIDEO_BOUTS",
       "n_effort_bouts":len(index),"n_events_total":len(events),
@@ -117,6 +144,9 @@ def make_effort():
         evaluable_duration_s="120",approach_zone_fully_covered="1",
         head_zone_fully_covered="1",video_review_mode="full_continuous_manual",
         approach_detection_recall_verified="0",recall_validation_reference="",
+        other_cirsium_resource_census_status="not_assessed",
+        other_cirsium_buds_count="",other_cirsium_open_heads_count="",
+        other_cirsium_census_radius_m="",other_cirsium_census_reference="",
         zero_approaches_confirmed="1",valid_rate_denominator="1",
         incomplete_reason="",reviewer_blinded_to_head_traits="1",
         evidence_uri="synthetic/continuous.mp4"
@@ -139,7 +169,23 @@ def tests(spec):
     event=make_event()
     x=validate([copy.deepcopy(good)],[event],spec)
     assert x["observed_raw_arrival_rate_per_minute"]==0.5
+    congener_measured=make_effort()
+    congener_measured.update(
+        other_cirsium_resource_census_status="measured",
+        other_cirsium_buds_count="0",
+        other_cirsium_open_heads_count="0",
+        other_cirsium_census_radius_m="5",
+        other_cirsium_census_reference="synthetic/census/001",
+    )
+    q=validate([copy.deepcopy(congener_measured)],[],spec)
+    assert q["n_measured_other_cirsium_bouts"]==1
     cases=[
+     ("UNMEASURED_CONGENER_IS_NOT_ZERO",
+       [{**zero,"other_cirsium_open_heads_count":"0"}],[],
+       "UNMEASURED_OTHER_CIRSIUM_MUST_NOT_BE_ZERO_OR_GUESSED"),
+     ("MEASURED_CONGENER_MUST_HAVE_RADIUS",
+       [{**congener_measured,"other_cirsium_census_radius_m":""}],[],
+       "INVALID_OTHER_CIRSIUM_COUNTS"),
      ("UNMATCHED_EFFORT",[],[event],"UNMATCHED_EFFORT_BOUT"),
      ("NO_FALSE_ZERO",[zero],[event],"FALSE_ZERO_CONFIRMED_WITH_OBSERVED_APPROACH"),
      ("MISSING_FULL_HEAD",[{**good,"head_zone_fully_covered":"0"}],[event],"FALSE_VALID_RATE_DENOMINATOR"),
@@ -167,7 +213,7 @@ def tests(spec):
             assert error in str(e),(label,str(e))
         else:raise AssertionError(f"TEST_FAILURE_{label}")
     return {"status":"PASS_SYNTHETIC_DENOMINATOR_FIREWALL",
-            "positive_control_bouts":2,"negative_cases":len(cases),
+            "positive_control_bouts":3,"negative_cases":len(cases),
             "no_real_organismal_field_data_submitted":True}
 
 def main():
