@@ -89,7 +89,9 @@ def audit(efforts, events, sidecar, contract):
     stats=collections.defaultdict(lambda:collections.defaultdict(lambda:{
         "n":0, "route_counts":collections.Counter(), "unknown":0,
         "plants":set(), "heads":set(), "access_yes":0, "access_known":0,
-        "access_unknown":0, "taxa":collections.Counter()
+        "access_unknown":0, "taxa":collections.Counter(),
+        "per_head_routes":collections.defaultdict(collections.Counter),
+        "per_head_unknown":collections.Counter(),
     }))
     pooled={g:collections.Counter() for g in GUILDS}
     n_excluded_in_partial_bin=0
@@ -140,8 +142,10 @@ def audit(efforts, events, sidecar, contract):
         datum["taxa"][ev["visitor_taxon_label"]]+=1
         if route=="undetermined":
             datum["unknown"]+=1
+            datum["per_head_unknown"][head]+=1
         else:
             datum["route_counts"][route]+=1
+            datum["per_head_routes"][head][route]+=1
             pooled[guild][route]+=1
         if access=="NA":
             datum["access_unknown"]+=1
@@ -192,8 +196,24 @@ def audit(efforts, events, sidecar, contract):
             continue
         value=overlap(counts[GUILDS[0]]["route_counts"],
                       counts[GUILDS[1]]["route_counts"])
+        head_scores=[]
+        for head in sorted(dual):
+            a=counts[GUILDS[0]]["per_head_routes"][head]
+            b=counts[GUILDS[1]]["per_head_routes"][head]
+            n_a=sum(a.values())
+            n_b=sum(b.values())
+            if n_a==0 or n_b==0:
+                raise ValueError("SAME_HEAD_ROUTES_MISSING_AFTER_GUILD_MATCH")
+            head_scores.append({
+                "head_id":list(head),
+                "route_overlap":overlap(a,b),
+                "approaches_by_guild":{GUILDS[0]:n_a,GUILDS[1]:n_b},
+            })
+        equal_head_mean=sum(x["route_overlap"] for x in head_scores)/len(head_scores)
         eligible.append({
             **bin_info, "route_overlap":value,
+            "mean_equal_head_weight_route_overlap":equal_head_mean,
+            "head_conditioned_route_overlap":head_scores,
             "n_independent_plants":{
                 z:len(counts[z]["plants"]) for z in GUILDS
             },
@@ -213,6 +233,10 @@ def audit(efforts, events, sidecar, contract):
     naive=overlap(pooled[GUILDS[0]],pooled[GUILDS[1]])
     matched=(sum(x["route_overlap"] for x in eligible)/len(eligible)
              if eligible else None)
+    head_matched=(
+        sum(x["mean_equal_head_weight_route_overlap"] for x in eligible)/len(eligible)
+        if eligible else None
+    )
     return {
         "status":("COMPLETE_BINNED_DESCRIPTIVE_OVERLAP_ONLY"
                   if eligible and not held else
@@ -232,6 +256,7 @@ def audit(efforts, events, sidecar, contract):
         "n_unresolved_pre_entry_guild_in_covered_bins":unresolved_role,
         "naive_pooled_route_overlap":naive,
         "matched_binned_route_overlap":matched,
+        "matched_same_head_equal_weight_route_overlap":head_matched,
         "qualified_bins":eligible,
         "held_bins":held,
         "denominator_validation":receipt["status"],
@@ -240,6 +265,8 @@ def audit(efforts, events, sidecar, contract):
             "Same full-coverage bin controls clock opportunity only, not flower scent.",
             "World approach direction does not establish contact with a genuine spine.",
             "Repeated same-head arrivals are not independent trait selection replicates.",
+            "Pooling insects across differently preferred heads can create an apparent route contrast even when routes match within every head.",
+            "Equal-head-weighted overlap conditions on both guilds visiting the same head; this does not estimate the unconditional head population effect.",
             "Unknown guilds or incomplete video are not zeros.",
             "Restricting to dual-guild encounter bins conditions on arrivals; "
             "these selected bins do NOT represent the whole head population.",
@@ -311,6 +338,7 @@ def synthetic_tests(contract):
     assert result["n_covered_bins_with_both_identified_guilds"]==2
     assert abs(result["naive_pooled_route_overlap"]-.2)<EPS
     assert abs(result["matched_binned_route_overlap"]-1.0)<EPS
+    assert abs(result["matched_same_head_equal_weight_route_overlap"]-1.0)<EPS
     assert result["n_approach_events_in_partial_time_bins_excluded"]==0
     assert audit([],[],[],contract)["status"]=="NO_REAL_VALIDATED_CLOCK_VIDEO"
     partial=check(es=efforts,ss=sidecars[:-1])
@@ -333,11 +361,61 @@ def synthetic_tests(contract):
     except ValueError as e:
         assert "FALSE_VALID_RATE_DENOMINATOR" in str(e)
     else:raise AssertionError("Event-triggered video accepted")
+    # Second independent falsification: SAME 5-minute clock interval,
+    # identical insect-guild routes WITHIN each head, but both guilds
+    # prefer different heads. Pooling across heads fakes route divergence.
+    eh,sh,ev=[],[],[]
+    start=a0+timedelta(minutes=5)
+    end=start+timedelta(minutes=5)
+    for plant in range(3):
+        b=make_effort()
+        b.update(individual_id=f"HC{plant}",capitulum_id=f"HH{plant}",
+                 observation_bout_id=f"HB{plant}",
+                 video_recording_id=f"synthetic://head-mix/{plant}",
+                 evidence_uri=f"synthetic://head-mix/{plant}",
+                 video_window_end_s="300",evaluable_duration_s="300",
+                 zero_approaches_confirmed="0",
+                 head_stage="full_anthesis",head_rank="terminal")
+        eh.append(b)
+        sh.append(dict(zip(SIDE_FIELDS,[
+            b["individual_id"],b["population_id"],b["capitulum_id"],
+            b["observation_bout_id"],start.isoformat(),end.isoformat(),
+            "synthetic://head-mix","not_assessed","not_assessed",""
+        ])))
+        route="below" if plant==1 else "above"
+        n_poll,n_seed=(10,90) if plant==1 else (90,10)
+        for guild,n in zip(GUILDS,(n_poll,n_seed)):
+            for j in range(n):
+                ev.append({
+                    "population_id":"TEST_POP",
+                    "individual_id":f"HC{plant}",
+                    "capitulum_id":f"HH{plant}",
+                    "observation_bout_id":f"HB{plant}",
+                    "approach_episode_id":f"HC{plant}_{guild}_{j}",
+                    "time_from_bout_start_s":str(1+j*2.5),
+                    "phenological_stage":"full_anthesis",
+                    "reproductive_sex_state":"hermaphroditic",
+                    "approached":"1",
+                    "pre_entry_guild":guild,
+                    "pre_entry_guild_evidence":"independently_assigned_before_access",
+                    "visitor_taxon_label":f"synthetic:{guild}",
+                    "evidence_uri":"synthetic://head-mix",
+                    "entry_route_world":route,
+                    "reproductive_zone_reached":"1",
+                })
+    headmix=audit(eh,ev,sh,contract)
+    assert headmix["n_qualified_comparison_bins"]==1
+    assert abs(headmix["matched_binned_route_overlap"]-(20/110+10/190))<EPS
+    assert abs(headmix["matched_same_head_equal_weight_route_overlap"]-1)<EPS
+    assert all(abs(x["route_overlap"]-1)<EPS
+               for x in headmix["qualified_bins"][0]["head_conditioned_route_overlap"])
     return {
         "status":"PASS_SYNTHETIC_PARTIAL_OVERLAP_TIME_BIN_REPAIR",
         "naive_pooled_overlap":result["naive_pooled_route_overlap"],
         "same_5min_overlap":result["matched_binned_route_overlap"],
         "n_qualified_bins":result["n_qualified_comparison_bins"],
+        "head_composition_counterexample_pooled":headmix["matched_binned_route_overlap"],
+        "head_composition_counterexample_within_head":headmix["matched_same_head_equal_weight_route_overlap"],
         "first_bout":"09:00-09:15",
         "second_bout":"09:05-09:20",
         "shared_exposure":"09:05-09:15",
