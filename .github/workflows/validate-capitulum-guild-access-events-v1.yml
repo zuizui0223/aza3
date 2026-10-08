@@ -11,6 +11,7 @@ on:
       - "analysis/validate_capitulum_video_effort_denominator_v1.py"
       - "analysis/summarize_capitulum_guild_route_overlap_v1.py"
       - "analysis/derive_capitulum_enemy_shielding_threshold_v1.py"
+      - "analysis/prove_capitulum_access_identifiability_v1.py"
       - "data/evidence/capitulum_herbivore_entry_portal_literature_v1.json"
       - ".github/workflows/validate-capitulum-guild-access-events-v1.yml"
   workflow_dispatch:
@@ -44,6 +45,7 @@ jobs:
           python -m py_compile analysis/validate_capitulum_video_effort_denominator_v1.py
           python -m py_compile analysis/summarize_capitulum_guild_route_overlap_v1.py
           python -m py_compile analysis/derive_capitulum_enemy_shielding_threshold_v1.py
+          python -m py_compile analysis/prove_capitulum_access_identifiability_v1.py
           python analysis/validate_capitulum_guild_access_event_ledger_v1.py \
             --contract data/contracts/capitulum_guild_access_event_contract_v1.json \
             --events data/intake/capitulum_guild_access_event_ledger_v1.csv \
@@ -121,6 +123,19 @@ jobs:
           assert len(source)==1
           assert "NOT direct species-resolved observation" in source[0]["route"]
           print("PASS: open-floret assemblage narration cannot overwrite direct young-bud piercing study")
+          PY
+      - name: Prove attraction-versus-access nonidentifiability from egg counts alone
+        run: |
+          python analysis/prove_capitulum_access_identifiability_v1.py \
+            --out work/head_events/arrival_vs_egg_identifiability.json
+          python - <<'PY'
+          import json
+          d=json.load(open("work/head_events/arrival_vs_egg_identifiability.json"))
+          assert d["status"]=="STRUCTURAL_IDENTIFIABILITY_PROOF_NOT_REAL_FIELD_RESULT"
+          assert d["synthetic_tests"]["status"]=="PASS_POISSON_THINNING_NONIDENTIFIABILITY"
+          assert d["synthetic_tests"]["same_final_egg_count_distribution_under_distinct_access_mechanisms"]
+          assert d["synthetic_tests"]["not_biological_data"] is True
+          print("PASS: arrival × access × acceptance product cannot identify one mechanism from egg counts")
           PY
       - name: Retain source schema and validation receipts
         if: always()
