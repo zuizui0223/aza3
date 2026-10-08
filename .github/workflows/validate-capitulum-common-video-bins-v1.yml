@@ -1,0 +1,55 @@
+name: Validate common-coverage capitulum video bins v1
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "analysis/audit_capitulum_common_coverage_bins_v1.py"
+      - "analysis/audit_capitulum_concurrent_clock_guilds_v1.py"
+      - "data/intake/capitulum_clock_matched_effort_sidecar_v1.csv"
+      - "data/intake/capitulum_guild_access_event_ledger_v1.csv"
+      - "data/intake/capitulum_video_effort_denominator_v1.csv"
+      - "docs/CAPITULUM_COMMON_COVERAGE_TIME_BIN_DECISION_V1.md"
+      - ".github/workflows/validate-capitulum-common-video-bins-v1.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  bounded-video-windows:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Retrieve pinned native EAzami observation clock source
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work
+          gh api 'repos/zuizui0223/EAzami/contents/sampling/aim2_capitulum_observation_bout_ledger_v1.csv?ref=c9870e91604ed1514344ddc8f765eae5237dbf27' --jq .content | base64 -d > work/original_EAzami_bouts.csv
+          test -s work/original_EAzami_bouts.csv
+      - name: Validate exact overlap and no fabricated field rows
+        run: |
+          python -m py_compile analysis/audit_capitulum_common_coverage_bins_v1.py
+          python analysis/audit_capitulum_common_coverage_bins_v1.py \
+            --original-bouts work/original_EAzami_bouts.csv \
+            --out work/common_video_bin_results.json
+      - name: Independently check expected numerical and logical results
+        run: |
+          python - <<'PY'
+          import json
+          p=json.load(open("work/common_video_bin_results.json"))
+          x=p["synthetic_tests"]
+          assert x["status"]=="PASS_SYNTHETIC_PARTIAL_OVERLAP_TIME_BIN_REPAIR"
+          assert x["n_qualified_bins"]==2
+          assert abs(x["naive_pooled_overlap"]-.2)<1e-12
+          assert abs(x["same_5min_overlap"]-1.0)<1e-12
+          assert x["real_biological_observations"]==0
+          assert p["real_data"]["status"]=="NO_REAL_VALIDATED_CLOCK_VIDEO"
+          assert p["real_data"]["matched_binned_route_overlap"] is None
+          assert p["original_bout_crosswalk"]["status"]=="NO_ORIGINAL_BOUTS_NO_REAL_CLOCK_SIDECAR"
+          print("PASS: real time overlap accepted, incomplete videos and zero real observations respected")
+          PY
