@@ -26,6 +26,7 @@ ID_COLS=[
  "record_id","individual_id","population_id","capitulum_id",
  "observation_bout_id","approach_episode_id","video_clip_id",
  "visitor_taxon_label","behavioral_role","role_evidence",
+ "pre_entry_guild","pre_entry_guild_evidence",
  "phenological_stage","entry_route_world","entry_route_head"
 ]
 
@@ -75,6 +76,12 @@ def validate(rows, contract, field_header, bout_header, plant_header):
                 raise ValueError(f"ROW_{i}_INVALID_BOOLEAN:{k}")
         if row["approached"]!="1":
             raise ValueError(f"ROW_{i}_APPROACH_NOT_DEFINED")
+        if row["pre_entry_guild"]=="unresolved":
+            if row["pre_entry_guild_evidence"]!="unresolved":
+                raise ValueError(f"ROW_{i}_PRE_ENTRY_GUILD_WITHOUT_VALID_ASSIGNMENT")
+        elif (row["pre_entry_guild_evidence"]=="unresolved" or
+              not row["evidence_uri"].strip()):
+            raise ValueError(f"ROW_{i}_POST_OUTCOME_ROLE_CANNOT_DEFINE_ARRIVAL_GUILD")
         if row["seeds_saved_inferred"]=="1":
             raise ValueError(f"ROW_{i}_OBSERVATION_CANNOT_CERTIFY_SEED_RESCUE")
         key=(row["individual_id"],row["population_id"],row["capitulum_id"],
@@ -144,6 +151,7 @@ def test_fixture(contract):
       "video_clip_id":"test/synthetic.mp4","time_from_bout_start_s":"5",
       "phenological_stage":"full_anthesis","reproductive_sex_state":"hermaphroditic",
       "visitor_taxon_label":"unidentified insect",
+      "pre_entry_guild":"unresolved","pre_entry_guild_evidence":"unresolved",
       "behavioral_role":"floral_forager","role_evidence":"video_behavior_confirmed",
       "entry_route_world":"side","entry_route_head":"disc_facing",
       "approached":"1","landed_or_hover_access":"1","reproductive_zone_reached":"1",
@@ -176,7 +184,15 @@ def test_fixture(contract):
       ("REJECT_FALSE_NO_DAMAGE_AS_EARLY_KILL",
        {"host_killed_before_seed_damage":"0","seed_damage_timing_assessed":"0"},
         "NEGATIVE_EARLY_KILL_REQUIRES_ASSESSED_TIMING"),
-      ("REJECT_UNBLINDED_STRICT_FITNESS",
+      ("REJECT_NOT_PRECLASSIFIED_SEED_FEEDER",
+       {"pre_entry_guild":"seed_feeder_candidate",
+        "pre_entry_guild_evidence":"unresolved"},
+       "POST_OUTCOME_ROLE_CANNOT_DEFINE_ARRIVAL_GUILD"),
+      ("REJECT_PSEUDO_PRE_ENTRY_ASSIGNMENT",
+       {"pre_entry_guild":"unresolved",
+        "pre_entry_guild_evidence":"pre_entry_taxon_and_local_life_history_verified"},
+       "PRE_ENTRY_GUILD_WITHOUT_VALID_ASSIGNMENT"),
+      ("REJECT_NO_APPROACH",
        {"approached":"0"},"APPROACH_NOT_DEFINED"),
     ]
     for label,mutation,error in invalid_cases:
