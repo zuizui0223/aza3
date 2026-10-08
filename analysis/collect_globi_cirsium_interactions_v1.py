@@ -47,7 +47,11 @@ OUT_COLS = [
     "focal_position", "interaction_type", "interaction_category",
     "source_taxon", "target_taxon", "source_taxon_id", "target_taxon_id",
     "study_title", "study_url", "study_doi", "study_citation",
-    "study_source_citation", "study_source_id", "source_namespace",
+    "study_source_citation", "study_source_doi", "study_source_id", "source_namespace",
+    "source_taxon_path", "target_taxon_path",
+    "source_specimen_body_part", "target_specimen_body_part",
+    "source_specimen_life_stage", "target_specimen_life_stage",
+    "source_specimen_occurrence_id", "target_specimen_occurrence_id",
     "event_date", "locality", "latitude", "longitude", "source_queries",
     "head_specific_evidence", "ecological_effectiveness",
 ]
@@ -62,22 +66,26 @@ def field(row, *keys):
 def normtype(value):
     return "".join(x for x in str(value).lower() if x.isalnum())
 
-def is_cirsium(name, genus):
-    return genus.lower() == "cirsium" or name.lower() == "cirsium" or name.lower().startswith("cirsium ")
+def is_cirsium(name, genus, taxon_path):
+    parts = [x.strip().casefold() for x in taxon_path.split("|")]
+    return ("cirsium" in parts or genus.casefold()=="cirsium"
+            or name.casefold()=="cirsium" or name.casefold().startswith("cirsium "))
 
 def parse_row(row, side):
     source = field(row, "source_taxon_name", "sourceTaxonName")
     target = field(row, "target_taxon_name", "targetTaxonName")
     sgenus = field(row, "source_taxon_genus_name", "sourceTaxonGenusName")
     tgenus = field(row, "target_taxon_genus_name", "targetTaxonGenusName")
-    s = is_cirsium(source, sgenus)
-    t = is_cirsium(target, tgenus)
+    spath = field(row, "source_taxon_path", "sourceTaxonPath")
+    tpath = field(row, "target_taxon_path", "targetTaxonPath")
+    s = is_cirsium(source, sgenus, spath)
+    t = is_cirsium(target, tgenus, tpath)
     if not (s or t):
         return None
     if s and t:
         return None   # exclude Cirsium–Cirsium relationships from partner inventory
-    source_id = field(row, "source_taxon_id", "sourceTaxonId")
-    target_id = field(row, "target_taxon_id", "targetTaxonId")
+    source_id = field(row, "source_taxon_external_id", "sourceTaxonExternalId", "source_taxon_id", "sourceTaxonId")
+    target_id = field(row, "target_taxon_external_id", "targetTaxonExternalId", "target_taxon_id", "targetTaxonId")
     interaction = field(row, "interaction_type", "interactionTypeName", "interaction_type_name")
     typ = normtype(interaction)
     study_id = field(row, "study_source_id", "studySourceId", "study_external_id", "studyExternalId")
@@ -85,6 +93,13 @@ def parse_row(row, side):
     citation = field(row, "study_citation", "studyCitation")
     src_citation = field(row, "study_source_citation", "studySourceCitation")
     doi = field(row, "study_doi", "studyDoi")
+    dataset_doi = field(row, "study_source_doi", "studySourceDoi")
+    source_specimen_id = field(row, "source_specimen_occurrence_id", "sourceSpecimenOccurrenceId")
+    target_specimen_id = field(row, "target_specimen_occurrence_id", "targetSpecimenOccurrenceId")
+    s_part = field(row, "source_specimen_body_part", "sourceSpecimenBodyPart")
+    t_part = field(row, "target_specimen_body_part", "targetSpecimenBodyPart")
+    s_stage = field(row, "source_specimen_life_stage", "sourceSpecimenLifeStage")
+    t_stage = field(row, "target_specimen_life_stage", "targetSpecimenLifeStage")
     event = field(row, "event_date", "eventDate")
     locality = field(row, "locality")
     lat = field(row, "latitude", "decimalLatitude")
@@ -96,9 +111,10 @@ def parse_row(row, side):
     pos = "source" if s else "target"
     # Identity is occurrence/provenance oriented, not collapsed to one species edge.
     identity = (source_id or source, target_id or target, typ,
-                study_id, study_url, doi, citation, src_citation, event, locality, lat, lon)
+                study_id, study_url, doi, dataset_doi, citation, src_citation, 
+                source_specimen_id, target_specimen_id, event, locality, lat, lon)
     key = hashlib.sha256("\x1f".join(identity).encode()).hexdigest()[:24]
-    namespace = field(row, "source_namespace", "sourceNamespace")
+    namespace = study_id or field(row, "source_namespace", "sourceNamespace")
     return dict(
         record_key=key, focal_taxon=focal, partner_taxon=partner,
         partner_species_rank_candidate=str(bool(SPECIES.match(partner))).lower(),
@@ -108,8 +124,14 @@ def parse_row(row, side):
         source_taxon_id=source_id, target_taxon_id=target_id,
         study_title=field(row, "study_title", "studyTitle"),
         study_url=study_url, study_doi=doi, study_citation=citation,
-        study_source_citation=src_citation, study_source_id=study_id,
-        source_namespace=namespace, event_date=event, locality=locality,
+        study_source_citation=src_citation, study_source_doi=dataset_doi,
+        study_source_id=study_id, source_namespace=namespace,
+        source_taxon_path=spath, target_taxon_path=tpath,
+        source_specimen_body_part=s_part, target_specimen_body_part=t_part,
+        source_specimen_life_stage=s_stage, target_specimen_life_stage=t_stage,
+        source_specimen_occurrence_id=source_specimen_id,
+        target_specimen_occurrence_id=target_specimen_id,
+        event_date=event, locality=locality,
         latitude=lat, longitude=lon, source_queries=side,
         head_specific_evidence="not_assessed", ecological_effectiveness="not_assessed",
     )
