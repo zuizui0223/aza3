@@ -83,6 +83,72 @@ def make_side_index(sidecar,efforts):
         }
     return index
 
+def crosswalk_original_bouts(source_bouts,sidecar,efforts):
+    """Compare actual timed clips with authoritative EAzami observation bouts.
+
+    The original EAzami ledger already contains observation_date,
+    start_time_local and end_time_local, but no timezone or reviewed video
+    coverage. Do not silently replace it with the new evidence sidecar.
+    Only daytime same-date bouts supported in v1; report overnight as HOLD.
+    """
+    needed=set(K)|{"observation_date","start_time_local","end_time_local",
+                   "phenological_stage"}
+    for row in source_bouts:
+        if not needed.issubset(row):
+            raise ValueError("ORIGINAL_BOUT_SCHEMA_INCOMPLETE")
+    known={}
+    for row in source_bouts:
+        key=tuple(row[k] for k in K)
+        if key in known or not all(key):
+            raise ValueError("ORIGINAL_BOUT_DUPLICATE_OR_EMPTY")
+        known[key]=row
+    if not source_bouts and not sidecar:
+        return {
+            "status":"NO_ORIGINAL_BOUTS_NO_REAL_CLOCK_SIDECAR",
+            "n_original_bouts":0,"n_linked_clips":0,
+        }
+    if not source_bouts and sidecar:
+        raise ValueError("CLOCK_SOURCE_BOUT_ROWS_ABSENT")
+    linked=0
+    effort_index={tuple(e[k] for k in K):e for e in efforts}
+    for clip in sidecar:
+        key=tuple(clip[k] for k in K)
+        parent=known.get(key)
+        effort=effort_index.get(key)
+        if parent is None or effort is None:
+            raise ValueError("CLOCK_SIDECAR_NOT_IN_AUTHORITATIVE_ORIGINAL_BOUT")
+        st=parse_time(clip["video_start_local_iso"])
+        en=parse_time(clip["video_end_local_iso"])
+        # Prevent comparing timestamps expressed in UTC to a local original
+        # that has no offset. Both clock records must use the named site local
+        # time (which is also required to be offset-aware in the sidecar).
+        source_date=datetime.fromisoformat(parent["observation_date"]).date()
+        if st.date()!=source_date or en.date()!=source_date:
+            raise ValueError("CLOCK_SOURCE_DATE_MISMATCH_OR_UNSUPPORTED_OVERNIGHT")
+        try:
+            a=datetime.strptime(parent["start_time_local"],"%H:%M").time()
+            b=datetime.strptime(parent["end_time_local"],"%H:%M").time()
+        except ValueError:
+            try:
+                a=datetime.strptime(parent["start_time_local"],"%H:%M:%S").time()
+                b=datetime.strptime(parent["end_time_local"],"%H:%M:%S").time()
+            except ValueError:
+                raise ValueError("CLOCK_ORIGINAL_TIME_FORMAT_UNRESOLVED") from None
+        if b<=a or st.time().replace(tzinfo=None)<a or en.time().replace(tzinfo=None)>b:
+            raise ValueError("CLOCK_SIDECAR_OUTSIDE_ORIGINAL_BOUT_INTERVAL")
+        if (parent["phenological_stage"]!=effort["head_stage"] or
+            parent["phenological_stage"] not in
+            {"bud","pre_anthesis","early_anthesis","full_anthesis",
+             "late_anthesis","postanthesis","fruit_development","mature_head"}):
+            raise ValueError("CLOCK_ORIGINAL_BOUT_STAGE_MISMATCH")
+        linked+=1
+    return {
+        "status":"CLOCK_CLIPS_SUBSET_OF_ORIGINAL_BOUT_TIMES",
+        "n_original_bouts":len(source_bouts),
+        "n_linked_clips":linked,
+        "is_fitness_or_access_measurement":False,
+    }
+
 def analyze(efforts,events,sidecar,contract):
     # Shared source contracts reject false zeros, incomplete video and head-stage mismatch.
     receipt=validate(efforts,events,contract)
@@ -277,6 +343,29 @@ def synthetic_tests(contract):
     assert analyze([],[],[],contract)["exact_concurrent_overlap"] is None
     missing=check(efforts,events,sidecar[:-1])
     assert missing["status"]=="HOLD_VALID_HEAD_BOUTS_LACK_ABSOLUTE_CLOCK_SIDECAR"
+    parents=[]
+    for e,clip in zip(efforts,sidecar):
+        parents.append({
+            **{k:e[k] for k in K},
+            "observation_date":clip["video_start_local_iso"][:10],
+            "start_time_local":clip["video_start_local_iso"][11:16],
+            "end_time_local":clip["video_end_local_iso"][11:16],
+            "phenological_stage":e["head_stage"],
+        })
+    assert crosswalk_original_bouts(parents,sidecar,efforts)["n_linked_clips"]==6
+    assert crosswalk_original_bouts([],[],[])["n_original_bouts"]==0
+    for bad,needle in [
+        ({**parents[0],"observation_date":"2026-06-03"},"CLOCK_SOURCE_DATE"),
+        ({**parents[0],"phenological_stage":"bud"},"CLOCK_ORIGINAL_BOUT_STAGE"),
+        ({**parents[0],"start_time_local":"09:00"},"CLOCK_SIDECAR_OUTSIDE"),
+    ]:
+        alt=copy.deepcopy(parents)
+        alt[0]=bad
+        try:crosswalk_original_bouts(alt,sidecar,efforts)
+        except ValueError as er:
+            assert needle in str(er),(needle,str(er))
+        else:
+            raise AssertionError("Original EAzami record mismatch accepted")
     for bad,expected in [
         ({**sidecar[0],"video_start_local_iso":"2026-06-02T08:00:00"},"CLOCK_WITHOUT_EXPLICIT_TIMEZONE"),
         ({**sidecar[0],"floral_scent_status":"measured"},"CLOCK_MEASURED_SCENT_WITHOUT_SAMPLE"),
@@ -303,7 +392,7 @@ def synthetic_tests(contract):
         "naive_same_stage_overlap":out["pooled_overlap"],
         "within_exact_bout_window_overlap":out["exact_concurrent_overlap"],
         "matched_windows":out["n_clock_matched_strata"],
-        "negative_guards":5,
+        "negative_guards":8,
         "real_observation_rows":0,
     }
 
@@ -313,6 +402,8 @@ def main():
     ap.add_argument("--effort",type=Path,default=Path("data/intake/capitulum_video_effort_denominator_v1.csv"))
     ap.add_argument("--events",type=Path,default=Path("data/intake/capitulum_guild_access_event_ledger_v1.csv"))
     ap.add_argument("--sidecar",type=Path,default=Path("data/intake/capitulum_clock_matched_effort_sidecar_v1.csv"))
+    ap.add_argument("--original-bouts",type=Path,
+                    help="Original EAzami Aim2 bout CSV, independently retrieved at fixed commit")
     ap.add_argument("--out",type=Path)
     a=ap.parse_args()
     spec=json.loads(a.contract.read_text(encoding="utf-8"))
@@ -321,7 +412,16 @@ def main():
     sh,side=read_csv(a.sidecar)
     if eh!=spec["columns"] or len(vh)!=32 or sh!=SIDE_FIELDS:
         raise ValueError("CLOCK_INPUT_HEADERS_DRIFT_FROM_V1_CONTRACT")
+    original_crosswalk=None
+    if a.original_bouts:
+        oh,original=read_csv(a.original_bouts)
+        if not set(K).issubset(oh) or not {"observation_date",
+                "start_time_local","end_time_local",
+                "phenological_stage"}.issubset(oh):
+            raise ValueError("ORIGINAL_EAZAMI_CLOCK_HEADER_MISMATCH")
+        original_crosswalk=crosswalk_original_bouts(original,side,eff)
     result={
+        "original_EAzami_bout_crosswalk":original_crosswalk,
         "version":"capitulum_clock_matched_guild_access_v1",
         "date":"2026-10-08",
         "synthetic_tests":synthetic_tests(spec),
