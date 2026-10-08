@@ -1,0 +1,141 @@
+{
+  "version": "aza3_cirsium_leaf_vs_reproductive_allometry_v1",
+  "date": "2026-10-08",
+  "source_doi": "10.1007/s00606-023-01854-2",
+  "source_xlsx_sha256": "c06423cc6f9800ba4775a4428afa072ba1b3dc6fb48ccd05fdb7e42a2f03ee79",
+  "design": {
+    "parental_plant_n": 114,
+    "n_species": 3,
+    "n_species_sex_strata": 6,
+    "model": "Within taxon-sex centred log organ lengths regressed on within taxon-sex centred log candidate size proxy",
+    "bootstrap": "4,000 paired-plant bootstrap draws separately within fixed sex-species strata, NumPy default_rng(20261008)",
+    "unit": "Each plant is the repeated paired-organ sample; site and phylogenetic histories not independently resampled"
+  },
+  "size_proxies": [
+    {
+      "id": "upper_3_leaf_total",
+      "column": "123Lf_L",
+      "meaning": "Combined lengths of 3 upper leaves (may biologically overlap leaf size measurement)",
+      "observed": {
+        "middle_leaf": 0.6130519172716561,
+        "involucre": -0.05034114532792332,
+        "corolla": -0.0387943520586809,
+        "leaf_minus_involucre": 0.6633930625995794,
+        "leaf_minus_corolla": 0.651846269330337,
+        "involucre_minus_corolla": -0.01154679326924242
+      },
+      "ci95": {
+        "middle_leaf": [
+          0.404,
+          0.845
+        ],
+        "involucre": [
+          -0.16,
+          0.062
+        ],
+        "corolla": [
+          -0.082,
+          0.007
+        ],
+        "leaf_minus_involucre": [
+          0.467,
+          0.883
+        ],
+        "leaf_minus_corolla": [
+          0.442,
+          0.877
+        ],
+        "involucre_minus_corolla": [
+          -0.103,
+          0.076
+        ]
+      }
+    },
+    {
+      "id": "upper_internode_distance",
+      "column": "3Lf_D",
+      "meaning": "Terminal capitulum-to-third-leaf distance, a stem architecture proxy, not whole-plant biomass",
+      "observed": {
+        "middle_leaf": 0.242,
+        "involucre": 0.048,
+        "corolla": 0.024,
+        "leaf_minus_involucre": 0.194,
+        "leaf_minus_corolla": 0.218,
+        "involucre_minus_corolla": 0.024
+      },
+      "ci95": {
+        "middle_leaf": [
+          0.13,
+          0.355
+        ],
+        "involucre": [
+          0.001,
+          0.089
+        ],
+        "corolla": [
+          0.003,
+          0.045
+        ],
+        "leaf_minus_involucre": [
+          0.077,
+          0.32
+        ],
+        "leaf_minus_corolla": [
+          0.102,
+          0.332
+        ],
+        "involucre_minus_corolla": [
+          -0.01,
+          0.052
+        ]
+      }
+    },
+    {
+      "id": "capitulum_count",
+      "column": "Cap_N",
+      "meaning": "Count of heads; log1p-transformed; reproductive allocation proxy, not pure vegetative size",
+      "observed": {
+        "middle_leaf": 0.152,
+        "involucre": -0.069,
+        "corolla": -0.038,
+        "leaf_minus_involucre": 0.22,
+        "leaf_minus_corolla": 0.19,
+        "involucre_minus_corolla": -0.03
+      },
+      "ci95": {
+        "middle_leaf": [
+          -0.073,
+          0.362
+        ],
+        "involucre": [
+          -0.163,
+          0.019
+        ],
+        "corolla": [
+          -0.072,
+          -0.004
+        ],
+        "leaf_minus_involucre": [
+          -0.009,
+          0.446
+        ],
+        "leaf_minus_corolla": [
+          -0.041,
+          0.404
+        ],
+        "involucre_minus_corolla": [
+          -0.111,
+          0.04
+        ]
+      }
+    }
+  ],
+  "biological_result": "Matched leaf dimensions associate more strongly with leaf- and stem-derived growth proxies than do reproductive involucre or corolla dimensions; within these strata the latter have very weak regressions on measured proxies. Between-organ relative CV gradient cannot be explained as identical allometric dependence; residual biological reason unresolved.",
+  "inference_limits": [
+    "Size proxies are not experimentally manipulated environment or nutrition; correlation and slopes cannot identify plasticity or developmental canalization",
+    "Upper-3 leaf predictor shares vegetative organ character with middle-leaf response, causing expected structural association",
+    "Small group n=10 female strata and geographic/stage heterogeneity are not population-level replication",
+    "We do not estimate selection gradients, evolutionary rates, heritability, pollen contact or achene fitness; no Nature-level mechanism established",
+    "Current Azami GEB submission is frozen; this is independent aza3 successor research"
+  ]
+}

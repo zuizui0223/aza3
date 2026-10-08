@@ -1,0 +1,102 @@
+{
+  "version": "cirsium_leaf_spine_involucre_proxy_screen_v1",
+  "date": "2026-10-08",
+  "publication_doi": "10.1007/s00606-023-01854-2",
+  "input_xlsx_sha256": "c06423cc6f9800ba4775a4428afa072ba1b3dc6fb48ccd05fdb7e42a2f03ee79",
+  "data_design": "114 non-hybrid plants, three Cirsium taxa x 2 reproductive sexes; individual-matched middle leaf and involucre measurements; descriptive post-outcome exploration, conditional plant bootstrap.",
+  "biology": {
+    "leaf_mm": "Spi_L = terminal spine length on largest lateral lobe of middle leaf",
+    "bract_mm": "(Ibr_W - Inv_W) / 2 = outward bract tip width extension on head outline, not botanical spine length",
+    "relative_leaf": "Lf_Sp = Spi_L/Lob_L",
+    "relative_bract": "Inv_Sp-1 = Ibr_W/Inv_W-1; bract spinosity/fuzziness and geometry, not same metric as Lf_Sp"
+  },
+  "statistics": {
+    "stratified_rank_pair": {
+      "leaf_spine_vs_bract_tip_extension": 0.001472701183112697,
+      "leaf_normalized_spine_vs_bract_relative_extension": 0.1554598001005107,
+      "involucre_length_vs_corolla_length": 0.712307396417954
+    },
+    "ci95_paired_plant_bootstrap_4000": {
+      "leaf_spine_vs_bract_tip_extension": [
+        -0.18032001882077608,
+        0.1990969422632253
+      ],
+      "leaf_normalized_spine_vs_bract_relative_extension": [
+        -0.039503014619468216,
+        0.33494251852089474
+      ],
+      "involucre_length_vs_corolla_length": [
+        0.5780545214911257,
+        0.793632939087861
+      ]
+    },
+    "permutation_p_two_sided_conditional_posthoc": 0.9868,
+    "permutations": 4999,
+    "bract_extension_zero_rows": 24,
+    "source_stratum_role": [
+      {
+        "taxon": "Cirsium acaulon",
+        "sex": "f",
+        "n": 10,
+        "raw_rho": 0.21166451001966485,
+        "relative_rho": 0.2253202848596432,
+        "zero_tip_extension": 6
+      },
+      {
+        "taxon": "Cirsium acaulon",
+        "sex": "h",
+        "n": 30,
+        "raw_rho": -0.15024675095725448,
+        "relative_rho": -0.15347413991445236,
+        "zero_tip_extension": 18
+      },
+      {
+        "taxon": "Cirsium bertolonii - Monte Sagro",
+        "sex": "f",
+        "n": 10,
+        "raw_rho": -0.12727272727272726,
+        "relative_rho": -0.2121212121212121,
+        "zero_tip_extension": 0
+      },
+      {
+        "taxon": "Cirsium bertolonii - Monte Sagro",
+        "sex": "h",
+        "n": 24,
+        "raw_rho": -0.13829093608064624,
+        "relative_rho": 0.2504347826086956,
+        "zero_tip_extension": 0
+      },
+      {
+        "taxon": "Cirsium erisithales",
+        "sex": "f",
+        "n": 10,
+        "raw_rho": -0.35757575757575755,
+        "relative_rho": 0.12727272727272726,
+        "zero_tip_extension": 0
+      },
+      {
+        "taxon": "Cirsium erisithales",
+        "sex": "h",
+        "n": 30,
+        "raw_rho": 0.347129514602012,
+        "relative_rho": 0.4643453138089365,
+        "zero_tip_extension": 0
+      }
+    ],
+    "leave_one_taxon_out_raw_rank": {
+      "full": 0.001472701183112697,
+      "without_acaulon": 0.031,
+      "without_bertolonii": 0.063,
+      "without_erisithales": -0.097
+    }
+  },
+  "claim": "NO_EVIDENCE_FOR_SIMPLE_UNIVERSAL_INDIVIDUAL_LEAF_SPINE_TO_BRACT_TIP_COVARIANCE_IN_THIS_SAMPLE; VALIDITY_OF_ACTUAL_MECHANICAL_SPINES_UNRESOLVED",
+  "boundaries": [
+    "An apparent zero correlation with 95% CI -0.18..0.20 is NOT evidence of independence or equivalence, and within-group sign heterogeneity is not a demonstrated selective sign switch.",
+    "Phyllary tip-width contrast is not true spine length, force or sharpness; a quarter of heads show zero added width in the proxy, all C. acaulon.",
+    "Stem/leaf developmental position, photo geometry, botanically verified actual spines, and common-garden genotype/population data are needed before a causal biological interpretation.",
+    "Distinct trait-level results should not be spliced into Azami GEB's frozen inference as if originally preregistered.",
+    "Reproductive contact, seed predation, parasitism, and viable achenes are not measured in the morphometrics source."
+  ],
+  "code": "analysis/screen_leaf_involucre_spine_coupling_v1.py"
+}

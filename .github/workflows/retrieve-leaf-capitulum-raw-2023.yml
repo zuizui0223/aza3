@@ -1,0 +1,54 @@
+name: Retrieve published Cirsium paired leaf and involucre data
+
+on:
+  pull_request:
+    paths:
+      - "analysis/retrieve_leaf_capitulum_source_2023.py"
+      - "analysis/estimate_cirsium_cross_organ_variability_v1.py"
+      - "analysis/estimate_cirsium_leaf_head_covariance_v1.py"
+      - "data/evidence/cirsium_leaf_involucre_floret_variability_result_v1.json"
+      - "analysis/check_cirsium_ryukyu_cross_organ_cv_2026_v1.py"
+      - ".github/workflows/retrieve-leaf-capitulum-raw-2023.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  retrieve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check code before retrieving independent XLSX
+        run: |
+          python -m py_compile analysis/retrieve_leaf_capitulum_source_2023.py
+          python -m py_compile analysis/estimate_cirsium_cross_organ_variability_v1.py
+          python -m py_compile analysis/estimate_cirsium_leaf_head_covariance_v1.py
+          python -m py_compile analysis/check_cirsium_ryukyu_cross_organ_cv_2026_v1.py
+          python analysis/check_cirsium_ryukyu_cross_organ_cv_2026_v1.py --out work/leaf_capitulum_published_source/ryukyu_cv_table_validation.json
+          python - <<'PY'
+          import json
+          r=json.load(open("data/evidence/cirsium_leaf_involucre_floret_variability_result_v1.json"))
+          assert r["source2023"]["raw_xlsx_sha256"] == "c06423cc6f9800ba4775a4428afa072ba1b3dc6fb48ccd05fdb7e42a2f03ee79"
+          assert r["source2023"]["nonhybrid"] == 114
+          assert r["primary2023"]["all_six_strata_ordered_leaf_involucre_corolla"] is True
+          assert r["source2026"]["leaf_length_cv_gt_floret_length_cv"] == 6
+          p=r["phenotypic_covariance_2023"]
+          assert p["unadjusted_correlations"]["involucre_floret"] > p["unadjusted_correlations"]["leaf_involucre"]
+          assert p["after_partialling_log_head_width_log_upper_3_leaf_size_log1p_capitulum_count"]["involucre_floret"] > p["after_partialling_log_head_width_log_upper_3_leaf_size_log1p_capitulum_count"]["leaf_involucre"]
+          print("PASS: frozen source and descriptive result gates (NOT full 2023 XLSX replay)")
+          PY
+      - name: Download Springer Nature Online Resource 6 (paired leaf/head morphometrics)
+        run: python analysis/retrieve_leaf_capitulum_source_2023.py
+      - name: Archive publisher source with SHA receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: michalkova2023-leaf-capitulum-online-resource6
+          path: work/leaf_capitulum_published_source/
+          retention-days: 14
+          if-no-files-found: warn
