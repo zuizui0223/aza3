@@ -152,11 +152,21 @@ def audit(efforts, events, sidecar, contract):
     eligible=[]
     held=[]
     comparable_cover=0
+    bins_with_no_guild=0
+    bins_with_one_guild=0
+    bins_with_both_guilds=0
     for (g, bin_utc), covered_heads in sorted(coverage.items()):
         if len({(x[1],x[0],x[2]) for x in covered_heads})<MIN_DUAL_GUILD_HEADS:
             continue
         comparable_cover+=1
         counts=stats[(g,bin_utc)]
+        guilds_present=sum(counts[z]["n"]>0 for z in GUILDS)
+        if guilds_present==0:
+            bins_with_no_guild+=1
+        elif guilds_present==1:
+            bins_with_one_guild+=1
+        else:
+            bins_with_both_guilds+=1
         failures=[]
         for guild in GUILDS:
             x=counts[guild]
@@ -213,6 +223,9 @@ def audit(efforts, events, sidecar, contract):
         "n_valid_full_coverage_bouts":len(valid),
         "n_events":len(events),
         "n_shared_covered_bins":comparable_cover,
+        "n_covered_bins_with_neither_identified_guild":bins_with_no_guild,
+        "n_covered_bins_with_only_one_identified_guild":bins_with_one_guild,
+        "n_covered_bins_with_both_identified_guilds":bins_with_both_guilds,
         "n_qualified_comparison_bins":len(eligible),
         "n_held_bins":len(held),
         "n_approach_events_in_partial_time_bins_excluded":n_excluded_in_partial_bin,
@@ -228,6 +241,8 @@ def audit(efforts, events, sidecar, contract):
             "World approach direction does not establish contact with a genuine spine.",
             "Repeated same-head arrivals are not independent trait selection replicates.",
             "Unknown guilds or incomplete video are not zeros.",
+            "Restricting to dual-guild encounter bins conditions on arrivals; "
+            "these selected bins do NOT represent the whole head population.",
             "Between-site, host-race, species and weather confounding remains.",
             "Without real viable achenes no plant fitness or adaptation is measurable.",
         ],
@@ -290,6 +305,9 @@ def synthetic_tests(contract):
     result=check()
     assert result["status"]=="PARTIAL_BINNED_DESCRIPTIVE_OVERLAP_ONLY"
     assert result["n_qualified_comparison_bins"]==2\n    assert result["n_held_bins"]==2
+    assert result["n_covered_bins_with_neither_identified_guild"]==2
+    assert result["n_covered_bins_with_only_one_identified_guild"]==0
+    assert result["n_covered_bins_with_both_identified_guilds"]==2
     assert abs(result["naive_pooled_route_overlap"]-.2)<EPS
     assert abs(result["matched_binned_route_overlap"]-1.0)<EPS
     assert result["n_approach_events_in_partial_time_bins_excluded"]==0
