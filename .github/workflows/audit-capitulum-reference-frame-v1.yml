@@ -1,0 +1,38 @@
+name: Audit capitulum world versus head frame v1
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "analysis/check_capitulum_reference_frame_gate_v1.py"
+      - "data/intake/capitulum_world_head_3d_approach_v1.csv"
+      - "docs/CAPITULUM_WORLD_VERSUS_HEAD_REFERENCE_FRAME_GATE_V1.md"
+      - ".github/workflows/audit-capitulum-reference-frame-v1.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  reference-frame-positivity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Strict syntax, geometry counterexamples and zero real intake
+        run: |
+          python -m py_compile analysis/check_capitulum_reference_frame_gate_v1.py
+          python analysis/check_capitulum_reference_frame_gate_v1.py --out work/capitulum_reference_frame_v1.json
+      - name: Assert no ecological signal inferred without actual stereo geometry
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open("work/capitulum_reference_frame_v1.json"))
+          assert d["synthetic_tests"]["status"]=="PASS_SYNTHETIC_REFERENCE_FRAME_GATES"
+          assert d["real_intake"]["status"]=="NO_REAL_STEREO_GEOMETRY"
+          assert d["real_intake"]["contrasts"] is None
+          assert d["real_intake"]["n_eligible_arrival_rows"]==0
+          print("PASS: geometric frame gate and no biological data fabrication")
+          PY
