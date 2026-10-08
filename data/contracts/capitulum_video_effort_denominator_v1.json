@@ -1,0 +1,120 @@
+{
+  "version": "capitulum_video_effort_denominator_v1",
+  "asof": "2026-10-08",
+  "status": "EMPTY_OBSERVATION_INTAKE_CONTRACT__NO_FIELD_OBSERVATIONS",
+  "purpose": "Prevent collider/selection and denominator bias when estimating insect approaches per minute, and distinguish genuine verified zero events from missing/camera blind spots. Complements, never replaces, EAzami Aim2 bout and head outcome records.",
+  "join_keys": [
+    "individual_id",
+    "population_id",
+    "capitulum_id",
+    "observation_bout_id"
+  ],
+  "columns": [
+    "individual_id",
+    "population_id",
+    "capitulum_id",
+    "observation_bout_id",
+    "video_recording_id",
+    "head_stage",
+    "reproductive_sex_state",
+    "observed_head_orientation_deg",
+    "head_rank",
+    "video_window_start_s",
+    "video_window_end_s",
+    "evaluable_duration_s",
+    "approach_zone_fully_covered",
+    "head_zone_fully_covered",
+    "video_review_mode",
+    "approach_detection_recall_verified",
+    "recall_validation_reference",
+    "zero_approaches_confirmed",
+    "valid_rate_denominator",
+    "incomplete_reason",
+    "reviewer_blinded_to_head_traits",
+    "evidence_uri"
+  ],
+  "allowed": {
+    "head_stage": [
+      "bud",
+      "pre_anthesis",
+      "early_anthesis",
+      "full_anthesis",
+      "late_anthesis",
+      "postanthesis",
+      "fruit_development",
+      "mature_head"
+    ],
+    "reproductive_sex_state": [
+      "female_pistillate",
+      "male_staminate",
+      "hermaphroditic",
+      "functionally_mixed",
+      "not_determined"
+    ],
+    "head_rank": [
+      "terminal",
+      "secondary",
+      "tertiary",
+      "other",
+      "not_determined"
+    ],
+    "video_review_mode": [
+      "full_continuous_manual",
+      "continuous_algorithm_audited",
+      "event_triggered_only",
+      "incomplete_or_missing"
+    ],
+    "binary": [
+      "0",
+      "1"
+    ],
+    "optional_binary": [
+      "0",
+      "1",
+      "NA"
+    ]
+  },
+  "rules": [
+    "Exactly one duration-defined video effort row for each head × bout, including verified zero events.",
+    "video_window_start_s >=0, end_s > start_s, and 0 <= evaluable_duration_s <= (end_s - start_s); no structural zeros when evaluable duration=0.",
+    "For event-to-effort reconciliation, the start/end interval must be contiguous evaluable footage; if there are internal unscorable gaps, split into new observation bouts rather than silently subtracting minutes.",
+    "An effort row marked valid_rate_denominator=1 requires: evaluable_duration_s>0; both full approach and head zones filmed; full_continuous_manual OR continuous_algorithm_audited with externally documented, guild-specific recall; complete review; verification URI.",
+    "event_triggered_only video cannot provide approach frequency per minute without independently calibrated missed-approach probability; in v1 its rate denominator is always invalid.",
+    "zero_approaches_confirmed=1 only with a valid_rate_denominator=1 and zero linked observed approach episodes. Missing events without valid effort are unknown, not zero.",
+    "An event observation must match an effort row; its time_from_bout_start_s lies inside the declared reviewed window, otherwise observed entry and visits cannot be assumed complete.",
+    "Approach counts must be made from continuous effort where the approach zone is visible. Approach-conditioned service ratios can be reported only for fully scored and taxonomically/behaviorally qualified episodes; unknown role is retained rather than forced to pollinator/antagonist.",
+    "Do not use GloBI pollinates or insect taxonomic order as a measure of legitimate pollen deposition or enemy seed saving.",
+    "n=0 eligible bout or n=0 observed field events yields NOT_IDENTIFIABLE_REAL_DATA rather than a fabricated biological null.",
+    "Plant/head IDs remain the statistical biological units: observed episodes nested in recording bouts nested in head and plant; do not treat 100 encounters on one head as 100 independent reproductive replicates."
+  ],
+  "identification_targets": [
+    {
+      "estimand": "E[number of approaches_g / verified filmed approach-zone minutes] by head/treatment/stage",
+      "source": "valid effort denominator + observed events; detection recall and within-head correlation addressed",
+      "not_valid_when": "event-triggered camera footage, off-screen approach area, no guild identification"
+    },
+    {
+      "estimand": "P(reproductive zone reached | approached, guild, stage)",
+      "source": "linked fully reviewed approach events in eligible complete video bouts; route based on actual behavior",
+      "not_valid_when": "arrival event detection differs by head phenotype or post-arrival capture availability"
+    },
+    {
+      "estimand": "P(pollen deposition/oviposition | reached, guild, stage)",
+      "source": "independent pollen assay or directly verified oviposition evidence",
+      "not_valid_when": "landing only or automated three-order insect ID without behavior"
+    },
+    {
+      "estimand": "P(host killed BEFORE seed damage | parasitoid exposure)",
+      "source": "prospective head/host rearing and independently timed damaging larvae",
+      "not_valid_when": "parasitoid seen or emergence after head already damaged"
+    },
+    {
+      "estimand": "viable achene output by head / total head",
+      "source": "EAzami original head fate ledger and authorized viability assay",
+      "not_valid_when": "observation events only, lack of sex-aware and fertilization measures"
+    }
+  ],
+  "causal_warning": "Conditioning on approached events can select on a post-treatment variable and obscure total effects of head architecture. Report unconditional arrival per valid minute, conditional access/service by verified guild, and total viable achene outcomes as separate estimands. Process-path decomposition is not causal mediation without a justified directed graph/independent interventions.",
+  "sampling_unit": "head/plant, not individual approach episode",
+  "frozen_source": "https://github.com/zuizui0223/EAzami/blob/c9870e91604ed1514344ddc8f765eae5237dbf27/sampling/aim2_capitulum_observation_bout_ledger_v1.csv"
+}
