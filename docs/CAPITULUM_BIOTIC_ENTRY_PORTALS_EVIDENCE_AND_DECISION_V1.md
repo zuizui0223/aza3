@@ -44,7 +44,7 @@
 
 EAzamiには`aim2_capitulum_field_ledger_v1.csv`、`aim2_capitulum_observation_bout_ledger_v1.csv`、`aim2_plant_display_predation_ledger_v1.csv`がある。ただし訪花数・有効接触数を頭花×時間枠単位で集計しているので、**接近と「侵入口への到達失敗」の区別には足りない**。
 
-そのため新しく、既存台帳を**一列も破壊・改変せず**、`data/intake/capitulum_guild_access_event_ledger_v1.csv`（空の30列テンプレート）と`data/contracts/capitulum_guild_access_event_contract_v1.json`、`analysis/validate_capitulum_guild_access_event_ledger_v1.py` を作成した。
+そのため新しく、既存台帳を**一列も破壊・改変せず**、`data/intake/capitulum_guild_access_event_ledger_v1.csv`（空の32列テンプレート）と`data/contracts/capitulum_guild_access_event_contract_v1.json`、`analysis/validate_capitulum_guild_access_event_ledger_v1.py` を作成した。
 
 - 観察単位：実際の昆虫の頭花への**一接近エピソード**、紐づく植物ID・頭花ID・観察時間枠ID・動画ID。
 - 経路：頭花に近づく方向（上・横・下・茎由来）と、どの器官に接するか（小花円盤・総苞外面・総苞間隙・基部）。
@@ -69,6 +69,37 @@ Tiley (2010, `10.1111/j.1365-2745.2010.01678.x`) によれば、*C. arvense* は
 - 6つの代表的な気候/撮影条件の偏相関も、それぞれ−0.4047→−0.4066、+0.4381→+0.4500、−0.0253→−0.0253。
 
 **結論：** 少なくとも主要な分類群間の記述的関係は、*C. arvense* 一種の雄雌頭花の混合だけでは説明できない。ただし、個々の写真の性表現は未ラベルであり、ほかのアザミの性機能や発育期混合は検証されていない。新しいイベント表には `reproductive_sex_state` を追加。実効雄性適応度（花粉輸出／父性）と雌性適応度（充実痩果）は別である。再現コード：`analysis/check_capitulum_dioecious_taxon_sensitivity_v1.py`。
+
+## 新しい研究上の判別軸：入口の重なりがゼロならトレードオフはまず発生しない
+
+送粉昆虫と種子食者の侵入する入口に注目して、**初期の仮説は「選択的防御が存在する」ではなく「実際に防御構造に遭遇したか」**へ変更する。
+
+送粉候補と種子食者候補を**結果を見る前に**同定した接近記録から、上側・横側・下側・茎経由の各経路の利用確率を測る。２グループの空間的重複を
+
+`Omega = sum_{route} min[p(route | independently-identified pollinator candidate), p(route | independently-identified seed-feeder candidate)]`
+
+と定義すると、`Omega=0` は観察した粗い世界座標ルートの完全分離、`Omega=1` は同じ粗い分布である。**0だから適応的トレードオフが解消したわけではなく、1だから両者が同じ総苞片・トゲに接触するとは限らない**。本当の接触器官、実際の刺針の長さ・方向、花期、観察努力と映像死角は別途測る。この計算の実装 `analysis/summarize_capitulum_guild_route_overlap_v1.py` は、現段階では野外記録行0のため`NO_REAL_VIDEO_EVENTS_OR_EFFORT`と判定し、実測の数値を創作しない。
+
+**分母は注意が必要**。産卵に成功した昆虫だけを「ovipositing seed-feeder」として集計すると、**産卵に失敗した候補昆虫が分母から除外**され、物理障壁の機能を定量できない。新しい台帳では接近時に独立同定した `pre_entry_guild`（候補ギルド）と、後で実際に行った `behavioral_role` / `oviposition_confirmed` を別々に保存する。未同定は`unresolved`であり、ハチ目／ハエ目／チョウ目という目レベルの自動分類だけで送粉者や種子食者を確定しない。
+
+また、カメラに昆虫が映らないとき：
+- 頭花＋接近空間を**連続的に**撮影し、記録区間をレビューできていれば「検証済みの訪花ゼロ」とする；
+- イベント検出時のみ録画、死角、録画欠落、手動確認不足なら**観察不能**であり、到来ゼロとは扱わない。
+
+補助記録：`data/contracts/capitulum_video_effort_denominator_v1.json` と空の22列 `data/intake/capitulum_video_effort_denominator_v1.csv`。別契約の接近エピソード表は32列。双方の突合・11種の偽ゼロ・偽接近・役割選択バイアス・偽寄生救済シナリオを用いるCIの合成反証チェックと、独立の数値ルート重複チェックを実装した。**合成チェックは実際の昆虫観察結果ではない**。
+
+### 古典的な三栄養段階研究による現実の反例：種子食者同士にも差がある
+
+Vanbergen et al. (2006, `10.1111/j.1365-2656.2006.01099.x`) は* C. palustre* の頭花内ミバエ *Tephritis conura* と *Xyphosia miliaria*、共通寄生蜂 *Pteromalus elevatus* を、放牧あり・なし各10の計20森林で比較した。同じアザミの頭花を利用していても、放牧地では *T. conura* と寄生蜂が多く、*X. miliaria* の密度には有意な放牧の影響がなく、*T. conura* の寄生率は約2倍だった。**侵入者は「種子食者」という一つの均質なギルドではない**。ただしこの研究もアザミのトゲ長・向きを独立操作したものではない。
+
+### 結果が変わる最も大きな測定上の条件
+
+- **到来の効果**：昆虫が見つける率。花色・UV・提示面積が最初の候補。
+- **侵入口の効果**：独立に同定できた同じ昆虫種類で、到来後に小花や総苞片へアクセスできた率。総苞片・本物のトゲ・粘着面が第一候補。
+- **機能の効果**：本当に花粉を柱頭に運んだか、種子食者が産卵できたか、寄生蜂が被害前に宿主を殺したか。これらは異なる証拠が必要。
+- **植物への効果**：雄性機能と雌性痩果数、被害を分けた成熟種子数。昆虫への影響自体は自然選択係数ではない。
+
+この4水準がそろい、さらに別集団で再現したとき初めて、**向き×トゲ、花色×総苞片姿勢、粘着×侵入経路という機能的な補完・代償・干渉**を厳密に区別できる。従来のAzami画像RVや日本38系統の0/3同期変化だけでは、どちらの進化過程も証明できない。
 
 ## 生物学的結論の現在地
 
