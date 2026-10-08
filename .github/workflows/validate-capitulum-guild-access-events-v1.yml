@@ -119,8 +119,7 @@ jobs:
           source=[x for x in cited if x["plant"]=="Cirsium palustre" and
                   "GENERIC_SYSTEM_DESCRIPTION" in x["status"]]
           assert len(source)==1
-          assert "not direct species-resolved observation" in source[0]["route"] or
-                 "NOT direct species-resolved observation" in source[0]["route"]
+          assert "NOT direct species-resolved observation" in source[0]["route"]
           print("PASS: open-floret assemblage narration cannot overwrite direct young-bud piercing study")
           PY
       - name: Retain source schema and validation receipts
