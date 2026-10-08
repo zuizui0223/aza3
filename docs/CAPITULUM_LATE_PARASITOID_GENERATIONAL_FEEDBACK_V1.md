@@ -2,6 +2,14 @@
 
 **2026-10-08 | PR #44 | conditional ecological mechanism, not a real-data fitness result.**
 
+## 2026-10-08 critical scope correction: living parasitized larvae can INCREASE seed consumption
+
+**The old model is a restrictive special case, not a general tri-trophic sign theorem.** Xi, Eisenhauer & Sun (2015), DOI [10.1111/1365-2656.12361](https://doi.org/10.1111/1365-2656.12361), directly tested *Saussurea nigrescens* in field enclosures and showed approximately 85% **more** damaged seeds when seed-feeding larvae were parasitized, with a developmental microcosm suggesting prolonged larval feeding. The original study also included *Cirsium setosum* in observational (not experimental) analyses. It did **not** demonstrate a Cirsium orientation/spine cause.
+
+Thus the old "parasitoids kill only after irreversible seed damage, so only next generations matter" mechanism applies **only if** parasitism does not change current-season larval consumption. Koinobiont parasitism can change that consumption **before** the larva dies. The sign of blocking parasitoid access can therefore be **beneficial or harmful** for same-season head seed production even when parasitoid emergence is late. For a detailed three-component parameterization (establishment `r`, effective early kill `q`, ongoing-host parasitism `p`, feeding multiplier `g`), see `docs/CAPITULUM_KOINOBIONT_HOST_FEEDING_VERSUS_EARLY_RESCUE_V1.md` and `analysis/check_capitulum_parasitoid_feeding_sign_v1.py`.
+
+**Decision:** Do not use the old generational-reversal predictions as a default field-design endpoint, and do not assign `q` from emerged-wasp percentages. The first empirical priority is to identify exact adult entry + host/parasitoid identity + feeding/seed-loss timing + viable achenes. This research note remains valid *only within its explicitly fixed feeding-per-host assumptions.*
+
 ## 研究上の問いを一段深くする
 
 従来の問い「頭花の外側の刺・総苞・向きが送粉者を通して種子食者を防ぐか」は、一つの頭花・同じシーズンの比較である。ここでは**寄生蜂が種子の損傷後に宿主を殺す**場合を厳密に分ける。
