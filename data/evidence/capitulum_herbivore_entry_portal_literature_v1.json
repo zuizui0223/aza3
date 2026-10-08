@@ -47,6 +47,17 @@
       "url": "https://scholar.valpo.edu/tgle/vol40/iss2/8/",
       "status": "GENUS_DIRECT_FIELD_OBSERVATION_AND_DEFENCE_TEST_NULL",
       "plant_fit_effect": "neutralizing sticky traps did not increase seed predation or decrease seed production in 2003 study"
+    },
+    {
+      "plant": "Cirsium palustre",
+      "consumer": "Tephritis conura, Xyphosia miliaria, Pteromalus elevatus",
+      "route": "two tephritid species feed within the heads; shared parasitoid probes the capitula to reach larvae",
+      "gate": "shared capitulum substrate, different host insect responses to habitat",
+      "phenophase": "T. conura June–July feeding; parasitoid peak oviposition August; X. miliaria season dependent",
+      "source": "Vanbergen, Hails, Watt & Jones 2006 Journal of Animal Ecology DOI 10.1111/j.1365-2656.2006.01099.x",
+      "url": "https://besjournals.onlinelibrary.wiley.com/doi/10.1111/j.1365-2656.2006.01099.x",
+      "status": "FULL_ORIGINAL_METHODS_AND_GUILD_RESPONSES_VERIFIED",
+      "plant_fit_effect": "20 woodland sites; 10 grazed and 10 ungrazed, T. conura and shared parasitoid P. elevatus more abundant with grazing; X. miliaria unaffected; parasitism of T. conura about 2x in grazed habitat. No trait-specific spine/angle manipulation or direct seed rescue."
     }
   ],
   "functional_prediction": {
@@ -54,14 +65,16 @@
     "H1_phyllary_barrier": "Direct real spine/phyllary access-gaps should preferentially change head-wall chewer/ovipositor success on buds, not necessarily floret-layer tephritid access during anthesis.",
     "H2_orientation_stage": "Natural nodding orientation rotates the outer wall in world coordinates, altering route-conditioned successful entry only if arthropods use gravity-referenced strategies. The same head's opening phase is a separate predictor.",
     "H3_time_enemy_shield": "After initial infestation, larger mechanical access barriers may obstruct parasitoid attack, but only pre-damage host killing can benefit viable achene production.",
-    "H4_alternative": "Head size and position select buds suitable for weevil oviposition; rain/UV and pollen presentation shape fitness, independently of insect access."
+    "H4_alternative": "Head size and position select buds suitable for weevil oviposition; rain/UV and pollen presentation shape fitness, independently of insect access.",
+    "H5_within_same_plant_guild_heterogeneity": "An identical capitulum cannot be assumed to give identical protection against all tephritids: T. conura responds to grazing/habitat and X. miliaria does not in Vanbergen et al. 2006. Control species identity before inferring a generic seed-feeder barrier."
   },
   "new_identifiability_requirement": [
     "Each observed arrival must be classified as approaching exposed florets, phyllary exterior, phyllary interstice, receptacle base, or stem.",
     "Stage-conditional head position and real measured phyllary opening/spine rigidity/direction must be independently verified.",
     "One head and plant biological unit, with approach-level events nested in effort-calibrated observation bouts.",
     "Do not conflate interspecific route contrast with within-population adaptive selection, independently evolving lineages or common treatment outcome.",
-    "Test effective pollen contacts, confirmed adult oviposition and independently validated pre-damage parasitoid effect before seed fate."
+    "Test effective pollen contacts, confirmed adult oviposition and independently validated pre-damage parasitoid effect before seed fate.",
+    "Within a single nominal guild, retain consumer species/host identity and distinguish each parasitoid-host pair. A single 'seed predator' slope ignores documented within-plant differences."
   ],
   "claim_ceiling": "Evidence for different antagonist access portals across existing Cirsium studies, NOT evidence that any measured Cirsium spine orientation phenotype evolved adaptively to route partitioning."
 }
