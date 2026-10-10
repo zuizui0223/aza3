@@ -39,3 +39,21 @@ This contract does not require a huge 4-way experiment to start. First verify th
 ### Interpretation ceiling
 
 A validated mechanical-contact row establishes **an anatomical encounter and observed failure**, not causal exclusion by an evolved trait. A causal barrier contrast requires matched or independently randomized geometry states with actual insect arrival exposure. Functional adaptive significance requires adequate head/plant replication and viable maternal seed output, with pollen function and post-pollination scent controlled. Repeated adaptive module assembly additionally needs independently resolved evolutionary origins and a credible evolutionary null. None of those can be inferred from the empty contract.
+
+## 2026-10-10 denominator gate: blocked-only annotation is invalid
+
+An important bug in the first version was that the source validator required every **submitted annotation** to match a parent attempt, but did not require every eligible **parent attempt** to be annotated. If a scientist annotated only spectacular blocked insects and ignored successful attempts, the result could falsely suggest that every anatomically contacted insect was obstructed.
+
+`analysis/validate_capitulum_true_armature_contact_v1.py` now builds the authoritative eligible denominator from **all continuously reviewed parent attempts with independently qualified pre-entry guild**, not from annotated positive events. It rejects any incomplete annotation through `HOLD_INCOMPLETE_ELIGIBLE_ATTEMPT_ANNOTATION`, returning `null` for verified-contact and physical-blockage outcome counts until all eligible attempts have an annotation. Each valid annotation may explicitly say `no_surface_contact`, `floret_disc`, `unresolved` or other agreed surface; a 'no blockage' row may only have `0` when actually assessed. This also prevents mistaking unknown pre-entry taxa, unreviewed video and absent attempts for negative observations.
+
+A second new gate checks the original *attempt portal* against the anatomically resolved site: a parent recorded as `floret_disc` may **not** be retroactively labelled `spine_tip`; this is a documentation conflict, not evidence of thorn contact. Attempts where recorded parent world/head portal was unresolved are still limited to a descriptive, documented video re-review.
+
+**Synthetic falsifier**: one independently identified insect first contacts an outer spine and fails to enter, then makes a second documented attempt at the floret disc and succeeds. If only the spectacular spine failure is annotated, report HOLD and `n_unannotated_eligible_parent_attempts=1`, **not a barrier rate of 100%**. If both attempts are annotated, the schema can report two attempted contacts, one measured mechanical blockage, and exactly one biological head. This still is not an independent morphological treatment contrast or a seed-fitness estimate.
+
+This denominator guard concerns **eligible observed contact attempts**, not overall insect arrival. Population-level effort and possible false-negative arrivals remain controlled separately by the continuous-video effort ledger. Even a complete observed attempt ledger can be biased if insects are missed, if pre-entry taxa are preferentially identified only for easy successes, or if the plant's geometry itself changes arrival. The valid next step is only a prospective **access process** description.
+
+## Biological source-based context
+
+*Gijsman et al.* (2020), `Cirsium pitcheri`, DOI [10.1016/j.gecco.2020.e00945](https://doi.org/10.1016/j.gecco.2020.e00945), found that heads with weevil infestation had 60% fewer mature seeds, and weevil attack was more frequent in secondary and tertiary heads than terminal ones. That is direct seed-fate leverage but **not** a direct spine-length effect. Rank must therefore be kept in comparisons; a successful head-annotation validator cannot rescue missing head-rank matching or missing viable-achene outcomes.
+
+**Final ceiling:** no direct field record has been submitted to these current intake CSVs. A PASS fixture means only the software knows how to reject certain invalid biological claims; it does not mean thorn selection, modular adaptation, or antagonistic-access tradeoffs have been observed.
