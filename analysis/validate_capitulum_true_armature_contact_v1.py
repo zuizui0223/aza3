@@ -204,8 +204,40 @@ def validate(rows, attempts, events):
             "n_verified_physical_blockages":None,
             "empirical_inference":"NOT_IDENTIFIABLE_DENOMINATOR_INCOMPLETE",
         }
+    # A mechanically blocked FIRST route is not equivalent to preventing
+    # reproductive-zone access. One candidate insect may switch portals
+    # and succeed later during the SAME biological approach episode.
+    from collections import defaultdict
+    by_episode=defaultdict(list)
+    for row in rows:
+        key=tuple(row[k].strip() for k in ATTEMPT_KEY)
+        try:
+            idx=int(row["attempt_index"])
+        except ValueError:
+            raise ValueError("ATTEMPT_INDEX_INVALID_FOR_ROUTE_SEQUENCE") from None
+        if idx<=0:
+            raise ValueError("ATTEMPT_INDEX_INVALID_FOR_ROUTE_SEQUENCE")
+        by_episode[key[:len(KEYS)]].append((
+            idx, row["physical_blockage_verified"]=="1",
+            at_index[key].get("access_observed")=="1",
+        ))
+    blocked_then_later_access=0
+    episodes_with_any_verified_block=0
+    for seq in by_episode.values():
+        seq.sort(key=lambda x:x[0])
+        if len({x[0] for x in seq})!=len(seq):
+            raise ValueError("REPEATED_ATTEMPT_SEQUENCE_INDEX")
+        blocked_indexes=[x[0] for x in seq if x[1]]
+        if blocked_indexes:
+            episodes_with_any_verified_block+=1
+            if any(x[2] and x[0]>min(blocked_indexes) for x in seq):
+                blocked_then_later_access+=1
     return {
         "status":"DESCRIPTIVE_TRUE_CONTACT_GATES_ONLY",
+        "n_observed_approach_episodes":len(by_episode),
+        "n_episodes_with_any_verified_armature_block":episodes_with_any_verified_block,
+        "n_episodes_with_verified_block_then_later_access":blocked_then_later_access,
+        "blocking_without_later_access_is_NOT_confirmed_abandonment":True,
         "n_parent_attempts":len(attempts),
         "n_eligible_parent_attempts":len(expected),
         "n_unannotated_eligible_parent_attempts":0,
@@ -275,6 +307,10 @@ def synthetic_tests():
     assert full["n_contact_rows"]==full["n_eligible_parent_attempts"]==2
     assert full["n_verified_physical_blockages"]==1
     assert full["n_independent_heads"]==1
+    assert full["n_observed_approach_episodes"]==1
+    assert full["n_episodes_with_any_verified_armature_block"]==1
+    assert full["n_episodes_with_verified_block_then_later_access"]==1
+    assert check()["n_episodes_with_verified_block_then_later_access"]==0
     bad=[
         ({**x,"spine_touch_verified":"0"},a,e,"TRUE_SPINE_SURFACE"),
         ({**x,"anatomy_scale_evidence_uri":""},a,e,"UNSCALED_ARMATURE"),
