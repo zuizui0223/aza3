@@ -39,6 +39,16 @@ VERIFIED_GUILDS={
  "independently_assigned_before_access"
 }
 FLAGS={"0","1","NA"}
+PARENT_ZONE_ALLOWED={
+    "involucre_outer":{"spine_tip","spine_shaft","phyllary_lamina",
+                       "no_surface_contact","unresolved"},
+    "involucre_gap":{"spine_tip","spine_shaft","phyllary_lamina",
+                     "phyllary_gap","no_surface_contact","unresolved"},
+    "floret_disc":{"floret_disc","no_surface_contact","unresolved"},
+    "receptacle_base":{"phyllary_lamina","no_surface_contact","unresolved"},
+    "stem_entry":{"stem","no_surface_contact","unresolved"},
+    "undetermined":SURFACES,
+}
 
 def read_csv(path):
     with path.open(encoding="utf-8-sig",newline="") as f:
@@ -46,13 +56,6 @@ def read_csv(path):
         return list(reader.fieldnames or []),list(reader)
 
 def validate(rows, attempts, events):
-    if not rows:
-        return {"status":"NO_REAL_TRUE_ARMATURE_CONTACT_ANNOTATIONS",
-                "n_contact_rows":0, "n_verified_spine_touches":None,
-                "n_verified_physical_blockages":None,
-                "n_independent_heads":0,
-                "empirical_inference":"NOT_IDENTIFIABLE"}
-
     at_index={}
     for a in attempts:
         key=tuple(a.get(k,"") for k in ATTEMPT_KEY)
@@ -65,6 +68,31 @@ def validate(rows, attempts, events):
         if not all(key) or key in ev_index:
             raise ValueError("DUPLICATE_OR_MISSING_PARENT_APPROACH_EPISODE")
         ev_index[key]=ev
+    expected=set()
+    parent_guild_unresolved=0
+    parent_coverage_incomplete=0
+    for key,a in at_index.items():
+        episode=ev_index.get(key[:len(KEYS)])
+        if episode is None:
+            raise ValueError("PARENT_ATTEMPT_WITHOUT_APPROACH_EPISODE")
+        coverage=a.get("continuous_coverage")
+        if coverage not in {"0","1"}:
+            raise ValueError("PARENT_ATTEMPT_COVERAGE_INVALID")
+        if coverage=="0":
+            parent_coverage_incomplete+=1
+            continue
+        if (episode.get("pre_entry_guild")=="unresolved" or
+            episode.get("pre_entry_guild_evidence") not in VERIFIED_GUILDS):
+            parent_guild_unresolved+=1
+            continue
+        expected.add(key)
+    if not rows and not attempts:
+        return {"status":"NO_REAL_TRUE_ARMATURE_CONTACT_ANNOTATIONS",
+                "n_parent_attempts":0,"n_eligible_parent_attempts":0,
+                "n_contact_rows":0, "n_verified_spine_touches":None,
+                "n_verified_physical_blockages":None,
+                "n_independent_heads":0,
+                "empirical_inference":"NOT_IDENTIFIABLE"}
     counts={"touches":0,"blockages":0,"unknown":0}
     seen=set()
     heads=set()
@@ -91,6 +119,11 @@ def validate(rows, attempts, events):
             raise ValueError("UNCOVERED_CONTACT_SEQUENCE_CANNOT_PROVE_BARRIER")
         if row["contact_surface"] not in SURFACES:
             raise ValueError("UNRECOGNIZED_TRUE_BOTANICAL_CONTACT_SURFACE")
+        parent_zone=a.get("contact_zone","")
+        if parent_zone not in PARENT_ZONE_ALLOWED:
+            raise ValueError("PARENT_CONTACT_ZONE_MISSING_OR_INVALID")
+        if row["contact_surface"] not in PARENT_ZONE_ALLOWED[parent_zone]:
+            raise ValueError("TRUE_CONTACT_SURFACE_CONTRADICTS_PARENT_PORTAL")
         for col in ("contact_resolved","spine_touch_verified",
                     "physical_blockage_verified","entry_not_achieved_at_attempt"):
             if row[col] not in FLAGS:
@@ -146,8 +179,27 @@ def validate(rows, attempts, events):
                 raise ValueError("POSITIVE_TRUE_SPINE_TOUCH_REQUIRES_NONZERO_SPINE_LENGTH")
         heads.add(tuple(row[k] for k in
                         ("population_id","individual_id","capitulum_id")))
+    missing=expected-seen
+    if missing:
+        return {
+            "status":"HOLD_INCOMPLETE_ELIGIBLE_ATTEMPT_ANNOTATION",
+            "n_contact_rows":len(rows),
+            "n_parent_attempts":len(attempts),
+            "n_eligible_parent_attempts":len(expected),
+            "n_unannotated_eligible_parent_attempts":len(missing),
+            "n_parent_attempts_unresolved_guild":parent_guild_unresolved,
+            "n_parent_attempts_unscorable_video":parent_coverage_incomplete,
+            "n_verified_spine_touches":None,
+            "n_verified_physical_blockages":None,
+            "empirical_inference":"NOT_IDENTIFIABLE_DENOMINATOR_INCOMPLETE",
+        }
     return {
         "status":"DESCRIPTIVE_TRUE_CONTACT_GATES_ONLY",
+        "n_parent_attempts":len(attempts),
+        "n_eligible_parent_attempts":len(expected),
+        "n_unannotated_eligible_parent_attempts":0,
+        "n_parent_attempts_unresolved_guild":parent_guild_unresolved,
+        "n_parent_attempts_unscorable_video":parent_coverage_incomplete,
         "n_contact_rows":len(rows),
         "n_verified_spine_touches":counts["touches"],
         "n_verified_physical_blockages":counts["blockages"],
@@ -165,7 +217,8 @@ def synthetic_tests():
         "individual_id":"I1","population_id":"POP1","capitulum_id":"H1",
         "observation_bout_id":"B1","approach_episode_id":"E1",
         "attempt_index":"1","video_clip_id":"synthetic://clip",
-        "head_stage":"bud","obstruction_observed":"1",
+        "head_stage":"bud","contact_zone":"involucre_outer",
+        "obstruction_observed":"1",
         "access_observed":"0","continuous_coverage":"1",
     }
     e={
@@ -187,6 +240,25 @@ def synthetic_tests():
     assert check()["n_verified_physical_blockages"]==1
     assert check()["n_verified_spine_touches"]==1
     assert validate([],[],[])["n_verified_spine_touches"] is None
+    # An annotator who only codes blocked approaches falsely inflates the
+    # physical-barrier fraction. Missing successful attempts must block
+    # ALL mechanistic summaries, even if positive contact is valid.
+    a2={**a,"attempt_index":"2","contact_zone":"floret_disc",
+        "obstruction_observed":"0","access_observed":"1"}
+    x2={**x,"record_id":"R2","attempt_index":"2",
+        "contact_surface":"floret_disc","spine_touch_verified":"0",
+        "physical_blockage_verified":"0","entry_not_achieved_at_attempt":"0",
+        "actual_spine_length_mm":"NA","minimum_phyllary_gap_mm":"NA"}
+    missing=validate([copy.deepcopy(x)],[copy.deepcopy(a),a2],[copy.deepcopy(e)])
+    assert missing["status"]=="HOLD_INCOMPLETE_ELIGIBLE_ATTEMPT_ANNOTATION"
+    assert missing["n_unannotated_eligible_parent_attempts"]==1
+    assert missing["n_verified_physical_blockages"] is None
+    empty_annotation=validate([],[copy.deepcopy(a)],[copy.deepcopy(e)])
+    assert empty_annotation["status"]=="HOLD_INCOMPLETE_ELIGIBLE_ATTEMPT_ANNOTATION"
+    full=validate([copy.deepcopy(x),x2],[copy.deepcopy(a),a2],[copy.deepcopy(e)])
+    assert full["n_contact_rows"]==full["n_eligible_parent_attempts"]==2
+    assert full["n_verified_physical_blockages"]==1
+    assert full["n_independent_heads"]==1
     bad=[
         ({**x,"spine_touch_verified":"0"},a,e,"TRUE_SPINE_SURFACE"),
         ({**x,"anatomy_scale_evidence_uri":""},a,e,"UNSCALED_ARMATURE"),
@@ -198,6 +270,7 @@ def synthetic_tests():
         ({**x,"contact_surface":"unresolved"},a,e,"UNRESOLVED_SURFACE"),
         ({**x,"approach_episode_id":"E_DOES_NOT_EXIST"},a,e,"ANNOTATION_MUST_MATCH"),
         ({**x,"actual_spine_length_mm":"-2"},a,e,"ANATOMICAL_DIMENSION_MUST_BE_NONNEGATIVE"),
+        (x,{**a,"contact_zone":"floret_disc"},e,"TRUE_CONTACT_SURFACE_CONTRADICTS_PARENT_PORTAL"),
     ]
     for rr,aa,ee,needle in bad:
         try:check(rr,aa,ee)
