@@ -34,7 +34,7 @@ jobs:
           import json
           r=json.load(open("work/true_armature_contact_v1.json"))
           assert r["synthetic_tests"]["status"]=="PASS_SYNTHETIC_REAL_ARMATURE_AND_PARENT_LINK_GATES"
-          assert r["synthetic_tests"]["rejected_bad_scientific_claims"]==10
+          assert r["synthetic_tests"]["rejected_bad_scientific_claims"]==11
           assert r["synthetic_tests"]["real_organismal_field_records"]==0
           assert r["actual_intake"]["status"]=="NO_REAL_TRUE_ARMATURE_CONTACT_ANNOTATIONS"
           assert r["actual_intake"]["n_verified_spine_touches"] is None
