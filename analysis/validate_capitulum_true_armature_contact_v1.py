@@ -87,8 +87,19 @@ def validate(rows, attempts, events):
             continue
         expected.add(key)
     if not rows and not attempts:
-        return {"status":"NO_REAL_TRUE_ARMATURE_CONTACT_ANNOTATIONS",
+        return {"status":("HOLD_EPISODES_EXIST_WITHOUT_ATTEMPT_SEQUENCE" if events
+                          else "NO_REAL_TRUE_ARMATURE_CONTACT_ANNOTATIONS"),
                 "n_parent_attempts":0,"n_eligible_parent_attempts":0,
+                "n_contact_rows":0, "n_verified_spine_touches":None,
+                "n_verified_physical_blockages":None,
+                "n_independent_heads":0,
+                "empirical_inference":"NOT_IDENTIFIABLE"}
+    if not expected and not rows:
+        return {"status":"HOLD_NO_ELIGIBLE_PARENT_ATTEMPTS",
+                "n_parent_attempts":len(attempts),
+                "n_eligible_parent_attempts":0,
+                "n_parent_attempts_unresolved_guild":parent_guild_unresolved,
+                "n_parent_attempts_unscorable_video":parent_coverage_incomplete,
                 "n_contact_rows":0, "n_verified_spine_touches":None,
                 "n_verified_physical_blockages":None,
                 "n_independent_heads":0,
@@ -240,6 +251,11 @@ def synthetic_tests():
     assert check()["n_verified_physical_blockages"]==1
     assert check()["n_verified_spine_touches"]==1
     assert validate([],[],[])["n_verified_spine_touches"] is None
+    assert validate([] ,[],[copy.deepcopy(e)])["status"]=="HOLD_EPISODES_EXIST_WITHOUT_ATTEMPT_SEQUENCE"
+    unresolved=validate([],[copy.deepcopy(a)],[{**e,"pre_entry_guild":"unresolved",
+                    "pre_entry_guild_evidence":"unresolved"}])
+    assert unresolved["status"]=="HOLD_NO_ELIGIBLE_PARENT_ATTEMPTS"
+    assert unresolved["n_verified_spine_touches"] is None
     # An annotator who only codes blocked approaches falsely inflates the
     # physical-barrier fraction. Missing successful attempts must block
     # ALL mechanistic summaries, even if positive contact is valid.
