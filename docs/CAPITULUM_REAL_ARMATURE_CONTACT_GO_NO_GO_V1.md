@@ -95,3 +95,9 @@ The entry-point `analysis/validate_capitulum_true_armature_contact_v1.py` now re
 Finally, `oviposition_confirmed=0` means **not confirmed in a reviewed episode**, not independently proved absence of eggs inside the head; a positive pollen-deposition endpoint requires traceable assay evidence in addition to verified stigmatic contact. Neither a transient blockage nor a recorded alternative-portal entry can be substituted for those downstream endpoints.
 
 The synthetic fixtures remain separate from the actual CSVs, which currently contain **zero biological rows**. This change implements a stronger fail-closed observation frame; it does not show a thistle defence effect.
+
+## 2026-10-11 final positive-pollen evidence gate
+
+A completed botanical contact file and a claim of `pollen_deposition_assay=positive` do not, by themselves, show a pollen-delivery pathway. Positive pollen is now accepted by the validator only when the **same approach episode** contains (i) an independent measured pollen assay with traceable evidence; (ii) independently observed stigma/anther contact and reproductive-zone reach; and (iii) a documented successful **floret-disc contact attempt** in the complete parent attempt sequence. The synthetic test explicitly rejects a contradictory case with only a spine-blocked attempt but an event-level positive-pollen label. It accepts a separate fully annotated synthetic anthesis episode after a later documented successful floret entry.
+
+The stricter join tests source consistency. It cannot prove real pollen-grain viability, paternal fitness, or the cause of seed set; those require independently collected reproductive outcome data.
