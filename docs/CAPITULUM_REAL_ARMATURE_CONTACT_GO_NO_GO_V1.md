@@ -65,3 +65,23 @@ The same independently identified insect can be visibly stopped by an authentic 
 The latter `n_episodes_with_verified_block_then_later_access` is a route-bypass outcome and invalidates calling all first-contact obstruction "head-level exclusion." When no later successful attempt is recorded, **abandonment is not automatically proved**: the remaining continuous exposure after the attempt must also be fully reviewed. Even observing a successful final entry is not the same as successful oviposition or effective pollen delivery, let alone filled viable seeds. Original parent `attempt_index` and per-event identity must be preserved; a 60-second clip of one insect can have multiple contacts but only one approach episode and one head.
 
 The updated synthetic example (not a real observation): one initial verified spine blockage followed by one subsequent successful floret contact. The validator reports **2 anatomical attempts, 1 verified blocked attempt, 1 head, 1 approach episode, and 1 observed bypass after blockage**. If the later successful contact is omitted from annotations, it reports `HOLD_INCOMPLETE_ELIGIBLE_ATTEMPT_ANNOTATION` with null outcome counts. Thus the evidence chain explicitly distinguishes *obstacle encounter*, *immediate physical blocking*, *subsequent rerouting*, *eventual oviposition*, and *plant seed outcome*.
+
+## 2026-10-11: contacts are a selected part of all approaches; eggs and pollen are further downstream
+
+The complete-annotation guard on parent attempted contacts is important but **not enough** to estimate plant benefit. A reviewed animal may approach a head, hover, and never generate a discrete `attempt_index`. That approach must not disappear from the denominator, nor be coded as a confirmed `0` spine encounter or `0` oviposition.
+
+The revised `validate_capitulum_true_armature_contact_v1.py` therefore reports **separate counts**:
+- `n_independently_identified_candidate_approach_episodes`: original independently assigned candidate insects with verified pre-entry role, including those without sequenced contact attempts;
+- `n_candidate_episodes_without_recorded_attempt_sequence`: genuine missing/absent attempt documentation **not evidence of avoidance or no contact**;
+- `n_observed_approach_episodes`, `n_episodes_with_any_verified_armature_block` and `n_episodes_with_verified_block_then_later_access`: derived only from fully annotated attempts;
+- `independent_functional_evidence_counts`: `oviposition_confirmed` for candidate seed feeders and independent `pollen_deposition_assay` for candidate legitimate pollinators, with **unassessed** retained separately from **measured negative**.
+
+This is intentionally a **process chain rather than a single defence percentage**:
+
+`reviewed exposure -> independently identified approach -> authentic armature contact -> temporary block -> subsequent access -> independently confirmed egg/pollen outcome -> viable filled achenes`.
+
+A temporary blocked attempt cannot be promoted to complete insect exclusion, and a later successful entry cannot be promoted to an egg or viable seed. **A positive pollen assay or confirmed oviposition must originate from an independent observational/assay endpoint**, never a copied flag from a contact video. The revised synthetic fixture tests one blocked attempt then one successful alternative-portal entry **without** any confirmed egg, and tests a separate confirmed egg only with its own egg/video evidence. An independently identified approaching animal with no recorded attempted contact is retained in the candidate approach denominator.
+
+These are different conditional quantities. In particular `P(blockage | recorded contact)` is not `P(blockage | arrival)`, and neither is `P(viable achene gain | head treatment)`. Comparing conditional access across naturally different spine states without randomizing geometry can still be biased by insect size, prior floral attraction, weather, stage, post-pollination scent, and selection into contacting the head. **No real biological rows** have been provided in these ledger CSVs.
+
+**Decision ceiling:** only a pre-outcome enrolled head/plant cohort, valid observation effort and mature filled/viable achene outcome can address net adaptive defence. Contact-process metrics are valuable mechanistic results, not evidence of evolved head-module integration by themselves.
