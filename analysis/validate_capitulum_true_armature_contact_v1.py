@@ -281,12 +281,12 @@ def validate(rows, attempts, events):
             # includes only a blocked outer-head attempt, without any
             # subsequent recorded successful floral-disc access. Likewise,
             # an event-level zone flag must agree with the contact sequence.
+            event_key=tuple(ev.get(k,"") for k in KEYS)
             has_floral_access=any(
-                key[:len(KEYS)]==episode_key
-                and a.get("contact_zone")=="floret_disc"
-                and a.get("access_observed")=="1"
-                for key,a in at_index.items()
-                for episode_key in [key]
+                attempt_key[:len(KEYS)]==event_key
+                and attempt.get("contact_zone")=="floret_disc"
+                and attempt.get("access_observed")=="1"
+                for attempt_key,attempt in at_index.items()
             )
             if state=="positive" and (
                 ev.get("anther_stigma_contact_observed")!="1"
