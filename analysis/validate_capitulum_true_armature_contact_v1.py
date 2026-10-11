@@ -244,7 +244,7 @@ def validate(rows, attempts, events):
     no_documented_attempt=set(eligible_event_index)-set(by_episode)
     documented_final_service={
         "seed_feeder_candidate":{
-            "confirmed_oviposition":0,"negative_oviposition_assayed":0,
+            "confirmed_oviposition":0,"oviposition_not_confirmed_in_reviewed_episode":0,
             "oviposition_not_assessed":0
         },
         "legitimate_pollinator_candidate":{
@@ -266,7 +266,7 @@ def validate(rows, attempts, events):
                 raise ValueError("CONFIRMED_EGG_WITHOUT_INDEPENDENT_EVIDENCE")
             key_name={
                 "1":"confirmed_oviposition",
-                "0":"negative_oviposition_assayed",
+                "0":"oviposition_not_confirmed_in_reviewed_episode",
                 "NA":"oviposition_not_assessed"
             }[state]
             documented_final_service[guild][key_name]+=1
