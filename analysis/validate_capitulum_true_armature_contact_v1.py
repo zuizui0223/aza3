@@ -15,6 +15,9 @@ import csv
 import json
 import math
 from pathlib import Path
+from validate_capitulum_video_effort_denominator_v1 import (
+    validate as validate_video_effort, read_csv as read_effort_csv
+)
 
 COLUMNS=[
  "record_id","individual_id","population_id","capitulum_id",
@@ -450,6 +453,10 @@ def main():
         "data/intake/capitulum_contact_attempt_sequence_v1.csv"))
     p.add_argument("--events",type=Path,default=Path(
         "data/intake/capitulum_guild_access_event_ledger_v1.csv"))
+    p.add_argument("--effort",type=Path,default=Path(
+        "data/intake/capitulum_video_effort_denominator_v1.csv"))
+    p.add_argument("--effort-contract",type=Path,default=Path(
+        "data/contracts/capitulum_video_effort_denominator_v1.json"))
     p.add_argument("--out",type=Path)
     a=p.parse_args()
     ch,contacts=read_csv(a.contact)
@@ -457,7 +464,13 @@ def main():
     eh,events=read_csv(a.events)
     if ch!=COLUMNS or not set(ATTEMPT_KEY).issubset(ah) or not set(KEYS).issubset(eh):
         raise ValueError("CONTACT_ATTEMPT_OR_EVENT_CSV_CONTRACT_DRIFT")
+    effort_spec=json.loads(a.effort_contract.read_text(encoding="utf-8"))
+    effort_header,efforts=read_effort_csv(a.effort)
+    if effort_header!=effort_spec["columns"]:
+        raise ValueError("AUTHORITY_VIDEO_EFFORT_SCHEMA_DRIFT")
+    observed_effort=validate_video_effort(efforts,events,effort_spec)
     result={
+        "verified_observation_effort":observed_effort,
         "version":"capitulum_true_armature_contact_gate_v1",
         "date":"2026-10-08",
         "synthetic_tests":synthetic_tests(),
