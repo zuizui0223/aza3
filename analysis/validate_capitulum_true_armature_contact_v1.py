@@ -277,12 +277,25 @@ def validate(rows, attempts, events):
             state=ev.get("pollen_deposition_assay","not_assessed")
             if state not in {"positive","negative","not_assessed"}:
                 raise ValueError("POLLEN_ASSAY_STATE_INVALID")
+            # A claimed positive assay is invalid if the audited video
+            # includes only a blocked outer-head attempt, without any
+            # subsequent recorded successful floral-disc access. Likewise,
+            # an event-level zone flag must agree with the contact sequence.
+            has_floral_access=any(
+                key[:len(KEYS)]==episode_key
+                and a.get("contact_zone")=="floret_disc"
+                and a.get("access_observed")=="1"
+                for key,a in at_index.items()
+                for episode_key in [key]
+            )
             if state=="positive" and (
                 ev.get("anther_stigma_contact_observed")!="1"
+                or ev.get("reproductive_zone_reached")!="1"
                 or ev.get("role_evidence")!="pollen_deposition_measured"
                 or not ev.get("evidence_uri","").strip()
+                or not has_floral_access
             ):
-                raise ValueError("POSITIVE_POLLEN_NEEDS_INDEPENDENT_ASSAY_AND_CONTACT")
+                raise ValueError("POSITIVE_POLLEN_NEEDS_INDEPENDENT_ASSAY_AND_FLORAL_ACCESS")
             key_name={
                 "positive":"positive_pollen_deposition_assay",
                 "negative":"negative_pollen_deposition_assay",
@@ -412,13 +425,30 @@ def synthetic_tests():
     try:
         validate([copy.deepcopy(x)],[copy.deepcopy(a)],[pollinator])
     except ValueError as ex:
-        assert "POSITIVE_POLLEN_NEEDS_INDEPENDENT_ASSAY_AND_CONTACT" in str(ex)
+        assert "POSITIVE_POLLEN_NEEDS_INDEPENDENT_ASSAY_AND_FLORAL_ACCESS" in str(ex)
     else:
         raise AssertionError("Pollen delivery was fabricated from mere access")
-    good_pollen={**pollinator,"anther_stigma_contact_observed":"1",
+    # Even an independently labelled positive assay cannot be joined to a
+    # video episode documenting ONLY a blocked outer spine attempt.
+    false_arrival={**pollinator,"anther_stigma_contact_observed":"1",
+        "reproductive_zone_reached":"1",
         "role_evidence":"pollen_deposition_measured",
         "evidence_uri":"synthetic://assay"}
-    yes=validate([copy.deepcopy(x)],[copy.deepcopy(a)],[good_pollen])
+    try:
+        validate([copy.deepcopy(x)],[copy.deepcopy(a)],[false_arrival])
+    except ValueError as ex:
+        assert "POSITIVE_POLLEN_NEEDS_INDEPENDENT_ASSAY_AND_FLORAL_ACCESS" in str(ex)
+    else:
+        raise AssertionError("Blocked-only video incorrectly confirmed flower access")
+    # A truly positive synthetic floral assay also needs a documented
+    # later successful floret-disc access attempt on an open head.
+    pollen_attempt1={**a,"head_stage":"full_anthesis"}
+    pollen_attempt2={**a2,"head_stage":"full_anthesis"}
+    pollen_row1={**x,"head_stage":"full_anthesis"}
+    pollen_row2={**x2,"head_stage":"full_anthesis"}
+    good_pollen={**false_arrival,"phenological_stage":"full_anthesis"}
+    yes=validate([pollen_row1,pollen_row2],
+                 [pollen_attempt1,pollen_attempt2],[good_pollen])
     assert yes["independent_functional_evidence_counts"]["legitimate_pollinator_candidate"]["positive_pollen_deposition_assay"]==1
     bad=[
         ({**x,"spine_touch_verified":"0"},a,e,"TRUE_SPINE_SURFACE"),
