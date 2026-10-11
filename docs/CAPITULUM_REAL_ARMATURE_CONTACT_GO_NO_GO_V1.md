@@ -85,3 +85,13 @@ A temporary blocked attempt cannot be promoted to complete insect exclusion, and
 These are different conditional quantities. In particular `P(blockage | recorded contact)` is not `P(blockage | arrival)`, and neither is `P(viable achene gain | head treatment)`. Comparing conditional access across naturally different spine states without randomizing geometry can still be biased by insect size, prior floral attraction, weather, stage, post-pollination scent, and selection into contacting the head. **No real biological rows** have been provided in these ledger CSVs.
 
 **Decision ceiling:** only a pre-outcome enrolled head/plant cohort, valid observation effort and mature filled/viable achene outcome can address net adaptive defence. Contact-process metrics are valuable mechanistic results, not evidence of evolved head-module integration by themselves.
+
+## 2026-10-11 additional denominator correction: the video-effort ledger is mandatory
+
+The candidate approach count is only defensible under **complete head + approach-zone observation exposure**. The true-armature validator previously read approach/attempt/contact CSVs without requiring a successful join to the separate **verified continuous-video effort** ledger. That permitted a prospective real-world case where a partially filmed or event-trigger-only clip yielded a numerator with no established exposure denominator.
+
+The entry-point `analysis/validate_capitulum_true_armature_contact_v1.py` now reads `data/contracts/capitulum_video_effort_denominator_v1.json` and `data/intake/capitulum_video_effort_denominator_v1.csv`; it calls the existing strict video validator **before** publishing actual observation counts. A missing video effort join, a false observed-zero, incomplete view, or uncalibrated event-triggered rate denominator must fail or hold. The process-level scientific results are not an independent count of free-flying individual insects: unresolved repeated visit identity stays an explicit limitation.
+
+Finally, `oviposition_confirmed=0` means **not confirmed in a reviewed episode**, not independently proved absence of eggs inside the head; a positive pollen-deposition endpoint requires traceable assay evidence in addition to verified stigmatic contact. Neither a transient blockage nor a recorded alternative-portal entry can be substituted for those downstream endpoints.
+
+The synthetic fixtures remain separate from the actual CSVs, which currently contain **zero biological rows**. This change implements a stronger fail-closed observation frame; it does not show a thistle defence effect.
