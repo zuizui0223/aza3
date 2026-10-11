@@ -232,8 +232,61 @@ def validate(rows, attempts, events):
             episodes_with_any_verified_block+=1
             if any(x[2] and x[0]>min(blocked_indexes) for x in seq):
                 blocked_then_later_access+=1
+    # Do not silently replace the candidate ARRIVAL denominator with
+    # the selected subset of insects having photographed contact attempts.
+    # Episodes with no sequenced attempt are UNKNOWN as to contact, not
+    # demonstrated to have avoided the armature.
+    eligible_event_index={
+        key:ev for key,ev in ev_index.items()
+        if ev.get("pre_entry_guild")!="unresolved"
+        and ev.get("pre_entry_guild_evidence") in VERIFIED_GUILDS
+    }
+    no_documented_attempt=set(eligible_event_index)-set(by_episode)
+    documented_final_service={
+        "seed_feeder_candidate":{
+            "confirmed_oviposition":0,"negative_oviposition_assayed":0,
+            "oviposition_not_assessed":0
+        },
+        "legitimate_pollinator_candidate":{
+            "positive_pollen_deposition_assay":0,
+            "negative_pollen_deposition_assay":0,
+            "pollen_deposition_not_assessed":0
+        }
+    }
+    for key,ev in eligible_event_index.items():
+        guild=ev.get("pre_entry_guild")
+        if guild=="seed_feeder_candidate":
+            state=ev.get("oviposition_confirmed","NA")
+            if state not in {"0","1","NA"}:
+                raise ValueError("OVIPOSITION_TRISTATE_INVALID")
+            if state=="1" and (
+                ev.get("behavioral_role")!="ovipositing_seed_feeder"
+                or ev.get("role_evidence") in (None,"","not_assessed")
+            ):
+                raise ValueError("CONFIRMED_EGG_WITHOUT_INDEPENDENT_EVIDENCE")
+            key_name={
+                "1":"confirmed_oviposition",
+                "0":"negative_oviposition_assayed",
+                "NA":"oviposition_not_assessed"
+            }[state]
+            documented_final_service[guild][key_name]+=1
+        elif guild=="legitimate_pollinator_candidate":
+            state=ev.get("pollen_deposition_assay","not_assessed")
+            if state not in {"positive","negative","not_assessed"}:
+                raise ValueError("POLLEN_ASSAY_STATE_INVALID")
+            key_name={
+                "positive":"positive_pollen_deposition_assay",
+                "negative":"negative_pollen_deposition_assay",
+                "not_assessed":"pollen_deposition_not_assessed",
+            }[state]
+            documented_final_service[guild][key_name]+=1
     return {
         "status":"DESCRIPTIVE_TRUE_CONTACT_GATES_ONLY",
+        "n_independently_identified_candidate_approach_episodes":len(eligible_event_index),
+        "n_candidate_episodes_without_recorded_attempt_sequence":len(no_documented_attempt),
+        "no_recorded_attempt_is_NOT_verified_no_contact":True,
+        "independent_functional_evidence_counts":documented_final_service,
+        "functional_service_counts_are_NOT_viable_achene_effects":True,
         "n_observed_approach_episodes":len(by_episode),
         "n_episodes_with_any_verified_armature_block":episodes_with_any_verified_block,
         "n_episodes_with_verified_block_then_later_access":blocked_then_later_access,
@@ -310,6 +363,35 @@ def synthetic_tests():
     assert full["n_observed_approach_episodes"]==1
     assert full["n_episodes_with_any_verified_armature_block"]==1
     assert full["n_episodes_with_verified_block_then_later_access"]==1
+    assert full["n_independently_identified_candidate_approach_episodes"]==1
+    assert full["n_candidate_episodes_without_recorded_attempt_sequence"]==0
+    assert full["independent_functional_evidence_counts"]["seed_feeder_candidate"]["oviposition_not_assessed"]==1
+    # Other reviewed candidate approaches can have NO annotated contact
+    # episode. They remain an unknown contact state in the arrival
+    # denominator, never classified as "avoided spine" or "no visit".
+    e_no_contact={**e,"approach_episode_id":"E_NO_ATTEMPT"}
+    extended=validate([copy.deepcopy(x),copy.deepcopy(x2)],
+                      [copy.deepcopy(a),copy.deepcopy(a2)],
+                      [copy.deepcopy(e),e_no_contact])
+    assert extended["n_independently_identified_candidate_approach_episodes"]==2
+    assert extended["n_candidate_episodes_without_recorded_attempt_sequence"]==1
+    assert extended["n_verified_physical_blockages"]==1
+    # An independently verified egg-laying end point must NOT be inferred
+    # from a temporarily successful floret access attempt.
+    assert full["independent_functional_evidence_counts"]["seed_feeder_candidate"]["confirmed_oviposition"]==0
+    true_egg={**e,"oviposition_confirmed":"1","behavioral_role":"ovipositing_seed_feeder",
+              "role_evidence":"egg_scar_and_video"}
+    egg=validate([copy.deepcopy(x),copy.deepcopy(x2)],
+                 [copy.deepcopy(a),copy.deepcopy(a2)],[true_egg])
+    assert egg["independent_functional_evidence_counts"]["seed_feeder_candidate"]["confirmed_oviposition"]==1
+    false_egg={**e,"oviposition_confirmed":"1"}
+    try:
+        validate([copy.deepcopy(x),copy.deepcopy(x2)],
+                 [copy.deepcopy(a),copy.deepcopy(a2)],[false_egg])
+    except ValueError as ex:
+        assert "CONFIRMED_EGG_WITHOUT_INDEPENDENT_EVIDENCE" in str(ex)
+    else:
+        raise AssertionError("Successful arrival was mislabelled confirmed oviposition")
     assert check()["n_episodes_with_verified_block_then_later_access"]==0
     bad=[
         ({**x,"spine_touch_verified":"0"},a,e,"TRUE_SPINE_SURFACE"),
