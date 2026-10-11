@@ -8,6 +8,9 @@ on:
       - "data/intake/capitulum_true_armature_contact_v1.csv"
       - "data/intake/capitulum_contact_attempt_sequence_v1.csv"
       - "data/intake/capitulum_guild_access_event_ledger_v1.csv"
+      - "data/intake/capitulum_video_effort_denominator_v1.csv"
+      - "data/contracts/capitulum_video_effort_denominator_v1.json"
+      - "analysis/validate_capitulum_video_effort_denominator_v1.py"
       - "docs/CAPITULUM_REAL_ARMATURE_CONTACT_GO_NO_GO_V1.md"
       - ".github/workflows/verify-capitulum-true-armature-contact-v1.yml"
 
@@ -41,5 +44,7 @@ jobs:
           assert r["actual_intake"]["n_verified_spine_touches"] is None
           assert r["actual_intake"]["n_verified_physical_blockages"] is None
           assert r["actual_intake"]["empirical_inference"]=="NOT_IDENTIFIABLE"
+          assert r["verified_observation_effort"]["status"]=="NOT_IDENTIFIABLE_NO_REAL_VIDEO_BOUTS"
+          assert r["verified_observation_effort"]["n_valid_approach_denominator_bouts"]==0
           print("PASS: no invented true-spine barrier evidence")
           PY
