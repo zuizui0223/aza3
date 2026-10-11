@@ -274,6 +274,12 @@ def validate(rows, attempts, events):
             state=ev.get("pollen_deposition_assay","not_assessed")
             if state not in {"positive","negative","not_assessed"}:
                 raise ValueError("POLLEN_ASSAY_STATE_INVALID")
+            if state=="positive" and (
+                ev.get("anther_stigma_contact_observed")!="1"
+                or ev.get("role_evidence")!="pollen_deposition_measured"
+                or not ev.get("evidence_uri","").strip()
+            ):
+                raise ValueError("POSITIVE_POLLEN_NEEDS_INDEPENDENT_ASSAY_AND_CONTACT")
             key_name={
                 "positive":"positive_pollen_deposition_assay",
                 "negative":"negative_pollen_deposition_assay",
@@ -393,6 +399,24 @@ def synthetic_tests():
     else:
         raise AssertionError("Successful arrival was mislabelled confirmed oviposition")
     assert check()["n_episodes_with_verified_block_then_later_access"]==0
+    # A post-contact positive pollen assay cannot be fabricated from a
+    # successful landing/attempt or an insect-order-only classification.
+    pollinator={**e,"pre_entry_guild":"legitimate_pollinator_candidate",
+        "pollen_deposition_assay":"positive"}
+    bad_pollen=validate([copy.deepcopy(x)],[copy.deepcopy(a)],
+                        [{**pollinator,"pollen_deposition_assay":"not_assessed"}])
+    assert bad_pollen["independent_functional_evidence_counts"]["legitimate_pollinator_candidate"]["pollen_deposition_not_assessed"]==1
+    try:
+        validate([copy.deepcopy(x)],[copy.deepcopy(a)],[pollinator])
+    except ValueError as ex:
+        assert "POSITIVE_POLLEN_NEEDS_INDEPENDENT_ASSAY_AND_CONTACT" in str(ex)
+    else:
+        raise AssertionError("Pollen delivery was fabricated from mere access")
+    good_pollen={**pollinator,"anther_stigma_contact_observed":"1",
+        "role_evidence":"pollen_deposition_measured",
+        "evidence_uri":"synthetic://assay"}
+    yes=validate([copy.deepcopy(x)],[copy.deepcopy(a)],[good_pollen])
+    assert yes["independent_functional_evidence_counts"]["legitimate_pollinator_candidate"]["positive_pollen_deposition_assay"]==1
     bad=[
         ({**x,"spine_touch_verified":"0"},a,e,"TRUE_SPINE_SURFACE"),
         ({**x,"anatomy_scale_evidence_uri":""},a,e,"UNSCALED_ARMATURE"),
