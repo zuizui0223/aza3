@@ -1,0 +1,105 @@
+{
+  "version": "capitulum_herbivore_entry_portal_literature_v1",
+  "date": "2026-10-08",
+  "focal_organ": "Cirsium flower head: stigma/pollen/disc vs involucral bract wall vs young closed bud",
+  "contrast": "Different antagonists need not traverse same defence interface: anatomical route and reproductive stage jointly determine which putative defence can matter.",
+  "original_sources": [
+    {
+      "plant": "Cirsium palustre",
+      "consumer": "Tephritidae assemblage (T. conura and X. miliaria studied; method statement not observed per species)",
+      "route": "Original Vanbergen et al. 2006 introduction to study system describes adult tephritid egg insertion among florets of recently opened heads, citing Janzon 1984 and Jones et al. 1996; NOT direct species-resolved observation of T. conura's access route.",
+      "gate": "floret-access route reported for assemblage and source context, but DO NOT reclassify all Tephritis conura hosts or phenophases as floret-only entry",
+      "phenophase": "recently_opened_anthesis",
+      "source": "Vanbergen et al. 2006 Journal of Animal Ecology DOI 10.1111/j.1365-2656.2006.01099.x",
+      "url": "https://besjournals.onlinelibrary.wiley.com/doi/10.1111/j.1365-2656.2006.01099.x",
+      "status": "GENERIC_SYSTEM_DESCRIPTION_NOT_EXPERIMENTAL_INDIVIDUAL_SPECIES_ROUTE",
+      "plant_fit_effect": "Larval feeding in C. palustre heads, no individual species-specific egg-route denominator, true spine or angle manipulations recorded."
+    },
+    {
+      "plant": "Cirsium pitcheri",
+      "consumer": "Larinus planus / carlinae weevil",
+      "route": "females chew oviposition punctures through phyllaries of flower heads; scars on phyllaries",
+      "gate": "involucral bract wall",
+      "phenophase": "immature_or_developing_heads",
+      "source": "Gijsman et al. 2020 Global Ecology and Conservation 22 e00945, DOI 10.1016/j.gecco.2020.e00945",
+      "url": "https://www.sciencedirect.com/science/article/pii/S2351989419307243",
+      "status": "ORIGINAL_METHODS_VERIFIED",
+      "plant_fit_effect": "infested heads 60% fewer mature seeds; secondary/tertiary heads suffer higher infestations than terminal; correlational infestation comparison not randomized actual spine effects"
+    },
+    {
+      "plant": "Cirsium vulgare",
+      "consumer": "Urophora stylata",
+      "route": "adult females deposit eggs in maturing buds; larvae burrow into reproductive tissue and induce seedhead gall",
+      "gate": "bud phyllary access depending stage",
+      "phenophase": "preanthesis_bud",
+      "source": "University of Idaho / IBiocontrol 2024 Introduced Thistle Agents",
+      "url": "https://ibiocontrol.org/bio/urophora-stylata/",
+      "status": "EXTENSION_BIOLOGY_REPORT_NOT_FOCAL_SPINE_EXPERIMENT",
+      "plant_fit_effect": "seedhead galls reduce seed yield; no spine-orientation field manipulation"
+    },
+    {
+      "plant": "Cirsium discolor",
+      "consumer": "multiple seed predator types and legitimate pollinator arthropods",
+      "route": "legitimate pollinators do not contact sticky traps; some seed predators avoid trap",
+      "gate": "sticky involucre exudate may be spatially bypassed",
+      "phenophase": "inflorescence phenophase across observations",
+      "source": "Thomas 2007 The Great Lakes Entomologist DOI 10.22543/0090-0222.2188; Thomas 2003 DOI 10.22543/0090-0222.2085",
+      "url": "https://scholar.valpo.edu/tgle/vol40/iss2/8/",
+      "status": "GENUS_DIRECT_FIELD_OBSERVATION_AND_DEFENCE_TEST_NULL",
+      "plant_fit_effect": "neutralizing sticky traps did not increase seed predation or decrease seed production in 2003 study"
+    },
+    {
+      "plant": "Cirsium palustre",
+      "consumer": "Tephritis conura, Xyphosia miliaria, Pteromalus elevatus",
+      "route": "two tephritid species feed within the heads; shared parasitoid probes the capitula to reach larvae",
+      "gate": "shared capitulum substrate, different host insect responses to habitat",
+      "phenophase": "T. conura June–July feeding; parasitoid peak oviposition August; X. miliaria season dependent",
+      "source": "Vanbergen, Hails, Watt & Jones 2006 Journal of Animal Ecology DOI 10.1111/j.1365-2656.2006.01099.x",
+      "url": "https://besjournals.onlinelibrary.wiley.com/doi/10.1111/j.1365-2656.2006.01099.x",
+      "status": "FULL_ORIGINAL_METHODS_AND_GUILD_RESPONSES_VERIFIED",
+      "plant_fit_effect": "20 woodland sites; 10 grazed and 10 ungrazed, T. conura and shared parasitoid P. elevatus more abundant with grazing; X. miliaria unaffected; parasitism of T. conura about 2x in grazed habitat. No trait-specific spine/angle manipulation or direct seed rescue."
+    },
+    {
+      "plant": "Cirsium oleraceum",
+      "consumer": "Tephritis conura: oleraceum host race vs heterophyllum-origin host race",
+      "route": "Single adult female offered apical flower buds 6–11 mm in bagged greenhouse plants; eggs laid after ovipositor pierced enveloping small leaflets; puncture marks = oviposition attempt, not proof viable egg or offspring. Larvae subsequently consume florets/receptacle.",
+      "gate": "bud-envelope penetration / ovipositor access (precise tissue name: enveloping small leaflets, botanic homology to individual involucral phyllaries requires check)",
+      "phenophase": "young_buds_before_flower_open",
+      "source": "Diegisser, Johannesen & Seitz 2008 Journal of Insect Science DOI 10.1673/031.008.6601",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3127412/",
+      "status": "PRIMARY_EXPERIMENT_SPECIES_HOST_STAGE_ENTRY_CONFIRMED",
+      "plant_fit_effect": "Among females tested on derived C. oleraceum host, flies native to C. oleraceum produced adults in 75% of egg-laying trials; C. heterophyllum-origin race in 6.6%. This is FLY reproduction, NOT plant seed fitness nor spine effect."
+    },
+    {
+      "plant": "Cirsium heterophyllum",
+      "consumer": "Tephritis conura (ancestral host race)",
+      "route": "May onset of adult mating and accepted young buds in historical host-race work; stage-dependent between host races, but do not transfer leaf-piercing route from C. oleraceum greenhouse trial as a direct wild observation in C. heterophyllum",
+      "gate": "adult fly phenology and host acceptance, NOT direct spine barrier result",
+      "phenophase": "young_buds; host-specific mean accepted bud size reported as 5.8–13.7 mm for heterophyllum vs 3.4–11 mm for oleraceum",
+      "source": "Diegisser, Johannesen & Seitz 2008 Journal of Insect Science DOI 10.1673/031.008.6601",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3127412/",
+      "status": "HOST_RACE_EXPERIMENT_BACKGROUND_NOT_INDIVIDUAL_ON_HOST_ROUTE",
+      "plant_fit_effect": "Differential insect host preference/physiology; no measured plant adaptation or genetic covariance of head traits."
+    }
+  ],
+  "functional_prediction": {
+    "H0_spatially_partitioned_no_conflict": "If pollinators arrive from disc and outer defences are never encountered by them, there may be NO pollination-vs-defence cost. Antagonists entering via exposed florets may also bypass bract armature. Morphological correlations do not imply functional tradeoffs.",
+    "H1_phyllary_barrier": "Direct real spine/phyllary access-gaps should preferentially change head-wall chewer/ovipositor success on buds, not necessarily floret-layer tephritid access during anthesis.",
+    "H2_orientation_stage": "Natural nodding orientation rotates the outer wall in world coordinates, altering route-conditioned successful entry only if arthropods use gravity-referenced strategies. The same head's opening phase is a separate predictor.",
+    "H3_time_enemy_shield": "After initial infestation, larger mechanical access barriers may obstruct parasitoid attack, but only pre-damage host killing can benefit viable achene production.",
+    "H4_alternative": "Head size and position select buds suitable for weevil oviposition; rain/UV and pollen presentation shape fitness, independently of insect access.",
+    "H5_within_same_plant_guild_heterogeneity": "An identical capitulum cannot be assumed to give identical protection against all tephritids: T. conura responds to grazing/habitat and X. miliaria does not in Vanbergen et al. 2006. Control species identity before inferring a generic seed-feeder barrier.",
+    "H6_host_race_behavior": "A consumer cannot be assigned one immutable entrance route across Cirsium host species. T. conura flies on C. oleraceum pierce young-bud leaflets; generic descriptions for C. palustre describe tephritids among open florets. Confirm specific fly host origin, bud stage and entry tissue rather than inferring a head-independent feeding guild."
+  },
+  "new_identifiability_requirement": [
+    "Each observed arrival must be classified as approaching exposed florets, phyllary exterior, phyllary interstice, receptacle base, or stem.",
+    "Stage-conditional head position and real measured phyllary opening/spine rigidity/direction must be independently verified.",
+    "One head and plant biological unit, with approach-level events nested in effort-calibrated observation bouts.",
+    "Do not conflate interspecific route contrast with within-population adaptive selection, independently evolving lineages or common treatment outcome.",
+    "Test effective pollen contacts, confirmed adult oviposition and independently validated pre-damage parasitoid effect before seed fate.",
+    "Within a single nominal guild, retain consumer species/host identity and distinguish each parasitoid-host pair. A single 'seed predator' slope ignores documented within-plant differences.",
+    "Record insect specimen/reference, host Cirsium concept and individual reproductive head stage for each route; distinguish species-specific direct oviposition evidence from assemblage-level narrative.",
+    "Do not count fly adult emergence success as plant seed fitness or infer head mechanical defence from bud preference."
+  ],
+  "claim_ceiling": "Precise context-dependent entrance biology and alternate competing pathways, not evidence of trait-mediated or reciprocal coevolution."
+}

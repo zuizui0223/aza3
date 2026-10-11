@@ -1,0 +1,102 @@
+{
+  "date": "2026-10-08",
+  "contract_version": "capitulum_japan38_same_orientation_phyllary_contrasts_v1",
+  "source": {
+    "repository": "zuizui0223/EAzami",
+    "path": "data/evidence/japan38_nmns_capitulum_trait_seed_v1.csv",
+    "ref": "c9870e91604ed1514344ddc8f765eae5237dbf27",
+    "blob_sha": "c4da867491e913119d78e4b07df800965a0f021d",
+    "scope": "22 museum-backed taxon concepts; not direct live botanical measurements"
+  },
+  "observed": {
+    "head_orientation_plus_phyllary_posture_known": 8,
+    "downward_head_taxa_with_three_distinct_posture_states": 3,
+    "downward_examples": [
+      {
+        "taxon": "Cirsium kasaianum",
+        "member": "JPN_13",
+        "orientation": "downward_or_nodding",
+        "phyllary_posture": "spreading",
+        "stickiness": "unknown",
+        "source": "https://www.kahaku.go.jp/research/db/botany/azami/list.html?word=all"
+      },
+      {
+        "taxon": "Cirsium yezoense",
+        "member": "JPN_30",
+        "orientation": "downward_or_nodding",
+        "phyllary_posture": "ascending",
+        "stickiness": "nonsticky_or_nearly_nonsticky",
+        "source": "https://www.kahaku.go.jp/research/db/botany/azami/detail.html?no=60"
+      },
+      {
+        "taxon": "Cirsium sieboldii",
+        "member": "JPN_36",
+        "orientation": "downward_or_nodding",
+        "phyllary_posture": "appressed",
+        "stickiness": "nonsticky_or_nearly_nonsticky",
+        "source": "https://www.kahaku.go.jp/research/db/botany/azami/detail.html?no=46"
+      }
+    ],
+    "upward_cases": [
+      {
+        "taxon": "Cirsium dipsacolepis",
+        "member": "JPN_06",
+        "phyllary_posture": "spreading_or_recurved",
+        "stickiness": "nonsticky_or_nearly_nonsticky"
+      },
+      {
+        "taxon": "Cirsium alpicola",
+        "member": "JPN_03",
+        "phyllary_posture": "ascending",
+        "stickiness": "nonsticky_or_nearly_nonsticky"
+      },
+      {
+        "taxon": "Cirsium gyojanum",
+        "member": "JPN_09",
+        "phyllary_posture": "ascending",
+        "stickiness": "sticky"
+      },
+      {
+        "taxon": "Cirsium aidzuense",
+        "member": "JPN_02",
+        "phyllary_posture": "appressed_or_ascending",
+        "stickiness": "sticky"
+      }
+    ]
+  },
+  "comparative_design": {
+    "stage_A": "First verify original authority states on living head-stage matched same-population plants; stage and taxon identity before observation; phenological stage cannot be held at a single state across bud and fruit without repeated recording.",
+    "stage_B": "Compare three nodding morph configurations on their actual gap geometry, direct actual spine length/rigidity, sticky exudates, rain wetting, and natural guild-specific approach/entry under equal hours and blinded labels, retaining species/site as nonexchangeable strata.",
+    "stage_C": "Test whether coarse nodding orientation predicts similar routes but posture yields different entry probability; explicitly measure seed-feeder eggs, early parasitoid probing and filled viable seeds; no inference from mere posture co-occurrence.",
+    "contrasting_falsifiable_mechanisms": [
+      {
+        "id": "P_INTERFACE",
+        "prediction": "In similarly nodding heads, spread posture has wider validated real access gaps and greater successful external enemy access than appressed posture conditional on approach.",
+        "rival": "Posture label does not correspond to real gaps, spines fully dominate, phenophase or head diameter accounts for the difference."
+      },
+      {
+        "id": "O_ABIOTIC",
+        "prediction": "All nodding heads share lower pollen wetting during matched rain events regardless of phyllary posture; no necessary antipredator route change.",
+        "rival": "Actual aperture orientation and bract wetting control pollen viability rather than coarse O."
+      },
+      {
+        "id": "P_GUILD",
+        "prediction": "Different phyllary postures partition legitimate pollen contact vs external oviposition and early parasitoid access in distinct ratios.",
+        "rival": "All guilds reach the disc from the same head-centred approach; posture gives neither selectivity nor fitness difference."
+      },
+      {
+        "id": "EVOLUTION_NULL",
+        "prediction": "State differences alone do not establish correlational selection, evolved compensation or historical same-branch transitions.",
+        "rival": "Independent population/genomic transitions plus selection needed."
+      }
+    ]
+  },
+  "eligibility_gates": [
+    "C. kasaianum has unknown sticky condition and cannot be treated as nonsticky",
+    "JPN_36 local upright variation noted, so nodding not fixed for all individuals",
+    "Direct phyllary posture is not real spine length or mechanical defence",
+    "Species differences confound phylogeny, habitat, phenology, population pollinator assemblage",
+    "No site permission or protected-species sampling authorization implied by source taxon list"
+  ],
+  "inference": "Same orientation state occurs with three distinct natural phyllary states; a useful ecological-natural-history contrast but no trait-by-trait causal adaptation evidence."
+}

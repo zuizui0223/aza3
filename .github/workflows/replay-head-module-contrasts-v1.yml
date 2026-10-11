@@ -1,0 +1,95 @@
+name: Replay capitulum module contrast with frozen Azami inputs
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "analysis/reconstruct_azami_head_functional_contrasts_v1.py"
+      - "analysis/check_capitulum_dioecious_taxon_sensitivity_v1.py"
+      - "analysis/test_capitulum_context_specific_coupling_v1.py"
+      - "data/contracts/capitulum_conditional_coupling_splits_v1.json"
+      - "data/evidence/capitulum_conditional_coupling_12test_summary_v1.json"
+      - "docs/CAPITULUM_CONTEXT_RESULT_CUE_FILTER_STAGE_GATE_V1.md"
+      - ".github/workflows/replay-head-module-contrasts-v1.yml"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  numerical-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install independent numerical replay dependencies
+        run: |
+          python -m pip install "pandas==2.2.3" "numpy==2.3.5" "scipy==1.17.0"
+          python -m py_compile analysis/reconstruct_azami_head_functional_contrasts_v1.py
+          python -m py_compile analysis/check_capitulum_dioecious_taxon_sensitivity_v1.py
+          python -m py_compile analysis/test_capitulum_context_specific_coupling_v1.py
+      - name: Retrieve pinned public Azami numerical source artifacts
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          mkdir -p work/azami
+          gh api repos/zuizui0223/azami/actions/artifacts/9612943217/zip > work/azami/traits.zip
+          gh api repos/zuizui0223/azami/actions/artifacts/9633419268/zip > work/azami/environment.zip
+          echo '101e996b638996a0c5ae79d358bf51293c3585f0e84c4a961b91dcbedf96211e  work/azami/traits.zip' | sha256sum -c -
+          echo 'd7c0c466f55b67695d06ae46c21a6452dbe6cfd92a52db8042caa200429e97f4  work/azami/environment.zip' | sha256sum -c -
+      - name: Independently reproduce 1734/42, 36 pairwise RV tests and signed sensitivities
+        run: |
+          python analysis/reconstruct_azami_head_functional_contrasts_v1.py \
+            --traits-zip work/azami/traits.zip \
+            --environment-zip work/azami/environment.zip \
+            --out outputs/azami_capitulum_36pair_replay_v1.json \
+            --bootstrap 3000 --permutations 9999 --seed 20261008
+      - name: Test frozen four contextual splits and negative-control camera quality
+        run: |
+          python analysis/test_capitulum_context_specific_coupling_v1.py \
+            --replay outputs/azami_capitulum_36pair_replay_v1.json \
+            --contract data/contracts/capitulum_conditional_coupling_splits_v1.json \
+            --out outputs/capitulum_context_12test_result_v1.json \
+            --bootstrap 3000 --permutations 9999 --seed 20261008
+      - name: Verify head shape coupling does not hinge on one dioecious species
+        run: |
+          python analysis/check_capitulum_dioecious_taxon_sensitivity_v1.py \
+            --replay outputs/azami_capitulum_36pair_replay_v1.json \
+            --out outputs/capitulum_sex_dimorphic_taxon_sensitivity_v1.json
+      - name: Validate 12-test frozen readout and no adaptive promotion
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          frozen=json.loads(Path("data/evidence/capitulum_conditional_coupling_12test_summary_v1.json").read_text())
+          live=json.loads(Path("outputs/capitulum_context_12test_result_v1.json").read_text())
+          assert len(frozen["first_tier_context_rows"])==len(live["tests"])==12
+          assert live["n_bh_q_below_0_05"]==frozen["n_BH_sig_05"]==0
+          for old,new in zip(frozen["first_tier_context_rows"],live["tests"]):
+              assert (old["split"],old["left"],old["right"])==(new["split"],new["left"],new["right"])
+              for k_old,k_new in (
+                  ("low_r","low_r"),
+                  ("high_r","high_r"),
+                  ("unadjusted_two_sided_permutation_p","conditional_taxon_shuffle_p_two_sided"),
+                  ("BH_q_across_12","bh_q_12"),
+              ):
+                  assert abs(old[k_old]-new[k_new]) < 0.00008,(k_old,old[k_old],new[k_new])
+          assert frozen["provenance"]["frozen_Azami_traits_artifact"]==9612943217
+          assert live["scope"]["genealogy"].startswith("No phylogenetic covariance")
+          print("PASS: exact predeclared head module 12-test status and bounded claim match frozen receipt")
+          PY
+      - name: Preserve complete statistical null and biological claim boundary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: azami-capitulum-36pair-biotic-modules-replay
+          path: |
+            outputs/azami_capitulum_36pair_replay_v1.json
+            outputs/capitulum_context_12test_result_v1.json
+            outputs/capitulum_sex_dimorphic_taxon_sensitivity_v1.json
+          if-no-files-found: warn
+          retention-days: 30
