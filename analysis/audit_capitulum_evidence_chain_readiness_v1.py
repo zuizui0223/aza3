@@ -167,6 +167,75 @@ def analyze(heads, original_bouts, efforts, events, attempts, contacts,
         "only_current_claim":"SOURCE_AVAILABILITY_AND_JOIN_INTEGRITY_NOT_NEW_BIOLOGICAL_FINDINGS",
     }
 
+def adversarial_source_integrity_tests(video_spec):
+    """Synthetic only; prove that source drift and orphan outcomes fail."""
+    empty=analyze([],[],[],[],[],[],video_spec)
+    assert empty["status"]=="NO_REAL_FIELD_COHORT"
+    assert empty["counts"]["heads_with_joint_verified_video_morphology_filled_achenes"]==0
+    head={
+        "individual_id":"TEST_PLANT","population_id":"TEST_POP",
+        "capitulum_id":"TEST_HEAD","taxon":"Cirsium_synthetic_fixture",
+        "phenological_stage":"mature_head",
+        "natural_orientation_deg":"90",
+        "spine_length_mm":"2.4","involucre_spread_deg":"35",
+        "total_achenes":"20","filled_achenes":"10",
+    }
+    single=analyze([head],[],[],[],[],[],video_spec)
+    assert single["counts"]["heads_with_true_orientation_and_armature"]==1
+    assert single["counts"]["heads_with_filled_achene_counts"]==1
+    assert single["counts"]["heads_with_joint_verified_video_morphology_filled_achenes"]==0
+    assert single["readiness"]["head_with_joint_video_morphology_seed_data"]=="HOLD_NO_JOINT_HEAD_LEVEL_ENDPOINTS"
+    bout={
+        "individual_id":"TEST_PLANT","population_id":"TEST_POP",
+        "capitulum_id":"TEST_HEAD","observation_bout_id":"TEST_BOUT",
+        "observation_date":"2026-06-02","start_time_local":"09:00",
+        "end_time_local":"09:15","phenological_stage":"full_anthesis"
+    }
+    from validate_capitulum_video_effort_denominator_v1 import make_effort
+    effort=make_effort()
+    effort.update(individual_id="TEST_PLANT",population_id="TEST_POP",
+                  capitulum_id="TEST_HEAD",observation_bout_id="TEST_BOUT",
+                  zero_approaches_confirmed="1",head_stage="full_anthesis")
+    with_video=analyze([head],[bout],[effort],[],[],[],video_spec)
+    assert with_video["counts"]["verified_continuous_video_bouts"]==1
+    assert with_video["counts"]["heads_with_joint_verified_video_morphology_filled_achenes"]==1
+    assert with_video["only_current_claim"]=="SOURCE_AVAILABILITY_AND_JOIN_INTEGRITY_NOT_NEW_BIOLOGICAL_FINDINGS"
+    # These observations represent synthetic source shapes only; they do not
+    # show a botanical effect or provide an independent biological sample.
+    negative=[
+        ("ORIGINAL_BOUT_WITHOUT_REGISTERED_HEAD",
+         ([],[bout],[],[],[],[])),
+        ("NATIVE_HEAD_DUPLICATE_ID",
+         ([head,head],[],[],[],[],[])),
+        ("CAMERA_BOUT_WITHOUT_PREREGISTERED_SOURCE_HEAD",
+         ([head],[],[effort],[],[],[])),
+        ("CAMERA_STAGE_CONTRADICTS_SOURCE_BOUT",
+         ([head],[{**bout,"phenological_stage":"bud"}],[effort],[],[],[])),
+        ("EVENT_WITHOUT_VIDEO_EFFORT",
+         ([head],[],[],[{
+             "individual_id":"TEST_PLANT","population_id":"TEST_POP",
+             "capitulum_id":"TEST_HEAD","observation_bout_id":"TEST_BOUT",
+             "approach_episode_id":"TEST_EVENT"
+         }],[],[])),
+        ("FILLED_ACHENES_EXCEED_TOTAL_OR_NOT_INTEGER",
+         ([{**head,"filled_achenes":"21"}],[],[],[],[],[])),
+        ("TRUE_SPINE_LENGTH_NONFINITE_OR_NEGATIVE",
+         ([{**head,"spine_length_mm":"-1"}],[],[],[],[],[])),
+    ]
+    for needle,args in negative:
+        try:analyze(*args,video_spec)
+        except ValueError as exc:
+            assert needle in str(exc),(needle,str(exc))
+        else:
+            raise AssertionError("INVALID_SOURCE_CHAIN_WAS_ACCEPTED:"+needle)
+    return {
+        "status":"PASS_SYNTHETIC_SOURCE_HEAD_TO_ACHENE_INTEGRITY",
+        "negative_controls":len(negative),
+        "real_field_observations":0,
+        "positive_fixture_is_not_Cirsium_biological_evidence":True,
+    }
+
+
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--native-heads",type=Path,required=True)
@@ -198,6 +267,7 @@ def main():
     report={
         "version":"cirsium_head_evidence_chain_readiness_v1",
         "date":"2026-10-13",
+        "synthetic_integrity_tests":adversarial_source_integrity_tests(spec),
         "analysis":analyze(heads,bouts,efforts,events,attempts,contacts,spec),
     }
     if args.out:
