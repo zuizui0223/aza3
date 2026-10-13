@@ -227,6 +227,31 @@ def synthetic_tests():
     assert abs(q["achene_weighted_damage_if_infested"]-18/110)<1e-12
     assert abs(q["achene_weighted_fraction_damaged_all_achenes"]-.15)<1e-12
     assert q["n_independent_plants"]==3
+    # A second, independent arithmetic counterexample exposes a genuine
+    # denominators/reproductive-output trap: morph group A looks MORE
+    # damaged when each head is weighted equally, LESS damaged when each
+    # achene is weighted equally, and produces MANY MORE filled achenes
+    # per head because head size differs. These are NOT field estimates.
+    a_heads=[
+        head(10,"1","0.8",2,"A0",9),
+        head(100,"1","0.1",90,"A1",19),
+        head(10,"1","0.8",2,"A2",9),
+    ]
+    b_heads=[
+        head(10,"1","0.3",7,"B0",9),
+        head(10,"1","0.3",7,"B1",9),
+        head(10,"1","0.3",7,"B2",9),
+    ]
+    for z in a_heads:z["population_id"]="SYNTHETIC_A"
+    for z in b_heads:z["population_id"]="SYNTHETIC_B"
+    paired=audit_rows(a_heads+b_heads)
+    comparisons={x["population_id"]:x["complete_case_summary"]
+                 for x in paired["summaries"]}
+    aa,bb=comparisons["SYNTHETIC_A"],comparisons["SYNTHETIC_B"]
+    assert aa["head_weighted_fraction_damaged_all_heads"]>bb["head_weighted_fraction_damaged_all_heads"]
+    assert aa["achene_weighted_fraction_damaged_all_achenes"]<bb["achene_weighted_fraction_damaged_all_achenes"]
+    assert aa["mean_filled_achenes_per_head"]>bb["mean_filled_achenes_per_head"]
+    assert aa["n_independent_plants"]==bb["n_independent_plants"]==3
     assert audit_rows([])["status"]=="NO_REAL_PREREGISTERED_HEAD_DATA"
     unmeasured=head(20,"0","",15,"P3",9)
     o=audit_rows([h0,unmeasured])
@@ -255,6 +280,8 @@ def synthetic_tests():
         "status":"PASS_SYNTHETIC_HEAD_WEIGHTED_VS_ACHENE_WEIGHTED_HURDLE",
         "head_weighted_loss":q["head_weighted_fraction_damaged_all_heads"],
         "achene_weighted_loss":q["achene_weighted_fraction_damaged_all_achenes"],
+        "synthetic_two_groups_opposite_head_vs_achene_loss_rank":True,
+        "synthetic_high_head_fraction_loss_group_has_more_filled_achenes":True,
         "n_negative_guards":len(cases),
         "n_actual_biological_records":0,
     }
