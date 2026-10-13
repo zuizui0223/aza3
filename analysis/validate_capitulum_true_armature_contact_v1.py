@@ -71,6 +71,33 @@ def validate(rows, attempts, events):
         if not all(key) or key in ev_index:
             raise ValueError("DUPLICATE_OR_MISSING_PARENT_APPROACH_EPISODE")
         ev_index[key]=ev
+    # The time-ordered parent attempt sequence is authoritative even for
+    # attempts no annotator has yet scored. Otherwise a late successful
+    # alternative entry could be falsely moved before an outer blockade.
+    from collections import defaultdict
+    all_attempt_sequences=defaultdict(list)
+    for key,a in at_index.items():
+        episode=ev_index.get(key[:len(KEYS)])
+        if episode is None:
+            raise ValueError("PARENT_ATTEMPT_WITHOUT_APPROACH_EPISODE")
+        if a.get("head_stage")!=episode.get("phenological_stage"):
+            raise ValueError("PARENT_ATTEMPT_STAGE_CONTRADICTS_EPISODE")
+        if a.get("video_clip_id")!=episode.get("video_clip_id"):
+            raise ValueError("PARENT_ATTEMPT_VIDEO_CLIP_CONTRADICTS_EPISODE")
+        try:
+            idx=int(a.get("attempt_index",""))
+            at_time=float(a.get("attempt_time_s",""))
+        except (ValueError,TypeError):
+            raise ValueError("PARENT_ATTEMPT_INVALID_SEQUENCE_OR_TIME") from None
+        if idx<1 or not math.isfinite(at_time) or at_time<0:
+            raise ValueError("PARENT_ATTEMPT_INVALID_SEQUENCE_OR_TIME")
+        all_attempt_sequences[key[:len(KEYS)]].append((idx,at_time))
+    for seq in all_attempt_sequences.values():
+        seq.sort()
+        if [i for i,t in seq]!=list(range(1,len(seq)+1)):
+            raise ValueError("PARENT_ATTEMPT_INDICES_NOT_CONSECUTIVE")
+        if any(t2<=t1 for (_,t1),(_,t2) in zip(seq,seq[1:])):
+            raise ValueError("PARENT_ATTEMPT_TIMESTAMPS_NONINCREASING")
     expected=set()
     parent_guild_unresolved=0
     parent_coverage_incomplete=0
@@ -336,7 +363,7 @@ def synthetic_tests():
         "observation_bout_id":"B1","approach_episode_id":"E1",
         "attempt_index":"1","video_clip_id":"synthetic://clip",
         "head_stage":"bud","contact_zone":"involucre_outer",
-        "obstruction_observed":"1",
+        "attempt_time_s":"1","obstruction_observed":"1",
         "access_observed":"0","continuous_coverage":"1",
     }
     e={
@@ -344,6 +371,7 @@ def synthetic_tests():
         "pre_entry_guild":"seed_feeder_candidate",
         "pre_entry_guild_evidence":"independently_assigned_before_access",
         "phenological_stage":"bud",
+        "video_clip_id":a["video_clip_id"],
     }
     x=dict(zip(COLUMNS,[
         "R1",a["individual_id"],a["population_id"],a["capitulum_id"],
@@ -366,8 +394,9 @@ def synthetic_tests():
     # An annotator who only codes blocked approaches falsely inflates the
     # physical-barrier fraction. Missing successful attempts must block
     # ALL mechanistic summaries, even if positive contact is valid.
-    a2={**a,"attempt_index":"2","contact_zone":"floret_disc",
-        "obstruction_observed":"0","access_observed":"1"}
+    a2={**a,"attempt_index":"2","attempt_time_s":"2",
+        "contact_zone":"floret_disc","obstruction_observed":"0",
+        "access_observed":"1"}
     x2={**x,"record_id":"R2","attempt_index":"2",
         "contact_surface":"floret_disc","spine_touch_verified":"0",
         "physical_blockage_verified":"0","entry_not_achieved_at_attempt":"0",
@@ -385,6 +414,21 @@ def synthetic_tests():
     assert full["n_observed_approach_episodes"]==1
     assert full["n_episodes_with_any_verified_armature_block"]==1
     assert full["n_episodes_with_verified_block_then_later_access"]==1
+    # The second attempt cannot be relabelled as chronologically earlier;
+    # nor can a scientist omit an intermediate attempt index.
+    for attempted,needle in (
+        ({**a2,"attempt_time_s":"0.5"},"PARENT_ATTEMPT_TIMESTAMPS_NONINCREASING"),
+        ({**a2,"attempt_index":"3"},"PARENT_ATTEMPT_INDICES_NOT_CONSECUTIVE"),
+        ({**a2,"video_clip_id":"synthetic://different_clip"},"PARENT_ATTEMPT_VIDEO_CLIP_CONTRADICTS_EPISODE"),
+        ({**a2,"head_stage":"mature_head"},"PARENT_ATTEMPT_STAGE_CONTRADICTS_EPISODE"),
+    ):
+        try:
+            validate([copy.deepcopy(x),copy.deepcopy(x2)],
+                     [copy.deepcopy(a),attempted],[copy.deepcopy(e)])
+        except ValueError as er:
+            assert needle in str(er),(needle,str(er))
+        else:
+            raise AssertionError("Invalid parent sequence was interpreted as real bypass")
     assert full["n_independently_identified_candidate_approach_episodes"]==1
     assert full["n_candidate_episodes_without_recorded_attempt_sequence"]==0
     assert full["independent_functional_evidence_counts"]["seed_feeder_candidate"]["oviposition_not_assessed"]==1
