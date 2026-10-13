@@ -43,6 +43,22 @@ New executable tool: `analysis/audit_capitulum_incidence_severity_two_denominato
 
 New CI `.github/workflows/audit-capitulum-incidence-severity-v1.yml` pins the untouched EAzami source at `c9870e91604ed1514344ddc8f765eae5237dbf27` and tests missingness, double-counted heads, proportions outside 0–1, impossible achene counts and incidence–conditional severity identities.
 
+## Why even the *direction* of an apparent defense benefit depends on the biological denominator
+
+Our new **entirely synthetic**, independently checked design example has two artificial groups of three registered heads each, with distinct head-size distributions. **These are not findings about Cirsium**:
+
+| Arithmetic example | A: mixed 10/100/10 achenes/head | B: 10/10/10 achenes/head |
+|---|---:|---:|
+| Head-weighted damage fraction (equal head weight) | 0.567 | 0.300 |
+| Achene-weighted fraction damaged (equal achene weight) | 0.217 | 0.300 |
+| Absolute filled achenes per head | 31.33 | 7.00 |
+
+A looks *more damaged* than B by average proportional losses **per head**, but *less damaged* by pooling over individual achenes, and produces many more mature filled achenes per head. All numbers follow fixed synthetic inputs and can be replayed, not fitted field values.
+
+The direct biological implication is **not** "bigger heads are adaptive" — the variation in head size, initial ovule supply, pollen limitation and phenology has not been experimentally assigned, and these two groups are constructed. The implication is to **predeclare whether the hypothesis concerns infestation probability, proportional losses per head, overall achene-weighted losses, or absolute viable seed output**, and never switch metrics after seeing what direction appears significant. If the scientific target is plant maternal fitness, the primary measurable endpoint is absolute filled/viable achenes per *prespecified reproductively functional head* (with plant-level output and male function independently recorded when possible). A fraction of damaged achenes is an explanatory intermediate, not interchangeable with absolute seed production.
+
+This example is checked in `analysis/audit_capitulum_incidence_severity_two_denominators_v1.py` and its CI without populating the real intake rows.
+
 ## Honest stage-gated scientific conclusion as of October 13, 2026
 
 - **Already supported by prior ecology:** infested incidence and conditional severity can respond oppositely to capitulum size; chemical compound concentration/evenness can predict head infestation; pollination gains can override seed predation costs in multispecies Asteraceae studies.
