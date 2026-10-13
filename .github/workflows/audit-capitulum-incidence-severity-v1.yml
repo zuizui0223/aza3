@@ -43,6 +43,8 @@ jobs:
           assert t["status"]=="PASS_SYNTHETIC_HEAD_WEIGHTED_VS_ACHENE_WEIGHTED_HURDLE"
           assert abs(t["head_weighted_loss"]-.3)<1e-12
           assert abs(t["achene_weighted_loss"]-.15)<1e-12
+          assert t["synthetic_two_groups_opposite_head_vs_achene_loss_rank"]
+          assert t["synthetic_high_head_fraction_loss_group_has_more_filled_achenes"]
           assert t["n_actual_biological_records"]==0
           assert a["status"]=="NO_REAL_PREREGISTERED_HEAD_DATA"
           assert a["n_source_heads"]==0
