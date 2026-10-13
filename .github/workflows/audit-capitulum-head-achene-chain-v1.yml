@@ -46,7 +46,11 @@ jobs:
         run: |
           python - <<'PY'
           import json
-          r=json.load(open("work/Cirsium_head_evidence_readiness_v1.json"))["analysis"]
+          entire=json.load(open("work/Cirsium_head_evidence_readiness_v1.json"))
+          assert entire["synthetic_integrity_tests"]["status"]=="PASS_SYNTHETIC_SOURCE_HEAD_TO_ACHENE_INTEGRITY"
+          assert entire["synthetic_integrity_tests"]["negative_controls"]==7
+          assert entire["synthetic_integrity_tests"]["real_field_observations"]==0
+          r=entire["analysis"]
           assert r["status"]=="NO_REAL_FIELD_COHORT"
           assert r["counts"]["original_EAzami_heads"]==0
           assert r["counts"]["original_EAzami_bouts"]==0
