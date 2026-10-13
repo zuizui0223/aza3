@@ -1,0 +1,52 @@
+name: Audit Cirsium incidence versus severity denominators v1
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "analysis/audit_capitulum_incidence_severity_two_denominators_v1.py"
+      - "docs/CAPITULUM_INCIDENCE_SEVERITY_AND_PRIOR_ART_LOCK_V1.md"
+      - ".github/workflows/audit-capitulum-incidence-severity-v1.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  native-head-predation-denominators:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch native EAzami head ledger at immutable commit
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work
+          gh api 'repos/zuizui0223/EAzami/contents/sampling/aim2_capitulum_field_ledger_v1.csv?ref=c9870e91604ed1514344ddc8f765eae5237dbf27' --jq .content | base64 -d > work/original_EAzami_heads.csv
+          test -s work/original_EAzami_heads.csv
+      - name: Test native incidence/severity and seed-based denominators
+        run: |
+          python -m py_compile analysis/audit_capitulum_incidence_severity_two_denominators_v1.py
+          python analysis/audit_capitulum_incidence_severity_two_denominators_v1.py \
+            --heads work/original_EAzami_heads.csv \
+            --out work/capitulum_incidence_severity_v1.json
+      - name: Block synthetic examples from becoming real biological findings
+        run: |
+          python - <<'PY'
+          import json
+          report=json.load(open("work/capitulum_incidence_severity_v1.json"))
+          t=report["synthetic_verification"]
+          a=report["source_audit"]
+          assert t["status"]=="PASS_SYNTHETIC_HEAD_WEIGHTED_VS_ACHENE_WEIGHTED_HURDLE"
+          assert abs(t["head_weighted_loss"]-.3)<1e-12
+          assert abs(t["achene_weighted_loss"]-.15)<1e-12
+          assert t["n_actual_biological_records"]==0
+          assert a["status"]=="NO_REAL_PREREGISTERED_HEAD_DATA"
+          assert a["n_source_heads"]==0
+          assert a["summaries"]==[]
+          assert a["biological_result"]=="NOT_IDENTIFIABLE"
+          print("PASS: incidence and severity separated; no fabricated Cirsium ecology")
+          PY
