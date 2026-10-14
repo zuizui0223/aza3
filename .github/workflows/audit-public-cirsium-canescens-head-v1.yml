@@ -1,0 +1,55 @@
+name: Audit public Cirsium canescens head archive v1
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "analysis/audit_real_cirsium_canescens_head_archive_v1.py"
+      - "data/evidence/cirsium_canescens_public_head_archive_manifest_v1.json"
+      - "docs/CIRSIUM_CANESCENS_REAL_FIELD_ARCHIVE_EVIDENCE_AND_GATE_V1.md"
+      - ".github/workflows/audit-public-cirsium-canescens-head-v1.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  published-head-data-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify archive-specific design and synthetic negative controls
+        run: |
+          python -m py_compile analysis/audit_real_cirsium_canescens_head_archive_v1.py
+          python analysis/audit_real_cirsium_canescens_head_archive_v1.py \
+            --out work/public_Cirsium_canescens_head_archive_status.json
+      - name: Verify immutable source manifest and non-reanalysis status
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          m=json.loads(Path("data/evidence/cirsium_canescens_public_head_archive_manifest_v1.json").read_text())
+          s=json.loads(Path("work/public_Cirsium_canescens_head_archive_status.json").read_text())
+          assert m["dryad"]["doi"]=="10.5061/dryad.kh18932dc"
+          assert m["dryad"]["version"]==3
+          assert m["dryad"]["files"][0]["sha256"]==s["source_manifest"]["expected_sha256"]
+          assert m["actual_raw_rows_analyzed"]==0
+          assert s["synthetic_source_integrity_tests"]["status"]=="PASS_SYNTHETIC_CIRSIUM_ARCHIVE_DESIGN_AND_PROVENANCE_GATES"
+          assert s["synthetic_source_integrity_tests"]["n_negative_controls"]==6
+          assert s["synthetic_source_integrity_tests"]["real_archival_rows_analyzed"]==0
+          assert s["actual_source_analysis"]["status"]=="SOURCE_CSV_NOT_MATERIALIZED_NO_EMPIRICAL_RECOMPUTATION"
+          assert s["actual_source_analysis"]["archive_fitness_data"] is None
+          assert s["actual_source_analysis"]["n_actual_archival_head_rows_analyzed"]==0
+          print("PASS: documented real head archive; no downloaded raw data or invented Cirsium effect")
+          PY
+      - name: Never accept a sample file as the real Dryad source
+        run: |
+          printf 'Project,Year,Site,Plant,HdN\n2,2018,X,TEST,100\n' > work/not_real_source.csv
+          if python analysis/audit_real_cirsium_canescens_head_archive_v1.py --source-csv work/not_real_source.csv; then
+            echo "ERROR: unverified archive source was accepted"; exit 1
+          else
+            echo "PASS: hash and original byte length guard rejects fabricated CSV"
+          fi
