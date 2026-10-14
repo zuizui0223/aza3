@@ -1,0 +1,39 @@
+name: Validate capitulum portal switching bounds v1
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "analysis/check_capitulum_portal_switching_bounds_v1.py"
+      - "data/intake/capitulum_contact_attempt_sequence_v1.csv"
+      - "docs/CAPITULUM_PORTAL_SWITCHING_STAGE_DEPENDENT_ESCAPE_V1.md"
+      - ".github/workflows/validate-capitulum-portal-switching-v1.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  restricted-model-and-zero-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile and recompute synthetic boundaries
+        run: |
+          python -m py_compile analysis/check_capitulum_portal_switching_bounds_v1.py
+          python analysis/check_capitulum_portal_switching_bounds_v1.py --out work/capitulum_portal_switching_v1.json
+      - name: Reject synthetic data as real and assert null-data ceiling
+        run: |
+          python - <<'PY'
+          import json
+          o=json.load(open("work/capitulum_portal_switching_v1.json"))
+          assert o["synthetic_only"]["status"]=="PASS_SYNTHETIC_BOUNDARY_TESTS_NOT_FIELD_DATA"
+          assert o["intake"]["status"]=="NO_REAL_ATTEMPT_SEQUENCES"
+          assert o["intake"]["qualified_descriptive_switches"] is None
+          assert o["intake"]["ecological_claim"]=="NOT_IDENTIFIABLE"
+          assert o["semantics_test"].startswith("PASS_")
+          print("PASS: mathematical counterfactuals and zero-real-data boundary")
+          PY

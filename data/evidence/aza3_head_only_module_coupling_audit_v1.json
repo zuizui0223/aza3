@@ -1,0 +1,237 @@
+{
+  "contract_version": "aza3_head_only_module_functional_coupling_evidence_v1",
+  "status_date": "2026-10-08",
+  "evidence_class": "REPRODUCIBLE_DESCRIPTIVE_COUPLING_NOT_CAUSAL_SELECTION",
+  "frozen_source_git_blobs": {
+    "Azami": "8be80b4a42fd0265ab95b8209871db0001d0352f",
+    "EAzami_history": "ddfbf0692c71ed83ac0a0d4eaa9404c338a74b57",
+    "EAzami_states": "c4da867491e913119d78e4b07df800965a0f021d"
+  },
+  "CI_run": 37757107735,
+  "Azami": {
+    "n_common_cohort_observations": 1734,
+    "n_taxa": 42,
+    "n_constructs": 9,
+    "n_pairs": 36,
+    "n_among_stronger": 33,
+    "top_among_ranked": [
+      {
+        "left": "floral_lightness",
+        "right": "floral_hue",
+        "within_rv": 0.18433610252792676,
+        "among_rv": 0.4658055557773889,
+        "delta": 0.28146945324946215
+      },
+      {
+        "left": "presentation_angle",
+        "right": "head_elongation",
+        "within_rv": 0.0023426014339578446,
+        "among_rv": 0.33961701653570653,
+        "delta": 0.33727441510174866
+      },
+      {
+        "left": "floral_chroma",
+        "right": "projection_prominence",
+        "within_rv": 0.00016633527692881575,
+        "among_rv": 0.3345155786072054,
+        "delta": 0.33434924333027655
+      },
+      {
+        "left": "floral_chroma",
+        "right": "floral_hue",
+        "within_rv": 0.03391612354307117,
+        "among_rv": 0.29033076479324527,
+        "delta": 0.2564146412501741
+      },
+      {
+        "left": "presentation_angle",
+        "right": "floral_lightness",
+        "within_rv": 0.021672446214296134,
+        "among_rv": 0.20289216346960842,
+        "delta": 0.18121971725531227
+      },
+      {
+        "left": "presentation_angle",
+        "right": "floral_hue",
+        "within_rv": 0.014832961428222446,
+        "among_rv": 0.19629409606705248,
+        "delta": 0.18146113463883004
+      },
+      {
+        "left": "floral_lightness",
+        "right": "floral_chroma",
+        "within_rv": 0.049354983633369764,
+        "among_rv": 0.18782950656550587,
+        "delta": 0.1384745229321361
+      },
+      {
+        "left": "floral_lightness",
+        "right": "projection_pattern",
+        "within_rv": 0.0006874964086537929,
+        "among_rv": 0.13647858349691205,
+        "delta": 0.13579108708825827
+      }
+    ],
+    "biologically_illustrative_pairs": [
+      {
+        "left": "presentation_angle",
+        "right": "head_elongation",
+        "within_rv": 0.0023426014339578446,
+        "among_rv": 0.33961701653570653,
+        "delta": 0.33727441510174866,
+        "among_rank": 2
+      },
+      {
+        "left": "presentation_angle",
+        "right": "projection_prominence",
+        "within_rv": 0.0027977851724397852,
+        "among_rv": 0.003174307362952781,
+        "delta": 0.0003765221905129958,
+        "among_rank": 33
+      },
+      {
+        "left": "presentation_angle",
+        "right": "projection_pattern",
+        "within_rv": 0.0010604566223368168,
+        "among_rv": 0.008568878020099561,
+        "delta": 0.007508421397762744,
+        "among_rank": 30
+      },
+      {
+        "left": "floral_chroma",
+        "right": "projection_prominence",
+        "within_rv": 0.00016633527692881575,
+        "among_rv": 0.3345155786072054,
+        "delta": 0.33434924333027655,
+        "among_rank": 3
+      },
+      {
+        "left": "projection_prominence",
+        "right": "projection_pattern",
+        "within_rv": 0.3507383835026685,
+        "among_rv": 0.09993045060779959,
+        "delta": -0.2508079328948689,
+        "among_rank": 11
+      },
+      {
+        "left": "presentation_angle",
+        "right": "involucre_form",
+        "within_rv": 0.007872339265761976,
+        "among_rv": 0.09905046455367404,
+        "delta": 0.09117812528791207,
+        "among_rank": 12
+      },
+      {
+        "left": "floral_lightness",
+        "right": "floral_hue",
+        "within_rv": 0.18433610252792676,
+        "among_rv": 0.4658055557773889,
+        "delta": 0.28146945324946215,
+        "among_rank": 1
+      }
+    ],
+    "meaning": "Unsigned image-derived RV, not botanical spine length, temporal trait transition, or fitness"
+  },
+  "EAzami": {
+    "history_resolved_taxon_concepts": 36,
+    "orientation_min_UFBoot_range": [
+      4,
+      6
+    ],
+    "phyllary_min_UFBoot_range": [
+      3,
+      3
+    ],
+    "stickiness_min_UFBoot_range": [
+      4,
+      5
+    ],
+    "joint_authority_taxa_n": 8,
+    "joint_authority_examples": [
+      {
+        "taxon": "Cirsium aidzuense",
+        "head_orientation": "upward_or_erect",
+        "phyllary_posture": "appressed_or_ascending",
+        "stickiness": "sticky"
+      },
+      {
+        "taxon": "Cirsium alpicola",
+        "head_orientation": "upward_or_erect",
+        "phyllary_posture": "ascending",
+        "stickiness": "nonsticky_or_nearly_nonsticky"
+      },
+      {
+        "taxon": "Cirsium dipsacolepis",
+        "head_orientation": "upward_or_erect",
+        "phyllary_posture": "spreading_or_recurved",
+        "stickiness": "nonsticky_or_nearly_nonsticky"
+      },
+      {
+        "taxon": "Cirsium gyojanum",
+        "head_orientation": "upward_or_erect",
+        "phyllary_posture": "ascending",
+        "stickiness": "sticky"
+      },
+      {
+        "taxon": "Cirsium kasaianum",
+        "head_orientation": "downward_or_nodding",
+        "phyllary_posture": "spreading",
+        "stickiness": "unknown"
+      },
+      {
+        "taxon": "Cirsium nippoense",
+        "head_orientation": "upward_or_erect",
+        "phyllary_posture": "ascending_or_recurved",
+        "stickiness": "sticky"
+      },
+      {
+        "taxon": "Cirsium yezoense",
+        "head_orientation": "downward_or_nodding",
+        "phyllary_posture": "ascending",
+        "stickiness": "nonsticky_or_nearly_nonsticky"
+      },
+      {
+        "taxon": "Cirsium sieboldii",
+        "head_orientation": "downward_or_nodding",
+        "phyllary_posture": "appressed",
+        "stickiness": "nonsticky_or_nearly_nonsticky"
+      }
+    ],
+    "transition_pair_sensitivities": {
+      "orientation_x_phyllary": {
+        "branch_length_aware_rho": 0.3683155,
+        "branch_length_aware_one_sided_p": 0.08,
+        "topology_only_median_rho": -0.05615,
+        "topology_only_q05": -0.2863,
+        "topology_only_positive_fraction": 0.217,
+        "robust_positive": false
+      },
+      "orientation_x_stickiness": {
+        "branch_length_aware_rho": 0.2438998,
+        "branch_length_aware_one_sided_p": 0.003,
+        "topology_only_median_rho": -0.38709,
+        "topology_only_q05": -0.392,
+        "topology_only_positive_fraction": 0.011,
+        "robust_positive": false
+      },
+      "phyllary_x_stickiness": {
+        "branch_length_aware_rho": 0.041129,
+        "branch_length_aware_one_sided_p": 0.299,
+        "topology_only_median_rho": 0.1947,
+        "topology_only_q05": -0.0801,
+        "topology_only_positive_fraction": 0.863,
+        "robust_positive": false
+      }
+    },
+    "robust_same_branch_change_localizations": 0,
+    "meaning": "Minimum-change scenarios, incomplete species-tip categorical coverage, and contrast of branch aware vs equal branch sensitivity; no direct fitness effects or inferred spine history"
+  },
+  "conclusion": {
+    "partial_current_coupling": "SUPPORTED_DESCRIPTIVE",
+    "whole_head_as_single_synchronous_trait": "NOT_SUPPORTED_BY_CURRENT_SPARSE_HISTORY",
+    "adaptive_joint_trait_evolution": "NOT_TESTED",
+    "adaptive_compensatory_nonsynchrony": "NOT_TESTED",
+    "real_involucral_spine_anthesis_angular_coupling": "NOT_MEASURED",
+    "biological_test_priority": "independently manipulate safe qualified O x P in same focal population and measure guild-routed pollen, enemy oviposition, early parasitoid access and final viable achenes after authorization"
+  }
+}

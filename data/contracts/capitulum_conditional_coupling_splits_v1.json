@@ -1,0 +1,62 @@
+{
+  "version": "capitulum_conditional_coupling_splits_v1",
+  "locked_on": "2026-10-08",
+  "primary_input": "full 42 taxa × 18 complete Azami visual endpoints reconstructed from frozen 9612943217 + 9633419268, as JSON marked head-only",
+  "biological_question": "Are the two observed head module signatures geographically or environmentally transportable or driven by one sampling stratum? Marginal covariance does not establish adaptive interaction.",
+  "pairs": [
+    [
+      "presentation_angle",
+      "head_elongation"
+    ],
+    [
+      "floral_chroma",
+      "projection_prominence"
+    ],
+    [
+      "presentation_angle",
+      "projection_prominence"
+    ]
+  ],
+  "splits": [
+    {
+      "id": "hemisphere_proxy",
+      "field": "longitude",
+      "definition": "West if taxon median longitude <0, East otherwise; not a taxon's native region and may cross introduced occurrences",
+      "mean_trait": "coarse_geographic_surrogacy"
+    },
+    {
+      "id": "annual_precipitation",
+      "field": "chelsa_bio12",
+      "definition": "below global taxon median versus at/above",
+      "mean_trait": "water_regime_proxy"
+    },
+    {
+      "id": "surface_solar",
+      "field": "chelsa_rsds_mean",
+      "definition": "below global taxon median versus at/above",
+      "mean_trait": "radiative_regime_proxy"
+    },
+    {
+      "id": "photo_sharpness",
+      "field": "sharpness",
+      "definition": "below global taxon median versus at/above",
+      "mean_trait": "negative_control_for_photo_quality"
+    }
+  ],
+  "estimands": [
+    "Within-stratum signed Pearson correlations of 42 taxon-median visible traits; contrast r_high-r_low",
+    "Fisher r→atanh transform of differences, test via 9999 taxon-label reassignment permutations preserving original group membership count",
+    "Benjamini-Hochberg adjusted family across three pairs x four contrasts (12 exploratory interaction contrasts)",
+    "Within-group bootstrap 3000 taxon resamples for correlation uncertainty; no group-wise p-hacking",
+    "Reference pooled signs and signed region correlations"
+  ],
+  "stop_rules": [
+    "Do not infer evolutionary significance from a shuffled taxon label p without preserving phylogenetic relatedness",
+    "Do not call climatic median groups independently measured pollinator/seed predator regimes",
+    "Do not interpret camera pose or image silhouettes as true anatomical spine lengths or mechanical protection",
+    "Group split with <8 taxa or near-zero SD returns NOT_IDENTIFIABLE",
+    "If a split is significant, this is an exploratory context-dependent phenotype association, not observed compensatory selection or adaptation",
+    "If all splits null, do not conclude invariant coupling in other ecological regimes"
+  ],
+  "claim_ceiling": "Sample-bound descriptive cross-condition coupling sensitivity only, no functional trait x fitness, no random-evolution null."
+}

@@ -1,0 +1,42 @@
+name: Validate Cirsium enemy escape dispersal boundary v1
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "analysis/check_capitulum_enemy_feedback_migration_v1.py"
+      - "docs/CAPITULUM_ENEMY_FEEDBACK_DISPERSAL_SELECTION_BOUNDARY_V1.md"
+      - ".github/workflows/validate-capitulum-enemy-dispersal-v1.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-spatial-scale-null:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify algebra, two-patch matrix and no field-data inference
+        run: |
+          python -m py_compile analysis/check_capitulum_enemy_feedback_migration_v1.py
+          python analysis/check_capitulum_enemy_feedback_migration_v1.py --out work/capitulum_enemy_feedback_migration_v1.json
+      - name: Verify strict synthetic conclusions
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open("work/capitulum_enemy_feedback_migration_v1.json"))
+          t=r["synthetic_tests"]
+          assert t["status"]=="PASS_SYNTHETIC_MIGRATION_DESTROYS_PATCH_REVERSAL"
+          assert t["empirical_estimates"]==0
+          assert abs(t["threshold_exchange_fraction"]-1/7)<1e-12
+          assert t["unmixed_equilibrium_damage_ratio"]>1
+          assert t["mixing_10pct_ratio"]>1
+          assert t["mixing_15pct_ratio"]<1
+          assert abs(t["fully_mixed_ratio"]-.7)<1e-12
+          assert r["ecological_boundary"].startswith("patch damage ratio != trait invasion fitness")
+          print("PASS: local feedback reverses at low mixing, but not at high mixing")
+          PY

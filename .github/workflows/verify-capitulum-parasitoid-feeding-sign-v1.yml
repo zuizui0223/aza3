@@ -1,0 +1,43 @@
+name: Verify capitulum parasitoid-feeding sign v1
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "analysis/check_capitulum_parasitoid_feeding_sign_v1.py"
+      - "docs/CAPITULUM_KOINOBIONT_HOST_FEEDING_VERSUS_EARLY_RESCUE_V1.md"
+      - ".github/workflows/verify-capitulum-parasitoid-feeding-sign-v1.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  early-kill-vs-prolonged-larval-feeding:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check sources and run independent parameter boundary suite
+        run: |
+          python -m py_compile analysis/check_capitulum_parasitoid_feeding_sign_v1.py
+          python analysis/check_capitulum_parasitoid_feeding_sign_v1.py \
+            --out work/capitulum_parasitoid_feeding_sign_v1.json
+      - name: Assert no Cirsium experimental-effect misattribution
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open("work/capitulum_parasitoid_feeding_sign_v1.json"))
+          t=d["test_result"]
+          assert t["status"]=="PASS_SYNTHETIC_EARLY_KILL_VS_LATE_HOST_FEEDING"
+          assert t["grid_combinations"]==144
+          assert abs(t["neutral_host_feeding_reversal_ratio"]-1.4)<1e-12
+          assert abs(t["greater_host_feeding_cancels_reversal_ratio"]-.9625)<1e-12
+          assert t["empirical_field_coefficients_fitted"]==0
+          assert d["literature"]["field_experiment_species"]=="Saussurea nigrescens"
+          assert "OBSERVATIONAL" in d["literature"]["Cirsium_species_role"]
+          assert d["current_focal_Cirsium_fitness_effect"].startswith("NOT_IDENTIFIABLE")
+          print("PASS: separate pre-damage killing from continuing-host feeding, without invented adaptation")
+          PY

@@ -1,0 +1,42 @@
+name: Audit capitulum post-emergence selection v1
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "analysis/audit_capitulum_post_emergence_selection_v1.py"
+      - "docs/CAPITULUM_POST_EMERGENCE_SELECTION_INFERENCE_GATE_V1.md"
+      - ".github/workflows/audit-capitulum-post-emergence-selection-v1.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  selection-estimand-falsifier:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile and test identical-outcome selection counterexample
+        run: |
+          python -m py_compile analysis/audit_capitulum_post_emergence_selection_v1.py
+          python analysis/audit_capitulum_post_emergence_selection_v1.py \
+            --out work/post_emergence_selection_v1.json
+      - name: Fail if selected-head comparison is presented as causal
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open("work/post_emergence_selection_v1.json"))
+          x=d["synthetic_test"]["selection_counterexample"]
+          assert d["synthetic_test"]["status"]=="PASS_EMERGENCE_SELECTION_AND_GO_NO_GO_TESTS"
+          assert x["unconditional_true_causal_difference"]==0
+          assert abs(x["observed_selected_ratio"]-1.8625)<1e-12
+          assert x["biological_observations"]==0
+          assert x["not_an_estimate_of_bias_in_Xi_2015"]
+          assert d["empirical_source"]["focal_experiment_plant"]=="Saussurea nigrescens"
+          assert len(d["design_status"]["missing"])==8
+          print("PASS: differential emergence selection can mimic a treatment effect")
+          PY
