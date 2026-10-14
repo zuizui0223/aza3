@@ -12,6 +12,25 @@ Russell, Taylor & Louda (2025), *Ecosphere* DOI [10.1002/ecs2.70310](https://doi
 
 These metadata and variables were verified from the publisher's archive landing page and the public version-3 Dryad REST metadata. **The raw files were NOT downloaded or parsed this turn**: web-facing `/downloads/file_stream/4056201` returned 403; unauthenticated `/api/v2/files/4056201/download` returned 401. Dryad's documented file-download API requires bearer authentication even for public datasets; unauthenticated metadata access succeeds. No API credential is held or requested by this repository. An endpoint returning HTTP 401/403 is not evidence of absent organisms or absent data. When the CC0 CSV is made available through a legitimate source, check the exact SHA256 before analyzing it.
 
+## Numerically confirmed results in the original paper (NOT our raw-archive rerun)
+
+The paper's published Table 4 supplies the following directly observed **author-reported plant-level mean (SE) estimated viable seeds**. These values can be cited without waiting for API-authenticated source bytes; they must never be misrepresented as a new independent raw-data computation.
+
+| Original experiment year | Ambient herbivory control (mean ± SE) | Insecticide / reduced herbivory (mean ± SE) | Relative control seed reduction reported by authors |
+|---|---:|---:|---:|
+| 2017 | 440.9 ± 52.34 | 770.6 ± 58.24 | 42.8% |
+| 2018 | 361.1 ± 42.06 | 960.5 ± 60.01 | 62.4% |
+| 2019 | 345.3 ± 28.26 | 1,103.9 ± 46.59 | 68.7% |
+| Pooled years | 371.7 ± 21.84 | 961.3 ± 32.39 | approximately 61.3% |
+
+This **treatment × year** interaction was reported as `F(2,388)=10.32, P<0.001`. At the process level, the original authors reported 22.6% lower proportion of damaged ovules/seeds **per head**, and 44.9% lower proportion of externally injured heads **per plant**, in insecticide groups across sites/years. Those two metrics use different denominators and are not interchangeable.
+
+Their head damage reduction did **not** translate into proportional next-generation recruitment: of 210 experimental seed-dispersing mother plants, 26 (12.4%) recruited no local seedlings, even though 24 of those 26 produced viable seeds. The original authors found no statistically significant increase in recruited seedlings with insecticide treatment. This is an actual **maternal-seed-output → local recruitment ecological decoupling**, already published, not an untested discovery of the present PR.
+
+**Additional causal caution:** Initial 2017 insecticide choice was replaced after failing to suppress herbivory. In early 2018 Tanglefoot damaged the experimental thistle buds (reported 1–9 buds/plant, mean 3.1), forcing the head-position-matched reconstruction. Do not treat the 2017, 2018 and 2019 numbers as three independent replicate evolutionary selective regimes, or infer from this calendar contrast that spine/angle modules evolved. They document **variation in the effect of an insect-suppression regime on maternal seed output**, under the study's published design and adjustments.
+
+The archived data reader additionally now embeds these original Table 4 aggregate means as `published_original_article_table4_benchmark`, strictly separate from `actual_source_analysis`. The latter remains `SOURCE_CSV_NOT_MATERIALIZED_NO_EMPIRICAL_RECOMPUTATION` until the hash-pinned CSV is legitimately available.
+
 ## Why this archive changes the research strategy
 
 The original 2025 study already established that reducing floral/seed herbivory increased *Cirsium* viable seed output, while recruitment into seedlings did **not** increase proportionally; elevation influenced flowering time but not the herbivore effect. Thus even **real intervention → higher maternal seed output** does not mean a proportional **plant population recruitment response**. A head defence effect, a maternal fitness effect and recruitment limitation are distinct ecological endpoints. Avoid making any claim that seed-level defence necessarily explains population growth or adaptive evolutionary origin.
