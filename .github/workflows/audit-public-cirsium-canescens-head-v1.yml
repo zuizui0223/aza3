@@ -40,6 +40,11 @@ jobs:
           assert s["synthetic_source_integrity_tests"]["status"]=="PASS_SYNTHETIC_CIRSIUM_ARCHIVE_DESIGN_AND_PROVENANCE_GATES"
           assert s["synthetic_source_integrity_tests"]["n_negative_controls"]==6
           assert s["synthetic_source_integrity_tests"]["real_archival_rows_analyzed"]==0
+          assert s["published_aggregate_not_our_raw_reanalysis"] is True
+          ref=s["published_original_article_table4_benchmark"]
+          assert len(ref)==4
+          assert [v["year"] for v in ref]==["2017","2018","2019","all_years"]
+          assert all(v["origin"]=="PUBLISHED_AUTHOR_AGGREGATE_NOT_OUR_RAW_CSV_REANALYSIS" for v in ref)
           assert s["actual_source_analysis"]["status"]=="SOURCE_CSV_NOT_MATERIALIZED_NO_EMPIRICAL_RECOMPUTATION"
           assert s["actual_source_analysis"]["archive_fitness_data"] is None
           assert s["actual_source_analysis"]["n_actual_archival_head_rows_analyzed"]==0
