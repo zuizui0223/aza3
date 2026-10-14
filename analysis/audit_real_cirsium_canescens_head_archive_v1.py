@@ -33,6 +33,19 @@ RAW_FILENAME="Plattethistleseedproduction.csv"
 EXPECTED_SHA256="d8c584b0c67a80f7e637e95df2262c7cb16788b0bd09d7e6e4ae702e00508b50"
 EXPECTED_BYTES=348096
 DRYAD_VERSION=3
+# Directly transcribed from the already PUBLISHED paper Table 4,
+# DOI 10.1002/ecs2.70310. These are NOT independently recomputed
+# from the Dryad raw head CSV; that file is not currently accessible.
+PUBLISHED_TABLE4_MEAN_SE={
+    "2017":{"control_mean":440.9,"control_se":52.34,
+            "insecticide_mean":770.6,"insecticide_se":58.24},
+    "2018":{"control_mean":361.1,"control_se":42.06,
+            "insecticide_mean":960.5,"insecticide_se":60.01},
+    "2019":{"control_mean":345.3,"control_se":28.26,
+            "insecticide_mean":1103.9,"insecticide_se":46.59},
+    "all_years":{"control_mean":371.7,"control_se":21.84,
+                 "insecticide_mean":961.3,"insecticide_se":32.39}
+}
 NEEDED={
     "Project","Year","Site","Plant","FnlTrt","HdN","Stg","HdDam",
     "RcEg","FinPRGD","EstSdProd","EstSdProdTang","TPltSDs"
@@ -328,7 +341,27 @@ def analyze(rows):
         ],
     }
 
+def published_table4_benchmark():
+    rows=[]
+    for year,p in PUBLISHED_TABLE4_MEAN_SE.items():
+        rows.append({
+            "year":year,
+            **p,
+            "calculated_percent_lower_in_control_vs_insecticide":(
+                100*(1-p["control_mean"]/p["insecticide_mean"])),
+            "source":"Russell et al. 2025 Ecosphere DOI 10.1002/ecs2.70310 Table 4",
+            "origin":"PUBLISHED_AUTHOR_AGGREGATE_NOT_OUR_RAW_CSV_REANALYSIS",
+            "tanglefoot_note":("Author-corrected 2018 insecticide output"
+                               if year=="2018" else None),
+        })
+    return rows
+
 def synthetic_tests():
+    reference=published_table4_benchmark()
+    assert len(reference)==4
+    for year,rounded in (("2017",42.8),("2018",62.4),("2019",68.7)):
+        x=next(x for x in reference if x["year"]==year)
+        assert abs(x["calculated_percent_lower_in_control_vs_insecticide"]-rounded)<.11
     def head(plant,hdn,trt,damage,eggs,raw,corrected,year="2018"):
         return {
             "Project":"2","Year":year,"Site":"SITE_A","Plant":plant,
@@ -430,6 +463,8 @@ def main():
             "archive_fitness_data":analyze(original),
         }
     output={
+        "published_original_article_table4_benchmark":published_table4_benchmark(),
+        "published_aggregate_not_our_raw_reanalysis":True,
         "version":"audit_real_cirsium_canescens_head_archive_v1",
         "as_of":"2026-10-14",
         "source_manifest":source,
