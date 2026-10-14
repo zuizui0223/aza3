@@ -80,5 +80,39 @@
     "Species-level dataset is an independent evolutionary origin",
     "No insect effect inferred from absent local file",
     "Tanglefoot damage equals natural seed predation"
-  ]
+  ],
+  "published_numeric_positive_control": {
+    "source": "Russell et al. 2025 Ecosphere DOI 10.1002/ecs2.70310 Table 4",
+    "unit": "estimated viable seeds per whole mother plant; original published means (SE)",
+    "not_raw_csv_reanalysis": true,
+    "years": {
+      "2017": {
+        "control_mean": 440.9,
+        "control_se": 52.34,
+        "insecticide_mean": 770.6,
+        "insecticide_se": 58.24
+      },
+      "2018": {
+        "control_mean": 361.1,
+        "control_se": 42.06,
+        "insecticide_mean": 960.5,
+        "insecticide_se": 60.01
+      },
+      "2019": {
+        "control_mean": 345.3,
+        "control_se": 28.26,
+        "insecticide_mean": 1103.9,
+        "insecticide_se": 46.59
+      },
+      "all_years": {
+        "control_mean": 371.7,
+        "control_se": 21.84,
+        "insecticide_mean": 961.3,
+        "insecticide_se": 32.39
+      }
+    },
+    "2018_intervention_artifact": "Tanglefoot accidentally destroyed early buds; author applies head-position-aware replacement-seed estimates",
+    "recruitment_result": "No significant treatment gain in recruitment; 26/210 maternal plants produced no local seedlings despite 24 of these 26 producing viable seed",
+    "pollen_interpretation": "Original authors found no evidence insecticide impaired pollination; comparison on undamaged heads is not independent pollen-deposition assay."
+  }
 }
