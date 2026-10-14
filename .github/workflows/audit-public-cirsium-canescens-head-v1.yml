@@ -35,6 +35,13 @@ jobs:
           s=json.loads(Path("work/public_Cirsium_canescens_head_archive_status.json").read_text())
           assert m["dryad"]["doi"]=="10.5061/dryad.kh18932dc"
           assert m["dryad"]["version"]==3
+          studies=m["independent_life_stage_context_studies"]
+          assert [x["doi"] for x in studies]==[
+            "10.2307/2426083","10.1007/s00442-020-04656-2",
+            "10.1002/ecs2.70310"
+          ]
+          assert all("PUBLISHED_AUTHOR_RESULT" in x["quality"] for x in studies)
+          assert "Proven change of genetic selection direction on spine or head angle" in m["cross_context_conclusion"]["not_supported"]
           assert m["dryad"]["files"][0]["sha256"]==s["source_manifest"]["expected_sha256"]
           assert m["actual_raw_rows_analyzed"]==0
           assert s["synthetic_source_integrity_tests"]["status"]=="PASS_SYNTHETIC_CIRSIUM_ARCHIVE_DESIGN_AND_PROVENANCE_GATES"
