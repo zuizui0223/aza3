@@ -120,6 +120,7 @@ def analyze(rows):
         plant_buckets[plantkey].append(row)
 
     plants=[]
+    all_head_records=[]
     n_corrections=0
     n_corrections_non2018=0
     damaged_modes=Counter()
@@ -185,6 +186,20 @@ def analyze(rows):
                 "estimated_viable_fraction_assessed":viable is not None,
                 "corrected_seed_estimate_assessed":fixed_seed is not None,
             })
+            all_head_records.append({
+                "project":plantkey[0],"year":plantkey[1],
+                "site":plantkey[2],"plant":plantkey[3],
+                "treatment":treatment,
+                "head_position":head_position(hdn),
+                "final_stage":head_stage,
+                "external_damage_confirmed":(
+                    None if damage_code is None or damage_code==1
+                    else damage_code>=2),
+                "external_damage_mechanism":HEAD_DAMAGE.get(damage_code),
+                "rhinocyllus_eggs":eggs,
+                "estimated_viable_fraction":viable,
+                "corrected_seed_estimate":fixed_seed,
+            })
         if original_totals and max(original_totals)-min(original_totals)>1e-5:
             raise ValueError("CONFLICTING_PUBLISHED_PLANT_TOTAL_WITHIN_PLANT")
         full=(n_heads_missing_corrected==0)
@@ -248,8 +263,46 @@ def analyze(rows):
             "complete_case_selection_may_bias_comparison":True,
         })
 
+    # This is an explicitly DESCRIPTIVE head-rank breakdown.
+    # The assignment of insecticide is still by PLANT, NOT by HEAD.
+    # Stage and attack marks are downstream/last-census outcomes, never
+    # pretreatment covariates in a randomized total-effect model.
+    by_rank=defaultdict(list)
+    for h in all_head_records:
+        key=(h["project"],h["year"],h["site"],
+             h["treatment"],h["head_position"])
+        by_rank[key].append(h)
+    ranked=[]
+    for (project,year,site,treatment,position),items in sorted(by_rank.items()):
+        eggs=[h["rhinocyllus_eggs"] for h in items
+              if h["rhinocyllus_eggs"] is not None]
+        dmg=[h["external_damage_confirmed"] for h in items
+             if h["external_damage_confirmed"] is not None]
+        viable=[h["corrected_seed_estimate"] for h in items
+                if h["corrected_seed_estimate"] is not None]
+        ranked.append({
+            "project":project,"year":year,"site":site,
+            "plant_treatment":treatment,
+            "head_position_not_inclination":position,
+            "n_heads":len(items),
+            "n_independent_plants":len({h["plant"] for h in items}),
+            "n_heads_with_assessed_weevil_egg_counts":len(eggs),
+            "n_heads_with_positive_weevil_egg_counts":sum(x>0 for x in eggs),
+            "mean_weevil_eggs_per_assessed_head":(
+                sum(eggs)/len(eggs) if eggs else None),
+            "n_heads_with_unambiguous_external_damage_scored":len(dmg),
+            "proportion_of_assessed_heads_with_external_damage":(
+                sum(dmg)/len(dmg) if dmg else None),
+            "n_heads_with_corrected_seed_estimates":len(viable),
+            "mean_corrected_seed_estimate_per_assessed_head":(
+                sum(viable)/len(viable) if viable else None),
+            "n_heads_with_final_census_stage":sum(
+                h["final_stage"] is not None for h in items),
+            "HOLD_if_treated_as_independent_randomized_heads":True,
+        })
     return {
         "status":"ARCHIVAL_HEAD_AND_PLANT_DATA_VALIDATED_DESCRIPTIVE_ONLY",
+        "head_position_strata_descriptive_not_trait_selection":ranked,
         "n_raw_head_rows":len(rows),
         "n_unique_randomized_plants":len(plants),
         "n_project_year_site_blocks":len(contrasts),
@@ -304,6 +357,15 @@ def synthetic_tests():
     assert head_position(100)=="main_apical"
     assert head_position(200)=="lateral_terminal"
     assert head_position(210)=="lateral_axillary_or_nonterminal"
+    strata=res["head_position_strata_descriptive_not_trait_selection"]
+    assert sum(z["n_heads"] for z in strata)==4
+    assert all(z["n_independent_plants"]==1 for z in strata)
+    assert any(z["head_position_not_inclination"]=="lateral_axillary_or_nonterminal"
+               and z["n_heads_with_unambiguous_external_damage_scored"]==0
+               for z in strata)
+    assert any(z["head_position_not_inclination"]=="lateral_terminal"
+               and z["n_heads_with_positive_weevil_egg_counts"]==1
+               for z in strata)
     for corrupt,needle in [
         (rows+[rows[0]],"DUPLICATED_CAPITULUM_ID_WITHIN_PLANT"),
         ([{**rows[0],"FnlTrt":"NA"},rows[1],rows[2],rows[3]],
@@ -333,6 +395,7 @@ def synthetic_tests():
         "n_negative_controls":6,
         "tanglefoot_correction_flagged":True,
         "head_position_codes_resolved":True,
+        "descriptive_rank_denominators_checked_not_head_pseudoreplication":True,
         "treatment_propagated_only_within_plant":True,
         "real_archival_rows_analyzed":0,
     }
