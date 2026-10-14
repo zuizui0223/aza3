@@ -44,3 +44,15 @@ The internally audited `validate_capitulum_true_armature_contact_v1.py` now repo
 - **Actionable next milestone:** one independently identifiable insect approaches one continuously filmed, botanically measured head; preserve source footage, time/stage, all contacts (including no touch), final access, confirmed egg/pollen observation and the intact head's authorized reproductive fate. If none is available, the scientific result remains **NOT IDENTIFIABLE**; no new mathematical counterfactual should be promoted as a discovery.
 
 Until these observations exist, new derivations of a selection sign are subordinate to validating real field evidence. Existing JPN36 24-head feasibility cap and site/collection permissions remain unchanged.
+
+## 2026-10-14 revised biological boundary: a defended maternal seed does not have a fixed recruitment value
+
+A critical **same-species, different-context, original-literature comparison** is now documented in `docs/CIRSIUM_CANESCENS_SEED_VS_MICROSITE_1990_2020_2025_EVIDENCE_V1.md`:
+
+- Louda et al. 1990 (DOI 10.2307/2426083): effects of predation on viable seeds in Nebraska Sandhills were amplified through seedlings to new adults, in a setting where competition and vertebrate granivory were additional limitations.
+- Rand et al. 2020 (DOI 10.1007/s00442-020-04656-2): direct four-dose seed addition at two Nebraska sites, followed **9 years** to reproductive adults, demonstrated strong seed limitation despite postdispersal losses.
+- Russell et al. 2025 (DOI 10.1002/ecs2.70310): at five Colorado range-edge sites, maternal seed output rose substantially after flowering-head herbivore suppression but nearby seedlings (within 2 m over two following seasons) did not rise proportionally.
+
+Thus the appropriate ***Cirsium* head-specific primary inference** remains **real armature/orientation × pre-entry guild → documented physical access/oviposition or pollen receipt → actual filled achenes**, with a separately testable **seed→recruited descendant** extension, contingent on ecological setting. Calling a defence trait "adaptively selected by seed predators" from differences in local recruits between these published studies would be invalid: their geography, manipulations, doses, sample windows, and target life stage differ, and **none measured the candidate true spine/angle module**. No measured selection-gradient reversal is demonstrated.
+
+This adds a potentially interesting *future* falsifiable prediction: a botanical barrier with a reproducible seed-output benefit might translate to different local recruitment consequences depending on seed input saturation, germination microsites and seed predators, even where insect-specific physical gating is the same. **The generic prediction is known ecological theory and does NOT by itself supply Nature-level novelty**; the novelty threshold is specific mechanistic confirmation and evolutionary replication of an actual head architecture.
