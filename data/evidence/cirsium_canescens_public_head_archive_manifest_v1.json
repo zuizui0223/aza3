@@ -114,5 +114,54 @@
     "2018_intervention_artifact": "Tanglefoot accidentally destroyed early buds; author applies head-position-aware replacement-seed estimates",
     "recruitment_result": "No significant treatment gain in recruitment; 26/210 maternal plants produced no local seedlings despite 24 of these 26 producing viable seed",
     "pollen_interpretation": "Original authors found no evidence insecticide impaired pollination; comparison on undamaged heads is not independent pollen-deposition assay."
+  },
+  "independent_life_stage_context_studies": [
+    {
+      "paper": "Louda, Potvin and Collinge 1990",
+      "doi": "10.2307/2426083",
+      "habitat": "Nebraska Sandhills prairie",
+      "approach": "Concurrent contrasts of predispersal insect predation, postdispersal vertebrate predation and grass competition",
+      "supported_observations": [
+        "About threefold decline in viable seeds with insect feeding accompanied by approximately sixfold decline in seedlings",
+        "Sixfold to 37-fold fewer eventual new adults in original experimental comparisons",
+        "Strong postdispersal context dependence including grass competition"
+      ],
+      "quality": "PUBLISHED_AUTHOR_RESULT_NOT_2025_HEAD_ARCHIVE_DATA"
+    },
+    {
+      "paper": "Rand, West, Russell and Louda 2020",
+      "doi": "10.1007/s00442-020-04656-2",
+      "habitat": "Arapaho Prairie Preserve and Niobrara Valley Preserve, Nebraska Sandhills",
+      "approach": "Four levels of seed addition with seedlings and reproductive adults followed for 9 years",
+      "supported_observations": [
+        "Strong seed limitation of seedling and adult recruitment at both sites",
+        "Relative importance of seed limitation declines with plant age",
+        "Postdispersal density dependence differs between the two sites"
+      ],
+      "quality": "PUBLISHED_AUTHOR_RESULT_NOT_2025_COLORADO_INSECTICIDE_EXPERIMENT"
+    },
+    {
+      "paper": "Russell, Taylor and Louda 2025",
+      "doi": "10.1002/ecs2.70310",
+      "habitat": "Five Colorado montane grassland sites at western xeric range periphery",
+      "approach": "Plant-randomized flower head insect-herbivory reduction in 2017–2019, seed output and 2-year recruits within 2 m of mother",
+      "supported_observations": [
+        "Viable maternal seed output increased with herbivore suppression",
+        "No proportional or statistically detected increase in nearby seedling recruitment under this treatment",
+        "Response may saturate with safe microsite availability in these source contexts"
+      ],
+      "quality": "PUBLISHED_AUTHOR_RESULT_SEPARATE_FROM_2025_RAW_HEAD_CSV_REANALYSIS"
+    }
+  ],
+  "cross_context_conclusion": {
+    "supported": "Same Cirsium species can show strong seed-input limits to seedling/adult recruitment in some locations and a shallow local recruitment response to reduced herbivore seed loss in different locations/designs",
+    "not_supported": [
+      "Proven change of genetic selection direction on spine or head angle",
+      "The 2020 and 2025 experiments estimate the same parameter",
+      "Universal absence of seed limitation at range margins",
+      "No plant fitness benefit because 2m seedling count unchanged",
+      "Effects pooled across 1990, 2020 and 2025 as independent equivalent replicates"
+    ],
+    "scientific_priority": "Distinguish genuine head architecture -> confirmed guild entry -> seed fate from context-dependent seed output -> recruited descendants"
   }
 }
