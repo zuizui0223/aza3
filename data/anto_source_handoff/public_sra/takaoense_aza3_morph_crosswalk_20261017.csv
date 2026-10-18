@@ -1,0 +1,7 @@
+run_accession,biosample_accession,specimen_code_from_experiment_title,morph_code_from_aza3,morphology_provenance,laboratory_tissue,floral_rna_measured,floral_pigment_chemistry_measured,independent_population_replication,limitation
+SRR35152717,SAMN50798022,WY-3560,W,aza3:takaoense_phaseb_prefield_contract_v1,young leaf,false,false,false,Morph geography strongly confounded; NOT a flower expression experiment
+SRR35152718,SAMN50798021,FC-3559,BP,aza3:takaoense_phaseb_prefield_contract_v1,young leaf,false,false,false,Morph geography strongly confounded; NOT a flower expression experiment
+SRR35152734,SAMN50798028,LT-3839,W,aza3:takaoense_phaseb_prefield_contract_v1,young leaf,false,false,false,Morph geography strongly confounded; NOT a flower expression experiment
+SRR35152735,SAMN50798027,NH-3835,BP,aza3:takaoense_phaseb_prefield_contract_v1,young leaf,false,false,false,Morph geography strongly confounded; NOT a flower expression experiment
+SRR35152736,SAMN50798026,TJ-3807,BP,aza3:takaoense_phaseb_prefield_contract_v1,young leaf,false,false,false,Morph geography strongly confounded; NOT a flower expression experiment
+SRR35152738,SAMN50798024,FB-3629,W,aza3:takaoense_phaseb_prefield_contract_v1,young leaf,false,false,false,Morph geography strongly confounded; NOT a flower expression experiment

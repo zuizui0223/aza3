@@ -1,0 +1,179 @@
+{
+  "version": "anto_cirsium_japonicum_organ_evidence_v6",
+  "source": {
+    "title": "Integrated Analysis of Transcriptome and Metabolome in Cirsium japonicum Fisch ex DC",
+    "authors": "Park et al. (2020)",
+    "doi": "10.1021/acsomega.0c04001",
+    "pmc_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7675961/",
+    "source_scope": "organ-specific qRT-PCR and metabolite profiling in published C. japonicum sensu study; not Ryukyu brevicaule/irumtiense"
+  },
+  "published_transcriptome_unigenes": 104890,
+  "evidence_kind": "author-reported approximate/fold contrasts from manuscript text; unextracted raw replicate measurements",
+  "floral_anthocyanin_directly_measured": false,
+  "six_ryukyu_specimens_linked": false,
+  "trait_regain_event_observed": false,
+  "calibrated_flower_competence": false,
+  "within_system_independent_origin_replicates": 0,
+  "records": [
+    {
+      "record_id": "Park2020_CjCHS1",
+      "taxon_as_published": "Cirsium japonicum Fisch ex DC",
+      "data_kind": "qRT-PCR mRNA",
+      "molecule": "CHS1",
+      "numerator_organ": "flower",
+      "denominator_organ": "leaf",
+      "fold_numerator_over_denominator": 500,
+      "independent_samples": "not extractable from text",
+      "scope": "gene-specific tissue contrast; not a floral anthocyanin function assay",
+      "citation_doi": "10.1021/acsomega.0c04001"
+    },
+    {
+      "record_id": "Park2020_CjCHS2",
+      "taxon_as_published": "Cirsium japonicum Fisch ex DC",
+      "data_kind": "qRT-PCR mRNA",
+      "molecule": "CHS2",
+      "numerator_organ": "flower",
+      "denominator_organ": "leaf",
+      "fold_numerator_over_denominator": 112,
+      "independent_samples": "not extractable from text",
+      "scope": "gene-specific tissue contrast; not a floral anthocyanin function assay",
+      "citation_doi": "10.1021/acsomega.0c04001"
+    },
+    {
+      "record_id": "Park2020_CjF3pH",
+      "taxon_as_published": "Cirsium japonicum Fisch ex DC",
+      "data_kind": "qRT-PCR mRNA",
+      "molecule": "F3pH",
+      "numerator_organ": "flower",
+      "denominator_organ": "leaf",
+      "fold_numerator_over_denominator": 16.6,
+      "independent_samples": "not extractable from text",
+      "scope": "gene-specific tissue contrast; not a floral anthocyanin function assay",
+      "citation_doi": "10.1021/acsomega.0c04001"
+    },
+    {
+      "record_id": "Park2020_CjCHI",
+      "taxon_as_published": "Cirsium japonicum Fisch ex DC",
+      "data_kind": "qRT-PCR mRNA",
+      "molecule": "CHI",
+      "numerator_organ": "flower",
+      "denominator_organ": "leaf",
+      "fold_numerator_over_denominator": 13,
+      "independent_samples": "not extractable from text",
+      "scope": "gene-specific tissue contrast; not a floral anthocyanin function assay",
+      "citation_doi": "10.1021/acsomega.0c04001"
+    },
+    {
+      "record_id": "Park2020_CjFLS",
+      "taxon_as_published": "Cirsium japonicum Fisch ex DC",
+      "data_kind": "qRT-PCR mRNA",
+      "molecule": "FLS",
+      "numerator_organ": "flower",
+      "denominator_organ": "leaf",
+      "fold_numerator_over_denominator": 5.6,
+      "independent_samples": "not extractable from text",
+      "scope": "gene-specific tissue contrast; not a floral anthocyanin function assay",
+      "citation_doi": "10.1021/acsomega.0c04001"
+    },
+    {
+      "record_id": "Park2020_CjFSII",
+      "taxon_as_published": "Cirsium japonicum Fisch ex DC",
+      "data_kind": "qRT-PCR mRNA",
+      "molecule": "FSII",
+      "numerator_organ": "flower",
+      "denominator_organ": "leaf",
+      "fold_numerator_over_denominator": 3.3,
+      "independent_samples": "not extractable from text",
+      "scope": "gene-specific tissue contrast; not a floral anthocyanin function assay",
+      "citation_doi": "10.1021/acsomega.0c04001"
+    },
+    {
+      "record_id": "Park2020_CjDFR_root_isoform_A",
+      "taxon_as_published": "Cirsium japonicum Fisch ex DC",
+      "data_kind": "qRT-PCR mRNA",
+      "molecule": "DFR_isoform_unresolved_A",
+      "numerator_organ": "root",
+      "denominator_organ": "leaf",
+      "fold_numerator_over_denominator": 22,
+      "independent_samples": "not extractable from text",
+      "scope": "one of two reported DFR isoforms; exact accession mapping unverified; not root > flower",
+      "citation_doi": "10.1021/acsomega.0c04001"
+    },
+    {
+      "record_id": "Park2020_CjDFR_root_isoform_B",
+      "taxon_as_published": "Cirsium japonicum Fisch ex DC",
+      "data_kind": "qRT-PCR mRNA",
+      "molecule": "DFR_isoform_unresolved_B",
+      "numerator_organ": "root",
+      "denominator_organ": "leaf",
+      "fold_numerator_over_denominator": 2.6,
+      "independent_samples": "not extractable from text",
+      "scope": "second reported DFR isoform; exact accession mapping unverified; not root > flower",
+      "citation_doi": "10.1021/acsomega.0c04001"
+    },
+    {
+      "record_id": "Park2020_total_flavonols",
+      "taxon_as_published": "Cirsium japonicum Fisch ex DC",
+      "data_kind": "reported metabolite total",
+      "molecule": "total_flavonols",
+      "numerator_organ": "flower",
+      "denominator_organ": "root",
+      "fold_numerator_over_denominator": 21,
+      "independent_samples": "not extractable from text",
+      "scope": "class-level metabolites; not direct anthocyanin quantification",
+      "citation_doi": "10.1021/acsomega.0c04001"
+    },
+    {
+      "record_id": "Park2020_total_flavones",
+      "taxon_as_published": "Cirsium japonicum Fisch ex DC",
+      "data_kind": "reported metabolite total",
+      "molecule": "total_flavones",
+      "numerator_organ": "leaf",
+      "denominator_organ": "flower",
+      "fold_numerator_over_denominator": 58,
+      "independent_samples": "not extractable from text",
+      "scope": "class-level metabolites; not direct anthocyanin quantification",
+      "citation_doi": "10.1021/acsomega.0c04001"
+    },
+    {
+      "record_id": "Park2020_total_flavanols",
+      "taxon_as_published": "Cirsium japonicum Fisch ex DC",
+      "data_kind": "reported metabolite total",
+      "molecule": "total_flavanols",
+      "numerator_organ": "leaf",
+      "denominator_organ": "root",
+      "fold_numerator_over_denominator": 19,
+      "independent_samples": "not extractable from text",
+      "scope": "class-level metabolites; not direct anthocyanin quantification",
+      "citation_doi": "10.1021/acsomega.0c04001"
+    }
+  ],
+  "interpretation": "Contrasting gene and metabolite tissue allocation suggests modular expression across plant organs, but no evidence of maintenance of the full floral anthocyanin pathway or evolutionary re-expression. In particular, published DFR root:leaf contrasts are not comparisons against flower.",
+  "not_allowed": [
+    "DFR root-enrichment proves a white-flowered Ryukyu lineage retains flower-specific pigmentation",
+    "CHS floral enhancement proves anthocyanins or flower-colour re-evolution",
+    "Ratios from different gene and denominator pairs can be pooled into a common biological effect size",
+    "Metabolite totals are genotype-specific anthocyanin assay",
+    "One source species is an independent test of dispersal history"
+  ],
+  "supplements": [
+    {
+      "filename": "ao0c04001_si_001.pdf",
+      "role": "qRT-PCR supplemental figures/primers and gene annotation; individual organism source",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/instance/7675961/bin/ao0c04001_si_001.pdf",
+      "verified_download": false
+    },
+    {
+      "filename": "ao0c04001_si_002.txt",
+      "role": "author supporting information 2 annotated unigene dataset; file content not yet independently obtained",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/instance/7675961/bin/ao0c04001_si_002.txt",
+      "verified_download": false
+    },
+    {
+      "filename": "ao0c04001_si_003.xlsx",
+      "role": "author supporting information 3 unigene annotations; file content not yet independently obtained",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/instance/7675961/bin/ao0c04001_si_003.xlsx",
+      "verified_download": false
+    }
+  ]
+}

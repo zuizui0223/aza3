@@ -1,0 +1,216 @@
+{
+  "data_version": "2026-10-17_ena_platform_fingerprint",
+  "source": "https://www.ebi.ac.uk/ena/portal/api/filereport?accession=PRJNA1311153&result=read_run&fields=run_accession,instrument_platform,instrument_model,library_layout,base_count,read_count,fastq_bytes,fastq_md5&format=json",
+  "n_runs": 25,
+  "source_project": "PRJNA1311153",
+  "ena_instrument_models": {
+    "Illumina MiniSeq": 25
+  },
+  "paper_methods_instrument": "Illumina NovaSeq (150-bp paired end)",
+  "paper_methods_url": "https://doi.org/10.1186/s12870-026-08097-6",
+  "metadata_discrepancy": "Discrepancy unresolved: all 25 ENA experiments list Illumina MiniSeq, whereas paper Methods states Illumina NovaSeq. Do not infer which instrument was used or that the data are invalid without author/SRA clarification.",
+  "total_ena_fastq_bytes": 80659086447,
+  "data_scope": "Run-index registration metadata only. No raw reads downloaded. MD5 fingerprints are provider declarations, not independently recomputed.",
+  "run_fingerprints": [
+    {
+      "run_accession": "SRR35152716",
+      "instrument_model": "Illumina MiniSeq",
+      "base_count": 10345613698,
+      "read_count": 34256999,
+      "fastq_bytes": "2430992007;2530692943",
+      "fastq_md5": "bb5100774ac5c71a43e10e35e6b5a3a3;f5530824d412293c2cff901cfeb04e5d"
+    },
+    {
+      "run_accession": "SRR35152717",
+      "instrument_model": "Illumina MiniSeq",
+      "base_count": 5548756171,
+      "read_count": 20482443,
+      "fastq_bytes": "1035722198;1041317957",
+      "fastq_md5": "abebccc53a4f3b6cc54783b8a7f8c7bd;8f090cda7b9f2cac05c146d258515208"
+    },
+    {
+      "run_accession": "SRR35152718",
+      "instrument_model": "Illumina MiniSeq",
+      "base_count": 6453002436,
+      "read_count": 23388705,
+      "fastq_bytes": "1407764885;1447086606",
+      "fastq_md5": "7640a940ad40bfb8ea2fc97d5ad81e4c;3c973ceab900eab510e97d9aa46f95eb"
+    },
+    {
+      "run_accession": "SRR35152719",
+      "instrument_model": "Illumina MiniSeq",
+      "base_count": 5220911869,
+      "read_count": 18586038,
+      "fastq_bytes": "1265162224;1308789198",
+      "fastq_md5": "885613f30619b2f96944ff4e2e4eb5a5;5c130133915e6b3fe7c1a2e9b1f5ec99"
+    },
+    {
+      "run_accession": "SRR35152720",
+      "instrument_model": "Illumina MiniSeq",
+      "base_count": 4794602097,
+      "read_count": 17201830,
+      "fastq_bytes": "908779993;911791669",
+      "fastq_md5": "c411e90136156b8208d51feab8298eaf;56f767b8de1550b7d3ddae636739605b"
+    },
+    {
+      "run_accession": "SRR35152721",
+      "instrument_model": "Illumina MiniSeq",
+      "base_count": 8280490586,
+      "read_count": 27418843,
+      "fastq_bytes": "1943542339;2020057794",
+      "fastq_md5": "bfb233569251284912c07c6425dbffab;919ce4f11185a4d93423b4fca1aa891f"
+    },
+    {
+      "run_accession": "SRR35152722",
+      "instrument_model": "Illumina MiniSeq",
+      "base_count": 7171689910,
+      "read_count": 25090257,
+      "fastq_bytes": "1718943000;1828712324",
+      "fastq_md5": "e1399c80dd27f0279f8401b5c49ca1ff;4371bb06e0da4954a60e160a25f3ce76"
+    },
+    {
+      "run_accession": "SRR35152723",
+      "instrument_model": "Illumina MiniSeq",
+      "base_count": 10739715846,
+      "read_count": 35561973,
+      "fastq_bytes": "2249673455;2321046996",
+      "fastq_md5": "b4af46e8d3e79aca79c8b7375d62ce33;f105df8f29f942d55464c45d7f940734"
+    },
+    {
+      "run_accession": "SRR35152724",
+      "instrument_model": "Illumina MiniSeq",
+      "base_count": 7532813482,
+      "read_count": 24943091,
+      "fastq_bytes": "1589341546;1652136386",
+      "fastq_md5": "06fffe523d1143193c7e066f26df2772;ee149a3630cd65739281c0330506d376"
+    },
+    {
+      "run_accession": "SRR35152725",
+      "instrument_model": "Illumina MiniSeq",
+      "base_count": 7573816626,
+      "read_count": 25078863,
+      "fastq_bytes": "1605489532;1660728867",
+      "fastq_md5": "7c81ce638c49702f66286f64c69da48a;9b56ca8c0d6b88d176650e8a709dbbda"
+    },
+    {
+      "run_accession": "SRR35152726",
+      "instrument_model": "Illumina MiniSeq",
+      "base_count": 7176535626,
+      "read_count": 23763363,
+      "fastq_bytes": "1712137004;1786928290",
+      "fastq_md5": "b8f3e237dbf796373e2c95185ca8b4a9;e24bf6c2c2419495c98f036971923fa7"
+    },
+    {
+      "run_accession": "SRR35152727",
+      "instrument_model": "Illumina MiniSeq",
+      "base_count": 6236602000,
+      "read_count": 20651000,
+      "fastq_bytes": "1496238458;1559680467",
+      "fastq_md5": "ee7b52094888450aa086688941466d44;0d61aa6eb1ca8f1ed1b38380047fc1e2"
+    },
+    {
+      "run_accession": "SRR35152728",
+      "instrument_model": "Illumina MiniSeq",
+      "base_count": 6638922172,
+      "read_count": 21983186,
+      "fastq_bytes": "1601988438;1665671943",
+      "fastq_md5": "756b4fb42038c0b56079d57e9b689df4;897ee88d15ac9e0e7c7a4a2e0572de0e"
+    },
+    {
+      "run_accession": "SRR35152729",
+      "instrument_model": "Illumina MiniSeq",
+      "base_count": 6037792682,
+      "read_count": 19992691,
+      "fastq_bytes": "1413264323;1467864446",
+      "fastq_md5": "86fcd422a6e0575b1b5e47c9c16bf512;8caf9e5a5b70fdf35dea616cf306d49e"
+    },
+    {
+      "run_accession": "SRR35152730",
+      "instrument_model": "Illumina MiniSeq",
+      "base_count": 6526463110,
+      "read_count": 21610805,
+      "fastq_bytes": "1531102912;1617355354",
+      "fastq_md5": "8a006c632327de7cdfb03ac75275398c;244a4cf7ca70171d57ee7c2f8478c8e7"
+    },
+    {
+      "run_accession": "SRR35152731",
+      "instrument_model": "Illumina MiniSeq",
+      "base_count": 7313783082,
+      "read_count": 26163616,
+      "fastq_bytes": "1639892795;1662399609",
+      "fastq_md5": "3657744ce7ff901fb4d0a2ed7ca03580;a2f6df1140084abf37e255d3d903de76"
+    },
+    {
+      "run_accession": "SRR35152732",
+      "instrument_model": "Illumina MiniSeq",
+      "base_count": 7892429636,
+      "read_count": 28063753,
+      "fastq_bytes": "1876438665;1951113380",
+      "fastq_md5": "e8ff51219bc389e3290270c6143a9cc3;6be483b506656792d888e4b92e9d109f"
+    },
+    {
+      "run_accession": "SRR35152733",
+      "instrument_model": "Illumina MiniSeq",
+      "base_count": 7053093126,
+      "read_count": 23354613,
+      "fastq_bytes": "1618309068;1664434806",
+      "fastq_md5": "656fcb62e1ba1ae11bc4e5df8ef2567d;9ec52f73595d32d86f4a1a64cff8d003"
+    },
+    {
+      "run_accession": "SRR35152734",
+      "instrument_model": "Illumina MiniSeq",
+      "base_count": 6291311112,
+      "read_count": 20832156,
+      "fastq_bytes": "1534591066;1556882966",
+      "fastq_md5": "daa7fced4f5716777e40d27649d5058f;5fdaf66d1cd52c1e1265e6c69c3d9ae9"
+    },
+    {
+      "run_accession": "SRR35152735",
+      "instrument_model": "Illumina MiniSeq",
+      "base_count": 4908877724,
+      "read_count": 16254562,
+      "fastq_bytes": "1116152637;1159108269",
+      "fastq_md5": "6a60c14cb87329e22e07128f45a9bc0f;ed538f42f7c6333bdd50f5d975627f10"
+    },
+    {
+      "run_accession": "SRR35152736",
+      "instrument_model": "Illumina MiniSeq",
+      "base_count": 7696148370,
+      "read_count": 25483935,
+      "fastq_bytes": "1823785185;1892076857",
+      "fastq_md5": "122b609d9ee62cf2a5cc44eead16be8a;b241d3e890c18221c26e00a0240d5305"
+    },
+    {
+      "run_accession": "SRR35152737",
+      "instrument_model": "Illumina MiniSeq",
+      "base_count": 7039925020,
+      "read_count": 23311010,
+      "fastq_bytes": "1693732350;1765319719",
+      "fastq_md5": "3e5ddd2e1f5b808aede020001d5fb88d;3182debd5a137acd03c57e7ebff37e76"
+    },
+    {
+      "run_accession": "SRR35152738",
+      "instrument_model": "Illumina MiniSeq",
+      "base_count": 7767505534,
+      "read_count": 25720217,
+      "fastq_bytes": "1857902886;1892911073",
+      "fastq_md5": "c98a6a05e8cb067f42514a7c42ac809c;235eed3f806ea770221c075ec192abaa"
+    },
+    {
+      "run_accession": "SRR35152739",
+      "instrument_model": "Illumina MiniSeq",
+      "base_count": 5748114584,
+      "read_count": 19033492,
+      "fastq_bytes": "983089415;971730287",
+      "fastq_md5": "8f8a9e60035e63df1e8b0973db56740e;22f73e7c4ef3764ee58062be79999689"
+    },
+    {
+      "run_accession": "SRR35152740",
+      "instrument_model": "Illumina MiniSeq",
+      "base_count": 6629050519,
+      "read_count": 23354918,
+      "fastq_bytes": "1592287487;1676924373",
+      "fastq_md5": "1ba01595b6776cd412417816e504b75a;b9a0998d3aa28d77d6970a01d7b735ff"
+    }
+  ]
+}

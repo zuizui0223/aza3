@@ -1,0 +1,155 @@
+{
+  "version": "aza3_anto_empirical_lego_bridge_v1",
+  "status_date": "2026-10-18",
+  "canonical_empirical_repository": "zuizui0223/aza3",
+  "theoretical_repository": "zuizui0223/anto",
+  "source_data_folder": "data/anto_source_handoff",
+  "authority_notes": [
+    "All new Cirsium specimen-level inference and experimental designs are in aza3; anto's prior audit files are archived evidence and links only.",
+    "A counted accession is not an independently validated flower-colour reversion or a confirmed herbarium voucher.",
+    "An exact gene-family best BLAST hit is not validated orthology or enzyme function.",
+    "Only a genomically and molecularly validated regained phenotype with rooted history can be labelled ancestral re-expression.",
+    "Future Cirsium data collection requires permits and own ethical authorization."
+  ],
+  "samplings": {
+    "phase_A_original_total": 298,
+    "by_taxon_target": [
+      {
+        "taxon": "Cirsium pendulum",
+        "planned_n": 60,
+        "role": "independent colour and capitulum source"
+      },
+      {
+        "taxon": "Cirsium sieboldii",
+        "planned_n": 40,
+        "role": "same-species joint capitulum LEGO test"
+      },
+      {
+        "taxon": "Cirsium lineare",
+        "planned_n": 24,
+        "role": "sticky module"
+      },
+      {
+        "taxon": "Cirsium dipsacolepis",
+        "planned_n": 24,
+        "role": "nonsticky comparison"
+      },
+      {
+        "taxon": "Cirsium brevicaule",
+        "planned_n": 75,
+        "role": "Ryukyu white toolkit"
+      },
+      {
+        "taxon": "Cirsium irumtiense",
+        "planned_n": 75,
+        "role": "Ryukyu coloured lineage"
+      }
+    ],
+    "phase_B_takaoense_separate": "20–30 W and 20–30 BP, planned if permissions and real within- or matched-population replication permit",
+    "phase_A_collected_n_currently_admitted": 0
+  },
+  "source_snapshots": [
+    "public_sra/prjna1311153_run_manifest_20261017.csv",
+    "public_sra/prjna1311153_qc_20261017.json",
+    "public_sra/takaoense_aza3_morph_crosswalk_20261017.csv",
+    "public_sra/prjna1311153_ena_platform_fingerprints_20261017.json",
+    "molecular/asteraceae_reference_cds_v5.fasta",
+    "molecular/asteraceae_reference_provenance_v5.json",
+    "molecular/ryukyu_gene_screen_register_v5.csv",
+    "molecular/source_availability_audit_v5.json",
+    "molecular/cirsium_japonicum_organ_evidence_v6.json",
+    "molecular/cirsium_japonicum_2020_blast_candidate_hits_v6.json",
+    "molecular/cirsium_japonicum_2020_26_source_sequences_v6.fasta",
+    "molecular/cirsium_japonicum_2020_26_sequence_provenance_v6.json"
+  ],
+  "observed_source_counts": {
+    "PRJNA1311153_new_2026_young_leaf_runs": 25,
+    "ryukyu_leaf_runs_brevicaule": 3,
+    "ryukyu_leaf_runs_irumtiense": 3,
+    "takaoense_white_morph_libraries": 3,
+    "takaoense_blue_purple_morph_libraries": 3,
+    "Park_2020_transcripts_total": 104890,
+    "Park_2020_author_blast_candidate_rows": 26,
+    "Park_2020_candidate_transcript_nt_total": 20781,
+    "published_Cirsium_organ_gene_and_metabolite_contrasts": 11
+  },
+  "current_invalid_inference_labels": [
+    "re-expression proven in brevicaule/irumtiense",
+    "three Ryukyu white/pigmented individuals represent three origins",
+    "2020 Park material sequenced the 2026 Ryukyu individual plants",
+    "structural DFR/ANS detection in leaf proves floral competence",
+    "all 26 BLAST candidate transcripts are orthologous enzyme copies",
+    "head module co-variation establishes separable genetic LEGO modules",
+    "gene association or morphology covariance proves local adaptation"
+  ],
+  "experimental_gates": [
+    {
+      "id": "T0",
+      "stage": "source_voucher_and_same_individual_identity",
+      "required": [
+        "taxon concept",
+        "vouchers/field permits",
+        "deidentified region",
+        "cytotype aware accession joins"
+      ]
+    },
+    {
+      "id": "T1",
+      "stage": "measured_gene_developmental_competence",
+      "required": [
+        "same individual flower and nonflower RNA",
+        "flower pigment chemistry",
+        "functional restoration or segregation"
+      ]
+    },
+    {
+      "id": "T2",
+      "stage": "ancestral_genomic_history",
+      "required": [
+        "dated rooted topology uncertainty",
+        "nuclear/local pigment genealogy",
+        "standing variation vs introgression vs de novo controls"
+      ]
+    },
+    {
+      "id": "T3",
+      "stage": "joint_capitulum_lego",
+      "required": [
+        "same individual three or more head modules",
+        "genome-wide ancestry adjustment",
+        "within-population recombinants or independent trait-locus genealogies"
+      ]
+    },
+    {
+      "id": "T4",
+      "stage": "trait_ecology_and_fitness",
+      "required": [
+        "preregistered ecological contrast",
+        "mechanistic mediator",
+        "filled viable achene endpoint"
+      ]
+    }
+  ],
+  "formal_bridge_estimands": [
+    {
+      "owner": "anto",
+      "symbol": "P(G|H,r,t)",
+      "meaning": "probability of joint latent module inventory conditional on dispersal history"
+    },
+    {
+      "owner": "anto",
+      "symbol": "P(S subseteq G|H,r,t)",
+      "meaning": "probability complex developmental resource set is retained"
+    },
+    {
+      "owner": "aza3",
+      "symbol": "Pr(Z|G,E,ancestry)",
+      "meaning": "head configuration conditional on measured inventory and ecological context"
+    },
+    {
+      "owner": "aza3",
+      "symbol": "E[viable_achenes|Z,E,genotype]",
+      "meaning": "causal reproductive performance only under randomized/matched experiment"
+    }
+  ]
+}

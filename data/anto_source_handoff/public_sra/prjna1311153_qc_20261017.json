@@ -1,0 +1,52 @@
+{
+  "retrieval_date": "2026-10-17",
+  "source_project": "PRJNA1311153",
+  "source_url": "https://www.ebi.ac.uk/ena/portal/api/filereport?accession=PRJNA1311153&result=read_run&fields=run_accession,experiment_accession,sample_accession,experiment_title,library_source,library_strategy,library_layout,fastq_bytes,study_accession&format=json",
+  "n_runs": 25,
+  "n_biosamples": 25,
+  "n_experiments": 25,
+  "counts_by_taxon": {
+    "Cirsium brevicaule": 3,
+    "Cirsium irumtiense": 3,
+    "Cirsium japonicum var. albescens": 2,
+    "Cirsium japonicum var. australe": 3,
+    "Cirsium japonicum var. fukienense": 4,
+    "Cirsium japonicum var. japonicum": 2,
+    "Cirsium japonicum var. takaoense": 6,
+    "Cirsium morii": 2
+  },
+  "ryukyu_run_codes": [
+    {
+      "run": "SRR35152724",
+      "code": "YGN-4296",
+      "taxon": "Cirsium irumtiense"
+    },
+    {
+      "run": "SRR35152725",
+      "code": "OKN-4295",
+      "taxon": "Cirsium brevicaule"
+    },
+    {
+      "run": "SRR35152729",
+      "code": "YRN-4166",
+      "taxon": "Cirsium brevicaule"
+    },
+    {
+      "run": "SRR35152730",
+      "code": "AMM-4163",
+      "taxon": "Cirsium brevicaule"
+    },
+    {
+      "run": "SRR35152731",
+      "code": "ISG-4111",
+      "taxon": "Cirsium irumtiense"
+    },
+    {
+      "run": "SRR35152732",
+      "code": "MMY-4078",
+      "taxon": "Cirsium irumtiense"
+    }
+  ],
+  "tissue_source": "BioProject text + Chang et al 2026 fresh-young-leaf RNA protocol",
+  "empirical_limit": "Run IDs, samples, specimen-code/title, deposited taxon names and library meta only; NO sequences downloaded, NO individual pigment phenotype or molecular mechanism established"
+}

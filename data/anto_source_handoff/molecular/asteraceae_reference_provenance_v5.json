@@ -1,0 +1,62 @@
+{
+  "panel_id": "anto_asteraceae_cds_references_v5",
+  "created_at": "2026-10-17",
+  "scope": "independent positive-reference sequences, NOT original Ryukyu Cirsium genotype or expression data",
+  "sequence_origin": "NCBI EFetch GenBank mRNA entries, annotated CDS slices (1-indexed, inclusive)",
+  "reference_features": [
+    {
+      "accession": "EF600682.1",
+      "gene": "DFR",
+      "start": 61,
+      "end": 1089,
+      "taxon": "Saussurea_medusa",
+      "function": "dihydroflavonol 4-reductase",
+      "doi": "10.1007/s11033-011-1061-2",
+      "published_evidence": "heterologous yeast functional assay; flower vs leaf expression by RT-PCR",
+      "mrna_length": 1166,
+      "cds_length": 1029,
+      "start_codon": "ATG",
+      "stop_codon": "TGA",
+      "ncbi_source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=EF600682&rettype=fasta&retmode=text",
+      "tissue_of_focal_samples": "not applicable: independent reference taxon"
+    },
+    {
+      "accession": "AY547342.1",
+      "gene": "ANS",
+      "start": 29,
+      "end": 1099,
+      "taxon": "Saussurea_medusa",
+      "function": "anthocyanidin synthase",
+      "doi": "10.1007/s11240-007-9211-x",
+      "published_evidence": "anthocyanin chemistry and differential RNA expression in cultured cells",
+      "mrna_length": 1229,
+      "cds_length": 1071,
+      "start_codon": "ATG",
+      "stop_codon": "TGA",
+      "ncbi_source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=AY547342&rettype=fasta&retmode=text",
+      "tissue_of_focal_samples": "not applicable: independent reference taxon"
+    },
+    {
+      "accession": "AJ007709.1",
+      "gene": "GMYC1",
+      "start": 310,
+      "end": 1911,
+      "taxon": "Gerbera_hybrida",
+      "function": "bHLH regulator associated with tissue- and flower-region DFR expression",
+      "doi": "10.1046/j.1365-313x.1998.00273.x",
+      "published_evidence": "organ-dependent DFR promoter reporter context; reference is bHLH not a DFR enzyme",
+      "mrna_length": 2268,
+      "cds_length": 1602,
+      "start_codon": "ATG",
+      "stop_codon": "TGA",
+      "ncbi_source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=AJ007709&rettype=fasta&retmode=text",
+      "tissue_of_focal_samples": "not applicable: independent reference taxon"
+    }
+  ],
+  "limits": [
+    "Reference similarity alone is not orthology",
+    "A full coding region does not establish floral expression in Ryukyu taxa",
+    "Leaf RNA absence cannot establish gene deletion",
+    "GMYC1 is bHLH regulatory reference, not DFR enzyme; paralog-specific assignment mandatory"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "audit_version": "anto_public_sequence_availability_v5",
+  "audited_date": "2026-10-17",
+  "source_article": "https://doi.org/10.1186/s12870-026-08097-6",
+  "focal_project": "PRJNA1311153",
+  "observed_primary_run_registrations": 25,
+  "source_paper_data_availability": "SRA raw sequence reads PRJNA1311153; author paper does not give an accessioned orthogroup alignment repository in its Data Availability paragraph",
+  "ena_secondary_analysis_query": "https://www.ebi.ac.uk/ena/portal/api/search?result=analysis&query=study_accession%3D%22PRJNA1311153%22&fields=analysis_accession,analysis_type,study_accession&format=json",
+  "ena_secondary_analysis_query_results": 0,
+  "ena_sequence_query": "https://www.ebi.ac.uk/ena/portal/api/search?result=sequence&query=study_accession%3D%22PRJNA1311153%22&fields=accession,scientific_name&format=json",
+  "ena_sequence_query_results": 0,
+  "interpretation_limit": "Zero results in these scoped ENA endpoints do not establish absence of author-held orthogroups, supplements, other servers or unpublished alignment files. The study-linked processed transcript CDSs remain UNVERIFIED/NOT_RETRIEVED.",
+  "externally_accessed_reference_cds": [
+    "EF600682.1",
+    "AY547342.1",
+    "AJ007709.1"
+  ],
+  "focal_candidate_sequences_actually_extracted": 0,
+  "focal_coding_variant_comparisons_performed": 0,
+  "resource_policy": "Do not retrieve ~80.66 GB of paired FASTQ data as a prerequisite for exploratory annotation. Seek author orthogroup bundles, verified reference assemblies or prespecified feasible targeted read processing first.",
+  "next_required_actions": [
+    "Recover source supplementary specimen/voucher table and author-available ortholog alignments if accessible",
+    "Check if bona fide pigmented Asteraceae orthogroup references can be linked to each of six runs",
+    "Obtain selected gene candidates with assembly coverage/orthology and coding support",
+    "Resolve ploidy/cytotype and leaf-tissue assay restrictions before interpreting functional pigment loss"
+  ]
+}
