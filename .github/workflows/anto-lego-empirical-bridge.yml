@@ -1,0 +1,30 @@
+name: aza3 anto empirical LEGO handoff
+on:
+  push:
+    paths:
+      - 'docs/ANTO_ACCESSIBILITY_TO_AZA3_HEAD_LEGO_EMPIRICAL_MASTER_V1.md'
+      - 'data/anto_source_handoff/**'
+      - 'data/contracts/aza3_anto_empirical_lego_bridge_v1.json'
+      - 'analysis/validate_anto_lego_empirical_bridge_v1.py'
+      - '.github/workflows/anto-lego-empirical-bridge.yml'
+  pull_request:
+    paths:
+      - 'docs/ANTO_ACCESSIBILITY_TO_AZA3_HEAD_LEGO_EMPIRICAL_MASTER_V1.md'
+      - 'data/anto_source_handoff/**'
+      - 'data/contracts/aza3_anto_empirical_lego_bridge_v1.json'
+      - 'analysis/validate_anto_lego_empirical_bridge_v1.py'
+      - '.github/workflows/anto-lego-empirical-bridge.yml'
+permissions:
+  contents: read
+jobs:
+  validate-handoff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify biological source crosswalk and archival molecular data
+        run: |
+          python analysis/validate_anto_lego_empirical_bridge_v1.py > /tmp/aza3_anto_lego_handoff.json
+          python -c "import json; d=json.load(open('/tmp/aza3_anto_lego_handoff.json')); assert d['source_snapshots_verified']==12 and d['rna_source_runs']==25 and d['ryukyu_source_runs']==6; assert not d['molecular_reexpression_demonstrated'] and not d['independent_genetic_LEGO_demonstrated'] and not d['fieldwork_authorized']"
