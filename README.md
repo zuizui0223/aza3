@@ -1,5 +1,20 @@
 # aza3 — source of phenotypic evolvability in a young thistle radiation
 
+
+## anto × aza3: empirical ownership and LEGO hypothesis (18 October 2026)
+
+**aza3 is now the exclusive active home for Cirsium empirical study design** underlying the cross-angiosperm [anto theoretical programme](https://github.com/zuizui0223/anto): Ryukyu *brevicaule*–*irumtiense* source data, var. *takaoense* molecular contrasts, organ-scoped colour and pigment tests, population ancestry, cytotype, all same-individual capitulum modules, functional manipulations and fitness.
+
+- **anto upstream:** What modules can plant lineages *carry* across dispersal/colonization, and how long can lost floral phenotypes remain evolutionarily reachable?
+- **aza3 downstream LEGO:** Which retained/shared/exchanged modules can be jointly assembled into newly expressed capitulum configurations, conditional on ancestry, developmental compatibility and environment?
+- The two claims are not equivalent. Repeat appearance of a coloured flower can be immigration/introgression, and recurrent head shapes need not use the same genetic building blocks.
+
+**Authoritative biological execution and decision gates:** [ANTO_ACCESSIBILITY_TO_AZA3_HEAD_LEGO_EMPIRICAL_MASTER_V1.md](docs/ANTO_ACCESSIBILITY_TO_AZA3_HEAD_LEGO_EMPIRICAL_MASTER_V1.md), [machine-readable contract](data/contracts/aza3_anto_empirical_lego_bridge_v1.json), and [fail-closed validator](analysis/validate_anto_lego_empirical_bridge_v1.py).
+
+**Real publicly accessible external evidence copied under aza3:** [Cirsium and Asteraceae source handoff](data/anto_source_handoff/) includes 25 source-registered young-leaf runs (6 focal Ryukyu and 6 var. *takaoense*), 2020 within-*Cirsium* multi-organ phenylpropanoid comparisons, and 26 actual source transcript sequences annotated as DFR/ANS-like by published BLAST. None of these represents a confirmed genotype, regulatory regain or causal colour allele for the 2026 Ryukyu sample pair. Original aza3 own-sample authorization, prospective 298 Phase-A targets and dated-tree Gate 0 remain unchanged. No new biological field collection is authorized.
+
+
+
 ## Nature-scale programme
 
 aza3 now preserves two nested roles:
