@@ -15,9 +15,9 @@ on:
 permissions:
   contents: read
 jobs:
-  capped-ENA-single-run-pilot:
+  capped-ENA-six-run-pilot:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 18
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -37,11 +37,17 @@ jobs:
         run: |
           python analysis/anto_empirical/ryukyu_ena_prefix_homology_v6.py --runs SRR35152730 --bytes-per-run 8388608 --output /tmp/aza3_one_run_ryukyu_prefix_v6.json
           python -c "import json; r=json.load(open('/tmp/aza3_one_run_ryukyu_prefix_v6.json')); assert r['n_Ryukyu_source_specimens_queried']==1; assert r['runs'][0]['run']=='SRR35152730'; assert not r['floral_reexpression_demonstrated']; assert not r['gene_copy_numbers_inferred']; assert not r['full_run_gene_absence_evidence']"
+      - name: Apply equal capped R1 prefixes to all six real Ryukyu Cirsium specimens (16 MiB each)
+        run: |
+          python analysis/anto_empirical/ryukyu_ena_prefix_homology_v6.py --bytes-per-run 16777216 --output /tmp/aza3_six_Ryukyu_leaf_prefix_v6.json
+          python -c "import json,collections; r=json.load(open('/tmp/aza3_six_Ryukyu_leaf_prefix_v6.json')); assert r['n_Ryukyu_source_specimens_queried']==6; assert len({x['biosample'] for x in r['runs']})==6; assert collections.Counter(x['taxon'] for x in r['runs'])=={'Cirsium brevicaule':3,'Cirsium irumtiense':3}; assert sum(x['download']['compressed_bytes_retrieved'] for x in r['runs'])==6*16777216; assert not r['floral_reexpression_demonstrated']; assert not r['gene_copy_numbers_inferred']; assert not r['RNA_expression_quantified_or_compared_between_species']; assert not r['full_run_gene_absence_evidence']"
       - name: Save only bounded run-level source/read-mapping QC, never raw library FASTQ
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: aza3-v6-one-run-R1-prefix-QC
-          path: /tmp/aza3_one_run_ryukyu_prefix_v6.json
+          name: aza3-v6-six-Ryukyu-capped-leaf-R1-prefix-QC
+          path: |
+            /tmp/aza3_one_run_ryukyu_prefix_v6.json
+            /tmp/aza3_six_Ryukyu_leaf_prefix_v6.json
           retention-days: 10
           if-no-files-found: ignore
