@@ -1,5 +1,6 @@
 name: Probe bounded public Ryukyu RNA-seq R1 prefixes
 on:
+  workflow_dispatch:
   pull_request:
     paths:
       - 'analysis/anto_empirical/ryukyu_R1_prefix_kmer_pilot_v6.py'
@@ -33,6 +34,7 @@ jobs:
         run: |
           python -c "import json; p='data/anto_source_handoff/public_sra/ryukyu_six_R1_prefix_source_v6.json'; x=json.load(open(p)); assert len(x['runs'])==6 and x['early_pilot_cap_compressed_bytes_per_run']==8388608; assert all(r['tissue']=='young leaf' and not r['per_individual_corolla_pigmentation_quantified'] for r in x['runs'])"
   public-six-run-prefix:
+    if: github.event_name == 'workflow_dispatch'
     needs: offline-validation
     runs-on: ubuntu-latest
     timeout-minutes: 20
