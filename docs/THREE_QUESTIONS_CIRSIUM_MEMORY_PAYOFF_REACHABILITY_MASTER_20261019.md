@@ -183,6 +183,22 @@ aza3の *C. sieboldii* Phase-A **40予定個体**は別の分子/同一個体高
 
 現存する[元回帰と測定方法の証拠ノート](CIRSIUM_Q2_PURPURATUM_DISPLAY_PREDATOR_POLLINATOR_1998_2000_V1.md)、[著者係数を再計算する解析](../analysis/audit_cirsium_purpuratum_display_predator_context_v1.py)、[実数値レシート](../data/evidence/cirsium_purpuratum_published_context_coefficients_result_v1.json)を保存した。これは**公刊曲線の再表現**であって、元母植物のデータ・系統的記憶・再発現や新しい同頭花実験の結果ではない。
 
+## 2026-10-19 Q2数値の実測補完とQ3候補：フジアザミなら機能×色型の対照を共有できるか
+
+**Cirsium purpuratum＝フジアザミ**について、日本の公刊実験で新たに次の材料を確認した。
+
+1. 1998年 Ohashi & Yahara（DOI `10.2307/2446309`）：マルハナバチの**植物当たり**訪問は頭花ディスプレイとともに増え逓減し、**頭花当たり**訪問率はほぼ一定。
+2. 2000年 Ohashi & Yahara（DOI `10.1139/b99-182`）：日光1993（**直接測定**、13個体）と川俣1994（**幼虫数から推定**、27個体）で、植物の小花総数に対する種子損失飽和係数はそれぞれ **0.000063対0.0000075（比8.4倍）**。既存幼虫群集の`Larinus meleagris`割合は44%対84%、頭花当たり幼虫密度は5.4対0.26。**年・地点・種子損失の推定方法も違う**ので、昆虫の組成を操作したことにはならない。
+3. Kewの [`C. purpuratum f. albiflorum`](https://powo.science.kew.org/taxon/urn%3Alsid%3Aipni.org%3Anames%3A3300801-4)（1937年）の白花型は現種 `C. purpuratum` の**異名**。国立科学博物館の[フジアザミ記載](https://www.kahaku.go.jp/research/db/botany/azami/detail.html?no=135)では巨大で下向きの頭花と総苞形態が確認できる。つまり、**同一アザミ種内で色素のon/off候補と既知の送粉・種子食者候補を両方研究できる可能性**が生じた。
+
+ただしこれは3問の達成ではなく、**有望な候補系を一つ特定した段階**である。白花と紫花の現在の同所分布、同一個体での機能資源保持・発現・遺伝性、核系統樹上での別系統比較は未確認。 `C. purpuratum` は frozen Moreyra-日本38の名簿に含まれず、①の日本側ρへ加える核標本がここで得られたわけではない。
+
+**実験段取りを効率化する提案：** (i) 白花・着色の同一種内実在標本と許可を確認、(ii) 頭花の外側総苞・本物の刺/角度とBombus・Larinus・Deliaの**来訪/接触→実効花粉/産卵**を同じ個体で測る、(iii) 実際に共同保持された花色経路のゲノム・花器官発現・遺伝性が確認できた場合にのみQ3の再発現問題へ進む。①の進化記憶移植には、独立した同じ核座位に基づく系統比較が追加で必要であり、現在の白色forma学名を「祖先形質の再獲得」とは呼ばない。
+
+- [元論文係数・昆虫2種・白色formaの根拠と境界](CIRSIUM_Q2_PURPURATUM_DISPLAY_PREDATOR_POLLINATOR_1998_2000_V1.md)
+- [実原著のサイト別aの再計算コード](../analysis/audit_cirsium_purpuratum_display_predator_context_v1.py)
+- [実数値の源データレシート](../data/evidence/cirsium_purpuratum_published_context_coefficients_result_v1.json)
+
 ## 3問の統合を成立させる「共通データ」対「追加データ」
 
 **共有の基盤（各個体・各頭花ID）**：植物集団の位置、核/葉緑体 ancestry、cytotype、頭花の性/順位/発育期、連続形態5軸、floretの可視+UVと色素、小花/総苞の発現と化学、昆虫の同時録画/同定と行動、袋掛け/開放/shamを許可状況に応じて区別、充実痩果の最終評価。
