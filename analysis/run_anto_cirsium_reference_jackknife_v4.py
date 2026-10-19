@@ -93,6 +93,30 @@ def main(output=None):
             "no_plant_histories_dated":True
         },
     }
+    frozen=json.loads((DATA/"cirsium_2020_reference_omission_sensitivity_v4.json").read_text(encoding="utf-8"))
+    if frozen.get("version")!="aza3_cirsium_reference_taxon_sensitivity_v4":
+        raise ValueError("Frozen external-reference robustness report has unexpected version")
+    if (result["stable_family_and_strong_in_all_scenarios"]!=frozen["stable_family_and_strong_in_all_scenarios"] or
+        result["strong_when_Saussurea_removed"]!=frozen["strong_when_Saussurea_removed"]):
+        raise ValueError("Strong-family reference omission sensitivity changed")
+    frozen_by_id={row["transcript_id"]:row for row in frozen["scenarios_by_transcript"]}
+    if set(frozen_by_id)!={row["transcript_id"] for row in evidence}:
+        raise ValueError("Frozen original five transcribed IDs changed")
+    for row in evidence:
+        ref=frozen_by_id[row["transcript_id"]]
+        if ref["stable_across_all_reference_omissions"]!=row["stable_across_all_reference_omissions"]:
+            raise ValueError("Reference stability classification changed for "+row["transcript_id"])
+        for case,meas in row["comparisons"].items():
+            prior=ref["comparisons"][case]
+            for field in ("best_group","strong_similarity","strong_and_same_family",
+                          "best_reference_id","aligned_aa"):
+                if meas[field]!=prior[field]:
+                    raise ValueError(f"Frozen alignment reference sensitivity changed: {row['transcript_id']} {case} {field}")
+            for field in ("reference_coverage","aligned_identity"):
+                if abs(meas[field]-prior[field])>1e-6:
+                    raise ValueError(f"Frozen protein alignment evidence changed: {row['transcript_id']} {case} {field}")
+    result["frozen_published_source_reproducibility_verified"]=True
+    result["frozen_record"]="data/anto_source_handoff/molecular/cirsium_2020_reference_omission_sensitivity_v4.json"
     text=json.dumps(result,indent=2,ensure_ascii=False,sort_keys=True)+"\n"
     if output is None:print(text)
     else:
