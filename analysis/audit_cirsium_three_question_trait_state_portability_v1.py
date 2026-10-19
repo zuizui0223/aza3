@@ -88,7 +88,12 @@ def audit(member,base,extra,held):
         demand(canonical_concept(members[cid]["paper_taxon_concept"])==sp,
                "JAPAN38_PAPER_AND_BOTANICAL_CONCEPT_DISAGREE")
         state=r["orientation_state"]
-        demand(state in STATES+("unknown",),
+        # Upward_or_ascending appears in one authority label but was
+        # not preregistered as identical to the stricter upward_or_erect
+        # ontology. A separate index/detail conflict is not an observed
+        # binary state. Both remain explicit excluded source categories.
+        demand(state in STATES+("unknown","upward_or_ascending",
+                               "source_conflict_index_downward_detail_erect"),
                "UNRESOLVED_JAPANESE_ORIENTATION_WAS_FORCE_CODED")
         if state in STATES:
             japonica[state]+=1
@@ -118,7 +123,8 @@ def audit(member,base,extra,held):
             demand(concept not in source_species,
                    "SAME_DISCOVERY_TAXON_LEAKED_TO_HELDOUT")
         else:
-            demand(h["discovery_overlap"]=="yes",
+            demand(h["discovery_overlap"] in {
+                "yes","yes_or_taxonomically_entangled"},
                    "HELDOUT_OVERLAP_UNKNOWN_NOT_ASSUMED_INDEPENDENT")
         o=h["orientation_pool_status"]
         s=h["orientation_state"]
@@ -171,6 +177,15 @@ def audit(member,base,extra,held):
          "phyllary_scored_taxa":known["phyllary"],
          "stickiness_scored_taxa":known["stickiness"],
          "orientation_states":dict(japonica),
+         "additional_unharmonized_orientation_labels":{
+             "upward_or_ascending":sum(
+                 x["orientation_state"]=="upward_or_ascending" for x in source.values()),
+             "source_conflict_index_downward_detail_erect":sum(
+                 x["orientation_state"]=="source_conflict_index_downward_detail_erect"
+                 for x in source.values()),
+             "unknown":sum(x["orientation_state"]=="unknown" for x in source.values()),
+         },
+         "strict_19_not_all_EAzami_orientation_states":True,
        },
        "external_candidate_pool":{
          "source_backed_taxon_rows":len(held),
