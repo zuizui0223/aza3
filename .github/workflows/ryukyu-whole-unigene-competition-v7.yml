@@ -1,16 +1,23 @@
 name: Challenge Ryukyu leaf matches against full Cirsium unigene background
 on:
+  workflow_dispatch:
   pull_request:
     paths:
       - 'analysis/anto_empirical/ryukyu_full_unigene_competition_v7.py'
       - 'analysis/test_ryukyu_full_unigene_competition_v7.py'
       - 'docs/RYUKYU_FULL_2020_UNIGENE_COMPETITIVE_MAPPING_V7.md'
+      - 'analysis/validate_ryukyu_full_104890_unigene_mapping_v7.py'
+      - 'analysis/test_validate_ryukyu_full_104890_unigene_mapping_v7.py'
+      - 'data/anto_source_handoff/public_sra/ryukyu_six_full_104890_unigene_competitive_mapping_v7.json'
       - '.github/workflows/ryukyu-whole-unigene-competition-v7.yml'
   push:
     paths:
       - 'analysis/anto_empirical/ryukyu_full_unigene_competition_v7.py'
       - 'analysis/test_ryukyu_full_unigene_competition_v7.py'
       - 'docs/RYUKYU_FULL_2020_UNIGENE_COMPETITIVE_MAPPING_V7.md'
+      - 'analysis/validate_ryukyu_full_104890_unigene_mapping_v7.py'
+      - 'analysis/test_validate_ryukyu_full_104890_unigene_mapping_v7.py'
+      - 'data/anto_source_handoff/public_sra/ryukyu_six_full_104890_unigene_competitive_mapping_v7.json'
       - '.github/workflows/ryukyu-whole-unigene-competition-v7.yml'
 permissions:
   contents: read
@@ -29,7 +36,13 @@ jobs:
         run: |
           python -m py_compile analysis/anto_empirical/ryukyu_full_unigene_competition_v7.py
           python analysis/test_ryukyu_full_unigene_competition_v7.py -v
+      - name: Validate completed six-source 104890-unigene competition evidence and conservative biological limits
+        run: |
+          python analysis/test_validate_ryukyu_full_104890_unigene_mapping_v7.py -v
+          python analysis/validate_ryukyu_full_104890_unigene_mapping_v7.py > /tmp/ryukyu_full_reference_evidence_audit_v7.json
+          python -c "import json; d=json.load(open('/tmp/ryukyu_full_reference_evidence_audit_v7.json')); assert d['source_Cirsium_2020_full_transcripts_validated']==104890 and d['focal_Ryukyu_2026_R1_biological_libraries']==6; assert d['full_104890_reference_competition_selected_26_candidate_matches']==215 and d['full_104890_reference_competition_TR39766_fragments']==66 and d['full_104890_reference_competition_TR41106_fragments']==106; assert d['full_104890_reference_competition_shuffled_null_fragments']==0; assert not d['reexpression_re_evolution_supported']"
   live-six-run-whole-source-competition:
+    if: github.event_name == 'workflow_dispatch'
     needs: source-and-null-tests
     runs-on: ubuntu-latest
     timeout-minutes: 30
