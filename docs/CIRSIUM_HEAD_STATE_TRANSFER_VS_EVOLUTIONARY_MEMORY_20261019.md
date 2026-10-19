@@ -94,6 +94,18 @@ GBIF監査は「正確な分類名・座標誤差10 km以下・0.1度間引き�
 
 原本は `EAzami@c9870e...` の `heldout_east_asia_occurrence_support_v1.csv`（12分類群のスクリーン）であり、新設 `analysis/audit_cirsium_q1_heldout_nuclear_sample_crosswalk_v1.py` にGBIF品質との交差監査を追加した。小さい[機械可読の確定レシート](../data/evidence/cirsium_q1_nuclear_occurrence_source_overlap_v1.json)に、2/11、2/11、1/11と不採用になった危険なトルコ名一致を別々に保存した。
 
+## 重要な補足：下向き *C. schantarense* の核DNA研究自体は既に存在する
+
+「Moreyra et al. 2025 の**共通Compositae1061標本表に下向き候補が整合しない**」ことと、「*C. schantarense* の核DNAがまったく研究されていない」ことは別である。
+
+**Bae（2015）, *Genetic Relationship of Some Cirsium Plants of Korea*, *Journal of Life Science* 25:243–248, DOI [10.5352/JLS.2015.25.2.243](https://doi.org/10.5352/JLS.2015.25.2.243)** は、韓国の垂下した `C. schantarense`（原文中に `shantarense` の綴りも見られる）1個体と、上向き *C. japonicum* 8地点などについて、**18S–ITS1–5.8S–ITS2–一部28S の核rDNA**を比較した。原著の隣接結合法のITS系統では、向きが逆なのに両者は近い群に位置した。これは既に `EAzami` の独立した[文献Tier C監査](https://github.com/zuizui0223/EAzami/blob/c9870e91604ed1514344ddc8f765eae5237dbf27/docs/CIRSIUM_PHYLOGENY_LITERATURE_SCREENING_BATCH_02B_2026-08-10.md) に収録されていた結果であり、ここで新発見を主張するわけではない。
+
+**非自明な生物学的な示唆候補：** 目立つ頭花の向きの差は、浅い核リボソームDNA変異でも起こり得る。しかし `ITS` は**一つの連鎖した反復遺伝子領域**で、concerted evolution・浸透交雑・ILS・微小な遺伝差を区別できない。垂下頭花が最近再進化した、祖先遺伝子が復活した、形質の記憶が消えた、という証明にはならない。
+
+- 2015年の配列原本・GenBank番号・当時の標本voucherを**今回の解析では再取得していない**。
+- 2015年のlinked rDNA系統と、2025年の核1061遺伝子座系統について、異なる枝長を貼り合わせて `rho` を算出することは禁止。
+- 次の解析は *C. schantarense* の**DNAが存在するかどうか**を初歩から尋ね直すのではなく、すでにある2015年の核ITS資料の標本同定・配列accessionを監査し、可能なら2025年の多遺伝子座共通核枠組みにどのように接続できるかを問う。
+
 ## 進化的記憶を検証する追加条件
 
 元の `turnover` の量は、系統のpatristic距離と同一形質の非類似度の関係（S3 rhoなど）。**今回の `p_J`, Brierにはpatristic距離が1つもない。** 正確なQ1は次を満たす場合に限る。
