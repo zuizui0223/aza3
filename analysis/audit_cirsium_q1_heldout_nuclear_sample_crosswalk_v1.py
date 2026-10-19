@@ -187,6 +187,10 @@ def audit(heldout,samples):
         "heldout_with_false_or_discordant_tree_code_name_only_match":n_misleading,
         "heldout_without_matching_exact_nuclear_sample_record":n_missing,
         "accepted_external_species":sorted(known),
+        "accepted_external_upward_or_erect_species":sum(
+            x["orientation_state"]=="upward_or_erect" for x in known.values()),
+        "accepted_external_downward_or_nodding_species":sum(
+            x["orientation_state"]=="downward_or_nodding" for x in known.values()),
         "rejected_false_match":bad["taxon"],
         "by_taxon":by_taxon,
         "memory": {
@@ -194,6 +198,8 @@ def audit(heldout,samples):
             "complete_11_species_nuclear_branch_length_comparison":False,
             "number_external_trusted_tip_label_species":n_clean,
             "independent_external_patristic_tip_pairs_at_most":1,
+            "external_2_species_pair_has_trait_state_contrast":False,
+            "two_verified_species_both_upward_do_not_identify_memory_gradient":True,
             "external_phylogenetic_memory_rho":None,
             "genus_out_of_lineage_transfer_gain":None,
             "inferential_status":"HOLD_ONLY_TWO_VERIFIED_EXTERNAL_TAXA_NO_DATED_TREE_OR_REPLICATED_BRANCH_DISTANCES",
