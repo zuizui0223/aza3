@@ -1,0 +1,83 @@
+name: Audit Cirsium cross-lineage head-state transfer v1
+
+on:
+  pull_request:
+    paths:
+      - "analysis/audit_cirsium_three_question_trait_state_portability_v1.py"
+      - "docs/CIRSIUM_HEAD_STATE_TRANSFER_VS_EVOLUTIONARY_MEMORY_20261019.md"
+      - ".github/workflows/audit-cirsium-head-state-transfer-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pinned-japan-vs-east-asia-botanical-states:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch immutable original EAzami Japan and East Asia trait evidence
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work
+          gh api 'repos/zuizui0223/EAzami/contents/data/evidence/moreyra2025_japan_38_membership_audit_2026-08-10.csv?ref=c9870e91604ed1514344ddc8f765eae5237dbf27' --jq .content | base64 -d > work/japan38.csv
+          gh api 'repos/zuizui0223/EAzami/contents/data/evidence/japan38_nmns_capitulum_trait_seed_v1.csv?ref=c9870e91604ed1514344ddc8f765eae5237dbf27' --jq .content | base64 -d > work/nmns_base.csv
+          gh api 'repos/zuizui0223/EAzami/contents/data/evidence/japan38_nmns_capitulum_trait_seed_extension_v2.csv?ref=c9870e91604ed1514344ddc8f765eae5237dbf27' --jq .content | base64 -d > work/nmns_extra.csv
+          gh api 'repos/zuizui0223/EAzami/contents/data/evidence/heldout_east_asia_trait_state_audit_v1.csv?ref=c9870e91604ed1514344ddc8f765eae5237dbf27' --jq .content | base64 -d > work/east_asia.csv
+          test -s work/japan38.csv && test -s work/nmns_base.csv && test -s work/nmns_extra.csv && test -s work/east_asia.csv
+      - name: Assert real taxon-label transfer is NOT phylogenetic memory transfer
+        run: |
+          python -m py_compile analysis/audit_cirsium_three_question_trait_state_portability_v1.py
+          python analysis/audit_cirsium_three_question_trait_state_portability_v1.py \
+            --japan38-members work/japan38.csv \
+            --nmns-base work/nmns_base.csv \
+            --nmns-extension work/nmns_extra.csv \
+            --east-asia-heldout work/east_asia.csv \
+            --out work/cirsium_head_state_portability_v1.json
+      - name: Verify Japanese 19 vs East Asian 11 and no invalid memory claim
+        run: |
+          python - <<'PY'
+          import json
+          p=json.load(open("work/cirsium_head_state_portability_v1.json"))
+          t=p["negative_controls"]
+          a=p["existing_real_taxon_state_audit"]
+          assert t["status"]=="PASS_SYNTHETIC_SOURCE_LEAKAGE_AND_MEMORY_CLAIM_GATES"
+          assert t["n_source_corruption_negative_controls"]==7
+          assert t["real_phylogenetic_memory_estimates_produced"]==0
+          assert a["discovery"]["paper_cohort_taxa"]==38
+          assert a["discovery"]["botanical_coded_taxon_concepts"]==24
+          assert a["discovery"]["orientation_scored_taxa"]==19
+          assert a["discovery"]["orientation_states"]=={
+            "upward_or_erect":13, "downward_or_nodding":6}
+          assert a["discovery"]["phyllary_scored_taxa"]==10
+          assert a["discovery"]["stickiness_scored_taxa"]==13
+          assert a["discovery"]["additional_unharmonized_orientation_labels"]["upward_or_ascending"]==1
+          assert a["discovery"]["additional_unharmonized_orientation_labels"]["source_conflict_index_downward_detail_erect"]==1
+          e=a["external_candidate_pool"]
+          assert e["source_backed_taxon_rows"]==19
+          assert e["orientation_predeclared_eligible_taxa"]==11
+          assert e["orientation_state_counts"]=={
+            "upward_or_erect":6, "downward_or_nodding":5}
+          assert e["stickiness_predeclared_eligible_taxa"]==2
+          assert e["phyllary_codable_nonoverlap_taxa"]==1
+          z=a["taxon_label_only_sanity_check"]
+          assert abs(z["japan_upward_rate"]-13/19)<1e-12
+          assert abs(z["heldout_upward_rate"]-6/11)<1e-12
+          assert abs(z["train_Japan_upward_probability_heldout_Brier"]-.2671871065222866)<1e-12
+          assert abs(z["predefined_half_probability_heldout_Brier"]-.25)<1e-12
+          assert z["Japanese_marginal_improves_over_half"] is False
+          assert a["Q1_phylogenetic_memory"]["inferential_status"]=="NOT_IDENTIFIABLE_MISSING_MATCHED_PHYLOGENETIC_DISTANCE_ENSEMBLE"
+          print("PASS: real state-label transfer diagnostic and phylogenetic-memory hold correctly separated")
+          PY
+      - name: Preserve audited non-sensitive summary
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-head-state-transfer-source-audit-v1
+          path: work/cirsium_head_state_portability_v1.json
+          if-no-files-found: error
+          retention-days: 30
