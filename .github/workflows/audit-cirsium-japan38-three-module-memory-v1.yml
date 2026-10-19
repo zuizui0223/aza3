@@ -6,6 +6,7 @@ on:
       - "analysis/audit_cirsium_japan38_three_module_exact_memory_v1.py"
       - "analysis/audit_cirsium_japan38_orientation_phylogenetic_memory_v1.py"
       - "docs/CIRSIUM_JAPAN38_ACTUAL_ORIENTATION_MEMORY_RESULT_20261019.md"
+      - "data/evidence/cirsium_japan38_real_three_module_phylogenetic_memory_result_v1.json"
       - ".github/workflows/audit-cirsium-japan38-three-module-memory-v1.yml"
   workflow_dispatch:
 
@@ -54,6 +55,9 @@ jobs:
           import json,math
           d=json.load(open("work/cirsium_real_three_module_exact_memory_v1.json"))
           a=d["actual_source_module_results"]
+          frozen=json.load(open("data/evidence/cirsium_japan38_real_three_module_phylogenetic_memory_result_v1.json"))
+          assert frozen["provenance"]["source_nuclear_tree_sha256"]==d["canonical_phylogram_SHA256"]
+          assert frozen["provenance"]["tests_passed"] is True
           o=a["orientation"]
           s=a["stickiness"]
           p=a["phyllary_posture_STRICT_single_state_only"]
@@ -64,6 +68,16 @@ jobs:
                   s["n_fixed_prevalence_exact_assignments"],
                   p["n_fixed_prevalence_exact_assignments"]]==[27132,1716,30]
           assert math.isfinite(o["patristic_vs_discrete_mismatch_Spearman_rho"])
+          for name,src in (
+              ("orientation",o),
+              ("stickiness",s),
+              ("strict_phyllary_posture_exploratory",p)
+          ):
+              expected=frozen["primary"][name]
+              assert abs(src["patristic_vs_discrete_mismatch_Spearman_rho"]-expected["Spearman_rho"])<1e-10
+              assert abs(src["exact_two_sided_tip_label_permutation_p"]-expected["exact_two_sided_permutation_p"])<1e-12
+              assert src["n_scored_taxa"]==expected["n_taxa"]
+              assert src["n_fixed_prevalence_exact_assignments"]==expected["n_possible_exact_fixed_count_assignments"]
           assert abs(o["patristic_vs_discrete_mismatch_Spearman_rho"]-(-.027829091261887595))<1e-9
           assert p["status"]=="EXPLORATORY_FEWER_THAN_TEN_UNAMBIGUOUS_SOURCE_TAXA"
           assert "HOLD" in d["external_head_state_memory_portability"]
