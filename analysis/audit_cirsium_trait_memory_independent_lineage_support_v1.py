@@ -63,16 +63,12 @@ def analyse(roster,base,extension,heldout):
     for row in source:
         if row["authority_match_status"]!="exact_authority_concept_match":
             raise ValueError("JAPAN_TRAIT_UNRESOLVED_AUTHORITY_CONCEPT")
-        if row["paper_taxon_concept"].strip()!=(
-                by_roster[row["paper_japan_member_id"]]
-                ["paper_taxon_concept"].strip().split(" Kadota")[0]
-            ) and row["paper_taxon_concept"].strip() not in (
-                by_roster[row["paper_japan_member_id"]]
-                ["paper_taxon_concept"].strip(),):
-            # Authored authority taxon concepts can differ in the published
-            # authority string beyond a simple author suffix; registry IDs,
-            # not fuzzy name transforms, are the primary exact join.
-            pass
+        # The immutable Japan paper-member ID is the exact-source join.
+        # Taxon-author abbreviations are not silently transformed to
+        # purportedly exact identical biological vouchered individuals.
+        require_id=by_roster[row["paper_japan_member_id"]]
+        if not require_id.get("paper_taxon_concept","").startswith("Cirsium"):
+            raise ValueError("ROSTER_TAXON_AUTHORITY_NAMESPACE_INVALID")
         if not row["source_url"].startswith("https://"):
             raise ValueError("JAPAN_STATE_SOURCE_URL_MISSING")
     if len(base)!=22 or len(extension)!=2 or len(source)!=24:
@@ -93,7 +89,9 @@ def analyse(roster,base,extension,heldout):
 
     external_not_overlap=[r for r in heldout
                           if r["discovery_overlap"]=="no"]
-    overlapping=[r for r in heldout if r["discovery_overlap"]=="yes"]
+    overlapping=[r for r in heldout
+                 if r["discovery_overlap"] in
+                 {"yes","yes_or_taxonomically_entangled"}]
     if len(external_not_overlap)!=16 or len(overlapping)!=3:
         raise ValueError("SOURCE_HOLDOUT_OVERLAP_COUNTS_CHANGED")
     def eligible(column,state_col):
