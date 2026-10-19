@@ -52,3 +52,34 @@ No raw specimen head file, re-fitted effect, new Cirsium field accession, genome
 Q2 has **an actual head-level multi-guild intervention with a reported sign-divergent outcome in the same Cirsium species**. The key missing causal link is not "do pollinators and seed predators affect one another?" but **which head interface/stage produces that coupling, and whether a physical module shifts it toward a net gain or loss in reproductive output**.
 
 Before a broad new field factorial, test whether the open Zenodo release contains the absolute per-head fertilized/unfertilized/predated-seed counts and emerged insect numbers needed for a **descriptive** denominator audit and field effect replication. If the data are available, preserve original experimental randomization and source licenses. If not, retain only the authors' published outcome directions and note access failure.
+
+## The decisive unresolved mediation experiment
+
+**The overlooked mechanism in the actual paper's METHODS:** The 2022 pollinator-exclusion treatment was not an isolated intervention on successful seed fertilization. The authors covered **at least three heads** with **organza mesh bags** supported by wire frames installed around one week **before** flowering. Thus the intervention might simultaneously alter (a) pollinator transfer and seed provisioning; (b) **adult seed-feeder encounter/oviposition through the mesh**; (c) parasitoid/predator access, head-level abiotic humidity, flowering microclimate and inspection probability. We have not measured seed-feeder adult passage through this particular mesh. **The preprint's reported reduction in emerged adult florivores is an experimental contrast for its BAG TREATMENT, but is not uniquely an effect mediated by the absence of pollination.** A positive pollinator→florivore dependency claim remains plausible yet not isolated.
+
+The source reports **12 blocks of four treatment plants at four sites** (48 blocks, expected 192 assigned plant slots), but separately prints **196 plants**. It also reports **609 mature heads** sampled, counting fertilized, unfertilized, predated seed categories and reared adult guilds. Until actual per-plant CSV is inspected, do not invent a correction for the apparent plant-total discrepancy: it could reflect extra individuals or differing denominators. Preserve `48 blocks`, `196 stated plants` and `609 sampled heads` as **author-reported, not independently resolved**.
+
+### A sharply discriminating biological pilot (prospective, site authorization independent)
+
+There are TWO mechanisms to separate, not merely a single trade-off:
+
+**Resource facilitation:** pollen transfer increases fertilized achene resources, which increases established/enclosed florivore development or successful emergence, conditional on a *known initial number of seed feeder eggs*.
+
+**Physical entry filtration:** mesh or true phyllary/spine/sticky geometry excludes incoming adults/ovipositors, changing the number of eggs laid BEFORE larval feeding, with or without any change in actual achene nutritional quality.
+
+A feasible, **not yet approved** mechanistic experiment requires two temporally separable transitions and genuine insect IDs:
+
+1. Confirm the actual species of seed feeder and **whether/when its oviposition can occur relative to pollination** on the same head. Record external arrival, genuine ovipositor contact, eggs before treatment, complete video effort and head/plant IDs.
+2. Where biological timing allows, establish *matched verified initial infestation* in heads, then subject them to the **same mesh/access regime** while randomizing **pollen receipt rescue (verified hand outcross pollination)** versus equivalent sham/unsupplemented floral handling. The exact same structural insect barrier in both arms isolates the additional post-oviposition **resource-supply response**, if pollen truly reaches the stigma and other manipulations are equal. If pollen rescue is impossible in the bag or seed feeders oviposit only after fertilization, this design is **HOLD**, not a failed model with invented zero.
+3. In a separate access test, maintain similar flower-head sex, size, reproductive stage and verified pollination histories while varying **permitted real armature geometry vs sham**; measure independently identified adult seed feeders' pre-entry arrival, actual oviposition/blocked attempts, and **absolute** emerged insects/seeds, not only proportions among infested heads. Do not call a bag's effect on insects a Cirsium spine effect.
+
+These designs require independent permits, plant number/power evaluation, full recording, and suitable biological stages. They do not authorize clipping real spines, applying adhesive to natural heads, manipulating pollinator or seed-feeder populations, or collecting offspring without existing approval.
+
+### The falsifiers and maximum claim
+
+- If under **equal verified starting egg loads, equal insect exposure and identical mesh treatment**, additional pollen receipt changes emerged feeders, evidence would favor a resource-mediated link in this species/stage. Still distinguish embryo nutritional quality from head growth/correlated stress.
+- If adult approach/egg deposition differs with true head interfaces while pollen is held comparable, that supports direct **access gating**, conditional on arrival. To infer plant fitness still measure real per-head absolute filled viable achenes, not adult eclosion alone.
+- If neither link is supported, then a head module can be multifunctional without creating a measurable partner-specific fitness trade-off.
+- The **Q2 Nature threshold** is demonstrating the actual *same structural axis* changes relative partner effects on **head/plant fitness**, not repeating the already observed pollinator-exclusion effect on seed-feeder emergence.
+
+**Research programme integration:** This is the most relevant currently identified *within-one-Cirsium-species four-site field intervention* for Q2, stronger than subtracting effect sizes from separate species and experiments. But it alone cannot fulfill Q1 genetic memory or Q3 lost-pigment re-expression, and the true armature structural trait was **not manipulated**.
