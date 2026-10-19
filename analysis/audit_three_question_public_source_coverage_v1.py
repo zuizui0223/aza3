@@ -70,19 +70,26 @@ def checked_bout_grain(heads,bouts):
     if heads is None or bouts is None:
         return {"status":"ORIGINAL_EAZAMI_INTAKES_NOT_EXAMINED",
                 "measured_heads":None,"observed_bouts":None}
-    h=index_unique(heads,"capitulum_id","HEAD_ID")
-    b=index_unique(bouts,"observation_bout_id","BOUT_ID")
-    # Head IDs need only be unique within a population/individual:
-    # if future biological intake uses repeated local head IDs,
-    # the strict single-column key must be revised to the true composite.
-    for row in bouts:
-        require(any(
-            (row.get("population_id"),row.get("individual_id"),
-             row.get("capitulum_id"))==
-            (x.get("population_id"),x.get("individual_id"),
-             x.get("capitulum_id"))
-            for x in heads),
-            "OBSERVATION_BOUT_WITHOUT_ENROLLED_CAPITULUM")
+    # The grain is exactly population × individual × capitulum
+    # (not globally unique local head labels); bouts additionally need ID.
+    # Otherwise unrelated plants with a shared H1 label would be conflated.
+    head_keys=set()
+    for head in heads:
+        key=tuple((head.get(k) or "").strip() for k in
+                  ("population_id","individual_id","capitulum_id"))
+        require(all(key),"HEAD_COMPOSITE_ID_EMPTY")
+        require(key not in head_keys,"HEAD_COMPOSITE_ID_DUPLICATE")
+        head_keys.add(key)
+    bout_keys=set()
+    for bout in bouts:
+        key=tuple((bout.get(k) or "").strip() for k in
+                  ("population_id","individual_id","capitulum_id",
+                   "observation_bout_id"))
+        require(all(key),"BOUT_COMPOSITE_ID_EMPTY")
+        require(key not in bout_keys,"BOUT_COMPOSITE_ID_DUPLICATE")
+        require(key[:3] in head_keys,
+                "OBSERVATION_BOUT_WITHOUT_ENROLLED_CAPITULUM")
+        bout_keys.add(key)
     return {
         "status":("PINNED_EAZAMI_ORIGINAL_FIELD_INTAKE_EMPTY" if
                   not heads and not bouts else
@@ -228,7 +235,7 @@ def audit(runs,morphs,genes,panel,bridge,lego,original_heads=None,
             },
             "Q3_after_phenotype_loss":{
                 "public_takaoense_W_BP_metadata_pair":True,
-                "public_young_leaf_genealogy_information_only":True,
+                "public_young_leaf_RNA_source_available_for_genealogical_study":True,\n                "RNA_metadata_alone_proves_genealogy":False,
                 "corolla_flower_RNA_linked_to_same_source_individual":False,
                 "validated_enzymatic_toolkit_retained_after_loss":False,
                 "verified_ancestral_loss_then_same_lineage_reactivation":False,
