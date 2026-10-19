@@ -36,7 +36,7 @@ SOURCE = {
     ),
     "panel": (
         "data/planning/aza3_nature_genomic_sampling_panel_v1.csv",
-        "e3fca68010629661e9e17e1915f09e9a28ab17",
+        "e3fca68010629661e9e17e6e1915f09e9a28ab17",
     ),
 }
 
