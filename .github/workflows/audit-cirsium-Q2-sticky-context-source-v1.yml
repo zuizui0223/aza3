@@ -6,6 +6,7 @@ on:
     paths:
       - "analysis/audit_cirsium_Q2_stickiness_partner_contact_real_sources_v1.py"
       - "data/evidence/cirsium_stickiness_real_primary_context_evidence_v1.csv"
+      - "data/evidence/cirsium_Q2_real_stickiness_payoff_context_result_v1.json"
       - "docs/CIRSIUM_Q2_STICKINESS_BENEFIT_CONTEXT_1983_VS_2003_AND_PARTNER_ACCESS_V1.md"
       - ".github/workflows/audit-cirsium-Q2-sticky-context-source-v1.yml"
 
@@ -45,6 +46,14 @@ jobs:
           python - <<'PY'
           import json
           p=json.load(open("work/Cirsium_sticky_payoff_context_real_published_sources_v1.json"))
+          locked=json.load(open("data/evidence/cirsium_Q2_real_stickiness_payoff_context_result_v1.json"))
+          assert locked["source_commit"]==p["EAzami_source_commit"]
+          assert locked["source_seed_n_rows"]==p["actual_published_evidence_audit"]["original_EAzami_study_seed_rows"]
+          assert locked["source_comparison"]["independent_field_manipulation_papers"]==p["actual_published_evidence_audit"]["original_manipulative_1983_and_2003_publications"]
+          assert locked["source_comparison"]["manipulation_study_by_species_rows"]==p["actual_published_evidence_audit"]["actual_original_manipulative_species_by_study_cases"]
+          assert locked["original_field_fitness_result_fitted"] is False
+          assert locked["Japan38_near_sister_concept_comparison"]["source_ancestry_sister_support"]==p["actual_source_Cirsium_JPN06_JPN15_sister_trait_contrast"]["candidate_phylogeny"]
+          assert locked["Q2_decision"].endswith("NO_CAUSAL_PARTNER_FITNESS_INTERACTION_YET")
           x=p["actual_published_evidence_audit"]
           y=p["synthetic_corruption_tests"]
           assert x["status"]=="REAL_CIRSIUM_SAME_SPECIES_STICKINESS_BENEFIT_DETECTION_HETEROGENEITY_FOUND"
