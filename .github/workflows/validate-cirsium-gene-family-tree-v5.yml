@@ -1,0 +1,71 @@
+name: Validate Cirsium flavonoid gene-family topology
+on:
+  push:
+    paths:
+      - 'analysis/anto_empirical/cirsium_flavonoid_gene_tree_v5.py'
+      - 'analysis/test_anto_cirsium_gene_tree_v5.py'
+      - 'data/anto_source_handoff/molecular/DFR_ANR_ANS_FLS_reference_*_v5.*'
+      - '.github/workflows/validate-cirsium-gene-family-tree-v5.yml'
+  pull_request:
+    paths:
+      - 'analysis/anto_empirical/cirsium_flavonoid_gene_tree_v5.py'
+      - 'analysis/test_anto_cirsium_gene_tree_v5.py'
+      - 'data/anto_source_handoff/molecular/DFR_ANR_ANS_FLS_reference_*_v5.*'
+      - '.github/workflows/validate-cirsium-gene-family-tree-v5.yml'
+permissions:
+  contents: read
+jobs:
+  gene-family-topology:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install independent protein multiple alignment tool
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq mafft fasttree
+          mafft --version
+          (FastTree -help || fasttree -help) >/tmp/anto_fasttree_version.txt 2>&1 || true
+      - name: Install Biopython
+        run: python -m pip install "biopython>=1.80,<2"
+      - name: Syntax check before empirical tree construction
+        run: |
+          python -m py_compile analysis/anto_empirical/cirsium_flavonoid_gene_tree_v5.py
+          python -m py_compile analysis/test_anto_cirsium_gene_tree_v5.py
+      - name: Test source integrity, unrooted family splits and field-scope gate
+        run: python analysis/test_anto_cirsium_gene_tree_v5.py -v
+      - name: Run audited real 2020 Cirsium transcript trees with site bootstraps
+        run: |
+          python analysis/anto_empirical/cirsium_flavonoid_gene_tree_v5.py --bootstraps 200 --output /tmp/cirsium_gene_families_v5.json --alignment-directory /tmp/cirsium_gene_tree_alignments_v5
+          python -c "import json; d=json.load(open('/tmp/cirsium_gene_families_v5.json')); assert d['reference_panel_size']==9 and len(d['trees'])==3; assert not d['source_ryukyu_2026_sequences_included']; assert not d['phylogenetic_orthology_established']; assert not d['molecular_phenotype_reexpression_demonstrated']"
+      - name: Validate frozen real Cirsium topology and catalytic-site uncertainty against this run
+        run: |
+          python analysis/test_cirsium_2020_gene_family_evidence_v5.py -v
+          python analysis/validate_cirsium_2020_gene_family_evidence_v5.py --analysis /tmp/cirsium_gene_families_v5.json > /tmp/cirsium_tree_evidence_validation_v5.json
+          python -c "import json; x=json.load(open('/tmp/cirsium_tree_evidence_validation_v5.json')); assert x['source_replay_tested'] and x['distinct_source_transcripts']==5 and x['noisy_relative_aa_identity_intervals_contain_zero']==7; assert not x['gene_function_verified']"
+
+      - name: Independently compare NJ to FastTree WAG approximate-ML placements
+        run: |
+          python analysis/test_compare_cirsium_fasttree_v5.py -v
+          python analysis/compare_cirsium_fasttree_v5.py --tree-json /tmp/cirsium_gene_families_v5.json --alignment-directory /tmp/cirsium_gene_tree_alignments_v5 --output /tmp/cirsium_nj_vs_fasttree_v5.json
+          python -c "import json; r=json.load(open('/tmp/cirsium_nj_vs_fasttree_v5.json')); assert r['n_inference_cases']==3 and r['n_query_case_comparisons']==7 and not r['allele_orthology_certified'] and not r['Ryukyu_white_to_pigmented_regain_demonstrated']"
+          python analysis/test_cirsium_2020_method_concordance_v5.py -v
+          python analysis/validate_cirsium_2020_method_concordance_v5.py --analysis /tmp/cirsium_nj_vs_fasttree_v5.json > /tmp/cirsium_nj_fasttree_frozen_audit_v5.json
+          python -c "import json; d=json.load(open('/tmp/cirsium_nj_fasttree_frozen_audit_v5.json')); assert d['rerun_against_frozen_report'] and d['NJ_and_FastTree_method_concordance_labels']==7 and d['confident_DFR_ANS_family_labels']==0 and not d['Ryukyu_coloured_flower_regain_tested']"
+
+      - name: Save only derived alignment and candidate placement evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aza3-v5-flavonoid-family-gene-trees
+          path: |
+            /tmp/cirsium_gene_families_v5.json
+            /tmp/cirsium_nj_vs_fasttree_v5.json
+            /tmp/cirsium_tree_evidence_validation_v5.json
+            /tmp/cirsium_nj_fasttree_frozen_audit_v5.json
+            /tmp/cirsium_gene_tree_alignments_v5
+          retention-days: 14
+          if-no-files-found: ignore

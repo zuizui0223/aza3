@@ -1,0 +1,479 @@
+{
+  "version": "aza3_cirsium_2020_gene_family_topology_report_v5",
+  "source": "GitHub Actions successful run 39212282190 job 117928135423; source files in the aza3 PR #49",
+  "calculated_at": "2026-10-19",
+  "biological_source_study": "Park et al. 2020, DOI 10.1021/acsomega.0c04001",
+  "sample_scope": "2020 Cirsium japonicum annotated transcripts, NOT Ryukyu Cirsium brevicaule/irumtiense 2026 young leaf transcriptomes",
+  "source_sequence_fasta": "data/anto_source_handoff/molecular/cirsium_japonicum_2020_26_source_sequences_v6.fasta",
+  "source_reference_fasta": "data/anto_source_handoff/molecular/DFR_ANR_ANS_FLS_reference_proteins_v5.fasta",
+  "method": "MAFFT, unrooted neighbor-joining on pairwise nongap AA p-distances, 200 site bootstraps per gene-family case; 1000 site bootstraps for mean relative AA identity. All family comparisons are within enzyme superfamily.",
+  "number_of_tree_configurations": 3,
+  "number_of_query_tree_evaluations": 7,
+  "number_of_distinct_query_transcripts": 5,
+  "number_of_independent_genetic_loci_inferred": null,
+  "all_query_placements_between_or_unresolved_in_NJ": 7,
+  "any_stable_positive_family_split": false,
+  "all_relative_identity_intervals_include_zero": true,
+  "three_cases": [
+    "DFR_ANR_primary",
+    "DFR_ANR_alt_isoform",
+    "ANS_FLS"
+  ],
+  "reported_results": [
+    {
+      "case": "DFR_ANR_primary",
+      "source_transcript": "TR35526|c0_g1_i1",
+      "source_aa_fragment": 458,
+      "frame": 2,
+      "orientation": "+",
+      "alignment_length_aa": 534,
+      "minimum_reference_pair_overlap_aa": 228,
+      "observed_unrooted_NJ_reference_split": "BETWEEN_FAMILY_ANCHORS",
+      "valid_site_bootstraps": 200,
+      "invalid_site_bootstraps": 0,
+      "bootstrap_tree_counts": {
+        "BETWEEN_FAMILY_ANCHORS": 200
+      },
+      "biochemical_motif_evidence": {
+        "reference_accession": "ABQ97018.1",
+        "sites": [
+          {
+            "one_based_reference_position": 13,
+            "reference_residue": "G",
+            "source_aligned_residue": null,
+            "evidence_state": "NO_ALIGNMENT_COVERAGE"
+          },
+          {
+            "one_based_reference_position": 16,
+            "reference_residue": "G",
+            "source_aligned_residue": null,
+            "evidence_state": "NO_ALIGNMENT_COVERAGE"
+          },
+          {
+            "one_based_reference_position": 19,
+            "reference_residue": "G",
+            "source_aligned_residue": null,
+            "evidence_state": "NO_ALIGNMENT_COVERAGE"
+          },
+          {
+            "one_based_reference_position": 164,
+            "reference_residue": "Y",
+            "source_aligned_residue": "H",
+            "evidence_state": "SUBSTITUTION"
+          },
+          {
+            "one_based_reference_position": 168,
+            "reference_residue": "K",
+            "source_aligned_residue": "F",
+            "evidence_state": "SUBSTITUTION"
+          }
+        ],
+        "covered": 2,
+        "matching": 0,
+        "substituted": 2,
+        "function_proven": false
+      },
+      "mean_aa_identity_positive": 0.16709002040165064,
+      "mean_aa_identity_related": 0.1536024950659097,
+      "observed_positive_minus_related_identity_margin": 0.013487525335740935,
+      "bootstrap_95pct_interval": [
+        -0.023822356030298142,
+        0.04877120203775239
+      ],
+      "bootstrap_positive_margin_fraction": 0.781,
+      "interval_contains_zero": true,
+      "site_replicates": 1000,
+      "enzyme_function_certified": false
+    },
+    {
+      "case": "DFR_ANR_primary",
+      "source_transcript": "TR38875|c0_g4_i5",
+      "source_aa_fragment": 248,
+      "frame": 0,
+      "orientation": "+",
+      "alignment_length_aa": 534,
+      "minimum_reference_pair_overlap_aa": 228,
+      "observed_unrooted_NJ_reference_split": "BETWEEN_FAMILY_ANCHORS",
+      "valid_site_bootstraps": 200,
+      "invalid_site_bootstraps": 0,
+      "bootstrap_tree_counts": {
+        "BETWEEN_FAMILY_ANCHORS": 200
+      },
+      "biochemical_motif_evidence": {
+        "reference_accession": "ABQ97018.1",
+        "sites": [
+          {
+            "one_based_reference_position": 13,
+            "reference_residue": "G",
+            "source_aligned_residue": null,
+            "evidence_state": "NO_ALIGNMENT_COVERAGE"
+          },
+          {
+            "one_based_reference_position": 16,
+            "reference_residue": "G",
+            "source_aligned_residue": null,
+            "evidence_state": "NO_ALIGNMENT_COVERAGE"
+          },
+          {
+            "one_based_reference_position": 19,
+            "reference_residue": "G",
+            "source_aligned_residue": null,
+            "evidence_state": "NO_ALIGNMENT_COVERAGE"
+          },
+          {
+            "one_based_reference_position": 164,
+            "reference_residue": "Y",
+            "source_aligned_residue": "Y",
+            "evidence_state": "MATCH"
+          },
+          {
+            "one_based_reference_position": 168,
+            "reference_residue": "K",
+            "source_aligned_residue": "K",
+            "evidence_state": "MATCH"
+          }
+        ],
+        "covered": 2,
+        "matching": 2,
+        "substituted": 0,
+        "function_proven": false
+      },
+      "mean_aa_identity_positive": 0.37373737373737376,
+      "mean_aa_identity_related": 0.3592588669385449,
+      "observed_positive_minus_related_identity_margin": 0.014478506798828839,
+      "bootstrap_95pct_interval": [
+        -0.04547604746649973,
+        0.07255920968609916
+      ],
+      "bootstrap_positive_margin_fraction": 0.674,
+      "interval_contains_zero": true,
+      "site_replicates": 1000,
+      "enzyme_function_certified": false
+    },
+    {
+      "case": "DFR_ANR_primary",
+      "source_transcript": "TR39766|c0_g1_i2",
+      "source_aa_fragment": 355,
+      "frame": 1,
+      "orientation": "+",
+      "alignment_length_aa": 534,
+      "minimum_reference_pair_overlap_aa": 228,
+      "observed_unrooted_NJ_reference_split": "BETWEEN_FAMILY_ANCHORS",
+      "valid_site_bootstraps": 200,
+      "invalid_site_bootstraps": 0,
+      "bootstrap_tree_counts": {
+        "BETWEEN_FAMILY_ANCHORS": 200
+      },
+      "biochemical_motif_evidence": {
+        "reference_accession": "ABQ97018.1",
+        "sites": [
+          {
+            "one_based_reference_position": 13,
+            "reference_residue": "G",
+            "source_aligned_residue": "G",
+            "evidence_state": "MATCH"
+          },
+          {
+            "one_based_reference_position": 16,
+            "reference_residue": "G",
+            "source_aligned_residue": "G",
+            "evidence_state": "MATCH"
+          },
+          {
+            "one_based_reference_position": 19,
+            "reference_residue": "G",
+            "source_aligned_residue": "A",
+            "evidence_state": "SUBSTITUTION"
+          },
+          {
+            "one_based_reference_position": 164,
+            "reference_residue": "Y",
+            "source_aligned_residue": "Y",
+            "evidence_state": "MATCH"
+          },
+          {
+            "one_based_reference_position": 168,
+            "reference_residue": "K",
+            "source_aligned_residue": "K",
+            "evidence_state": "MATCH"
+          }
+        ],
+        "covered": 5,
+        "matching": 4,
+        "substituted": 1,
+        "function_proven": false
+      },
+      "mean_aa_identity_positive": 0.4022620733050181,
+      "mean_aa_identity_related": 0.3698962207208084,
+      "observed_positive_minus_related_identity_margin": 0.03236585258420971,
+      "bootstrap_95pct_interval": [
+        -0.01741938173961341,
+        0.07698513911026474
+      ],
+      "bootstrap_positive_margin_fraction": 0.905,
+      "interval_contains_zero": true,
+      "site_replicates": 1000,
+      "enzyme_function_certified": false
+    },
+    {
+      "case": "DFR_ANR_alt_isoform",
+      "source_transcript": "TR35526|c0_g1_i1",
+      "source_aa_fragment": 458,
+      "frame": 2,
+      "orientation": "+",
+      "alignment_length_aa": 564,
+      "minimum_reference_pair_overlap_aa": 183,
+      "observed_unrooted_NJ_reference_split": "BETWEEN_FAMILY_ANCHORS",
+      "valid_site_bootstraps": 200,
+      "invalid_site_bootstraps": 0,
+      "bootstrap_tree_counts": {
+        "BETWEEN_FAMILY_ANCHORS": 200
+      },
+      "biochemical_motif_evidence": {
+        "reference_accession": "ABQ97018.1",
+        "sites": [
+          {
+            "one_based_reference_position": 13,
+            "reference_residue": "G",
+            "source_aligned_residue": null,
+            "evidence_state": "NO_ALIGNMENT_COVERAGE"
+          },
+          {
+            "one_based_reference_position": 16,
+            "reference_residue": "G",
+            "source_aligned_residue": null,
+            "evidence_state": "NO_ALIGNMENT_COVERAGE"
+          },
+          {
+            "one_based_reference_position": 19,
+            "reference_residue": "G",
+            "source_aligned_residue": null,
+            "evidence_state": "NO_ALIGNMENT_COVERAGE"
+          },
+          {
+            "one_based_reference_position": 164,
+            "reference_residue": "Y",
+            "source_aligned_residue": "H",
+            "evidence_state": "SUBSTITUTION"
+          },
+          {
+            "one_based_reference_position": 168,
+            "reference_residue": "K",
+            "source_aligned_residue": "F",
+            "evidence_state": "SUBSTITUTION"
+          }
+        ],
+        "covered": 2,
+        "matching": 0,
+        "substituted": 2,
+        "function_proven": false
+      },
+      "mean_aa_identity_positive": 0.20836684352833434,
+      "mean_aa_identity_related": 0.18763626794977822,
+      "observed_positive_minus_related_identity_margin": 0.02073057557855612,
+      "bootstrap_95pct_interval": [
+        -0.019909907423449977,
+        0.061745956439010485
+      ],
+      "bootstrap_positive_margin_fraction": 0.851,
+      "interval_contains_zero": true,
+      "site_replicates": 1000,
+      "enzyme_function_certified": false
+    },
+    {
+      "case": "DFR_ANR_alt_isoform",
+      "source_transcript": "TR38875|c0_g4_i7",
+      "source_aa_fragment": 203,
+      "frame": 0,
+      "orientation": "+",
+      "alignment_length_aa": 564,
+      "minimum_reference_pair_overlap_aa": 183,
+      "observed_unrooted_NJ_reference_split": "BETWEEN_FAMILY_ANCHORS",
+      "valid_site_bootstraps": 200,
+      "invalid_site_bootstraps": 0,
+      "bootstrap_tree_counts": {
+        "BETWEEN_FAMILY_ANCHORS": 200
+      },
+      "biochemical_motif_evidence": {
+        "reference_accession": "ABQ97018.1",
+        "sites": [
+          {
+            "one_based_reference_position": 13,
+            "reference_residue": "G",
+            "source_aligned_residue": null,
+            "evidence_state": "NO_ALIGNMENT_COVERAGE"
+          },
+          {
+            "one_based_reference_position": 16,
+            "reference_residue": "G",
+            "source_aligned_residue": null,
+            "evidence_state": "NO_ALIGNMENT_COVERAGE"
+          },
+          {
+            "one_based_reference_position": 19,
+            "reference_residue": "G",
+            "source_aligned_residue": null,
+            "evidence_state": "NO_ALIGNMENT_COVERAGE"
+          },
+          {
+            "one_based_reference_position": 164,
+            "reference_residue": "Y",
+            "source_aligned_residue": "Y",
+            "evidence_state": "MATCH"
+          },
+          {
+            "one_based_reference_position": 168,
+            "reference_residue": "K",
+            "source_aligned_residue": "K",
+            "evidence_state": "MATCH"
+          }
+        ],
+        "covered": 2,
+        "matching": 2,
+        "substituted": 0,
+        "function_proven": false
+      },
+      "mean_aa_identity_positive": 0.3814616755793227,
+      "mean_aa_identity_related": 0.3717948717948718,
+      "observed_positive_minus_related_identity_margin": 0.009666803784450895,
+      "bootstrap_95pct_interval": [
+        -0.053782721468475604,
+        0.0715786362701556
+      ],
+      "bootstrap_positive_margin_fraction": 0.628,
+      "interval_contains_zero": true,
+      "site_replicates": 1000,
+      "enzyme_function_certified": false
+    },
+    {
+      "case": "DFR_ANR_alt_isoform",
+      "source_transcript": "TR39766|c0_g1_i2",
+      "source_aa_fragment": 355,
+      "frame": 1,
+      "orientation": "+",
+      "alignment_length_aa": 564,
+      "minimum_reference_pair_overlap_aa": 183,
+      "observed_unrooted_NJ_reference_split": "BETWEEN_FAMILY_ANCHORS",
+      "valid_site_bootstraps": 200,
+      "invalid_site_bootstraps": 0,
+      "bootstrap_tree_counts": {
+        "BETWEEN_FAMILY_ANCHORS": 200
+      },
+      "biochemical_motif_evidence": {
+        "reference_accession": "ABQ97018.1",
+        "sites": [
+          {
+            "one_based_reference_position": 13,
+            "reference_residue": "G",
+            "source_aligned_residue": "G",
+            "evidence_state": "MATCH"
+          },
+          {
+            "one_based_reference_position": 16,
+            "reference_residue": "G",
+            "source_aligned_residue": "G",
+            "evidence_state": "MATCH"
+          },
+          {
+            "one_based_reference_position": 19,
+            "reference_residue": "G",
+            "source_aligned_residue": "A",
+            "evidence_state": "SUBSTITUTION"
+          },
+          {
+            "one_based_reference_position": 164,
+            "reference_residue": "Y",
+            "source_aligned_residue": "Y",
+            "evidence_state": "MATCH"
+          },
+          {
+            "one_based_reference_position": 168,
+            "reference_residue": "K",
+            "source_aligned_residue": "K",
+            "evidence_state": "MATCH"
+          }
+        ],
+        "covered": 5,
+        "matching": 4,
+        "substituted": 1,
+        "function_proven": false
+      },
+      "mean_aa_identity_positive": 0.4024346811580854,
+      "mean_aa_identity_related": 0.3692643633540373,
+      "observed_positive_minus_related_identity_margin": 0.03317031780404811,
+      "bootstrap_95pct_interval": [
+        -0.009772056514363853,
+        0.07963371167925155
+      ],
+      "bootstrap_positive_margin_fraction": 0.927,
+      "interval_contains_zero": true,
+      "site_replicates": 1000,
+      "enzyme_function_certified": false
+    },
+    {
+      "case": "ANS_FLS",
+      "source_transcript": "TR58302|c0_g1_i1",
+      "source_aa_fragment": 367,
+      "frame": 1,
+      "orientation": "+",
+      "alignment_length_aa": 381,
+      "minimum_reference_pair_overlap_aa": 330,
+      "observed_unrooted_NJ_reference_split": "BETWEEN_FAMILY_ANCHORS",
+      "valid_site_bootstraps": 200,
+      "invalid_site_bootstraps": 0,
+      "bootstrap_tree_counts": {
+        "BETWEEN_FAMILY_ANCHORS": 200
+      },
+      "biochemical_motif_evidence": {
+        "reference_accession": "AAS48200.1",
+        "sites": [
+          {
+            "one_based_reference_position": 235,
+            "reference_residue": "H",
+            "source_aligned_residue": "H",
+            "evidence_state": "MATCH"
+          },
+          {
+            "one_based_reference_position": 237,
+            "reference_residue": "D",
+            "source_aligned_residue": "D",
+            "evidence_state": "MATCH"
+          }
+        ],
+        "covered": 2,
+        "matching": 2,
+        "substituted": 0,
+        "function_proven": false
+      },
+      "mean_aa_identity_positive": 0.35942330958462154,
+      "mean_aa_identity_related": 0.36307333150233456,
+      "observed_positive_minus_related_identity_margin": -0.00365002191771302,
+      "bootstrap_95pct_interval": [
+        -0.0489837881716268,
+        0.03980101296177069
+      ],
+      "bootstrap_positive_margin_fraction": 0.418,
+      "interval_contains_zero": true,
+      "site_replicates": 1000,
+      "enzyme_function_certified": false
+    }
+  ],
+  "source_claim_ceiling": {
+    "reference_family_level_not_identifiable_in_this_panel": true,
+    "original_sequence_source_verified": true,
+    "orthology_verified": false,
+    "biochemical_catalytic_function_verified": false,
+    "floral_expression_competence_verified": false,
+    "confirmed_ancestral_white_to_coloured_reexpression": false,
+    "genome_structural_toolkit_retention_in_Ryukyu": false,
+    "evolutionary_age_of_colour_gain_measured": false
+  },
+  "inferential_caveats": [
+    "200/200 bootstrap records here support the unresolved/between reference-split classification under this particular NJ/MAFFT design, NOT 100% evidence for a distinct intermediate enzyme.",
+    "The source set includes partial transcript assemblies, variable reference protein completeness and only 2-3 taxa per biochemical reference family.",
+    "Site bootstrap assumes conditionally independent aligned AA columns; biochemical family and genuine orthology need broader taxon sampling and more rigorous gene trees.",
+    "Identity-difference 95% intervals include zero in every tested query case, so enzyme family identity is unresolved here; crossing zero does not prove equivalence.",
+    "Catalytic residue matches/substitutions are site observations, never proof of a functional or defective enzyme.",
+    "The 2020 Cirsium source transcripts have no linked floral phenotype, treatment or Ryukyu ancestry record."
+  ]
+}

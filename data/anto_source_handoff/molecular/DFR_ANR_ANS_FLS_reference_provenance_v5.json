@@ -1,0 +1,106 @@
+{
+  "version": "aza3_flavonoid_family_reference_panel_v5",
+  "created_date": "2026-10-19",
+  "study": "Cirsium japonicum source transcript family tree DFR/ANR and ANS/FLS",
+  "reference_proteins": [
+    {
+      "accession": "ABQ97018.1",
+      "group": "DFR_reference",
+      "taxon": "Saussurea medusa",
+      "gene": "DFR",
+      "source_title": "ABQ97018.1 dihydroflavonol 4-reductase [Saussurea medusa]",
+      "length_aa": 342,
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=protein&id=ABQ97018.1&rettype=fasta&retmode=text",
+      "biology_evidence": "Public annotated protein; family label is a reference, not proven Cirsium enzyme activity"
+    },
+    {
+      "accession": "CAA78930.1",
+      "group": "DFR_reference",
+      "taxon": "Gerbera hybrida",
+      "gene": "DFR",
+      "source_title": "CAA78930.1 dihydroflavonol-4-reductase [Gerbera hybrid cultivar]",
+      "length_aa": 366,
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=protein&id=CAA78930.1&rettype=fasta&retmode=text",
+      "biology_evidence": "Public annotated protein; family label is a reference, not proven Cirsium enzyme activity"
+    },
+    {
+      "accession": "BAD95233.1",
+      "group": "DFR_reference",
+      "taxon": "Arabidopsis thaliana",
+      "gene": "DFR",
+      "source_title": "BAD95233.1 dihydroflavonol 4-reductase [Arabidopsis thaliana]",
+      "length_aa": 382,
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=protein&id=BAD95233.1&rettype=fasta&retmode=text",
+      "biology_evidence": "Public annotated protein; family label is a reference, not proven Cirsium enzyme activity"
+    },
+    {
+      "accession": "AAS48200.1",
+      "group": "ANS_reference",
+      "taxon": "Saussurea medusa",
+      "gene": "ANS",
+      "source_title": "AAS48200.1 anthocyanidin synthase [Saussurea medusa]",
+      "length_aa": 356,
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=protein&id=AAS48200.1&rettype=fasta&retmode=text",
+      "biology_evidence": "Public annotated protein; family label is a reference, not proven Cirsium enzyme activity"
+    },
+    {
+      "accession": "NP_194019.1",
+      "group": "ANS_reference",
+      "taxon": "Arabidopsis thaliana",
+      "gene": "ANS/LDOX",
+      "source_title": "NP_194019.1 leucoanthocyanidin dioxygenase [Arabidopsis thaliana]",
+      "length_aa": 356,
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=protein&id=NP_194019.1&rettype=fasta&retmode=text",
+      "biology_evidence": "Public annotated protein; family label is a reference, not proven Cirsium enzyme activity"
+    },
+    {
+      "accession": "NP_176365.1",
+      "group": "ANR_negative_control",
+      "taxon": "Arabidopsis thaliana",
+      "gene": "BAN/ANR",
+      "source_title": "NP_176365.1 NAD(P)-binding Rossmann-fold superfamily protein [Arabidopsis thaliana]",
+      "length_aa": 340,
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=protein&id=NP_176365.1&rettype=fasta&retmode=text",
+      "biology_evidence": "Public annotated protein; family label is a reference, not proven Cirsium enzyme activity"
+    },
+    {
+      "accession": "NP_196481.1",
+      "group": "FLS_negative_control",
+      "taxon": "Arabidopsis thaliana",
+      "gene": "FLS1",
+      "source_title": "NP_196481.1 flavonol synthase 1 [Arabidopsis thaliana]",
+      "length_aa": 336,
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=protein&id=NP_196481.1&rettype=fasta&retmode=text",
+      "biology_evidence": "Public annotated protein; family label is a reference, not proven Cirsium enzyme activity"
+    },
+    {
+      "accession": "NP_001267885.1",
+      "group": "ANR_negative_control",
+      "taxon": "Vitis vinifera",
+      "gene": "ANR",
+      "length_aa": 338,
+      "source_title": "NP_001267885.1 anthocyanidin reductase ((2S)-flavan-3-ol-forming) [Vitis vinifera]",
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=protein&id=NP_001267885.1&rettype=fasta&retmode=text",
+      "biology_evidence": "NCBI RefSeq protein family annotation; functional status of focal Cirsium remains unknown"
+    },
+    {
+      "accession": "XP_002285839.1",
+      "group": "FLS_negative_control",
+      "taxon": "Vitis vinifera",
+      "gene": "FLS",
+      "length_aa": 335,
+      "source_title": "XP_002285839.1 flavonol synthase/flavanone 3-hydroxylase [Vitis vinifera]",
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=protein&id=XP_002285839.1&rettype=fasta&retmode=text",
+      "biology_evidence": "NCBI RefSeq protein family annotation; functional status of focal Cirsium remains unknown"
+    }
+  ],
+  "source_v4": "data/anto_source_handoff/molecular/extended_reference_protein_provenance_v4.json",
+  "rule": "Separate DFR+ANR homology family from ANS+FLS homologs; do not force joint phylogenetic tree of unrelated enzyme superfamilies.",
+  "known_limitations": [
+    "Two groups have few reference taxa and cannot establish complete gene family phylogeny.",
+    "Molecular function of DFR versus ANR and ANS versus FLS overlaps at substrate/product levels; sequence gene trees alone are not enzyme assays.",
+    "Transcripts from Park 2020 Cirsium japonicum are unrelated to 2026 Ryukyu RNA accession individuals.",
+    "No ancestor state of flower pigmentation is inferred."
+  ],
+  "n_reference_records": 9
+}
