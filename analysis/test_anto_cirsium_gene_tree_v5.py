@@ -13,7 +13,7 @@ from cirsium_flavonoid_gene_tree_v5 import (
     CASES, load_sources, load_reference_proteins,
     chosen_source_peptide,source_alignment_input,run_mafft,
     _pairwise_p_distance,distance_matrix,unrooted_family_split,
-    bootstrap_family_support,run_panel
+    bootstrap_family_support,bootstrap_relative_identity_margin,run_panel
 )
 
 DATA=ROOT/"data/anto_source_handoff/molecular"
@@ -62,6 +62,23 @@ class FamilyTopologyUnitTests(unittest.TestCase):
         d,n=_pairwise_p_distance(aa1,aa2)
         self.assertEqual(n,70)
         self.assertAlmostEqual(d,10/70)
+
+    def test_same_columns_across_family_avoids_illusory_positive_effect(self):
+        aligned={"Q":"A"*120,"P1":"A"*120,"P2":"A"*120,
+                 "N1":"T"*120,"N2":"T"*120}
+        metadata={
+            "Q":{"is_reference":False},
+            "P1":{"is_reference":True,"family":"DFR_reference"},
+            "P2":{"is_reference":True,"family":"DFR_reference"},
+            "N1":{"is_reference":True,"family":"ANR_negative_control"},
+            "N2":{"is_reference":True,"family":"ANR_negative_control"},
+        }
+        r=bootstrap_relative_identity_margin(
+            aligned,metadata,"DFR_reference","ANR_negative_control",
+            replicates=30)
+        self.assertEqual(r["Q"]["observed_positive_minus_related_identity_margin"],1)
+        self.assertEqual(r["Q"]["site_bootstrap_identity_margin_95pct_interval"],[1,1])
+        self.assertFalse(r["Q"]["enzyme_specificity_test"])
 
     def test_short_overlap_cannot_create_false_clade(self):
         with self.assertRaises(ValueError):
@@ -151,6 +168,17 @@ class RealPublishedMaterialTests(unittest.TestCase):
                      if v["source_id"]=="TR58302|c0_g1_i1")
         self.assertEqual(ans["reference_site_alignment_audit"][ans_key]["n_matching_residues"],2)
         self.assertFalse(ans["reference_site_alignment_audit"][ans_key]["function_or_orthology_demonstrated"])
+        for family,report in r["trees"].items():
+            for id,evidence in report["relative_identity_site_bootstrap"].items():
+                self.assertEqual(evidence["bootstrap_replicates"],1000)
+                self.assertFalse(evidence["enzyme_specificity_test"])
+                self.assertGreaterEqual(evidence["minimum_source_to_reference_shared_aa"],60)
+                self.assertTrue(0<=evidence["site_bootstrap_positive_margin_fraction"]<=1)
+        dfr_candidate=dfr["relative_identity_site_bootstrap"][key]
+        self.assertGreater(dfr_candidate["observed_positive_minus_related_identity_margin"],0)
+        self.assertTrue(dfr_candidate["reference_identity_diff_interval_includes_zero"])
+        ans_candidate=ans["relative_identity_site_bootstrap"][ans_key]
+        self.assertTrue(ans_candidate["reference_identity_diff_interval_includes_zero"])
 
 
 if __name__=="__main__":
