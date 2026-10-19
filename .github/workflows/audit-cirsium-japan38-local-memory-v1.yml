@@ -56,6 +56,16 @@ jobs:
           import json, math
           x=json.load(open("work/cirsium_japan38_local_memory_v1.json"))
           a=x["real_Cirsium_results"]
+          pinned=json.load(open("data/evidence/cirsium_japan38_local_nearest_neighbor_memory_v1.json"))
+          assert pinned["source"]["canonical_nuclear_tree_sha256"]==x["canonical_source_sha256"]
+          for key,out in a.items():
+            ref=pinned["results"][key]
+            assert out["n_taxa"]==ref["n_taxa"]
+            assert out["n_exact_fixed_label_allocations"]==ref["n_fixed_prevalence_assignments"]
+            assert abs(out["nearest_Brier"]-ref["nearest_Brier"])<1e-12
+            assert abs(out["leave_one_out_global_marginal_Brier"]-ref["leave_one_tip_out_marginal_baseline_Brier"])<1e-12
+            assert abs(out["global_minus_NN_Brier_gain"]-ref["Brier_gain"])<1e-12
+            assert abs(out["exact_one_sided_positive_predictive_gain_p"]-ref["one_sided_positive_gain_exact_label_p"])<1e-12
           assert x["canonical_source_sha256"]=="ba592d3a9f52b5481314ab20e3202048505cdf72a3fc15134d5dca261b9d9b7e"
           assert x["test_synthetic"]["status"]=="PASS_SYNTHETIC_NEAREST_NEIGHBOR_CV_AND_EXACT_FIXED_LABEL_NULL"
           assert [a[k]["n_taxa"] for k in (
