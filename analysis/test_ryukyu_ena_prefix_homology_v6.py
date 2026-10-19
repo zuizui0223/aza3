@@ -90,6 +90,23 @@ class CappedRyukyuSourceTests(unittest.TestCase):
             self.assertFalse(qc["representative_random_sample"])
             self.assertNotIn("@broken",output.read_text(encoding="utf-8"))
 
+    def test_short_valid_fastq_records_are_filtered_not_corruption(self):
+        # Reproduces the observed 2026 Iriomote SRR35152731 root cause:
+        # short reads 54-73nt with matching Phred lengths are valid FASTQ.
+        lines=[]
+        for idx in range(18):
+            size=54+(idx%6)*4 if idx<6 else 151
+            seq=("ACGT"*((size+3)//4))[:size]
+            lines.append(f"@test_SRRun_{idx}\n{seq}\n+\n{'I'*size}\n".encode("ascii"))
+        with TemporaryDirectory() as d:
+            prefix=Path(d)/"short_reads.gz"
+            prefix.write_bytes(compress(b"".join(lines))[:-8])
+            r=partial_gzip_to_fastq(prefix,Path(d)/"mapped_75_plus.fq")
+            self.assertEqual(r["complete_valid_reads"],12)
+            self.assertEqual(r["valid_but_too_short_for_alignment"],6)
+            self.assertEqual(r["invalid_complete_record_count"],0)
+            self.assertEqual(r["valid_but_noncanonical_sequence_for_alignment"],0)
+
     def test_gzip_with_prefix_truncation_produces_no_fake_mapped_reads(self):
         with TemporaryDirectory() as d:
             gz=Path(d)/"bad.gz"
