@@ -41,6 +41,23 @@
 
 **結果の上限：** `REAL_TAXON_TRAIT_STATES_AUDITED_NO_COMMON_PHYLOGENETIC_MEMORY_TEST`。状態の外部観測＝PASS、進化的記憶の系統間移植＝**HOLD**。
 
+## 2026-10-19 核DNA標本の実地照合：外部11候補が全て系統樹へ載っているわけではない
+
+**出典固定の公刊標本台帳まで進んだ結果：** `EAzami@c9870e91604ed1514344ddc8f765eae5237dbf27` の `moreyra2025_cirsium_reconciliation_v1/manifest.json` と、SHA-256を固定した`part_001.csv`〜`part_008.csv`（リンクされた258 Cirsium標本行）を直接読み、先の外部の頭花向き11候補へ**樹木コード→BioSample→SRA run**の対応を照合した。
+
+- 元の樹木コードと外部分類群名が同じなのは **3種**。
+- そのうち、SRA提出名との照合も `exact` で、公開核DNAランが確認できるのは **2種**。**どちらも直立・上向き**：
+  - `Cirsium argyracanthum`：中国産、`SAMN44017818 / SRR30887304`。
+  - `Cirsium vlassovianum`：モンゴル産、`SAMN34240350 / SRR25265666`。
+- 下向き候補 `Cirsium lidjiangense` の樹木コードに対応する`SAMN34240312 / SRR25265686` は**トルコBursa産**で、原本自体が `different_submitted_or_published_name` とする。中国の分類記載の `C. lidjiangense` と同一の種または標本だと扱えないため**HOLD**。
+- 厳格に照合できた外部標本は**上向き2種／下向き0種**。この2標本が同じ核ターゲット群を用いたからといって、個体別の同一形質実測・樹木距離・独立した向き遷移があるわけではない。
+
+したがって、**外部の形態状態は11種確認済みでも、対応する良質な核標本の状態対比は2対0であり、現段階で系統的記憶の比較を行えない**。外部下向き系統に真の核データが存在しないという断言でもない；単に、今回監査したリンク済み258行では出典を辿れる直接一致が確認できないという限定結果である。
+
+`analysis/audit_cirsium_trait_memory_independent_lineage_support_v1.py` は、この8本のCSVを順序・行数・SHA256で検証してから照合し、名義上同じ `tree_code` をもつトルコの疑わしい個体を、形態状態と系統をつなぐ真の個体として昇格しない。機械可読の確証は `data/evidence/cirsium_q1_real_japan_east_asia_holdout_trait_coverage_v1.json`。
+
+**次にする価値がある作業は、新たな記憶の理論計算ではなく**、下向き候補（`C. schantarense` 等）の独立の公刊核rDNA・ターゲット捕獲・対応標本を正確に同定し、共通距離尺度の核系統樹を作れるか監査すること。韓国の既存ITS情報をMoreyraの枝長にそのまま貼り付けてはいけない。
+
 ## 次に収集/検証する具体的なもの
 
 1. この11候補種と日本38のうち状態が明瞭な19分類群について、**taxon conceptと実際のDNA標本の対応**を確定する。属名＋種小名を文字列一致させただけで個体標本の遺伝関係と同一視しない。
