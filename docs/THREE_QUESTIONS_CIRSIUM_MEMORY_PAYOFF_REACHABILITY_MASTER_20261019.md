@@ -147,6 +147,20 @@ aza3の *C. sieboldii* Phase-A **40予定個体**は別の分子/同一個体高
 
 **統合候補の最強の反証可能な観測は：**「同じ形質状態の2系統が異なる機能資源を保ち、同じ相手群集変化に対して異なる発現可能性/子孫伝達を示す。同じ機能資源でも相手群集を変えると繁殖上の利得の方向が変わる」。これは現状どのリポにも**現実のCirsium観測としては存在しない**。従って大統一の先取りを禁止し、3問を別々に棄却可能にした上でBridge A/Bを**追加事前登録の統合検定**とする。
 
+## 2026-10-19 source-backed decision update: Q1 actual external taxa, Q2 JPN36 conservation, Q3 leaf-only molecular states
+
+The source-pinned audits now make the *actual* support for all three questions explicit, instead of treating planned sampling or another repo's simulation as original Cirsium biology:
+
+| Question | Exactly observed/frozen now | What is still required | Current decision |
+|---|---|---|---|
+| **Q1 memory portability** | Japanese discovery roster **38**; NMNS states in **24**, definite head orientation **19** (13 up / 6 down), phyllary **10**, stickiness **13**. Independently sourced East Asian screen **19 taxa**, **16** non-overlapping; exact prequalified orientation **11** (6 up / 5 down), phyllary **1**, stickiness **2**. A taxonomically entangled `C. japonicum` and other discovery overlaps/ambiguities excluded. | Same source-validated nuclear phylogeny/branch distances including the true heldout taxa, enough replicated clades and homologous orientation values. Published 2-tip Arenicola pair cannot support a distance-dissimilarity correlation. | **Observed categorical trait diversity exists in both groups; Q1 memory portability remains NOT_IDENTIFIABLE.** Details: [real source audit](CIRSIUM_Q1_REAL_HELDOUT_TRAIT_COVERAGE_AND_TREE_GAP_V1.md). |
+| **Q2 partner-dependent physical benefit** | EAzami JPN36 appressed phyllary and nonsticky history has the strongest localized candidate; original proposed 24-individual paired manipulation vs sham, **30 separate observation-only reference plants**. But **0 eligible/assigned/observed field heads** and no permission. Source cap of at most **2% flowering plants** implies **at least 1,200 counted flowering plants** to use all 24 experimental heads, subject to all separate permissions. | Document independent insect species/guild, real touch/contact/failed entry, sham integrity, confirmed egg/pollen and filled achenes in a real head cohort. | **Feasibility conditional and permissions absent, not evidence of no structural filtering.** |
+| **Q3 reachability after disappearance** | The 2026 PRJNA1311153 registered metadata include **25 distinct real young-leaf RNA libraries**, among them 3 `C. brevicaule`, 3 `C. irumtiense`, and 3 white/3 blue-purple `takaoense`. All **18** predeclared 6×3 Ryukyu ANS/DFR/GMYC1 screening cells have **NOT_RETRIEVED/NOT_TESTED** functional candidate state. Phase-A **298 plants**, including 40 `C. sieboldii`, are planned **not enrolled**. | Same-individual flower-specific pigment chemistry, functional enzyme/regulated pathways, allele genealogies/introgression tests, inducible expression and heritability. | **No Cirsium regain, genomic LEGO mechanism, or fitness effect established.** |
+
+**Crucial design distinction:** JPN36's proposed field 24 plants and Phase-A `C. sieboldii` 40 genetic plants are *not yet demonstrably the same plants*; do not add them as independent evolutionary histories or assume one includes the other. The current 11 outside-Japan orientation candidates have genuine non-overlapping **botanical state observations**, not automatically independent evolutionary origins. All three questions retain individual falsifiers and no new field authorization is implied.
+
+**Next scientific action priority:** qualify a single genuinely shared head-and-plant ID, independent botanical orientation measurement and voucher-backed ancestry *before* crossing field access/fitness, and simultaneously seek a comparable multilocus placement for outside-Japan heldout orientation taxa. This is an empirical support problem, not a reason to invent additional simulated trade-off parameters.
+
 ## References and source ceiling
 
 - [Chang et al. 2026, BMC Plant Biology 26:545, DOI 10.1186/s12870-026-08097-6](https://doi.org/10.1186/s12870-026-08097-6) (37 accessions, independent Ryukyu clades, Taiwan radiation, genome-size contrasts).
