@@ -6,6 +6,7 @@ from unittest import mock
 import json
 import sys
 import unittest
+import zlib
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/"analysis/anto_empirical"))
@@ -93,7 +94,7 @@ class CappedRyukyuSourceTests(unittest.TestCase):
         with TemporaryDirectory() as d:
             gz=Path(d)/"bad.gz"
             gz.write_bytes(b"\x1f\x8b\x08"+b"\x00"*100)
-            with self.assertRaises((ValueError,zlib.error,Exception)):
+            with self.assertRaises((ValueError,zlib.error)):
                 partial_gzip_to_fastq(gz,Path(d)/"out.fq")
 
     def test_reference_plus_shuffled_decoys_keep_source_ids(self):
