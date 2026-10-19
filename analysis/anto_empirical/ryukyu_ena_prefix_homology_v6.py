@@ -178,6 +178,8 @@ def partial_gzip_to_fastq(gzip_path,fastq_path,
     queue=[]
     valid=0
     invalid=0
+    malformed_reasons=Counter()
+    malformed_examples=[]
     bases=0
     members=0
     compressor=zlib.decompressobj(31)
@@ -195,12 +197,35 @@ def partial_gzip_to_fastq(gzip_path,fastq_path,
                     continue
                 name,seq,plus,quality=queue
                 queue.clear()
-                if (not name.startswith(b"@") or not plus.startswith(b"+")
-                    or len(seq)!=len(quality) or len(seq)<MIN_READ_LEN
-                    or re.fullmatch(rb"[ACGTNacgtn]+",seq) is None):
+                checks={
+                    "not_fastq_header":not name.startswith(b"@"),
+                    "not_fastq_plus":not plus.startswith(b"+"),
+                    "quality_length_mismatch":len(seq)!=len(quality),
+                    "short_sequence":len(seq)<MIN_READ_LEN,
+                    "unsupported_sequence_character":re.fullmatch(rb"[ACGTNacgtn]+",seq) is None,
+                }
+                if any(checks.values()):
                     invalid+=1
+                    malformed_reasons.update(k for k,v in checks.items() if v)
+                    if len(malformed_examples)<5:
+                        malformed_examples.append({
+                            "header_is_at":name.startswith(b"@"),
+                            "plus_is_plus":plus.startswith(b"+"),
+                            "sequence_length":len(seq),
+                            "quality_length":len(quality),
+                            "header_length":len(name),
+                            "reason_codes":[k for k,v in checks.items() if v]
+                        })
                     if invalid>4:
-                        raise ValueError("Too many malformed complete reads in ENA prefix")
+                        raise ValueError(
+                            "Too many malformed complete reads in ENA prefix: "
+                            +json.dumps({
+                                "counts":dict(malformed_reasons),
+                                "first_five":malformed_examples,
+                                "completed_valid_reads_before_error":valid,
+                                "inflated_bytes_seen":inflated,
+                                "completed_gzip_members":members,
+                            },sort_keys=True))
                     continue
                 if valid>=max_reads:
                     return True
@@ -231,6 +256,7 @@ def partial_gzip_to_fastq(gzip_path,fastq_path,
         "complete_valid_reads":valid,
         "total_nucleotide_bases":bases,
         "invalid_complete_record_count":invalid,
+        "invalid_record_reason_counts":dict(malformed_reasons),
         "trailing_incomplete_lines_dropped":len(queue),
         "trailing_incomplete_line_bytes_dropped":len(pending),
         "full_fastq_file_validated":False,
@@ -393,6 +419,7 @@ def run_pilot(manifest=SOURCE_MANIFEST,run_manifest=RUNS,
         result["reference_panel"]=panel
         for sample in runs:
             run=sample["run_accession"]
+            print("RYUKYU_PREFIX_BEGIN_RUN:"+run,flush=True)
             prefix=root/(run+".gz")
             fastq=root/(run+".fq")
             download=download_official_r1_prefix(
