@@ -1,0 +1,73 @@
+name: Audit real Cirsium trait memory heldout clade support v1
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "analysis/audit_cirsium_trait_memory_independent_lineage_support_v1.py"
+      - "docs/CIRSIUM_Q1_REAL_HELDOUT_TRAIT_COVERAGE_AND_TREE_GAP_V1.md"
+      - ".github/workflows/audit-cirsium-memory-lineage-support-v1.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  pinned-eazami-real-trait-holdout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Retrieve exact EAzami authority trait and heldout source frames
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work/real_trait_sources
+          for item in 'japan_roster:data/evidence/moreyra2025_japan_38_membership_audit_2026-08-10.csv' 'japan_authority:data/evidence/japan38_nmns_capitulum_trait_seed_v1.csv' 'japan_extension:data/evidence/japan38_nmns_capitulum_trait_seed_extension_v2.csv' 'external_east_asia:data/evidence/heldout_east_asia_trait_state_audit_v1.csv'; do
+            key=${item%%:*}
+            path=${item#*:}
+            gh api "repos/zuizui0223/EAzami/contents/${path}?ref=c9870e91604ed1514344ddc8f765eae5237dbf27" --jq .content | base64 -d > "work/real_trait_sources/${key}.csv"
+            test -s "work/real_trait_sources/${key}.csv"
+          done
+      - name: Evaluate observed state support and reject false evolutionary-memory slopes
+        run: |
+          python -m py_compile analysis/audit_cirsium_trait_memory_independent_lineage_support_v1.py
+          python analysis/audit_cirsium_trait_memory_independent_lineage_support_v1.py \
+            --japan-roster work/real_trait_sources/japan_roster.csv \
+            --japan-authority work/real_trait_sources/japan_authority.csv \
+            --japan-extension work/real_trait_sources/japan_extension.csv \
+            --east-asia-holdout work/real_trait_sources/external_east_asia.csv \
+            --out work/real_Cirsium_memory_holdout_coverage_v1.json
+      - name: Verify genuine botanical trait variation without an invented common tree
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open("work/real_Cirsium_memory_holdout_coverage_v1.json"))
+          a=r["real_source_state_audit"]
+          t=r["negative_controls"]
+          assert a["status"]=="REAL_TAXON_TRAIT_STATES_AUDITED_NO_COMMON_PHYLOGENETIC_MEMORY_TEST"
+          assert a["source_provenance"]["published_japanese_membership_tips"]==38
+          assert a["source_provenance"]["authority_japanese_rows"]==24
+          assert a["source_provenance"]["external_east_asia_screened_taxa"]==19
+          assert a["source_provenance"]["genuine_external_nondiscovery_taxa"]==16
+          assert a["japan_discovery"]["orientation_states"]=={
+              "downward_or_nodding":6,"upward_or_erect":13}
+          assert a["heldout_east_asia"]["orientation_states"]=={
+              "downward_or_nodding":5,"upward_or_erect":6}
+          assert a["heldout_east_asia"]["phyllary_authority_resolved_taxa"]==1
+          assert a["heldout_east_asia"]["stickiness_eligible_taxa"]==2
+          assert a["Q1_inferential_ceiling"]["phylogenetic_memory_gradient_rho"] is None
+          assert a["Q1_inferential_ceiling"]["same_trait_memory_transport"]=="NOT_IDENTIFIABLE_WITH_EXISTING_EXTERNAL_STATES"
+          assert t["status"]=="PASS_SYNTHETIC_HOLDOUT_QUALIFICATION_NEGATIVE_CONTROLS"
+          assert t["deliberate_corrupted_sources_rejected"]==4
+          print("PASS: 19 Japan and 11 independently sourced East Asia orientation states; no synthetic phylogenetic slope")
+          PY
+      - name: Archive compact verified botanical state readout
+        uses: actions/upload-artifact@v4
+        with:
+          name: aza3-actual-Cirsium-Q1-holdout-trait-coverage-v1
+          path: work/real_Cirsium_memory_holdout_coverage_v1.json
+          if-no-files-found: error
+          retention-days: 30
