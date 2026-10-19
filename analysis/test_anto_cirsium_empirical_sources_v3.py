@@ -41,6 +41,22 @@ class MigratedEmpiricalSourceTests(unittest.TestCase):
         self.assertTrue(all(r["enzyme_function_confirmed"] is False
                             for r in p["records"] if "enzyme_function_confirmed" in r))
 
+    def test_reproducible_source_candidate_shortlist_is_not_locus_count(self):
+        panel=self.result["frozen_2020_strong_similarity_shortlist"]
+        self.assertEqual(panel["n_transcripts"],5)
+        self.assertEqual(panel["distinct_assembly_groups"],4)
+        self.assertEqual(panel["family_counts"],{"DFR":4,"ANS":1})
+        self.assertIn("FUNCTION_UNVERIFIED",panel["validation"])
+        import json
+        frozen=json.loads((DAT/"molecular/cirsium_japonicum_2020_source_similarity_shortlist_v3.json").read_text())
+        self.assertFalse(frozen["functional_orthology_verified"])
+        self.assertFalse(frozen["molecular_reexpression_demonstrated"])
+        self.assertEqual(set(r["id"] for r in frozen["records"]),{
+            "TR35526|c0_g1_i1","TR38875|c0_g4_i5",
+            "TR38875|c0_g4_i7","TR39766|c0_g1_i2",
+            "TR58302|c0_g1_i1"
+        })
+
     def test_protein_reference_controls(self):
         refs=ref_proteins(DAT/"molecular/asteraceae_reference_cds_v5.fasta")
         self.assertEqual(len(refs["DFR"]),342)
