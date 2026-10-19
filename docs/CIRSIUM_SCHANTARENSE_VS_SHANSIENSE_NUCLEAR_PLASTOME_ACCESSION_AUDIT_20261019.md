@@ -24,6 +24,25 @@ Kew POWOは *C. shansiense* と *C. schantarense* を別々の**accepted species
 
 **GenBank MN871982 の記録自体を、この監査で独立にFASTAとして取得・検証したと主張しない。** 一次論文が明示した accession と標本から検証した出典対応であり、配列照合は別ゲート。
 
+## NCBI Nucleotide の実際の照合結果（2026年10月19日）
+
+公開NCBI E-utilitiesの `Nucleotide` インデックスをGitHub Actionsから実行した。クエリの綴り/語句を別々に実行し、短時間のHTTPレート制限は明示的に再試行する。検証済み結果（[Actionの実行ログ](https://github.com/zuizui0223/aza3/actions/runs/39233237847)）：
+
+| 読取専用クエリ | NCBI一致 |
+|---|---:|
+| `"Cirsium schantarense"[All Fields]` | **0** |
+| `"Cirsium shantarense"[All Fields]` | **0** |
+| `schantarense[All Fields]` | **0** |
+| `shantarense[All Fields]` | **0** |
+| `"Cirsium schantarense" AND ITS` | **0** |
+| **陽性対照** `MN871982[Accession]` | **1** |
+
+陽性対照のNCBI `ESummary` は **`MN871982.1`, `Cirsium shansiense chloroplast, complete genome`, 152,396 bp, taxid `2721731`** と返した。これは2020年の原著と一致し、2022年の `C. schantarense` とした二次引用と矛盾する。**この元配列の種名/区画の帰属は、論文解釈だけでなくNCBI実索引でも確認された。**
+
+ただし「特定の表記による公開DB検索が0件」は、2015年の核ITSが**他のラベル・未同定配列名・別データベースに登録されていないことを証明しない**。2015年原著のアクセッション番号、実際の核配列FASTA・voucherは未回収。検索可能性の限界を正確に `NOT_VERIFIED` とする。
+
+実行ツール：`analysis/probe_cirsium_schantarense_ncbi_nuccore_v1.py`、真正出力を長期保存した [実データ検索レシート](../data/evidence/cirsium_schantarense_ncbi_index_search_receipt_20261019.json)。CIにより標本なしアクセッション推定・「ゼロ検出＝分子経路消失」という誤判定を拒否する。
+
 ## 今のQ1、Q3への具体的な帰結
 
 **Q1：系統間記憶の転移。** 2015核ITSの局所系統近接性は実際の原著知見。ただし現在の公刊 Moreyra 2025 **同一多数核座位枠組み**への核標本照合は *C. schantarense* について0件（別の *C. vlassovianum* なら安全な標本照合がある）。2015の枝長を2025の枝長と混ぜて距離対非類似度 `rho` を作成しない。*C. schantarense* の2015核ITS **実際のGenBank登録番号を原著の全体・GenBank登録で別途確認**し、その標本と一致する多座位核系統のvoucher対応を探す。
