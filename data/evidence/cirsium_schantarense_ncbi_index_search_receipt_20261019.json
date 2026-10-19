@@ -1,0 +1,64 @@
+{
+  "version": "cirsium_schantarense_NCBI_nucleotide_public_index_audit_20261019",
+  "executed": "2026-10-19T09:52:08Z",
+  "source": "NCBI Nucleotide E-utilities ESearch and ESummary, publicly indexed accession metadata; network via GitHub Actions",
+  "workflow_url": "https://github.com/zuizui0223/aza3/actions/runs/39233237847",
+  "source_tool": "analysis/probe_cirsium_schantarense_ncbi_nuccore_v1.py",
+  "query_results": [
+    {
+      "name": "schantarense_exact_text",
+      "term": "\"Cirsium schantarense\"[All Fields]",
+      "indexed_count": 0,
+      "status": "ZERO_INDEXED_HITS_FOR_QUERY_NOT_NO_DNA"
+    },
+    {
+      "name": "shantarense_paper_spelling",
+      "term": "\"Cirsium shantarense\"[All Fields]",
+      "indexed_count": 0,
+      "status": "ZERO_INDEXED_HITS_FOR_QUERY_NOT_NO_DNA"
+    },
+    {
+      "name": "schantarense_unquoted_token",
+      "term": "schantarense[All Fields]",
+      "indexed_count": 0,
+      "status": "ZERO_INDEXED_HITS_FOR_QUERY_NOT_NO_DNA"
+    },
+    {
+      "name": "shantarense_unquoted_token",
+      "term": "shantarense[All Fields]",
+      "indexed_count": 0,
+      "status": "ZERO_INDEXED_HITS_FOR_QUERY_NOT_NO_DNA"
+    },
+    {
+      "name": "schantarense_and_ITS",
+      "term": "\"Cirsium schantarense\"[All Fields] AND (\"ITS\"[All Fields] OR \"internal transcribed spacer\"[All Fields])",
+      "indexed_count": 0,
+      "status": "ZERO_INDEXED_HITS_FOR_QUERY_NOT_NO_DNA"
+    },
+    {
+      "name": "positive_control_original_shansiense_plastome",
+      "term": "MN871982[Accession]",
+      "indexed_count": 1,
+      "status": "PUBLIC_INDEX_CANDIDATES_ONLY"
+    }
+  ],
+  "positive_control_ESummary": {
+    "accession_version": "MN871982.1",
+    "uid": "1841183435",
+    "record_title": "Cirsium shansiense chloroplast, complete genome",
+    "length_bp": 152396,
+    "ncbi_taxid": 2721731,
+    "matches_original_Xu_2020_species_and_genome_compartment": true
+  },
+  "negative_result_scope": "Five specific term-based searches returned no indexed nucleotide records on this retrieval date. This is NOT proof that the 2015 Bae data were never deposited under a different spelling, cultivar name, unidentified specimen, or alternative record annotation.",
+  "unverified_target": {
+    "taxon": "Cirsium schantarense (Bae paper spelling shantarense)",
+    "primary_2015_nuclear_ITS_publication_confirmed": true,
+    "author_2015_accession_verified": false,
+    "NCBI_identifiable_source_record_obtained": false,
+    "no_patristic_memory_estimate": true
+  },
+  "no_fasta_downloaded": true,
+  "relevance": "Q1 source accession identity resolved negatively for known wrong candidate; Q3 white-form synonym remains molecularly untested",
+  "inference_status": "NCBI_POSITIVE_CONTROL_CONFIRMED_TARGET_SPECIES_NAME_SEARCH_ZERO_ACCESSION_ID_UNVERIFIED"
+}
