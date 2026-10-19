@@ -1,0 +1,94 @@
+{
+  "version": "cirsium_Q2_pollen_resource_vs_structural_access_source_evidence_v1",
+  "as_of": "2026-10-20",
+  "objective": "Distinguish pollen-dependent resource effects on seed-feeders from true floral-head physical access and independent pollination service",
+  "studies": [
+    {
+      "authors": "Karpate et al.",
+      "year": 2025,
+      "status": "RESEARCH_SQUARE_PREPRINT_NOT_PEER_REVIEW_VERIFIED",
+      "study_doi": "10.21203/rs.3.rs-6634172/v1",
+      "biological_species": "Cirsium arvense",
+      "experiment_year": 2022,
+      "localities": "four populations near České Budějovice, Czechia",
+      "sexual_state": "functionally dioecious, reproductive female plants sampled",
+      "author_reported_units": {
+        "sites": 4,
+        "blocks_per_site": 12,
+        "treatment_arms": 4,
+        "listed_total_plant_individuals": 196,
+        "calculated_four_per_block_slots": 192,
+        "actual_collected_mature_heads": 609
+      },
+      "unresolved_plant_denominator_discrepancy": "Printed 196 biological individuals versus 48 blocks x 4=192 planned slots; no original raw plant CSV inspected",
+      "experimental_arms": [
+        "control",
+        "pollinator_exclusion_organza_bag",
+        "predator_exclusion_sticky_stem_trap_and_manual_removal",
+        "predator_model_plastic_spider_with_predator_exclusion"
+      ],
+      "bag_placed_timing": "approximately 1 week before flower opening",
+      "manipulation_is_flower_head_orientation_or_true_spines": false,
+      "author_reported_outcomes": {
+        "pollinator_exclusion": "fertilized achene fraction reduced",
+        "emerged_head_insects_under_pollinator_exclusion": "abundance reduced",
+        "seed_fraction_predated_under_pollinator_exclusion": "fraction higher despite fewer emerged arthropods",
+        "predator_exclusion_and_model": "no detectable changes reported in major outputs",
+        "sites": "effects reported broadly consistent across four populations"
+      },
+      "source_organism_family_groups": [
+        "Cecidomyiidae",
+        "Syrphidae",
+        "Platygastridae",
+        "Tephritidae"
+      ],
+      "independent_larval_seed_eating_role_for_every_emerged_family_proven": false,
+      "bag_selectivity_for_seed_predator_ovipositing_females_confirmed": false,
+      "pollen_to_enemy_resource_mediation_identified_without_mechanical_exclusion_confound": false,
+      "live_raw_archive": {
+        "doi": "10.5281/zenodo.15364152",
+        "code": "analysis/probe_cirsium_arvense_2025_zenodo_v1.py",
+        "metadata_and_head_csv_download_status": "UNVERIFIED_AT_MANIFEST_AUTHORING",
+        "raw_head_rows_recomputed": 0,
+        "reestimated_P_or_SE": false
+      },
+      "source_url": "https://www.researchgate.net/publication/393225910_Pollinators_not_predators_affect_florivore_survival_in_Cirsium_arvense_Asteraceae_reveals_an_experiment_based_on_Structural_Causal_Modelling"
+    },
+    {
+      "authors": "Walker et al.",
+      "year": 2008,
+      "status": "PUBLISHED_JOURNAL_OF_ANIMAL_ECOLOGY",
+      "doi": "10.1111/j.1365-2656.2008.01406.x",
+      "biological_species": "Cirsium arvense",
+      "experimental_variables": [
+        "host_plant_soil_nutrient_fertilization",
+        "bud_availability"
+      ],
+      "insect_taxa": "Xyphosia miliaria (tephritid) and its Hymenoptera parasitoids",
+      "author_reported_results": [
+        "Manipulated host-plant resources/quality increased seed-feeder abundance",
+        "No evidence that X. miliaria selectively oviposited on nutrient-fertilized plants",
+        "Parasitoid attack rates were higher on nutrient-fertilized thistles"
+      ],
+      "term_warning": "plant nutrient fertilization in Walker 2008 is NOT the same as pollinator-mediated ovule fertilization in Karpate 2025",
+      "new_individual_level_reanalysis": false,
+      "direct_head_spine_orientation_intervention": false,
+      "source_url": "https://besjournals.onlinelibrary.wiley.com/doi/10.1111/j.1365-2656.2008.01406.x"
+    }
+  ],
+  "comparative_interpretation": {
+    "source_backed": "Pollinator-exclusion, plant nutrients/bud supply, seed-feeder emergence and parasitoids are interconnected in Cirsium experiments.",
+    "not_source_backed": [
+      "Head spines and orientation caused differences in seed-feeder establishment",
+      "All emerged insects identified as actual seed consumers",
+      "Experimental bag alters only pollen transfer",
+      "Nutrient-fertilized plant equals pollinated seeds",
+      "The two different experiments establish a single same-head mediation coefficient",
+      "Any reduction in adult emergence establishes plant adaptive payoff",
+      "Karpate preprint outcomes are confirmed peer-reviewed final publication"
+    ],
+    "novel_test_target": "Condition on measured resource provisioning and truly independently verified ovipositor access at an authentic bract/spine interface, then compare confirmed eggs/larval survival and absolute filled achenes on the same pre-enrolled biological head",
+    "study_unit": "individual biological plant, repeated head nested, site and block preserved",
+    "existing_aza3_real_complete_reproductive_contact_head_rows": 0
+  }
+}
