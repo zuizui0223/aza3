@@ -27,12 +27,18 @@ jobs:
         run: |
           mkdir -p work
           gh api 'repos/zuizui0223/EAzami/contents/data/evidence/cirsium_interaction_evidence_seed_v1.csv?ref=c9870e91604ed1514344ddc8f765eae5237dbf27' --jq .content | base64 -d > work/original_EAzami_Cirsium_15studies.csv
+          gh api 'repos/zuizui0223/EAzami/contents/data/evidence/japan38_nmns_capitulum_trait_seed_v1.csv?ref=c9870e91604ed1514344ddc8f765eae5237dbf27' --jq .content | base64 -d > work/original_EAzami_Japan38_head_traits.csv
+          gh api 'repos/zuizui0223/EAzami/contents/data/evidence/japan38_module_function_bridge_summary_v2.json?ref=c9870e91604ed1514344ddc8f765eae5237dbf27' --jq .content | base64 -d > work/original_EAzami_Japan38_function_bridge.json
           test -s work/original_EAzami_Cirsium_15studies.csv
+          test -s work/original_EAzami_Japan38_head_traits.csv
+          test -s work/original_EAzami_Japan38_function_bridge.json
       - name: Run real published source context and exact source-format negative controls
         run: |
           python -m py_compile analysis/audit_cirsium_Q2_stickiness_partner_contact_real_sources_v1.py
           python analysis/audit_cirsium_Q2_stickiness_partner_contact_real_sources_v1.py \
             --original-eazami-seed work/original_EAzami_Cirsium_15studies.csv \
+            --original-japan-head-states work/original_EAzami_Japan38_head_traits.csv \
+            --original-module-function-bridge work/original_EAzami_Japan38_function_bridge.json \
             --out work/Cirsium_sticky_payoff_context_real_published_sources_v1.json
       - name: Assert 1983 positive was missing and 2003/2007 do not prove partner fitness
         run: |
@@ -56,6 +62,17 @@ jobs:
           assert len(x["observational_2007_real_insect_guild_surface_interactions"])==4
           assert y["status"]=="PASS_SYNTHETIC_SOURCE_CONTEXT_AND_NO_FALSE_GUILD_SELECTION_GATES"
           assert y["source_corruptions_rejected"]==6
+          pair=p["actual_source_Cirsium_JPN06_JPN15_sister_trait_contrast"]
+          assert pair["status"]=="REAL_SISTER_CONCEPT_PAIR_HEAD_TRAITS_DECOUPLED_NOT_CAUSAL"
+          assert pair["JPN06"]["taxon"]=="Cirsium dipsacolepis"
+          assert pair["JPN06"]["exudate_code"]=="nonsticky_or_nearly_nonsticky"
+          assert pair["JPN15"]["taxon"]=="Cirsium lineare"
+          assert pair["JPN15"]["exudate_code"]=="sticky"
+          assert pair["JPN15"]["authority_source"]=="index_catchphrase"
+          assert pair["shared_orientation_but_different_stickiness"]
+          assert pair["candidate_phylogeny"]=="100/100_on_canonical_ML_tree"
+          assert pair["no_partner_identified_or_head_reproductive_trait_causal_effect_estimated"]
+          assert pair["proposed_manipulation_status"]=="NOT_AUTHORIZED"
           assert p["no_new_Cirsium_experiment_performed"] is True
           print("PASS: real 1983 positive + 2003 nondetection + guild-specific 2007 observations, no invented causal interaction")
           PY
