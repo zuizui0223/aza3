@@ -1,0 +1,70 @@
+name: Audit Cirsium Q1 heldout nuclear S1 sample crosswalk v1
+
+on:
+  pull_request:
+    paths:
+      - "analysis/audit_cirsium_q1_heldout_nuclear_sample_crosswalk_v1.py"
+      - "docs/CIRSIUM_HEAD_STATE_TRANSFER_VS_EVOLUTIONARY_MEMORY_20261019.md"
+      - ".github/workflows/audit-cirsium-q1-nuclear-heldout-sample-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  identify-source-voucher-matches-not-infer-memory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Retrieve 258 source-backed Moreyra 2025 samples and actual heldout taxa
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work/moreyra_original
+          for i in 001 002 003 004 005 006 007 008; do
+            gh api "repos/zuizui0223/EAzami/contents/data/evidence/moreyra2025_cirsium_reconciliation_v1/part_${i}.csv?ref=c9870e91604ed1514344ddc8f765eae5237dbf27" --jq .content | base64 -d > "work/moreyra_original/part_${i}.csv"
+            test -s "work/moreyra_original/part_${i}.csv"
+          done
+          gh api 'repos/zuizui0223/EAzami/contents/data/evidence/moreyra2025_cirsium_reconciliation_v1/manifest.json?ref=c9870e91604ed1514344ddc8f765eae5237dbf27' --jq .content | base64 -d > work/moreyra_original/manifest.json
+          gh api 'repos/zuizui0223/EAzami/contents/data/evidence/heldout_east_asia_trait_state_audit_v1.csv?ref=c9870e91604ed1514344ddc8f765eae5237dbf27' --jq .content | base64 -d > work/east_asia_heldout_states.csv
+      - name: Validate exact specimens and veto false Turkey/SRA name hit
+        run: |
+          python -m py_compile analysis/audit_cirsium_q1_heldout_nuclear_sample_crosswalk_v1.py
+          python analysis/audit_cirsium_q1_heldout_nuclear_sample_crosswalk_v1.py \
+            --original-reconciliation-folder work/moreyra_original \
+            --original-heldout-states work/east_asia_heldout_states.csv \
+            --out work/q1_heldout_source_nuclear_samples_v1.json
+      - name: Check biological claim ceiling and authentic sample count
+        run: |
+          python - <<'PY'
+          import json
+          x=json.load(open("work/q1_heldout_source_nuclear_samples_v1.json"))
+          a=x["actual_source_matching"]
+          assert x["source_manifest"]["n_parts"]==8
+          assert x["source_manifest"]["n_rows"]==258
+          assert x["source_integrity_tests"]["status"]=="PASS_SYNTHETIC_FALSE_MATCH_AND_MISSING_PHYLOGENY_GATES"
+          assert x["source_integrity_tests"]["n_corruption_cases"]==4
+          assert a["heldout_orientation_species"]==11
+          assert a["heldout_with_exact_voucher_and_submitted_name_consistent_nuclear_samples"]==2
+          assert a["heldout_with_false_or_discordant_tree_code_name_only_match"]==1
+          assert a["heldout_without_matching_exact_nuclear_sample_record"]==8
+          assert a["accepted_external_species"]==[
+              "Cirsium argyracanthum","Cirsium vlassovianum"]
+          assert a["rejected_false_match"]=="Cirsium lidjiangense"
+          assert a["memory"]["external_phylogenetic_memory_rho"] is None
+          assert a["memory"]["genus_out_of_lineage_transfer_gain"] is None
+          assert a["memory"]["independent_external_patristic_tip_pairs_at_most"]==1
+          assert a["no_biological_field_or_gene_function_measurement_created"]
+          print("PASS: 2 genuine nuclear-sample matches, 1 misidentified geographic name, 8 unmatched; no invented phylogenetic slope")
+          PY
+      - name: Save original-voucher provenance and inference receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-q1-exact-nuclear-voucher-overlap-v1
+          path: work/q1_heldout_source_nuclear_samples_v1.json
+          if-no-files-found: error
+          retention-days: 30
