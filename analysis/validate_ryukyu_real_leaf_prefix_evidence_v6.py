@@ -95,7 +95,7 @@ def audit(primary=PRIMARY,secondary=SECONDARY,manifest=MANIFEST,
     for r in b["per_run"]:
         if r["run_accession"] not in registry or r["retrieval_status"]!="PREFIX_ANALYZED":
             raise ValueError("Secondary source run missing or not really retrieved")
-        if r["source_specimen"]!=registry[r["run_accession"]]["source_specimen_code"]:
+        if r["specimen"]!=registry[r["run_accession"]]["source_specimen_code"]:
             raise ValueError("Secondary sample accession relabeled")
         if (r["strict_decoy_fragments"]!=0 or
             not isinstance(r["strict_source_fragments"],int) or r["strict_source_fragments"]<0):
@@ -114,12 +114,13 @@ def audit(primary=PRIMARY,secondary=SECONDARY,manifest=MANIFEST,
         raise ValueError("Alternative method compressed budget or read count changed")
     if any(q8[k]!=6 for k in REQUIRED_IDS):
         raise ValueError("All-six target recurrence not stable under technical prefix/mapping sensitivity")
-    for dataset in (a,b):
-        claim=json.dumps(dataset)
-        if "functionally_verified" in claim and dataset is a and dataset.get("flower_colour_reexpression_demonstrated") is True:
-            raise ValueError("Do not infer function from short leaf RNA sequences")
-    if a["biological_claim_ceiling"] if "biological_claim_ceiling" in a else False:
-        raise ValueError("Unexpected biological result contract format")
+    for field in ("functional_orthology_assayed","floral_stage_phenotype_or_RNA_assayed",
+                  "flower_colour_reexpression_demonstrated",
+                  "any_species_differential_expression_test_valid",
+                  "genotype_phenotype_ancestral_polarity_test_completed",
+                  "genome_wide_reference_competition_completed"):
+        if a["biological_claim_ceiling"][field] is not False:
+            raise ValueError("Biological inference exceeds original read-level evidence: "+field)
     return {
         "analysis_version":"aza3_ryukyu_real_R1_prefix_evidence_audit_v6",
         "n_independent_source_libraries":6,
