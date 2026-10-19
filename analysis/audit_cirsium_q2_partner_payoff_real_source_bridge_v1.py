@@ -231,11 +231,11 @@ def negative_controls(herb,meta,pa,pa_meta,base,ext):
     assert actual["joint_question_identifiability"][
         "explicit_taxa_with_exact_quantitative_antagonist_RR_and_exact_pollinator_3arm_seed_means"]==0
     manipulations=[
-      (lambda hh,mm,pp,pmm,bb,ee:hh.append(copy.deepcopy(hh[0])),
+      (lambda hh,mm,pp,pmm,bb,ee:hh[1].update(effect_id=hh[0]["effect_id"]),
        "DUPLICATE_SOURCE_HERBIVORY_EFFECT"),
-      (lambda hh,mm,pp,pmm,bb,ee:ee.append(copy.deepcopy(ee[0])),
+      (lambda hh,mm,pp,pmm,bb,ee:ee[1].update(evidence_id=ee[0]["evidence_id"]),
        "LITERATURE_EVIDENCE_ID_DOUBLE_COUNTED"),
-      (lambda hh,mm,pp,pmm,bb,ee:bb.append(copy.deepcopy(ee[0])),
+      (lambda hh,mm,pp,pmm,bb,ee:bb[1].update(evidence_id=ee[0]["evidence_id"]),
        "LITERATURE_EVIDENCE_ID_DOUBLE_COUNTED"),
       (lambda hh,mm,pp,pmm,bb,ee:hh[0].update(
            ambient_herbivory_mean="-1"),
