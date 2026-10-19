@@ -38,6 +38,9 @@ NEEDED={
 }
 UPSTREAM_NEEDED={"evidence_id","study_id","taxon","capitulum_module",
                  "design","fitness_endpoint","direction","doi"}
+BOTANICAL_NEEDED={"paper_japan_member_id","paper_taxon_concept",
+                  "orientation_state","phyllary_posture","stickiness_state",
+                  "authority_match_status","source_scope"}
 FROZEN={
  "WILLSON_1983_DISCOLOR":{
    "publication_year":"1983","experiment_years":"1980",
@@ -194,6 +197,61 @@ def audit(rows,upstream):
       },
     }
 
+def source_sister_pair_audit(traits,bridge):
+    names={}
+    for r in traits:
+        key=r.get("paper_japan_member_id")
+        require(key not in names and bool(key),
+                "DUPLICATE_CIRSIUM_BOTANICAL_TAXON")
+        names[key]=r
+    expected={
+      "JPN_06":("Cirsium dipsacolepis","upward_or_erect",
+                "nonsticky_or_nearly_nonsticky","detail_page"),
+      "JPN_15":("Cirsium lineare","upward_or_erect",
+                "sticky","index_catchphrase"),
+      "JPN_36":("Cirsium sieboldii","downward_or_nodding",
+                "nonsticky_or_nearly_nonsticky","detail_page"),
+    }
+    for key,vals in expected.items():
+        require(key in names,"REQUIRED_CIRSIUM_HEAD_MORPH_MISSING")
+        r=names[key]
+        require((
+          r["paper_taxon_concept"],r["orientation_state"],
+          r["stickiness_state"],r["source_scope"]
+        )==vals,"SOURCE_CIRSIUM_SISTER_HEAD_TRAIT_STATUS_DRIFT")
+        require(r["authority_match_status"]=="exact_authority_concept_match",
+                "NO_DIRECT_CIRSIUM_AUTHORITY_TAXON_CONCEPT")
+    correction=bridge["state_direction_correction"]
+    require(correction["JPN06_state"]=="nonsticky_or_nearly_nonsticky"
+            and correction["JPN15_state"]=="sticky"
+            and correction["JPN06_JPN15_sister_support"]==
+            "100/100_on_canonical_ML_tree"
+            and bridge["module_decisions"]["stickiness"][
+                "best_ancestry_matched_pair"]==["JPN_06","JPN_15"],
+            "AUTHORITATIVE_HEAD_STICKINESS_SISTER_SUPPORT_DRIFT")
+    require(names["JPN_06"]["orientation_state"]==
+            names["JPN_15"]["orientation_state"]=="upward_or_erect",
+            "NUCLEAR_SISTER_PAIR_ORIENTATION_NO_LONGER_MATCHES")
+    return {
+      "status":"REAL_SISTER_CONCEPT_PAIR_HEAD_TRAITS_DECOUPLED_NOT_CAUSAL",
+      "source":"EAzami frozen Japanese NMNS botanical states plus frozen canonical ML sister-pair summary",
+      "JPN06":{"taxon":names["JPN_06"]["paper_taxon_concept"],
+               "head_orientation":"upward_or_erect",
+               "exudate_code":"nonsticky_or_nearly_nonsticky",
+               "authority_source":"detail_page"},
+      "JPN15":{"taxon":names["JPN_15"]["paper_taxon_concept"],
+               "head_orientation":"upward_or_erect",
+               "exudate_code":"sticky",
+               "authority_source":"index_catchphrase",
+               "field_stickiness_and_exudate_composition_measured":False},
+      "candidate_phylogeny":"100/100_on_canonical_ML_tree",
+      "independent_species_pair_not_two_evolutionary_transition_replications":True,
+      "shared_orientation_but_different_stickiness":True,
+      "no_partner_identified_or_head_reproductive_trait_causal_effect_estimated":True,
+      "first_required_observation":"Verify actual live secretion in JPN15 and JPN06; track pre-entry insect identity and whether the animal contacts the true bractal exudate; source record JPN15 sticky is from index not a measured plant.",
+      "proposed_manipulation_status":"NOT_AUTHORIZED",
+    }
+
 def corrupt_test(rows,upstream):
     def fail(bad,needle):
         try:audit(bad,upstream)
@@ -230,12 +288,18 @@ def main():
     a=argparse.ArgumentParser()
     a.add_argument("--new-evidence",type=Path,default=NEW)
     a.add_argument("--original-eazami-seed",type=Path,required=True)
+    a.add_argument("--original-japan-head-states",type=Path,required=True)
+    a.add_argument("--original-module-function-bridge",type=Path,required=True)
     a.add_argument("--out",type=Path,required=True)
     arg=a.parse_args()
     hdr,rows=csvrows(arg.new_evidence)
     original_head,old=csvrows(arg.original_eazami_seed)
-    require(NEEDED.issubset(hdr) and UPSTREAM_NEEDED.issubset(original_head),
+    head_header,japan=csvrows(arg.original_japan_head_states)
+    bridge=json.loads(arg.original_module_function_bridge.read_text(encoding="utf-8"))
+    require(NEEDED.issubset(hdr) and UPSTREAM_NEEDED.issubset(original_head)
+            and BOTANICAL_NEEDED.issubset(head_header),
             "FROZEN_SOURCE_CSV_HEADERS_MISSING")
+    live_sister_source=source_sister_pair_audit(japan,bridge)
     report={
       "analysis_id":"cirsium_real_stickiness_context_pr50_Q2_v1",
       "as_of":"2026-10-19",
@@ -243,6 +307,7 @@ def main():
       "EAzami_source_commit":"c9870e91604ed1514344ddc8f765eae5237dbf27",
       "synthetic_corruption_tests":corrupt_test(rows,old),
       "actual_published_evidence_audit":audit(rows,old),
+      "actual_source_Cirsium_JPN06_JPN15_sister_trait_contrast":live_sister_source,
       "no_new_Cirsium_experiment_performed":True,
     }
     arg.out.parent.mkdir(parents=True,exist_ok=True)
@@ -255,6 +320,7 @@ def main():
       "study_by_species_experimental_cases":q["actual_original_manipulative_species_by_study_cases"],
       "C_discolor_effect_detection_across_periods":[x["reported_direction"] for x in q["two_year_period_discordance_on_same_C_discolor"]],
       "partner_dependent_fitness_effect_measured":q["has_measured_fitness_for_multiple_partner_guilds_under_same_spine_or_stickiness_state"],
+      "Japanese_sister_pair_trait_dissociation":live_sister_source["shared_orientation_but_different_stickiness"],
       "source_negative_controls":report["synthetic_corruption_tests"]["status"],
     },indent=2,ensure_ascii=False))
 
