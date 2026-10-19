@@ -1,0 +1,321 @@
+{
+  "version": "aza3_cirsium_reference_taxon_sensitivity_v4",
+  "verified_at": "2026-10-19",
+  "biological_source": "Park et al 2020 Cirsium japonicum publisher FASTA + BLAST XLSX, NOT Ryukyu Cirsium",
+  "source_fasta": "data/anto_source_handoff/molecular/cirsium_japonicum_2020_26_source_sequences_v6.fasta",
+  "reference_panel": "data/anto_source_handoff/molecular/extended_DFR_ANS_ANR_FLS_reference_proteins_v4.fasta",
+  "initial_qualifying_source_transcript_records": 5,
+  "distinct_source_assembly_groups_in_five": 4,
+  "reference_omission_scenarios": [
+    "all_seven",
+    "leave_out_Saussurea_medusa",
+    "leave_out_Gerbera_hybrida",
+    "leave_out_Arabidopsis_positive_only"
+  ],
+  "stable_family_and_strong_in_all_scenarios": 2,
+  "strong_when_Saussurea_removed": 3,
+  "strict_stable_source_ids": [
+    "TR35526|c0_g1_i1",
+    "TR39766|c0_g1_i2"
+  ],
+  "reference_sensitive_ids": [
+    "TR38875|c0_g4_i5",
+    "TR38875|c0_g4_i7",
+    "TR58302|c0_g1_i1"
+  ],
+  "scenarios_by_transcript": [
+    {
+      "comparisons": {
+        "all_seven": {
+          "aligned_aa": 206,
+          "aligned_identity": 0.305825,
+          "best_group": "DFR_reference",
+          "best_reference_id": "ABQ97018.1",
+          "match_to_frozen_family": true,
+          "normalized_positive_minus_related_paralog_score": 0.054747,
+          "reference_count": 7,
+          "reference_coverage": 0.602339,
+          "strong_and_same_family": true,
+          "strong_similarity": true
+        },
+        "leave_out_Arabidopsis_positive_only": {
+          "aligned_aa": 206,
+          "aligned_identity": 0.305825,
+          "best_group": "DFR_reference",
+          "best_reference_id": "ABQ97018.1",
+          "match_to_frozen_family": true,
+          "normalized_positive_minus_related_paralog_score": 0.054747,
+          "reference_count": 5,
+          "reference_coverage": 0.602339,
+          "strong_and_same_family": true,
+          "strong_similarity": true
+        },
+        "leave_out_Gerbera_hybrida": {
+          "aligned_aa": 206,
+          "aligned_identity": 0.305825,
+          "best_group": "DFR_reference",
+          "best_reference_id": "ABQ97018.1",
+          "match_to_frozen_family": true,
+          "normalized_positive_minus_related_paralog_score": 0.054747,
+          "reference_count": 6,
+          "reference_coverage": 0.602339,
+          "strong_and_same_family": true,
+          "strong_similarity": true
+        },
+        "leave_out_Saussurea_medusa": {
+          "aligned_aa": 240,
+          "aligned_identity": 0.320833,
+          "best_group": "DFR_reference",
+          "best_reference_id": "CAA78930.1",
+          "match_to_frozen_family": true,
+          "normalized_positive_minus_related_paralog_score": 0.039361,
+          "reference_count": 5,
+          "reference_coverage": 0.655738,
+          "strong_and_same_family": true,
+          "strong_similarity": true
+        }
+      },
+      "gene_function_verified": false,
+      "initial_2020_source_family": "DFR",
+      "source_assembly_group": "TR35526|c0_g1",
+      "stable_across_all_reference_omissions": true,
+      "transcript_id": "TR35526|c0_g1_i1"
+    },
+    {
+      "comparisons": {
+        "all_seven": {
+          "aligned_aa": 220,
+          "aligned_identity": 0.404545,
+          "best_group": "DFR_reference",
+          "best_reference_id": "ABQ97018.1",
+          "match_to_frozen_family": true,
+          "normalized_positive_minus_related_paralog_score": 0.123435,
+          "reference_count": 7,
+          "reference_coverage": 0.643275,
+          "strong_and_same_family": true,
+          "strong_similarity": true
+        },
+        "leave_out_Arabidopsis_positive_only": {
+          "aligned_aa": 220,
+          "aligned_identity": 0.404545,
+          "best_group": "DFR_reference",
+          "best_reference_id": "ABQ97018.1",
+          "match_to_frozen_family": true,
+          "normalized_positive_minus_related_paralog_score": 0.123435,
+          "reference_count": 5,
+          "reference_coverage": 0.643275,
+          "strong_and_same_family": true,
+          "strong_similarity": true
+        },
+        "leave_out_Gerbera_hybrida": {
+          "aligned_aa": 220,
+          "aligned_identity": 0.404545,
+          "best_group": "DFR_reference",
+          "best_reference_id": "ABQ97018.1",
+          "match_to_frozen_family": true,
+          "normalized_positive_minus_related_paralog_score": 0.123435,
+          "reference_count": 6,
+          "reference_coverage": 0.643275,
+          "strong_and_same_family": true,
+          "strong_similarity": true
+        },
+        "leave_out_Saussurea_medusa": {
+          "aligned_aa": 237,
+          "aligned_identity": 0.400844,
+          "best_group": "ANR_negative_control",
+          "best_reference_id": "NP_176365.1",
+          "match_to_frozen_family": false,
+          "normalized_positive_minus_related_paralog_score": -0.023795,
+          "reference_count": 5,
+          "reference_coverage": 0.697059,
+          "strong_and_same_family": false,
+          "strong_similarity": true
+        }
+      },
+      "gene_function_verified": false,
+      "initial_2020_source_family": "DFR",
+      "source_assembly_group": "TR38875|c0_g4",
+      "stable_across_all_reference_omissions": false,
+      "transcript_id": "TR38875|c0_g4_i5"
+    },
+    {
+      "comparisons": {
+        "all_seven": {
+          "aligned_aa": 178,
+          "aligned_identity": 0.410112,
+          "best_group": "DFR_reference",
+          "best_reference_id": "ABQ97018.1",
+          "match_to_frozen_family": true,
+          "normalized_positive_minus_related_paralog_score": 0.056794,
+          "reference_count": 7,
+          "reference_coverage": 0.520468,
+          "strong_and_same_family": true,
+          "strong_similarity": true
+        },
+        "leave_out_Arabidopsis_positive_only": {
+          "aligned_aa": 178,
+          "aligned_identity": 0.410112,
+          "best_group": "DFR_reference",
+          "best_reference_id": "ABQ97018.1",
+          "match_to_frozen_family": true,
+          "normalized_positive_minus_related_paralog_score": 0.056794,
+          "reference_count": 5,
+          "reference_coverage": 0.520468,
+          "strong_and_same_family": true,
+          "strong_similarity": true
+        },
+        "leave_out_Gerbera_hybrida": {
+          "aligned_aa": 178,
+          "aligned_identity": 0.410112,
+          "best_group": "DFR_reference",
+          "best_reference_id": "ABQ97018.1",
+          "match_to_frozen_family": true,
+          "normalized_positive_minus_related_paralog_score": 0.056794,
+          "reference_count": 6,
+          "reference_coverage": 0.520468,
+          "strong_and_same_family": true,
+          "strong_similarity": true
+        },
+        "leave_out_Saussurea_medusa": {
+          "aligned_aa": 195,
+          "aligned_identity": 0.435897,
+          "best_group": "ANR_negative_control",
+          "best_reference_id": "NP_176365.1",
+          "match_to_frozen_family": false,
+          "normalized_positive_minus_related_paralog_score": -0.049164,
+          "reference_count": 5,
+          "reference_coverage": 0.573529,
+          "strong_and_same_family": false,
+          "strong_similarity": true
+        }
+      },
+      "gene_function_verified": false,
+      "initial_2020_source_family": "DFR",
+      "source_assembly_group": "TR38875|c0_g4",
+      "stable_across_all_reference_omissions": false,
+      "transcript_id": "TR38875|c0_g4_i7"
+    },
+    {
+      "comparisons": {
+        "all_seven": {
+          "aligned_aa": 321,
+          "aligned_identity": 0.420561,
+          "best_group": "DFR_reference",
+          "best_reference_id": "ABQ97018.1",
+          "match_to_frozen_family": true,
+          "normalized_positive_minus_related_paralog_score": 0.359038,
+          "reference_count": 7,
+          "reference_coverage": 0.938596,
+          "strong_and_same_family": true,
+          "strong_similarity": true
+        },
+        "leave_out_Arabidopsis_positive_only": {
+          "aligned_aa": 321,
+          "aligned_identity": 0.420561,
+          "best_group": "DFR_reference",
+          "best_reference_id": "ABQ97018.1",
+          "match_to_frozen_family": true,
+          "normalized_positive_minus_related_paralog_score": 0.359038,
+          "reference_count": 5,
+          "reference_coverage": 0.938596,
+          "strong_and_same_family": true,
+          "strong_similarity": true
+        },
+        "leave_out_Gerbera_hybrida": {
+          "aligned_aa": 321,
+          "aligned_identity": 0.420561,
+          "best_group": "DFR_reference",
+          "best_reference_id": "ABQ97018.1",
+          "match_to_frozen_family": true,
+          "normalized_positive_minus_related_paralog_score": 0.359038,
+          "reference_count": 6,
+          "reference_coverage": 0.938596,
+          "strong_and_same_family": true,
+          "strong_similarity": true
+        },
+        "leave_out_Saussurea_medusa": {
+          "aligned_aa": 324,
+          "aligned_identity": 0.42284,
+          "best_group": "DFR_reference",
+          "best_reference_id": "BAD95233.1",
+          "match_to_frozen_family": true,
+          "normalized_positive_minus_related_paralog_score": 0.233284,
+          "reference_count": 5,
+          "reference_coverage": 0.848168,
+          "strong_and_same_family": true,
+          "strong_similarity": true
+        }
+      },
+      "gene_function_verified": false,
+      "initial_2020_source_family": "DFR",
+      "source_assembly_group": "TR39766|c0_g1",
+      "stable_across_all_reference_omissions": true,
+      "transcript_id": "TR39766|c0_g1_i2"
+    },
+    {
+      "comparisons": {
+        "all_seven": {
+          "aligned_aa": 334,
+          "aligned_identity": 0.398204,
+          "best_group": "ANS_reference",
+          "best_reference_id": "NP_194019.1",
+          "match_to_frozen_family": true,
+          "normalized_positive_minus_related_paralog_score": 0.07912,
+          "reference_count": 7,
+          "reference_coverage": 0.938202,
+          "strong_and_same_family": true,
+          "strong_similarity": true
+        },
+        "leave_out_Arabidopsis_positive_only": {
+          "aligned_aa": 318,
+          "aligned_identity": 0.383648,
+          "best_group": "FLS_negative_control",
+          "best_reference_id": "NP_196481.1",
+          "match_to_frozen_family": false,
+          "normalized_positive_minus_related_paralog_score": -0.013577,
+          "reference_count": 5,
+          "reference_coverage": 0.946429,
+          "strong_and_same_family": false,
+          "strong_similarity": true
+        },
+        "leave_out_Gerbera_hybrida": {
+          "aligned_aa": 334,
+          "aligned_identity": 0.398204,
+          "best_group": "ANS_reference",
+          "best_reference_id": "NP_194019.1",
+          "match_to_frozen_family": true,
+          "normalized_positive_minus_related_paralog_score": 0.07912,
+          "reference_count": 6,
+          "reference_coverage": 0.938202,
+          "strong_and_same_family": true,
+          "strong_similarity": true
+        },
+        "leave_out_Saussurea_medusa": {
+          "aligned_aa": 334,
+          "aligned_identity": 0.398204,
+          "best_group": "ANS_reference",
+          "best_reference_id": "NP_194019.1",
+          "match_to_frozen_family": true,
+          "normalized_positive_minus_related_paralog_score": 0.07912,
+          "reference_count": 5,
+          "reference_coverage": 0.938202,
+          "strong_and_same_family": true,
+          "strong_similarity": true
+        }
+      },
+      "gene_function_verified": false,
+      "initial_2020_source_family": "ANS",
+      "source_assembly_group": "TR58302|c0_g1",
+      "stable_across_all_reference_omissions": false,
+      "transcript_id": "TR58302|c0_g1_i1"
+    }
+  ],
+  "scientific_implication": "Differential related-protein family similarity under reference removal limits functional pigment toolkit inference: candidate DFR vs ANR and ANS vs FLS uncertainty remains; no direct enzyme or flower experiment.",
+  "claim_ceilings": {
+    "functionally_verified_dfr_or_ans_loci": 0,
+    "inferred_flower_phenotype_regain_events": 0,
+    "Cirsium_brevicaule_irumtiense_genotypes_included": false,
+    "orthology_or_allele_origin_inferred": false,
+    "six_frame_protein_similarity_only": true
+  }
+}
