@@ -5,6 +5,7 @@ on:
     paths:
       - "analysis/audit_cirsium_purpuratum_display_predator_context_v1.py"
       - "data/evidence/cirsium_purpuratum_pollinator_predator_display_context_v1.json"
+      - "data/evidence/cirsium_purpuratum_published_context_coefficients_result_v1.json"
       - "docs/CIRSIUM_Q2_PURPURATUM_DISPLAY_PREDATOR_POLLINATOR_1998_2000_V1.md"
       - ".github/workflows/audit-cirsium-purpuratum-display-context-v1.yml"
   workflow_dispatch:
@@ -32,6 +33,18 @@ jobs:
           import json, math
           r=json.load(open("work/cirsium_purpuratum_original_display_predation.json"))
           v=r["original_published_parameter_audit"]
+          frozen=json.load(open("data/evidence/cirsium_purpuratum_published_context_coefficients_result_v1.json"))
+          assert frozen["actual_plant_level_records_reanalyzed"]==0
+          assert frozen["no_matched_pollinator_and_seed_feeder_individual_intervention"]
+          for source_row in frozen["real_published_population_models"]:
+              actual=v["source_population_results"][source_row["name"]]
+              assert actual["observed_population_year"]==source_row["year"]
+              assert actual["n_real_mother_plants_used_by_original_fit"]==source_row["n_plants"]
+              assert math.isclose(actual["published_fit_coefficient_a_per_floret"],source_row["a_per_floret"])
+              assert math.isclose(actual["model_optimum_F_equal_1_over_a_rounded_coefficient"],
+                                  source_row["theoretical_F_max_from_display_coefficient"])
+              assert math.isclose(actual["model_predictions_at_illustrative_F_NOT_OBSERVED"]["1000"],
+                                  source_row["predicted_P_damage_at_F_1000"])
           t=r["synthetic_source_corruption_tests"]
           assert t["status"]=="PASS_AUTHOR_PUBLISHED_CIRSIUM_CONTEXT_COEFFICIENTS_AND_CAUSAL_GATES"
           assert t["source_corruption_cases_rejected"]==6
