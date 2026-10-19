@@ -17,7 +17,20 @@
       "accession": null,
       "phylogenetic_report": "Schantarense/shantarense near Korean C. japonicum in ITS neighbor-joining",
       "inference_boundary": "one linked nuclear locus, not a nuclear phylogenomic species tree",
-      "source_url": "https://www.kci.go.kr/kciportal/landing/article.kci?arti_id=ART001965843"
+      "source_url": "https://www.kci.go.kr/kciportal/landing/article.kci?arti_id=ART001965843",
+      "NCBI_public_term_search": {
+        "as_of": "2026-10-19",
+        "query_names": [
+          "schantarense",
+          "shantarense",
+          "Cirsium schantarense ITS"
+        ],
+        "query_hits_by_target_spelling": 0,
+        "positive_control_MN871982_hits": 1,
+        "direct_Bae_accession_match": false,
+        "not_proof_no_GenBank_record_under_other_names": true,
+        "output": "data/evidence/cirsium_schantarense_ncbi_index_search_receipt_20261019.json"
+      }
     }
   },
   "accession": {
@@ -38,6 +51,16 @@
       "printed_accession": "MN871982",
       "assessment": "CONFLICTS_WITH_2020_PRIMARY_VOUCHER_SPECIES_DO_NOT_REASSIGN",
       "independent_voucher_confirmation": false
+    },
+    "NCBI_public_nucleotide_metadata_confirmed": {
+      "as_of": "2026-10-19",
+      "verified_accession_version": "MN871982.1",
+      "title": "Cirsium shansiense chloroplast, complete genome",
+      "UID": "1841183435",
+      "taxid": 2721731,
+      "length_bp": 152396,
+      "source": "NCBI E-utilities ESummary via GitHub Actions 39233237847",
+      "raw_FA_STA_sequence_downloaded": false
     }
   },
   "taxonomy": {
