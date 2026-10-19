@@ -161,6 +161,12 @@ The source-pinned audits now make the *actual* support for all three questions e
 
 **Next scientific action priority:** qualify a single genuinely shared head-and-plant ID, independent botanical orientation measurement and voucher-backed ancestry *before* crossing field access/fitness, and simultaneously seek a comparable multilocus placement for outside-Japan heldout orientation taxa. This is an empirical support problem, not a reason to invent additional simulated trade-off parameters.
 
+## 2026-10-19 Q1追加の核DNA照合：最初の本物の予測対象はどこまであるか
+
+権威的な形態データの**日本19分類群（上13／下6）対外部11種（上6／下5）**だけでは、系統的記憶の強さの移植は検定できない。新たにMoreyra 2025の**258行**の公刊Cirsium標本台帳を正確なSHAで照合したところ、外部11種のうち樹木コードとして同名が存在したのは**3種**、SRA提出名・BioSample/Runまで厳密に一致するのは**上向き2種（`C. vlassovianum`、`C. argyracanthum`）のみ**。下向きの `C. lidjiangense` という樹木コードにはトルコ産・提出名不一致の標本が該当し、中国の同名記載と安易にリンクできない。下向き0種の状態対照で `rho` を作ることは不可能。
+
+これは**サンプルが存在するか否かについてのソース検証結果**であり、上向き/下向き状態のDNA配列・枝長・独立進化の再現性を推定したものではない。よって現状のQ1の最も価値ある次工程は、既存の下向き種の核ITSなどと同一のターゲット領域・樹木を確保できるかの精査である。ヘテロな遺伝マーカーの枝長を直接混合しない。詳細：`docs/CIRSIUM_Q1_REAL_HELDOUT_TRAIT_COVERAGE_AND_TREE_GAP_V1.md` と `data/evidence/cirsium_q1_real_japan_east_asia_holdout_trait_coverage_v1.json`。
+
 ## References and source ceiling
 
 - [Chang et al. 2026, BMC Plant Biology 26:545, DOI 10.1186/s12870-026-08097-6](https://doi.org/10.1186/s12870-026-08097-6) (37 accessions, independent Ryukyu clades, Taiwan radiation, genome-size contrasts).
