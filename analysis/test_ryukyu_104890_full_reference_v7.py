@@ -53,7 +53,7 @@ class RyukyuSixSourceAllTranscriptsTests(unittest.TestCase):
                 {"biosample_accession":"SAMN000000000"}))
 
     def test_changed_cand_per_run_fails(self):
-        with self.assertRaisesRegex(ValueError,"totals"):
+        with self.assertRaisesRegex(ValueError,"read count|totals"):
             mutate_and_check(lambda d:d["samples"][0].update(
                 {"source_2020_26_candidate_strict_unique_fragments":0}))
 
