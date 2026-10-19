@@ -1,0 +1,85 @@
+{
+  "version": "cirsium_purpuratum_pollinator_predator_display_context_v1",
+  "as_of": "2026-10-19",
+  "plant": "Cirsium purpuratum",
+  "pollinator_behavior": {
+    "study": "Ohashi & Yahara 1998, American Journal of Botany 85(2):219-224",
+    "doi": "10.2307/2446309",
+    "design": "Artificially arranged flowering plants with daily Latin square; pollinator visits separately quantified",
+    "species": "Cirsium purpuratum",
+    "field_year": "not equated with 1993 or 1994 predator cohort",
+    "reported_relationships": [
+      "bumblebee visitation per plant is a decelerating function of floral display size",
+      "number of heads visited on each plant increases linearly with display",
+      "model-derived visitation rate per head is approximately independent of display size within each observation day"
+    ],
+    "pollination_outcomes_measured": "visit rate; NOT independent deposited pollen or final seed set for the same predator-cohort heads"
+  },
+  "herbivory": {
+    "study": "Ohashi & Yahara 2000, Canadian Journal of Botany 78:230–236",
+    "doi": "10.1139/b99-182",
+    "source_original_author_pdf": "https://www.biology.kyushu-u.ac.jp/~ecology/yahara/publication/Ohashi%26Yahara2000Cirsium.pdf",
+    "seed_feeder_species": [
+      "Larinus meleagris",
+      "Delia platula"
+    ],
+    "plant_scale_model": "P_damage(F)=1-exp(-a*F), F=total season florets per mother plant",
+    "fit_sites": [
+      {
+        "name": "Nikko",
+        "year": 1993,
+        "n_plants_for_regression": 13,
+        "a_display_damage": 0.000063,
+        "r_squared": 0.44,
+        "reported_fit_p": 0.013,
+        "response": "directly assessed proportion of actual damaged seeds per plant",
+        "study_elevation_m_approx": 750,
+        "seed_predator_Larinus_fraction": 0.44,
+        "seed_predator_Delia_fraction": 0.56,
+        "n_heads_predator_assessed": 109,
+        "infested_heads_pct_reported": 90.8,
+        "mean_larvae_per_head": 5.4,
+        "observed_maximum_head_count_per_plant": 33,
+        "reported_f_star_florets_rounded": 15783
+      },
+      {
+        "name": "Kawamata",
+        "year": 1994,
+        "n_plants_for_regression": 27,
+        "a_display_damage": 0.0000075,
+        "r_squared": 0.26,
+        "reported_fit_p": 0.007,
+        "response": "INFERRED seed-loss proportion from infested heads; assumes <=one larva per head, mean 451 florets/head, 52 seeds consumed/insect borrowed from Nikko",
+        "study_elevation_m_approx": 1000,
+        "seed_predator_Larinus_fraction": 0.84,
+        "seed_predator_Delia_fraction": 0.16,
+        "n_heads_predator_assessed": 262,
+        "infested_heads_pct_reported": 31.3,
+        "mean_larvae_per_head": 0.26,
+        "observed_maximum_head_count_per_plant": 65,
+        "reported_f_star_florets_rounded": 133280
+      }
+    ],
+    "author_model": [
+      "F_star=1/a follows only from W(F)=S*F*exp(-aF) with constant set probability S and no male/lifetime tradeoff changes",
+      "printed coefficients are rounded, so the published F_star values can differ slightly from 1/a recomputed from printed coefficient",
+      "not a causal plant trait optimum demonstrated by selection experiment"
+    ],
+    "study_comparability": [
+      "Nikko 1993 and Kawamata 1994: different places, elevations and years, so treatment variation in partner guild is confounded",
+      "Kawamata seed-loss proportions are partially reconstructed from Nikko per-insect seed consumption, not directly observed damage counts",
+      "Site-level seed-feeder composition differs, but its effect cannot be isolated from environment or census protocols",
+      "Display (floret count) is not the same variable as authentic spine length, head orientation or phyllary gap",
+      "1998 pollinator paper and 2000 seed-predator paper are not the same heads/plants/years and cannot estimate within-head selection gradients"
+    ]
+  },
+  "real_source_numeric_reanalysis_allowed": true,
+  "raw_individual_plant_records_loaded": false,
+  "effect_of_changing_partner_identity_caused_by_randomization": false,
+  "within_head_orientation_spine_trait_adaptive_fitness_effect_estimated": false,
+  "next_empirical_test": "Same population and stage, separately compare measured individual head display, geometry, independently recognized pollinator/seed predator contact and final mature achenes including failed approaches",
+  "sources": [
+    "https://pubmed.ncbi.nlm.nih.gov/21684905/",
+    "https://www.biology.kyushu-u.ac.jp/~ecology/yahara/publication/Ohashi%26Yahara2000Cirsium.pdf"
+  ]
+}
