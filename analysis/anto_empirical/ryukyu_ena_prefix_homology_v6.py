@@ -185,18 +185,22 @@ def partial_gzip_to_fastq(gzip_path,fastq_path,
     with Path(gzip_path).open("rb") as source,Path(fastq_path).open("wb") as dest:
         def digest_bytes(data):
             nonlocal pending,valid,invalid,bases
-            pending+=data
-            while b"\n" in pending:
-                line,pending=pending.split(b"\n",1)
+            # Avoid repeatedly copying the remaining megabyte buffer for
+            # each FASTQ line. Split once per bounded compressed chunk.
+            lines=(pending+data).split(b"\n")
+            pending=lines.pop()  # last line is always incomplete until LF
+            for line in lines:
                 queue.append(line.rstrip(b"\r"))
-                if len(queue)<4:continue
+                if len(queue)<4:
+                    continue
                 name,seq,plus,quality=queue
                 queue.clear()
                 if (not name.startswith(b"@") or not plus.startswith(b"+")
                     or len(seq)!=len(quality) or len(seq)<MIN_READ_LEN
                     or re.fullmatch(rb"[ACGTNacgtn]+",seq) is None):
                     invalid+=1
-                    if invalid>4:raise ValueError("Too many malformed complete reads in ENA prefix")
+                    if invalid>4:
+                        raise ValueError("Too many malformed complete reads in ENA prefix")
                     continue
                 if valid>=max_reads:
                     return True
