@@ -143,6 +143,18 @@ aza3の *C. sieboldii* Phase-A **40予定個体**は別の分子/同一個体高
 
 **重要な反証**：同じ形質の記憶がCirsium内の別系統へ予測移植できても別科ではできない／真の刺は昆虫の接触を妨げず匂いが誘引を説明する／送粉と食害が同じ最適な頭花角度を好む／白花の色素構造遺伝子が失活していて実験的再発現できない／着色は浸透交雑か移入で、祖先の再発現ではない／資源は残るが遺伝的・発生的互換性がなく三資源を組み合わせられない。**いずれも価値のある結果**で、正方向のシナリオを出すためにゲートを緩めない。
 
+## 2026-10-19 Q1の分子ソース修正：MN871982は対象種のITSではない
+
+**配列番号・種名・ゲノム区画の対応を一次文献で精査**したところ、`MN871982` を `C. schantarense` とする後続2022年中国文献の引用は、元の[Xu, Dang & Li（2020, DOI 10.1080/23802359.2020.1721032）](https://doi.org/10.1080/23802359.2020.1721032)が明示する **別種 *C. shansiense*、甘粛省標本 WNU52012、葉緑体全ゲノム**と食い違った。この配列を対象 `C. schantarense` の核ITSとして使用しない。両種はKew POWOでも別の受容名である。
+
+韓国の[Bae（2015）](https://doi.org/10.5352/JLS.2015.25.2.243)が比較した `C. shantarense/schantarense` 核18S–ITS1–5.8S–ITS2–部分28Sの**研究そのものは実在**するが、標本voucherとの同定を満たすアクセッションIDは現時点で**未回収**。既存の Moreyra2025多座位核標本2種と、2015単一座位資料を遺伝距離と見なして貼り合わせない。
+
+**Q3にも直接関係する誤判定リスク：** [`C. schantarense f. albiflorum`](https://powo.science.kew.org/taxon/994340-1) という白花型の植物名は現在 Kew では `C. schantarense` の同物異名とされる。花色が白いことは、アントシアニン調節・構造遺伝子の共同保持、誘導可能性、表現型再獲得、遺伝性の実証ではない。
+
+- [一次資料と二次引用の修正表](CIRSIUM_SCHANTARENSE_VS_SHANSIENSE_NUCLEAR_PLASTOME_ACCESSION_AUDIT_20261019.md)
+- `analysis/validate_cirsium_schantarense_accession_provenance_v1.py` は種名＋voucher＋葉緑体／核マーカーの矛盾を自動拒否する。
+- `analysis/probe_cirsium_schantarense_ncbi_nuccore_v1.py` は公共NCBI索引を読み取り、検索失敗を「DNA不存在」と呼ばず、NCBI候補を論文標本と同定したことにしない。
+
 ## 3問を単なる別々の論文にしない「2つの橋渡し検定」
 
 **Bridge A：進化的記憶は何を覚えているのか（Q1×Q3）**
