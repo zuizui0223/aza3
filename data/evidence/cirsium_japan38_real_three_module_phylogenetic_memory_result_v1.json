@@ -1,0 +1,73 @@
+{
+  "version": "cirsium_japan38_real_three_module_phylogenetic_memory_result_v1",
+  "verified_on": "2026-10-19",
+  "provenance": {
+    "authority_source": "zuizui0223/EAzami",
+    "source_commit": "c9870e91604ed1514344ddc8f765eae5237dbf27",
+    "original_tree_path": "data/evidence/japan38_comp1061_primary_tree_v1.nwk",
+    "source_nuclear_tree_sha256": "ba592d3a9f52b5481314ab20e3202048505cdf72a3fc15134d5dca261b9d9b7e",
+    "tree_type": "236-QC-locus Comp1061 compatibility ML phylogram, substitutions/site, not dated",
+    "source_taxonomy": "Japan38 concept/tip map, NMNS botanical authority seed and extension",
+    "analysis_code": "analysis/audit_cirsium_japan38_three_module_exact_memory_v1.py",
+    "primary_reproducible_CI_run": "https://github.com/zuizui0223/aza3/actions/runs/39249921123",
+    "analysis_artifact": "cirsium-japan38-real-three-module-exact-memory-v1",
+    "tests_passed": true
+  },
+  "estimand": "Spearman correlation between nuclear patristic distances and discrete 0/1 trait-state mismatches across nonindependent taxon pairs",
+  "valid_inference": "Within one pinned Japanese Cirsium nuclear topology, source-coded extant trait descriptions only",
+  "primary": {
+    "orientation": {
+      "n_taxa": 19,
+      "state_counts": {
+        "upward_or_erect": 13,
+        "downward_or_nodding": 6
+      },
+      "n_nonindependent_pairs": 171,
+      "n_possible_exact_fixed_count_assignments": 27132,
+      "Spearman_rho": -0.027829091261887595,
+      "exact_two_sided_permutation_p": 0.8195857290284535,
+      "previous_20000_random_permutation_p": 0.8214589270536473,
+      "leave_one_taxon_out_rho_min": -0.09609825168907572,
+      "leave_one_taxon_out_rho_max": 0.007115590599451179,
+      "result": "NO_DETECTABLE_POSITIVE_PATristic_CONSERVATISM_IN_SELECTED_SOURCE_LABELS"
+    },
+    "stickiness": {
+      "n_taxa": 13,
+      "state_counts": {
+        "sticky": 7,
+        "nonsticky_or_nearly_nonsticky": 6
+      },
+      "n_nonindependent_pairs": 78,
+      "n_possible_exact_fixed_count_assignments": 1716,
+      "Spearman_rho": 0,
+      "exact_two_sided_permutation_p": 1,
+      "result": "NO_DETECTABLE_POSITIVE_PATristic_CONSERVATISM_IN_SELECTED_SOURCE_LABELS"
+    },
+    "strict_phyllary_posture_exploratory": {
+      "n_taxa": 6,
+      "state_counts": {
+        "appressed": 1,
+        "ascending": 4,
+        "spreading": 1
+      },
+      "n_nonindependent_pairs": 15,
+      "n_possible_exact_fixed_count_assignments": 30,
+      "Spearman_rho": -0.0944911182523068,
+      "exact_two_sided_permutation_p": 0.8666666666666667,
+      "result": "EXPLORATORY_ONLY_BELOW_TEN_STRICT_SOURCE_TAXA"
+    }
+  },
+  "synthesis": {
+    "relationship_to_EAzami_previous_asr": "Multiple minimum state changes (orientation6, phyllary3, sticky5) are compatible with weak marginal trait-distance correlation; parsimony event count and patristic signal are different estimands.",
+    "uncertainty": [
+      "These 19/13/6 authority-state cohorts are not random draws of all Japan38 species and source descriptions are heterogeneous.",
+      "Only one 2026 reconstructed ML compatibility topology with substitution-unit branch lengths; 1000-bootstrap topology uncertainty not evaluated for this new rho.",
+      "An exact label permutation null is conditional on this tree and observed label counts; its p does not prove a biological absence of history.",
+      "Different taxa are scored across modules, so rho contrasts are not causal comparisons of evolutionary constraint strengths.",
+      "No matching aligned multi-locus phylogeny for all 11 independent East Asian candidate taxa; cross-lineage portability remains unidentified.",
+      "The sources do not measure within-population heritability, real head-gravity angles per biological plant, pollinator activity, or DNA reexpression."
+    ],
+    "no_empirical_adaptive_selection_or_genetic_retention_inferred": true,
+    "next_stage": "Use source-backed alternative topology/phylogenomic trees and external lineage held-out trait+DNA tip matching before estimating memory portability; leave Q2 physical guild function and Q3 heritable floral reexpression as independent experiments."
+  }
+}
