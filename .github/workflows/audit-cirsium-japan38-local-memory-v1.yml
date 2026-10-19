@@ -56,7 +56,7 @@ jobs:
           import json, math
           x=json.load(open("work/cirsium_japan38_local_memory_v1.json"))
           a=x["real_Cirsium_results"]
-          assert x["canonical_source_sha256"]=="ba592d3a9f52b5481314ab20e3202048505cdf72a3fc15134d5dca261b9b7e"
+          assert x["canonical_source_sha256"]=="ba592d3a9f52b5481314ab20e3202048505cdf72a3fc15134d5dca261b9d9b7e"
           assert x["test_synthetic"]["status"]=="PASS_SYNTHETIC_NEAREST_NEIGHBOR_CV_AND_EXACT_FIXED_LABEL_NULL"
           assert [a[k]["n_taxa"] for k in (
             "orientation","stickiness","phyllary_posture_STRICT_single_state_only"
