@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - "analysis/audit_cirsium_q1_heldout_nuclear_sample_crosswalk_v1.py"
+      - "data/evidence/cirsium_q1_nuclear_occurrence_source_overlap_v1.json"
       - "docs/CIRSIUM_HEAD_STATE_TRANSFER_VS_EVOLUTIONARY_MEMORY_20261019.md"
       - ".github/workflows/audit-cirsium-q1-nuclear-heldout-sample-v1.yml"
   workflow_dispatch:
@@ -45,6 +46,14 @@ jobs:
           python - <<'PY'
           import json
           x=json.load(open("work/q1_heldout_source_nuclear_samples_v1.json"))
+          locked=json.load(open("data/evidence/cirsium_q1_nuclear_occurrence_source_overlap_v1.json"))
+          assert locked["source_commit"]==x["actual_source_matching"]["source_commit"]
+          assert locked["source_nuclear_linked_sample_rows"]==x["source_manifest"]["n_rows"]
+          assert locked["accepted_nuclear_sample_matching_species"]==x["actual_source_matching"]["heldout_with_exact_voucher_and_submitted_name_consistent_nuclear_samples"]
+          assert locked["unsafe_name_only_nuclear_matching_species"]==x["actual_source_matching"]["heldout_with_false_or_discordant_tree_code_name_only_match"]
+          assert locked["n_species_with_both_safe_nuclear_sample_and_primary_occurrence_support"]==x["real_nuclear_GBIF_joint_support"]["nuclear_and_strict_occurrence_joint_species"]
+          assert locked["n_downward_candidate_species_with_both"]==0
+          assert locked["inference_status"]=="DESCRIPTIVE_REAL_SOURCE_INTERSECTION_ONLY_NO_BRANCH_LENGTH_MEMORY_TEST"
           a=x["actual_source_matching"]
           assert x["source_manifest"]["n_parts"]==8
           assert x["source_manifest"]["n_rows"]==258
