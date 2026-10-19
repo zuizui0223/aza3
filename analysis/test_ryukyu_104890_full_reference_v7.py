@@ -48,7 +48,7 @@ class RyukyuSixSourceAllTranscriptsTests(unittest.TestCase):
         self.assertEqual(x["read_prefix_only_R1_bytes_per_library"],8388608)
 
     def test_changed_BioSample_join_fails(self):
-        with self.assertRaisesRegex(ValueError,"Run accession"):
+        with self.assertRaisesRegex(ValueError,"BioSample|Run accession"):
             mutate_and_check(lambda d:d["samples"][0].update(
                 {"biosample_accession":"SAMN000000000"}))
 
