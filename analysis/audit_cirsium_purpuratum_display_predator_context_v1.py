@@ -107,6 +107,25 @@ def check(source):
                    "KAWAMATA_RECONSTRUCTED_LOSS_FALSELY_DECLARED_DIRECT")
         indexed[site]=row
     demand(set(indexed)==set(EXPECTED),"SOURCE_SITE_MISSING")
+    botanical=source["botanical_head_morphology_and_white_morph_context"]
+    morph=botanical["white_flower_form"]
+    demand(botanical["taxon"]=="Cirsium purpuratum"
+           and botanical["japanese_name"]=="フジアザミ"
+           and botanical["head_orientation"].startswith("normally downward")
+           and morph["historical_name"]=="Cirsium purpuratum f. albiflorum (Kitam.) Kitam."
+           and morph["status"]=="Kew synonym of Cirsium purpuratum, not independent evolutionary lineage",
+           "PURPURATUM_BOTANICAL_IDENTITY_OR_FORMA_SYNOMYM_DRIFT")
+    demand(not any(morph[k] for k in (
+        "white_flower_occurence_voucher_collected_into_aza3",
+        "within_same_population_white_purple_individuals_verified",
+        "functional_anthocyanin_resource_retention_tested",
+        "floral_RNA_and_pigment_pathway_measured",
+        "white_flower_heritable_morph_origin_inferred",
+        "reappearance_after_ancestral_loss_demonstrated"))
+        and not botanical["original_Japan38_Comp1061_primary_taxon_sample_present"],
+        "WHITE_FORMA_NAME_FALSELY_PROMOTED_TO_GENETIC_RETURN_OR_TREE_SAMPLE")
+    demand(not botanical["not_a_single_species_proof_of_three_questions"] is False,
+           "THREE_QUESTION_INFERENCE_SCOPE_EXPANDED_WITHOUT_SAMPLES")
     demand(not source["raw_individual_plant_records_loaded"] and
            not source["effect_of_changing_partner_identity_caused_by_randomization"]
            and not source["within_head_orientation_spine_trait_adaptive_fitness_effect_estimated"],
@@ -217,6 +236,10 @@ def negative_tests(source):
     x=copy.deepcopy(source)
     x["herbivory"]["fit_sites"][0]["seed_predator_Delia_fraction"]=.9
     bad.append((x,"SOURCE_PUBLISHED_NUMBER_DRIFT_Nikko_seed_predator_Delia_fraction"))
+    x=copy.deepcopy(source)
+    x["botanical_head_morphology_and_white_morph_context"]["white_flower_form"][
+        "reappearance_after_ancestral_loss_demonstrated"]=True
+    bad.append((x,"WHITE_FORMA_NAME_FALSELY_PROMOTED_TO_GENETIC_RETURN_OR_TREE_SAMPLE"))
     for wrong,error in bad:
         try:analyze(wrong)
         except ValueError as exc:
