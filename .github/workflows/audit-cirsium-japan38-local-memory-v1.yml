@@ -1,0 +1,82 @@
+name: Audit Japan38 local-neighbor trait memory v1
+
+on:
+  pull_request:
+    paths:
+      - "analysis/audit_cirsium_japan38_local_nearest_neighbor_memory_v1.py"
+      - "analysis/audit_cirsium_japan38_three_module_exact_memory_v1.py"
+      - "analysis/audit_cirsium_japan38_orientation_phylogenetic_memory_v1.py"
+      - "data/evidence/cirsium_japan38_local_nearest_neighbor_memory_v1.json"
+      - "docs/CIRSIUM_JAPAN38_LOCAL_PREDICTION_AND_SOURCE_COVERAGE_V1.md"
+      - ".github/workflows/audit-cirsium-japan38-local-memory-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  real-tip-out-nearest-neighbor-vs-global-marginal:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install biological phylogram parser
+        run: python -m pip install "biopython==1.86"
+      - name: Fetch source-pinned nuclear tree/biological samples/three head modules
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work/eazami
+          for path in \
+            data/evidence/japan38_comp1061_primary_tree_v1.nwk \
+            data/evidence/japan38_comp1061_primary_tree_acceptance_v1.json \
+            data/evidence/japan38_comp1061_concept_map_v1.csv \
+            data/evidence/japan38_nmns_capitulum_trait_seed_v1.csv \
+            data/evidence/japan38_nmns_capitulum_trait_seed_extension_v2.csv; do
+            name="${path##*/}"
+            gh api "repos/zuizui0223/EAzami/contents/${path}?ref=c9870e91604ed1514344ddc8f765eae5237dbf27" --jq .content | base64 -d > "work/eazami/${name}"
+            test -s "work/eazami/${name}"
+          done
+      - name: Execute real taxon-level held-out-tip scoring and exact label null
+        run: |
+          python -m py_compile analysis/audit_cirsium_japan38_local_nearest_neighbor_memory_v1.py
+          python analysis/audit_cirsium_japan38_local_nearest_neighbor_memory_v1.py \
+            --tree work/eazami/japan38_comp1061_primary_tree_v1.nwk \
+            --acceptance work/eazami/japan38_comp1061_primary_tree_acceptance_v1.json \
+            --concept-map work/eazami/japan38_comp1061_concept_map_v1.csv \
+            --nmns-base work/eazami/japan38_nmns_capitulum_trait_seed_v1.csv \
+            --nmns-extension work/eazami/japan38_nmns_capitulum_trait_seed_extension_v2.csv \
+            --out work/cirsium_japan38_local_memory_v1.json
+      - name: Independently check denominator, phylogram and biological claim ceiling
+        run: |
+          python - <<'PY'
+          import json, math
+          x=json.load(open("work/cirsium_japan38_local_memory_v1.json"))
+          a=x["real_Cirsium_results"]
+          assert x["canonical_source_sha256"]=="ba592d3a9f52b5481314ab20e3202048505cdf72a3fc15134d5dca261b9b7e"
+          assert x["test_synthetic"]["status"]=="PASS_SYNTHETIC_NEAREST_NEIGHBOR_CV_AND_EXACT_FIXED_LABEL_NULL"
+          assert [a[k]["n_taxa"] for k in (
+            "orientation","stickiness","phyllary_posture_STRICT_single_state_only"
+          )]==[19,13,6]
+          assert [a[k]["n_exact_fixed_label_allocations"] for k in (
+            "orientation","stickiness","phyllary_posture_STRICT_single_state_only"
+          )]==[27132,1716,30]
+          for k,z in a.items():
+            assert -1 <= z["global_minus_NN_Brier_gain"] <= 1
+            assert 0 <= z["exact_one_sided_positive_predictive_gain_p"] <= 1
+            assert len(z["taxa"])==z["n_taxa"]
+            assert all(t["nearest_taxa"] for t in z["taxa"])
+            assert z["not_cross_clade_portability"] is True
+          assert "EXPLORATORY" in a["phyllary_posture_STRICT_single_state_only"]["status"]
+          print("PASS: real source-pinned LOO nearest-neighbor prediction and exhaustive label null")
+          PY
+      - name: Upload auditable taxon-level results
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-japan38-local-memory-exact-state-LOO-v1
+          path: work/cirsium_japan38_local_memory_v1.json
+          if-no-files-found: error
+          retention-days: 30
