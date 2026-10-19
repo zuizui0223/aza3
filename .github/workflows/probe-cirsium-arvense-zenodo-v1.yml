@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - "analysis/probe_cirsium_arvense_2025_zenodo_v1.py"
+      - "data/evidence/cirsium_Q2_arvense_pollination_resource_access_two_studies_v1.json"
       - "docs/CIRSIUM_ARVENSE_2025_POLLINATOR_EXCLUSION_ENEMY_SURVIVAL_Q2_V1.md"
       - ".github/workflows/probe-cirsium-arvense-zenodo-v1.yml"
   workflow_dispatch:
@@ -45,6 +46,20 @@ jobs:
               assert r["verified_source_metadata"]["record_id"]==15364152
               assert r["verified_source_metadata"]["real_analyzed_Cirsium_head_rows"]==0
           assert r["no_data_downloaded_or_plant_reanalysis_claimed"]
+          original=json.load(open("data/evidence/cirsium_Q2_arvense_pollination_resource_access_two_studies_v1.json"))
+          field=original["studies"][0]
+          walker=original["studies"][1]
+          assert field["study_doi"]==r["source_preprint_doi"]
+          assert field["live_raw_archive"]["doi"]==r["source_claimed_zenodo_doi"]
+          assert field["author_reported_units"]["actual_collected_mature_heads"]==609
+          assert field["author_reported_units"]["blocks_per_site"]==12
+          assert field["author_reported_units"]["sites"]==4
+          assert field["author_reported_units"]["listed_total_plant_individuals"]==196
+          assert field["author_reported_units"]["calculated_four_per_block_slots"]==192
+          assert not field["pollen_to_enemy_resource_mediation_identified_without_mechanical_exclusion_confound"]
+          assert walker["doi"]=="10.1111/j.1365-2656.2008.01406.x"
+          assert "NOT the same" in walker["term_warning"]
+          assert original["comparative_interpretation"]["existing_aza3_real_complete_reproductive_contact_head_rows"]==0
           assert r["biological_preprint_reports"]["no_direct_head_armature_orientation_treatment"]
           print("PASS: source status accurately bounded, no fabricated fitness contrast")
           PY
