@@ -65,7 +65,7 @@
     "adaptive_evolution"
   ],
   "inference_status": "DESCRIPTIVE_REAL_SOURCE_INTERSECTION_ONLY_NO_BRANCH_LENGTH_MEMORY_TEST",
-  "priority_gap": "Independent authenticated nuclear sample and comparable gene-tree branch-length context for a downward/nodding candidate such as C. schantarense; thereafter multi-lineage replicated sample",
+  "priority_gap": "The qualified downward candidate C. schantarense has published older nuclear ITS data (Bae 2015), but lacks a voucher-validated specimen within the same 2025 1061-locus sample table and shared independent phylogenetic branch-length ensemble. Verify published ITS taxon/voucher/accession and prioritize comparable multi-locus placement.",
   "next_action_on_existing_data": "Check exact synonym-voucher-taxonomy nuclear source coverage and accession branch lengths for downward taxa BEFORE authorizing any additional molecular collection",
   "notes": [
     "Botanical species head orientation is not directly measured on the nuclear specimen.",
@@ -73,5 +73,19 @@
     "Moreyra 2025 S1 nuclear sample registration is not a recovered Newick/chronogram.",
     "Tree-name-only C. lidjiangense match from Turkey is rejected.",
     "All field collection and genomic Phase-A targets remain prospective and require their own permits."
-  ]
+  ],
+  "independent_lower_resolution_nuclear_literature": {
+    "paper": "Bae, Young-Min (2015), Genetic Relationship of Some Cirsium Plants of Korea",
+    "doi": "10.5352/JLS.2015.25.2.243",
+    "Cirsium_taxon_as_paper": "Cirsium schantarense / Cirsium shantarense (author's spelling varies)",
+    "physical_head_orientation": "downward_or_nodding",
+    "molecular_markers": "Linked nuclear rDNA 18S–ITS1–5.8S–ITS2–partial28S; one shantarense specimen; NJ analysis",
+    "original_observation": "Downward-headed shantarense grouped close to upward-headed Cirsium japonicum in the original ITS neighbor-joining tree",
+    "is_moreyra_2025_1061_locus_nuclear_sample": false,
+    "source_publication_has_molecular_observation": true,
+    "verified_GenBank_accession_or_sequence_recovered_here": false,
+    "shared_comparable_branch_length_ensemble_with_2025_Moreyra": false,
+    "trait_evolution_direction_or_genetic_resource_regain_inferred": false,
+    "action_priority": "Recover original 2015 voucher, accession and linked ribosomal sequence, then test taxon identity and whether common-locus Moreyra/Chang nuclear orthogroups can be recovered. Do not combine ITS branch lengths with 1061-locus branch lengths."
+  }
 }
