@@ -195,6 +195,8 @@ def audit(heldout,samples):
         "by_taxon":by_taxon,
         "memory": {
             "source_type":"sampled public nuclear S1 table, NOT recovered branch-length phylogeny",
+            "exact_nuclear_voucher_capitulum_orientation_measured":False,
+            "taxon_authority_orientation_not_individual_voucher_trait":True,
             "complete_11_species_nuclear_branch_length_comparison":False,
             "number_external_trusted_tip_label_species":n_clean,
             "independent_external_patristic_tip_pairs_at_most":1,
