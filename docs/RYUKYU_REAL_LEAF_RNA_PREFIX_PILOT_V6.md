@@ -66,6 +66,19 @@ Two immutable, source-audited result records are now stored in aza3:
 
 The [cross-run biological-evidence validator](../analysis/validate_ryukyu_real_leaf_prefix_evidence_v6.py) requires exact sample-to-BioSample mapping, original read totals and read-to-transcript count conservation, disallows any reinterpreted floral pigment event, and refuses to count the nested prefix samples as independent lineages.
 
+### Third, stricter within-read validation — two exact 31-mers
+
+The independent code route [GitHub Actions run 39229918762](https://github.com/zuizui0223/aza3/actions/runs/39229918762) analysed the same six R1 files using 8 MiB from the beginning of each file. Its different screen required **two nonoverlapping exact 31-base matches within the same quality-filtered R1 read**, unique to the same original 2020 *C. japonicum* source assembly group within the preselected 26-transcript panel. It also used **dinucleotide-composition-preserving shuffled decoys**, a stronger but still artificial negative control.
+
+- **747,995** quality-validated source R1 prefix reads from the same six samples;
+- **268** fragments pass the double-exact-31-mer source-group screen, while **zero** pass the dinucleotide-shuffled decoy screen;
+- the DFR-like TR39766 source assembly group has **70** matching reads, and the 2020 BLAST ANS-annotated TR41106 group has **90**, with **at least one match in each of the same six biological libraries**;
+- prefix byte ranges, BioSample IDs and SHA256 fingerprints are preserved separately for each public R1 source.
+
+[Complete source-anchored two-31-mer result records](../data/anto_source_handoff/public_sra/ryukyu_six_R1_two31mer_source_group_results_v6.json) are retained in aza3. These matches are more restrictive **within this candidate reference panel**. They do NOT establish unique origin against all ~104,890 transcripts in the original *C. japonicum* assembly, do not prove paralogy/orthology, and do not prove catalytic activity or flower-stage anthocyanin expression. The third pipeline is **not independent biological replication**: all analyses repeatedly use the same six first-in-file R1 libraries.
+
+The three read-level pipelines jointly justify the *limited positive observation* that flavonoid-related **source-assembly-like RNA sequence fragments** are found in young leaves of both taxa. The current highest-level biological answer remains **LEAF_HOMOLOGY_DETECTED / FLORAL_REEXPRESSION_UNTESTED**.
+
 ### Source parser issue found and resolved
 
 An earlier six-sample execution failed **in the original FASTQ parsing rule**, not because any gene was absent: real *C. irumtiense* ISG-4111 SRR35152731 contains valid short read/quality records of **54–73 nt**. The earlier parser incorrectly treated read lengths below the analytic 75-nt mapping threshold as invalid FASTQ. The corrected method retains short valid FASTQ records for QC and excludes them from the predeclared alignment filter. The fix was followed by the **successful six-sample run above**, independently checked by CI.
