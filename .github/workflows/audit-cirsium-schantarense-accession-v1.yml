@@ -1,0 +1,60 @@
+name: Audit schantarense nuclear ITS vs shansiense plastome accession v1
+
+on:
+  pull_request:
+    paths:
+      - "analysis/validate_cirsium_schantarense_accession_provenance_v1.py"
+      - "data/evidence/cirsium_schantarense_vs_shansiense_primary_accession_audit_v1.json"
+      - "data/evidence/cirsium_q1_nuclear_occurrence_source_overlap_v1.json"
+      - "docs/CIRSIUM_SCHANTARENSE_VS_SHANSIENSE_NUCLEAR_PLASTOME_ACCESSION_AUDIT_20261019.md"
+      - ".github/workflows/audit-cirsium-schantarense-accession-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  species-accession-genome-compartment-boundary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Reject historical wrong-species plastome and fake re-expression
+        run: |
+          python -m py_compile analysis/validate_cirsium_schantarense_accession_provenance_v1.py
+          python analysis/validate_cirsium_schantarense_accession_provenance_v1.py \
+            --out work/cirsium_schantarense_accession_audit_v1.json
+      - name: Explicitly preserve no real GenBank ITS accession and no evolutionary claim
+        run: |
+          python - <<'PY'
+          import json
+          p=json.load(open("work/cirsium_schantarense_accession_audit_v1.json"))
+          a=p["original_public_literature_and_taxonomy_audit"]
+          t=p["synthetic_negative_controls"]
+          assert a["status"]=="PASS_PRIMARY_VOUCHER_AND_GENOME_COMPARTMENT_SOURCE_GATES"
+          assert a["BAE_2015_Korean_schantarense_ITS_exists_in_publication"]
+          assert a["BAE_2015_Korean_schantarense_ITS_accession_recovered"] is False
+          assert a["MN871982_original_species"]=="Cirsium shansiense"
+          assert a["MN871982_original_genome_compartment"]=="plastid"
+          assert a["MN871982_voucher"]=="WNU52012"
+          assert a["2022_secondary_species_label_disagrees_with_2020_original"]
+          assert a["Q1_phylogenetic_memory_estimate"] is None
+          assert a["Q3_reexpression_or_genetic_reuse_evidence"] is None
+          assert t["status"]=="PASS_SYNTHETIC_BAD_ACCESSION_AND_FALSE_REGAIN_CONTROLS"
+          assert t["rejected_invalid_accession_claims"]==5
+          assert t["rejected_source_manifest_fabrications"]==5
+          assert t["rejected_taxonomic_form_as_regain"]
+          assert t["genuine_new_GenBank_sequences_retrieved"]==0
+          assert p["actual_sequence_data_reanalyzed"] is None
+          print("PASS: original accession is shansiense plastome; schantarense ITS still unverified")
+          PY
+      - name: Preserve source audit and cross-repo scope
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-cirsium-schantarense-nuclear-plastome-provenance-v1
+          path: work/cirsium_schantarense_accession_audit_v1.json
+          if-no-files-found: error
+          retention-days: 30
