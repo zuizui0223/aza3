@@ -1,0 +1,32 @@
+name: Validate aza3 higher-order LEGO design
+on:
+  push:
+    paths:
+      - 'docs/ANTO_HIGHER_ORDER_LEGO_MEASUREMENT_PLAN_V2.md'
+      - 'data/contracts/aza3_capitulum_higher_order_lego_v2.json'
+      - 'analysis/validate_aza3_capitulum_higher_order_lego_v2.py'
+      - 'analysis/test_validate_aza3_capitulum_higher_order_lego_v2.py'
+      - '.github/workflows/validate-higher-order-lego-v2.yml'
+  pull_request:
+    paths:
+      - 'docs/ANTO_HIGHER_ORDER_LEGO_MEASUREMENT_PLAN_V2.md'
+      - 'data/contracts/aza3_capitulum_higher_order_lego_v2.json'
+      - 'analysis/validate_aza3_capitulum_higher_order_lego_v2.py'
+      - 'analysis/test_validate_aza3_capitulum_higher_order_lego_v2.py'
+      - '.github/workflows/validate-higher-order-lego-v2.yml'
+permissions:
+  contents: read
+jobs:
+  design-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate biological-source owner, prospective samples, and higher-order Fréchet bound
+        run: |
+          python analysis/validate_aza3_capitulum_higher_order_lego_v2.py > /tmp/aza3_higher_order_lego_v2.json
+          python -c "import json; d=json.load(open('/tmp/aza3_higher_order_lego_v2.json')); assert d['formal_anto_moment_bound']==['0','1/4']; assert d['registered_individuals_qualified_for_joint_resource_inference']==0; assert not d['new_biological_data_admitted']; assert not d['proven_genetic_LEGO_reuse']; assert not d['fitness_adaptation_demonstrated']"
+      - name: Run negative controls and exact sample-size sensitivity tests
+        run: python analysis/test_validate_aza3_capitulum_higher_order_lego_v2.py -v
