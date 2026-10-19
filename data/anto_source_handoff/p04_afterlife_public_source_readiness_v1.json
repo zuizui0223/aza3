@@ -1,0 +1,222 @@
+{
+  "schema": "aza3_p04_afterlife_public_source_readiness_v1",
+  "scientific_status": "SOURCE_ONLY_PROVENANCE_AUDIT_NOT_FIELD_OR_FUNCTIONAL_RESULT",
+  "source_git_blob_pins": {
+    "manifest": {
+      "path": "data/anto_source_handoff/public_sra/prjna1311153_run_manifest_20261017.csv",
+      "sha": "3e044b4e3d4d1c3a278bd79872f84c1e9e0722bd"
+    },
+    "qc": {
+      "path": "data/anto_source_handoff/public_sra/prjna1311153_qc_20261017.json",
+      "sha": "137db65e483ee252d3ba58da4e7561db77aaaa10"
+    },
+    "takaoense": {
+      "path": "data/anto_source_handoff/public_sra/takaoense_aza3_morph_crosswalk_20261017.csv",
+      "sha": "1f92769dfa4876f5d4b080ce2faccc7a0081eed4"
+    },
+    "family": {
+      "path": "data/anto_source_handoff/molecular/cirsium_2020_nj_fasttree_method_comparison_v5.json",
+      "sha": "427abcbb94dd66f8248441c42c75ceef8a072744"
+    },
+    "panel": {
+      "path": "data/planning/aza3_nature_genomic_sampling_panel_v1.csv",
+      "sha": "e3fca68010629661e9e17e6e1915f09e9a28ab17"
+    }
+  },
+  "source_summary": {
+    "public_run_count": 25,
+    "public_source_taxon_names": 8,
+    "young_leaf_runs": 25,
+    "floral_RNA_runs_in_this_source": 0,
+    "Ryukyu_brevicaule_leaf_runs": 3,
+    "Ryukyu_irumtiense_leaf_runs": 3,
+    "takaoense_W_leaf_libraries": 3,
+    "takaoense_BP_leaf_libraries": 3,
+    "takaoense_replication_confounded_by_geography": true,
+    "published_2020_C_japonicum_family_evaluations": 7,
+    "distinct_2020_candidate_transcripts": 5,
+    "unresolved_2020_NJ_and_FastTree_evaluations": 7,
+    "verified_functional_pigmentation_enzymes": 0,
+    "distinct_target_phaseA_taxa": 6,
+    "phaseA_target_individuals": 298,
+    "phaseA_collected_here": 0,
+    "phaseA_targets_are_not_independent_trait_return_events": true
+  },
+  "exclusions": {
+    "leaf_RNA_not_floral_regulatory_competence": true,
+    "2020_park_C_japonicum_transcripts_not_2026_Ryukyu_specimens": true,
+    "molecular_family_ambiguity_not_biological_function_loss": true,
+    "observed_W_BP_code_not_same_plant_allele_morph_link": true,
+    "no_reexpression_absence_outcome_imputed": true
+  },
+  "per_taxon": [
+    {
+      "taxon_as_published_or_planned": "Cirsium brevicaule",
+      "public_young_leaf_RNA_seq_runs": 3,
+      "phase_A_target_n": 75,
+      "actual_phase_A_individuals_collected_by_this_work": 0,
+      "public_flower_stage_RNA_seq_runs": 0,
+      "public_flower_pigment_metabolite_assays": 0,
+      "same_plant_verified_functional_toolkit": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "induced_floral_reexpression": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "heritable_repeated_reexpression": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "reexpression_origin_history": "NOT_IDENTIFIED",
+      "viable_achene_fitness_contrast": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "readiness_label": "LEAF_RNA_METADATA_ONLY"
+    },
+    {
+      "taxon_as_published_or_planned": "Cirsium dipsacolepis",
+      "public_young_leaf_RNA_seq_runs": 0,
+      "phase_A_target_n": 24,
+      "actual_phase_A_individuals_collected_by_this_work": 0,
+      "public_flower_stage_RNA_seq_runs": 0,
+      "public_flower_pigment_metabolite_assays": 0,
+      "same_plant_verified_functional_toolkit": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "induced_floral_reexpression": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "heritable_repeated_reexpression": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "reexpression_origin_history": "NOT_IDENTIFIED",
+      "viable_achene_fitness_contrast": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "readiness_label": "PROSPECTIVE_ONLY"
+    },
+    {
+      "taxon_as_published_or_planned": "Cirsium irumtiense",
+      "public_young_leaf_RNA_seq_runs": 3,
+      "phase_A_target_n": 75,
+      "actual_phase_A_individuals_collected_by_this_work": 0,
+      "public_flower_stage_RNA_seq_runs": 0,
+      "public_flower_pigment_metabolite_assays": 0,
+      "same_plant_verified_functional_toolkit": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "induced_floral_reexpression": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "heritable_repeated_reexpression": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "reexpression_origin_history": "NOT_IDENTIFIED",
+      "viable_achene_fitness_contrast": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "readiness_label": "LEAF_RNA_METADATA_ONLY"
+    },
+    {
+      "taxon_as_published_or_planned": "Cirsium japonicum var. albescens",
+      "public_young_leaf_RNA_seq_runs": 2,
+      "phase_A_target_n": null,
+      "actual_phase_A_individuals_collected_by_this_work": 0,
+      "public_flower_stage_RNA_seq_runs": 0,
+      "public_flower_pigment_metabolite_assays": 0,
+      "same_plant_verified_functional_toolkit": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "induced_floral_reexpression": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "heritable_repeated_reexpression": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "reexpression_origin_history": "NOT_IDENTIFIED",
+      "viable_achene_fitness_contrast": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "readiness_label": "LEAF_RNA_METADATA_ONLY"
+    },
+    {
+      "taxon_as_published_or_planned": "Cirsium japonicum var. australe",
+      "public_young_leaf_RNA_seq_runs": 3,
+      "phase_A_target_n": null,
+      "actual_phase_A_individuals_collected_by_this_work": 0,
+      "public_flower_stage_RNA_seq_runs": 0,
+      "public_flower_pigment_metabolite_assays": 0,
+      "same_plant_verified_functional_toolkit": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "induced_floral_reexpression": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "heritable_repeated_reexpression": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "reexpression_origin_history": "NOT_IDENTIFIED",
+      "viable_achene_fitness_contrast": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "readiness_label": "LEAF_RNA_METADATA_ONLY"
+    },
+    {
+      "taxon_as_published_or_planned": "Cirsium japonicum var. fukienense",
+      "public_young_leaf_RNA_seq_runs": 4,
+      "phase_A_target_n": null,
+      "actual_phase_A_individuals_collected_by_this_work": 0,
+      "public_flower_stage_RNA_seq_runs": 0,
+      "public_flower_pigment_metabolite_assays": 0,
+      "same_plant_verified_functional_toolkit": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "induced_floral_reexpression": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "heritable_repeated_reexpression": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "reexpression_origin_history": "NOT_IDENTIFIED",
+      "viable_achene_fitness_contrast": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "readiness_label": "LEAF_RNA_METADATA_ONLY"
+    },
+    {
+      "taxon_as_published_or_planned": "Cirsium japonicum var. japonicum",
+      "public_young_leaf_RNA_seq_runs": 2,
+      "phase_A_target_n": null,
+      "actual_phase_A_individuals_collected_by_this_work": 0,
+      "public_flower_stage_RNA_seq_runs": 0,
+      "public_flower_pigment_metabolite_assays": 0,
+      "same_plant_verified_functional_toolkit": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "induced_floral_reexpression": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "heritable_repeated_reexpression": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "reexpression_origin_history": "NOT_IDENTIFIED",
+      "viable_achene_fitness_contrast": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "readiness_label": "LEAF_RNA_METADATA_ONLY"
+    },
+    {
+      "taxon_as_published_or_planned": "Cirsium japonicum var. takaoense",
+      "public_young_leaf_RNA_seq_runs": 6,
+      "phase_A_target_n": null,
+      "actual_phase_A_individuals_collected_by_this_work": 0,
+      "public_flower_stage_RNA_seq_runs": 0,
+      "public_flower_pigment_metabolite_assays": 0,
+      "same_plant_verified_functional_toolkit": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "induced_floral_reexpression": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "heritable_repeated_reexpression": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "reexpression_origin_history": "NOT_IDENTIFIED",
+      "viable_achene_fitness_contrast": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "readiness_label": "LEAF_RNA_METADATA_ONLY"
+    },
+    {
+      "taxon_as_published_or_planned": "Cirsium lineare",
+      "public_young_leaf_RNA_seq_runs": 0,
+      "phase_A_target_n": 24,
+      "actual_phase_A_individuals_collected_by_this_work": 0,
+      "public_flower_stage_RNA_seq_runs": 0,
+      "public_flower_pigment_metabolite_assays": 0,
+      "same_plant_verified_functional_toolkit": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "induced_floral_reexpression": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "heritable_repeated_reexpression": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "reexpression_origin_history": "NOT_IDENTIFIED",
+      "viable_achene_fitness_contrast": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "readiness_label": "PROSPECTIVE_ONLY"
+    },
+    {
+      "taxon_as_published_or_planned": "Cirsium morii",
+      "public_young_leaf_RNA_seq_runs": 2,
+      "phase_A_target_n": null,
+      "actual_phase_A_individuals_collected_by_this_work": 0,
+      "public_flower_stage_RNA_seq_runs": 0,
+      "public_flower_pigment_metabolite_assays": 0,
+      "same_plant_verified_functional_toolkit": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "induced_floral_reexpression": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "heritable_repeated_reexpression": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "reexpression_origin_history": "NOT_IDENTIFIED",
+      "viable_achene_fitness_contrast": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "readiness_label": "LEAF_RNA_METADATA_ONLY"
+    },
+    {
+      "taxon_as_published_or_planned": "Cirsium pendulum",
+      "public_young_leaf_RNA_seq_runs": 0,
+      "phase_A_target_n": 60,
+      "actual_phase_A_individuals_collected_by_this_work": 0,
+      "public_flower_stage_RNA_seq_runs": 0,
+      "public_flower_pigment_metabolite_assays": 0,
+      "same_plant_verified_functional_toolkit": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "induced_floral_reexpression": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "heritable_repeated_reexpression": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "reexpression_origin_history": "NOT_IDENTIFIED",
+      "viable_achene_fitness_contrast": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "readiness_label": "PROSPECTIVE_ONLY"
+    },
+    {
+      "taxon_as_published_or_planned": "Cirsium sieboldii",
+      "public_young_leaf_RNA_seq_runs": 0,
+      "phase_A_target_n": 40,
+      "actual_phase_A_individuals_collected_by_this_work": 0,
+      "public_flower_stage_RNA_seq_runs": 0,
+      "public_flower_pigment_metabolite_assays": 0,
+      "same_plant_verified_functional_toolkit": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "induced_floral_reexpression": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "heritable_repeated_reexpression": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "reexpression_origin_history": "NOT_IDENTIFIED",
+      "viable_achene_fitness_contrast": "NOT_MEASURED_IN_REGISTERED_SOURCE",
+      "readiness_label": "PROSPECTIVE_ONLY"
+    }
+  ]
+}
