@@ -17,6 +17,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -40,9 +41,20 @@ def fetch_json(path,params):
         "User-Agent":"CirsiumSourceProvenanceResearch/1.0 (read-only)",
         "Accept":"application/json",
     })
-    with urllib.request.urlopen(req,timeout=TIMEOUT) as response:
-        raw=response.read(1000000)
-    return json.loads(raw.decode("utf-8"))
+    # NCBI's public E-utilities require low unauthenticated request rate.
+    # Back off on status 429 and transient gateway errors rather than
+    # silently interpreting a blocked request as zero indexed records.
+    for attempt in range(4):
+        try:
+            with urllib.request.urlopen(req,timeout=TIMEOUT) as response:
+                raw=response.read(1000000)
+            return json.loads(raw.decode("utf-8"))
+        except urllib.error.HTTPError as err:
+            if err.code in {429,500,502,503,504} and attempt<3:
+                time.sleep((attempt+1)*1.25)
+                continue
+            raise
+    raise RuntimeError("NCBI_PUBLIC_API_RETRIES_EXHAUSTED")
 
 def live_query():
     result={
@@ -56,6 +68,8 @@ def live_query():
     }
     ids=set()
     for name,q in QUERIES.items():
+        # <= ~1.4 public requests/second; no NCBI API key needed.
+        time.sleep(.72)
         try:
             item=fetch_json("esearch.fcgi",{
                "db":"nuccore","term":q,"retmode":"json",
@@ -83,6 +97,7 @@ def live_query():
             }
     result["n_unique_candidate_nuccore_uids"]=len(ids)
     if ids:
+        time.sleep(.72)
         try:
             info=fetch_json("esummary.fcgi",{
                "db":"nuccore","id":",".join(sorted(ids)),
@@ -132,7 +147,9 @@ def main():
     print(json.dumps({
        "status":receipt["status"],
        "searches":{k:{"status":v["status"],
-                       "count":v["source_total_count"]}
+                       "count":v["source_total_count"],
+                       "error":v.get("error_type"),
+                       "error_detail":v.get("error_detail")}
                    for k,v in receipt["query_results"].items()},
        "candidate_titles":receipt["indexed_NCBI_candidates"],
        "Bae_2015_accession_directly_verified":0,
