@@ -62,7 +62,7 @@ class SourceAndSequenceTests(unittest.TestCase):
 
     def test_exact_31mer_reverse_complements_are_equivalent(self):
         seq="ACGTTGCACTTGACGGTACGTCCTAGTACGA"
-        self.assertEqual(len(seq),32)
+        self.assertEqual(len(seq),31)
         self.assertTrue(allowed_seed(seq[:K]))
         self.assertEqual(canonical(seq[:K]),canonical(reverse_complement(seq[:K])))
 
