@@ -219,6 +219,79 @@ def run_mafft(records, timeout=120):
         return seqmap,done.stdout
 
 
+REFERENCE_SITE_AUDIT={
+    # Exact one-based positions of conserved *reference* sequence residues.
+    # These signatures are shared at least in part by related enzyme families.
+    # They are screening sites, NEVER an enzymatic functional diagnosis.
+    "DFR_ANR":{
+        "accession":"ABQ97018.1",
+        "motif":"DFR-reference SDR cofactor gly positions and Tyr/Lys site",
+        "sites":[(13,"G"),(16,"G"),(19,"G"),(164,"Y"),(168,"K")],
+    },
+    "ANS_FLS":{
+        "accession":"AAS48200.1",
+        "motif":"ANS-reference Fe/2OG-binding HxD motif (also shared by related oxygenases)",
+        "sites":[(235,"H"),(237,"D")],
+    }
+}
+
+
+def reference_site_alignment_audit(aligned,meta,case):
+    """Map exact published *reference* residue sites to source candidates.
+
+    A sequence gap at that coordinate is NOT a point mutation or a lost
+    enzyme. A nonreference residue is a positional variant, NOT evidence
+    that the gene has lost or gained anthocyanin activity. This counteracts
+    the false shortcut of scanning raw source peptides for one consensus
+    motif and interpreting the lack of a match as functional gene loss.
+    """
+    kind="DFR_ANR" if case.startswith("DFR_ANR") else "ANS_FLS"
+    reference=REFERENCE_SITE_AUDIT[kind]
+    name=safe_name("REF",reference["accession"])
+    if name not in aligned or name not in meta or not meta[name]["is_reference"]:
+        raise ValueError("Required function-scoped anchor reference missing")
+    protein=aligned[name]
+    indexed={}
+    aa_index=0
+    for col,res in enumerate(protein):
+        if res!="-":
+            aa_index+=1
+            indexed[aa_index]=(col,res)
+    for position,amino_acid in reference["sites"]:
+        if position not in indexed or indexed[position][1]!=amino_acid:
+            raise ValueError("Published reference site drift or incorrect alignment")
+    queries={}
+    for id,seq in aligned.items():
+        if meta[id]["is_reference"]:
+            continue
+        residues=[]
+        for position,ref_aa in reference["sites"]:
+            col=indexed[position][0]
+            observed=seq[col]
+            state=(
+                "NO_ALIGNMENT_COVERAGE" if observed in "-X"
+                else "MATCH" if observed==ref_aa
+                else "SUBSTITUTION"
+            )
+            residues.append({
+                "one_based_reference_position":position,
+                "reference_residue":ref_aa,
+                "source_aligned_residue":None if state=="NO_ALIGNMENT_COVERAGE" else observed,
+                "evidence_state":state,
+            })
+        queries[id]={
+            "reference_accession":reference["accession"],
+            "reference_motif_description":reference["motif"],
+            "n_reference_sites_predeclared":len(residues),
+            "n_sites_covered":sum(x["evidence_state"]!="NO_ALIGNMENT_COVERAGE" for x in residues),
+            "n_matching_residues":sum(x["evidence_state"]=="MATCH" for x in residues),
+            "n_aligned_substitutions":sum(x["evidence_state"]=="SUBSTITUTION" for x in residues),
+            "sites":residues,
+            "function_or_orthology_demonstrated":False,
+        }
+    return queries
+
+
 def _pairwise_p_distance(seq1,seq2,columns=None):
     if len(seq1)!=len(seq2):
         raise ValueError("Aligned sequences must share column count")
@@ -350,7 +423,9 @@ def run_panel(source_fasta,source_provenance,reference_fasta,
         assessed=bootstrap_family_support(
             aligned,meta,design["positive"],design["related"],
             replicates=bootstraps,seed=BOOTSTRAP_SEED)
+        site_audit=reference_site_alignment_audit(aligned,meta,case)
         output[case]={
+            "reference_site_alignment_audit":site_audit,
             "positive_family":design["positive"],
             "related_family":design["related"],
             "source_transcripts":list(design["source"]),
@@ -418,6 +493,13 @@ def main():
                 "alignment_length_aa":report["alignment_length_aa"],
                 "observed_shared_sites_min":report["min_observed_shared_sites_across_pairs"],
                 **results
+            },separators=(",",":")))
+    for family,report in outcome["trees"].items():
+        for query_id,site in report["reference_site_alignment_audit"].items():
+            print("TREE_MOTIF_JSON:"+json.dumps({
+                "case":family,
+                "source_id":report["source_translation"][query_id]["source_id"],
+                **site
             },separators=(",",":")))
     return outcome
 
