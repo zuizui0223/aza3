@@ -36,6 +36,8 @@ import re
 import subprocess
 import tempfile
 
+import numpy as np
+
 from Bio import AlignIO, Phylo
 from Bio.Phylo.TreeConstruction import DistanceMatrix, DistanceTreeConstructor
 from Bio.Seq import Seq
@@ -352,6 +354,72 @@ def unrooted_family_split(tree,query_id,positives,negatives):
     return "REFERENCE_FAMILIES_NOT_SEPARATED"
 
 
+def bootstrap_relative_identity_margin(aligned,meta,positive_group,related_group,
+                                       replicates=1000,seed=BOOTSTRAP_SEED):
+    """Source query vs known-family reference relative identity with site CI.
+
+    This is a *secondary sequence-similarity sensitivity check*, NOT
+    biochemical function, orthology, or a confidence interval for any
+    true plant enzyme. The same bootstrap alignment columns are used
+    across both groups, preserving within-column shared uncertainty.
+
+    Delta = mean nongap identity to DFR (or ANS) references minus mean
+    identity to related ANR (or FLS) references. When a 95% site-resampling
+    percentile interval includes zero, family separation is not stable
+    under the finite alignment/site sampling in this particular panel.
+    It is NOT a formal gene-function test.
+    """
+    if type(replicates) is not int or replicates<20:
+        raise ValueError("Identity resampling requires >=20 replicates")
+    pos=[k for k,v in meta.items() if v["is_reference"] and v["family"]==positive_group]
+    neg=[k for k,v in meta.items() if v["is_reference"] and v["family"]==related_group]
+    sources=[k for k,v in meta.items() if not v["is_reference"]]
+    if len(pos)<2 or len(neg)<2:
+        raise ValueError("Need at least two related and two positive family references")
+    n=len(next(iter(aligned.values())))
+    rng=np.random.default_rng(seed)
+    draws=rng.integers(0,n,size=(replicates,n))
+    result={}
+    for q in sources:
+        src=np.asarray(list(aligned[q]))
+        def mean_identity(refs):
+            scores=[]
+            observed=[]
+            shared=[]
+            for id in refs:
+                ref=np.asarray(list(aligned[id]))
+                okay=(src!="-")&(ref!="-")&(src!="X")&(ref!="X")
+                same=(src==ref)&okay
+                if int(okay.sum())<MIN_OVERLAP_AA:
+                    raise ValueError("Too few observed residues for reference-family identity")
+                accepted=okay[draws].sum(axis=1)
+                if np.any(accepted<MIN_OVERLAP_AA):
+                    raise ValueError("A bootstrap query/reference pair has inadequate shared site coverage")
+                shared.append(int(okay.sum()))
+                observed.append(float(same.sum()/okay.sum()))
+                scores.append(same[draws].sum(axis=1)/accepted)
+            return float(np.mean(observed)),np.mean(scores,axis=0),min(shared)
+        p,pdist,pmin=mean_identity(pos)
+        n0,ndist,nmin=mean_identity(neg)
+        delta=pdist-ndist
+        quantiles=np.quantile(delta,[.025,.975])
+        result[q]={
+            "mean_identity_to_positive_references":p,
+            "mean_identity_to_related_references":n0,
+            "observed_positive_minus_related_identity_margin":p-n0,
+            "site_bootstrap_identity_margin_95pct_interval":
+                [float(quantiles[0]),float(quantiles[1])],
+            "site_bootstrap_positive_margin_fraction":float(np.mean(delta>0)),
+            "reference_identity_diff_interval_includes_zero":
+                bool(quantiles[0]<=0<=quantiles[1]),
+            "minimum_source_to_reference_shared_aa":min(pmin,nmin),
+            "bootstrap_replicates":replicates,
+            "enzyme_specificity_test":False,
+            "note":"Overlapping fragment-based protein identities conditional on source alignment; not an enzyme-function posterior."
+        }
+    return result
+
+
 def bootstrap_family_support(aligned,meta,positive_group,related_group,
                              replicates=TREE_BOOTSTRAP_REPLICATES,
                              seed=BOOTSTRAP_SEED):
@@ -424,7 +492,11 @@ def run_panel(source_fasta,source_provenance,reference_fasta,
             aligned,meta,design["positive"],design["related"],
             replicates=bootstraps,seed=BOOTSTRAP_SEED)
         site_audit=reference_site_alignment_audit(aligned,meta,case)
+        identity_audit=bootstrap_relative_identity_margin(
+            aligned,meta,design["positive"],design["related"],
+            replicates=1000,seed=BOOTSTRAP_SEED+list(CASES).index(case))
         output[case]={
+            "relative_identity_site_bootstrap":identity_audit,
             "reference_site_alignment_audit":site_audit,
             "positive_family":design["positive"],
             "related_family":design["related"],
@@ -500,6 +572,13 @@ def main():
                 "case":family,
                 "source_id":report["source_translation"][query_id]["source_id"],
                 **site
+            },separators=(",",":")))
+    for family,report in outcome["trees"].items():
+        for query_id,position in report["relative_identity_site_bootstrap"].items():
+            print("TREE_IDENTITY_JSON:"+json.dumps({
+                "case":family,
+                "source_id":report["source_translation"][query_id]["source_id"],
+                **position
             },separators=(",",":")))
     return outcome
 
