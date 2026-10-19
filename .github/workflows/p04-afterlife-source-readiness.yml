@@ -1,0 +1,39 @@
+name: P04 afterlife source-level evidence admission
+on:
+  pull_request:
+    paths:
+      - "analysis/anto_empirical/p04_afterlife_source_readiness_v1.py"
+      - "analysis/test_p04_afterlife_source_readiness_v1.py"
+      - "data/anto_source_handoff/p04_afterlife_public_source_readiness_v1.json"
+      - "data/anto_source_handoff/public_sra/**"
+      - "data/anto_source_handoff/molecular/cirsium_2020_nj_fasttree_method_comparison_v5.json"
+      - "data/planning/aza3_nature_genomic_sampling_panel_v1.csv"
+      - ".github/workflows/p04-afterlife-source-readiness.yml"
+  push:
+    branches: [main]
+    paths:
+      - "analysis/anto_empirical/p04_afterlife_source_readiness_v1.py"
+      - "analysis/test_p04_afterlife_source_readiness_v1.py"
+      - "data/anto_source_handoff/p04_afterlife_public_source_readiness_v1.json"
+      - ".github/workflows/p04-afterlife-source-readiness.yml"
+permissions:
+  contents: read
+jobs:
+  source-qualified-only:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validate source file identity, experimental grains and unknowns
+        run: python -m unittest discover -s analysis -p test_p04_afterlife_source_readiness_v1.py -v
+      - name: Recompute original evidence receipt without biological filling
+        run: |
+          python analysis/anto_empirical/p04_afterlife_source_readiness_v1.py \
+            --output /tmp/p04-readiness.json \
+            --expected data/anto_source_handoff/p04_afterlife_public_source_readiness_v1.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aza3-p04-source-only-readiness
+          path: /tmp/p04-readiness.json
