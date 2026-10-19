@@ -1,0 +1,63 @@
+name: Audit Cirsium purpuratum original pollinator-predator display context v1
+
+on:
+  pull_request:
+    paths:
+      - "analysis/audit_cirsium_purpuratum_display_predator_context_v1.py"
+      - "data/evidence/cirsium_purpuratum_pollinator_predator_display_context_v1.json"
+      - "docs/CIRSIUM_Q2_PURPURATUM_DISPLAY_PREDATOR_POLLINATOR_1998_2000_V1.md"
+      - ".github/workflows/audit-cirsium-purpuratum-display-context-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  real-source-model-and-claim-gates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile and recalculate original source coefficients
+        run: |
+          python -m py_compile analysis/audit_cirsium_purpuratum_display_predator_context_v1.py
+          python analysis/audit_cirsium_purpuratum_display_predator_context_v1.py \
+            --out work/cirsium_purpuratum_original_display_predation.json
+      - name: Verify study design and no invented partner-specific selection
+        run: |
+          python - <<'PY'
+          import json, math
+          r=json.load(open("work/cirsium_purpuratum_original_display_predation.json"))
+          v=r["original_published_parameter_audit"]
+          t=r["synthetic_source_corruption_tests"]
+          assert t["status"]=="PASS_AUTHOR_PUBLISHED_CIRSIUM_CONTEXT_COEFFICIENTS_AND_CAUSAL_GATES"
+          assert t["source_corruption_cases_rejected"]==6
+          assert t["raw_plants_reanalyzed"]==0
+          assert v["status"]=="REAL_PUBLISHED_CIRSIUM_DISPLAY_PREDATION_CURVES_RECALCULATED_NOT_RAW_DATA"
+          n=v["source_population_results"]["Nikko"]
+          k=v["source_population_results"]["Kawamata"]
+          assert n["n_real_mother_plants_used_by_original_fit"]==13
+          assert k["n_real_mother_plants_used_by_original_fit"]==27
+          assert "directly assessed" in n["damage_fraction_assessment"]
+          assert "INFERRED" in k["damage_fraction_assessment"]
+          assert math.isclose(n["published_fit_coefficient_a_per_floret"],.000063)
+          assert math.isclose(k["published_fit_coefficient_a_per_floret"],.0000075)
+          contrasts=v["numeric_context_differences_not_partner_randomized"]
+          assert math.isclose(contrasts["original_nikko_a_over_kawamata_a"],8.4)
+          assert math.isclose(contrasts["seed_feeder_Larinus_fraction_kawamata_minus_nikko"],.4)
+          assert contrasts["partner_causal_effect"].startswith("NOT_IDENTIFIABLE")
+          assert v["sources_share_species_but_not_study_individuals"]
+          assert "genuine_spine_or_3D_angle_defense" in v["causal_inference_denied"]
+          assert 0<n["model_predictions_at_illustrative_F_NOT_OBSERVED"]["1000"]<1
+          print("PASS: source-reported within-Cirsium seed-predator context contrast, not guild manipulation")
+          PY
+      - name: Retain actual source numerical receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-purpuratum-1993-1994-population-context-v1
+          path: work/cirsium_purpuratum_original_display_predation.json
+          if-no-files-found: error
+          retention-days: 30
