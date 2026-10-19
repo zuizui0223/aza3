@@ -1,0 +1,33 @@
+name: Audit real Ryukyu 104890-reference competition evidence
+on:
+  push:
+    paths:
+      - 'data/anto_source_handoff/public_sra/ryukyu_full_104890_reference_competition_8MiB_v7.json'
+      - 'analysis/validate_ryukyu_104890_full_reference_v7.py'
+      - 'analysis/test_ryukyu_104890_full_reference_v7.py'
+      - 'docs/RYUKYU_FULL_AUTHOR_TRANSCRIPTOME_RESULTS_V7.md'
+      - '.github/workflows/validate-ryukyu-all-2020-reference-evidence-v7.yml'
+  pull_request:
+    paths:
+      - 'data/anto_source_handoff/public_sra/ryukyu_full_104890_reference_competition_8MiB_v7.json'
+      - 'analysis/validate_ryukyu_104890_full_reference_v7.py'
+      - 'analysis/test_ryukyu_104890_full_reference_v7.py'
+      - 'docs/RYUKYU_FULL_AUTHOR_TRANSCRIPTOME_RESULTS_V7.md'
+      - '.github/workflows/validate-ryukyu-all-2020-reference-evidence-v7.yml'
+permissions:
+  contents: read
+jobs:
+  validate-real-evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate public full-source background competition result offline
+        run: |
+          python analysis/validate_ryukyu_104890_full_reference_v7.py > /tmp/ryukyu_evidence_gate_v7.json
+          python -c "import json; x=json.load(open('/tmp/ryukyu_evidence_gate_v7.json')); assert x['full_source_2020_unigene_background_verified']==104890; assert x['six_public_young_leaf_R1_specimens']==6; assert x['full_source_competition_validated_complete_reads']==747234 and x['strict_26_source_candidate_reads_under_full_background']==215; assert not x['confirmed_functional_DFR_ANS_orthology'] and not x['confirmed_floret_anthocyanin_expression'] and not x['confirmed_ancestral_phenotype_reexpression']"
+      - name: Negative controls forbid fake gene absence and ancestry interpretation
+        run: python analysis/test_ryukyu_104890_full_reference_v7.py -v
