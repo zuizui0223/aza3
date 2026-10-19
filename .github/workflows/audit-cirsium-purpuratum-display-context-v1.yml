@@ -47,7 +47,13 @@ jobs:
                                   source_row["predicted_P_damage_at_F_1000"])
           t=r["synthetic_source_corruption_tests"]
           assert t["status"]=="PASS_AUTHOR_PUBLISHED_CIRSIUM_CONTEXT_COEFFICIENTS_AND_CAUSAL_GATES"
-          assert t["source_corruption_cases_rejected"]==6
+          assert t["source_corruption_cases_rejected"]==7
+          tax=json.load(open("data/evidence/cirsium_purpuratum_pollinator_predator_display_context_v1.json"))
+          botan=tax["botanical_head_morphology_and_white_morph_context"]
+          assert botan["japanese_name"]=="フジアザミ"
+          assert botan["white_flower_form"]["historical_name"]=="Cirsium purpuratum f. albiflorum (Kitam.) Kitam."
+          assert botan["white_flower_form"]["reappearance_after_ancestral_loss_demonstrated"] is False
+          assert botan["original_Japan38_Comp1061_primary_taxon_sample_present"] is False
           assert t["raw_plants_reanalyzed"]==0
           assert v["status"]=="REAL_PUBLISHED_CIRSIUM_DISPLAY_PREDATION_CURVES_RECALCULATED_NOT_RAW_DATA"
           n=v["source_population_results"]["Nikko"]
