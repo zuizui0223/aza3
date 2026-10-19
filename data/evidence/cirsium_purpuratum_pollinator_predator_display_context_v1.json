@@ -81,5 +81,47 @@
   "sources": [
     "https://pubmed.ncbi.nlm.nih.gov/21684905/",
     "https://www.biology.kyushu-u.ac.jp/~ecology/yahara/publication/Ohashi%26Yahara2000Cirsium.pdf"
-  ]
+  ],
+  "botanical_head_morphology_and_white_morph_context": {
+    "taxon": "Cirsium purpuratum",
+    "japanese_name": "フジアザミ",
+    "authority_sources": [
+      {
+        "provider": "Japan Ministry of the Environment いきものログ",
+        "url": "https://ikilog.biodic.go.jp/LifeSearch/detail/?life_darwincore_id=10080355",
+        "confirms": "Japanese common name フジアザミ and Cirsium purpuratum"
+      },
+      {
+        "provider": "National Museum of Nature and Science",
+        "url": "https://www.kahaku.go.jp/research/db/botany/azami/detail.html?no=135",
+        "confirms": "Very large naturally downward nodding capitula, separate Fuji-azami classification"
+      },
+      {
+        "provider": "Kew Plants of the World Online",
+        "url": "https://powo.science.kew.org/taxon/urn%3Alsid%3Aipni.org%3Anames%3A195895-1",
+        "confirms": "Accepted species Cirsium purpuratum and albiflorum names treated as synonyms"
+      },
+      {
+        "provider": "Kew Plants of the World Online forma",
+        "url": "https://powo.science.kew.org/taxon/urn%3Alsid%3Aipni.org%3Anames%3A3300801-4",
+        "confirms": "C. purpuratum f. albiflorum is a historical white-form name, synonym of C. purpuratum"
+      }
+    ],
+    "head_orientation": "normally downward/nodding per NMNS botanical descriptions, not measured as gravity angle on study individuals",
+    "head_armature": "Involucral phyllaries with spines per independent botanical sources; true spine dimensions and contact behavior not measured in 1998/2000 cohorts",
+    "white_flower_form": {
+      "historical_name": "Cirsium purpuratum f. albiflorum (Kitam.) Kitam.",
+      "status": "Kew synonym of Cirsium purpuratum, not independent evolutionary lineage",
+      "white_flower_occurence_voucher_collected_into_aza3": false,
+      "within_same_population_white_purple_individuals_verified": false,
+      "functional_anthocyanin_resource_retention_tested": false,
+      "floral_RNA_and_pigment_pathway_measured": false,
+      "white_flower_heritable_morph_origin_inferred": false,
+      "reappearance_after_ancestral_loss_demonstrated": false
+    },
+    "original_Japan38_Comp1061_primary_taxon_sample_present": false,
+    "Japan38_statement_scope": "not listed in pinned EAzami 38-taxon member roster checked separately; not a claim that no DNA exists in GenBank",
+    "candidate_integration": "possible Q2 species-specific display+insect study and Q3 same-species white flower exploration. Q1 requires authenticated phylogenomic placement independent of botanical head descriptions.",
+    "not_a_single_species_proof_of_three_questions": true
+  }
 }
