@@ -167,6 +167,89 @@ def analyse(roster,base,extension,heldout):
         },
     }
 
+def strict_moreyra_tip_matches(heldout,manifest,source_parts,source_paths):
+    """Use only exact linked 2025 target-capture samples from pinned 258 rows.
+
+    A named tree tip with an explicitly DIFFERENT SRA species, or with an
+    unverified specimen locality, is a candidate mismatch, not a marker-based
+    counterexample or a matched nuclear phylogenetic observation.
+    """
+    import hashlib
+    import io
+    if manifest.get("contract_version")!="moreyra2025_cirsium_reconciliation_v1":
+        raise ValueError("MOREYRA258_MANIFEST_VERSION_CHANGED")
+    if manifest.get("rows")!=258 or len(manifest.get("parts",[]))!=8:
+        raise ValueError("MOREYRA258_ROW_COUNT_OR_PART_MANIFEST_CHANGED")
+    all_rows=[]
+    for i,(file_bytes,path) in enumerate(zip(source_parts,source_paths),1):
+        item=manifest["parts"][i-1]
+        expected="part_"+str(i).zfill(3)+".csv"
+        if item.get("file")!=expected or Path(path).name!=expected:
+            raise ValueError("MOREYRA_CSV_PART_ORDER_CHANGED")
+        if hashlib.sha256(file_bytes).hexdigest()!=item["sha256"]:
+            raise ValueError("MOREYRA_CSV_SHA256_MISMATCH")
+        with io.StringIO(file_bytes.decode("utf-8-sig")) as fh:
+            rd=csv.DictReader(fh)
+            rows=list(rd)
+        if len(rows)!=item["rows"]:
+            raise ValueError("MOREYRA_CSV_PART_ROW_COUNT_CHANGED")
+        all_rows.extend(rows)
+    if len(all_rows)!=manifest["rows"]:
+        raise ValueError("MOREYRA_258_SOURCE_ROWS_INCOMPLETE")
+    candidates=[
+        row for row in heldout
+        if row["orientation_pool_status"]=="candidate_primary"
+        and row["discovery_overlap"]=="no"
+    ]
+    def binomial(value):
+        z=value.strip().split()
+        return " ".join(z[:2]) if len(z)>=2 else ""
+    observed=[]
+    for candidate in candidates:
+        taxon=candidate["analysis_taxon"]
+        matches=[r for r in all_rows if binomial(r["tree_code"])==taxon]
+        for row in matches:
+            is_focal=(row.get("sra_link_status")=="linked_runinfo" and
+                       row.get("tree_code_vs_sra_name")=="exact" and
+                       bool(row.get("biosample","")) and bool(row.get("run","")))
+            observed.append({
+                "botanical_taxon":taxon,
+                "recorded_orientation":candidate["orientation_state"],
+                "original_moreyra_tree_code":row["tree_code"],
+                "biosample":row["biosample"],
+                "sra_run":row["run"],
+                "voucher_geography":row["geographic_location"],
+                "name_reconciliation":row["tree_code_vs_sra_name"],
+                "strict_sample_taxon_join":is_focal,
+                "still_not_branch_length_or_independent_transition":True
+            })
+    unique_good={r["botanical_taxon"] for r in observed if r["strict_sample_taxon_join"]}
+    by_candidate={x["analysis_taxon"]:x["orientation_state"] for x in candidates}
+    accepted={k:by_candidate[k] for k in sorted(unique_good)}
+    if len(observed)!=3 or len(unique_good)!=2 or accepted!={
+        "Cirsium argyracanthum":"upward_or_erect",
+        "Cirsium vlassovianum":"upward_or_erect",
+    }:
+        raise ValueError("MOREYRA_EXACT_HELDOUT_NUCLEAR_COVERAGE_CHANGED")
+    ambiguous=[x for x in observed if not x["strict_sample_taxon_join"]]
+    if len(ambiguous)!=1 or ambiguous[0]["botanical_taxon"]!="Cirsium lidjiangense":
+        raise ValueError("LIDJIANGENSE_DIFFERENT_SUBMITTED_TAXON_NOT_FLAGGED")
+    return {
+        "status":"ONLY_TWO_UPRIGHT_HELDOUT_TAXA_WITH_EXACT_NUCLEAR_SAMPLES",
+        "pinned_moreyra_cirsium_source_rows":len(all_rows),
+        "external_orientation_candidates":len(candidates),
+        "candidate_species_with_matching_tree_code":len({r["botanical_taxon"] for r in observed}),
+        "exact_linked_sample_candidate_species":len(unique_good),
+        "exact_upward_candidate_species":sum(x=="upward_or_erect" for x in accepted.values()),
+        "exact_downward_candidate_species":sum(x=="downward_or_nodding" for x in accepted.values()),
+        "name_or_location_discrepancy_records":ambiguous,
+        "sample_records":observed,
+        "ecological_trait_state_contrast_available_in_same_nuclear_source":False,
+        "patristic_distances_extracted":False,
+        "memory_correlation_estimate":None,
+        "caveat":"Same tree code and nuclear read are not a tip-calibrated phylogeny or same-plant botanical measurement. C. lidjiangense has a Turkey voucher and different submitted name, so is held.",
+    }
+
 def synthetic_negative_controls(roster,base,extension,heldout):
     import copy
     scenarios=[
@@ -209,14 +292,25 @@ def main():
     p.add_argument("--japan-authority",type=Path,required=True)
     p.add_argument("--japan-extension",type=Path,required=True)
     p.add_argument("--east-asia-holdout",type=Path,required=True)
+    p.add_argument("--moreyra-manifest",type=Path,required=True)
+    p.add_argument("--moreyra-part",type=Path,action="append",required=True)
     p.add_argument("--out",type=Path)
     args=p.parse_args()
     roster=source_csv(args.japan_roster,ROSTER_COLUMNS)
     base=source_csv(args.japan_authority,JAPAN_TRAIT_COLUMNS)
     extension=source_csv(args.japan_extension,JAPAN_TRAIT_COLUMNS)
     heldout=source_csv(args.east_asia_holdout,HELDOUT_COLUMNS)
+    if len(args.moreyra_part)!=8:
+        raise ValueError("MOREYRA_MUST_HAVE_EIGHT_ORDERED_CSV_PARTS")
+    source_manifest=json.loads(args.moreyra_manifest.read_text(encoding="utf-8"))
+    moreyra_samples=strict_moreyra_tip_matches(
+        heldout,source_manifest,
+        [path.read_bytes() for path in args.moreyra_part],
+        args.moreyra_part
+    )
     report={
         "real_source_state_audit":analyse(roster,base,extension,heldout),
+        "pinned_nuclear_sample_coverage":moreyra_samples,
         "negative_controls":synthetic_negative_controls(
             roster,base,extension,heldout),
     }
