@@ -21,6 +21,7 @@ DATA=ROOT/"data/anto_source_handoff"
 MANIFEST=DATA/"public_sra/ryukyu_six_R1_prefix_source_v6.json"
 PRIMARY=DATA/"public_sra/ryukyu_six_source_leaf_R1_mapping_16MiB_v6.json"
 SECONDARY=DATA/"public_sra/ryukyu_six_source_leaf_R1_mapping_8MiB_alternate_v6.json"
+KMER=DATA/"public_sra/ryukyu_six_R1_two31mer_source_group_results_v6.json"
 REF_PROVENANCE=DATA/"molecular/cirsium_japonicum_2020_26_sequence_provenance_v6.json"
 
 REQUIRED_IDS={"TR39766|c0_g1_i2","TR41106|c0_g1_i5"}
@@ -114,6 +115,55 @@ def audit(primary=PRIMARY,secondary=SECONDARY,manifest=MANIFEST,
         raise ValueError("Alternative method compressed budget or read count changed")
     if any(q8[k]!=6 for k in REQUIRED_IDS):
         raise ValueError("All-six target recurrence not stable under technical prefix/mapping sensitivity")
+    # A separately executed 2x31-nt exact high-quality k-mer test includes
+    # stronger dinucleotide-preserving shuffled-reference controls.
+    # All three methods operate on NESTED prefixes of the SAME six libraries,
+    # so do not multiply the sample size or pool their read counts.
+    third=json.loads(KMER.read_text(encoding="utf-8"))
+    if (third.get("version")!="aza3_Ryukyu_2026_six_R1_two31mer_evidence_v6"
+            or third.get("source_runs")!=6
+            or third.get("total_reads_examined")!=747995
+            or third.get("strict_two_nonoverlapping_31mer_support_read_count")!=268
+            or third.get("dinucleotide_shuffled_source_null_support_reads")!=0):
+        raise ValueError("Actual source 2x31-mer evidence does not match frozen six-library result")
+    if len(third.get("sample_results",[]))!=6 or (
+        {r["run_accession"] for r in third["sample_results"]}!=set(registry)):
+        raise ValueError("2x31-mer reference analysis lost or repeated a Ryukyu source accession")
+    source_groups={x.rsplit("_i",1)[0] for x in accepted_ref}
+    group_totals=Counter()
+    group_presence=Counter()
+    kmer_reads=0
+    for r in third["sample_results"]:
+        original=registry[r["run_accession"]]
+        if (r["biosample_accession"]!=original["biosample_accession"] or
+                r["specimen_code"]!=original["source_specimen_code"] or
+                r["taxon_as_submitted"]!=original["taxon_as_experiment_titled"] or
+                r["tissue"]!="young leaf" or
+                r["status"]!="REAL_R1_PREFIX_SCANNED" or
+                r["compressed_prefix_bytes"]!=8388608 or
+                r["full_file_md5_verified"] is not False):
+            raise ValueError("2x31-mer original read source or tissue metadata inconsistent")
+        source_hits=r["source_assembly_groups_supported"]
+        if not set(source_hits)<=source_groups or sum(source_hits.values())!=r["counts"]["reads_with_single_group_2nonoverlap_31mers"]:
+            raise ValueError("2x31-mer source grouping includes unknown assemblies or unequal read totals")
+        if r["dinucleotide_preserving_decoy_groups_supported"]:
+            raise ValueError("2x31-mer null candidate was not zero as published")
+        if len(r["compressed_prefix_sha256"])!=64:
+            raise ValueError("Missing auditable real R1 compressed prefix SHA")
+        r2=next(x for x in b["per_run"] if x["run_accession"]==r["run_accession"])
+        if r2["complete_R1_prefix_reads"]!=r["reads_scanned"]:
+            raise ValueError("Two methods do not share the expected actual first 8 MiB R1 read count")
+        kmer_reads+=r["counts"]["reads_with_single_group_2nonoverlap_31mers"]
+        for key,n in source_hits.items():
+            if n>0:
+                group_totals[key]+=n
+                group_presence[key]+=1
+    if kmer_reads!=268 or third["no_2026_flower_specific_expression_test"] is not True:
+        raise ValueError("2x31-mer result cannot be reclassified as florally observed gene function")
+    if (group_presence["TR39766|c0_g1"]!=6 or group_presence["TR41106|c0_g1"]!=6
+            or group_totals["TR39766|c0_g1"]!=70
+            or group_totals["TR41106|c0_g1"]!=90):
+        raise ValueError("Third exact sequence method no longer supports same two groups in all six source libraries")
     if a["taxon_colour_assigned_from_individual_assay"] is not False:
         raise ValueError("Source species descriptions do not supply individual flower observations")
     if a["actual_public_R1_prefix_data"] is not True:
@@ -133,6 +183,11 @@ def audit(primary=PRIMARY,secondary=SECONDARY,manifest=MANIFEST,
         "supporting_8MiB_total_R1_reads":rd8,
         "supporting_8MiB_stringent_source_fragments":nd8,
         "supporting_8MiB_shuffled_decoy_fragments":0,
+        "third_exact_2x31mer_8MiB_total_reads":747995,
+        "third_exact_2x31mer_supported_reads":kmer_reads,
+        "third_exact_2x31mer_shuffled_dinucleotide_decoys":0,
+        "TR39766_exact_two31mer_support_in_all_six_libraries":True,
+        "TR41106_exact_two31mer_support_in_all_six_libraries":True,
         "same_biological_libraries_not_independent_experiments":True,
         "TR39766_DFR_related_source_in_six_leaf_libraries":True,
         "TR41106_ANS_Blast_annotated_source_in_six_leaf_libraries":True,
