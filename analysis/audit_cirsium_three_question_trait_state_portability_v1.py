@@ -54,8 +54,16 @@ def canonical_concept(x):
     tokens=x.strip().split()
     demand(len(tokens)>=2 and tokens[0]=="Cirsium",
            "NOT_A_CIRSIUM_AUTHORITY_TAXON")
-    if len(tokens)>=4 and tokens[2]=="var.":
-        return " ".join(tokens[:4])
+    # Botanical authorship may occur BETWEEN binomial and infraspecific
+    # rank: "Cirsium japonicum Fisch. ex DC. var. horridum Nakai" must
+    # match "Cirsium japonicum var. horridum". This is exact rank-aware
+    # normalization, NOT loose species-level synonym replacement.
+    for rank in ("var.","subsp.","f."):
+        if rank in tokens:
+            i=tokens.index(rank)
+            demand(i+1<len(tokens) and bool(tokens[i+1]),
+                   "INFRASPECIFIC_EPITHET_MISSING")
+            return " ".join(tokens[:2]+[rank,tokens[i+1]])
     return " ".join(tokens[:2])
 
 def brier(y,p):
@@ -241,6 +249,9 @@ def synthetic_negative_controls(members,base,extra,held):
                    "WRONG_NEGATIVE_CONTROL_ERROR:"+str(err))
             return
         raise AssertionError("INVALID_EVOLUTIONARY_EVIDENCE_ACCEPTED:"+needle)
+    demand(canonical_concept("Cirsium japonicum Fisch. ex DC. var. horridum Nakai")==
+           canonical_concept("Cirsium japonicum var. horridum"),
+           "BOTANICAL_AUTHORSHIP_BEFORE_VAR_RANK_NORMALIZATION_FAILED")
     observed=audit(members,base,extra,held)
     demand(observed["external_candidate_pool"]["orientation_predeclared_eligible_taxa"]==11,
            "ORIGINAL_REAL_TEST_NEGATIVE_CONTROL")
