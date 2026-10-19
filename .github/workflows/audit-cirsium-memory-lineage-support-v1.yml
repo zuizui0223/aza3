@@ -6,6 +6,7 @@ on:
     paths:
       - "analysis/audit_cirsium_trait_memory_independent_lineage_support_v1.py"
       - "docs/CIRSIUM_Q1_REAL_HELDOUT_TRAIT_COVERAGE_AND_TREE_GAP_V1.md"
+      - "data/evidence/cirsium_q1_real_japan_east_asia_holdout_trait_coverage_v1.json"
       - ".github/workflows/audit-cirsium-memory-lineage-support-v1.yml"
 
 permissions:
@@ -62,7 +63,20 @@ jobs:
           assert a["Q1_inferential_ceiling"]["same_trait_memory_transport"]=="NOT_IDENTIFIABLE_WITH_EXISTING_EXTERNAL_STATES"
           assert t["status"]=="PASS_SYNTHETIC_HOLDOUT_QUALIFICATION_NEGATIVE_CONTROLS"
           assert t["deliberate_corrupted_sources_rejected"]==4
-          print("PASS: 19 Japan and 11 independently sourced East Asia orientation states; no synthetic phylogenetic slope")
+          manifest=json.load(open("data/evidence/cirsium_q1_real_japan_east_asia_holdout_trait_coverage_v1.json"))
+          o=manifest["observed"]
+          assert manifest["source_ref"]==a["source_provenance"]["EAzami_ref"]
+          assert o["japan_roster_taxa"]==a["source_provenance"]["published_japanese_membership_tips"]
+          assert o["japan_authority_coded_taxa"]==a["source_provenance"]["authority_japanese_rows"]
+          assert o["japan_unambiguous_orientation_taxa"]==a["japan_discovery"]["orientation_resolved_taxa"]
+          assert o["japan_upward_or_erect"]==a["japan_discovery"]["orientation_states"]["upward_or_erect"]
+          assert o["japan_downward_or_nodding"]==a["japan_discovery"]["orientation_states"]["downward_or_nodding"]
+          assert o["east_asia_qualifying_orientation_taxa"]==a["heldout_east_asia"]["orientation_eligible_taxa"]
+          assert o["east_asia_upward_or_erect"]==a["heldout_east_asia"]["orientation_states"]["upward_or_erect"]
+          assert o["east_asia_downward_or_nodding"]==a["heldout_east_asia"]["orientation_states"]["downward_or_nodding"]
+          assert manifest["current_inference"]["measured_phylogenetic_memory_gradient_rho"] is None
+          assert manifest["current_inference"]["heldout_lineage_portability_gain"] is None
+          print("PASS: pinned real Japanese and independent external state counts agree with durable receipt; memory slope remains unidentifiable")
           PY
       - name: Archive compact verified botanical state readout
         uses: actions/upload-artifact@v4
