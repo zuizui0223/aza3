@@ -1,0 +1,138 @@
+{
+  "version": "aza3_Ryukyu_whole_Cirsium_japonicum_reference_competition_v7",
+  "observation_date": "2026-10-19",
+  "source_ci_run": "https://github.com/zuizui0223/aza3/actions/runs/39231345705",
+  "source_ci_job_id": 117989857813,
+  "method_evidence": "Executed bounded real source-matched six public PRJNA1311153 young-leaf-RNA R1 prefixes against full 104890-transcript Park 2020 Cirsium japonicum author FASTA plus 26 shuffled controls",
+  "source_project": "PRJNA1311153",
+  "reference_source": "Park et al. 2020 DOI 10.1021/acsomega.0c04001",
+  "background_reference_member_sha256": "0c7b7d61a8e2ad5e89b9199347a50545be707329715cdbe0a8a351b0eef2815f",
+  "reference_transcripts": 104890,
+  "selected_26_prior_blast_candidates_appear_in_full_original_source": true,
+  "full_compressed_fastqs_not_downloaded": true,
+  "original_source_read_pair_mates_downloaded": "R1 prefixes only",
+  "original_library_R1_full_MD5_not_verified": true,
+  "selection_bias": "Ordered gzip file-byte prefix; NOT random or representative biological sequencing library reads",
+  "read_prefix_compressed_bytes_per_run": 8388608,
+  "reads_observed_sum": 747234,
+  "total_source_26_strict_fragment_hits": 215,
+  "strict_source_fragment_by_pub2020_candidate": {
+    "TR39766|c0_g1_i2": 66,
+    "TR41106|c0_g1_i5": 106
+  },
+  "TR39766_source_like_fragments_detected_in_n_of_6": 6,
+  "TR41106_source_like_fragments_detected_in_n_of_6": 6,
+  "strict_26_candidate_composition_shuffled_decoy_matches": 0,
+  "assay": {
+    "tool": "minimap2 short-read reference mapper + SAM screening",
+    "min_MAPQ": 20,
+    "min_aligned_nt": 90,
+    "max_NM_over_aligned_nt": 0.2,
+    "additional_104864_original_author_transcripts_compete_for_each_read": true,
+    "source_2020_candidates_functionally_assayed_for_DFR_ANS": false,
+    "differential_expression_analysis_permitted": false
+  },
+  "interpretation": {
+    "supported": "Both taxon-labelled groups' young-leaf R1 prefix sequences retain reference matches to 2020 Cirsium japonicum DFR-like and ANS-annotated candidate transcript families even under full 104890-reference competition.",
+    "unsupported": [
+      "Not whole-locus functional DFR/ANS orthology or intact coding gene",
+      "Not a flower anthocyanin measurement for any plant",
+      "Not taxon-genome orthology, local ancestry or dating of an ancestral variant",
+      "Not differential expression from biased ordered source prefixes",
+      "Not white-to-coloured floral re-expression or head LEGO mechanism",
+      "Zero shuffled decoy matches are not a calibrated genomewide off-target error rate"
+    ],
+    "C_japonicum_2020_reference_IDs_not_Ryukyu_2026_genomic_alleles": true
+  },
+  "samples": [
+    {
+      "run_accession": "SRR35152724",
+      "biosample_accession": "SAMN50798037",
+      "specimen_code": "YGN-4296",
+      "taxon_as_source_record": "Cirsium irumtiense",
+      "source_tissue": "young leaf",
+      "compressed_first_R1_bytes_observed": 8388608,
+      "complete_valid_R1_records_analyzed": 130790,
+      "source_2020_26_candidate_strict_unique_fragments": 37,
+      "TR39766_cirsium_japonicum_like_strict_fragments": 3,
+      "TR41106_cirsium_japonicum_like_strict_fragments": 24,
+      "strict_composition_shuffled_decoy_fragment_matches": 0,
+      "original_provider_R1_full_MD5_not_reevaluated": true
+    },
+    {
+      "run_accession": "SRR35152725",
+      "biosample_accession": "SAMN50798036",
+      "specimen_code": "OKN-4295",
+      "taxon_as_source_record": "Cirsium brevicaule",
+      "source_tissue": "young leaf",
+      "compressed_first_R1_bytes_observed": 8388608,
+      "complete_valid_R1_records_analyzed": 130243,
+      "source_2020_26_candidate_strict_unique_fragments": 31,
+      "TR39766_cirsium_japonicum_like_strict_fragments": 17,
+      "TR41106_cirsium_japonicum_like_strict_fragments": 11,
+      "strict_composition_shuffled_decoy_fragment_matches": 0,
+      "original_provider_R1_full_MD5_not_reevaluated": true
+    },
+    {
+      "run_accession": "SRR35152729",
+      "biosample_accession": "SAMN50798033",
+      "specimen_code": "YRN-4166",
+      "taxon_as_source_record": "Cirsium brevicaule",
+      "source_tissue": "young leaf",
+      "compressed_first_R1_bytes_observed": 8388608,
+      "complete_valid_R1_records_analyzed": 117106,
+      "source_2020_26_candidate_strict_unique_fragments": 26,
+      "TR39766_cirsium_japonicum_like_strict_fragments": 5,
+      "TR41106_cirsium_japonicum_like_strict_fragments": 14,
+      "strict_composition_shuffled_decoy_fragment_matches": 0,
+      "original_provider_R1_full_MD5_not_reevaluated": true
+    },
+    {
+      "run_accession": "SRR35152730",
+      "biosample_accession": "SAMN50798032",
+      "specimen_code": "AMM-4163",
+      "taxon_as_source_record": "Cirsium brevicaule",
+      "source_tissue": "young leaf",
+      "compressed_first_R1_bytes_observed": 8388608,
+      "complete_valid_R1_records_analyzed": 116686,
+      "source_2020_26_candidate_strict_unique_fragments": 29,
+      "TR39766_cirsium_japonicum_like_strict_fragments": 11,
+      "TR41106_cirsium_japonicum_like_strict_fragments": 13,
+      "strict_composition_shuffled_decoy_fragment_matches": 0,
+      "original_provider_R1_full_MD5_not_reevaluated": true
+    },
+    {
+      "run_accession": "SRR35152731",
+      "biosample_accession": "SAMN50798031",
+      "specimen_code": "ISG-4111",
+      "taxon_as_source_record": "Cirsium irumtiense",
+      "source_tissue": "young leaf",
+      "compressed_first_R1_bytes_observed": 8388608,
+      "complete_valid_R1_records_analyzed": 129883,
+      "source_2020_26_candidate_strict_unique_fragments": 62,
+      "TR39766_cirsium_japonicum_like_strict_fragments": 17,
+      "TR41106_cirsium_japonicum_like_strict_fragments": 37,
+      "strict_composition_shuffled_decoy_fragment_matches": 0,
+      "original_provider_R1_full_MD5_not_reevaluated": true
+    },
+    {
+      "run_accession": "SRR35152732",
+      "biosample_accession": "SAMN50798030",
+      "specimen_code": "MMY-4078",
+      "taxon_as_source_record": "Cirsium irumtiense",
+      "source_tissue": "young leaf",
+      "compressed_first_R1_bytes_observed": 8388608,
+      "complete_valid_R1_records_analyzed": 122526,
+      "source_2020_26_candidate_strict_unique_fragments": 30,
+      "TR39766_cirsium_japonicum_like_strict_fragments": 13,
+      "TR41106_cirsium_japonicum_like_strict_fragments": 7,
+      "strict_composition_shuffled_decoy_fragment_matches": 0,
+      "original_provider_R1_full_MD5_not_reevaluated": true
+    }
+  ],
+  "prior_small_panel_files": {
+    "same_six_2020_subset_16MiB": "data/anto_source_handoff/public_sra/ryukyu_six_source_leaf_R1_mapping_16MiB_v6.json",
+    "independent_implementation_8MiB": "data/anto_source_handoff/public_sra/ryukyu_six_source_leaf_R1_mapping_8MiB_alternate_v6.json",
+    "warning": "Different references, source prefix lengths and filters; never interpret relative counts as RNA expression fold changes."
+  }
+}
