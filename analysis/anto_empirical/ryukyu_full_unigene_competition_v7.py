@@ -232,7 +232,7 @@ def align_to_full_reference(index,fastq,timeout=350):
     selected=read_fasta(DATA/"molecular/cirsium_japonicum_2020_26_source_sequences_v6.fasta")
     result=parse_competitor_sam(b.stdout,selected)
     b.stdout.close()
-    be=b.stderr.read().decode("utf-8",errors="replace")[-500:]
+    be=b.stderr.read()[-500:]  # samtools pipe uses text=True, unlike minimap2
     ae=a.stderr.read().decode("utf-8",errors="replace")[-500:]
     b_code=b.wait(timeout=timeout)
     a_code=a.wait(timeout=timeout)
