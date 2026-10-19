@@ -1,0 +1,57 @@
+name: Probe bounded public Ryukyu RNA-seq R1 prefixes
+on:
+  pull_request:
+    paths:
+      - 'analysis/anto_empirical/ryukyu_R1_prefix_kmer_pilot_v6.py'
+      - 'analysis/test_ryukyu_R1_prefix_kmer_pilot_v6.py'
+      - 'data/anto_source_handoff/public_sra/ryukyu_six_R1_prefix_source_v6.json'
+      - 'docs/RYUKYU_SIX_SOURCE_R1_PREFIX_PILOT_V6.md'
+      - '.github/workflows/ryukyu-R1-prefix-pilot-v6.yml'
+  push:
+    paths:
+      - 'analysis/anto_empirical/ryukyu_R1_prefix_kmer_pilot_v6.py'
+      - 'analysis/test_ryukyu_R1_prefix_kmer_pilot_v6.py'
+      - 'data/anto_source_handoff/public_sra/ryukyu_six_R1_prefix_source_v6.json'
+      - 'docs/RYUKYU_SIX_SOURCE_R1_PREFIX_PILOT_V6.md'
+      - '.github/workflows/ryukyu-R1-prefix-pilot-v6.yml'
+permissions:
+  contents: read
+jobs:
+  offline-validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify syntax, source provenance and bounded streaming negative controls
+        run: |
+          python -m py_compile analysis/anto_empirical/ryukyu_R1_prefix_kmer_pilot_v6.py
+          python analysis/test_ryukyu_R1_prefix_kmer_pilot_v6.py -v
+      - name: State biological claim ceiling
+        run: |
+          python -c "import json; p='data/anto_source_handoff/public_sra/ryukyu_six_R1_prefix_source_v6.json'; x=json.load(open(p)); assert len(x['runs'])==6 and x['early_pilot_cap_compressed_bytes_per_run']==8388608; assert all(r['tissue']=='young leaf' and not r['per_individual_corolla_pigmentation_quantified'] for r in x['runs'])"
+  public-six-run-prefix:
+    needs: offline-validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Scan first 8 MiB only from six public ENA R1 sources
+        run: |
+          python analysis/anto_empirical/ryukyu_R1_prefix_kmer_pilot_v6.py --limit-bytes 8388608 --output /tmp/aza3_ryukyu_R1_prefix_v6.json
+      - name: Require real, bounded 206 source observations before reporting biological hits
+        run: |
+          python -c "import json; d=json.load(open('/tmp/aza3_ryukyu_R1_prefix_v6.json')); assert len(d['runs'])==6; assert d['download_budget_compressed_bytes_per_R1']==8388608; assert d['number_of_successfully_read_R1_prefixes']==6,[(x['run_accession'],x['status'],x.get('retrieval_error_message')) for x in d['runs']]; assert all(r['full_file_md5_verified'] is False for r in d['runs']); assert d['ancestral_pigment_reexpression_confirmed'] is False"
+      - name: Upload bounded public-source per-run summaries only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aza3-v6-ryukyu-six-source-R1-prefix-summary
+          path: /tmp/aza3_ryukyu_R1_prefix_v6.json
+          retention-days: 7
+          if-no-files-found: ignore
