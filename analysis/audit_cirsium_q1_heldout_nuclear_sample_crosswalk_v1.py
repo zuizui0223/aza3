@@ -39,6 +39,9 @@ SOURCE_COLUMNS={
 }
 HELD_COLUMNS={"analysis_taxon","orientation_state","source_url",
               "discovery_overlap","orientation_pool_status"}
+OCC_COLUMNS={"analysis_taxon","orientation_state","gbif_match_type",
+             "n_thinned","passes_primary_occurrence_gate",
+             "environment_opened","countries_queried"}
 SOURCE_SHA="c9870e91604ed1514344ddc8f765eae5237dbf27"
 
 def demand(test,reason):
@@ -211,6 +214,98 @@ def audit(heldout,samples):
         "no_biological_field_or_gene_function_measurement_created":True,
     }
 
+def audit_occurrence(heldout,source_crosswalk,occurrences):
+    """Cross only the preregistered QUALITY gate, never environment outcomes."""
+    targets={x["analysis_taxon"]:x for x in heldout}
+    nuc={x["taxon"]:x for x in source_crosswalk["by_taxon"]}
+    indexed={}
+    for o in occurrences:
+        tax=o["analysis_taxon"].strip()
+        demand(tax and tax not in indexed,
+               "OCCURRENCE_SOURCE_DUPLICATE_TAXON_OR_EMPTY")
+        demand(tax in targets,
+               "GBIF_TAXON_NOT_PART_OF_HELDOUT_AUTHORITY_SCREEN")
+        demand(o["environment_opened"]=="False",
+               "OCCURRENCE_ENVIRONMENT_OPENED_IN_ORIGINAL_FROZEN_INPUT")
+        demand(o["orientation_state"]==targets[tax]["orientation_state"],
+               "OCCURRENCE_STATE_CONTRADICTS_HELDOUT_TAXON")
+        try: n=int(o["n_thinned"])
+        except (ValueError,TypeError):
+            raise ValueError("GBIF_THINNED_OCCURRENCE_COUNT_NOT_INTEGER") from None
+        demand(n>=0,"GBIF_NEGATIVE_OCCURRENCE_COUNT")
+        state=o["passes_primary_occurrence_gate"]
+        demand(state in {"True","False"},
+               "OCCURRENCE_PASS_FLAG_MUST_BE_EXPLICIT")
+        if state=="True":
+            demand(n>=3,"OCCURRENCE_GATE_TRUE_WITH_TOO_FEW_POINTS")
+            demand(o["gbif_match_type"]=="EXACT",
+                   "OCCURRENCE_PRIMARY_GATE_REQUIRES_EXACT_TAXON_NAME")
+        indexed[tax]=o
+    demand(len(indexed)==12,
+           "ORIGINAL_TWELVE_CANDIDATE_OCCURRENCE_ENTRIES_CHANGED")
+    demand(set(nuc).issubset(indexed),
+           "QUALIFIED_EAST_ASIA_ORIENTATION_NOT_PRESENT_IN_GBIF_SCREEN")
+    accepted_occ={
+        tax:o for tax,o in indexed.items()
+        if tax in nuc and o["passes_primary_occurrence_gate"]=="True"
+    }
+    demand(set(accepted_occ)=={
+        "Cirsium schantarense","Cirsium vlassovianum"
+    },"FROZEN_GBIF_TWO_STATE_ORIENTATION_QUALIFICATION_CHANGED")
+    joint=[tax for tax in accepted_occ
+           if nuc[tax]["status"]=="EXACT_PUBLIC_NUCLEAR_SAMPLE"]
+    demand(joint==["Cirsium vlassovianum"] or
+           set(joint)=={"Cirsium vlassovianum"},
+           "NUCLEAR_AND_OCCURRENCE_INTERSECTION_CHANGED")
+    no_nuclear=[
+        tax for tax in accepted_occ
+        if nuc[tax]["status"]!="EXACT_PUBLIC_NUCLEAR_SAMPLE"
+    ]
+    return {
+        "status":"SOURCE_BACKED_ORIENTATION_OCCURRENCE_AND_NUCLEAR_INTERSECTION_AUDITED",
+        "n_original_GBIF_occurrence_screen_taxa":len(occurrences),
+        "n_orientation_candidate_species_with_qualifying_occurrences":len(accepted_occ),
+        "qualifying_orientation_occurrence_species":{
+            tax:{"orientation":targets[tax]["orientation_state"],
+                 "n_thinned":int(o["n_thinned"]),
+                 "nuclear_sample_status":nuc[tax]["status"]}
+            for tax,o in sorted(accepted_occ.items())
+        },
+        "nuclear_and_strict_occurrence_joint_species":len(joint),
+        "joint_species":sorted(joint),
+        "downward_qualified_occurrence_without_safe_nuclear_sample":sorted(no_nuclear),
+        "nuclear_plus_occurrence_source_covers_both_orientation_states":False,
+        "source_gap":"C. schantarense has 8 vetted GBIF points and a downward head-state label, but no validated exact-name Moreyra S1 nuclear sample",
+        "climate_covariate_tested":False,
+        "phylogenetic_memory_rho_tested":False,
+        "no_field_observation_or_population_recruitment_data_added":True,
+    }
+
+def occurrence_negative_controls(heldout,source_crosswalk,occurrences):
+    import copy
+    base=audit_occurrence(heldout,source_crosswalk,occurrences)
+    demand(base["nuclear_and_strict_occurrence_joint_species"]==1,
+           "SOURCE_JOINT_VOUCHER_OCCURRENCE_COUNT_DRIFT")
+    def reject(records,needle):
+        try:audit_occurrence(heldout,source_crosswalk,records)
+        except ValueError as err:
+            demand(needle in str(err),
+                   "UNEXPECTED_GBIF_NEGATIVE_CONTROL_ERROR:"+str(err))
+            return
+        raise AssertionError("FROZEN_GBIF_SOURCE_TAMPER_ACCEPTED:"+needle)
+    a=copy.deepcopy(occurrences)
+    next(x for x in a if x["analysis_taxon"]=="Cirsium schantarense")["n_thinned"]="0"
+    reject(a,"OCCURRENCE_GATE_TRUE_WITH_TOO_FEW_POINTS")
+    a=copy.deepcopy(occurrences)
+    next(x for x in a if x["analysis_taxon"]=="Cirsium vlassovianum")["environment_opened"]="True"
+    reject(a,"OCCURRENCE_ENVIRONMENT_OPENED_IN_ORIGINAL_FROZEN_INPUT")
+    a=copy.deepcopy(occurrences)
+    next(x for x in a if x["analysis_taxon"]=="Cirsium vlassovianum")["orientation_state"]="downward_or_nodding"
+    reject(a,"OCCURRENCE_STATE_CONTRADICTS_HELDOUT_TAXON")
+    return {"status":"PASS_SYNTHETIC_GBIF_QUALITY_AND_NUCLEAR_INTERSECTION_GATES",
+            "n_negative_controls":3,
+            "n_real_Cirsium_phenotype_sample_collects":0}
+
 def tamper_checks(heldout,samples):
     base=audit(heldout,samples)
     demand(base["heldout_with_exact_voucher_and_submitted_name_consistent_nuclear_samples"]==2,
@@ -251,10 +346,13 @@ def main():
     p=argparse.ArgumentParser()
     p.add_argument("--original-reconciliation-folder",type=Path,required=True)
     p.add_argument("--original-heldout-states",type=Path,required=True)
+    p.add_argument("--original-occurrence-support",type=Path,required=True)
     p.add_argument("--out",type=Path)
     a=p.parse_args()
     states=load_csv(a.original_heldout_states,HELD_COLUMNS)
+    occurrences=load_csv(a.original_occurrence_support,OCC_COLUMNS)
     rows,manifest=load_manifest_parts(a.original_reconciliation_folder)
+    original=audit(states,rows)
     record={
         "version":"cirsium_moreyra_heldout_nuclear_sample_x_orientation_v1",
         "as_of":"2026-10-19",
@@ -263,7 +361,9 @@ def main():
             "n_parts":len(manifest["parts"]),
             "n_rows":manifest["rows"]},
         "source_integrity_tests":tamper_checks(states,rows),
-        "actual_source_matching":audit(states,rows),
+        "original_GBIF_occurrence_integrity_tests":occurrence_negative_controls(states,original,occurrences),
+        "actual_source_matching":original,
+        "real_nuclear_GBIF_joint_support":audit_occurrence(states,original,occurrences),
     }
     if a.out:
         a.out.parent.mkdir(parents=True,exist_ok=True)
