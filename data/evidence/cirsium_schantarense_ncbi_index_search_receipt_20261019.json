@@ -56,7 +56,8 @@
     "primary_2015_nuclear_ITS_publication_confirmed": true,
     "author_2015_accession_verified": false,
     "NCBI_identifiable_source_record_obtained": false,
-    "no_patristic_memory_estimate": true
+    "no_patristic_memory_estimate": true,
+    "not_proof_no_GenBank_record_under_other_names": true
   },
   "no_fasta_downloaded": true,
   "relevance": "Q1 source accession identity resolved negatively for known wrong candidate; Q3 white-form synonym remains molecularly untested",
