@@ -1,0 +1,154 @@
+{
+  "version": "aza3_capitulum_higher_order_lego_v2",
+  "generated": "2026-10-19",
+  "primary_question": "Do jointly preserved and partly independently inherited genetic/developmental resources permit recurrent combinations of Cirsium capitulum phenotypes beyond marginal, pairwise and single-ancestry explanations?",
+  "repositories": {
+    "empirical_owner": "zuizui0223/aza3",
+    "upstream_general_theory": "zuizui0223/anto",
+    "theoretical_result": "anto/docs/JOINT_MODULE_ACCESSIBILITY_AND_DISPERSAL_V7.md"
+  },
+  "study_design": {
+    "system": "Cirsium sieboldii",
+    "planned_phase_A_total": 40,
+    "true_biological_usable_n": "UNKNOWN_UNTIL_SAME_INDIVIDUAL_QC",
+    "assay_design_status": "PROSPECTIVE_NO_NEW_SAMPLE",
+    "anatomical_focus": "same capitulum: floret pigment, gravity-referenced orientation, phyllary geometry, involucre stickiness/glands, head shape",
+    "three_module_theoretical_mapping": [
+      {
+        "theory_module": "M1",
+        "empirical_domain": "pigment production & flower-specific regulation",
+        "functional_inventory_status": "UNMEASURED",
+        "observed_surrogate": "floret VIS/UV colour, pigment chemistry",
+        "not_equal_to_latent_inventory": true
+      },
+      {
+        "theory_module": "M2",
+        "empirical_domain": "gravity-responsive capitulum presentation",
+        "functional_inventory_status": "UNMEASURED",
+        "observed_surrogate": "head orientation in gravity coordinates, developmental trajectory",
+        "not_equal_to_latent_inventory": true
+      },
+      {
+        "theory_module": "M3",
+        "empirical_domain": "protective involucre geometry and surface apparatus",
+        "functional_inventory_status": "UNMEASURED",
+        "observed_surrogate": "phyllary dimensions/posture, stickiness/exudates",
+        "not_equal_to_latent_inventory": true
+      }
+    ]
+  },
+  "data_grain": {
+    "key": "individual_id",
+    "joint_assay_required": "SAME_GENOTYPED_BIOLOGICAL_INDIVIDUAL",
+    "provenance_required": [
+      "taxon_concept",
+      "population_id",
+      "deidentified_region_id",
+      "voucher_or_photo_id",
+      "floral_stage",
+      "sampling_date",
+      "cytotype",
+      "nuclear_genomic_library",
+      "observer_batch",
+      "authorization_id"
+    ],
+    "phenotype_not_genotype_fields": [
+      "floret_lab_chroma",
+      "floret_L_star",
+      "orientation_degrees_gravity",
+      "phyllary_posture_angle",
+      "involucre_stickiness",
+      "head_elongation",
+      "head_compactness"
+    ],
+    "molecular_latent_fields": [
+      "C_color_structural_retention_functional",
+      "F_color_floral_regulation_functional",
+      "G_orientation_developmental_resource_functional",
+      "G_involucre_developmental_resource_functional",
+      "nuclear_ancestry",
+      "local_locus_genealogies",
+      "cytotype"
+    ],
+    "no_phenotype_to_genotype_imputation": true,
+    "missing_code": "UNMEASURED",
+    "no_sensitive_coordinates": true
+  },
+  "model_comparison": [
+    {
+      "id": "M0",
+      "description": "Species/population/ancestry/environment plus module marginals, no co-retention data"
+    },
+    {
+      "id": "M1",
+      "description": "M0 plus pairwise module co-retention, allowing correlations/LD"
+    },
+    {
+      "id": "M2",
+      "description": "M1 plus directly measured three-way or higher-order functional resource co-retention"
+    },
+    {
+      "id": "M3",
+      "description": "M2 plus experimentally supported developmental compatibility, expression and mechanism"
+    },
+    {
+      "id": "M4",
+      "description": "Ecological fitness mediation for actual assembled configuration, separate from access"
+    }
+  ],
+  "power_precision_precondition": {
+    "phase_A_C_sieboldii_target": 40,
+    "n_eff_UNKNOWN": true,
+    "caution": "Forty planned individuals across populations are not 40 independent evolutionary origin events; clustering, missing assays, ancestry and ploidy reduce effective sample size.",
+    "prospective_sensitivity_scenarios": {
+      "p_complete": [
+        0,
+        0.125,
+        0.25
+      ],
+      "hypothetical_cluster_sizes": [
+        10
+      ],
+      "illustrative_ICC": [
+        0,
+        0.1,
+        0.2,
+        0.4
+      ],
+      "interpretation": "Demonstrations of attainable precision only. No measured ICC, genotype covariance, p_complete, or power approval."
+    },
+    "release_conditions": [
+      "source sample-to-individual join validated",
+      "within-population phenotype and molecular coverage adequate",
+      "outcome-blind precision and minimum useful effect fixed",
+      "all population and genomic ancestries included as controls",
+      "held-out populations not image-random splits"
+    ]
+  },
+  "nulls": {
+    "lower_order_moments": "complete resource probability may range over Frechet bounds despite fixed first/second moments; do not infer from correlations",
+    "common_ancestry": "one genome-wide ancestry gradient generates apparent joint head traits",
+    "phenotypic_coupling": "morphological integration without separable genetic resources",
+    "locus_paralogy": "similar transcript names are distinct paralogs or alternative splice isoforms, not independent sources",
+    "founder_sampling": "rare combinations are lost by bottleneck despite being accessible at broader scale",
+    "hidden_developmental_incompatibility": "all required resources coexist but composite head phenotype cannot be expressed"
+  },
+  "explicit_claim_ceilings": {
+    "phenotype_covariance": "NO_GENETIC_LEGO_EVIDENCE",
+    "pairwise_genomic_association": "NO_THREE_WAY_ACCESSIBILITY_IDENTIFICATION",
+    "source_Blast_unigene_hits": "NO_ORTHOLOGY_OR_FUNCTION_CERTIFICATION",
+    "four_head_traits_measured_in_same_individual": "MEASURABLE_PHENOTYPIC_ARCHITECTURE_ONLY_UNTIL_MOLECULAR_CAUSAL_VALIDATION",
+    "viable_achene_endpoint": "NO_ADAPTIVE_CLAIM_WITHOUT_APPROVED_CAUSAL_EXPERIMENT",
+    "actual_collected_individuals_in_this_new_protocol": 0
+  },
+  "primary_stopping_rules": [
+    "UNKNOWN_ANCESTRAL_STATE",
+    "UNMEASURED_FUNCTIONAL_MODULE",
+    "SAMPLE_SIZE_INSUFFICIENT",
+    "NO_SAME_INDIVIDUAL_JOIN",
+    "ONE_ANCESTRY_GRADIENT_EXPLAINS_PATTERN",
+    "NO_INDEPENDENT_RECOMBINANTS",
+    "NO_CAUSAL_FITNESS_EVIDENCE"
+  ],
+  "relevant_existing_plan": "docs/ANTO_ACCESSIBILITY_TO_AZA3_HEAD_LEGO_EMPIRICAL_MASTER_V1.md"
+}
