@@ -1,5 +1,6 @@
 name: Validate capped public Ryukyu leaf RNA pilot
 on:
+  workflow_dispatch:
   push:
     paths:
       - 'analysis/anto_empirical/ryukyu_ena_prefix_homology_v6.py'
@@ -16,6 +17,7 @@ permissions:
   contents: read
 jobs:
   capped-ENA-six-run-pilot:
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 18
     steps:
