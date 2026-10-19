@@ -79,7 +79,7 @@ def _nucleotides(seq):
     return s.replace("-","N")
 
 
-def prepare_competing_reference(archive, source_subset_fasta, output_fasta):
+def prepare_competing_reference(archive, source_subset_fasta, output_fasta, expected_count=EXPECTED_SOURCE_COUNT, expected_sha=EXPECTED_SOURCE_SHA, expected_bytes=EXPECTED_SOURCE_BYTES, subset_n=26):
     """Stream-author-verified 104,890 unigenes to temporary reference.
 
     The 26 candidates must exactly match the author's full-source fasta.
@@ -87,14 +87,14 @@ def prepare_competing_reference(archive, source_subset_fasta, output_fasta):
     No fake copies or approximated homologs are admitted.
     """
     source_reference=read_fasta(source_subset_fasta)
-    if len(source_reference)!=26:
-        raise ValueError("Expected exactly 26 checksum-backed source candidates")
+    if len(source_reference)!=subset_n:
+        raise ValueError("Unexpected number of audited source candidates")
     with ZipFile(BytesIO(archive),"r") as z:
         if sum(m.file_size for m in z.infolist())>UNCOMPRESSED_ARCHIVE_MAX:
             raise ValueError("Source archive decompression expansion too large")
         item=next((m for m in z.infolist()
                    if Path(m.filename).name==SOURCE_UNIGENE),None)
-        if item is None or item.file_size!=EXPECTED_SOURCE_BYTES:
+        if item is None or item.file_size!=expected_bytes:
             raise ValueError("Publisher supplementary 104k FASTA member missing or changed")
         seen=set()
         found={}
@@ -134,10 +134,10 @@ def prepare_competing_reference(archive, source_subset_fasta, output_fasta):
                 elif current is not None and line:
                     chunks.append(_nucleotides(line.decode("ascii")))
             finalize(writer)
-            if digest.hexdigest()!=EXPECTED_SOURCE_SHA or count!=EXPECTED_SOURCE_COUNT:
+            if digest.hexdigest()!=expected_sha or count!=expected_count:
                 raise ValueError(f"Source FASTA hash/count changed: {digest.hexdigest()} / {count}")
             if set(found)!=set(source_reference):
-                raise ValueError("Not all 26 frozen 2020 gene candidates were independently found in 104890 source FASTA")
+                raise ValueError("Not all frozen source candidates were independently found in the original author FASTA")
             # Negative controls are 26 independent sequence-shuffled
             # counterparts; small source composition-matched comparison only.
             randomizer=random.Random(20261019)
