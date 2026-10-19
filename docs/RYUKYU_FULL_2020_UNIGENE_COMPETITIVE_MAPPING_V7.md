@@ -1,5 +1,30 @@
 # aza3 v7 — Does the whole 104,890-transcript Cirsium background invalidate selected DFR/ANS-like read matches?
 
+
+## Completed source result — reference competition does NOT erase all candidate mappings
+
+**Result completed 19 October 2026:** [GitHub Actions run 39231345705](https://github.com/zuizui0223/aza3/actions/runs/39231345705), real public 2020 author FASTA source verified against original **104,890 transcript sequences**, with six source-verified 2026 Ryukyu leaf R1 prefixes (8 MiB each). Previously selected DFR/ANS-like candidates remain supported by **215 strict unique selected-reference read fragments across the six samples** despite all other 2020 *Cirsium japonicum* source unigenes competing. The control panel of 26 nucleotide-composition-shuffled sequences received **zero strict mappings**. Full source data remain temporary on the runner, not committed.
+
+| 2026 focal young-leaf run | Taxon in original study | Complete R1 prefix reads | Strict mapped to original selected 26 after 104,890-reference competition | TR39766 | TR41106 |
+|---|---|---:|---:|---:|---:|
+| SRR35152724 YGN-4296 | *C. irumtiense* | 130,790 | 37 | 3 | 24 |
+| SRR35152725 OKN-4295 | *C. brevicaule* | 130,243 | 31 | 17 | 11 |
+| SRR35152729 YRN-4166 | *C. brevicaule* | 117,106 | 26 | 5 | 14 |
+| SRR35152730 AMM-4163 | *C. brevicaule* | 116,686 | 29 | 11 | 13 |
+| SRR35152731 ISG-4111 | *C. irumtiense* | 129,883 | 62 | 17 | 37 |
+| SRR35152732 MMY-4078 | *C. irumtiense* | 122,526 | 30 | 13 | 7 |
+| **Total** | **6 public leaf libraries** | **747,234** | **215** | **66** | **106** |
+
+Thus **both** TR39766 (DFR-family homology candidate) and TR41106 (author best-BLAST-hit ANS-family homology candidate) retain strict mappings in **all six original young-leaf samples**, not only when competing with a prescreened panel of 26. This is a qualitatively stronger source-specific read-level result than the original limited-panel observation. However it remains **2020 source-reference nucleotide similarity**, not 2026 individual gene-family orthology or functional anthocyanin competence.
+
+**Do not calculate fold decreases from the original 636/378 counts:** those prior runs had different first-R1 compressed prefix sizes and different reference/identity filters; the samples are the SAME original six biological libraries and cannot be pooled into independent replication. The original paper's young-leaf tissue does not show floral pigment synthesis, cis/trans reactivation, regulatory ancestry or trait reversal. Protein-family function remains unresolved by the 2020 NJ/FastTree gene-tree tests. Full 2020 source transcriptome is also not a complete genome or pan-transcriptome of the Ryukyu lineages.
+
+**Frozen source evidence:** [full-reference competitive mapping across six Ryukyu young-leaf samples](../data/anto_source_handoff/public_sra/ryukyu_six_full_104890_unigene_competitive_mapping_v7.json). [Independent source-count, BioSample and biological claim audit](../analysis/validate_ryukyu_full_104890_unigene_mapping_v7.py) checks the exact report, its 104,890 source count/hash and that *all six* instances remain detectable without any white-to-coloured re-evolution claim.
+
+**Decision:** retain TR39766 and TR41106 as priority **gene-family homology** candidates for focused full-length focal-genomic/transcript and catalytic testing in aza3. Do not assign them a "functional genetic capability present" binary state yet, and do not invoke them as evidence that the southern coloured lineage re-evolved pigmentation. Avoid repeated large public full-source downloads for identical inputs: CI now runs the verification and negative-control tests offline; fresh full RNA/reference acquisition requires explicit manual dispatch.
+
+
+
 **Status:** Source-backed hypothesis/analysis code. Biological conclusions are admitted only after an actual six-source CI job completes. All active Cirsium work is in aza3; anto is the independent general mathematical accessibility programme.
 
 ## Motivation: our strongest current positive signal has an essential denominator problem
