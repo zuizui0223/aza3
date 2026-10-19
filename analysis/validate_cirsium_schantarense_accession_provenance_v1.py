@@ -36,7 +36,7 @@ def canonical(x):
         return x
     raise ValueError("UNREGISTERED_CIRSIUM_SPECIES_OR_FORMAT")
 
-def validate_source(j, external):
+def validate_source(j, external, ncbi):
     require(j["target"]["accepted_species"]==TARGET,
             "TARGET_SPECIES_SOURCE_CHANGED")
     bae=j["target"]["Bae_original_publication"]
@@ -80,6 +80,32 @@ def validate_source(j, external):
             and not tax["white_form"]["pigment_reinduction_assayed"]
             and not tax["white_form"]["heritable_reappearance_demonstrated"],
             "WHITE_FORM_NAME_WAS_FALSELY_PROMOTED_TO_REEVOLUTION")
+    positive=ncbi["positive_control_ESummary"]
+    demand=(
+        positive["accession_version"]=="MN871982.1"
+        and positive["record_title"]=="Cirsium shansiense chloroplast, complete genome"
+        and positive["length_bp"]==152396
+        and positive["ncbi_taxid"]==2721731
+    )
+    require(demand,"PUBLIC_NCBI_POSITIVE_CONTROL_WRONG_TAXON_OR_COMPARTMENT")
+    require(ncbi["no_fasta_downloaded"]
+            and ncbi["unverified_target"]["author_2015_accession_verified"] is False
+            and ncbi["unverified_target"]["no_patristic_memory_estimate"]
+            and ncbi["unverified_target"]["not_proof_no_GenBank_record_under_other_names"] if "not_proof_no_GenBank_record_under_other_names" in ncbi["unverified_target"] else ncbi["no_fasta_downloaded"],
+            "GENBANK_SEARCH_RECEIPT_FALSELY_CLAIMS_BAE_SEQUENCING")
+    require(ncbi["negative_result_scope"].startswith(
+            "Five specific term-based searches returned no indexed nucleotide records"),
+            "NCBI_ZERO_SEARCH_WAS_MISSTATED_AS_NO_DNA")
+    q=ncbi["query_results"]
+    require(len(q)==6 and
+            len([x for x in q if x["indexed_count"]==0])==5 and
+            len([x for x in q if x["name"]=="positive_control_original_shansiense_plastome" and x["indexed_count"]==1])==1,
+            "NCBI_SOURCE_QUERY_COUNTS_OR_POSITIVE_CONTROL_DRIFT")
+    require(j["accession"]["NCBI_public_nucleotide_metadata_confirmed"][
+                "verified_accession_version"]==positive["accession_version"]
+            and j["target"]["Bae_original_publication"][
+                "NCBI_public_term_search"]["direct_Bae_accession_match"] is False,
+            "NCBI_RECEIPT_NOT_CONNECTED_TO_TARGET_SOURCE_MANIFEST")
     for key,val in j["evidence_gates"].items():
         require(val is False,"GENOMIC_OR_COEVOLUTION_GATE_FALSELY_PASSED:"+key)
 
@@ -134,8 +160,8 @@ def claim_regained_white_form(name,genotype_linked,independent_origin):
         return "FUTURE_INDEPENDENT_GENETIC_EVIDENCE_REQUIRED_SOURCE_REGISTRY_CANNOT_VERIFY"
     raise ValueError("UNREGISTERED_COLOUR_FORM_NO_REEVOLUTION_TEST")
 
-def tests(j,external):
-    good=validate_source(j,external)
+def tests(j,external,ncbi):
+    good=validate_source(j,external,ncbi)
     require(check_claim("Cirsium shantarense",ITS) ==
             "BAE_2015_NUCLEAR_ITS_LITERATURE_NO_ACCESSION_RECOVERED",
             "2015_ORIGINAL_SPELLING_FALSIFIED")
@@ -175,15 +201,25 @@ def tests(j,external):
     ]
     for modify,expected in corruptions:
         bad=copy.deepcopy(j);modify(bad)
-        try:validate_source(bad,external)
+        try:validate_source(bad,external,ncbi)
         except ValueError as e:
             require(expected in str(e),
                     "SOURCE_CORRUPTION_GATE_WRONG_REASON_"+str(e))
         else:raise AssertionError("IMPROPER_SOURCE_CLAIM_WAS_ACCEPTED")
+    poisoned=copy.deepcopy(ncbi)
+    poisoned["positive_control_ESummary"]["record_title"] = (
+        "Cirsium schantarense nuclear ITS sequence"
+    )
+    try:validate_source(j,external,poisoned)
+    except ValueError as e:
+        require("PUBLIC_NCBI_POSITIVE_CONTROL_WRONG_TAXON_OR_COMPARTMENT" in str(e),
+                "GENBANK_INDEX_PRIMARY_SCOPE_MISLABEL_REJECTION_FAILED")
+    else: raise AssertionError("GENBANK_SHANSIENSE_METADATA_POISON_WAS_ACCEPTED")
     return {
       "status":"PASS_SYNTHETIC_BAD_ACCESSION_AND_FALSE_REGAIN_CONTROLS",
       "rejected_invalid_accession_claims":len(bad_claims),
       "rejected_source_manifest_fabrications":len(corruptions),
+      "rejected_false_NCBI_ESummary_species":True,
       "rejected_taxonomic_form_as_regain":True,
       "genuine_new_GenBank_sequences_retrieved":0,
       "phylogenomic_memory_estimates_created":0,
@@ -197,15 +233,19 @@ def main():
       "data/evidence/cirsium_schantarense_vs_shansiense_primary_accession_audit_v1.json"))
     p.add_argument("--previous-crosswalk",type=Path,default=Path(
       "data/evidence/cirsium_q1_nuclear_occurrence_source_overlap_v1.json"))
+    p.add_argument("--NCBI-index-receipt",type=Path,default=Path(
+      "data/evidence/cirsium_schantarense_ncbi_index_search_receipt_20261019.json"))
     p.add_argument("--out",type=Path)
     a=p.parse_args()
     m=json.loads(a.source_manifest.read_text(encoding="utf-8"))
     earlier=json.loads(a.previous_crosswalk.read_text(encoding="utf-8"))
+    ncbi=json.loads(a.NCBI_index_receipt.read_text(encoding="utf-8"))
     receipt={
        "version":"cirsium_schantarense_primary_ITS_plastome_source_integrity_v1",
        "as_of":"2026-10-19",
-       "original_public_literature_and_taxonomy_audit":validate_source(m,earlier),
-       "synthetic_negative_controls":tests(m,earlier),
+       "original_public_literature_and_taxonomy_audit":validate_source(m,earlier,ncbi),
+       "public_NCBI_Nucleotide_index_audited_as_of":"2026-10-19",
+       "synthetic_negative_controls":tests(m,earlier,ncbi),
        "actual_sequence_data_reanalyzed":None,
        "conclusion_ceiling":"SOURCE_MISATTRIBUTION_REMOVED_BUT_AUTHENTIC_TARGET_ITS_FASTA_AND_MULTILOCUS_TREE_NOT_RECOVERED",
     }
