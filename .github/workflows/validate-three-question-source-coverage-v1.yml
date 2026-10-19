@@ -69,3 +69,10 @@ jobs:
           assert x["claim_gates"]["Q3_after_phenotype_loss"]["heritable_multigeneration_return_assayed"] is False
           print("PASS: 25 real leaf accessions, no claimed floral re-expression or genotype-fitness links")
           PY
+      - name: Save nonsensitive, aggregated existing-source evidence receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: aza3-three-question-source-readiness-v1
+          path: work/three_question_source_readiness_v1.json
+          if-no-files-found: error
+          retention-days: 30
