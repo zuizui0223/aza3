@@ -126,6 +126,31 @@ class RealPublishedMaterialTests(unittest.TestCase):
         self.assertEqual(sum(len(x["queries"]) for x in r["trees"].values()),7)
         self.assertTrue(all(x["min_observed_shared_sites_across_pairs"]>=60
                             for x in r["trees"].values()))
+        # The original source 2020 candidate TR39766 is NOT a verified
+        # DFR enzyme even though a reference-aligned Tyr/Lys motif is retained.
+        dfr=r["trees"]["DFR_ANR_primary"]
+        key=next(k for k,v in dfr["source_translation"].items()
+                 if v["source_id"]=="TR39766|c0_g1_i2")
+        motif=dfr["reference_site_alignment_audit"][key]
+        self.assertFalse(motif["function_or_orthology_demonstrated"])
+        self.assertEqual(motif["n_reference_sites_predeclared"],5)
+        self.assertEqual(motif["n_sites_covered"],5)
+        self.assertEqual(motif["n_aligned_substitutions"],1)
+        self.assertEqual([(x["one_based_reference_position"],x["source_aligned_residue"])
+                          for x in motif["sites"]],
+                         [(13,"G"),(16,"G"),(19,"A"),(164,"Y"),(168,"K")])
+        dfr_weak=next(k for k,v in dfr["source_translation"].items()
+                 if v["source_id"]=="TR35526|c0_g1_i1")
+        audit=dfr["reference_site_alignment_audit"][dfr_weak]
+        self.assertEqual(audit["n_sites_covered"],2)
+        self.assertEqual(audit["n_aligned_substitutions"],2)
+        self.assertEqual([x["evidence_state"] for x in audit["sites"][:3]],
+                         ["NO_ALIGNMENT_COVERAGE"]*3)
+        ans=r["trees"]["ANS_FLS"]
+        ans_key=next(k for k,v in ans["source_translation"].items()
+                     if v["source_id"]=="TR58302|c0_g1_i1")
+        self.assertEqual(ans["reference_site_alignment_audit"][ans_key]["n_matching_residues"],2)
+        self.assertFalse(ans["reference_site_alignment_audit"][ans_key]["function_or_orthology_demonstrated"])
 
 
 if __name__=="__main__":
