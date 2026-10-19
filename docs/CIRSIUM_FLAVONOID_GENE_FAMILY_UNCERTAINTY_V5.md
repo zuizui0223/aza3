@@ -40,6 +40,16 @@ The source's positions were aligned to the annotated **Saussurea** reference pro
 
 The protein alignments cannot establish gene origin dates, causal promoter/regulatory changes, cofactor flux, anthocyanin accumulation, ploidy, recombination or effects on seed fitness.
 
+## Second inference method completed: NJ and FastTree agree on unresolved placement
+
+A source-backed second comparison has **now completed successfully** in [GitHub Actions run 39214299802](https://github.com/zuizui0223/aza3/actions/runs/39214299802). Using the SAME published 2020 *C. japonicum* amino-acid alignments, an independent WAG FastTree approximate-maximum-likelihood analysis gives **7/7 identical unrooted reference-family placement labels** to the original NJ: BETWEEN_FAMILY_ANCHORS. The seven evaluations cover **five distinct published transcripts**, not seven genetic loci or trait transitions.
+
+This is an important *negative/identifiability* result: the result is **method-independent ambiguity**, NOT high bootstrap evidence for a distinct enzyme function or proof that any source transcript catalyzes an intermediate reaction. A more complex optimizer cannot rescue missing phylogenetic/functional information by itself.
+
+The [complete, independently reported source comparisons](../data/anto_source_handoff/molecular/cirsium_2020_nj_fasttree_method_comparison_v5.json) are frozen and verified with [strict source and inference gates](../analysis/validate_cirsium_2020_method_concordance_v5.py). The validator also rechecks new FastTree outputs against the seven observed source identities, refusing an upgraded orthology/function statement.
+
+**Decision after two inference methods:** do not yet commit another tree re-estimation without independent additional reference taxa and/or a calibrated catalytic assay. The next discriminating evidence is direct substrate/product enzymology and same-individual floral versus phyllary pathway flux, not increased algorithmic complexity.
+
 ## What is scientifically worth doing next (aza3 only)
 
 1. Independently test the **tree inference method** (approximately-ML WAG FastTree vs NJ on *identical MAFFT alignments*). Concordance of ambiguous family sides does not make those sides diagnostic; discordance reveals further source-method sensitivity. Store full source alignment and Newick version/uncertainty metadata.
