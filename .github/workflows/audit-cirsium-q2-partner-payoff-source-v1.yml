@@ -54,6 +54,14 @@ jobs:
           import json,math
           data=json.load(open("work/cirsium_q2_actual_interaction_evidence_v1.json"))
           x=data["real_source_evidence"]
+          frozen=json.load(open("data/evidence/cirsium_q2_real_partner_payoff_source_receipt_v1.json"))
+          assert frozen["source_commit"]==x["provenance"]["commit"]
+          assert frozen["real_original_evidence"]["head_stickiness"]["source_experiment_article_count"]==x["key_actual_sticky_head_interventions"]["distinct_experimental_articles"]
+          assert frozen["real_original_evidence"]["head_stickiness"]["source_species_treatment_contexts"]==x["key_actual_sticky_head_interventions"]["independent_species_test_contexts"]
+          assert abs(frozen["real_original_evidence"]["herbivore_seed_fitness"]["previous_reanalysis_RR"]-x["direct_herbivore_experimental_seed_cost"]["experimental_seed_suppression_pooled_RR_existing_meta"])<1e-10
+          assert abs(frozen["real_original_evidence"]["pollination_seed_fitness"]["open_divided_by_bagged"]-x["pollination_service"]["open_vs_bagged_seed_ratio"])<1e-10
+          assert frozen["important_empirical_non_overlaps"]["exact_numeric_seed_herbivory_taxa_vs_numeric_pollination_3arm_taxa_intersection"]==x["joint_question_identifiability"]["explicit_taxa_with_exact_quantitative_antagonist_RR_and_exact_pollinator_3arm_seed_means"]
+          assert frozen["important_empirical_non_overlaps"]["same_head_same_plant_guild_crossed_trait_manipulation_count"]==0
           assert x["provenance"]["original_bounded_map_rows"]==15
           assert x["provenance"]["independently_appended_source_rows"]==3
           assert x["provenance"]["unique_evidence_ids"]==18
