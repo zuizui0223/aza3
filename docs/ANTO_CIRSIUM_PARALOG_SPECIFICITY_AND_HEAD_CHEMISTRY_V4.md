@@ -32,6 +32,26 @@ For each of the 26 existing *C. japonicum* transcript sequences:
 
 The prior five-reference-positive transcripts are an *initial set*, not a guarantee that all five pass a stricter related-family control.
 
+## Reproducible result: reference sensitivity reduces the robust shortlist
+
+The genuine *C. japonicum* 2020 public sequences were analysed with all seven positive/related-family negative reference proteins. **The previous five strong candidate transcript records remained positive-family nearest matches under the full panel**, but they did not all survive reference-taxon omission.
+
+| Source transcript | Full seven-reference best family | Omit Saussurea positive refs | Omit Arabidopsis positive refs | Across-scenario stability |
+|---|---|---|---|---|
+| TR39766|c0_g1_i2 | DFR | DFR | DFR | **Stable** |
+| TR35526|c0_g1_i1 | DFR | DFR | DFR | **Stable, but borderline ~30.6% amino-acid identity** |
+| TR38875|c0_g4_i5 | DFR | **ANR** | DFR | Reference-sensitive |
+| TR38875|c0_g4_i7 | DFR | **ANR** | DFR | Reference-sensitive |
+| TR58302|c0_g1_i1 | ANS | ANS | **FLS** | Reference-sensitive |
+
+Precisely **2/5** retained the original positive-family best match and the minimum similarity screen across all tested reference removal scenarios. **3/5** remained positive when the Saussurea references alone were excluded. Both TR38875 entries belong to one source assembly group; they cannot be counted as independent genes or independent evolution events.
+
+This is a genuine **reference robustness result**, not evidence that the others actually encode ANR or FLS enzymes. Their classification is *reference-dependent*. It demonstrates why generic DFR/ANS protein-family names should not be used to claim that the full floral anthocyanin toolkit remains functional or was re-evolved.
+
+For targeted gene-family functional follow-up, prioritize TR39766 for the stronger, longer DFR-like alignment; inspect TR35526 as a weaker but robust DFR-like candidate, and explicitly **retain rather than discard** TR38875 and TR58302 for gene-tree and catalytic-family ambiguity resolution. The first two are not functionally proven either. An existing 2020 root:leaf CjDFR expression contrast is **not linked to these exact source transcript IDs** and should not be silently attributed to them.
+
+Machine-readable results with all per-scenario reference scores and the independent source provenance are in [frozen seven-reference family report](../data/anto_source_handoff/molecular/cirsium_2020_seven_reference_family_control_v4.json) and [reference omission sensitivity](../data/anto_source_handoff/molecular/cirsium_2020_reference_omission_sensitivity_v4.json). The [jackknife runner](../analysis/run_anto_cirsium_reference_jackknife_v4.py) rechecks the results against its own saved evidence fingerprint, and fails if source-supported conclusions silently change.
+
 ## New Cirsium and genetic LEGO interpretation
 
 This screen could support competing mechanisms, but cannot decide among them alone:
