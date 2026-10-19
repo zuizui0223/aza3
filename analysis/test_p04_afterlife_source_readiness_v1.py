@@ -80,7 +80,7 @@ class AfterlifeP04SourceTests(unittest.TestCase):
             if row["phase"]=="A":
                 row["recommended_n"]="50"
                 break
-        with self.assertRaisesRegex(ValueError,"Phase-A denominator"):self.build(panel=panel)
+        with self.assertRaisesRegex(ValueError,"registered Phase-A design"):self.build(panel=panel)
 
     def test_source_file_pin_matches_and_wrong_pin_fails(self):
         b=p.load_source("manifest")
