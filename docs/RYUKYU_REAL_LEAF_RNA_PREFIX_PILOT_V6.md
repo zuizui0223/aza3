@@ -21,6 +21,28 @@ Source manifest (exact original SRR/SAMN and specimen code, from official ENA re
 
 **Actual tissue disclaimer:** These are registered young leaves, not floral transcriptomes. We do not infer individual flower colour from the source taxon name, and do not conclude flower-stage pigment expression from leaf mapped fragments.
 
+## First actually executed source result — *C. brevicaule* AMM-4163
+
+The first real public young-leaf-RNA test **succeeded** in [GitHub Actions run 39219960099](https://github.com/zuizui0223/aza3/actions/runs/39219960099), processing exactly 8 MiB of compressed **R1** from SAMN50798032 / SRR35152730. It recovered **116,686 complete high-length reads** and **53 high-confidence matched R1 fragments** distributed among ten source-2020 candidate transcripts. **Zero** reads passed the corresponding source-shuffled-negative reference mapping filter.
+
+| Published Park 2020 candidate transcript ID | Source-AMM-4163 matching R1 fragments |
+|---|---:|
+| TR39766\|c0_g1_i2 (previous DFR-like source alignment) | **14** |
+| TR41106\|c0_g1_i5 (source ANS-related annotation, family unresolved) | 19 |
+| TR52731\|c6_g7_i2 | 9 |
+| All other seven individual matched source transcript IDs | 11 |
+| **Total filtered source-transcript R1 fragments** | **53** |
+
+This is the first **direct 2026 white-taxon C. brevicaule young-leaf read-to-source-Cirsium homolog candidate link** in the project. It neither proves a whole gene is intact nor that the homolog is actually catalytic DFR or ANS, nor that the source specimen has functional anthocyanin capability in the flower. Furthermore, we aligned against a **selected 26-transcript panel**, not all 104,890 original Park 2020 transcripts; MAPQ uniqueness is only within that limited comparison database. Later full-transcriptome reference competition is required before treating any count as transcript-specific identification.
+
+Frozen, sourced experimental report: [AMM-4163 8 MiB positive mapping record](../data/anto_source_handoff/public_sra/ryukyu_AMM4163_first_R1_8MiB_fragment_screen_v6.json). No raw read IDs, DNA strings or sensitive collection localities were committed.
+
+### Input-quality fault found when scaling to all six specimens
+
+An early six-sample expansion **failed in the FASTQ record parser**, not because any gene was absent: real *C. irumtiense* ISG-4111 SRR35152731 contains reads of **54–73 nucleotides** whose quality strings have the correct same lengths. Initial strict parser improperly considered any record shorter than the analytic 75-nt alignment threshold to be structurally malformed. The corrected method counts these as **valid-but-filtered-short**, while retaining hard failure for invalid headers, absent  markers and mismatched sequence/quality lengths. A synthetic regression reproduces short 54–74nt reads. No claim about RNA library structural corruption is supported by the observed source.
+
+Six-source quantitative source mapping is **PENDING SUCCESSFUL REPLAY** until an independent CI run completes under the revised parser. Even after successful replay, prefix-only read counts are not expression estimates and **no non-detection can be interpreted as absence or loss**.
+
 ## Pilot source and quality safeguards
 
 The [Python-only bounded prefix downloader and FASTQ parser](../analysis/anto_empirical/ryukyu_ena_prefix_homology_v6.py) uses strict HTTPS and an exact official ENA source allowlist; requires HTTP 206 Content-Range before reading any compressed data; refuses unbounded 200 responses; caps compressed input per R1 (8 MiB initially; maximum 32 MiB); verifies specimen/sample/taxon accession against the frozen 25-run manifest; and recovers only complete FASTQ four-line records from an inevitably truncated gzip stream.
