@@ -54,6 +54,12 @@ jobs:
           assert locked["n_species_with_both_safe_nuclear_sample_and_primary_occurrence_support"]==x["real_nuclear_GBIF_joint_support"]["nuclear_and_strict_occurrence_joint_species"]
           assert locked["n_downward_candidate_species_with_both"]==0
           assert locked["inference_status"]=="DESCRIPTIVE_REAL_SOURCE_INTERSECTION_ONLY_NO_BRANCH_LENGTH_MEMORY_TEST"
+          low=locked["independent_lower_resolution_nuclear_literature"]
+          assert low["doi"]=="10.5352/JLS.2015.25.2.243"
+          assert low["source_publication_has_molecular_observation"]
+          assert low["is_moreyra_2025_1061_locus_nuclear_sample"] is False
+          assert low["shared_comparable_branch_length_ensemble_with_2025_Moreyra"] is False
+          assert low["trait_evolution_direction_or_genetic_resource_regain_inferred"] is False
           a=x["actual_source_matching"]
           assert x["source_manifest"]["n_parts"]==8
           assert x["source_manifest"]["n_rows"]==258
