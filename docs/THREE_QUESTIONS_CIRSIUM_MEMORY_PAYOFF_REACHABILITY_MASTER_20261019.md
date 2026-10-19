@@ -107,6 +107,6 @@
 
 - [Chang et al. 2026, BMC Plant Biology 26:545, DOI 10.1186/s12870-026-08097-6](https://doi.org/10.1186/s12870-026-08097-6) (37 accessions, independent Ryukyu clades, Taiwan radiation, genome-size contrasts).
 - [Ho & Smith 2016, DOI 10.1186/s12862-016-0675-3](https://doi.org/10.1186/s12862-016-0675-3) (non-Cirsium molecular intact anthocyanin machinery in unpigmented lineages; **possible regain** already documented, thus "gene retention makes regain possible" alone is not novel).
-- [Ho & Smith and collaborators 2018, DOI 10.1093/molbev/msy117](https://doi.org/10.1093/molbev/msy117) (Iochrominae repeated anthocyanin-expression shifts; candidate independent outgroup relevance).
+- [Larter, Dunbar-Wallis, Berardi & Smith 2018, DOI 10.1093/molbev/msy117](https://doi.org/10.1093/molbev/msy117) (Iochrominae repeated anthocyanin-expression shifts; candidate independent outgroup relevance).
 - Existing signed head phenotypes and PR #44 observational contracts remain preserved, not merged into a causal result.
 - **As of now: zero new same-individual real Cirsium genotype×flower-organ functional-retention×access×filled-achene linked records.** Existing 25 young-leaf RNA accession records and 2020 other-species gene family candidates do not meet this gate.
