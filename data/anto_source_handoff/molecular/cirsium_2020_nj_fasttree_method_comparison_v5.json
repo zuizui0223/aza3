@@ -1,0 +1,75 @@
+{
+  "version": "aza3_cirsium_NJ_FastTree_family_concordance_v5",
+  "source_pipeline": "Github Actions run 39214299802, job 117934468689",
+  "as_of": "2026-10-19",
+  "scientific_material": "Published Park et al. 2020 Cirsium japonicum transcriptome (26 DFR/ANS-like publisher annotations), NOT 2026 Ryukyu Cirsium reads",
+  "methods": "Independently infer NJ amino-acid p-distance tree and FastTree WAG approximate ML tree on identical MAFFT alignments, separately per DFR/ANR and ANS/FLS reference protein family",
+  "n_tree_configurations": 3,
+  "n_query_configurations": 7,
+  "n_same_family_placement_label": 7,
+  "distinct_source_transcripts": 5,
+  "n_candidates_confidently_identified_as_functional_dfr_or_ans": 0,
+  "caveat": "All methods classify query as BETWEEN_FAMILY_ANCHORS according to a conservative unrooted reference-split label. Concordance is reproducibility of AMBIGUITY, not 100% proof of any enzyme family or a functional intermediate.",
+  "records": [
+    {
+      "case": "DFR_ANR_primary",
+      "source_transcript": "TR35526|c0_g1_i1",
+      "NJ_unrooted_reference_family_placement": "BETWEEN_FAMILY_ANCHORS",
+      "FastTree_WAG_unrooted_reference_family_placement": "BETWEEN_FAMILY_ANCHORS",
+      "classification_stable_across_inference_method": true,
+      "functional_orthology_verified": false
+    },
+    {
+      "case": "DFR_ANR_primary",
+      "source_transcript": "TR38875|c0_g4_i5",
+      "NJ_unrooted_reference_family_placement": "BETWEEN_FAMILY_ANCHORS",
+      "FastTree_WAG_unrooted_reference_family_placement": "BETWEEN_FAMILY_ANCHORS",
+      "classification_stable_across_inference_method": true,
+      "functional_orthology_verified": false
+    },
+    {
+      "case": "DFR_ANR_primary",
+      "source_transcript": "TR39766|c0_g1_i2",
+      "NJ_unrooted_reference_family_placement": "BETWEEN_FAMILY_ANCHORS",
+      "FastTree_WAG_unrooted_reference_family_placement": "BETWEEN_FAMILY_ANCHORS",
+      "classification_stable_across_inference_method": true,
+      "functional_orthology_verified": false
+    },
+    {
+      "case": "DFR_ANR_alt_isoform",
+      "source_transcript": "TR35526|c0_g1_i1",
+      "NJ_unrooted_reference_family_placement": "BETWEEN_FAMILY_ANCHORS",
+      "FastTree_WAG_unrooted_reference_family_placement": "BETWEEN_FAMILY_ANCHORS",
+      "classification_stable_across_inference_method": true,
+      "functional_orthology_verified": false
+    },
+    {
+      "case": "DFR_ANR_alt_isoform",
+      "source_transcript": "TR38875|c0_g4_i7",
+      "NJ_unrooted_reference_family_placement": "BETWEEN_FAMILY_ANCHORS",
+      "FastTree_WAG_unrooted_reference_family_placement": "BETWEEN_FAMILY_ANCHORS",
+      "classification_stable_across_inference_method": true,
+      "functional_orthology_verified": false
+    },
+    {
+      "case": "DFR_ANR_alt_isoform",
+      "source_transcript": "TR39766|c0_g1_i2",
+      "NJ_unrooted_reference_family_placement": "BETWEEN_FAMILY_ANCHORS",
+      "FastTree_WAG_unrooted_reference_family_placement": "BETWEEN_FAMILY_ANCHORS",
+      "classification_stable_across_inference_method": true,
+      "functional_orthology_verified": false
+    },
+    {
+      "case": "ANS_FLS",
+      "source_transcript": "TR58302|c0_g1_i1",
+      "NJ_unrooted_reference_family_placement": "BETWEEN_FAMILY_ANCHORS",
+      "FastTree_WAG_unrooted_reference_family_placement": "BETWEEN_FAMILY_ANCHORS",
+      "classification_stable_across_inference_method": true,
+      "functional_orthology_verified": false
+    }
+  ],
+  "no_orthology_certified": true,
+  "no_gene_family_function_certified": true,
+  "no_ryukyu_regain_evidence": true,
+  "no_source_gene_evolution_date_inferred": true
+}
