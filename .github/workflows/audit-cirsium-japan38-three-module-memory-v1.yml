@@ -1,0 +1,82 @@
+name: Audit real Cirsium three capitulum modules memory exact null v1
+
+on:
+  pull_request:
+    paths:
+      - "analysis/audit_cirsium_japan38_three_module_exact_memory_v1.py"
+      - "analysis/audit_cirsium_japan38_orientation_phylogenetic_memory_v1.py"
+      - "docs/CIRSIUM_JAPAN38_ACTUAL_ORIENTATION_MEMORY_RESULT_20261019.md"
+      - ".github/workflows/audit-cirsium-japan38-three-module-memory-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  all-exact-trait-label-assignments-on-real-nuclear-phylogram:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install exact phylogram parser
+        run: python -m pip install "biopython==1.86"
+      - name: Retrieve pinned EAzami real nuclear tree and actual NMNS module states
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work/eazami
+          for path in \
+            data/evidence/japan38_comp1061_primary_tree_v1.nwk \
+            data/evidence/japan38_comp1061_primary_tree_acceptance_v1.json \
+            data/evidence/japan38_comp1061_concept_map_v1.csv \
+            data/evidence/japan38_nmns_capitulum_trait_seed_v1.csv \
+            data/evidence/japan38_nmns_capitulum_trait_seed_extension_v2.csv; do
+            file="${path##*/}"
+            gh api "repos/zuizui0223/EAzami/contents/${path}?ref=c9870e91604ed1514344ddc8f765eae5237dbf27" --jq .content | base64 -d > "work/eazami/${file}"
+            test -s "work/eazami/${file}"
+          done
+      - name: Calculate exact full-label null for three source-backed head modules
+        run: |
+          python -m py_compile analysis/audit_cirsium_japan38_three_module_exact_memory_v1.py
+          python analysis/audit_cirsium_japan38_three_module_exact_memory_v1.py \
+            --tree work/eazami/japan38_comp1061_primary_tree_v1.nwk \
+            --acceptance work/eazami/japan38_comp1061_primary_tree_acceptance_v1.json \
+            --concept-map work/eazami/japan38_comp1061_concept_map_v1.csv \
+            --nmns-base work/eazami/japan38_nmns_capitulum_trait_seed_v1.csv \
+            --nmns-extension work/eazami/japan38_nmns_capitulum_trait_seed_extension_v2.csv \
+            --out work/cirsium_real_three_module_exact_memory_v1.json
+      - name: Verify full exact combinatorics and prevent phylogenetic/functional overclaims
+        run: |
+          python - <<'PY'
+          import json,math
+          d=json.load(open("work/cirsium_real_three_module_exact_memory_v1.json"))
+          a=d["actual_source_module_results"]
+          o=a["orientation"]
+          s=a["stickiness"]
+          p=a["phyllary_posture_STRICT_single_state_only"]
+          assert d["canonical_phylogram_SHA256"]=="ba592d3a9f52b5481314ab20e3202048505cdf72a3fc15134d5dca261b9d9b7e"
+          assert d["synthetic_test"]["status"]=="PASS_SYNTHETIC_EXACT_PERMUTATION_AND_TREE_DISTANCE_TESTS"
+          assert [o["n_scored_taxa"],s["n_scored_taxa"],p["n_scored_taxa"]]==[19,13,6]
+          assert [o["n_fixed_prevalence_exact_assignments"],
+                  s["n_fixed_prevalence_exact_assignments"],
+                  p["n_fixed_prevalence_exact_assignments"]]==[27132,1716,30]
+          assert math.isfinite(o["patristic_vs_discrete_mismatch_Spearman_rho"])
+          assert abs(o["patristic_vs_discrete_mismatch_Spearman_rho"]-(-.027829091261887595))<1e-9
+          assert p["status"]=="EXPLORATORY_FEWER_THAN_TEN_UNAMBIGUOUS_SOURCE_TAXA"
+          assert "HOLD" in d["external_head_state_memory_portability"]
+          for val in a.values():
+            assert 0<=val["exact_two_sided_tip_label_permutation_p"]<=1
+            assert 0<=val["exact_positive_direction_tip_label_p"]<=1
+            assert len(val["taxa"])==val["n_scored_taxa"]
+          print("PASS: exact source-backed module comparison, no pseudo-replicated pair p-values")
+          PY
+      - name: Retain source-level real ecological results for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-japan38-real-three-module-exact-memory-v1
+          path: work/cirsium_real_three_module_exact_memory_v1.json
+          if-no-files-found: error
+          retention-days: 30
