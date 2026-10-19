@@ -52,6 +52,9 @@ jobs:
           python analysis/test_compare_cirsium_fasttree_v5.py -v
           python analysis/compare_cirsium_fasttree_v5.py --tree-json /tmp/cirsium_gene_families_v5.json --alignment-directory /tmp/cirsium_gene_tree_alignments_v5 --output /tmp/cirsium_nj_vs_fasttree_v5.json
           python -c "import json; r=json.load(open('/tmp/cirsium_nj_vs_fasttree_v5.json')); assert r['n_inference_cases']==3 and r['n_query_case_comparisons']==7 and not r['allele_orthology_certified'] and not r['Ryukyu_white_to_pigmented_regain_demonstrated']"
+          python analysis/test_cirsium_2020_method_concordance_v5.py -v
+          python analysis/validate_cirsium_2020_method_concordance_v5.py --analysis /tmp/cirsium_nj_vs_fasttree_v5.json > /tmp/cirsium_nj_fasttree_frozen_audit_v5.json
+          python -c "import json; d=json.load(open('/tmp/cirsium_nj_fasttree_frozen_audit_v5.json')); assert d['rerun_against_frozen_report'] and d['NJ_and_FastTree_method_concordance_labels']==7 and d['confident_DFR_ANS_family_labels']==0 and not d['Ryukyu_coloured_flower_regain_tested']"
 
       - name: Save only derived alignment and candidate placement evidence
         if: always()
@@ -62,6 +65,7 @@ jobs:
             /tmp/cirsium_gene_families_v5.json
             /tmp/cirsium_nj_vs_fasttree_v5.json
             /tmp/cirsium_tree_evidence_validation_v5.json
+            /tmp/cirsium_nj_fasttree_frozen_audit_v5.json
             /tmp/cirsium_gene_tree_alignments_v5
           retention-days: 14
           if-no-files-found: ignore
