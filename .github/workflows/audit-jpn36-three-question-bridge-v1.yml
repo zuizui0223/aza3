@@ -1,0 +1,79 @@
+name: Audit JPN36 three-question field/genomic bridge v1
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "analysis/audit_jpn36_sieboldii_three_question_bridge_feasibility_v1.py"
+      - "docs/THREE_QUESTIONS_JPN36_MINIMUM_EMPIRICAL_MILESTONE_V1.md"
+      - "data/planning/aza3_nature_genomic_sampling_panel_v1.csv"
+      - "data/contracts/aza3_anto_empirical_lego_bridge_v1.json"
+      - "data/contracts/aza3_capitulum_higher_order_lego_v2.json"
+      - ".github/workflows/audit-jpn36-three-question-bridge-v1.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  pinned-sieboldii-history-permissions-and-measurement:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Retrieve EAzami JPN36 original contract and empty real ledgers
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work
+          for spec in 'contract:data/evidence/jpn36_phyllary_access_pilot_contract_v1.json' 'validation:data/evidence/jpn36_phyllary_access_pilot_validation_v1.json' 'eligible:sampling/jpn36_phyllary_access_eligible_heads_v1.csv' 'assignment:sampling/jpn36_phyllary_access_assignment_v1.csv' 'observations:sampling/jpn36_phyllary_access_observations_v1.csv'; do
+            name=${spec%%:*}
+            path=${spec#*:}
+            gh api "repos/zuizui0223/EAzami/contents/${path}?ref=c9870e91604ed1514344ddc8f765eae5237dbf27" --jq .content | base64 -d > "work/jpn36_${name}"
+            test -s "work/jpn36_${name}"
+          done
+      - name: Run source-verified 24 versus 40 biological cohort feasibility audit
+        run: |
+          python -m py_compile analysis/audit_jpn36_sieboldii_three_question_bridge_feasibility_v1.py
+          python analysis/audit_jpn36_sieboldii_three_question_bridge_feasibility_v1.py \
+            --jpn36-contract work/jpn36_contract \
+            --jpn36-validation work/jpn36_validation \
+            --jpn36-eligible work/jpn36_eligible \
+            --jpn36-assignment work/jpn36_assignment \
+            --jpn36-observations work/jpn36_observations \
+            --out work/three_question_jpn36_source_receipt.json
+      - name: Reject invented source trials or permission claims
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open("work/three_question_jpn36_source_receipt.json"))
+          f=d["real_pinned_source_reconciliation"]
+          p=f["current_EAzami_pilot"]
+          g=f["prospective_aza3_molecular_design"]
+          assert f["status"]=="JPN36_SOURCE_PLAN_CONCORDANT_NO_FIELD_EXECUTION_AUTHORIZED"
+          assert d["source_integrity_tests"]["status"]=="PASS_FROZEN_JPN36_CONSERVATION_AND_GENOMIC_COHORT_SEPARATION"
+          assert d["source_integrity_tests"]["negative_controls"]==3
+          assert f["actual_JPN36_source_rows"]["eligible_heads"]==0
+          assert f["actual_JPN36_source_rows"]["randomized_head_assignments"]==0
+          assert f["actual_JPN36_source_rows"]["observational_bouts"]==0
+          assert p["nonmanipulated_same_population_reference_individuals"]==30
+          assert p["randomized_independent_plants"]==24
+          assert p["randomized_pairs"]==12
+          assert p["aggregate_necessary_counted_flowering_individuals_for_full_24_head_pilot"]==1200
+          assert p["necessary_census_not_sufficient_approval"]
+          assert p["field_execution_authorized"] is False
+          assert g["separate_Phase_A_SIE_target_individuals"]==40
+          assert g["actually_admitted_new_phase_A_genotyped_individuals"]==0
+          assert g["not_proved_24_are_subset_of_40"]
+          assert f["new_field_sampling_authorized"] is False
+          print("PASS: JPN36 shares taxon, NOT known plant identities, permits or measured trait/fitness effects")
+          PY
+      - name: Preserve auditable compact result
+        uses: actions/upload-artifact@v4
+        with:
+          name: aza3-jpn36-three-question-source-feasibility-v1
+          path: work/three_question_jpn36_source_receipt.json
+          if-no-files-found: error
+          retention-days: 30
