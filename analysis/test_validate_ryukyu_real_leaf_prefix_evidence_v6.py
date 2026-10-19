@@ -33,6 +33,15 @@ class RealRyukyuLeafReadEvidenceTests(unittest.TestCase):
         self.assertEqual(r["TR39766_16MiB_fragments"],161)
         self.assertEqual(r["TR41106_16MiB_fragments"],270)
 
+    def test_exact_two_31mers_reconfirm_source_fragments_not_flower_genes(self):
+        report=audit()
+        self.assertEqual(report["third_exact_2x31mer_8MiB_total_reads"],747995)
+        self.assertEqual(report["third_exact_2x31mer_supported_reads"],268)
+        self.assertEqual(report["third_exact_2x31mer_shuffled_dinucleotide_decoys"],0)
+        self.assertTrue(report["TR39766_exact_two31mer_support_in_all_six_libraries"])
+        self.assertTrue(report["TR41106_exact_two31mer_support_in_all_six_libraries"])
+        self.assertFalse(report["functional_orthology_assayed"])
+
     def test_cannot_conclude_flower_colour_reexpression_or_function(self):
         r=audit()
         self.assertFalse(r["functional_orthology_assayed"])
