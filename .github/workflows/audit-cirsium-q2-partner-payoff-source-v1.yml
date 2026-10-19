@@ -1,0 +1,84 @@
+name: Audit Cirsium Q2 partner-dependent head payoff source bridge v1
+
+on:
+  pull_request:
+    paths:
+      - "analysis/audit_cirsium_q2_partner_payoff_real_source_bridge_v1.py"
+      - "docs/CIRSIUM_Q2_REAL_PARTNER_PAYOFF_POSITIVE_NULL_EXPERIMENT_GATE_V1.md"
+      - "data/evidence/cirsium_q2_real_partner_payoff_source_receipt_v1.json"
+      - ".github/workflows/audit-cirsium-q2-partner-payoff-source-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reconcile-real-sticky-control-pollination-and-herbivory-studies:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch original frozen EAzami independent biology evidence
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work/eazami
+          for path in \
+            data/evidence/cirsium_floral_herbivory_lnrr_effects_v2.csv \
+            data/evidence/cirsium_floral_herbivory_lnrr_meta_v2.json \
+            data/evidence/cirsium_pollinator_assurance_meta_v1.csv \
+            data/evidence/cirsium_pollinator_assurance_meta_v1.json \
+            data/evidence/cirsium_interaction_evidence_seed_v1.csv \
+            data/evidence/cirsium_interaction_evidence_seed_extension_v1.csv; do
+            name="${path##*/}"
+            gh api "repos/zuizui0223/EAzami/contents/${path}?ref=c9870e91604ed1514344ddc8f765eae5237dbf27" --jq .content | base64 -d > "work/eazami/${name}"
+            test -s "work/eazami/${name}"
+          done
+      - name: Run actual cross-study source grain and sign-context audit
+        run: |
+          python -m py_compile analysis/audit_cirsium_q2_partner_payoff_real_source_bridge_v1.py
+          python analysis/audit_cirsium_q2_partner_payoff_real_source_bridge_v1.py \
+            --herbivory work/eazami/cirsium_floral_herbivory_lnrr_effects_v2.csv \
+            --herbivory-meta work/eazami/cirsium_floral_herbivory_lnrr_meta_v2.json \
+            --pollination work/eazami/cirsium_pollinator_assurance_meta_v1.csv \
+            --pollination-meta work/eazami/cirsium_pollinator_assurance_meta_v1.json \
+            --interaction-base work/eazami/cirsium_interaction_evidence_seed_v1.csv \
+            --interaction-extension work/eazami/cirsium_interaction_evidence_seed_extension_v1.csv \
+            --out work/cirsium_q2_actual_interaction_evidence_v1.json
+      - name: Strictly separate real results from unobserved same-head conditional payoffs
+        run: |
+          python - <<'PY'
+          import json,math
+          data=json.load(open("work/cirsium_q2_actual_interaction_evidence_v1.json"))
+          x=data["real_source_evidence"]
+          assert x["provenance"]["original_bounded_map_rows"]==15
+          assert x["provenance"]["independently_appended_source_rows"]==3
+          assert x["provenance"]["unique_evidence_ids"]==18
+          assert x["direct_herbivore_experimental_seed_cost"]["actual_published_effect_contrasts"]==9
+          assert x["direct_herbivore_experimental_seed_cost"]["independent_source_studies"]==4
+          assert len(x["direct_herbivore_experimental_seed_cost"]["taxa"])==2
+          assert abs(x["direct_herbivore_experimental_seed_cost"]["experimental_seed_suppression_pooled_RR_existing_meta"]-2.673636515996)<1e-9
+          assert x["pollination_service"]["independent_studies_with_mixed_estimands"]==6
+          assert x["pollination_service"]["recovered_exact_pollen_3arm_experiments"]==1
+          assert x["pollination_service"]["numeric_source_taxon"]=="Cirsium erisithales"
+          assert abs(x["pollination_service"]["open_vs_bagged_seed_ratio"]-47.88/12.2)<1e-12
+          assert abs(x["pollination_service"]["supplement_vs_open_seed_ratio"]-41.75/47.88)<1e-12
+          assert x["key_actual_sticky_head_interventions"]["distinct_experimental_articles"]==2
+          assert x["key_actual_sticky_head_interventions"]["independent_species_test_contexts"]==3
+          assert x["Japanese_same_species_separate_agent_sources"]["taxon"]=="Cirsium purpuratum"
+          assert x["joint_question_identifiability"]["explicit_taxa_with_exact_quantitative_antagonist_RR_and_exact_pollinator_3arm_seed_means"]==0
+          assert x["joint_question_identifiability"]["trait_specific_partner_crossed_fitness_potential_outcomes_identified"] is False
+          assert data["synthetic_source_corruption_tests"]["status"]=="PASS_SOURCE_BASED_Q2_PARTNER_EVIDENCE_AND_NO_FALSE_CROSSED_FITNESS"
+          assert data["synthetic_source_corruption_tests"]["corruption_tests_rejected"]==6
+          print("PASS: real positive/null sticky experiments and guild data remain separate from missing same-head selection contrast")
+          PY
+      - name: Keep checkable source-based Q2 result
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-q2-empirical-partner-payoff-source-audit-v1
+          path: work/cirsium_q2_actual_interaction_evidence_v1.json
+          if-no-files-found: error
+          retention-days: 30
