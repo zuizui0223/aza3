@@ -73,8 +73,18 @@ def load_manifest_parts(folder):
 
 def classify_match(row):
     """An accepted source link is NOT an inferred species tree placement."""
-    conditions=(
-        row["tree_code_vs_sra_name"]=="exact"
+    # Use actual herbarium/voucher country, not just a mutable region
+    # metadata label. The false C. lidjiangense tree code comes from Turkey.
+    voucher=row["voucher_and_herbarium"].lstrip()
+    vcountry=(
+        (row["region_class"]=="China" and voucher.startswith("China"))
+        or (row["region_class"]=="Mongolia" and voucher.startswith("Mongolia"))
+        or (row["region_class"]=="Russian_Far_East" and voucher.startswith("Russia"))
+        or (row["region_class"]=="NE_China_Korea"
+            and voucher.startswith(("China","Korea","South Korea","Russia")))
+    )
+    conditions=(vcountry
+        and row["tree_code_vs_sra_name"]=="exact"
         and row["sra_link_status"]=="linked_runinfo"
         and row["scope_class"] in OK_SCOPES
         and row["region_class"] in OK_REGIONS
@@ -211,6 +221,9 @@ def tamper_checks(heldout,samples):
     row=next(x for x in z if x["tree_code"]=="Cirsium lidjiangense")
     row.update(region_class="China",scope_class="core_east_asia",
                tree_code_vs_sra_name="exact",geographic_location="China")
+    demand(classify_match(row)=="HOLD_NAME_OR_VOUCHER_DISCORDANCE",
+           "FALSE_GEO_EDIT_OVERRIDE_WOULD_HIDE_TURKISH_VOUCHER")
+    row["voucher_and_herbarium"]="China: fabricated source"
     must_fail(heldout,z,"FROZEN_NUCLEAR_TIP_STATE_CROSSWALK_COUNT_CHANGED")
     z=copy.deepcopy(heldout)
     one=next(r for r in z if r["analysis_taxon"]=="Cirsium argyracanthum")
