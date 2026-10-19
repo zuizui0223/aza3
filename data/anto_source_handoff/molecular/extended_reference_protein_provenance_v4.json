@@ -1,0 +1,90 @@
+{
+  "version": "aza3_cirsium_DFR_ANS_related_family_references_v4",
+  "downloaded": "2026-10-19",
+  "source": "NCBI protein EFetch, accession-specific FASTA sequences",
+  "specific_biochemical_justification": [
+    {
+      "group": "ANR_negative_control",
+      "reason": "Arabidopsis BANYULS/ANR is a short-chain reductase homolog of DFR but catalyzes anthocyanidin reduction; see PMID 12532018 and NCBI BAN gene 842469."
+    },
+    {
+      "group": "FLS_negative_control",
+      "reason": "Arabidopsis FLS1 shares the 2-oxoglutarate/Fe(II)-dependent oxygenase enzyme superfamily with ANS/LDOX, but catalyzes flavonol rather than anthocyanidin synthesis."
+    }
+  ],
+  "role": "Sensitivity screen that prevents the original DFR/ANS one-reference nearest-match analysis from being automatically treated as pigment-enzyme orthology",
+  "source_paper_study": "Park et al 2020 Cirsium japonicum source transcriptome (2020), not 2026 Ryukyu source libraries",
+  "critical_limitation": "Sequence nearest reference and local homology cannot alone distinguish enzyme substrate, isoforms, paralogs, cytotype or causal flower re-expression",
+  "references": [
+    {
+      "accession": "ABQ97018.1",
+      "group": "DFR_reference",
+      "taxon": "Saussurea medusa",
+      "gene": "DFR",
+      "source_title": "ABQ97018.1 dihydroflavonol 4-reductase [Saussurea medusa]",
+      "length_aa": 342,
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=protein&id=ABQ97018.1&rettype=fasta&retmode=text",
+      "biology_evidence": "Public annotated protein; family label is a reference, not proven Cirsium enzyme activity"
+    },
+    {
+      "accession": "CAA78930.1",
+      "group": "DFR_reference",
+      "taxon": "Gerbera hybrida",
+      "gene": "DFR",
+      "source_title": "CAA78930.1 dihydroflavonol-4-reductase [Gerbera hybrid cultivar]",
+      "length_aa": 366,
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=protein&id=CAA78930.1&rettype=fasta&retmode=text",
+      "biology_evidence": "Public annotated protein; family label is a reference, not proven Cirsium enzyme activity"
+    },
+    {
+      "accession": "BAD95233.1",
+      "group": "DFR_reference",
+      "taxon": "Arabidopsis thaliana",
+      "gene": "DFR",
+      "source_title": "BAD95233.1 dihydroflavonol 4-reductase [Arabidopsis thaliana]",
+      "length_aa": 382,
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=protein&id=BAD95233.1&rettype=fasta&retmode=text",
+      "biology_evidence": "Public annotated protein; family label is a reference, not proven Cirsium enzyme activity"
+    },
+    {
+      "accession": "AAS48200.1",
+      "group": "ANS_reference",
+      "taxon": "Saussurea medusa",
+      "gene": "ANS",
+      "source_title": "AAS48200.1 anthocyanidin synthase [Saussurea medusa]",
+      "length_aa": 356,
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=protein&id=AAS48200.1&rettype=fasta&retmode=text",
+      "biology_evidence": "Public annotated protein; family label is a reference, not proven Cirsium enzyme activity"
+    },
+    {
+      "accession": "NP_194019.1",
+      "group": "ANS_reference",
+      "taxon": "Arabidopsis thaliana",
+      "gene": "ANS/LDOX",
+      "source_title": "NP_194019.1 leucoanthocyanidin dioxygenase [Arabidopsis thaliana]",
+      "length_aa": 356,
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=protein&id=NP_194019.1&rettype=fasta&retmode=text",
+      "biology_evidence": "Public annotated protein; family label is a reference, not proven Cirsium enzyme activity"
+    },
+    {
+      "accession": "NP_176365.1",
+      "group": "ANR_negative_control",
+      "taxon": "Arabidopsis thaliana",
+      "gene": "BAN/ANR",
+      "source_title": "NP_176365.1 NAD(P)-binding Rossmann-fold superfamily protein [Arabidopsis thaliana]",
+      "length_aa": 340,
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=protein&id=NP_176365.1&rettype=fasta&retmode=text",
+      "biology_evidence": "Public annotated protein; family label is a reference, not proven Cirsium enzyme activity"
+    },
+    {
+      "accession": "NP_196481.1",
+      "group": "FLS_negative_control",
+      "taxon": "Arabidopsis thaliana",
+      "gene": "FLS1",
+      "source_title": "NP_196481.1 flavonol synthase 1 [Arabidopsis thaliana]",
+      "length_aa": 336,
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=protein&id=NP_196481.1&rettype=fasta&retmode=text",
+      "biology_evidence": "Public annotated protein; family label is a reference, not proven Cirsium enzyme activity"
+    }
+  ]
+}
