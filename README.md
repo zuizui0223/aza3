@@ -23,6 +23,10 @@
 
 
 
+## Three linked Cirsium evolutionary questions (19 October 2026)
+
+The new [three-question empirical integration](docs/THREE_QUESTIONS_CIRSIUM_MEMORY_PAYOFF_REACHABILITY_MASTER_20261019.md) connects `turnover + chun + EAzami` (lineage portability of trait memory), `bita + sch + balance + slk` (partner-dependent functional payoff and conflict), and `anto + egwe + izu-core + aza3` (re-expression accessibility after visible phenotype loss). It shares real Cirsium capitulum measurements across three separately falsifiable endpoints. **This is a prospective programme, not proof of historical colour regain, partner-dependent adaptation or generality across angiosperm families.** All actual Cirsium empirical execution remains owned by aza3; frozen external repository results are not changed.
+
 ## Nature-scale programme
 
 aza3 now preserves two nested roles:
