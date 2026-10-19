@@ -37,11 +37,38 @@ This is the first **direct 2026 white-taxon C. brevicaule young-leaf read-to-sou
 
 Frozen, sourced experimental report: [AMM-4163 8 MiB positive mapping record](../data/anto_source_handoff/public_sra/ryukyu_AMM4163_first_R1_8MiB_fragment_screen_v6.json). No raw read IDs, DNA strings or sensitive collection localities were committed.
 
-### Input-quality fault found when scaling to all six specimens
+### Completed six-library public source result — 16 MiB first-R1 prefixes
 
-An early six-sample expansion **failed in the FASTQ record parser**, not because any gene was absent: real *C. irumtiense* ISG-4111 SRR35152731 contains reads of **54–73 nucleotides** whose quality strings have the correct same lengths. Initial strict parser improperly considered any record shorter than the analytic 75-nt alignment threshold to be structurally malformed. The corrected method counts these as **valid-but-filtered-short**, while retaining hard failure for invalid headers, absent  markers and mismatched sequence/quality lengths. A synthetic regression reproduces short 54–74nt reads. No claim about RNA library structural corruption is supported by the observed source.
+The **corrected six-sample run succeeded** in [GitHub Actions run 39228212947](https://github.com/zuizui0223/aza3/actions/runs/39228212947). Each library contributed only the first **16 MiB of compressed R1**; no R2 or full source file was retrieved. Among **1,499,192 complete R1 reads**, **636 primary read fragments** satisfied the stated source-transcript mapping filters (MAPQ >=20, >=90 nt aligned, edit rate <=20%) against 26 *C. japonicum* 2020 author-annotated flavonoid-related transcript references. **0** strict matches were assigned to the shuffled reference controls.
 
-Six-source quantitative source mapping is **PENDING SUCCESSFUL REPLAY** until an independent CI run completes under the revised parser. Even after successful replay, prefix-only read counts are not expression estimates and **no non-detection can be interpreted as absence or loss**.
+| Published source taxon | Original specimen code | Complete R1 prefix reads | Strict 2020 source-transcript fragment matches |
+|---|---|---:|---:|
+| C. brevicaule | OKN-4295 | 261,137 | 85 |
+| C. brevicaule | YRN-4166 | 235,060 | 92 |
+| C. brevicaule | AMM-4163 | 234,011 | 103 |
+| C. irumtiense | YGN-4296 | 262,388 | 119 |
+| C. irumtiense | ISG-4111 | 260,579 | 149 |
+| C. irumtiense | MMY-4078 | 246,017 | 88 |
+| **Total** | **Six source libraries** | **1,499,192** | **636** |
+
+**18 different 2020 source transcript IDs** attracted one or more strict matches across the six original young-leaf libraries. Two are notable because they had matching fragments in **all six**:
+
+- TR39766|c0_g1_i2: **161** matched read fragments total. Its 2020 published protein resembles DFR, but DFR vs ANR catalytic family assignment remains unresolved under NJ/FastTree and the associated site-bootstrap CI.
+- TR41106|c0_g1_i5: **270** matched fragments total. The 2020 author BLAST annotation matches *Saussurea medusa* ANS, but catalytic ANS specificity is **not** established by a BLAST label or these short read mappings.
+
+**Secondary bounded method:** [GitHub Actions run 39228426774](https://github.com/zuizui0223/aza3/actions/runs/39228426774) ran the first **8 MiB** of R1 per identical source library with a separately implemented (MAPQ >=20, >=85 aligned read bases, identity >=85%) mapping filter. It recovered **747,995 complete reads, 378 strict source-transcript fragments and zero strict shuffled decoy fragments**. TR39766 and TR41106 also had strict matches in all six libraries. This is a nested read-prefix / methodological sensitivity analysis, **not another six independent biological replicate experiment**; the different counts and thresholds must not be pooled.
+
+**Scientifically permitted positive result:** in two lineages with contrasting *published taxon-level floral colour*, real 2026 young-leaf RNA contains sequences similar to a shared set of source-annotated flavonoid-related transcripts. This offers an empirical starting point for anto's possibility that molecular resources persist outside the visibly pigmented floral state. However **even a white-flowered taxon with shared leaf transcripts has not been shown to retain a catalytically functional flower-pigment pathway, express one in its florets, or re-evolve colour**. At the level of the six source individuals, floral colour was not individually measured. The full original transcriptome was NOT used as competing alignment reference: MAPQ uniqueness within the selected 26 source sequences and 26 shuffled nulls does not resolve all paralogy or contamination.
+
+Two immutable, source-audited result records are now stored in aza3:
+- [Six R1 libraries, 16 MiB primary source run](../data/anto_source_handoff/public_sra/ryukyu_six_source_leaf_R1_mapping_16MiB_v6.json)
+- [The same six libraries, 8 MiB alternative mapping sensitivity](../data/anto_source_handoff/public_sra/ryukyu_six_source_leaf_R1_mapping_8MiB_alternate_v6.json)
+
+The [cross-run biological-evidence validator](../analysis/validate_ryukyu_real_leaf_prefix_evidence_v6.py) requires exact sample-to-BioSample mapping, original read totals and read-to-transcript count conservation, disallows any reinterpreted floral pigment event, and refuses to count the nested prefix samples as independent lineages.
+
+### Source parser issue found and resolved
+
+An earlier six-sample execution failed **in the original FASTQ parsing rule**, not because any gene was absent: real *C. irumtiense* ISG-4111 SRR35152731 contains valid short read/quality records of **54–73 nt**. The earlier parser incorrectly treated read lengths below the analytic 75-nt mapping threshold as invalid FASTQ. The corrected method retains short valid FASTQ records for QC and excludes them from the predeclared alignment filter. The fix was followed by the **successful six-sample run above**, independently checked by CI.
 
 ## Pilot source and quality safeguards
 
@@ -66,9 +93,9 @@ If ENA does not support correctly bounded HTTP 206 retrieval, the pilot stops be
 
 ## Criteria for next research step
 
-1. Confirm source retrieval of actual R1 prefix for at least one sample; preserve read count/verified R1 source and negative-decoy background.
-2. Assess whether any *source-frozen* 2020 Cirsium homologous transcript reference has ≥2 uniquely mapping R1 fragments; require full case-by-case reference-traceability before calling a candidate.
-3. Only then, potentially run all six at equal bounded prefix sizes and compare **detection**, with no inference of differential expression, gene absence or any fixed loss/regain route.
+1. **Completed:** source retrieval of bounded R1 prefixes for all six original libraries, with complete read counts and zero strict shuffled-decoy matches. No full-library read coverage established.
+2. **Completed as a selected-reference screen only:** TR39766 and TR41106 had candidate read fragment matches in all six libraries; do not label an enzyme orthologue or functional pathway from selected-reference mapping.
+3. **Next discriminator:** compare the same bounded public R1 reads against the larger, independently curated Cirsium transcriptome and/or closely related ANR/FLS gene family references; selected-panel MAPQ does not establish unique gene identity. A broader reference analysis may change the current per-source allocations.
 4. For a biological pathway conclusion, independently recover taxon/population-specific genomic loci, functional family identity and matched flower-stage RNA/chemistry; this is the downstream experimental aza3 plan.
 5. Keep anto's general dispersal/retained-capacity theory separate and no Cirsium sample data in anto.
 
