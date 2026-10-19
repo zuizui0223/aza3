@@ -88,10 +88,10 @@ def validate_source(j, external, ncbi):
         and positive["ncbi_taxid"]==2721731
     )
     require(demand,"PUBLIC_NCBI_POSITIVE_CONTROL_WRONG_TAXON_OR_COMPARTMENT")
-    require(ncbi["no_fasta_downloaded"]
+    require(ncbi["no_fasta_downloaded"] is True
             and ncbi["unverified_target"]["author_2015_accession_verified"] is False
-            and ncbi["unverified_target"]["no_patristic_memory_estimate"]
-            and ncbi["unverified_target"]["not_proof_no_GenBank_record_under_other_names"] if "not_proof_no_GenBank_record_under_other_names" in ncbi["unverified_target"] else ncbi["no_fasta_downloaded"],
+            and ncbi["unverified_target"]["no_patristic_memory_estimate"] is True
+            and ncbi["unverified_target"]["not_proof_no_GenBank_record_under_other_names"] is True,
             "GENBANK_SEARCH_RECEIPT_FALSELY_CLAIMS_BAE_SEQUENCING")
     require(ncbi["negative_result_scope"].startswith(
             "Five specific term-based searches returned no indexed nucleotide records"),
