@@ -247,7 +247,7 @@ def run(runs=None,cap_bytes=MAX_PER_RUN):
     selected=EXPECTED_RUNS if runs is None else set(runs)
     if not selected or not selected<=EXPECTED_RUNS:
         raise ValueError("Select only source-audited Ryukyu run identifiers")
-    registry=validate_manifest()
+    registry,_,_=validate_manifest()
     registry={x["run_accession"]:x for x in registry}
     source=DATA/"molecular/cirsium_japonicum_2020_26_source_sequences_v6.fasta"
     result={
