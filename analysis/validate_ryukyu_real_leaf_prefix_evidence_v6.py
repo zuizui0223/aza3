@@ -114,13 +114,15 @@ def audit(primary=PRIMARY,secondary=SECONDARY,manifest=MANIFEST,
         raise ValueError("Alternative method compressed budget or read count changed")
     if any(q8[k]!=6 for k in REQUIRED_IDS):
         raise ValueError("All-six target recurrence not stable under technical prefix/mapping sensitivity")
-    for field in ("functional_orthology_assayed","floral_stage_phenotype_or_RNA_assayed",
-                  "flower_colour_reexpression_demonstrated",
-                  "any_species_differential_expression_test_valid",
-                  "genotype_phenotype_ancestral_polarity_test_completed",
-                  "genome_wide_reference_competition_completed"):
-        if a["biological_claim_ceiling"][field] is not False:
-            raise ValueError("Biological inference exceeds original read-level evidence: "+field)
+    if a["taxon_colour_assigned_from_individual_assay"] is not False:
+        raise ValueError("Source species descriptions do not supply individual flower observations")
+    if a["actual_public_R1_prefix_data"] is not True:
+        raise ValueError("This is an actual bounded public read dataset, not a simulated outcome")
+    if len(a["interpretation_beyond_data_forbidden"])<5:
+        raise ValueError("Loss-of-function, orthology, expression, source sampling and trait-history limitations must remain visible")
+    for key,val in b["claims"].items():
+        if val is not False:
+            raise ValueError("Alternative biased leaf read prefix was promoted into biological confirmation: "+key)
     return {
         "analysis_version":"aza3_ryukyu_real_R1_prefix_evidence_audit_v6",
         "n_independent_source_libraries":6,
