@@ -1,0 +1,84 @@
+{
+  "version": "cirsium_schantarense_vs_shansiense_accession_provenance_v1",
+  "as_of": "2026-10-19",
+  "target": {
+    "accepted_species": "Cirsium schantarense",
+    "observed_spelling_in_Bae_2015": "Cirsium shantarense",
+    "target_orientation": "downward_or_nodding",
+    "Bae_original_publication": {
+      "doi": "10.5352/JLS.2015.25.2.243",
+      "author": "Bae Young-Min",
+      "year": 2015,
+      "title": "Genetic Relationship of Some Cirsium Plants of Korea",
+      "nuclear_marker": "18S-ITS1-5.8S-ITS2-partial28S rDNA",
+      "sample_n_of_target": 1,
+      "collection_site": "Dooryoon Mountain, Korea",
+      "accession_status": "NOT_INDEPENDENTLY_VERIFIED",
+      "accession": null,
+      "phylogenetic_report": "Schantarense/shantarense near Korean C. japonicum in ITS neighbor-joining",
+      "inference_boundary": "one linked nuclear locus, not a nuclear phylogenomic species tree",
+      "source_url": "https://www.kci.go.kr/kciportal/landing/article.kci?arti_id=ART001965843"
+    }
+  },
+  "accession": {
+    "accession": "MN871982",
+    "original_species": "Cirsium shansiense",
+    "original_genome_compartment": "plastid",
+    "reported_length_bp": 152396,
+    "voucher": "WNU52012",
+    "collecting_region": "Qingyang, Gansu, China",
+    "primary_source_doi": "10.1080/23802359.2020.1721032",
+    "primary_source_title": "The complete chloroplast genome of Cirsium shansiense and its phylogenetic analysis",
+    "primary_source_url": "https://www.tandfonline.com/doi/full/10.1080/23802359.2020.1721032",
+    "genbank_sequence_bytes_downloaded_in_this_turn": false,
+    "cannot_use_as": "Cirsium schantarense nuclear ITS",
+    "secondary_source_discordance": {
+      "source_url": "https://html.rhhz.net/YXXB/html/20220735.htm",
+      "printed_label": "Cirsium schantarense",
+      "printed_accession": "MN871982",
+      "assessment": "CONFLICTS_WITH_2020_PRIMARY_VOUCHER_SPECIES_DO_NOT_REASSIGN",
+      "independent_voucher_confirmation": false
+    }
+  },
+  "taxonomy": {
+    "distinct_current_accepted_species": [
+      {
+        "name": "Cirsium schantarense",
+        "powo_url": "https://powo.science.kew.org/taxon/urn%3Alsid%3Aipni.org%3Anames%3A195961-1"
+      },
+      {
+        "name": "Cirsium shansiense",
+        "powo_url": "https://powo.science.kew.org/taxon/urn%3Alsid%3Aipni.org%3Anames%3A195998-1"
+      }
+    ],
+    "white_form": {
+      "name": "Cirsium schantarense f. albiflorum",
+      "powo_url": "https://powo.science.kew.org/taxon/994340-1",
+      "accepted_taxon": "Cirsium schantarense",
+      "status": "SYNONYM_NO_INDEPENDENT_COLOUR_REGAIN_EVENT_VERIFIED",
+      "genetic_cause_known": false,
+      "pigment_reinduction_assayed": false,
+      "heritable_reappearance_demonstrated": false
+    }
+  },
+  "evidence_gates": {
+    "Bae_ITS_sequence_accession_recovered": false,
+    "MN871982_nuclear_marker": false,
+    "MN871982_target_species_schantarense": false,
+    "ITS_plus_phylogenomic_gene_tree_ensemble_joined": false,
+    "Q1_memory_slope_estimated": false,
+    "Q3_floral_reexpression_tested": false
+  },
+  "next_real_sources": [
+    "Obtain publisher full Bae 2015 Methods and GenBank accession table if available; verify accession against NCBI record including material/voucher.",
+    "Do not treat 2020 MN871982 chloroplast as 2015 schantarense ITS.",
+    "Recover nuclear phylogenomic tip or sample for down-facing C. schantarense in a locus-compatible dataset before patristic trait-memory calculations."
+  ],
+  "reference_notices": [
+    "Original Bae 2015 abstract confirms Korean rDNA experiment but does NOT provide an independently checked GenBank record identifier.",
+    "Primary Xu et al 2020 article gives species C. shansiense, accession MN871982 and voucher WNU52012.",
+    "A secondary 2022 Chinese article prints C. schantarense next to MN871982; species identity in that secondary citation is inconsistent with original.",
+    "POWO accepts shansiense and schantarense separately; a white forma synonym is not a distinct sampled genome or re-evolution event."
+  ],
+  "source_type": "PUBLIC_PRIMARY_LITERATURE_TAXONOMY_ONLY_NOT_NEW_SEQUENCE_READS"
+}
