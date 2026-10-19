@@ -23,6 +23,27 @@ The canonical processing modules are under [analysis/anto_empirical](../analysis
 
 New **single entrypoint:** [analysis/run_anto_cirsium_empirical_sources_v3.py](../analysis/run_anto_cirsium_empirical_sources_v3.py). It executes full public metadata intake and 26-source transcript similarity triage, with explicit role separation and biological claim ceilings. Unit tests and CI reject source mixing or upgrade to an unsupported Ryukyu anthocyanin re-expression conclusion.
 
+## Initial actual source-sequence outcome (screening only)
+
+The re-run on aza3's canonical copy of **26 genuine Park 2020 Cirsium japonicum** transcript sequences, against *Saussurea medusa* DFR and ANS annotated coding proteins, produced:
+
+- **23 source assembly groups** across the 26 transcript records, not 26 independent genes.
+- **5 transcripts in 4 assembly groups** passed the exploratory protein-similarity gate (at least 100 aligned amino acids, >=30% exact alignment identity and >=50% reference coverage).
+- **4 DFR-like and 1 ANS/LDOX-like** among the five passing transcripts.
+- Five records' publisher family label and best of the two reference classes differed, but all five had **weak/partial** similarities by the stricter cutoff. Treat them as unresolved, not proven incorrect annotations.
+
+| Cirsium 2020 transcript | Best Asteraceae family reference | Amino acids aligned | Identity among aligned positions | Reference covered |
+|---|---|---:|---:|---:|
+| TR39766\|c0_g1_i2 | DFR | 321 | 42.06% | 93.86% |
+| TR58302\|c0_g1_i1 | ANS | 324 | 39.20% | 91.01% |
+| TR38875\|c0_g4_i5 | DFR | 220 | 40.45% | 64.33% |
+| TR38875\|c0_g4_i7 | DFR | 178 | 41.01% | 52.05% |
+| TR35526\|c0_g1_i1 | DFR | 206 | 30.58% | 60.23% |
+
+These are genuine comparisons of independent **2020 source transcript sequences**, not Ryukyu 2026 genotypes. Two shortlisted transcripts share one TR38875 assembly group and may not represent independent loci. A local protein alignment cannot discriminate paralogy, functional enzyme activity, pleiotropic maintenance or heritable flower-pigment reactivation. No threshold was empirically calibrated to enzyme function.
+
+The [machine-audited shortlist and annotation conflicts](../data/anto_source_handoff/molecular/cirsium_japonicum_2020_source_similarity_shortlist_v3.json) are now part of the canonical aza3 empirical source. The full analyzer reproduces its five sequence IDs and score features against independently stored FASTA and author annotation evidence. Gene-tree/orthology resolution, cytotype-aware genotype and same-individual flower expression must follow before making any biological reacquisition claim.
+
 ## Reproducibility
 
     python -m pip install "biopython>=1.80,<2"
