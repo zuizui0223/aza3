@@ -30,7 +30,7 @@ import urllib.error
 import urllib.request
 import zlib
 
-ROOT=Path(__file__).resolve().parents[1]
+ROOT=Path(__file__).resolve().parents[2]
 MANIFEST=ROOT/"data/anto_source_handoff/public_sra/ryukyu_six_R1_prefix_source_v6.json"
 REF=ROOT/"data/anto_source_handoff/molecular/cirsium_japonicum_2020_26_source_sequences_v6.fasta"
 REF_META=ROOT/"data/anto_source_handoff/molecular/cirsium_japonicum_2020_26_sequence_provenance_v6.json"
