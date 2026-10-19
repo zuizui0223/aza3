@@ -1,0 +1,59 @@
+name: Challenge Ryukyu leaf matches against full Cirsium unigene background
+on:
+  pull_request:
+    paths:
+      - 'analysis/anto_empirical/ryukyu_full_unigene_competition_v7.py'
+      - 'analysis/test_ryukyu_full_unigene_competition_v7.py'
+      - 'docs/RYUKYU_FULL_2020_UNIGENE_COMPETITIVE_MAPPING_V7.md'
+      - '.github/workflows/ryukyu-whole-unigene-competition-v7.yml'
+  push:
+    paths:
+      - 'analysis/anto_empirical/ryukyu_full_unigene_competition_v7.py'
+      - 'analysis/test_ryukyu_full_unigene_competition_v7.py'
+      - 'docs/RYUKYU_FULL_2020_UNIGENE_COMPETITIVE_MAPPING_V7.md'
+      - '.github/workflows/ryukyu-whole-unigene-competition-v7.yml'
+permissions:
+  contents: read
+jobs:
+  source-and-null-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install source FASTA dependency
+        run: python -m pip install "biopython>=1.80,<2"
+      - name: Test exact source fastas, competitive SAM calls and safe accession budget
+        run: |
+          python -m py_compile analysis/anto_empirical/ryukyu_full_unigene_competition_v7.py
+          python analysis/test_ryukyu_full_unigene_competition_v7.py -v
+  live-six-run-whole-source-competition:
+    needs: source-and-null-tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install minimap2 and samtools for bounded full-reference competition
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq minimap2 samtools
+          python -m pip install "biopython>=1.80,<2"
+      - name: Independently verify 104890-source fasta hash and map only six first-8MiB-R1 reads
+        run: |
+          python analysis/anto_empirical/ryukyu_full_unigene_competition_v7.py --limit-bytes 8388608 --output /tmp/aza3_six_ryukyu_all_2020_unigenes_v7.json
+      - name: Enforce narrow biological interpretation and exact provider-source counts
+        run: |
+          python -c "import json; d=json.load(open('/tmp/aza3_six_ryukyu_all_2020_unigenes_v7.json')); assert d['n_successful_bounded_specimens']==6 and d['source_validation']['full_publisher_unigene_count']==104890 and d['source_validation']['candidate_sequence_ids_verified_in_full_reference']==26; assert d['R1_prefix_per_sample_requested_bytes']==8388608; assert not d['complete_run_or_R2_downloaded'] and not d['any_complete_DFR_ANS_orthology_established'] and not d['any_ancestral_white_to_colour_reexpression_established']; assert all(r['no_full_file_MD5_verified'] for r in d['specimens'])"
+      - name: Upload only the source provenance and anonymous per-run summary JSON
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aza3-ryukyu-six-R1-whole-unigene-competition-v7
+          path: /tmp/aza3_six_ryukyu_all_2020_unigenes_v7.json
+          retention-days: 7
+          if-no-files-found: ignore
