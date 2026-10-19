@@ -71,6 +71,29 @@ Frozen **EAzami** commit `c9870e91604ed1514344ddc8f765eae5237dbf27` にある4�
 - CI：`.github/workflows/audit-cirsium-q1-nuclear-heldout-sample-v1.yml` が同じソース版を取得して、`C. lidjiangense` のトルコ/名称矛盾の見落としを拒否する。
 - **次の実行優先順位**：11候補を新たに配列取得する前に、他の公刊核データに保存された標本コード、tree tip、voucher、SRA提出名を検索し、**下向き候補の実際に比較可能な枝長付きの系統標本**を探す。上向き候補の数を増やすだけでは外部記憶勾配の識別性は上がらない。
 
+## 2026-10-19 分布点品質 × 核標本 × 向きの三重交差
+
+本研究で必要なDNAデータの欠損位置は、元の `EAzami` [strict occurrence QC](https://github.com/zuizui0223/EAzami/blob/c9870e91604ed1514344ddc8f765eae5237dbf27/docs/chapter2/HELDOUT_EAST_ASIA_OCCURRENCE_SUPPORT_RESULT_V1.md) と照合すると、さらに明確になる。
+
+| 独立候補種 | 公刊頭花向き | 条件を通ったGBIF分布点 | 同じMoreyra核研究の安全なBioSample |
+|---|---|---:|---|
+| *C. schantarense* | 下向き・垂下 | **8** | **なし** |
+| *C. vlassovianum* | 上向き・直立 | **8** | **あり：SAMN34240350** |
+| *C. argyracanthum* | 上向き・直立 | **0**（厳格な座標精度条件） | あり：SAMN44017818 |
+| その他8候補 | 上・下が混在 | 主データとしての条件に不足 | 安全な完全一致なし |
+
+GBIF監査は「正確な分類名・座標誤差10 km以下・0.1度間引き・少なくとも3点」を対象とした、**先に固定された出現データの品質試験**である。環境ラスタのBIO値は開かれていない。分布点8件は、独立な系統変化8回ではない。
+
+よって外部11種中、
+- 明瞭な向き + 安全な核サンプル：**2種**（ともに上向き）。
+- 明瞭な向き + 質の高い分布点：**2種**（上1・下1）。
+- 三者が揃う：**1種、上向きの *C. vlassovianum* のみ**。
+- 三者が揃う下向き種：**0種**。
+
+**次の具体的な遺伝学上のボトルネックは、下向きで分布点が8件ある *C. schantarense* の、既存の公刊核標本の正確な同物異名／voucher照合、あるいは同一遺伝子座群に接続できる核配列を確認すること**。ただし1種を追加しても進化的記憶の `rho` を推定する独立な系統反復にはまだ不足するので、そこで統計量や自然選択を先取りしない。
+
+原本は `EAzami@c9870e...` の `heldout_east_asia_occurrence_support_v1.csv`（12分類群のスクリーン）であり、新設 `analysis/audit_cirsium_q1_heldout_nuclear_sample_crosswalk_v1.py` にGBIF品質との交差監査を追加した。小さい[機械可読の確定レシート](../data/evidence/cirsium_q1_nuclear_occurrence_source_overlap_v1.json)に、2/11、2/11、1/11と不採用になった危険なトルコ名一致を別々に保存した。
+
 ## 進化的記憶を検証する追加条件
 
 元の `turnover` の量は、系統のpatristic距離と同一形質の非類似度の関係（S3 rhoなど）。**今回の `p_J`, Brierにはpatristic距離が1つもない。** 正確なQ1は次を満たす場合に限る。
