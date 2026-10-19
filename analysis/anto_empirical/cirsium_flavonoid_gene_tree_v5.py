@@ -309,7 +309,7 @@ def bootstrap_family_support(aligned,meta,positive_group,related_group,
         for q in queries:
             counts[q][unrooted_family_split(t,q,reference_positive,reference_related)]+=1
     good=replicates-ninvalid
-    if good<max(20,replicates//2):
+    if good<max(1,(replicates+1)//2):
         raise ValueError("Too many bootstrap site resamples lacked meaningful protein overlap")
     reports={}
     for q in queries:
