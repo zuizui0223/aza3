@@ -1,0 +1,40 @@
+name: Validate canonical aza3 Cirsium empirical analysis
+on:
+  push:
+    paths:
+      - 'analysis/anto_empirical/**'
+      - 'analysis/run_anto_cirsium_empirical_sources_v3.py'
+      - 'analysis/test_anto_cirsium_empirical_sources_v3.py'
+      - 'data/anto_source_handoff/**'
+      - '.github/workflows/validate-anto-cirsium-empirical-v3.yml'
+  pull_request:
+    paths:
+      - 'analysis/anto_empirical/**'
+      - 'analysis/run_anto_cirsium_empirical_sources_v3.py'
+      - 'analysis/test_anto_cirsium_empirical_sources_v3.py'
+      - 'data/anto_source_handoff/**'
+      - '.github/workflows/validate-anto-cirsium-empirical-v3.yml'
+permissions:
+  contents: read
+jobs:
+  verify-source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install sequence-homology dependency only
+        run: python -m pip install "biopython>=1.80,<2"
+      - name: Reproduce public Cirsium reference and 26-source-transcript protein triage
+        run: |
+          python analysis/run_anto_cirsium_empirical_sources_v3.py --out /tmp/aza3_cirsium_empirical_sources_v3.json
+          python -c "import json; x=json.load(open('/tmp/aza3_cirsium_empirical_sources_v3.json')); assert x['source_owner']=='zuizui0223/aza3'; assert x['cirsium_public_2020_protein_homology_triage']['n_transcripts']==26; assert x['cirsium_public_2026_sra']['ryukyu_n_runs']==6; assert not any(x['interpretation_gates'].values())"
+      - name: Run eight independent molecular/source claim-ceiling tests
+        run: python analysis/test_anto_cirsium_empirical_sources_v3.py -v
+      - name: Print empirical candidate triage summary with clear limits
+        run: |
+          python -c "import json; x=json.load(open('/tmp/aza3_cirsium_empirical_sources_v3.json')); d=x['cirsium_public_2020_protein_homology_triage']; print('2020 Cirsium transcripts:',d['n_transcripts']); print('2020 assembly groups:',d['n_distinct_assembly_groups']); print('Strong Saussurea reference similarity:',d['n_reference_screen_positive']); print('Publisher family concordant:',d['n_publisher_and_reference_family_concordant']); print('Publisher family discordant:',d['n_publisher_and_reference_family_discordant']); print('Ryukyu functional regain tested:',d['floral_reexpression_proven'])"
+
+          python -c "import json; d=json.load(open('/tmp/aza3_cirsium_empirical_sources_v3.json'))['cirsium_public_2020_protein_homology_triage']; print('Strong reference-similarity shortlisted genes:',json.dumps([{'id':r['source_transcript_id'],'annotated_family':r['publisher_annotated_family'],'best_family':r['best_reference_family'],'aa_aligned':r['highest_score_features']['aligned_aa'],'identity':r['highest_score_features']['aligned_identity'],'reference_coverage':r['highest_score_features']['reference_coverage']} for r in d['records'] if r['family_screen']=='STRONG_REFERENCE_SIMILARITY_CANDIDATE']))"
+          python -c "import json; d=json.load(open('/tmp/aza3_cirsium_empirical_sources_v3.json'))['cirsium_public_2020_protein_homology_triage']; print('Publisher-vs-reference family disagreements:',json.dumps([{'id':r['source_transcript_id'],'annotated':r['publisher_annotated_family'],'best':r.get('best_reference_family'),'screen':r['family_screen']} for r in d['records'] if r['blast_annotation_and_reference_similarity_concordant'] is False]))"

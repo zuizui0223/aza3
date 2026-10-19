@@ -1,0 +1,123 @@
+{
+  "version": "aza3_cirsium_japonicum_source_similarity_shortlist_v3",
+  "verified_on": "2026-10-19",
+  "source_study": "Park et al 2020 doi:10.1021/acsomega.0c04001",
+  "source_2020_sequences": "data/anto_source_handoff/molecular/cirsium_japonicum_2020_26_source_sequences_v6.fasta",
+  "source_2020_sequence_provenance": "data/anto_source_handoff/molecular/cirsium_japonicum_2020_26_sequence_provenance_v6.json",
+  "references": "data/anto_source_handoff/molecular/asteraceae_reference_cds_v5.fasta",
+  "method": "six-frame stop-delimited protein fragments, local BLOSUM62 alignment to Saussurea medusa DFR EF600682.1 and ANS AY547342.1; candidate thresholds not a biological orthology test",
+  "filters": {
+    "minimum_aligned_reference_coverage": 0.5,
+    "minimum_aligned_identity": 0.3,
+    "minimum_aligned_amino_acids": 100
+  },
+  "total_source_transcripts_reviewed": 26,
+  "source_assembly_groups_in_26": 23,
+  "strong_reference_similarity_transcripts": 5,
+  "distinct_assembly_groups_in_shortlist": 4,
+  "family_counts": {
+    "DFR": 4,
+    "ANS": 1
+  },
+  "annotation_reference_disagreements": 5,
+  "careful_interpretation": [
+    "The five candidate transcript records are not necessarily five independent loci; two share TR38875|c0_g4.",
+    "Reference similarity is not orthology, phenotype association, coding intactness in the six Ryukyu focal individuals, or biological DFR/ANS enzyme function.",
+    "The five discordant records are weak/partial similarity matches. Their apparent disagreement is not verified misannotation until proper alignment and paralog control.",
+    "No direct floral pigment or regulatory re-expression was measured; no white-to-colour ancestral state is established.",
+    "All genuine Cirsium empirical follow-up and head LEGO tests belong in aza3, not anto."
+  ],
+  "confidence_tier": "PUBLIC_TRANSCRIPT_SEQUENCE_AND_REFERENCE_SIMILARITY_ONLY",
+  "molecular_reexpression_demonstrated": false,
+  "ryukyu_cirsium_brevicaule_irumtiense_genotypes_assayed": false,
+  "functional_orthology_verified": false,
+  "records": [
+    {
+      "id": "TR35526|c0_g1_i1",
+      "annotated_family": "DFR_DRL_ANNOTATED_FAMILY",
+      "best_family": "DFR",
+      "aa_aligned": 206,
+      "identity": 0.305825,
+      "reference_coverage": 0.602339,
+      "assembly_group": "TR35526|c0_g1",
+      "orthology_verified": false,
+      "functional_pigmentation_role_demonstrated": false
+    },
+    {
+      "id": "TR38875|c0_g4_i5",
+      "annotated_family": "DFR_DRL_ANNOTATED_FAMILY",
+      "best_family": "DFR",
+      "aa_aligned": 220,
+      "identity": 0.404545,
+      "reference_coverage": 0.643275,
+      "assembly_group": "TR38875|c0_g4",
+      "orthology_verified": false,
+      "functional_pigmentation_role_demonstrated": false
+    },
+    {
+      "id": "TR38875|c0_g4_i7",
+      "annotated_family": "DFR_DRL_ANNOTATED_FAMILY",
+      "best_family": "DFR",
+      "aa_aligned": 178,
+      "identity": 0.410112,
+      "reference_coverage": 0.520468,
+      "assembly_group": "TR38875|c0_g4",
+      "orthology_verified": false,
+      "functional_pigmentation_role_demonstrated": false
+    },
+    {
+      "id": "TR39766|c0_g1_i2",
+      "annotated_family": "DFR_DRL_ANNOTATED_FAMILY",
+      "best_family": "DFR",
+      "aa_aligned": 321,
+      "identity": 0.420561,
+      "reference_coverage": 0.938596,
+      "assembly_group": "TR39766|c0_g1",
+      "orthology_verified": false,
+      "functional_pigmentation_role_demonstrated": false
+    },
+    {
+      "id": "TR58302|c0_g1_i1",
+      "annotated_family": "ANS_LDOX_ANNOTATED_FAMILY",
+      "best_family": "ANS",
+      "aa_aligned": 324,
+      "identity": 0.391975,
+      "reference_coverage": 0.910112,
+      "assembly_group": "TR58302|c0_g1",
+      "orthology_verified": false,
+      "functional_pigmentation_role_demonstrated": false
+    }
+  ],
+  "weak_or_partial_annotation_disagreements": [
+    {
+      "id": "TR1144|c0_g2_i1",
+      "annotated": "DFR_DRL_ANNOTATED_FAMILY",
+      "best": "ANS",
+      "screen": "WEAK_OR_PARTIAL_REFERENCE_SIMILARITY"
+    },
+    {
+      "id": "TR2471|c0_g2_i1",
+      "annotated": "ANS_LDOX_ANNOTATED_FAMILY",
+      "best": "DFR",
+      "screen": "WEAK_OR_PARTIAL_REFERENCE_SIMILARITY"
+    },
+    {
+      "id": "TR38874|c0_g3_i8",
+      "annotated": "DFR_DRL_ANNOTATED_FAMILY",
+      "best": "ANS",
+      "screen": "WEAK_OR_PARTIAL_REFERENCE_SIMILARITY"
+    },
+    {
+      "id": "TR41106|c0_g1_i5",
+      "annotated": "ANS_LDOX_ANNOTATED_FAMILY",
+      "best": "DFR",
+      "screen": "WEAK_OR_PARTIAL_REFERENCE_SIMILARITY"
+    },
+    {
+      "id": "TR582|c0_g2_i1",
+      "annotated": "ANS_LDOX_ANNOTATED_FAMILY",
+      "best": "DFR",
+      "screen": "WEAK_OR_PARTIAL_REFERENCE_SIMILARITY"
+    }
+  ]
+}
