@@ -1,0 +1,57 @@
+name: Probe source-backed Cirsium arvense cross-guild field experiment v1
+
+on:
+  pull_request:
+    paths:
+      - "analysis/probe_cirsium_arvense_2025_zenodo_v1.py"
+      - "docs/CIRSIUM_ARVENSE_2025_POLLINATOR_EXCLUSION_ENEMY_SURVIVAL_Q2_V1.md"
+      - ".github/workflows/probe-cirsium-arvense-zenodo-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  real-preprint-archive-readiness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check source identity and fail-closed synthetic metadata guards
+        run: |
+          python -m py_compile analysis/probe_cirsium_arvense_2025_zenodo_v1.py
+          python analysis/probe_cirsium_arvense_2025_zenodo_v1.py --out work/zenodo_offline_probe.json
+      - name: Ask public Zenodo for original experiment data and code manifest
+        run: |
+          python analysis/probe_cirsium_arvense_2025_zenodo_v1.py --live \
+            --out work/cirsium_arvense_2025_zenodo_source_receipt.json
+      - name: Never convert archive denial or missing files into biological zeros
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open("work/cirsium_arvense_2025_zenodo_source_receipt.json"))
+          assert r["synthetic_checks"]["status"]=="PASS_SYNTHETIC_ZENODO_METADATA_SOURCE_CHECKS"
+          assert r["synthetic_checks"]["invalid_source_records_rejected"]==3
+          assert r["source_access_status"] in {
+              "ORIGINAL_ARCHIVE_METADATA_VERIFIED_NO_RAW_HEAD_REANALYSIS",
+              "METADATA_UNAVAILABLE_NOT_ZERO_EXPERIMENT",
+              "PUBLIC_METADATA_SOURCE_MISMATCH",
+          }
+          if r["verified_source_metadata"] is not None:
+              assert r["verified_source_metadata"]["doi"]=="10.5281/zenodo.15364152"
+              assert r["verified_source_metadata"]["record_id"]==15364152
+              assert r["verified_source_metadata"]["real_analyzed_Cirsium_head_rows"]==0
+          assert r["no_data_downloaded_or_plant_reanalysis_claimed"]
+          assert r["biological_preprint_reports"]["no_direct_head_armature_orientation_treatment"]
+          print("PASS: source status accurately bounded, no fabricated fitness contrast")
+          PY
+      - name: Retain actual public repository response for source reconstruction
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-arvense-2025-Zenodo-access-source-receipt
+          path: work/cirsium_arvense_2025_zenodo_source_receipt.json
+          if-no-files-found: error
+          retention-days: 30
