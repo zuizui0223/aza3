@@ -32,6 +32,13 @@ jobs:
         run: |
           python analysis/run_anto_cirsium_paralog_panel_v4.py --out /tmp/cirsium_family_controls_v4.json
           python -c "import json; x=json.load(open('/tmp/cirsium_family_controls_v4.json')); assert x['n_reference_proteins']==7; assert x['n_publisher_cirsium_transcripts']==26; assert not x['functional_orthology_demonstrated'] and not x['flower_colour_regain_demonstrated']"
+      - name: Test leave-reference-taxon-out robustness of the five original candidates
+        run: |
+          python analysis/test_anto_cirsium_reference_jackknife_v4.py -v
+          python analysis/run_anto_cirsium_reference_jackknife_v4.py --out /tmp/cirsium_jackknife_v4.json
+          python -c "import json; d=json.load(open('/tmp/cirsium_jackknife_v4.json')); assert d['number_of_screened_public_transcripts']==5; assert not d['claim_limits']['enzyme_function_demonstrated']; assert not d['claim_limits']['orthology_certified']"
+          python -c "import json; d=json.load(open('/tmp/cirsium_jackknife_v4.json')); print('JACKKNIFE_SUMMARY_JSON:'+json.dumps({'stable_family_and_strong_in_all_scenarios':d['stable_family_and_strong_in_all_scenarios'],'strong_when_Saussurea_removed':d['strong_when_Saussurea_removed']},separators=(',',':'))); [print('JACKKNIFE_CANDIDATE_JSON:'+json.dumps(r,separators=(',',':'))) for r in d['records']]"
+
       - name: Print auditable Cirsium strong candidates and nearest family controls
         run: |
           python -c "import json; d=json.load(open('/tmp/cirsium_family_controls_v4.json')); print('FAMILY_PANEL_SUMMARY_JSON:'+json.dumps({k:d[k] for k in ('n_publisher_cirsium_transcripts','family_top_hit_counts','positive_family_supported_by_extended_panel','negative_related_family_strong_matches','strong_positive_candidate_ids','negative_related_family_candidate_ids')},separators=(',',':'))); [print('FAMILY_PANEL_CANDIDATE_JSON:'+json.dumps({k:r.get(k) for k in ('source_transcript_id','publisher_family_annotation','best_family','screen','strong_reference_similarity','best_positive_vs_related_negative_normalized_gap','best_hit')},separators=(',',':'))) for r in d['records']]"
