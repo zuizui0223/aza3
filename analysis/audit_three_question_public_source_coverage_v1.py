@@ -223,7 +223,11 @@ def audit(runs,morphs,genes,panel,bridge,lego,original_heads=None,
             "Q1_lineage_trait_memory":{
                 "source_history":"EAzami repeated phenotypes and turnover/chun original results belong to their independent repositories",
                 "predictive_Cirsium_lineage_holdout_completed":False,
-                "reason":"RNA metadata and six Phase-A targets are not homologous trait-state matrices scored across independent Cirsium radiations",
+                "published_2026_Arenicola_taxon_tips":2,
+                "published_2026_Arenicola_unordered_species_pairs":1,
+                "two_tip_clade_has_estimable_distance_dissimilarity_correlation":False,
+                "published_2026_major_subsections_source":"Chang et al. 2026 DOI 10.1186/s12870-026-08097-6; two Arenicola species C. brevicaule and C. irumtiense",
+                "reason":"An Arenicola two-species clade has ONE between-species pair; rho is undefined, and the available RNA metadata/Phase-A targets are not independently replicated homologous trait-state matrices across held-out Cirsium radiations",
                 "maximum_claim":"EXTERNAL_EVOLUTIONARY_HISTORY_STARTING_POINT_ONLY",
             },
             "Q2_partner_conditional_payoff":{
@@ -267,6 +271,9 @@ def adversarial_tests(runs,morphs,genes,panel,bridge,lego):
     base=audit(runs,morphs,genes,panel,bridge,lego,[],[])
     require(base["field_source"]["status"]=="PINNED_EAZAMI_ORIGINAL_FIELD_INTAKE_EMPTY",
             "SYNTHETIC_EMPTY_FIELD_NOT_EXPLICIT")
+    require(base["claim_gates"]["Q1_lineage_trait_memory"]["published_2026_Arenicola_unordered_species_pairs"]==1
+            and base["claim_gates"]["Q1_lineage_trait_memory"]["two_tip_clade_has_estimable_distance_dissimilarity_correlation"] is False,
+            "TWO_SPECIES_CANNOT_DEFINE_A_CORRELATION")
     x=copy.deepcopy(runs);x.append(copy.deepcopy(runs[0]))
     will_fail(x,morphs,genes,panel,"ENA_RUN_DUPLICATE_KEY")
     x=copy.deepcopy(runs);x[0]["tissue_from_project_description"]="corolla"
