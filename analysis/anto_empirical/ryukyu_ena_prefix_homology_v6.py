@@ -178,6 +178,8 @@ def partial_gzip_to_fastq(gzip_path,fastq_path,
     queue=[]
     valid=0
     invalid=0
+    filtered_short_records=0
+    filtered_noncanonical_sequence_records=0
     malformed_reasons=Counter()
     malformed_examples=[]
     bases=0
@@ -186,7 +188,7 @@ def partial_gzip_to_fastq(gzip_path,fastq_path,
     finished_prefix=False
     with Path(gzip_path).open("rb") as source,Path(fastq_path).open("wb") as dest:
         def digest_bytes(data):
-            nonlocal pending,valid,invalid,bases
+            nonlocal pending,valid,invalid,bases,filtered_short_records,filtered_noncanonical_sequence_records
             # Avoid repeatedly copying the remaining megabyte buffer for
             # each FASTQ line. Split once per bounded compressed chunk.
             lines=(pending+data).split(b"\n")
@@ -197,12 +199,13 @@ def partial_gzip_to_fastq(gzip_path,fastq_path,
                     continue
                 name,seq,plus,quality=queue
                 queue.clear()
+                # FASTQ syntax validity and analytic read-length threshold
+                # are different questions. Real SRR35152731 contains valid
+                # 54--73nt records whose Phred line lengths match.
                 checks={
                     "not_fastq_header":not name.startswith(b"@"),
                     "not_fastq_plus":not plus.startswith(b"+"),
                     "quality_length_mismatch":len(seq)!=len(quality),
-                    "short_sequence":len(seq)<MIN_READ_LEN,
-                    "unsupported_sequence_character":re.fullmatch(rb"[ACGTNacgtn]+",seq) is None,
                 }
                 if any(checks.values()):
                     invalid+=1
@@ -214,11 +217,11 @@ def partial_gzip_to_fastq(gzip_path,fastq_path,
                             "sequence_length":len(seq),
                             "quality_length":len(quality),
                             "header_length":len(name),
-                            "reason_codes":[k for k,v in checks.items() if v]
+                            "reason_codes":[k for k,v in checks.items() if v],
                         })
                     if invalid>4:
                         raise ValueError(
-                            "Too many malformed complete reads in ENA prefix: "
+                            "Too many STRUCTURALLY malformed reads in ENA prefix: "
                             +json.dumps({
                                 "counts":dict(malformed_reasons),
                                 "first_five":malformed_examples,
@@ -226,6 +229,12 @@ def partial_gzip_to_fastq(gzip_path,fastq_path,
                                 "inflated_bytes_seen":inflated,
                                 "completed_gzip_members":members,
                             },sort_keys=True))
+                    continue
+                if len(seq)<MIN_READ_LEN:
+                    filtered_short_records+=1
+                    continue
+                if re.fullmatch(rb"[ACGTNacgtn]+",seq) is None:
+                    filtered_noncanonical_sequence_records+=1
                     continue
                 if valid>=max_reads:
                     return True
@@ -256,6 +265,8 @@ def partial_gzip_to_fastq(gzip_path,fastq_path,
         "complete_valid_reads":valid,
         "total_nucleotide_bases":bases,
         "invalid_complete_record_count":invalid,
+        "valid_but_too_short_for_alignment":filtered_short_records,
+        "valid_but_noncanonical_sequence_for_alignment":filtered_noncanonical_sequence_records,
         "invalid_record_reason_counts":dict(malformed_reasons),
         "trailing_incomplete_lines_dropped":len(queue),
         "trailing_incomplete_line_bytes_dropped":len(pending),
