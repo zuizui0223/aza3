@@ -19,6 +19,21 @@ class ReferenceJackknifeTests(unittest.TestCase):
         self.assertTrue(all(row["comparisons"]["all_seven"]["strong_and_same_family"]
                             for row in self.r["records"]))
 
+    def test_only_two_of_five_stay_stable_under_all_reference_omissions(self):
+        self.assertTrue(self.r["frozen_published_source_reproducibility_verified"])
+        self.assertEqual(self.r["stable_family_and_strong_in_all_scenarios"],2)
+        self.assertEqual(self.r["strong_when_Saussurea_removed"],3)
+        ids={r["transcript_id"] for r in self.r["records"]
+             if r["stable_across_all_reference_omissions"]}
+        self.assertEqual(ids,{
+            "TR35526|c0_g1_i1","TR39766|c0_g1_i2"})
+        byid={r["transcript_id"]:r for r in self.r["records"]}
+        for id in ("TR38875|c0_g4_i5","TR38875|c0_g4_i7"):
+            self.assertEqual(byid[id]["comparisons"]["leave_out_Saussurea_medusa"]["best_group"],
+                             "ANR_negative_control")
+        self.assertEqual(byid["TR58302|c0_g1_i1"]["comparisons"]["leave_out_Arabidopsis_positive_only"]["best_group"],
+                         "FLS_negative_control")
+
     def test_no_reference_scenario_removes_all_same_family_proteins(self):
         for item in self.r["records"]:
             self.assertEqual(set(item["comparisons"]),{
