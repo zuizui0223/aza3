@@ -26,7 +26,10 @@ NCBI="https://eutils.ncbi.nlm.nih.gov/entrez/eutils/"
 QUERIES={
     "schantarense_exact_text":"\"Cirsium schantarense\"[All Fields]",
     "shantarense_paper_spelling":"\"Cirsium shantarense\"[All Fields]",
+    "schantarense_unquoted_token":"schantarense[All Fields]",
+    "shantarense_unquoted_token":"shantarense[All Fields]",
     "schantarense_and_ITS":"\"Cirsium schantarense\"[All Fields] AND (\"ITS\"[All Fields] OR \"internal transcribed spacer\"[All Fields])",
+    "positive_control_original_shansiense_plastome":"MN871982[Accession]",
 }
 MAX_PER_QUERY=30
 TIMEOUT=18
@@ -44,7 +47,7 @@ def fetch_json(path,params):
 def live_query():
     result={
       "status":"NCBI_PUBLIC_EUTILS_READ_ONLY_SOURCE_DISCOVERY",
-      "query_scope":"Public NCBI Nucleotide E-utilities (NOT raw Bae lab files)",
+      "query_scope":"Public NCBI Nucleotide E-utilities (NOT raw Bae lab files); MN871982 is an explicit server positive control",
       "query_results":{},
       "discovery_not_a_verified_Bae_2015_accession":True,
       "known_wrong_candidate_excluded":"MN871982 is original Cirsium shansiense chloroplast genome",
