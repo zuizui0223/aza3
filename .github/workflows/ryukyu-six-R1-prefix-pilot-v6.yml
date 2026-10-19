@@ -1,52 +1,47 @@
-name: Verify capped six-run Ryukyu public RNA pilot
+name: Audit completed Ryukyu six-run public RNA source evidence
 on:
   pull_request:
     paths:
       - 'analysis/anto_empirical/ryukyu_bounded_read_prefix_v6.py'
       - 'analysis/test_ryukyu_bounded_read_prefix_v6.py'
+      - 'analysis/validate_ryukyu_real_leaf_prefix_evidence_v6.py'
+      - 'analysis/test_validate_ryukyu_real_leaf_prefix_evidence_v6.py'
       - 'data/anto_source_handoff/public_sra/ryukyu_six_R1_prefix_source_v6.json'
-      - 'docs/RYUKYU_PUBLIC_LEAF_READ_PREFIX_PILOT_V6.md'
+      - 'data/anto_source_handoff/public_sra/ryukyu_six_source_leaf_R1_mapping_*_v6.json'
+      - 'docs/RYUKYU_REAL_LEAF_RNA_PREFIX_PILOT_V6.md'
       - '.github/workflows/ryukyu-six-R1-prefix-pilot-v6.yml'
   push:
     paths:
       - 'analysis/anto_empirical/ryukyu_bounded_read_prefix_v6.py'
       - 'analysis/test_ryukyu_bounded_read_prefix_v6.py'
+      - 'analysis/validate_ryukyu_real_leaf_prefix_evidence_v6.py'
+      - 'analysis/test_validate_ryukyu_real_leaf_prefix_evidence_v6.py'
       - 'data/anto_source_handoff/public_sra/ryukyu_six_R1_prefix_source_v6.json'
-      - 'docs/RYUKYU_PUBLIC_LEAF_READ_PREFIX_PILOT_V6.md'
+      - 'data/anto_source_handoff/public_sra/ryukyu_six_source_leaf_R1_mapping_*_v6.json'
+      - 'docs/RYUKYU_REAL_LEAF_RNA_PREFIX_PILOT_V6.md'
       - '.github/workflows/ryukyu-six-R1-prefix-pilot-v6.yml'
 permissions:
   contents: read
 jobs:
-  public-ryukyu-prefix:
+  source-audit:
     runs-on: ubuntu-latest
-    timeout-minutes: 18
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install only short-read mapper
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq minimap2
-          minimap2 --version
-      - name: Syntax-check and execute offline safeguards
+      - name: Validate gzip and FASTQ truncation handling without network
         run: |
           python -m py_compile analysis/anto_empirical/ryukyu_bounded_read_prefix_v6.py
           python analysis/test_ryukyu_bounded_read_prefix_v6.py -v
-          python analysis/anto_empirical/ryukyu_bounded_read_prefix_v6.py --cap-mib 8 --output /tmp/ryukyu_prefix_no_download_v6.json
-          python -c "import json; d=json.load(open('/tmp/ryukyu_prefix_no_download_v6.json')); assert d['retrieval_status']=='NOT_REQUESTED' and d['n_focal_source_runs']==6 and d['n_2020_reference_transcripts']==26"
-      - name: Retrieve only 8MiB R1 gzip prefix from each of six public runs
+          python analysis/anto_empirical/ryukyu_bounded_read_prefix_v6.py --cap-mib 8 --output /tmp/ryukyu_prefix_no_transfer_v6.json
+          python -c "import json; x=json.load(open('/tmp/ryukyu_prefix_no_transfer_v6.json')); assert x['retrieval_status']=='NOT_REQUESTED' and x['n_focal_source_runs']==6 and x['n_2020_reference_transcripts']==26"
+      - name: Reconcile both completed actual six-run capped public RNA analyses
         run: |
-          python analysis/anto_empirical/ryukyu_bounded_read_prefix_v6.py --fetch-public --cap-mib 8 --output /tmp/ryukyu_R1_public_prefix_evidence_v6.json
-      - name: Verify capped source usage, six accessions and biological claim ceilings
+          python analysis/test_validate_ryukyu_real_leaf_prefix_evidence_v6.py -v
+          python analysis/validate_ryukyu_real_leaf_prefix_evidence_v6.py > /tmp/ryukyu_source_evidence_audit_v6.json
+          python -c "import json; x=json.load(open('/tmp/ryukyu_source_evidence_audit_v6.json')); assert x['n_independent_source_libraries']==6 and x['primary_16MiB_total_R1_reads']==1499192 and x['primary_16MiB_stringent_2020_source_like_fragments']==636; assert x['supporting_8MiB_stringent_source_fragments']==378; assert not x['floral_expression_assayed'] and not x['genetic_evolutionary_reacquisition_demonstrated']"
+      - name: Explain no repeated costly RNA data transfer
         run: |
-          python -c "import json; p=json.load(open('/tmp/ryukyu_R1_public_prefix_evidence_v6.json')); assert p['n_runs_attempted']==6 and p['per_run_compressed_cap_bytes']==8388608 and p['total_compressed_bytes_transferred']<=6*8388608; assert len(p['samples'])==6 and all(x['R2_mate_not_retrieved'] and x['full_run_not_analysed'] for x in p['samples']); assert not p['floral_reexpression_demonstrated'] and not p['phenotype_or_orthology_estimated']; print('PUBLIC_PREFIX_STATUS:'+str(p['n_successfully_analyzed'])+'/6 completed; '+str(p['total_compressed_bytes_transferred'])+' compressed bytes total')"
-      - name: Save only the source-limited numeric report (no FASTQ/SAM files)
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: aza3-ryukyu-v6-capped-read1-public-prefix-report
-          path: /tmp/ryukyu_R1_public_prefix_evidence_v6.json
-          retention-days: 14
-          if-no-files-found: ignore
+          echo 'Read-level evidence already obtained in two completed public GitHub Actions runs.'
+          echo 'This CI only audits frozen source records; it never re-downloads large public RNA files.'
