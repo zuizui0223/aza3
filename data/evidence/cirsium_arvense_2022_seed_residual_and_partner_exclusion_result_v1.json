@@ -243,5 +243,44 @@
     "Site-stratified paired block resampling percentile intervals are descriptive; this is not a randomized mediation model.",
     "Rows of Herbivore.csv cannot all be unambiguously matched to individual heads by vial code."
   ],
-  "result_scope": "Genuine descriptive Q2 process-denominator contrast and source-limited sensitivity; NOT causal partner-specific head module fitness or Q3 genetic re-expression."
+  "result_scope": "Genuine descriptive Q2 process-denominator contrast and source-limited sensitivity; NOT causal partner-specific head module fitness or Q3 genetic re-expression.",
+  "site_stratified_matched_block_effect_directions": {
+    "campus": {
+      "n_paired_blocks": 12,
+      "viable": -0.52483824952638,
+      "direct_damaged": -0.038150302255084145,
+      "author_eaten_signed": 0.09354351478252253,
+      "nonviable": 0.43129473474385743,
+      "reverse_damage_vs_eaten_sign": true
+    },
+    "construction": {
+      "n_paired_blocks": 10,
+      "viable": -0.44959561847515206,
+      "direct_damaged": -0.02496913438832108,
+      "author_eaten_signed": 0.22203370662524663,
+      "nonviable": 0.22756191184990535,
+      "reverse_damage_vs_eaten_sign": true
+    },
+    "ditch": {
+      "n_paired_blocks": 9,
+      "viable": -0.6064363211886745,
+      "direct_damaged": -0.10329131837513512,
+      "author_eaten_signed": 0.12776101044068777,
+      "nonviable": 0.4786753107479867,
+      "reverse_damage_vs_eaten_sign": true
+    },
+    "rapseed": {
+      "n_paired_blocks": 8,
+      "viable": -0.4503167457768826,
+      "direct_damaged": -0.009462717326048071,
+      "author_eaten_signed": 0.09763074767032495,
+      "nonviable": 0.3526859981065576,
+      "reverse_damage_vs_eaten_sign": true
+    }
+  },
+  "site_invariant_direction_check": {
+    "n_sites": 4,
+    "n_sites_with_negative_visible_damaged_but_positive_signed_author_inferred_eaten": 4,
+    "correct_interpretation": "Descriptive site patterns of different response categories; neither accounting residual nor bagging isolates actual seed consumption mediation."
+  }
 }
