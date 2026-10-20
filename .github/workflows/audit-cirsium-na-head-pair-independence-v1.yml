@@ -1,0 +1,125 @@
+name: Cirsium NA head pair correlated versus independent evolution
+on:
+  pull_request:
+    paths:
+      - 'analysis/audit_cirsium_na_head_pair_independence_v1.py'
+      - 'tests/test_cirsium_na_head_pair_independence_v1.py'
+      - 'docs/CIRSIUM_NA_HEAD_PAIR_PHYLOGENETIC_DEPENDENCE_V1.md'
+      - 'data/evidence/cirsium_na_head_pair_phylogenetic_fit_v1.json'
+      - '.github/workflows/audit-cirsium-na-head-pair-independence-v1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-nested-CTMC:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install same scientific engine as the verified NA 63-tip pilot
+        run: python -m pip install numpy==2.3.5 scipy==1.17.0 biopython==1.86
+      - name: Test generator nesting, source categorical fail-closed, fixed-node CTMC
+        run: |
+          python -m py_compile analysis/audit_cirsium_na_head_pair_independence_v1.py tests/test_cirsium_na_head_pair_independence_v1.py
+          python -m unittest discover -s tests -p 'test_cirsium_na_head_pair_independence_v1.py' -v
+      - name: Fetch exact morphology and ultrametric nuclear tree from source
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work/cirsium_na_pair
+          for file in traits.csv cirsium.phyluce95p.ultrametric.tre; do
+            gh api "repos/carol-siniscalchi/cirsium/contents/traits/$file?ref=c925d4af86160064448f794a9715f70b917a2786" --jq .content | base64 -d > "work/cirsium_na_pair/$file"
+            test -s "work/cirsium_na_pair/$file"
+          done
+      - name: Fit original 63-tip independent versus dependent models with two CTMC root-state sensitivities
+        run: |
+          python analysis/audit_cirsium_na_head_pair_independence_v1.py \
+            --traits work/cirsium_na_pair/traits.csv \
+            --tree work/cirsium_na_pair/cirsium.phyluce95p.ultrametric.tre \
+            --simulations 200000 \
+            --subspecies-simulations 120000 \
+            --out work/cirsium_na_pair/result.json
+      - name: Verify actual biological source counts and safe joint-evolution ceiling
+        run: |
+          python - <<'PY'
+          import json,math
+          a=json.load(open('work/cirsium_na_pair/result.json'))
+          assert a['source']['git_source_blobs']['traits.csv']=='fa127f0587b676e6e004ea121424d26069586bcb'
+          assert a['source']['git_source_blobs']['cirsium.phyluce95p.ultrametric.tre']=='6417a38793427bc7c8562dc0e2cab59b74d8c316'
+          x=a['source_checks']
+          assert x['tip_counts']=={'erect_not_outward':45,'erect_outward':13,'pending_not_outward':2,'pending_outward':3}
+          assert [x['n_pending'],x['n_outer_outward'],x['observed_pending_and_outward']]==[5,16,3]
+          r=a['real_analysis']
+          for state in ('0','1'):
+              z=r['independence_reference'][state]
+              for name in ('head_evolved_outer_fixed','outer_evolved_head_fixed'):
+                  k=z[name]
+                  assert k['observed_overlap']==3
+                  assert k['accepted_exact_marginal']>=300
+                  assert sum(k['overlap_histogram'])==k['accepted_exact_marginal']
+                  assert 0<k['p_greater_equal']<=1
+                  assert 0<k['p_less_equal']<=1
+                  assert 0<k['two_inclusive_tails_doubled_min']<=1
+                  assert k['not_a_test_of_causal_head_function_or_genetic_independence'] is True
+          m=r['four_state_joint_model_comparison']
+          assert m['dependent']['n_rates']==8 and m['independent']['n_rates']==4
+          assert m['dependent']['loglik']>=m['independent']['loglik']-1e-8
+          assert math.isclose(m['delta_AIC_dependent_minus_independent'],
+                              8-m['lrt_descriptive'],abs_tol=1e-6)
+          assert m['chi_square_lrt_reference_p_omitted_due_to_sparse_cells_and_boundary']
+          assert m['parametric_bootstrap_lrt_not_performed']
+          assert r['interpretation']['no_independent_genetic_module_mapping']
+          assert r['interpretation']['no_pollinator_or_seed_predator_benefits_measured']
+          assert r['interpretation']['evolutionary_ancestral_reexpression_unidentifiable']
+          sub=a['subspecies_62_tip_sensitivity']
+          assert sub['remaining_taxa']==62 and sub['removed_taxon']=='Cirsium_arizonicum_rothrockii'
+          assert sub['analysis']['observed']=={'n_tips':62,'n_head_pending':5,
+                                               'n_outer_outward':15,'n_joint_positive':3}
+          assert sub['analysis']['four_state_joint_model_comparison']['dependent']['loglik']>=sub['analysis']['four_state_joint_model_comparison']['independent']['loglik']-1e-8
+          for root in ('0','1'):
+              for direction in ('head_evolved_outer_fixed','outer_evolved_head_fixed'):
+                  d=sub['analysis']['independence_reference'][root][direction]
+                  assert d['observed_overlap']==3 and d['accepted_exact_marginal']>=300
+                  assert sum(d['overlap_histogram'])==d['accepted_exact_marginal']
+          print('PASS original 63+collapsed-62 Cirsium head trait phylogenies, independent/dependent nested CTMC and eight conditional count-matched overlap nulls')
+          PY
+      - name: Replay and compare the entire source-backed 63+62 phylogenetic result
+        run: |
+          python - <<'PY'
+          import json,math
+          a=json.load(open('work/cirsium_na_pair/result.json'))
+          b=json.load(open('data/evidence/cirsium_na_head_pair_phylogenetic_fit_v1.json'))
+          def match(x,y,p='result'):
+              if isinstance(y,dict):
+                  assert isinstance(x,dict) and set(x)==set(y),(p,'object_keys_differ')
+                  for k in y:match(x[k],y[k],p+'.'+k)
+              elif isinstance(y,list):
+                  assert isinstance(x,list) and len(x)==len(y),(p,'array_size_differ')
+                  for i,(v,w) in enumerate(zip(x,y)):match(v,w,p+f'[{i}]')
+              elif isinstance(y,float):
+                  assert isinstance(x,(int,float)) and math.isfinite(x) and math.isfinite(y)
+                  assert math.isclose(x,y,rel_tol=2e-5,abs_tol=5e-7),(p,x,y)
+              else:
+                  assert type(x) is type(y) and x==y,(p,x,y)
+          match(a,b)
+          for key,sub in (('NA63',a['real_analysis']),('NA62',a['subspecies_62_tip_sensitivity']['analysis'])):
+              mm=sub['four_state_joint_model_comparison']
+              assert mm['delta_AIC_dependent_minus_independent']>4.5
+              assert mm['dependent']['some_rates_at_search_bound'] is True
+              for root in ('0','1'):
+                  for contrast in ('head_evolved_outer_fixed','outer_evolved_head_fixed'):
+                      x=sub['independence_reference'][root][contrast]
+                      assert x['two_inclusive_tails_doubled_min']>0.15
+                      assert x['two_inclusive_tails_doubled_min']<0.22
+              print(key,'PASS same actual source data, binary-marginal CTMC rates, 8-rate alt, four null tails')
+          PY
+      - name: Preserve derived real-data fit and conditional-null metrics
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-na-pair-evolution-original-63-ctmc-v1
+          path: work/cirsium_na_pair/result.json
+          if-no-files-found: error
+          retention-days: 30

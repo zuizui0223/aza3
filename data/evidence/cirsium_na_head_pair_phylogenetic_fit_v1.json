@@ -1,0 +1,480 @@
+{
+  "version": "cirsium_na_capitulum_orientation_outer_mk_independence_v1",
+  "as_of": "2026-10-21",
+  "source": {
+    "repo": "carol-siniscalchi/cirsium",
+    "commit": "c925d4af86160064448f794a9715f70b917a2786",
+    "paper_doi": "10.1086/724310",
+    "git_source_blobs": {
+      "traits.csv": "fa127f0587b676e6e004ea121424d26069586bcb",
+      "cirsium.phyluce95p.ultrametric.tre": "6417a38793427bc7c8562dc0e2cab59b74d8c316"
+    },
+    "branch_length_units": "source_ultrametric_units_not_independently_dated"
+  },
+  "source_checks": {
+    "tip_counts": {
+      "erect_not_outward": 45,
+      "erect_outward": 13,
+      "pending_not_outward": 2,
+      "pending_outward": 3
+    },
+    "n_pending": 5,
+    "n_outer_outward": 16,
+    "observed_pending_and_outward": 3,
+    "tree_depth_range": [
+      5.469379,
+      5.469381
+    ]
+  },
+  "real_analysis": {
+    "observed": {
+      "n_tips": 63,
+      "n_head_pending": 5,
+      "n_outer_outward": 16,
+      "n_joint_positive": 3
+    },
+    "independence_reference": {
+      "0": {
+        "head_orientation_Mk": {
+          "root_state": 0,
+          "gain": 0.2344359973391961,
+          "loss": 2.718890244216651,
+          "loglik": -17.464401909868123,
+          "converged": true,
+          "rates_on_bounds_possible": false
+        },
+        "outer_phyllary_Mk": {
+          "root_state": 0,
+          "gain": 0.18082088822285583,
+          "loss": 0.09988753735824266,
+          "loglik": -35.65126810191191,
+          "converged": true,
+          "rates_on_bounds_possible": false
+        },
+        "head_evolved_outer_fixed": {
+          "observed_overlap": 3,
+          "observed_var_positives": 5,
+          "observed_fixed_positives": 16,
+          "draws": 200000,
+          "accepted_exact_marginal": 36575,
+          "root_state": 0,
+          "seed": 20261031,
+          "null_overlap_mean": 1.2720984278879015,
+          "null_overlap_sd": 0.9431129856901731,
+          "null_overlap_quantile_025": 0.0,
+          "null_overlap_quantile_975": 3.0,
+          "overlap_histogram": [
+            7966,
+            14825,
+            10162,
+            3142,
+            448,
+            32
+          ],
+          "p_greater_equal": 0.09905402449693788,
+          "p_less_equal": 0.9868766404199475,
+          "two_inclusive_tails_doubled_min": 0.19810804899387577,
+          "Monte_Carlo_SE_for_greater_equal": 0.0015620226718665226,
+          "condition": "PRESERVE_TREE_AND_OTHER_TRAIT_TIP_PATTERN_AND_SIMULATED_TRAIT_POSITIVE_COUNT",
+          "not_a_test_of_causal_head_function_or_genetic_independence": true
+        },
+        "outer_evolved_head_fixed": {
+          "observed_overlap": 3,
+          "observed_var_positives": 16,
+          "observed_fixed_positives": 5,
+          "draws": 200000,
+          "accepted_exact_marginal": 10667,
+          "root_state": 0,
+          "seed": 20261041,
+          "null_overlap_mean": 1.2737414455798257,
+          "null_overlap_sd": 0.9520556464626746,
+          "null_overlap_quantile_025": 0.0,
+          "null_overlap_quantile_975": 3.0,
+          "overlap_histogram": [
+            2398,
+            4183,
+            2989,
+            971,
+            117,
+            9
+          ],
+          "p_greater_equal": 0.10292463442069741,
+          "p_less_equal": 0.9881889763779528,
+          "two_inclusive_tails_doubled_min": 0.20584926884139482,
+          "Monte_Carlo_SE_for_greater_equal": 0.002941931987948687,
+          "condition": "PRESERVE_TREE_AND_OTHER_TRAIT_TIP_PATTERN_AND_SIMULATED_TRAIT_POSITIVE_COUNT",
+          "not_a_test_of_causal_head_function_or_genetic_independence": true
+        }
+      },
+      "1": {
+        "head_orientation_Mk": {
+          "root_state": 1,
+          "gain": 0.23445974362169617,
+          "loss": 2.7191639153207197,
+          "loglik": -17.46440200261966,
+          "converged": true,
+          "rates_on_bounds_possible": false
+        },
+        "outer_phyllary_Mk": {
+          "root_state": 1,
+          "gain": 0.4041467297119694,
+          "loss": 1.1692518891164163,
+          "loglik": -35.66726050417343,
+          "converged": true,
+          "rates_on_bounds_possible": false
+        },
+        "head_evolved_outer_fixed": {
+          "observed_overlap": 3,
+          "observed_var_positives": 5,
+          "observed_fixed_positives": 16,
+          "draws": 200000,
+          "accepted_exact_marginal": 36562,
+          "root_state": 1,
+          "seed": 20261032,
+          "null_overlap_mean": 1.2744926426344292,
+          "null_overlap_sd": 0.9439634553555523,
+          "null_overlap_quantile_025": 0.0,
+          "null_overlap_quantile_975": 3.0,
+          "overlap_histogram": [
+            7974,
+            14753,
+            10137,
+            3244,
+            431,
+            23
+          ],
+          "p_greater_equal": 0.10116784727730219,
+          "p_less_equal": 0.9875830757869978,
+          "two_inclusive_tails_doubled_min": 0.20233569455460437,
+          "Monte_Carlo_SE_for_greater_equal": 0.0015770288666815252,
+          "condition": "PRESERVE_TREE_AND_OTHER_TRAIT_TIP_PATTERN_AND_SIMULATED_TRAIT_POSITIVE_COUNT",
+          "not_a_test_of_causal_head_function_or_genetic_independence": true
+        },
+        "outer_evolved_head_fixed": {
+          "observed_overlap": 3,
+          "observed_var_positives": 16,
+          "observed_fixed_positives": 5,
+          "draws": 200000,
+          "accepted_exact_marginal": 21289,
+          "root_state": 1,
+          "seed": 20261042,
+          "null_overlap_mean": 1.2692940015970688,
+          "null_overlap_sd": 0.9525137879677561,
+          "null_overlap_quantile_025": 0.0,
+          "null_overlap_quantile_975": 3.0,
+          "overlap_histogram": [
+            4717,
+            8627,
+            5763,
+            1877,
+            287,
+            18
+          ],
+          "p_greater_equal": 0.10253640206669798,
+          "p_less_equal": 0.9856740253640207,
+          "two_inclusive_tails_doubled_min": 0.20507280413339596,
+          "Monte_Carlo_SE_for_greater_equal": 0.002079024596939375,
+          "condition": "PRESERVE_TREE_AND_OTHER_TRAIT_TIP_PATTERN_AND_SIMULATED_TRAIT_POSITIVE_COUNT",
+          "not_a_test_of_causal_head_function_or_genetic_independence": true
+        }
+      }
+    },
+    "four_state_joint_model_comparison": {
+      "root_state": "erect_not_outward_FIXED_00",
+      "independent": {
+        "n_rates": 4,
+        "rate_order": [
+          "outer_gain",
+          "outer_loss",
+          "head_pending_gain",
+          "head_pending_loss"
+        ],
+        "rates": [
+          0.18082088822285583,
+          0.09988753735824266,
+          0.2344359973391961,
+          2.718890244216651
+        ],
+        "loglik": -53.115670011780026,
+        "AIC": 114.23134002356005
+      },
+      "dependent": {
+        "n_rates": 8,
+        "rate_order": [
+          "erect_close_to_outer",
+          "erect_outer_to_close",
+          "pending_close_to_outer",
+          "pending_outer_to_close",
+          "erect_close_to_pending",
+          "pending_close_to_erect",
+          "erect_outer_to_pending",
+          "pending_outer_to_erect"
+        ],
+        "rates": [
+          0.1454750477533117,
+          0.06027707822185264,
+          0.7751410901546687,
+          0.00012340980408667956,
+          0.24753472864119508,
+          5.112882243300552,
+          0.00012340980408667956,
+          0.00012340980408667956
+        ],
+        "loglik": -51.42753881986933,
+        "AIC": 118.85507763973867,
+        "optimizer_converged": true,
+        "some_rates_at_search_bound": true
+      },
+      "lrt_descriptive": 3.376262383821384,
+      "delta_AIC_dependent_minus_independent": 4.623737616178616,
+      "chi_square_lrt_reference_p_omitted_due_to_sparse_cells_and_boundary": true,
+      "parametric_bootstrap_lrt_not_performed": true,
+      "na_63_code_tips_are_not_phylogenetically_independent_replication": true
+    },
+    "interpretation": {
+      "primary_test": "Tree CTMC parametric conditional null conditioned on observed count of one marginal tip state and fixing other marginal tip map",
+      "root_model_sensitivity": "Root fixed to 0 and to 1 for each binary component separately. Joint four-state root 00 only.",
+      "AIC_is_not_a_selection_causality_test": true,
+      "observed_cell_counts_from_source": {
+        "erect_not_outward": 45,
+        "erect_outward": 13,
+        "pending_not_outward": 2,
+        "pending_outward": 3
+      },
+      "real_source_head_measurements_are_species_codes_not_same_individuals": true,
+      "no_independent_genetic_module_mapping": true,
+      "no_pollinator_or_seed_predator_benefits_measured": true,
+      "original_phylogeny_uncertainty_not_propagated": true,
+      "source_tip_taxon_sampling_nonrandom": true,
+      "evolutionary_ancestral_reexpression_unidentifiable": true
+    }
+  },
+  "subspecies_62_tip_sensitivity": {
+    "removed_taxon": "Cirsium_arizonicum_rothrockii",
+    "remaining_taxa": 62,
+    "source_code_copy_is_not_independent_evolutionary_origin": true,
+    "analysis": {
+      "observed": {
+        "n_tips": 62,
+        "n_head_pending": 5,
+        "n_outer_outward": 15,
+        "n_joint_positive": 3
+      },
+      "independence_reference": {
+        "0": {
+          "head_orientation_Mk": {
+            "root_state": 0,
+            "gain": 0.2376132762373557,
+            "loss": 2.7081977317505412,
+            "loglik": -17.381012538771646,
+            "converged": true,
+            "rates_on_bounds_possible": false
+          },
+          "outer_phyllary_Mk": {
+            "root_state": 0,
+            "gain": 0.16816640511540948,
+            "loss": 0.0869650145508423,
+            "loglik": -34.24193883834708,
+            "converged": true,
+            "rates_on_bounds_possible": false
+          },
+          "head_evolved_outer_fixed": {
+            "observed_overlap": 3,
+            "observed_var_positives": 5,
+            "observed_fixed_positives": 15,
+            "draws": 120000,
+            "accepted_exact_marginal": 22125,
+            "root_state": 0,
+            "seed": 20261031,
+            "null_overlap_mean": 1.2042937853107345,
+            "null_overlap_sd": 0.9216196033891685,
+            "null_overlap_quantile_025": 0.0,
+            "null_overlap_quantile_975": 3.0,
+            "overlap_histogram": [
+              5251,
+              9232,
+              5728,
+              1702,
+              209,
+              3
+            ],
+            "p_greater_equal": 0.08654976046280394,
+            "p_less_equal": 0.9904185121576425,
+            "two_inclusive_tails_doubled_min": 0.17309952092560787,
+            "Monte_Carlo_SE_for_greater_equal": 0.0018902703755972771,
+            "condition": "PRESERVE_TREE_AND_OTHER_TRAIT_TIP_PATTERN_AND_SIMULATED_TRAIT_POSITIVE_COUNT",
+            "not_a_test_of_causal_head_function_or_genetic_independence": true
+          },
+          "outer_evolved_head_fixed": {
+            "observed_overlap": 3,
+            "observed_var_positives": 15,
+            "observed_fixed_positives": 5,
+            "draws": 120000,
+            "accepted_exact_marginal": 6785,
+            "root_state": 0,
+            "seed": 20261041,
+            "null_overlap_mean": 1.1927781871775975,
+            "null_overlap_sd": 0.9213624632449181,
+            "null_overlap_quantile_025": 0.0,
+            "null_overlap_quantile_975": 3.0,
+            "overlap_histogram": [
+              1658,
+              2785,
+              1787,
+              487,
+              67,
+              1
+            ],
+            "p_greater_equal": 0.08193339227821986,
+            "p_less_equal": 0.9899793692897141,
+            "two_inclusive_tails_doubled_min": 0.16386678455643972,
+            "Monte_Carlo_SE_for_greater_equal": 0.003329359069953536,
+            "condition": "PRESERVE_TREE_AND_OTHER_TRAIT_TIP_PATTERN_AND_SIMULATED_TRAIT_POSITIVE_COUNT",
+            "not_a_test_of_causal_head_function_or_genetic_independence": true
+          }
+        },
+        "1": {
+          "head_orientation_Mk": {
+            "root_state": 1,
+            "gain": 0.23763179095679227,
+            "loss": 2.7084125959445835,
+            "loglik": -17.381012634200506,
+            "converged": true,
+            "rates_on_bounds_possible": false
+          },
+          "outer_phyllary_Mk": {
+            "root_state": 1,
+            "gain": 0.4036620307727803,
+            "loss": 1.2497370867464836,
+            "loglik": -34.28132254710185,
+            "converged": true,
+            "rates_on_bounds_possible": false
+          },
+          "head_evolved_outer_fixed": {
+            "observed_overlap": 3,
+            "observed_var_positives": 5,
+            "observed_fixed_positives": 15,
+            "draws": 120000,
+            "accepted_exact_marginal": 22025,
+            "root_state": 1,
+            "seed": 20261032,
+            "null_overlap_mean": 1.2186606129398412,
+            "null_overlap_sd": 0.9296950176227615,
+            "null_overlap_quantile_025": 0.0,
+            "null_overlap_quantile_975": 3.0,
+            "overlap_histogram": [
+              5195,
+              9015,
+              5856,
+              1731,
+              219,
+              9
+            ],
+            "p_greater_equal": 0.08898574412058477,
+            "p_less_equal": 0.9896485971125034,
+            "two_inclusive_tails_doubled_min": 0.17797148824116954,
+            "Monte_Carlo_SE_for_greater_equal": 0.0019184698894651126,
+            "condition": "PRESERVE_TREE_AND_OTHER_TRAIT_TIP_PATTERN_AND_SIMULATED_TRAIT_POSITIVE_COUNT",
+            "not_a_test_of_causal_head_function_or_genetic_independence": true
+          },
+          "outer_evolved_head_fixed": {
+            "observed_overlap": 3,
+            "observed_var_positives": 15,
+            "observed_fixed_positives": 5,
+            "draws": 120000,
+            "accepted_exact_marginal": 13392,
+            "root_state": 1,
+            "seed": 20261042,
+            "null_overlap_mean": 1.2025089605734767,
+            "null_overlap_sd": 0.9275098219169672,
+            "null_overlap_quantile_025": 0.0,
+            "null_overlap_quantile_975": 3.0,
+            "overlap_histogram": [
+              3200,
+              5601,
+              3419,
+              1032,
+              131,
+              9
+            ],
+            "p_greater_equal": 0.08758306578063167,
+            "p_less_equal": 0.9895467781676995,
+            "two_inclusive_tails_doubled_min": 0.17516613156126334,
+            "Monte_Carlo_SE_for_greater_equal": 0.002442686913739206,
+            "condition": "PRESERVE_TREE_AND_OTHER_TRAIT_TIP_PATTERN_AND_SIMULATED_TRAIT_POSITIVE_COUNT",
+            "not_a_test_of_causal_head_function_or_genetic_independence": true
+          }
+        }
+      },
+      "four_state_joint_model_comparison": {
+        "root_state": "erect_not_outward_FIXED_00",
+        "independent": {
+          "n_rates": 4,
+          "rate_order": [
+            "outer_gain",
+            "outer_loss",
+            "head_pending_gain",
+            "head_pending_loss"
+          ],
+          "rates": [
+            0.16816640511540948,
+            0.0869650145508423,
+            0.2376132762373557,
+            2.7081977317505412
+          ],
+          "loglik": -51.622951377118724,
+          "AIC": 111.24590275423745
+        },
+        "dependent": {
+          "n_rates": 8,
+          "rate_order": [
+            "erect_close_to_outer",
+            "erect_outer_to_close",
+            "pending_close_to_outer",
+            "pending_outer_to_close",
+            "erect_close_to_pending",
+            "pending_close_to_erect",
+            "erect_outer_to_pending",
+            "pending_outer_to_erect"
+          ],
+          "rates": [
+            0.03145349805910014,
+            0.090435654901314,
+            3.120712463786813,
+            0.00012340980408667956,
+            1.0282739238302645,
+            20.085536923187668,
+            0.00012340980408667956,
+            2.176822172912246
+          ],
+          "loglik": -49.922891017895694,
+          "AIC": 115.84578203579139,
+          "optimizer_converged": true,
+          "some_rates_at_search_bound": true
+        },
+        "lrt_descriptive": 3.400120718446061,
+        "delta_AIC_dependent_minus_independent": 4.599879281553939,
+        "chi_square_lrt_reference_p_omitted_due_to_sparse_cells_and_boundary": true,
+        "parametric_bootstrap_lrt_not_performed": true,
+        "na_63_code_tips_are_not_phylogenetically_independent_replication": true
+      },
+      "interpretation": {
+        "primary_test": "Tree CTMC parametric conditional null conditioned on observed count of one marginal tip state and fixing other marginal tip map",
+        "root_model_sensitivity": "Root fixed to 0 and to 1 for each binary component separately. Joint four-state root 00 only.",
+        "AIC_is_not_a_selection_causality_test": true,
+        "observed_cell_counts_from_source": {
+          "erect_not_outward": 45,
+          "erect_outward": 13,
+          "pending_not_outward": 2,
+          "pending_outward": 3
+        },
+        "real_source_head_measurements_are_species_codes_not_same_individuals": true,
+        "no_independent_genetic_module_mapping": true,
+        "no_pollinator_or_seed_predator_benefits_measured": true,
+        "original_phylogeny_uncertainty_not_propagated": true,
+        "source_tip_taxon_sampling_nonrandom": true,
+        "evolutionary_ancestral_reexpression_unidentifiable": true
+      }
+    }
+  }
+}
