@@ -1,0 +1,173 @@
+{
+  "protocol_version": "p03b_orientation_causal_protocol_v1",
+  "status_date": "2026-09-25",
+  "protocol_id": "F03",
+  "programme_id": "P03b",
+  "title": "Direct Cirsium capitulum-orientation mechanism and reproductive-fitness test",
+  "technical_state": "DESIGN_FROZEN_DEVICE_AND_SAMPLE_SIZE_QUALIFICATION_REQUIRED",
+  "field_execution_authorized": false,
+  "tissue_collection_authorized": false,
+  "source_handoff": {
+    "eazami_repository": "https://github.com/zuizui0223/EAzami",
+    "public_data_stop_commit": "824b195ae2a3c2cd01dba203452d52dd333169ad",
+    "orientation_crossscale_audit": "data/evidence/azami_orientation_crossscale_validation_audit_v1.json",
+    "public_data_decision": "data/evidence/public_data_ecology_paper_decision_v1.json",
+    "interpretation": "public comparative evidence nominates pathways but supplies no direct focal Cirsium angle causation"
+  },
+  "focal_target_gate": {
+    "target_taxon": "UNFROZEN",
+    "target_population": "UNFROZEN",
+    "selection_rule": [
+      "P03 own-data history must leave an ancestry-interpretable focal orientation contrast or repeated neighbourhood",
+      "target cannot be selected using expected treatment effect or local fitness outcome",
+      "current occupancy and flowering window must be verified",
+      "conservation, land-manager, manipulation, collection and seed-removal authorizations must all pass",
+      "exact locality remains outside the public repository"
+    ]
+  },
+  "primary_question": "Does assigned capitulum angle causally change mature viable achene output in Cirsium under the tested field context?",
+  "mechanism_question": "Is any angle effect consistent with altered reproductive wetting/exposure while thermal, pollination and antagonist pathways are measured as competing explanations?",
+  "experimental_unit": {
+    "primary": "capitulum",
+    "blocking": "plant",
+    "preferred_design": "within-plant matched-head randomization",
+    "admission_rule": "primary confirmatory block requires at least two comparable heads on one plant at matched floral stage; otherwise that plant does not enter the paired core design"
+  },
+  "core_treatments": [
+    {
+      "id": "NATURAL_SHAM",
+      "assignment": "retain natural head angle",
+      "device": "structure-matched support with matched contact/material burden but no intentional angle change"
+    },
+    {
+      "id": "REORIENTED",
+      "assignment": "reversibly move the head toward the opposite biologically relevant orientation domain defined before allocation for the frozen focal taxon",
+      "device": "same qualified support geometry as sham"
+    }
+  ],
+  "randomization": {
+    "unit": "head within plant",
+    "allocation": "computer-generated paired allocation frozen before device placement",
+    "analysis": "intention-to-treat primary; achieved angle is secondary dose-response",
+    "blinding": "achene fill/viability scorer should be treatment-blinded where sample labeling permits"
+  },
+  "manipulation_checks": {
+    "required": [
+      "pre-treatment natural angle",
+      "post-assignment achieved gravity-referenced angle",
+      "angle retention through observation interval",
+      "support/device failure",
+      "visible stem/head injury",
+      "display height change",
+      "azimuth change",
+      "contact/compression of reproductive tissue"
+    ],
+    "device_qualification_gate": "numeric tolerances for angle separation and unintended geometry change must be frozen from a treatment-blind technical pilot before field authorization",
+    "failure_rule": "failed manipulation remains in ITT when safe, is flagged; systematic device failure or injury stops the confirmatory run"
+  },
+  "cohorts": {
+    "fitness_cohort": {
+      "destructive_pollen_sampling": false,
+      "required_endpoints": [
+        "assigned treatment",
+        "achieved angle",
+        "direct wetting/exposure record",
+        "head microclimate",
+        "effective visitor contact",
+        "antagonist exposure/damage",
+        "mature achene count",
+        "filled achene count",
+        "viability or germination assessment under authorized seed collection"
+      ]
+    },
+    "mechanism_cohort": {
+      "separate_from_primary_fitness_heads": true,
+      "purpose": "allow destructive pollen/reproductive-organ assays without mechanically reducing the primary fitness endpoint",
+      "required_endpoints": [
+        "assigned treatment",
+        "achieved angle",
+        "standardized or naturally observed wetting exposure",
+        "wetting duration/water entry",
+        "pollen viability and/or germination",
+        "stigma pollen deposition where technically valid",
+        "head temperature"
+      ]
+    }
+  },
+  "exposure_measurement": {
+    "wetting": {
+      "status": "PRIMARY_MECHANISM",
+      "requirement": "measure water entry/wetting duration directly on or inside the capitulum; annual BIOCLIM is prohibited as a substitute",
+      "standardized_challenge": "allowed on the separate mechanism cohort after device qualification; protocol must freeze water dose/timing before biological outcomes"
+    },
+    "thermal": {
+      "status": "COMPETING_PATHWAY",
+      "requirement": "record internal/head temperature with the same temporal window as wetting and visitor observations"
+    },
+    "uvb": {
+      "status": "SEPARATE_SUBEXPERIMENT",
+      "requirement": "do not combine with the core confirmatory design unless an independently qualified UV manipulation changes UV-B without altering rain, temperature, display or visitor access",
+      "claim_rule": "no UV-B mediation claim from ambient UV correlation alone"
+    },
+    "pollination": {
+      "status": "COMPETING_OR_PARALLEL_PATHWAY",
+      "requirement": "effective floral contact or pollen transfer, not visit count alone; time of day retained"
+    },
+    "antagonists": {
+      "status": "SECONDARY_COMPETING_PATHWAY",
+      "requirement": "record discovery/contact/damage where present; absence of damage is not evidence for orientation mechanism"
+    }
+  },
+  "primary_endpoint": {
+    "name": "mature_viable_achene_output",
+    "operationalization": "number of mature filled achenes that pass the predeclared viability/germination criterion per assigned capitulum",
+    "supporting_denominators": [
+      "total mature/assessable achene positions",
+      "filled achene count"
+    ],
+    "primary_estimand": "intention-to-treat mean contrast REORIENTED minus NATURAL_SHAM within the randomized plant-block design"
+  },
+  "analysis_plan": {
+    "primary_model": "paired/block-aware generalized model of viable-achene output with treatment assignment as the only focal causal coefficient; plant is the blocking unit and population/site is retained if replicated",
+    "achieved_angle": "secondary continuous dose-response; cannot replace ITT",
+    "wetting_model": "treatment effect on directly measured wetting duration/water entry",
+    "mechanism_models": [
+      "treatment -> pollen viability/germination in mechanism cohort",
+      "treatment -> effective pollen contact/transfer",
+      "treatment -> thermal response",
+      "treatment -> antagonist damage where estimable"
+    ],
+    "mediation_rule": "causal mediation language is prohibited unless wetting or another mediator is independently manipulated under a qualified design; otherwise intermediates are mechanism-consistency evidence only",
+    "multiplicity": "one primary fitness estimand; mechanism endpoints are a prespecified secondary family and must be reported jointly, not promoted one-by-one after outcome inspection",
+    "missingness": "treatment/device failures and lost heads must be reported by arm; no outcome-dependent replacement"
+  },
+  "sample_size_gate": {
+    "status": "UNFROZEN_BEFORE_TARGET_AND_VARIANCE_INPUT",
+    "rule": "freeze minimum biologically meaningful effect, eligible-head census, anticipated block correlation/variance source and final N before treatment allocation; do not estimate N from unblinded treatment effects in the confirmatory cohort",
+    "failure": "if authorized plants/paired heads cannot meet the frozen precision/power target, run only a labelled pilot and do not promote it to the confirmatory causal test"
+  },
+  "stop_rules": [
+    "any missing manipulation or collection authorization stops field execution",
+    "device causes reproducible tissue injury or alters reproductive structures beyond frozen tolerance",
+    "sham and treatment cannot be separated in achieved angle without unequal device burden",
+    "allocation integrity is breached",
+    "authorized paired-head sample cannot meet the frozen sample-size gate",
+    "no final viable-achene endpoint means no causal fitness claim"
+  ],
+  "falsifiers": [
+    "technically successful angle assignment does not change direct wetting/exposure under informative events",
+    "technically successful angle assignment produces no repeatable difference in viable-achene output at adequate precision",
+    "an alternative pathway explains the treatment effect while the preregistered wetting route is unsupported",
+    "effect disappears under matched sham/device controls"
+  ],
+  "claim_ceiling": {
+    "positive": "focal Cirsium assigned-angle -> measured mechanism/competing pathways -> reproductive-fitness effect under the tested context",
+    "prohibited": [
+      "historical selective cause of every orientation transition",
+      "genus-wide adaptation",
+      "convergence",
+      "universal rain or cold rule",
+      "causal mediation without independent mediator intervention"
+    ]
+  }
+}
