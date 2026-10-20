@@ -40,6 +40,30 @@ aza3の *C. sieboldii* Phase-A **40予定個体**は別の分子/同一個体高
 | [izu-core](https://github.com/zuizui0223/izu-core) | Model 3で、進化順序の先行は必須の因果順序でない。初期のアレル支持集合、分散と再導入の有無が到達可能性を制約。Q2 384軌跡の2主要効果は `both_inconclusive`。 | 再獲得の祖先系譜・新突然変異・移入・組換えを分ける。花粉媒介者の復帰＝色素対立遺伝子の自動回復とはしない。 |
 | [aza3](https://github.com/zuizui0223/aza3) | 現行実証所管。2026若い琉球・台湾系統の公刊核遺伝系統；花色・色素・同一頭花モジュールの prospective design、40個体 `C. sieboldii` 多モジュール、既定298個体 Phase-A、既存25葉RNA登録。近縁DFR/ANR・ANS/FLS候補の7比較は機能的酵素として**未確証**。 | 本計画の実測・同一個体ジョイン・染色体/ゲノム/遺伝子型/色素・頭花機能/充実痩果は**すべてaza3に置く**。 |
 
+## 2026-10-20 Q2更新：本物のCirsium 615頭花の元CSVを取得し、39ブロックで再解析した
+
+**これまでの「Zenodoを特定したが元CSV未取得」から、実際の数値実証へ前進した。** 2025年の `C. arvense` 野外プレプリント [DOI 10.21203/rs.3.rs-6634172/v1](https://doi.org/10.21203/rs.3.rs-6634172/v1) の公開 `Zenodo 10.5281/zenodo.15364152` を解析した。Zenodo自身に登録される [著者GitHubのFirst_release固定コミット](https://github.com/Yogita25/Multitrophic_Interactions/tree/8a151c62ed069f775a16b9bc5fbdce209cbb8691) の**実際の `seeds.csv` 615行／`Herbivore.csv` 181行／`Pollinators.csv` 120行と著者Rコード**を取得し、各元Git blob SHAを照合。これは**他人の論文の要約のみではなく、真正の原データ再計算**である。追加野外採集はしていない。
+
+既存の original source に存在するsite/treatment付き612頭花（site×block×treatmentの推定植物単位164、site×block45）のうち、同じブロックに対照植物と送粉者排除植物のある**39対応ブロック**を対象に、各植物の頭花結果を合算してから比較した（送粉排除－対照）：
+
+| 生態結果の異なる量 | 平均差（実データ） | サイト層化39ブロックbootstrap 20,000回95%区間 |
+|---|---:|---:|
+| 実際に計数した `Viable_Seeds/Flowers` | **−0.5091** | [−0.5720, −0.4456] |
+| **実際に目視で計数した `Damaged_Seeds/Flowers`** | **−0.0439** | [−0.0799, −0.0115] |
+| **著者の計数残余を加えた `Eaten_Seeds/Flowers`** | **+0.1352** | [+0.0287, +0.2311] |
+| 頭花当たり羽化昆虫数 | **−1.6678** | [−2.7007, −0.8076] |
+
+**非自明な最大の発見は、指標の定義に依存して「食害減少／増加」の符号が逆になること。** 元615頭花全行で `Flowers=Viable+NViable+Damaged+Missing` を満たし、原著の `Eaten=Damaged+Missing=Flowers−Viable−NViable` は**目視のDamaged数が相殺される残差**である。`Missing<0` は80頭花、`Eaten<0` は62頭花。著者Rコードは `Eaten>0` の頭花だけを食害モデルへ選択する。**残差 `Eaten` の増加は、実際に幼虫がより多くの種子を摂食したという独立証拠ではない**。送粉者排除にはOrganza袋を用いるので、花粉不足・袋による産卵管の直接排除・局所環境差も未分離。
+
+さらに虫の181行をsite×block×treatment×vialで頭花に結ぶと、**99行だけが一意、75行は複数頭花候補、7行は対応無し**。したがって同じ頭花で送粉者・種子食者を操作して形態`z`の植物適応度まで見たと偽装しない。
+
+- [元データから再解析したコード](../analysis/reanalyse_cirsium_arvense_2022_real_head_seed_bookkeeping_v1.py)（Git blob真正性／元著者Rの正値選別／植物とブロックの階層／品質監査）。
+- [個体群データを再計算した結果とbootstrapの機械可読レシート](../data/evidence/cirsium_arvense_2022_seed_residual_and_partner_exclusion_result_v1.json)。
+- [サンプル数・元原稿609頭花 vs データ615頭花・生態学的限界](CIRSIUM_ARVENSE_REAL_HEAD_SEED_REANALYSIS_AND_RESIDUAL_RISK_V1.md)。
+- CIは GitHub Actionsで原著著者の公開GitHub固定コミットから4元ファイルを再取得してPython版で独立再計算する設計。**動作成功はCIの実際の完了結果を確認してから記録**する。
+
+**Q2の結論上限：** 相互作用相手を排除する実験は真の植物実測であり、seed resources / direct damage / adult emergence が一致しないという結果は確定。しかし**「花粉媒介が幼虫の摂食を増やした」も「頭花の粘着・トゲ・向きが相手に応じて植物への利得を反転させた」も未同定**。次の進化的実証には形態`z`と**真の同頭花の相手別侵入試行／食害直接観測／充実痩果**を要する。
+
 ## 2026-10-20 Q2の新しい真正野外実験：送粉者が種子食者を助けるように見えるが、物理排除を分離できない
 
 Karpate et al. **2025 Research Square PREPRINT** ([DOI 10.21203/rs.3.rs-6634172/v1](https://doi.org/10.21203/rs.3.rs-6634172/v1)) は ***Cirsium arvense*** の4チェコ集団で**2022年、送粉者排除・捕食者排除・捕食者モデル・対照**を植物個体に割り付け、**原著記載609成熟頭花**の受精／未受精／食害された種子を調べている。送粉者排除では受精率も羽化した頭花内種子食者も減ったのに、食害種子の**割合**は増えた。捕食者の排除とモデルは主反応に明瞭な効果が検出されなかった。**送粉者が種子食者に間接的に利益を与える可能性**を示す、②の直接的で重要な同種内操作である。ただし現在査読済み掲載は確認できていないため、結論は原著著者のプレプリント報告として保持する。
