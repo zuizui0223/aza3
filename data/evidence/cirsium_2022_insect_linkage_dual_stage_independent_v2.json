@@ -593,5 +593,58 @@
     "no_phenotypic_structure_intervention": true,
     "missing_id_table_is_not_zero_insects": true,
     "site_fixed_bootstrap_not_generality": true
+  },
+  "original_R_eaten_positive_subset": {
+    "n_eligible_heads": 612,
+    "n_eaten_positive_heads": 523,
+    "n_excluded_due_to_eaten_not_positive": 89,
+    "n_original_plant_proxy_groups": 164,
+    "n_plant_proxy_groups_after_filter": 161,
+    "n_original_complete_four_arm_blocks": 36,
+    "n_complete_four_arm_blocks_after_filter": 33,
+    "post_outcome_selection": true,
+    "valid_unbiased_florivore_inference": false,
+    "by_treatment": {
+      "Control": {
+        "n_eligible_heads": 164,
+        "n_eaten_positive_heads": 134,
+        "n_excluded_heads": 30,
+        "retention_fraction": 0.8170731707317073,
+        "insects_per_head_all_eligible": 1.5853658536585367,
+        "insects_per_head_eaten_positive": 1.492537313432836,
+        "source_assigned_viable_per_head_all_eligible": 44.65853658536585,
+        "source_assigned_viable_per_head_eaten_positive": 40.80597014925373
+      },
+      "Pollinator Exclusion": {
+        "n_eligible_heads": 142,
+        "n_eaten_positive_heads": 126,
+        "n_excluded_heads": 16,
+        "retention_fraction": 0.8873239436619719,
+        "insects_per_head_all_eligible": 0.13380281690140844,
+        "insects_per_head_eaten_positive": 0.0873015873015873,
+        "source_assigned_viable_per_head_all_eligible": 6.387323943661972,
+        "source_assigned_viable_per_head_eaten_positive": 5.611111111111111
+      },
+      "Predator Exclusion": {
+        "n_eligible_heads": 154,
+        "n_eaten_positive_heads": 129,
+        "n_excluded_heads": 25,
+        "retention_fraction": 0.8376623376623377,
+        "insects_per_head_all_eligible": 0.7857142857142857,
+        "insects_per_head_eaten_positive": 0.5891472868217055,
+        "source_assigned_viable_per_head_all_eligible": 41.37012987012987,
+        "source_assigned_viable_per_head_eaten_positive": 37.89922480620155
+      },
+      "Predator Model": {
+        "n_eligible_heads": 152,
+        "n_eaten_positive_heads": 134,
+        "n_excluded_heads": 18,
+        "retention_fraction": 0.881578947368421,
+        "insects_per_head_all_eligible": 0.6381578947368421,
+        "insects_per_head_eaten_positive": 0.39552238805970147,
+        "source_assigned_viable_per_head_all_eligible": 42.921052631578945,
+        "source_assigned_viable_per_head_eaten_positive": 40.6865671641791
+      }
+    }
   }
 }
