@@ -40,6 +40,7 @@ jobs:
             --traits work/cirsium_na_pair/traits.csv \
             --tree work/cirsium_na_pair/cirsium.phyluce95p.ultrametric.tre \
             --simulations 200000 \
+            --subspecies-simulations 120000 \
             --out work/cirsium_na_pair/result.json
       - name: Verify actual biological source counts and safe joint-evolution ceiling
         run: |
@@ -73,7 +74,17 @@ jobs:
           assert r['interpretation']['no_independent_genetic_module_mapping']
           assert r['interpretation']['no_pollinator_or_seed_predator_benefits_measured']
           assert r['interpretation']['evolutionary_ancestral_reexpression_unidentifiable']
-          print('PASS original 63 Cirsium 4 head-state count + nested CTMC comparison + 4 conditional phylogeny-aware overlap tests; no adaptive claim')
+          sub=a['subspecies_62_tip_sensitivity']
+          assert sub['remaining_taxa']==62 and sub['removed_taxon']=='Cirsium_arizonicum_rothrockii'
+          assert sub['analysis']['observed']=={'n_tips':62,'n_head_pending':5,
+                                               'n_outer_outward':15,'n_joint_positive':3}
+          assert sub['analysis']['four_state_joint_model_comparison']['dependent']['loglik']>=sub['analysis']['four_state_joint_model_comparison']['independent']['loglik']-1e-8
+          for root in ('0','1'):
+              for direction in ('head_evolved_outer_fixed','outer_evolved_head_fixed'):
+                  d=sub['analysis']['independence_reference'][root][direction]
+                  assert d['observed_overlap']==3 and d['accepted_exact_marginal']>=300
+                  assert sum(d['overlap_histogram'])==d['accepted_exact_marginal']
+          print('PASS original 63+collapsed-62 Cirsium head trait phylogenies, independent/dependent nested CTMC and eight conditional count-matched overlap nulls')
           PY
       - name: Preserve derived real-data fit and conditional-null metrics
         uses: actions/upload-artifact@v4
