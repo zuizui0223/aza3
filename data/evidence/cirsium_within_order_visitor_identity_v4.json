@@ -1,0 +1,643 @@
+{
+  "version": "cirsium_within_order_visitor_identity_v4",
+  "source": {
+    "archive_sha256": "ce0513fde35d9c1be42cef87da7a6f4b262e9b4fe237ba0b78e9bf31771b58a4",
+    "metadata_sha256": "313142b1e4fcb1a179533c9b985ea8364b221122ed158b9e2d312ee213a731c9",
+    "prior_v3_repo_git_blob_sha": "b5ce6ee6c394f1769e2d612ca74d396d48aca040",
+    "source_first_collected": "2026-10-08",
+    "analysis_date": "2026-10-20",
+    "prior_support_is_same_5_regions_191_records": true
+  },
+  "status": "SOURCE_OBSERVER_ORDER_CONDITIONAL_LABEL_AUDIT_NOT_MORPHOLOGICAL_FITNESS",
+  "source_support": {
+    "n_hosts": 2,
+    "host_names": [
+      "Cirsium arvense",
+      "Cirsium vulgare"
+    ],
+    "n_original_visited_insect_orders": 4,
+    "n_original_source_visitor_names": 58,
+    "n_original_source_observation_ids": 191,
+    "region_months": [
+      [
+        "65_50",
+        "07"
+      ],
+      [
+        "65_52",
+        "08"
+      ],
+      [
+        "66_50",
+        "07"
+      ],
+      [
+        "66_54",
+        "07"
+      ],
+      [
+        "66_55",
+        "08"
+      ]
+    ]
+  },
+  "primary_observations_and_exact_reference": {
+    "n_original_source_observation_ids": 3243,
+    "n_same_cohort_records": 191,
+    "n_host_a": 107,
+    "n_host_b": 84,
+    "n_matched_region_months": 5,
+    "n_original_observers": 86,
+    "species_identity_u": 0.042563013715463796,
+    "previous_observer_only_reference_mean_u": 0.01790174941033768,
+    "previous_observer_only_excess_u": 0.02466126430512612,
+    "observer_plus_order_reference_mean_u": 0.028579221637070995,
+    "added_reference_from_insect_order_conditioning": 0.010677472226733317,
+    "observer_plus_order_residual_u": 0.013983792078392806,
+    "residual_fraction_of_previous_observer_excess": 0.5670346785702353,
+    "n_observer_order_exchangeable_records": 46,
+    "n_observer_order_exchangeable_blocks": 11,
+    "post_hoc_observer_year_order_residual": 0.014254543408127842,
+    "post_hoc_observer_day_order_residual": 0.00790369864054076,
+    "n_post_hoc_observer_day_order_exchangeable_records": 15,
+    "observer_x_order_label_reference": {
+      "n_replicates": 49999,
+      "mean_mc_u": 0.02858007524857881,
+      "exact_mean_u": 0.028579221637070995,
+      "prob_upper_label_reference": 0.0283,
+      "quantiles_025_50_975": [
+        0.014351038405031147,
+        0.028612930979083427,
+        0.04295211557700213
+      ],
+      "randomized_field_experiment": false,
+      "prospectively_preregistered": false
+    },
+    "hymenoptera_record_share": {
+      "Cirsium arvense": 0.07476635514018691,
+      "Cirsium vulgare": 0.21428571428571427
+    },
+    "hymenoptera_share_vulgare_minus_arvense_by_equal_cell": 0.16920056954539714,
+    "hymenoptera_share_observer_fixed_expected_by_equal_cell": 0.08600407255579669,
+    "hymenoptera_share_observer_fixed_excess": 0.08319649698960045,
+    "within_lepidoptera_name_identity": {
+      "n_recorded_lepidoptera": 160,
+      "n_strata": 5,
+      "mean_u": 0.035559403559403555,
+      "mean_observer_reference": 0.007270303770303695,
+      "mean_excess": 0.02828909978909986
+    },
+    "leave_one_region_residual": {
+      "65_50": 0.011903914851113098,
+      "65_52": 0.019439441276442183,
+      "66_50": 0.008437656702459363,
+      "66_54": 0.016966919585170503,
+      "66_55": 0.013171027976778885
+    },
+    "visitor_name_contribution_top_positive": [
+      [
+        "Pieris rapae",
+        0.006692541175299799
+      ],
+      [
+        "Papilio glaucus",
+        0.002935375297217402
+      ],
+      [
+        "Argynnis cybele",
+        0.0028950581582160516
+      ],
+      [
+        "Argynnis atlantis",
+        0.0027123096202043557
+      ],
+      [
+        "Phyciodes tharos",
+        0.0019047619047619045
+      ],
+      [
+        "Papilio polyxenes",
+        0.001018009768009768
+      ],
+      [
+        "Atalopedes huron",
+        0.0008733164983164984
+      ],
+      [
+        "Euphyes vestris",
+        0.0005177045177045176
+      ],
+      [
+        "Euphydryas phaeton",
+        0.00031788873894137066
+      ],
+      [
+        "Epargyreus clarus",
+        0.0002052545155993432
+      ],
+      [
+        "Apis mellifera",
+        0.0
+      ],
+      [
+        "Atteva aurea",
+        0.0
+      ]
+    ],
+    "visitor_name_contribution_top_negative": [
+      [
+        "Danaus plexippus",
+        -0.0036586344689792886
+      ],
+      [
+        "Polites peckius",
+        -0.0006944444444444445
+      ],
+      [
+        "Papilio troilus",
+        -0.0006471306471306469
+      ],
+      [
+        "Argynnis aphrodite",
+        -0.0006357774778827409
+      ],
+      [
+        "Nastra lherminier",
+        -0.00045244107744107746
+      ],
+      [
+        "Apis mellifera",
+        0.0
+      ],
+      [
+        "Atteva aurea",
+        0.0
+      ],
+      [
+        "Boloria bellona",
+        0.0
+      ],
+      [
+        "Bombus impatiens",
+        0.0
+      ],
+      [
+        "Bombus perplexus",
+        0.0
+      ],
+      [
+        "Chauliognathus marginatus",
+        0.0
+      ],
+      [
+        "Colias philodice",
+        0.0
+      ]
+    ],
+    "species_residual_components_grouped_by_order": {
+      "Coleoptera": 0.0,
+      "Diptera": 0.0,
+      "Hymenoptera": 0.0,
+      "Lepidoptera": 0.013983792078392813
+    },
+    "leave_one_visitor": {
+      "n_tested": 58,
+      "n_still_meeting_original_minimum": 52,
+      "n_positive_fixed_strata_excess": 58,
+      "all_fixed_strata_excess_range": [
+        0.008177375473215903,
+        0.01990622181139419
+      ],
+      "top_loss": [
+        {
+          "taxon": "Pieris rapae",
+          "removed_records": 14,
+          "new_fixed_strata_mean_excess": 0.008177375473215903,
+          "all_original_min_n_still_met": true
+        },
+        {
+          "taxon": "Argynnis atlantis",
+          "removed_records": 7,
+          "new_fixed_strata_mean_excess": 0.009130977738736345,
+          "all_original_min_n_still_met": false
+        },
+        {
+          "taxon": "Phyciodes tharos",
+          "removed_records": 3,
+          "new_fixed_strata_mean_excess": 0.010077032171632899,
+          "all_original_min_n_still_met": true
+        },
+        {
+          "taxon": "Euphyes vestris",
+          "removed_records": 4,
+          "new_fixed_strata_mean_excess": 0.011132859424526086,
+          "all_original_min_n_still_met": true
+        },
+        {
+          "taxon": "Papilio polyxenes",
+          "removed_records": 6,
+          "new_fixed_strata_mean_excess": 0.012507371198457368,
+          "all_original_min_n_still_met": true
+        },
+        {
+          "taxon": "Danaus plexippus",
+          "removed_records": 25,
+          "new_fixed_strata_mean_excess": 0.01271225701764744,
+          "all_original_min_n_still_met": false
+        },
+        {
+          "taxon": "Harmonia axyridis",
+          "removed_records": 1,
+          "new_fixed_strata_mean_excess": 0.013149673815703113,
+          "all_original_min_n_still_met": true
+        }
+      ],
+      "changes_source_support": true
+    },
+    "source_order_record_counts_by_host": {
+      "Cirsium arvense": {
+        "Coleoptera": 3,
+        "Diptera": 1,
+        "Hymenoptera": 8,
+        "Lepidoptera": 95
+      },
+      "Cirsium vulgare": {
+        "Coleoptera": 0,
+        "Diptera": 1,
+        "Hymenoptera": 18,
+        "Lepidoptera": 65
+      }
+    },
+    "source_order_record_share_equal_cell": {
+      "Cirsium arvense": {
+        "Coleoptera": 0.02535809018567639,
+        "Diptera": 0.005128205128205128,
+        "Hymenoptera": 0.060972590627763036,
+        "Lepidoptera": 0.9085411140583555
+      },
+      "Cirsium vulgare": {
+        "Coleoptera": 0.0,
+        "Diptera": 0.006060606060606061,
+        "Hymenoptera": 0.23017316017316017,
+        "Lepidoptera": 0.7637662337662338
+      }
+    }
+  },
+  "by_stratum": [
+    {
+      "cell": "65_50",
+      "month": "07",
+      "n_records": 54,
+      "prior_observer_only": {
+        "observed_u": 0.04400102821155452,
+        "reference_mean_u": 0.02169772722404288,
+        "excess_u": 0.02230330098751164
+      },
+      "observer_x_order": {
+        "n_records": 54,
+        "n_visitor_names": 23,
+        "n_host_a": 39,
+        "n_host_b": 15,
+        "observed_u": 0.04400102821155452,
+        "label_reference_mean_u": 0.02169772722404288,
+        "reference_excess_u": 0.02230330098751164,
+        "observer_order_excess_u": 0.02230330098751164,
+        "n_exchangeable_records": 14,
+        "n_exchangeable_blocks": 4
+      },
+      "observer_x_order_x_year": {
+        "n_records": 54,
+        "n_visitor_names": 23,
+        "n_host_a": 39,
+        "n_host_b": 15,
+        "observed_u": 0.04400102821155452,
+        "label_reference_mean_u": 0.020108283529336052,
+        "reference_excess_u": 0.02389274468221847,
+        "observer_order_excess_u": 0.02389274468221847,
+        "n_exchangeable_records": 13,
+        "n_exchangeable_blocks": 4
+      },
+      "observer_x_order_x_date": {
+        "n_records": 54,
+        "n_visitor_names": 23,
+        "n_host_a": 39,
+        "n_host_b": 15,
+        "observed_u": 0.04400102821155452,
+        "label_reference_mean_u": 0.03420891973523553,
+        "reference_excess_u": 0.009792108476318992,
+        "observer_order_excess_u": 0.009792108476318992,
+        "n_exchangeable_records": 8,
+        "n_exchangeable_blocks": 3
+      },
+      "hymenoptera_versus_other_observer_fixed": {
+        "n_host_a": 39,
+        "n_host_b": 15,
+        "n_target_order_a": 4,
+        "n_target_order_b": 0,
+        "observed_host_b_minus_a": -0.10256410256410256,
+        "observer_reference_difference": -0.10256410256410256,
+        "observer_excess_difference": 0.0,
+        "observer_reference_variance": 0.0,
+        "n_exchangeable_records": 14
+      },
+      "lepidoptera_only": {
+        "n_records": 48,
+        "n_visitor_names": 18,
+        "n_host_a": 33,
+        "n_host_b": 15,
+        "observed_u": 0.038672438672438664,
+        "label_reference_mean_u": 0.016828403078402943,
+        "reference_excess_u": 0.02184403559403572,
+        "observer_order_excess_u": 0.02184403559403572,
+        "n_exchangeable_records": 14,
+        "n_exchangeable_blocks": 4
+      }
+    },
+    {
+      "cell": "65_52",
+      "month": "08",
+      "n_records": 45,
+      "prior_observer_only": {
+        "observed_u": 0.012626262626262624,
+        "reference_mean_u": 0.02046506734006732,
+        "excess_u": -0.007838804713804697
+      },
+      "observer_x_order": {
+        "n_records": 45,
+        "n_visitor_names": 25,
+        "n_host_a": 12,
+        "n_host_b": 33,
+        "observed_u": 0.012626262626262624,
+        "label_reference_mean_u": 0.02046506734006732,
+        "reference_excess_u": -0.007838804713804697,
+        "observer_order_excess_u": -0.007838804713804697,
+        "n_exchangeable_records": 8,
+        "n_exchangeable_blocks": 2
+      },
+      "observer_x_order_x_year": {
+        "n_records": 45,
+        "n_visitor_names": 25,
+        "n_host_a": 12,
+        "n_host_b": 33,
+        "observed_u": 0.012626262626262624,
+        "label_reference_mean_u": 0.014888468013468006,
+        "reference_excess_u": -0.002262205387205382,
+        "observer_order_excess_u": -0.002262205387205382,
+        "n_exchangeable_records": 4,
+        "n_exchangeable_blocks": 1
+      },
+      "observer_x_order_x_date": {
+        "n_records": 45,
+        "n_visitor_names": 25,
+        "n_host_a": 12,
+        "n_host_b": 33,
+        "observed_u": 0.012626262626262624,
+        "label_reference_mean_u": 0.012626262626262624,
+        "reference_excess_u": 0.0,
+        "observer_order_excess_u": 0.0,
+        "n_exchangeable_records": 0,
+        "n_exchangeable_blocks": 0
+      },
+      "hymenoptera_versus_other_observer_fixed": {
+        "n_host_a": 12,
+        "n_host_b": 33,
+        "n_target_order_a": 0,
+        "n_target_order_b": 6,
+        "observed_host_b_minus_a": 0.18181818181818182,
+        "observer_reference_difference": 0.18181818181818182,
+        "observer_excess_difference": 0.0,
+        "observer_reference_variance": 0.0,
+        "n_exchangeable_records": 8
+      },
+      "lepidoptera_only": {
+        "n_records": 38,
+        "n_visitor_names": 19,
+        "n_host_a": 12,
+        "n_host_b": 26,
+        "observed_u": 0.011713286713286718,
+        "label_reference_mean_u": 0.019906759906759892,
+        "reference_excess_u": -0.008193473193473175,
+        "observer_order_excess_u": -0.008193473193473175,
+        "n_exchangeable_records": 8,
+        "n_exchangeable_blocks": 2
+      }
+    },
+    {
+      "cell": "66_50",
+      "month": "07",
+      "n_records": 41,
+      "prior_observer_only": {
+        "observed_u": 0.1260262725779967,
+        "reference_mean_u": 0.02467408070856357,
+        "excess_u": 0.10135219186943313
+      },
+      "observer_x_order": {
+        "n_records": 41,
+        "n_visitor_names": 21,
+        "n_host_a": 29,
+        "n_host_b": 12,
+        "observed_u": 0.1260262725779967,
+        "label_reference_mean_u": 0.08985793899587012,
+        "reference_excess_u": 0.03616833358212658,
+        "observer_order_excess_u": 0.03616833358212658,
+        "n_exchangeable_records": 10,
+        "n_exchangeable_blocks": 3
+      },
+      "observer_x_order_x_year": {
+        "n_records": 41,
+        "n_visitor_names": 21,
+        "n_host_a": 29,
+        "n_host_b": 12,
+        "observed_u": 0.1260262725779967,
+        "label_reference_mean_u": 0.10413245758073349,
+        "reference_excess_u": 0.021893814997263214,
+        "observer_order_excess_u": 0.021893814997263214,
+        "n_exchangeable_records": 6,
+        "n_exchangeable_blocks": 2
+      },
+      "observer_x_order_x_date": {
+        "n_records": 41,
+        "n_visitor_names": 21,
+        "n_host_a": 29,
+        "n_host_b": 12,
+        "observed_u": 0.1260262725779967,
+        "label_reference_mean_u": 0.1260262725779967,
+        "reference_excess_u": 0.0,
+        "observer_order_excess_u": 0.0,
+        "n_exchangeable_records": 0,
+        "n_exchangeable_blocks": 0
+      },
+      "hymenoptera_versus_other_observer_fixed": {
+        "n_host_a": 29,
+        "n_host_b": 12,
+        "n_target_order_a": 2,
+        "n_target_order_b": 7,
+        "observed_host_b_minus_a": 0.514367816091954,
+        "observer_reference_difference": 0.25909961685823746,
+        "observer_excess_difference": 0.2552681992337166,
+        "observer_reference_variance": 0.011181619838229033,
+        "n_exchangeable_records": 18
+      },
+      "lepidoptera_only": {
+        "n_records": 31,
+        "n_visitor_names": 15,
+        "n_host_a": 26,
+        "n_host_b": 5,
+        "observed_u": 0.08692307692307692,
+        "label_reference_mean_u": -0.008653846153846428,
+        "reference_excess_u": 0.09557692307692335,
+        "observer_order_excess_u": 0.09557692307692335,
+        "n_exchangeable_records": 7,
+        "n_exchangeable_blocks": 2
+      }
+    },
+    {
+      "cell": "66_54",
+      "month": "07",
+      "n_records": 29,
+      "prior_observer_only": {
+        "observed_u": -0.006959706959706963,
+        "reference_mean_u": -0.003401360544217691,
+        "excess_u": -0.003558346415489272
+      },
+      "observer_x_order": {
+        "n_records": 29,
+        "n_visitor_names": 17,
+        "n_host_a": 15,
+        "n_host_b": 14,
+        "observed_u": -0.006959706959706963,
+        "label_reference_mean_u": -0.009010989010988985,
+        "reference_excess_u": 0.002051282051282022,
+        "observer_order_excess_u": 0.002051282051282022,
+        "n_exchangeable_records": 6,
+        "n_exchangeable_blocks": 1
+      },
+      "observer_x_order_x_year": {
+        "n_records": 29,
+        "n_visitor_names": 17,
+        "n_host_a": 15,
+        "n_host_b": 14,
+        "observed_u": -0.006959706959706963,
+        "label_reference_mean_u": -0.015970695970696044,
+        "reference_excess_u": 0.009010989010989082,
+        "observer_order_excess_u": 0.009010989010989082,
+        "n_exchangeable_records": 5,
+        "n_exchangeable_blocks": 1
+      },
+      "observer_x_order_x_date": {
+        "n_records": 29,
+        "n_visitor_names": 17,
+        "n_host_a": 15,
+        "n_host_b": 14,
+        "observed_u": -0.006959706959706963,
+        "label_reference_mean_u": -0.01794871794871794,
+        "reference_excess_u": 0.010989010989010978,
+        "observer_order_excess_u": 0.010989010989010978,
+        "n_exchangeable_records": 2,
+        "n_exchangeable_blocks": 1
+      },
+      "hymenoptera_versus_other_observer_fixed": {
+        "n_host_a": 15,
+        "n_host_b": 14,
+        "n_target_order_a": 2,
+        "n_target_order_b": 4,
+        "observed_host_b_minus_a": 0.15238095238095237,
+        "observer_reference_difference": 0.08333333333333334,
+        "observer_excess_difference": 0.06904761904761902,
+        "observer_reference_variance": 0.004767573696145126,
+        "n_exchangeable_records": 8
+      },
+      "lepidoptera_only": {
+        "n_records": 22,
+        "n_visitor_names": 11,
+        "n_host_a": 12,
+        "n_host_b": 10,
+        "observed_u": 0.004292929292929293,
+        "label_reference_mean_u": -0.01161616161616158,
+        "reference_excess_u": 0.015909090909090873,
+        "observer_order_excess_u": 0.015909090909090873,
+        "n_exchangeable_records": 6,
+        "n_exchangeable_blocks": 1
+      }
+    },
+    {
+      "cell": "66_55",
+      "month": "08",
+      "n_records": 22,
+      "prior_observer_only": {
+        "observed_u": 0.03712121212121211,
+        "reference_mean_u": 0.026073232323232304,
+        "excess_u": 0.011047979797979807
+      },
+      "observer_x_order": {
+        "n_records": 22,
+        "n_visitor_names": 8,
+        "n_host_a": 12,
+        "n_host_b": 10,
+        "observed_u": 0.03712121212121211,
+        "label_reference_mean_u": 0.01988636363636362,
+        "reference_excess_u": 0.017234848484848492,
+        "observer_order_excess_u": 0.017234848484848492,
+        "n_exchangeable_records": 8,
+        "n_exchangeable_blocks": 1
+      },
+      "observer_x_order_x_year": {
+        "n_records": 22,
+        "n_visitor_names": 8,
+        "n_host_a": 12,
+        "n_host_b": 10,
+        "observed_u": 0.03712121212121211,
+        "label_reference_mean_u": 0.01838383838383828,
+        "reference_excess_u": 0.01873737373737383,
+        "observer_order_excess_u": 0.01873737373737383,
+        "n_exchangeable_records": 5,
+        "n_exchangeable_blocks": 1
+      },
+      "observer_x_order_x_date": {
+        "n_records": 22,
+        "n_visitor_names": 8,
+        "n_host_a": 12,
+        "n_host_b": 10,
+        "observed_u": 0.03712121212121211,
+        "label_reference_mean_u": 0.01838383838383828,
+        "reference_excess_u": 0.01873737373737383,
+        "observer_order_excess_u": 0.01873737373737383,
+        "n_exchangeable_records": 5,
+        "n_exchangeable_blocks": 1
+      },
+      "hymenoptera_versus_other_observer_fixed": {
+        "n_host_a": 12,
+        "n_host_b": 10,
+        "n_target_order_a": 0,
+        "n_target_order_b": 1,
+        "observed_host_b_minus_a": 0.1,
+        "observer_reference_difference": 0.008333333333333338,
+        "observer_excess_difference": 0.09166666666666667,
+        "observer_reference_variance": 0.00840277777777778,
+        "n_exchangeable_records": 10
+      },
+      "lepidoptera_only": {
+        "n_records": 21,
+        "n_visitor_names": 7,
+        "n_host_a": 12,
+        "n_host_b": 9,
+        "observed_u": 0.03619528619528617,
+        "label_reference_mean_u": 0.019886363636363646,
+        "reference_excess_u": 0.016308922558922523,
+        "observer_order_excess_u": 0.016308922558922523,
+        "n_exchangeable_records": 8,
+        "n_exchangeable_blocks": 1
+      }
+    }
+  ],
+  "biological_claim_limit": [
+    "These are recorded photographs, not measured visitation rates, pollination success, or available head resources.",
+    "Hymenoptera and Lepidoptera are taxonomic orders, not verified functional pollination guilds.",
+    "Same coarse 2-degree cell and month pool years, dates, local habitat and flower abundance.",
+    "Observers recording only one host cannot exchange labels within observer/order and are not causal controls.",
+    "The observer × order label null has been selected after seeing previous host association; P-tail is exploratory, conditional on fixed photo records, not a confirmatory trial.",
+    "Leave-one-name retained frozen strata even if original >=10 threshold fails; support changes are separately flagged.",
+    "Conditioning on order is a change in hypothetical label assignment, not identification of a causal mediated contribution.",
+    "No capitulum head phenotype, physical contact, seed predator entry, viable achene fitness, ancestral molecular re-expression or permitted field manipulation measured."
+  ]
+}
