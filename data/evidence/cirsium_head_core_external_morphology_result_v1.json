@@ -1,0 +1,179 @@
+{
+  "version": "cirsium_head_core_external_source_real_morphometric_v1",
+  "status": "DESCRIPTIVE_WITHIN_HEAD_PHENOTYPIC_COVARIANCE_ONLY",
+  "as_of": "2026-10-20",
+  "source": {
+    "doi": "10.1007/s00606-023-01854-2",
+    "supplement": "Online Resource 6",
+    "title": "Hybridization may endanger the rare North Apennine endemic Cirsium bertolonii",
+    "publisher_xlsx_sha256": "c06423cc6f9800ba4775a4428afa072ba1b3dc6fb48ccd05fdb7e42a2f03ee79",
+    "frozen_114head_derived_CSV_sha256": "e69b20badd340e08b366ac51596661a2f8951b020994bc2f3154d838f1c2c9dc",
+    "n_real_nonhybrid_individuals": 114,
+    "sex_taxon_strata": 6,
+    "source_csv_from_artifact_tool": true,
+    "row_selection": "all nonhybrid source rows; original Excel row indices retained",
+    "license_attribution": "Michálková et al. 2023, CC BY 4.0; derivative exports only published head dimensions"
+  },
+  "primary_observed": {
+    "n": 114,
+    "n_strata": 6,
+    "r_core": 0.669896381550174,
+    "r_spread": -0.05296790457029559,
+    "delta": 0.7228642861204695,
+    "adjusted_r_core": 0.5441068308348029,
+    "adjusted_r_spread": 0.09399817546578217,
+    "adjusted_delta": 0.4501086553690208,
+    "r_tip_width_unadjusted": 0.42422917300596796,
+    "adjusted_r_tip_width": 0.09399817546578197
+  },
+  "paired_plant_stratified_bootstrap": {
+    "n_draws": 5000,
+    "seed": 20261020,
+    "stratum_n": {
+      "Cirsium acaulon|f": 10,
+      "Cirsium acaulon|h": 30,
+      "Cirsium bertolonii - Monte Sagro|f": 10,
+      "Cirsium bertolonii - Monte Sagro|h": 24,
+      "Cirsium erisithales|f": 10,
+      "Cirsium erisithales|h": 30
+    },
+    "ci95": {
+      "r_core": [
+        0.5969609626415434,
+        0.7411092260866511
+      ],
+      "r_spread": [
+        -0.1850343104726284,
+        0.07863547082042649
+      ],
+      "delta": [
+        0.580408217590033,
+        0.8707885412829504
+      ],
+      "adjusted_r_core": [
+        0.43392610336062976,
+        0.650162499818405
+      ],
+      "adjusted_r_spread": [
+        -0.04851503688228279,
+        0.22200605533480822
+      ],
+      "adjusted_delta": [
+        0.2850034630947875,
+        0.6241511044110813
+      ]
+    },
+    "fraction_positive_difference": {
+      "unadjusted": 1.0,
+      "size_adjusted": 1.0
+    },
+    "not_phylogenetic_or_independent_population_uncertainty": true
+  },
+  "robustness": {
+    "leave_one_taxon_out": {
+      "Cirsium acaulon": {
+        "n": 74,
+        "n_strata": 4,
+        "r_core": 0.6677356388136184,
+        "r_spread": -0.055106679994475286,
+        "delta": 0.7228423188080937,
+        "adjusted_r_core": 0.47236171522966325,
+        "adjusted_r_spread": 0.19187855350618682,
+        "adjusted_delta": 0.2804831617234764,
+        "r_tip_width_unadjusted": 0.5567226553004139,
+        "adjusted_r_tip_width": 0.19187855350618693
+      },
+      "Cirsium bertolonii - Monte Sagro": {
+        "n": 80,
+        "n_strata": 4,
+        "r_core": 0.7282928343990549,
+        "r_spread": 0.04078700733767186,
+        "delta": 0.6875058270613831,
+        "adjusted_r_core": 0.6345491031032087,
+        "adjusted_r_spread": 0.040683281146991004,
+        "adjusted_delta": 0.5938658219562176,
+        "r_tip_width_unadjusted": 0.4219280207743011,
+        "adjusted_r_tip_width": 0.0406832811469906
+      },
+      "Cirsium erisithales": {
+        "n": 74,
+        "n_strata": 4,
+        "r_core": 0.6111004776033305,
+        "r_spread": -0.14151488923045022,
+        "delta": 0.7526153668337807,
+        "adjusted_r_core": 0.5069641043889084,
+        "adjusted_r_spread": 0.010700998875335795,
+        "adjusted_delta": 0.49626310551357256,
+        "r_tip_width_unadjusted": 0.30110159195571784,
+        "adjusted_r_tip_width": 0.01070099887533558
+      }
+    },
+    "sex_specific": {
+      "f": {
+        "n": 30,
+        "n_strata": 3,
+        "r_core": 0.6093406696424948,
+        "r_spread": 0.05059146303628935,
+        "delta": 0.5587492066062054,
+        "adjusted_r_core": 0.497034182492247,
+        "adjusted_r_spread": 0.30409392581223843,
+        "adjusted_delta": 0.19294025668000858,
+        "r_tip_width_unadjusted": 0.5611766506610575,
+        "adjusted_r_tip_width": 0.3040939258122386
+      },
+      "h": {
+        "n": 84,
+        "n_strata": 3,
+        "r_core": 0.694514036393454,
+        "r_spread": -0.10133461568931461,
+        "delta": 0.7958486520827686,
+        "adjusted_r_core": 0.5799535532962269,
+        "adjusted_r_spread": -0.00826446179724069,
+        "adjusted_delta": 0.5882180150934676,
+        "r_tip_width_unadjusted": 0.3882867744268881,
+        "adjusted_r_tip_width": -0.008264461797240932
+      }
+    },
+    "source_exact_spread_one_fraction": 0.21052631578947367,
+    "raw_ratio_per_taxon": {
+      "Cirsium acaulon": {
+        "n": 40,
+        "median": 1.0,
+        "min": 1.0,
+        "max": 1.064516129032258
+      },
+      "Cirsium bertolonii - Monte Sagro": {
+        "n": 34,
+        "median": 1.990990990990991,
+        "min": 1.557377049180328,
+        "max": 2.807017543859649
+      },
+      "Cirsium erisithales": {
+        "n": 40,
+        "median": 1.1748274728885968,
+        "min": 1.0485436893203883,
+        "max": 1.4090909090909092
+      }
+    }
+  },
+  "estimand": "within-six-taxon-sex centered Pearson correlations of log(Cor_L) with log(Inv_L) vs log(Ibr_W/Inv_W); paired difference, with descriptive partial log Inv_W and log Cap_W controls",
+  "claim_ceiling": {
+    "one_physical_reproductive_head_is_not_one_synchronous_phenotype": true,
+    "within_head_corr_not_developmental_pleiotropy": true,
+    "true_anatomical_spine_length_measured": false,
+    "functional_spine_defence_identified": false,
+    "guild_specific_physical_contact_measured": false,
+    "mature_viable_achenes_measured": false,
+    "causal_reproductive_fitness_effect": false,
+    "evolutionary_reexpression_or_reused_genetic_parts": false
+  },
+  "caveats": [
+    "Three species and fixed source localities; plant bootstrap is conditional on original design.",
+    "Pooled within-stratum correlation can be dominated by hermaphrodite strata (84/114); female strata only 30.",
+    "Ibr_W/Inv_W in author source is a dimensionless outer bract-tip width proxy, not true sharp spine length, contact force or physical accessibility.",
+    "Cirsium acaulon ratio has near-floor values; leave-one-taxon-out and sex-specific estimates are descriptive robustness only.",
+    "Shared size, growth stage, head rank, sex, botanical species ancestry and measurement methods can shape phenotypic correlation.",
+    "Controlling ratio denominator Inv_W or head size can induce mathematical and causal model artifacts; adjustment is a sensitivity not proof.",
+    "No observed pollinator, seed-feeder, parasitoid interaction, plant fitness, genomic architecture, or new field authorization."
+  ]
+}

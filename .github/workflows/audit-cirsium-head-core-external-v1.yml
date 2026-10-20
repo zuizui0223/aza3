@@ -1,0 +1,86 @@
+name: Audit real Cirsium capitulum core versus bract tip spread v1
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'analysis/audit_cirsium_head_core_external_v1.py'
+      - 'tests/test_audit_cirsium_head_core_external_v1.py'
+      - 'data/evidence/cirsium_2023_same_plant_head_morphology_subset_v1.csv'
+      - 'data/evidence/cirsium_head_core_external_morphology_result_v1.json'
+      - 'docs/CIRSIUM_HEAD_CORE_VS_BRACT_TIP_SPREAD_EMPIRICAL_20261020.md'
+      - '.github/workflows/audit-cirsium-head-core-external-v1.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify-real-publisher-derived-head-data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install numerical runtime
+        run: python -m pip install numpy==2.3.5
+      - name: Verify original author data are source-pinned and test all inference guards
+        run: |
+          python -m py_compile analysis/audit_cirsium_head_core_external_v1.py tests/test_audit_cirsium_head_core_external_v1.py
+          python -m unittest discover -s tests -p 'test_audit_cirsium_head_core_external_v1.py' -v
+      - name: Recompute 5000 group-stratified real-plant bootstrap draws
+        run: |
+          mkdir -p work
+          python analysis/audit_cirsium_head_core_external_v1.py \
+            --source-csv data/evidence/cirsium_2023_same_plant_head_morphology_subset_v1.csv \
+            --bootstrap 5000 \
+            --out work/cirsium_headcore_actual_morphology_v1.json
+      - name: Compare all actual biology, robustness, missing-fitness ceiling to frozen receipt
+        run: |
+          python - <<'PY'
+          import json,math
+          a=json.load(open('work/cirsium_headcore_actual_morphology_v1.json'))
+          b=json.load(open('data/evidence/cirsium_head_core_external_morphology_result_v1.json'))
+          def same(x,y,key='root'):
+              if isinstance(x,dict):
+                  assert type(y)==dict and set(x)==set(y),key
+                  for k in x:same(x[k],y[k],key+'.'+k)
+              elif isinstance(x,list):
+                  assert isinstance(y,list) and len(x)==len(y),key
+                  for i,(v,w) in enumerate(zip(x,y)):same(v,w,key+f'[{i}]')
+              elif isinstance(x,float):
+                  assert isinstance(y,(float,int)) and math.isfinite(x) and math.isfinite(y)
+                  assert math.isclose(x,y,rel_tol=0,abs_tol=1e-10),(key,x,y)
+              else:assert x==y,(key,x,y)
+          same(a,b)
+          assert a['source']['n_real_nonhybrid_individuals']==114
+          assert a['primary_observed']['r_core']>0.6
+          assert abs(a['primary_observed']['r_spread'])<0.10
+          assert a['paired_plant_stratified_bootstrap']['ci95']['delta'][0]>0.5
+          assert a['paired_plant_stratified_bootstrap']['ci95']['adjusted_delta'][0]>0.2
+          assert all(v['adjusted_delta']>0 for v in a['robustness']['leave_one_taxon_out'].values())
+          for key in ('true_anatomical_spine_length_measured','functional_spine_defence_identified',
+                      'guild_specific_physical_contact_measured','mature_viable_achenes_measured',
+                      'causal_reproductive_fitness_effect','evolutionary_reexpression_or_reused_genetic_parts'):
+              assert a['claim_ceiling'][key] is False
+          print('PASS: same-plant original author head dimensions, 114 plants, no invented adaptive ecology')
+          PY
+      - name: Source publisher XLSX provenance transport check (no raw-XLSX redistribution)
+        run: |
+          python - <<'PY'
+          import hashlib,urllib.request
+          url='https://media.springernature.com/original/springer-static/esm/art%3A10.1007%2Fs00606-023-01854-2/MediaObjects/606_2023_1854_MOESM6_ESM.xlsx'
+          request=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 (academic supplementary material integrity check)'})
+          with urllib.request.urlopen(request,timeout=50) as response:raw=response.read()
+          actual=hashlib.sha256(raw).hexdigest()
+          assert actual=='c06423cc6f9800ba4775a4428afa072ba1b3dc6fb48ccd05fdb7e42a2f03ee79',actual
+          print('PASS: original publisher head morphometry XLSX fingerprint unchanged, original not redistributed')
+          PY
+      - name: Save output numeric reproducibility receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-2023-headcore-outside-phyllary-real-plant-bootstrap-v1
+          path: work/cirsium_headcore_actual_morphology_v1.json
+          retention-days: 30
+          if-no-files-found: error
