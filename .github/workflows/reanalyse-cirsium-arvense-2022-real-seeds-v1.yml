@@ -46,6 +46,22 @@ jobs:
           import json,math
           j=json.load(open("work/cirsium_arvense_2022_real_head_source_reanalysis_v1.json"))
           a=j["real_Cirsium_source_reanalysis"]
+          pinned=json.load(open("data/evidence/cirsium_arvense_2022_seed_residual_and_partner_exclusion_result_v1.json"))
+          assert pinned["source"]["original_commit"]==j["source"]["original_commit"]
+          assert pinned["source"]["verified_github_git_blob_shas"]==j["source"]["git_blobs"]
+          assert pinned["original_rows"]["seed_head_rows"]==a["audit"]["original_seed_rows"]
+          assert pinned["original_rows"]["herbivore_ambiguous_head_joins"]==a["audit"]["herbivore_table_individual_head_join_quality"]
+          for key,upstream in a["matched_site_block_plant_unit_contrasts"]["data"].items():
+            matched=pinned["paired_block_contrasts"][key]
+            assert upstream["n_paired_blocks"]==matched["n_matched_blocks"]
+            assert abs(upstream["mean_paired_plant_fraction_difference"]-
+                       matched["mean_paired_plant_fraction_difference"])<1e-12
+            # Bootstrap implementations use different verified pseudorandom
+            # generators in independent JS/Python calculations; intervals
+            # should coincide approximately, not bit-for-bit.
+            actual_ci=upstream["stratified_block_bootstrap_percentile_CI95"]
+            independent_ci=matched["CI95_site_stratified_block_bootstrap"]
+            assert all(abs(v-w)<.020 for v,w in zip(actual_ci,independent_ci))
           t=j["synthetic_negative_controls"]
           d=a["audit"]
           assert t["status"]=="PASS_SYNTHETIC_SEED_BOOKKEEPING_AND_NEGATIVE_RESIDUAL_GATES"
