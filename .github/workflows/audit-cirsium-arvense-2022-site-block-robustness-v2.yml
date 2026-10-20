@@ -1,0 +1,80 @@
+name: Audit Cirsium 2022 real field-site block robustness v2
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "analysis/audit_cirsium_arvense_2022_site_block_robustness_v2.py"
+      - "analysis/reanalyse_cirsium_arvense_2022_real_head_seed_bookkeeping_v1.py"
+      - "data/evidence/cirsium_arvense_2022_site_block_robustness_v2.json"
+      - "docs/CIRSIUM_ARVENSE_2022_FOUR_SITE_BLOCK_ROBUSTNESS_V2.md"
+      - ".github/workflows/audit-cirsium-arvense-2022-site-block-robustness-v2.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  independent-JS-source-vs-Python-real-biology:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch exact public author source (not synthetic data)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work/cirsium_2022_author
+          gh api 'repos/Yogita25/Multitrophic_Interactions/contents/seeds.csv?ref=8a151c62ed069f775a16b9bc5fbdce209cbb8691' --jq .content | base64 -d > work/cirsium_2022_author/seeds.csv
+          test -s work/cirsium_2022_author/seeds.csv
+      - name: Independently recompute source/site contrasts and synthetic controls
+        run: |
+          python -m py_compile analysis/reanalyse_cirsium_arvense_2022_real_head_seed_bookkeeping_v1.py analysis/audit_cirsium_arvense_2022_site_block_robustness_v2.py
+          python analysis/audit_cirsium_arvense_2022_site_block_robustness_v2.py \
+            --seeds work/cirsium_2022_author/seeds.csv \
+            --out work/cirsium_2022_actual_site_block_robustness_v2.json
+      - name: Compare ALL numeric site, block and denominator outcomes with independent frozen JS
+        run: |
+          python - <<'PY'
+          import json,math
+          f=json.load(open("data/evidence/cirsium_arvense_2022_site_block_robustness_v2.json"))
+          j=json.load(open("work/cirsium_2022_actual_site_block_robustness_v2.json"))
+          assert j["source"]["commit"]==f["source"]["source_commit"]
+          assert j["source"]["seeds_git_blob_sha"]==f["source"]["verified_raw_seeds_git_blob"]
+          assert j["source"]["source_raw_head_rows"]==f["source"]["raw_heads"]==615
+          assert j["synthetic_tests"]=="PASS_SYNTHETIC_SIGN_AND_BLOCK_SITE_HOLDOUT_TESTS"
+          a=j["actual_Cirsium_observed_site_block_sensitivity"]
+          assert a["n_matched_site_blocks"]==f["design"]["n_matched_site_blocks"]==39
+          assert a["site_n"]==f["design"]["site_n"]
+          def close(x,y):
+              assert math.isfinite(x) and math.isfinite(y) and math.isclose(x,y,rel_tol=0,abs_tol=1e-9),(x,y)
+          for metric, measured in a["overall"].items():
+              saved=f["overall"][metric]
+              close(measured["mean_bag_minus_control"], saved["mean_bag_minus_control"])
+              assert measured["sign_counts"]==saved["sign_counts"]
+              for site in a["site_n"]:
+                  current=a["site"][site][metric]
+                  frozen=f["observed_sites"][site]["metrics"][metric]
+                  close(current["mean_bag_minus_control"],frozen["mean_bag_minus_control"])
+                  assert current["sign_counts"]==frozen["sign_counts"]
+                  close(a["leave_one_site_out"][metric][site],f["leave_one_site_out"][metric][site])
+              for x,y in zip(a["leave_one_block_out_range"][metric], f["leave_one_block_out_range"][metric]):
+                  close(x,y)
+          assert a["overall"]["viable_fraction"]["sign_counts"]=={"positive":0,"negative":39,"zero":0}
+          assert a["overall"]["direct_damaged_fraction"]["sign_counts"]=={"positive":13,"negative":21,"zero":5}
+          assert a["overall"]["inferred_eaten_signed_fraction"]["sign_counts"]=={"positive":26,"negative":13,"zero":0}
+          assert all(a["site"][s]["viable_fraction"]["mean_bag_minus_control"]<0 for s in a["site_n"])
+          assert j["own_Cirsium_field_plant_assays_added"]==0
+          assert not f["key_inferences"]["actual_seed_feeder_species_in_a_single_head_identified"]
+          assert not f["key_inferences"]["is_anatomical_involucre_orientation_or_spine_intervention"]
+          print("PASS: 615 source-authenticated heads, 39 matched blocks, four-site results and independent JS/Python cross-check")
+          PY
+      - name: Save source-checked summary without redistributing raw CSV
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-arvense-2022-four-site-block-sensitivity-v2
+          path: work/cirsium_2022_actual_site_block_robustness_v2.json
+          if-no-files-found: error
+          retention-days: 30
