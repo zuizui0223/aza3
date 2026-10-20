@@ -1,0 +1,85 @@
+name: Reanalyse real Cirsium arvense 2022 multitrophic head seed data v1
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "analysis/reanalyse_cirsium_arvense_2022_real_head_seed_bookkeeping_v1.py"
+      - "data/evidence/cirsium_arvense_2022_seed_residual_and_partner_exclusion_result_v1.json"
+      - "docs/CIRSIUM_ARVENSE_REAL_HEAD_SEED_REANALYSIS_AND_RESIDUAL_RISK_V1.md"
+      - ".github/workflows/reanalyse-cirsium-arvense-2022-real-seeds-v1.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  actual-author-csv-not-simulated-biology:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download immutable CC-BY real raw source and published R script
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work/author_real_source
+          for file in seeds.csv Herbivore.csv Pollinators.csv Herbivores.R; do
+            gh api "repos/Yogita25/Multitrophic_Interactions/contents/${file}?ref=8a151c62ed069f775a16b9bc5fbdce209cbb8691" --jq .content | base64 -d > "work/author_real_source/${file}"
+            test -s "work/author_real_source/${file}"
+          done
+      - name: Run actual 615-head 2022 experiment decomposition, exact original blob checks
+        run: |
+          python -m py_compile analysis/reanalyse_cirsium_arvense_2022_real_head_seed_bookkeeping_v1.py
+          python analysis/reanalyse_cirsium_arvense_2022_real_head_seed_bookkeeping_v1.py \
+            --seeds work/author_real_source/seeds.csv \
+            --herbivore work/author_real_source/Herbivore.csv \
+            --pollinators work/author_real_source/Pollinators.csv \
+            --original-r-code work/author_real_source/Herbivores.R \
+            --boot 20000 \
+            --out work/cirsium_arvense_2022_real_head_source_reanalysis_v1.json
+      - name: Confirm raw study and residual-vs-observed-damage results, without causal overclaim
+        run: |
+          python - <<'PY'
+          import json,math
+          j=json.load(open("work/cirsium_arvense_2022_real_head_source_reanalysis_v1.json"))
+          a=j["real_Cirsium_source_reanalysis"]
+          t=j["synthetic_negative_controls"]
+          d=a["audit"]
+          assert t["status"]=="PASS_SYNTHETIC_SEED_BOOKKEEPING_AND_NEGATIVE_RESIDUAL_GATES"
+          assert j["source"]["original_commit"]=="8a151c62ed069f775a16b9bc5fbdce209cbb8691"
+          assert a["status"]=="REAL_PUBLIC_2022_CIRSIUM_ARVENSE_MULTITROPHIC_DATA_REANALYZED_SOURCE_BOUNDED"
+          assert d["original_seed_rows"]==615
+          assert d["usable_site_treatment_seed_rows"]==612
+          assert d["rows_with_missing_site_or_treatment_excluded"]==3
+          assert d["paired_control_vs_pollinator_exclusion_blocks"]==39
+          assert d["inferred_site_block_treatment_mother_plant_units"]==164
+          assert d["all_seed_rows_have_component_mass_balance_identity"]
+          assert d["all_seed_rows_Eaten_equals_Flowers_minus_viable_minus_nonviable"]
+          assert d["original_author_Herbivores_R_filters_Eaten_Seed_gt_zero"]
+          assert d["all_raw_seed_rows_with_negative_Missing"]==80
+          assert d["all_raw_seed_rows_with_negative_Eaten"]==62
+          assert d["original_author_Herbivore_csv_rows"]==181
+          assert d["original_author_Pollinators_csv_observation_windows"]==120
+          paired=a["matched_site_block_plant_unit_contrasts"]["data"]
+          assert abs(paired["viable_fraction_all"]["mean_paired_plant_fraction_difference"]-(-.5090891291277234))<1e-8
+          assert abs(paired["directly_recorded_damaged_fraction_all"]["mean_paired_plant_fraction_difference"]-(-.043918424998174915))<1e-8
+          assert abs(paired["inferred_eaten_signed_fraction_all"]["mean_paired_plant_fraction_difference"]-(.1352244697172186))<1e-8
+          for metric in paired.values():
+            assert metric is None or (
+                metric["n_paired_blocks"]>0
+                and metric["bootstrap_replicates"]==20000
+                and all(math.isfinite(v) for v in metric["stratified_block_bootstrap_percentile_CI95"])
+            )
+          assert "not a pre-registered causal effect estimator" in " ".join(a["hard_biological_limits"]).lower() or any("not a pre-registered causal" in x for x in a["hard_biological_limits"])
+          print("PASS: REAL Cirsium seed outcomes, arithmetic residual caveat, matched original blocks verified")
+          PY
+      - name: Upload original-source-derived numerical JSON (not the raw CC-BY dataset)
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-arvense-2022-authentic-seed-outcomes-and-residual-audit-v1
+          path: work/cirsium_arvense_2022_real_head_source_reanalysis_v1.json
+          if-no-files-found: error
+          retention-days: 30
