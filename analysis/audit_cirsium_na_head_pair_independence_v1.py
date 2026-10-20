@@ -15,6 +15,7 @@ field observations; four-state rate differences do not establish selection.
 """
 from __future__ import annotations
 import argparse
+import copy
 import csv
 import hashlib
 import io
@@ -268,21 +269,50 @@ def audit(tree,states,n_sims):
                "evolutionary_ancestral_reexpression_unidentifiable":True}}
 
 
+def collapse_duplicated_arizonicum_subspecies(tree,states):
+    """Taxonomically conservative tip sensitivity, not a new independent tree."""
+    sibling=("Cirsium_arizonicum_arizonicum",
+             "Cirsium_arizonicum_rothrockii")
+    require(all(s in states for s in sibling),"ARIZONICUM_SOURCE_TIPS_MISSING")
+    require(states[sibling[0]]==states[sibling[1]]==(0,1),
+            "ARIZONICUM_SOURCE_MORPHOTYPE_DRIFT")
+    t=copy.deepcopy(tree)
+    t.prune(target=sibling[1])
+    s={k:v for k,v in states.items() if k!=sibling[1]}
+    require(len(t.get_terminals())==len(s)==62 and
+            set(z.name for z in t.get_terminals())==set(s),
+            "PRUNED_TIP_ALIGNMENT_FAILED")
+    require(np.bincount([2*h+o for h,o in s.values()],minlength=4).tolist()==
+            [45,12,2,3],"PRUNED_HEAD_COUNT_DRIFT")
+    return t,s
+
+
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--traits",type=Path,required=True)
     ap.add_argument("--tree",type=Path,required=True)
     ap.add_argument("--out",type=Path,required=True)
     ap.add_argument("--simulations",type=int,default=200000)
+    ap.add_argument("--subspecies-simulations",type=int,default=120000)
     args=ap.parse_args()
     traits=fetch_local_exact(args.traits,"traits.csv")
     newick=fetch_local_exact(args.tree,"cirsium.phyluce95p.ultrametric.tre")
     tree,tipstates,sinfo=parse_source(traits,newick)
+    pruned_tree,pruned_states=collapse_duplicated_arizonicum_subspecies(
+        tree,tipstates)
+    reduced=audit(pruned_tree,pruned_states,args.subspecies_simulations)
     result={"version":"cirsium_na_capitulum_orientation_outer_mk_independence_v1",
             "as_of":"2026-10-21",
             "source":{"repo":AUTHOR,"commit":COMMIT,"paper_doi":"10.1086/724310",
                       "git_source_blobs":BLOBS,"branch_length_units":"source_ultrametric_units_not_independently_dated"},
-            "source_checks":sinfo,"real_analysis":audit(tree,tipstates,args.simulations)}
+            "source_checks":sinfo,
+            "real_analysis":audit(tree,tipstates,args.simulations),
+            "subspecies_62_tip_sensitivity":{
+                "removed_taxon":"Cirsium_arizonicum_rothrockii",
+                "remaining_taxa":62,
+                "source_code_copy_is_not_independent_evolutionary_origin":True,
+                "analysis":reduced,
+            }}
     args.out.parent.mkdir(parents=True,exist_ok=True)
     args.out.write_text(json.dumps(result,indent=2,ensure_ascii=False,allow_nan=False)+"\n",encoding="utf-8")
     a=result["real_analysis"]
