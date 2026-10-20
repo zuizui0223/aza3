@@ -46,6 +46,18 @@
 
 **今回の研究上の最大の前進：** 同一個体の**花冠—総苞サイズには強い連動があるのに、先端の相対的広がりはその連動に入らない**という、単一器官の部分的な表現型統合を原データで識別した。今後機能的に問うべきは、その外側相対形態が実際の昆虫侵入を切り分け、その利益が送粉者・食害者・寄生者で異なるかである。
 
+
+### 2026-10-20 追加の元セル照合（公開Excelとの完全一致）
+
+論文本文の測定法では、花冠長は終端頭花から採った小花、総苞長・総苞片先端込み幅は終端頭花の側面写真から得た。したがって、同一植物に属する終端頭花の部品という比較はできるが、元テーブルから採取・撮影時の微小な時間差や頭花間反復を検証することはできない。
+
+原著Online Resource 6の元XLSXを`artifact_tool`で再度開き、各レコードの**元Excel行・植物分類群・性型・頭花8測定セル**を派生CSVへ行単位で直接照合した。**114/114行、912/912数値セルが一致し、不一致0**。
+
+- 検証コード：`analysis/verify_cirsium_publisher_head_cells_v1.py`
+- 実行結果：`data/evidence/cirsium_publisher_head_cell_verification_v1.json`
+- 再現例：`python analysis/verify_cirsium_publisher_head_cells_v1.py --xlsx path/to/606_2023_1854_MOESM6_ESM.xlsx --subset-csv data/evidence/cirsium_2023_same_plant_head_morphology_subset_v1.csv --out work/source_cells.json`
+- 本文・付録の出典：[Michálková et al. 2023](https://doi.org/10.1007/s00606-023-01854-2)、[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)。**派生表は元のデータを抽出・再解析したものであり、独自採集データではない。**
+
 ## 再現
 
 - [純Python数理・原CSV SHA厳密照合](../analysis/audit_cirsium_head_core_external_v1.py)
