@@ -104,6 +104,22 @@ class TestOriginalSourceSemantics(unittest.TestCase):
         self.assertEqual(z["Hummingbird"]["inner_only"],1)
         self.assertEqual(z["Insect"]["both_outer_and_inner"],1)
 
+    def test_phylogenetic_null_reports_both_tail_directions(self):
+        t=Phylo.read(io.StringIO("((A:1,B:1):1,(C:1,D:1):1);"),"newick")
+        states={"A":0,"B":1,"C":0,"D":1}
+        head={"A":[1],"B":[0],"C":[1],"D":[0]}
+        z=v.simulate_mk_conditional(t,states,head,a=0.3,b=0.3,
+                                     n_sims=20000,seed=4,min_accepted=100)
+        out=z["phenotypes"]["trait_0"]
+        self.assertEqual(out["bird_head_positive_observed"],0)
+        self.assertEqual(out["upper_tail_probability"],1)
+        self.assertLess(out["lower_tail_probability"],1)
+        self.assertGreater(out["lower_tail_probability"],0)
+        self.assertAlmostEqual(
+            out["doubled_smaller_tail_probability"],
+            min(1.0,2*out["lower_tail_probability"]))
+        self.assertFalse(z["is_identification_of_natural_selection"])
+
     def test_result_not_an_adaptive_mechanism(self):
         d=v.claim_limits()
         for key in ("same_head_morphology_and_fitness_measured",
