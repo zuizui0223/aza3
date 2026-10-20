@@ -87,6 +87,16 @@ jobs:
           for value in eq['phenotypes'].values():
               assert 0<=value['upper_tail_probability']<=1
           assert phy['equal_rate_Mk_fit']['fit_converged'] is True
+          for sim in (m,eq):
+              for trait, val in sim['phenotypes'].items():
+                  assert 0<val['upper_tail_probability']<=1
+                  assert 0<val['lower_tail_probability']<=1
+                  assert 0<val['doubled_smaller_tail_probability']<=1
+                  assert val['doubled_smaller_tail_probability']>=min(
+                      val['upper_tail_probability'],val['lower_tail_probability'])
+                  assert 0<=val['BH_q_within_four_head_traits_for_two_tail_Mk']<=1
+              assert sim['phenotypes']['glutinous_ridge_present']['upper_tail_probability']==1
+              assert sim['phenotypes']['glutinous_ridge_present']['lower_tail_probability']<1
           assert not any(d['claim_limits'].values())
           assert not m['is_identification_of_natural_selection']
           print('PASS: real pinned 63 species morphometry, 7 syndrome-coded birds, 4 head tests, phylogenetic Mk and no false fitness/selection')
