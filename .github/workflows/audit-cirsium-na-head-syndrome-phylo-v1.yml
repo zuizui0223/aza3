@@ -73,6 +73,20 @@ jobs:
           for val in m['phenotypes'].values():
               assert 0<=val['upper_tail_probability']<=1
               assert 0<=val['conditional_monte_carlo_se']<=0.5
+          nonred=d['analysis']['non_red_corolla_syndrome_sensitivity']
+          assert [nonred['n_bird_nonred'],nonred['n_insect_nonred']]==[2,56]
+          s=nonred['outcomes']['outer_phyllaries_spreading_or_reflexed']
+          assert [s['bird_positive'],s['bird_negative'],s['insect_positive'],s['insect_negative']]==[1,1,10,46]
+          assert math.isclose(s['p_two_sided'],0.3460375075620084,abs_tol=1e-12)
+          mosaic=d['analysis']['post_primary_descriptive_head_state_mosaics']
+          assert [mosaic['Hummingbird'][k] for k in ['both_outer_and_inner','outer_only','inner_only','neither','outer_but_erect']]==[5,1,1,0,4]
+          assert [mosaic['Insect'][k] for k in ['both_outer_and_inner','outer_only','inner_only','neither','outer_but_erect']]==[3,7,3,43,9]
+          eq=phy['equal_rate_Mk_simulation']
+          assert eq['n_simulated_trees']==200000 and eq['n_conditioned_draws']>=1000
+          assert set(eq['phenotypes'])==set(m['phenotypes'])
+          for value in eq['phenotypes'].values():
+              assert 0<=value['upper_tail_probability']<=1
+          assert phy['equal_rate_Mk_fit']['fit_converged'] is True
           assert not any(d['claim_limits'].values())
           assert not m['is_identification_of_natural_selection']
           print('PASS: real pinned 63 species morphometry, 7 syndrome-coded birds, 4 head tests, phylogenetic Mk and no false fitness/selection')
