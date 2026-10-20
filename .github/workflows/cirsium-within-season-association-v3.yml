@@ -1,0 +1,113 @@
+name: Cirsium within-season host association v3
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'analysis/cirsium_within_season_host_association_v3.py'
+      - 'tests/test_cirsium_within_season_host_association_v3.py'
+      - 'verification/independent_within_season_v3.py'
+      - 'data/evidence/cirsium_globi_within_season_association_result_v3.json'
+      - 'docs/CIRSIUM_WITHIN_SEASON_HOST_ASSOCIATION*'
+      - '.github/workflows/cirsium-within-season-association-v3.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  source-matched-association:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install numerical versions used for the frozen calculation
+        run: python -m pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 pytest==9.0.2
+      - name: Run 45 targeted tests and preserve biological authorization boundaries
+        run: |
+          python -m pytest tests/test_cirsium_flower_partner_regional_turnover_v1.py tests/test_cirsium_visit_dates_v2.py tests/test_cirsium_within_season_host_association_v3.py -q
+          python analysis/validate_chapter3_handoff_v1.py
+      - name: Recover the original archived observations and fixed source dates
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work
+          gh api repos/zuizui0223/aza3/actions/artifacts/11534639952/zip > work/globi.zip
+          gh api repos/zuizui0223/aza3/actions/artifacts/12241468591/zip > work/dates.zip
+          python - <<'PY'
+          import hashlib
+          from pathlib import Path
+          from zipfile import ZipFile
+          expected={'globi.zip':'ce0513fde35d9c1be42cef87da7a6f4b262e9b4fe237ba0b78e9bf31771b58a4','dates.zip':'91653e2822a7bdfe89537b1283d39f5d3b14a6fe3f91e5ff1fa418b6665bbfd0'}
+          for name,digest in expected.items():
+              assert hashlib.sha256(Path('work',name).read_bytes()).hexdigest()==digest,name
+          with ZipFile('work/dates.zip') as z:
+              metadata=z.read('source_dates_v2.json')
+          assert hashlib.sha256(metadata).hexdigest()=='313142b1e4fcb1a179533c9b985ea8364b221122ed158b9e2d312ee213a731c9'
+          Path('work/source_dates_v2.json').write_bytes(metadata)
+          PY
+      - name: Recompute all seven scenarios and post-primary time references
+        run: |
+          python analysis/cirsium_within_season_host_association_v3.py --archive work/globi.zip --metadata work/source_dates_v2.json --out work/within_season_v3.json --permutations 9999
+          python verification/independent_within_season_v3.py --archive work/globi.zip --metadata work/source_dates_v2.json --result work/within_season_v3.json --out work/independent_v3_receipt.json
+      - name: Verify frozen results without converting diagnostic tails to field effects
+        run: |
+          python - <<'PY'
+          import json,math
+          r=json.load(open('work/within_season_v3.json'))
+          f=json.load(open('data/evidence/cirsium_globi_within_season_association_result_v3.json'))
+          def same(x,y):
+              if isinstance(x,dict):
+                  assert set(x)<=set(y)
+                  for k in x:same(x[k],y[k])
+              elif isinstance(x,list):
+                  assert len(x)==len(y)
+                  for a,b in zip(x,y):same(a,b)
+              elif isinstance(x,float):
+                  assert math.isfinite(y) and math.isclose(x,y,rel_tol=0,abs_tol=1e-11),(x,y)
+              else:assert x==y,(x,y)
+          same(f['source'],r['source'])
+          assert r['source']['date_recovery']['dated_valid']==f['source_cohort']==3243
+          s=r['scenario_results']
+          primary=next(p for p in s['primary_month10']['host_pairs'] if [p['host_a'],p['host_b']]==f['primary_host_pair'])
+          same(f['primary'],primary)
+          same(f['primary_units'],[[p[k] for k in f['primary_unit_columns']] for p in primary['by_stratum']])
+          same(f['leave_one_observer_out'],primary['leave_one_observer_out_frozen_strata'])
+          loo=[p['observer_excess_u'] for p in primary['leave_one_region_out'].values()]
+          same(f['leave_one_region_out_excess_range'],[min(loo),max(loo)])
+          for k,v in f['primary_label_reference_upper_tails'].items():
+              same(v,primary['label_reference'][k]['upper_tail_label_reference_probability'])
+          for name,expected in f['scenarios'].items():
+              actual=s[name]
+              same(expected['n_pairs'],actual['n_host_pairs'])
+              same(expected['n_replicated_pairs'],actual['n_replicated_host_pairs'])
+              pair=next((p for p in actual['host_pairs'] if [p['host_a'],p['host_b']]==f['primary_host_pair']),None)
+              same(expected['arvense_vulgare'],pair)
+          for other in f['other_month10_pairs']:
+              pair=next(p for p in s['primary_month10']['host_pairs'] if p['host_a']==other['host_a'] and p['host_b']==other['host_b'])
+              same(other,pair)
+          extra=r['post_primary_exploratory_time_block_references'][0]['references']
+          for name,expected in f['post_primary_time_references'].items():
+              actual=dict(extra[name])
+              actual['upper_tail_label_reference_probability']=actual['reference']['upper_tail_label_reference_probability']
+              same(expected,actual)
+              assert actual['post_primary_exploratory']
+              assert not actual['reference']['is_biological_confidence_interval']
+              assert not actual['reference']['is_field_randomization_p_value']
+          assert s['strict_year_month10']['equal_replicated_pair_mean_u'] is None
+          assert s['strict_year_month5']['equal_replicated_pair_mean_u'] is None
+          print('PASS: fixed real records, seven scenarios, independent exact means and preserved strict-time nulls')
+          PY
+      - name: Preserve full aggregate results, verification and minimal source dates
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-within-season-host-association-v3
+          path: |
+            work/within_season_v3.json
+            work/independent_v3_receipt.json
+            work/source_dates_v2.json
+          if-no-files-found: error
+          retention-days: 30

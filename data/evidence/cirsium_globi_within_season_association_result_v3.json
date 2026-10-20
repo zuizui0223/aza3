@@ -1,0 +1,87 @@
+{
+  "version": "cirsium_within_season_host_association_v3_compact_receipt",
+  "source_main": "cd94a991dcc86b5e109f4def22efc7755eaa22fb",
+  "design_commit": "7eea08a9d067bf3217a1dd0a9aa2ec4c598391c3",
+  "source": {
+    "archive_sha256": "ce0513fde35d9c1be42cef87da7a6f4b262e9b4fe237ba0b78e9bf31771b58a4",
+    "metadata_sha256": "313142b1e4fcb1a179533c9b985ea8364b221122ed158b9e2d312ee213a731c9",
+    "csv_sha256": "6d2732565c4f158a0f531b4671832738dafe0b06af7f25b635a5d26b7804deff"
+  },
+  "source_cohort": 3243,
+  "primary_host_pair": ["Cirsium arvense", "Cirsium vulgare"],
+  "primary": {
+    "n_regions": 5, "n_strata": 5, "n_unique_records": 191, "n_unique_observers": 86,
+    "observed_u": 0.042563013715463796,
+    "observer_reference_mean_u": 0.01790174941033768,
+    "observer_excess_u": 0.02466126430512612,
+    "mean_within_host_match": 0.11874742317573532,
+    "cross_host_match": 0.07618440946027152,
+    "n_exchangeable_observer_block_records": 58,
+    "n_exchangeable_observer_blocks": 12
+  },
+  "primary_unit_columns": ["cell", "period", "n_host_a", "n_host_b", "observed_u", "observer_reference_mean_u", "observer_excess_u"],
+  "primary_units": [
+    ["65_50", "07", 39, 15, 0.04400102821155452, 0.02169772722404288, 0.02230330098751164],
+    ["65_52", "08", 12, 33, 0.012626262626262624, 0.02046506734006732, -0.007838804713804697],
+    ["66_50", "07", 29, 12, 0.1260262725779967, 0.02467408070856357, 0.10135219186943313],
+    ["66_54", "07", 15, 14, -0.006959706959706963, -0.003401360544217691, -0.003558346415489272],
+    ["66_55", "08", 12, 10, 0.03712121212121211, 0.026073232323232304, 0.011047979797979807]
+  ],
+  "leave_one_region_out_excess_range": [0.005488532414049369, 0.032786281559858826],
+  "leave_one_observer_out": {
+    "n_deletions": 86, "n_uncomputable_deletions": 0,
+    "n_stratum_deletions_below_original_minimum": 6,
+    "observed_u_range": [0.02340904125114651, 0.08847210462455471],
+    "observer_excess_u_range": [0.011809629350042922, 0.05939611278997461],
+    "changes_support_threshold": "Original strata retained; n>=2 needed for U after deletion. Not a new primary cohort."
+  },
+  "primary_label_reference_upper_tails": {"unrestricted": 0.0053, "observer_conditioned": 0.0049},
+  "scenarios": {
+    "primary_month10": {
+      "n_pairs": 4, "n_replicated_pairs": 1,
+      "arvense_vulgare": {"n_regions": 5, "n_strata": 5, "n_unique_records": 191, "n_unique_observers": 86, "observed_u": 0.042563013715463796, "observer_reference_mean_u": 0.01790174941033768, "observer_excess_u": 0.02466126430512612}
+    },
+    "month10_observer_day_dedup": {
+      "n_pairs": 3, "n_replicated_pairs": 1,
+      "arvense_vulgare": {"n_regions": 4, "n_strata": 4, "n_unique_records": 155, "n_unique_observers": 79, "observed_u": 0.039771736781581774, "observer_reference_mean_u": 0.018392797112692337, "observer_excess_u": 0.021378939668889436}
+    },
+    "month10_current_visitor_concordant": {
+      "n_pairs": 4, "n_replicated_pairs": 1,
+      "arvense_vulgare": {"n_regions": 5, "n_strata": 5, "n_unique_records": 190, "n_unique_observers": 85, "observed_u": 0.0425533403690969, "observer_reference_mean_u": 0.017900561455520693, "observer_excess_u": 0.02465277891357621}
+    },
+    "month5_exploratory": {
+      "n_pairs": 12, "n_replicated_pairs": 6,
+      "arvense_vulgare": {"n_regions": 12, "n_strata": 16, "n_unique_records": 432, "n_unique_observers": 207, "observed_u": 0.04198480488656162, "observer_reference_mean_u": 0.01638965505449338, "observer_excess_u": 0.025595149832068256}
+    },
+    "strict_year_month10": {"n_pairs": 0, "n_replicated_pairs": 0, "arvense_vulgare": null},
+    "strict_year_month5": {
+      "n_pairs": 4, "n_replicated_pairs": 0,
+      "arvense_vulgare": {"n_regions": 1, "n_strata": 1, "n_unique_records": 11, "n_unique_observers": 5, "observed_u": -0.033333333333333326, "observer_reference_mean_u": 0.0023809523809522615, "observer_excess_u": -0.03571428571428559}
+    },
+    "month10_insect_order_same_support": {
+      "n_pairs": 4, "n_replicated_pairs": 1,
+      "arvense_vulgare": {"n_regions": 5, "n_strata": 5, "n_unique_records": 191, "n_unique_observers": 86, "observed_u": 0.05210755064657061, "observer_reference_mean_u": 0.016914724862611807, "observer_excess_u": 0.035192825783958805}
+    }
+  },
+  "post_primary_time_references": {
+    "year": {"n_total_primary_records": 191, "n_exchangeable_records": 140, "n_exchangeable_label_blocks": 25, "exact_reference_mean_u": -0.000911107381392881, "observed_minus_reference_u": 0.04347412109685668, "upper_tail_label_reference_probability": 0.0011},
+    "observer_year": {"n_total_primary_records": 191, "n_exchangeable_records": 41, "n_exchangeable_label_blocks": 10, "exact_reference_mean_u": 0.02057500672658175, "observed_minus_reference_u": 0.021988006988882047, "upper_tail_label_reference_probability": 0.0038},
+    "observer_date": {"n_total_primary_records": 191, "n_exchangeable_records": 15, "n_exchangeable_label_blocks": 5, "exact_reference_mean_u": 0.034659315074923036, "observed_minus_reference_u": 0.00790369864054076, "upper_tail_label_reference_probability": 0.1157}
+  },
+  "other_month10_pairs": [
+    {"host_a": "Cirsium arvense", "host_b": "Cirsium discolor", "n_regions": 1, "observed_u": 0.025420875420875427, "observer_reference_mean_u": 0.010342762946929596, "observer_excess_u": 0.015078112473945832, "status": "EXPLORATORY_FEWER_THAN_THREE_REGIONS"},
+    {"host_a": "Cirsium discolor", "host_b": "Cirsium vulgare", "n_regions": 2, "observed_u": 0.005506378400763429, "observer_reference_mean_u": -0.003026721756610274, "observer_excess_u": 0.008533100157373703, "status": "EXPLORATORY_FEWER_THAN_THREE_REGIONS"},
+    {"host_a": "Cirsium horridulum", "host_b": "Cirsium nuttallii", "n_regions": 2, "observed_u": 0.10618474520648434, "observer_reference_mean_u": 0.10461252113426028, "observer_excess_u": 0.0015722240722240615, "status": "EXPLORATORY_FEWER_THAN_THREE_REGIONS"}
+  ],
+  "validation": {"targeted_tests": 45, "new_tests": 22, "independent_primary_strata": 11, "independent_additional_reference_strata": 15, "full_result_sha256": "b918121ae06640b35187b42c4118d9d9f60e8522f9da7fcf24d8b5ac3ca6cd20"},
+  "claim_limits": [
+    "This changes the estimand from geographic dominance to within-stratum host association; original empty time-matched rectangles remain empty.",
+    "Calendar month pools years; year-month controls still do not measure common sampling effort or local flower abundance.",
+    "Host labels were not randomized. Label-reference probabilities and ranges are conditional diagnostics, not field causal tests or population confidence intervals.",
+    "Observer conditioning holds allocations fixed; its residual is not a causal observer correction. Single-host observers cannot exchange labels.",
+    "U is a finite-sample signed estimator; negative estimates are not negative biological distances and are not truncated.",
+    "Source names and interactions are not new taxonomic or pollination-efficacy validation.",
+    "Repeated observations, unmeasured within-cell locations, dates, detection, and effort can confound host association.",
+    "No head structure, floral preferences conditional on availability, viable achene output, selection, genetic reuse, or field permissions are measured."
+  ]
+}
