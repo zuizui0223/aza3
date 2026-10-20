@@ -1,0 +1,139 @@
+{
+  "version": "aza3_na_independent_visitor_source_audit_v1",
+  "as_of": "2026-10-21",
+  "classification_source": {
+    "repo": "carol-siniscalchi/cirsium",
+    "commit": "c925d4af86160064448f794a9715f70b917a2786",
+    "poll_csv_git_blob": "641ad617b92857a4db0744f799c7ac66ba483ce7",
+    "traits_csv_git_blob": "fa127f0587b676e6e004ea121424d26069586bcb",
+    "pollination_field": "pollinator",
+    "states": [
+      "Hummingbird",
+      "Insect"
+    ],
+    "meaning": "published bird/insect syndrome code, not mutually exclusive field-observed visitor list"
+  },
+  "external_source_type": "MANUALLY_CURATED_VERBATIM_CONCEPTS_NOT_AUTOMATED_WEB_CRAWL",
+  "case_sampling": "PURPOSEFUL_INDEPENDENT_SOURCE_SPOT_CHECK_NOT_A_RANDOM_OR_COMPLETE_63_TAXON_SURVEY",
+  "source_validation_note": "Flora of North America taxonomic treatments summarize original natural-history observations and observations cited therein; no individual-visit raw event ID, original effort denominator or site/date standardization is provided by these summary pages",
+  "cases": [
+    {
+      "taxon": "Cirsium_wrightii",
+      "name_in_external_source": "Cirsium wrightii",
+      "author_syndrome": "Insect",
+      "author_trait_codes": {
+        "CorollaColor": "2",
+        "GlutinousRidge": "1",
+        "HeadPosition": "0",
+        "InnerPhyllaryColor": "0",
+        "OuterPhyllaryPosition": "0"
+      },
+      "visitor_bird_observed": true,
+      "visitor_insect_observed": true,
+      "external_source_title": "Flora of North America, Cirsium wrightii (treatment by D.J. Keil); U.S. Fish and Wildlife Service C. wrightii species assessment",
+      "external_urls": [
+        "https://www.efloras.org/florataxon.aspx?flora_id=1&taxon_id=250066407",
+        "https://downloads.regulations.gov/FWS-R2-ES-2018-0071-0005/content.pdf"
+      ],
+      "evidence_class": "DIRECT_VISITS_REPORTED_IN_FLORA_AND_GOVERNMENT_SYNTHESIS",
+      "reproductive_service_by_bird": "UNKNOWN",
+      "specific_note": "Original insect-coded but hummingbird visits explicitly recorded; government assessment states birds' contribution to pollination is unknown; insects treated as principal pollinators",
+      "morphological_consequence": "Counterexample to 'Insect-coded head cannot attract or receive hummingbird visits', not to 'most effective pollen transfer is insect'."
+    },
+    {
+      "taxon": "Cirsium_vinaceum",
+      "name_in_external_source": "Cirsium vinaceum",
+      "author_syndrome": "Hummingbird",
+      "author_trait_codes": {
+        "CorollaColor": "1",
+        "GlutinousRidge": "0",
+        "HeadPosition": "1",
+        "InnerPhyllaryColor": "1",
+        "OuterPhyllaryPosition": "2"
+      },
+      "visitor_bird_observed": true,
+      "visitor_insect_observed": true,
+      "external_source_title": "Flora of North America Cirsium vinaceum; U.S. Fish and Wildlife Service Sacramento Mountains thistle",
+      "external_urls": [
+        "https://www.efloras.org/florataxon.aspx?flora_id=1&taxon_id=250066404",
+        "https://www.fws.gov/species/sacramento-mountains-thistle-cirsium-vinaceum"
+      ],
+      "evidence_class": "MULTIPLE_VISITOR_GUILDS_REPORTED_IN_FLORA_AND_GOVERNMENT_SYNTHESIS",
+      "reproductive_service_by_bird": "POLLEN_VECTOR_REPORTED_BUT_NOT_SOURCE_QUANTIFIED",
+      "specific_note": "Bird-coded but hummingbird and several bee groups visit; original published source describes bird and insect pollen vectors",
+      "morphological_consequence": "A bird-coded capitulum may admit visiting insects without requiring a second phenotype label."
+    },
+    {
+      "taxon": "Cirsium_andersonii",
+      "name_in_external_source": "Cirsium andersonii",
+      "author_syndrome": "Hummingbird",
+      "author_trait_codes": {
+        "CorollaColor": "1",
+        "GlutinousRidge": "0",
+        "HeadPosition": "0",
+        "InnerPhyllaryColor": "1",
+        "OuterPhyllaryPosition": "0"
+      },
+      "visitor_bird_observed": true,
+      "visitor_insect_observed": true,
+      "external_source_title": "Flora of North America Cirsium andersonii",
+      "external_urls": [
+        "https://www.efloras.org/florataxon.aspx?flora_id=1&taxon_id=250066356"
+      ],
+      "evidence_class": "DIRECT_VISITOR_GUILD_PRESENCE_REPORTED_IN_TAXON_FLORA",
+      "reproductive_service_by_bird": "UNKNOWN_QUANTITATIVE",
+      "specific_note": "Bird-coded while author-coded outer phyllaries ascending, and Flora of North America records both hummingbird and insect visits; external flora notes within-taxon variation in phyllary descriptions",
+      "morphological_consequence": "Bird-coded taxon does not require the primary-spreading outer-phyllary binary trait."
+    },
+    {
+      "taxon": "Cirsium_occidentale_candidissimum",
+      "name_in_external_source": "Cirsium occidentale var. candidissimum",
+      "author_syndrome": "Hummingbird",
+      "author_trait_codes": {
+        "CorollaColor": "0",
+        "GlutinousRidge": "0",
+        "HeadPosition": "0",
+        "InnerPhyllaryColor": "0",
+        "OuterPhyllaryPosition": "2"
+      },
+      "visitor_bird_observed": true,
+      "visitor_insect_observed": true,
+      "external_source_title": "Flora of North America Cirsium occidentale var. candidissimum",
+      "external_urls": [
+        "https://www.efloras.org/florataxon.aspx?flora_id=1&taxon_id=250068193"
+      ],
+      "evidence_class": "DIRECT_VISITOR_GUILD_PRESENCE_REPORTED_IN_TAXON_FLORA",
+      "reproductive_service_by_bird": "UNKNOWN_QUANTITATIVE",
+      "specific_note": "Original bird-coded despite green inner phyllary; both hummingbirds and various insects recorded visiting heads",
+      "morphological_consequence": "Coloured inner phyllaries are not necessary even for the source bird-syndrome class."
+    }
+  ],
+  "broader_complex_warning": {
+    "taxon_aggregate": "Cirsium arizonicum sensu lato",
+    "source_url": "https://www.efloras.org/florataxon.aspx?flora_id=1&taxon_id=250066358",
+    "source_direct_bird_and_insect_visits": true,
+    "may_not_assign_to_both_original_subspecies_as_independent_field_visits": true,
+    "original_subspecies_tip_names": [
+      "Cirsium_arizonicum_arizonicum",
+      "Cirsium_arizonicum_rothrockii"
+    ]
+  },
+  "required_interpretation": {
+    "visitor_presence_not_effective_pollination": true,
+    "all_63_species_observationally_verified": false,
+    "bird_and_insect_labels_not_exclusive_visit_community": true,
+    "valid_positive_counterexample_taxon": "Cirsium_wrightii",
+    "do_not_automatically_recode_original_syndrome_using_visit_record": true,
+    "morphology_to_visitor_presence_not_causal_selection": true,
+    "original_frozen_na_phylogenetic_analysis_should_remain_unchanged": true
+  },
+  "summary": {
+    "n_taxa_targeted": 4,
+    "n_original_bird_coded": 3,
+    "n_original_insect_coded": 1,
+    "n_original_insect_coded_with_external_bird_visits": 1,
+    "n_original_bird_coded_with_external_insect_visits": 3,
+    "n_original_source_taxa_total": 63,
+    "independent_bird_pollination_efficiency_experiments_in_curated_records": 0
+  }
+}
