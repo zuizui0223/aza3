@@ -1,0 +1,124 @@
+name: Verify Cirsium two-radiation head geometry mosaics
+
+on:
+  pull_request:
+    paths:
+      - "analysis/audit_cirsium_two_radiation_head_mosaic_v1.py"
+      - "tests/test_cirsium_two_radiation_head_mosaic_v1.py"
+      - "data/evidence/cirsium_two_radiation_head_mosaic_independent_source_v1.json"
+      - "docs/CIRSIUM_TWO_RADIATIONS_HEAD_GEOMETRY_MOSAIC_20261021.md"
+      - ".github/workflows/audit-cirsium-two-radiation-head-mosaic-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  real-botanical-state-source-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run strict categorical ontology, exact Fisher and negative-claim tests
+        run: |
+          python -m py_compile analysis/audit_cirsium_two_radiation_head_mosaic_v1.py tests/test_cirsium_two_radiation_head_mosaic_v1.py
+          python -m unittest discover -s tests -p 'test_cirsium_two_radiation_head_mosaic_v1.py' -v
+      - name: Fetch five original files at two immutable Git commits
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work/na_source work/jpn_source
+          for file in traits.csv cirsium.phyluce95p.ultrametric.tre; do
+            gh api "repos/carol-siniscalchi/cirsium/contents/traits/$file?ref=c925d4af86160064448f794a9715f70b917a2786" --jq .content | base64 -d > "work/na_source/$file"
+            test -s "work/na_source/$file"
+          done
+          for file in moreyra2025_japan_38_membership_audit_2026-08-10.csv japan38_nmns_capitulum_trait_seed_v1.csv japan38_nmns_capitulum_trait_seed_extension_v2.csv; do
+            gh api "repos/zuizui0223/EAzami/contents/data/evidence/$file?ref=c9870e91604ed1514344ddc8f765eae5237dbf27" --jq .content | base64 -d > "work/jpn_source/$file"
+            test -s "work/jpn_source/$file"
+          done
+      - name: Recompute actual NA 63 and Japan 24-source 7-complete taxon state mosaics
+        run: |
+          python analysis/audit_cirsium_two_radiation_head_mosaic_v1.py \
+            --na-traits work/na_source/traits.csv \
+            --na-tree work/na_source/cirsium.phyluce95p.ultrametric.tre \
+            --jp-roster work/jpn_source/moreyra2025_japan_38_membership_audit_2026-08-10.csv \
+            --jp-base work/jpn_source/japan38_nmns_capitulum_trait_seed_v1.csv \
+            --jp-extension work/jpn_source/japan38_nmns_capitulum_trait_seed_extension_v2.csv \
+            --out work/two_radiation_original_head_mosaic_v1.json
+      - name: Compare every independently frozen source panel and historical-role sensitivity
+        run: |
+          python - <<'PY'
+          import json, math
+          new=json.load(open("work/two_radiation_original_head_mosaic_v1.json"))
+          frozen=json.load(open("data/evidence/cirsium_two_radiation_head_mosaic_independent_source_v1.json"))
+          for src in frozen["source"]:
+              k=src["name"]
+              s=new["sources"]["north_america" if k.startswith("na_") else "japan"]
+              specific={
+                  "na_traits":"traits_blob",
+                  "na_tree":"tree_blob",
+                  "jp_roster":"japan38_membership_blob",
+                  "jp_base":"nmns_seed_blob",
+                  "jp_extra":"nmns_extension_blob",
+              }[k]
+              assert s[specific]==src["source_sha"],(k,"source_changed")
+              assert s["commit"]==src["git_commit"],(k,"commit_changed")
+          expected={
+              "NA_source_taxa":new["source_cohorts"]["north_america_trait_and_tree_tip_labels"],
+              "NA_tree_tips":new["source_cohorts"]["north_america_trait_and_tree_tip_labels"],
+              "NA_tree_tip_set_matches_traits":True,
+              "JP_roster":new["source_cohorts"]["japan38_published_roster"],
+              "JP_botanical_states":new["source_cohorts"]["japan_nmns_authority_coded"],
+              "JP_orientation_known":new["source_cohorts"]["japan_orientation_unambiguous"],
+              "JP_outer_known":new["source_cohorts"]["japan_outer_direction_unambiguous"],
+              "JP_both_known":new["source_cohorts"]["japan_both_axes_unambiguous"],
+              "JP_secondary_both_known":len(new["source_cohorts"]["japan_secondary_history_in_cohort"]),
+              "JP_dominant_both_known":new["morphological_comparison"]["japan_dominant_radiation_6"]["n_taxa"],
+          }
+          assert frozen["coverage"]==expected
+          for key,actual_key in [
+              ("na63","north_america_63"),
+              ("na62","north_america_second_arizonicum_subspecies_removed_62"),
+              ("jp7","japan_authority_all_7"),
+              ("jp_main6","japan_dominant_radiation_6"),
+              ("jp_secondary1","japan_secondary_history_1")
+          ]:
+              p=frozen["observed_matrices"][key]
+              z=new["morphological_comparison"][actual_key]
+              assert z["four_cell_counts"]==p["four_cell_counts"]
+              assert z["n_taxa"]==p["n"] and z["n_observed_combinations"]==p["n_observed_combinations"]
+              assert z["all_four_observed"]==p["all_four_observed"]
+              assert z["leave_one_taxon_out_preserves_four_n"]==p["leave_one_tip_preserves_all_four_n"]
+              f=p["fisher_two_sided"]
+              if f is None:assert z["descriptive_orientation_outer_fisher_p_two_sided"] is None
+              else:assert math.isclose(z["descriptive_orientation_outer_fisher_p_two_sided"],f,abs_tol=1e-12)
+          actual={
+              v["paper_member_id"]:v for v in new["japan_actual_matched_taxon_codes"]
+          }
+          assert len(actual)==len(frozen["JP_scored"])==7
+          for z in frozen["JP_scored"]:
+              x=actual[z["id"]]
+              for original,comp in [
+                  ("taxon","taxon"),
+                  ("source_orientation","source_orientation"),
+                  ("source_outer","source_outer_phyllary_posture"),
+                  ("orientation_binary","orientation_binary"),
+                  ("outer_binary","outward_phyllary_binary"),
+                  ("role","evolutionary_radiation_role")
+              ]:assert z[original]==x[comp],(z["id"],original)
+          assert new["morphological_comparison"]["north_america_63"]["all_single_taxon_deletions_preserve_four"] is True
+          assert new["morphological_comparison"]["japan_dominant_radiation_6"]["n_observed_combinations"]==3
+          assert new["source_cohorts"]["japan_secondary_history_in_cohort"]==["JPN_06"]
+          assert not any(new["claim_ceiling"].values())
+          print("PASS: two pinned original radiations; 63 NA states, 7 Japan complete with secondary JPN06; morphology mosaics, not genetics, access or fitness")
+          PY
+      - name: Preserve source-verified numeric results only
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-two-radiation-real-head-state-mosaic-v1
+          path: work/two_radiation_original_head_mosaic_v1.json
+          if-no-files-found: error
+          retention-days: 30
