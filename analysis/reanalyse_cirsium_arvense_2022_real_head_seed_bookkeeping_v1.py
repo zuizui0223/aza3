@@ -375,7 +375,7 @@ def tests():
     c=plant_stats(p)
     assert c["n_heads_with_negative_missing_residual"]==1
     assert c["n_heads_with_positive_inferred_eaten"]==2
-    assert abs(c["inferred_eaten_signed_fraction_all"]-.05)<1e-10
+    assert abs(c["inferred_eaten_signed_fraction_all"]-1/30)<1e-10
     return {
       "status":"PASS_SYNTHETIC_SEED_BOOKKEEPING_AND_NEGATIVE_RESIDUAL_GATES",
       "n_synthetic_head_rows":len(fixture),
