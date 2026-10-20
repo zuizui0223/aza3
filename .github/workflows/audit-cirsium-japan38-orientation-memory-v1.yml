@@ -1,0 +1,81 @@
+name: Test real Japan38 capitulum orientation phylogenetic memory v1
+
+on:
+  pull_request:
+    paths:
+      - "analysis/audit_cirsium_japan38_orientation_phylogenetic_memory_v1.py"
+      - "docs/CIRSIUM_JAPAN38_ACTUAL_ORIENTATION_MEMORY_RESULT_20261019.md"
+      - ".github/workflows/audit-cirsium-japan38-orientation-memory-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-comp1061-branch-distance-and-state-permutation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install exact biological phylogram parser
+        run: python -m pip install "biopython==1.86"
+      - name: Fetch frozen EAzami primary tree and botanical-state contracts
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work/eazami
+          for path in \
+            data/evidence/japan38_comp1061_primary_tree_v1.nwk \
+            data/evidence/japan38_comp1061_primary_tree_acceptance_v1.json \
+            data/evidence/japan38_comp1061_concept_map_v1.csv \
+            data/evidence/japan38_nmns_capitulum_trait_seed_v1.csv \
+            data/evidence/japan38_nmns_capitulum_trait_seed_extension_v2.csv; do
+            file="${path##*/}"
+            gh api "repos/zuizui0223/EAzami/contents/${path}?ref=c9870e91604ed1514344ddc8f765eae5237dbf27" --jq .content | base64 -d > "work/eazami/${file}"
+            test -s "work/eazami/${file}"
+          done
+      - name: Calculate REAL Japanese head-orientation memory association and appropriate label null
+        run: |
+          python -m py_compile analysis/audit_cirsium_japan38_orientation_phylogenetic_memory_v1.py
+          python analysis/audit_cirsium_japan38_orientation_phylogenetic_memory_v1.py \
+            --tree work/eazami/japan38_comp1061_primary_tree_v1.nwk \
+            --acceptance work/eazami/japan38_comp1061_primary_tree_acceptance_v1.json \
+            --concept-map work/eazami/japan38_comp1061_concept_map_v1.csv \
+            --nmns-base work/eazami/japan38_nmns_capitulum_trait_seed_v1.csv \
+            --nmns-extension work/eazami/japan38_nmns_capitulum_trait_seed_extension_v2.csv \
+            --permutations 20000 \
+            --seed 20261019 \
+            --out work/cirsium_real_japan38_orientation_memory_v1.json
+      - name: Guard original n, exact tree, and no unsupported evolutionary portability
+        run: |
+          python - <<'PY'
+          import json,math
+          z=json.load(open("work/cirsium_real_japan38_orientation_memory_v1.json"))
+          s=z["empirical_Japan38_statistic"]
+          q=s["quantities"]
+          assert z["original_frozen_tree_sha256"]=="ba592d3a9f52b5481314ab20e3202048505cdf72a3fc15134d5dca261b9d9b7e"
+          assert z["synthetic_tests"]["status"]=="PASS_SYNTHETIC_TREE_RANK_AND_SHARED_TIP_PERMUTATION_FIXTURES"
+          assert s["status"]=="REAL_JAPAN38_ORIENTATION_PHYLOGRAM_DISTANCE_ASSOCIATION_NOT_LINEAGE_TRANSFER"
+          assert len(z["source_scored_taxa"])==19
+          assert q["n_up"]==13 and q["n_down"]==6
+          assert q["n_nonindependent_pairs"]==171
+          assert q["n_discordant_pairs"]==78
+          assert q["n_same_state_pairs"]==93
+          assert math.isfinite(q["spearman_patristic_vs_binary_orientation_difference"])
+          assert 1/20001<=q["fixed_state_prevalence_permutation_two_sided_p"]<=1
+          assert len(s["leave_one_out"])==19
+          assert all(x["remaining_taxa"]==18 for x in s["leave_one_out"])
+          assert z["external_East_Asia_memory_transfer"]=="HOLD_MISSING_MATCHED_BRANCH_LENGTH_TOPOLOGY"
+          assert "JPN_17" not in {x["taxon_id"] for x in z["source_scored_taxa"]}
+          print("PASS: actual phylogenetic distances and strict 19 source labels, no fake independent-pair p")
+          PY
+      - name: Save inspectable REAL taxon memory result JSON
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-japan38-real-orientation-phylogenetic-memory-v1
+          path: work/cirsium_real_japan38_orientation_memory_v1.json
+          if-no-files-found: error
+          retention-days: 30

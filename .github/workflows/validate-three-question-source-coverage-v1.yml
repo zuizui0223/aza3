@@ -1,0 +1,78 @@
+name: Validate Cirsium three-question existing-data source coverage v1
+
+on:
+  pull_request:
+    paths:
+      - "analysis/audit_three_question_public_source_coverage_v1.py"
+      - "data/anto_source_handoff/public_sra/prjna1311153_run_manifest_20261017.csv"
+      - "data/anto_source_handoff/public_sra/takaoense_aza3_morph_crosswalk_20261017.csv"
+      - "data/anto_source_handoff/molecular/ryukyu_gene_screen_register_v5.csv"
+      - "data/planning/aza3_nature_genomic_sampling_panel_v1.csv"
+      - "data/contracts/aza3_anto_empirical_lego_bridge_v1.json"
+      - "data/contracts/aza3_capitulum_higher_order_lego_v2.json"
+      - "docs/THREE_QUESTIONS_CIRSIUM_MEMORY_PAYOFF_REACHABILITY_MASTER_20261019.md"
+      - ".github/workflows/validate-three-question-source-coverage-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  public-leaf-to-floral-function-no-false-join:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch immutable native EAzami head and continuous observation source ledgers
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work
+          gh api 'repos/zuizui0223/EAzami/contents/sampling/aim2_capitulum_field_ledger_v1.csv?ref=c9870e91604ed1514344ddc8f765eae5237dbf27' --jq .content | base64 -d > work/EAzami_original_heads.csv
+          gh api 'repos/zuizui0223/EAzami/contents/sampling/aim2_capitulum_observation_bout_ledger_v1.csv?ref=c9870e91604ed1514344ddc8f765eae5237dbf27' --jq .content | base64 -d > work/EAzami_original_bouts.csv
+          test -s work/EAzami_original_heads.csv
+          test -s work/EAzami_original_bouts.csv
+      - name: Source-key, tissue, taxon and phase-A contract audit
+        run: |
+          python -m py_compile analysis/audit_three_question_public_source_coverage_v1.py
+          python analysis/audit_three_question_public_source_coverage_v1.py \
+            --original-eazami-heads work/EAzami_original_heads.csv \
+            --original-eazami-bouts work/EAzami_original_bouts.csv \
+            --out work/three_question_source_readiness_v1.json
+      - name: Keep real source counts separate from biological flower assays
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open("work/three_question_source_readiness_v1.json"))
+          x=d["actual_evidence"]
+          t=d["negative_controls"]
+          assert t["status"]=="PASS_FROZEN_CIRSIUM_LEAF_SOURCE_AND_NO_FALSE_REEXPRESSION"
+          assert t["synthetic_corruptions_rejected"]==7
+          assert x["sources"]["ENA_RNA_run_metadata_rows"]==25
+          assert x["sources"]["ENA_distinct_biosamples"]==25
+          assert x["sources"]["ENA_taxon_title_count"]==8
+          assert x["sources"]["ryukyu_leaf_runs_by_species"]=={
+            "Cirsium brevicaule":3,"Cirsium irumtiense":3}
+          assert x["sources"]["takaoense_leaf_RNA_w"]==3
+          assert x["sources"]["takaoense_leaf_RNA_bp"]==3
+          assert x["sources"]["ryukyu_3_locus_unretrieved_orthology_screen_cells"]==18
+          assert x["sources"]["validated_functional_Ryukyu_ANS_DFR_GMYC1_screen_cells"]==0
+          assert x["sources"]["phase_A_planned_individuals_not_collected"]==298
+          assert x["sources"]["planned_C_sieboldii_joint_module_individuals_not_collected"]==40
+          assert x["field_source"]["status"]=="PINNED_EAZAMI_ORIGINAL_FIELD_INTAKE_EMPTY"
+          assert x["field_source"]["measured_heads"]==0
+          assert x["field_source"]["observed_bouts"]==0
+          assert x["claim_gates"]["Q3_after_phenotype_loss"]["verified_ancestral_loss_then_same_lineage_reactivation"] is False
+          assert x["claim_gates"]["Q3_after_phenotype_loss"]["heritable_multigeneration_return_assayed"] is False
+          print("PASS: 25 real leaf accessions, no claimed floral re-expression or genotype-fitness links")
+          PY
+      - name: Save nonsensitive, aggregated existing-source evidence receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: aza3-three-question-source-readiness-v1
+          path: work/three_question_source_readiness_v1.json
+          if-no-files-found: error
+          retention-days: 30

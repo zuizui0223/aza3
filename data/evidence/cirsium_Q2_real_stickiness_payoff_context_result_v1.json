@@ -1,0 +1,87 @@
+{
+  "version": "cirsium_Q2_real_sticky_payoff_context_source_checked_v1",
+  "date": "2026-10-19",
+  "status": "REAL_PUBLISHED_CIRSIUM_STICKY_BRCT_DEFENCE_BENEFIT_DETECTION_NOT_INVARIANT",
+  "source_repository": "zuizui0223/EAzami",
+  "source_commit": "c9870e91604ed1514344ddc8f765eae5237dbf27",
+  "source_seed_n_rows": 15,
+  "overlooked_positive_study_doi": "10.2307/2425228",
+  "source_test_run": "https://github.com/zuizui0223/aza3/actions/runs/39259421923",
+  "source_comparison": {
+    "independent_field_manipulation_papers": 2,
+    "manipulation_study_by_species_rows": 3,
+    "behavioral_observation_papers": 1,
+    "actual_new_plants_sampled_or_seeds_reanalysed": 0,
+    "C_discolor": {
+      "1980": {
+        "paper": "Willson Anderson Thomas 1983",
+        "doi": "10.2307/2425228",
+        "result": "sticky bract secretion occluded -> more insect seed predation (significant)",
+        "source_access": "source abstract reported in secondary scientific archive; no full numeric tables",
+        "inferential_limit": "experiment in particular site/year; no causal partner identity"
+      },
+      "1982_to_1987": {
+        "paper": "Thomas 2003",
+        "doi": "10.22543/0090-0222.2085",
+        "result": "neutralizing exudate did not produce detectably more seed predation or less seed production",
+        "source_access": "original publisher abstract",
+        "inferential_limit": "non-detection, not negative treatment effect or quantitative heterogeneity test"
+      }
+    },
+    "C_flodmani": {
+      "1980_and_1982": {
+        "paper": "Willson Anderson Thomas 1983",
+        "doi": "10.2307/2425228",
+        "result": "no treatment effect detected in Minnesota",
+        "source_access": "published abstract represented in public source summaries",
+        "inferential_limit": "not independent study from C. discolor 1980"
+      }
+    }
+  },
+  "observed_C_discolor_arthropod_portal_interactions": {
+    "pollinators": "did not contact sticky traps",
+    "some_seed_predators": "circumvented sticky traps",
+    "ants_aphids": "were deterred",
+    "predatory_arthropods": "some gleaned insects at traps",
+    "paper": "Thomas 2007",
+    "doi": "10.22543/0090-0222.2188",
+    "causal_effect_on_plant_seed_fitness": "NOT_IDENTIFIED_FROM_BEHAVIORAL_STUDY"
+  },
+  "Japan38_near_sister_concept_comparison": {
+    "source": "EAzami frozen botanical NMNS authority, original Comp1061 canonical ML sister bridge",
+    "JPN_06": {
+      "species": "Cirsium dipsacolepis",
+      "head_orientation": "upward_or_erect",
+      "sticky": "nonsticky_or_nearly_nonsticky",
+      "source": "detail_page"
+    },
+    "JPN_15": {
+      "species": "Cirsium lineare",
+      "head_orientation": "upward_or_erect",
+      "sticky": "sticky",
+      "source": "index_catchphrase"
+    },
+    "source_ancestry_sister_support": "100/100_on_canonical_ML_tree",
+    "observation": "Two nuclear sister concepts share upward orientation but differ in botanically reported sticky class.",
+    "field_physical_secretion_confirmed": false,
+    "same_species_partner_manipulation_complete": false,
+    "caution": "Source JPN15 sticky descriptor comes from catalogue index, not same-stage quantified field phenotypes; species differ in other traits."
+  },
+  "original_field_fitness_result_fitted": false,
+  "mechanism_hypotheses": [
+    "benefit_detected_if_an_actual_seed_feeder_is_blocked_by_real_external_exudate",
+    "no_benefit_detected_if_seed_feeders_bypass_the_surface",
+    "positive_or_negative_net_seed_payoff_depends_on_pollination_stigma_deposition_and_actual_parasitoid_effect",
+    "year_to_year_reported_effect_detection_difference_is_not_necessarily_caused_by_partner_community_shift"
+  ],
+  "dropped_claims": [
+    "positive vs null proves sign reversal",
+    "1983 and 2003 constitute one randomized partner factorial",
+    "unobserved 1983 raw effect size could be 0 or a specific fraction",
+    "sticky means true spines",
+    "JPN06/JPN15 sister morphological contrast establishes causal stickiness adaptation",
+    "one genus comparison proves trans-lineage evolution of shared resources"
+  ],
+  "Q2_decision": "OBSERVED_STRUCTURAL_ACCESS_GUILD_DIFFERENTIATION_PLUS_TEMPORALLY_HETEROGENEOUS_DEFENSE_BENEFIT; NO_CAUSAL_PARTNER_FITNESS_INTERACTION_YET",
+  "Q1_and_Q3": "No improvement in phylogenetic memory transportability or molecular re-expression evidence inferred from these behavioral and plant-defense publications."
+}

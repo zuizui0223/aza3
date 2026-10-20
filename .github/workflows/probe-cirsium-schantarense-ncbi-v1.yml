@@ -1,0 +1,48 @@
+name: Probe NCBI accession provenance for Cirsium schantarense v1
+
+on:
+  pull_request:
+    paths:
+      - "analysis/probe_cirsium_schantarense_ncbi_nuccore_v1.py"
+      - ".github/workflows/probe-cirsium-schantarense-ncbi-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  discover-public-source-without-promoting-candidates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify exact query script and offline HOLD first
+        run: |
+          python -m py_compile analysis/probe_cirsium_schantarense_ncbi_nuccore_v1.py
+          python analysis/probe_cirsium_schantarense_ncbi_nuccore_v1.py --out work/ncbi_offline_hold.json
+      - name: Run at most three source-label searches on public NCBI Nucleotide
+        run: |
+          python analysis/probe_cirsium_schantarense_ncbi_nuccore_v1.py --live \
+            --out work/ncbi_public_candidate_accessions_v1.json
+      - name: Check that no candidate was mislabelled a proven source
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open("work/ncbi_public_candidate_accessions_v1.json"))
+          assert r["direct_verified_Bae_2015_schantarense_ITS_accessions"]==[]
+          assert r["phylogenetic_memory_estimate"] is None
+          assert r["known_wrong_candidate_excluded"]=="MN871982 is original Cirsium shansiense chloroplast genome"
+          assert all(x["is_proven_Bae_2015_material"] is False
+                     for x in r["indexed_NCBI_candidates"])
+          print("PASS: live NCBI public source candidates cannot be equated with Bae 2015 voucher")
+          PY
+      - name: Save NCBI public index receipt, no fasta
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-schantarense-ncbi-index-20261019
+          path: work/ncbi_public_candidate_accessions_v1.json
+          if-no-files-found: error
+          retention-days: 30

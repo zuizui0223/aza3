@@ -1,0 +1,65 @@
+{
+  "version": "cirsium_purpuratum_source_reported_context_coefficients_result_v1",
+  "as_of": "2026-10-19",
+  "source": "Ohashi and Yahara 2000 Canadian Journal of Botany DOI 10.1139/b99-182 Fig 1/Table 1, author-published coefficients; 1998 DOI 10.2307/2446309 separate Latin-square pollinator study",
+  "source_type": "real published population summaries, numerical recalculation from published regression coefficients only",
+  "actual_plant_level_records_reanalyzed": 0,
+  "actual_new_seed_head_observations": 0,
+  "real_published_population_models": [
+    {
+      "name": "Nikko",
+      "year": 1993,
+      "n_plants": 13,
+      "a_per_floret": 0.000063,
+      "r2": 0.44,
+      "fit_p": 0.013,
+      "damage": "direct per-mother measured seed-damage fraction",
+      "larinus_share": 0.44,
+      "delia_share": 0.56,
+      "fraction_heads_infested_percent": 90.8,
+      "mean_seed_predator_larvae_per_head": 5.4,
+      "predicted_P_damage_at_F_451": 0.028013146676001854,
+      "predicted_P_damage_at_F_1000": 0.06105652631086678,
+      "theoretical_F_max_from_display_coefficient": 15873.015873015873,
+      "published_author_approx_F_max": 15783,
+      "observed_max_heads_per_plant": 33
+    },
+    {
+      "name": "Kawamata",
+      "year": 1994,
+      "n_plants": 27,
+      "a_per_floret": 0.0000075,
+      "r2": 0.26,
+      "fit_p": 0.007,
+      "damage": "reconstructed per-mother seed-damage fraction from infested heads (<=1 larva/head) and Nikko 52 seeds per larva, 451 florets per head",
+      "larinus_share": 0.84,
+      "delia_share": 0.16,
+      "fraction_heads_infested_percent": 31.3,
+      "mean_seed_predator_larvae_per_head": 0.26,
+      "predicted_P_damage_at_F_451": 0.0033767857914607236,
+      "predicted_P_damage_at_F_1000": 0.007471945180861583,
+      "theoretical_F_max_from_display_coefficient": 133333.33333333334,
+      "published_author_approx_F_max": 133280,
+      "observed_max_heads_per_plant": 65
+    }
+  ],
+  "numerically_reexpressed_not_new_fit": {
+    "published_a_Nikko_over_Kawamata": 8.4,
+    "reported_head_infestation_difference_percentage_points": 59.5,
+    "larvae_per_head_Nikko_over_Kawamata": 20.76923076923077,
+    "difference_Larinus_percentage_points_Kawamata_minus_Nikko": 40,
+    "F_opt_ratio_Kawamata_over_Nikko_using_rounded_a": 8.4
+  },
+  "author_context": {
+    "pollinator_visits_per_head_vs_display": "1998 distinct Latin-square experiment found approximately stable per-head visit rate within observation day",
+    "observed_floral_display_vs_loss": "2000 found seed predation rise with flowers in both sites; not a single randomized test of partner species composition",
+    "genuine_spine_orientation_fitness_effect": "NOT_ESTIMATED",
+    "mechanistic_partner_composition_effect": "NOT_IDENTIFIABLE_SITE_YEAR_AND_MEASUREMENT_CONFOUNDED",
+    "model_optimum_is_an_ecological_constant": "NO",
+    "conceptual_use": "positive control for display-dependent enemy attraction and source-measurement heterogeneity, not a causal role for bract teeth or head inclination"
+  },
+  "script": "analysis/audit_cirsium_purpuratum_display_predator_context_v1.py",
+  "workflow": "audit-cirsium-purpuratum-display-context-v1.yml",
+  "first_CI_run": "https://github.com/zuizui0223/aza3/actions/runs/39267468226",
+  "no_matched_pollinator_and_seed_feeder_individual_intervention": true
+}

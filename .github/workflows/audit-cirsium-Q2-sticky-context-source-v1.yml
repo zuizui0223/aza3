@@ -1,0 +1,94 @@
+name: Audit real Cirsium stickiness payoff and partner-access evidence v1
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "analysis/audit_cirsium_Q2_stickiness_partner_contact_real_sources_v1.py"
+      - "data/evidence/cirsium_stickiness_real_primary_context_evidence_v1.csv"
+      - "data/evidence/cirsium_Q2_real_stickiness_payoff_context_result_v1.json"
+      - "docs/CIRSIUM_Q2_STICKINESS_BENEFIT_CONTEXT_1983_VS_2003_AND_PARTNER_ACCESS_V1.md"
+      - ".github/workflows/audit-cirsium-Q2-sticky-context-source-v1.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  two-manipulative-papers-one-behavioral-study:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch original frozen 15-case EAzami interaction literature seed
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work
+          gh api 'repos/zuizui0223/EAzami/contents/data/evidence/cirsium_interaction_evidence_seed_v1.csv?ref=c9870e91604ed1514344ddc8f765eae5237dbf27' --jq .content | base64 -d > work/original_EAzami_Cirsium_15studies.csv
+          gh api 'repos/zuizui0223/EAzami/contents/data/evidence/japan38_nmns_capitulum_trait_seed_v1.csv?ref=c9870e91604ed1514344ddc8f765eae5237dbf27' --jq .content | base64 -d > work/original_EAzami_Japan38_head_traits.csv
+          gh api 'repos/zuizui0223/EAzami/contents/data/evidence/japan38_module_function_bridge_summary_v2.json?ref=c9870e91604ed1514344ddc8f765eae5237dbf27' --jq .content | base64 -d > work/original_EAzami_Japan38_function_bridge.json
+          test -s work/original_EAzami_Cirsium_15studies.csv
+          test -s work/original_EAzami_Japan38_head_traits.csv
+          test -s work/original_EAzami_Japan38_function_bridge.json
+      - name: Run real published source context and exact source-format negative controls
+        run: |
+          python -m py_compile analysis/audit_cirsium_Q2_stickiness_partner_contact_real_sources_v1.py
+          python analysis/audit_cirsium_Q2_stickiness_partner_contact_real_sources_v1.py \
+            --original-eazami-seed work/original_EAzami_Cirsium_15studies.csv \
+            --original-japan-head-states work/original_EAzami_Japan38_head_traits.csv \
+            --original-module-function-bridge work/original_EAzami_Japan38_function_bridge.json \
+            --out work/Cirsium_sticky_payoff_context_real_published_sources_v1.json
+      - name: Assert 1983 positive was missing and 2003/2007 do not prove partner fitness
+        run: |
+          python - <<'PY'
+          import json
+          p=json.load(open("work/Cirsium_sticky_payoff_context_real_published_sources_v1.json"))
+          locked=json.load(open("data/evidence/cirsium_Q2_real_stickiness_payoff_context_result_v1.json"))
+          assert locked["source_commit"]==p["EAzami_source_commit"]
+          assert locked["source_seed_n_rows"]==p["actual_published_evidence_audit"]["original_EAzami_study_seed_rows"]
+          assert locked["source_comparison"]["independent_field_manipulation_papers"]==p["actual_published_evidence_audit"]["original_manipulative_1983_and_2003_publications"]
+          assert locked["source_comparison"]["manipulation_study_by_species_rows"]==p["actual_published_evidence_audit"]["actual_original_manipulative_species_by_study_cases"]
+          assert locked["original_field_fitness_result_fitted"] is False
+          assert locked["Japan38_near_sister_concept_comparison"]["source_ancestry_sister_support"]==p["actual_source_Cirsium_JPN06_JPN15_sister_trait_contrast"]["candidate_phylogeny"]
+          assert locked["Q2_decision"].endswith("NO_CAUSAL_PARTNER_FITNESS_INTERACTION_YET")
+          x=p["actual_published_evidence_audit"]
+          y=p["synthetic_corruption_tests"]
+          assert x["status"]=="REAL_CIRSIUM_SAME_SPECIES_STICKINESS_BENEFIT_DETECTION_HETEROGENEITY_FOUND"
+          assert x["original_EAzami_study_seed_rows"]==15
+          assert x["original_EAzami_direct_stickiness_rows"]==1
+          assert x["previously_missing_1983_study_identified"] is True
+          assert x["original_manipulative_1983_and_2003_publications"]==2
+          assert x["actual_original_manipulative_species_by_study_cases"]==3
+          a=x["two_year_period_discordance_on_same_C_discolor"]
+          assert sorted(z["reported_direction"] for z in a)==[
+             "no_effect_detected","significant_increase_after_occlusion"]
+          assert x["has_statistically_demonstrated_sign_reversal"] is False
+          assert x["has_shown_partner_identity_causes_difference"] is False
+          assert x["original_manipulative_mean_effect_sizes_extracted"]==0
+          assert len(x["observational_2007_real_insect_guild_surface_interactions"])==4
+          assert y["status"]=="PASS_SYNTHETIC_SOURCE_CONTEXT_AND_NO_FALSE_GUILD_SELECTION_GATES"
+          assert y["source_corruptions_rejected"]==6
+          pair=p["actual_source_Cirsium_JPN06_JPN15_sister_trait_contrast"]
+          assert pair["status"]=="REAL_SISTER_CONCEPT_PAIR_HEAD_TRAITS_DECOUPLED_NOT_CAUSAL"
+          assert pair["JPN06"]["taxon"]=="Cirsium dipsacolepis"
+          assert pair["JPN06"]["exudate_code"]=="nonsticky_or_nearly_nonsticky"
+          assert pair["JPN15"]["taxon"]=="Cirsium lineare"
+          assert pair["JPN15"]["exudate_code"]=="sticky"
+          assert pair["JPN15"]["authority_source"]=="index_catchphrase"
+          assert pair["shared_orientation_but_different_stickiness"]
+          assert pair["candidate_phylogeny"]=="100/100_on_canonical_ML_tree"
+          assert pair["no_partner_identified_or_head_reproductive_trait_causal_effect_estimated"]
+          assert pair["proposed_manipulation_status"]=="NOT_AUTHORIZED"
+          assert p["no_new_Cirsium_experiment_performed"] is True
+          print("PASS: real 1983 positive + 2003 nondetection + guild-specific 2007 observations, no invented causal interaction")
+          PY
+      - name: Save reviewable original-literature result
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-real-sticky-defense-context-and-biotic-access-v1
+          path: work/Cirsium_sticky_payoff_context_real_published_sources_v1.json
+          if-no-files-found: error
+          retention-days: 30

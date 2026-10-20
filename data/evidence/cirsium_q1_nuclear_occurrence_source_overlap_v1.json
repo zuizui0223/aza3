@@ -1,0 +1,91 @@
+{
+  "version": "cirsium_q1_nuclear_x_botanical_x_gbif_source_overlap_v1",
+  "as_of": "2026-10-19",
+  "source_repository": "zuizui0223/EAzami",
+  "source_commit": "c9870e91604ed1514344ddc8f765eae5237dbf27",
+  "original_data_git_blobs": {
+    "data/evidence/moreyra2025_cirsium_reconciliation_v1/manifest.json": "59004f575314128601eac4e0a87dc0ce83f1ec06",
+    "data/evidence/heldout_east_asia_occurrence_support_v1.csv": "1d278824704436ea3d3e52e58f98f8582bbf3fb4",
+    "data/evidence/heldout_east_asia_trait_state_audit_v1.csv": "95773bbeeed894b3b20565cfccb55dbd0edf5d57"
+  },
+  "source_nuclear_linked_sample_rows": 258,
+  "candidate_external_orientation_state_taxa": 11,
+  "accepted_nuclear_sample_matching_species": 2,
+  "unsafe_name_only_nuclear_matching_species": 1,
+  "no_exact_matched_nuclear_record_species": 8,
+  "species_with_reliable_nuclear_sample_and_orientation_label": [
+    {
+      "name": "Cirsium argyracanthum",
+      "orientation": "upward_or_erect",
+      "biosample": "SAMN44017818",
+      "voucher": "PE01890882",
+      "region": "China",
+      "strict_occurrence_quality_gate": false
+    },
+    {
+      "name": "Cirsium vlassovianum",
+      "orientation": "upward_or_erect",
+      "biosample": "SAMN34240350",
+      "voucher": "MW0194150",
+      "region": "Mongolia",
+      "strict_occurrence_quality_gate": true
+    }
+  ],
+  "unsafe_species": {
+    "name": "Cirsium lidjiangense",
+    "tree_code_match_but_wrong_sample": true,
+    "biosample": "SAMN34240312",
+    "voucher_region": "Turkey",
+    "sra_name_conflict": true,
+    "do_not_assume_nuclear_lineage": true
+  },
+  "strict_quality_external_orientation_occurrence_taxa": [
+    {
+      "name": "Cirsium schantarense",
+      "orientation": "downward_or_nodding",
+      "n_coordinate_thinned": 8,
+      "nuclear_S1_safe_sample": false
+    },
+    {
+      "name": "Cirsium vlassovianum",
+      "orientation": "upward_or_erect",
+      "n_coordinate_thinned": 8,
+      "nuclear_S1_safe_sample": true
+    }
+  ],
+  "n_species_with_both_safe_nuclear_sample_and_primary_occurrence_support": 1,
+  "n_downward_candidate_species_with_both": 0,
+  "quantities_not_estimated": [
+    "phylogenetic_memory_rho",
+    "lineage_portability_gain",
+    "heritability",
+    "ancestral_trait_reuse",
+    "physical_contact_effect",
+    "fitness",
+    "adaptive_evolution"
+  ],
+  "inference_status": "DESCRIPTIVE_REAL_SOURCE_INTERSECTION_ONLY_NO_BRANCH_LENGTH_MEMORY_TEST",
+  "priority_gap": "The qualified downward candidate C. schantarense has published older nuclear ITS data (Bae 2015), but lacks a voucher-validated specimen within the same 2025 1061-locus sample table and shared independent phylogenetic branch-length ensemble. Verify published ITS taxon/voucher/accession and prioritize comparable multi-locus placement.",
+  "next_action_on_existing_data": "Check exact synonym-voucher-taxonomy nuclear source coverage and accession branch lengths for downward taxa BEFORE authorizing any additional molecular collection",
+  "notes": [
+    "Botanical species head orientation is not directly measured on the nuclear specimen.",
+    "GBIF qualified occurrence point number is not an independent phylogenetic transition count.",
+    "Moreyra 2025 S1 nuclear sample registration is not a recovered Newick/chronogram.",
+    "Tree-name-only C. lidjiangense match from Turkey is rejected.",
+    "All field collection and genomic Phase-A targets remain prospective and require their own permits."
+  ],
+  "independent_lower_resolution_nuclear_literature": {
+    "paper": "Bae, Young-Min (2015), Genetic Relationship of Some Cirsium Plants of Korea",
+    "doi": "10.5352/JLS.2015.25.2.243",
+    "Cirsium_taxon_as_paper": "Cirsium schantarense / Cirsium shantarense (author's spelling varies)",
+    "physical_head_orientation": "downward_or_nodding",
+    "molecular_markers": "Linked nuclear rDNA 18S–ITS1–5.8S–ITS2–partial28S; one shantarense specimen; NJ analysis",
+    "original_observation": "Downward-headed shantarense grouped close to upward-headed Cirsium japonicum in the original ITS neighbor-joining tree",
+    "is_moreyra_2025_1061_locus_nuclear_sample": false,
+    "source_publication_has_molecular_observation": true,
+    "verified_GenBank_accession_or_sequence_recovered_here": false,
+    "shared_comparable_branch_length_ensemble_with_2025_Moreyra": false,
+    "trait_evolution_direction_or_genetic_resource_regain_inferred": false,
+    "action_priority": "Recover original 2015 voucher, accession and linked ribosomal sequence, then test taxon identity and whether common-locus Moreyra/Chang nuclear orthogroups can be recovered. Do not combine ITS branch lengths with 1061-locus branch lengths."
+  }
+}

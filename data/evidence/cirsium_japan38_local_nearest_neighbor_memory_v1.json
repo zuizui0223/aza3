@@ -1,0 +1,67 @@
+{
+  "version": "cirsium_japan38_local_nearest_neighbor_memory_source_checked_v1",
+  "as_of": "2026-10-19",
+  "source": {
+    "repository": "zuizui0223/EAzami",
+    "commit": "c9870e91604ed1514344ddc8f765eae5237dbf27",
+    "canonical_nuclear_tree_sha256": "ba592d3a9f52b5481314ab20e3202048505cdf72a3fc15134d5dca261b9d9b7e",
+    "branch_length_unit": "substitutions/site, not dated",
+    "state_sources": "Japan38 NMNS base + JPN24/JPN34 authority extension and canonical biological tip IDs"
+  },
+  "method": {
+    "source_outcome": "source authority categorical trait label of heldout taxon",
+    "comparison": "closest different taxon by nuclear patristic distance, leave-one-tip-out",
+    "baseline": "global prevalence of categories in other source-coded taxa only, leave-one-tip-out",
+    "loss": "half-multiclass-Brier (binary Brier for 2-state traits)",
+    "exact_null": "enumerate all fixed-frequency reassigned labels across 19, 13 and 6 original Japanese tips",
+    "gain_definition": "LOO-global-Brier minus nearest-relative-Brier; positive indicates phylogenetic nearest neighbor forecast improvement",
+    "interpretation_ceiling": "SOURCE_SELECTED_WITHIN_JAPAN_TIP_LEVEL_PREDICTION_NOT_CLADE_LEVEL_TRANSFER"
+  },
+  "results": {
+    "orientation": {
+      "n_taxa": 19,
+      "n_fixed_prevalence_assignments": 27132,
+      "nearest_Brier": 0.3157894736842105,
+      "leave_one_tip_out_marginal_baseline_Brier": 0.24074074074074076,
+      "Brier_gain": -0.07504873294346975,
+      "one_sided_positive_gain_exact_label_p": 0.18671679197994986,
+      "descriptive_result": "nearest nuclear relative did not improve proper out-of-tip categorical score"
+    },
+    "stickiness": {
+      "n_taxa": 13,
+      "n_fixed_prevalence_assignments": 1716,
+      "nearest_Brier": 0.6153846153846154,
+      "leave_one_tip_out_marginal_baseline_Brier": 0.2916666666666667,
+      "Brier_gain": -0.32371794871794873,
+      "one_sided_positive_gain_exact_label_p": 0.7750582750582751,
+      "descriptive_result": "nearest nuclear relative predicted stickiness category worse than prevalence benchmark"
+    },
+    "phyllary_posture_STRICT_single_state_only": {
+      "n_taxa": 6,
+      "n_fixed_prevalence_assignments": 30,
+      "nearest_Brier": 0.3333333333333333,
+      "leave_one_tip_out_marginal_baseline_Brier": 0.36000000000000004,
+      "Brier_gain": 0.026666666666666727,
+      "one_sided_positive_gain_exact_label_p": 0.4,
+      "descriptive_result": "tiny exploratory sample, no convincing phylogenetic predictive improvement"
+    }
+  },
+  "authenticity": {
+    "actual_botanical_taxon_labels_analysed": true,
+    "actual_nuclear_tree_branch_lengths_used": true,
+    "user_collected_new_individuals": 0,
+    "new_Q2_partner_fitness_effects": 0,
+    "new_Q3_floral_gene_resource_retention_assays": 0,
+    "cross_lineage_transfer_experiment_performed": false,
+    "score_is_a_pre_registered_cross_species_phylogenetic_portability_test": false,
+    "no_evidence_of_conserved_developmental_toolkit_derived": true
+  },
+  "validation": {
+    "computational_script": "analysis/audit_cirsium_japan38_local_nearest_neighbor_memory_v1.py",
+    "continuous_integration": ".github/workflows/audit-cirsium-japan38-local-memory-v1.yml",
+    "first_real_execution_run_id": 39251944251,
+    "first_real_execution_status": "COMPUTE_PASS_INDEPENDENT_SHA_TYPO_FAIL_FIXED_IN_SUBSEQUENT_COMMIT",
+    "subsequent_run_status": "VERIFY_FROM_ACTIONS",
+    "numerical_values_origin": "first actual CI job stdout run 39251944251; NOT invented or simulated"
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "version": "cirsium_q2_partner_dependent_head_payoff_source_receipt_v1",
+  "as_of": "2026-10-19",
+  "source_repository": "zuizui0223/EAzami",
+  "source_commit": "c9870e91604ed1514344ddc8f765eae5237dbf27",
+  "source_input_files": [
+    "data/evidence/cirsium_floral_herbivory_lnrr_effects_v2.csv",
+    "data/evidence/cirsium_floral_herbivory_lnrr_meta_v2.json",
+    "data/evidence/cirsium_pollinator_assurance_meta_v1.csv",
+    "data/evidence/cirsium_pollinator_assurance_meta_v1.json",
+    "data/evidence/cirsium_interaction_evidence_seed_v1.csv",
+    "data/evidence/cirsium_interaction_evidence_seed_extension_v1.csv"
+  ],
+  "real_original_evidence": {
+    "herbivore_seed_fitness": {
+      "comparisons": 9,
+      "independent_articles": 4,
+      "taxa": [
+        "Cirsium canescens",
+        "Cirsium occidentale var. occidentale"
+      ],
+      "previous_reanalysis_RR": 2.673636515996,
+      "previous_reanalysis_95CI": [
+        2.388333567719,
+        2.993020872917
+      ],
+      "not_head_module_specific": true
+    },
+    "pollination_seed_fitness": {
+      "independent_heterogeneous_studies": 6,
+      "fully_recovered_three_arm_numeric": 1,
+      "numeric_taxon": "Cirsium erisithales",
+      "source_doi": "10.1093/aobpla/ply068",
+      "supplement_mean": 41.75,
+      "open_mean": 47.88,
+      "bagged_mean": 12.2,
+      "open_divided_by_bagged": 3.9245901639344267,
+      "supplement_divided_by_open": 0.8719715956558062,
+      "pollinator_dependence_not_equivalent_to_open_pollen_limitation": true
+    },
+    "head_stickiness": {
+      "original_interaction_map_rows": 15,
+      "appended_new_evidence_rows": 3,
+      "source_experiment_article_count": 2,
+      "source_species_treatment_contexts": 3,
+      "contexts": [
+        {
+          "study": "WillsonAndersonThomas1983",
+          "doi": "10.2307/2425228",
+          "taxon": "Cirsium discolor",
+          "site": "Illinois",
+          "original_observation_year": 1980,
+          "exudate_occlusion_effect": "seed_predation_significantly_higher_when_sticky_occluded",
+          "source_evidence_id": "INT016",
+          "quantitative_effect_size": "not_recovered"
+        },
+        {
+          "study": "WillsonAndersonThomas1983",
+          "doi": "10.2307/2425228",
+          "taxon": "Cirsium flodmani",
+          "site": "Minnesota",
+          "original_observation_year": "1980,1982",
+          "exudate_occlusion_effect": "no_detectable_treatment_effect",
+          "source_evidence_id": "INT017",
+          "quantitative_effect_size": "not_recovered"
+        },
+        {
+          "study": "Thomas2003",
+          "doi": "10.22543/0090-0222.2085",
+          "taxon": "Cirsium discolor",
+          "site": "Illinois",
+          "original_observation_year": "1982–1987",
+          "exudate_occlusion_effect": "no_detectable_seed_predator_or_seed_output_defense",
+          "source_evidence_id": "INT006",
+          "quantitative_effect_size": "not_recovered"
+        }
+      ],
+      "guild_observation": {
+        "study": "Thomas2007",
+        "doi": "10.22543/0090-0222.2188",
+        "taxon": "Cirsium discolor",
+        "evidence_id": "INT018",
+        "positive_qualitative_observation": [
+          "pollinators_do_not_touch_sticky_traps",
+          "some_seed_predators_bypass_sticky_traps",
+          "ants_and_aphids_deterred",
+          "some_predatory_arthropods_glean_trapped_organisms"
+        ],
+        "fitness_effect_of_each_partner_or_guild_identified": false
+      }
+    },
+    "Japan_same_species_cirsium_both_agent_references": {
+      "taxon": "Cirsium purpuratum",
+      "pollinator_behaviour_sources": [
+        "10.1046/j.1365-2435.2002.00644.x",
+        "10.1111/j.1365-2435.2006.01211.x"
+      ],
+      "seed_predation_flower_production_source": "10.1139/b99-182",
+      "same_physical_trait_axis_manipulated_in_same_heads": false
+    }
+  },
+  "important_empirical_non_overlaps": {
+    "exact_numeric_seed_herbivory_taxa_vs_numeric_pollination_3arm_taxa_intersection": 0,
+    "same_head_same_plant_guild_crossed_trait_manipulation_count": 0,
+    "conclusion_ceiling": "STICKINESS_DEFENSE_BENEFIT_DIFFERS_ACROSS_SOURCE_CONTEXTS_AND_INSECTS_HAVE_DIFFERENT_CONTACT_ROUTES",
+    "not_identified": "SAME_TRAIT_PARTNER_ID_CAUSES_DIFFERENCE_IN_FITNESS_SLOPE_OR_SIGN",
+    "not_allowed": [
+      "Subtract 3.9246 pollinator RR from 2.6736 antagonist RR",
+      "Attribute sticky null effects to insect guild rather than species/year/site/protocol",
+      "Treat observational sticky avoidance as plant seed-fitness proof",
+      "Infer orientation/spine adaptive return from stickiness results"
+    ]
+  },
+  "next_empirical_falsifier": {
+    "hypothesis": "Within one Cirsium population, matched life stage and head rank, measured real orientation/involucral anatomy predict different effective pollination versus seed-feeder entry, with independent genuine seed output outcomes.",
+    "primary_denominator": "all pre-enrolled biological heads under valid continuous exposure and source-identified insect guilds",
+    "key_alternatives": [
+      "head size",
+      "flower scent",
+      "host/parasitoid activity time",
+      "species identity",
+      "physical trap bypass",
+      "predispersal feeding stage",
+      "pollen limitation versus pollen dependence"
+    ],
+    "authorization": "No new field or genomic sampling permission created by this source receipt"
+  },
+  "analysis_script": "analysis/audit_cirsium_q2_partner_payoff_real_source_bridge_v1.py",
+  "workflow": "audit-cirsium-q2-partner-payoff-source-v1.yml",
+  "source_reanalysis_performed": true,
+  "raw_individual_level_files_reanalyzed": false,
+  "source_bounded_not_exhaustive": true,
+  "initial_successful_CI_run_id": 39262085053,
+  "separate_unmerged_empirical_video_branch": {
+    "pr_url": "https://github.com/zuizui0223/aza3/pull/44",
+    "status": "unmerged",
+    "base": "research/globi-cirsium-interaction-audit-v1",
+    "not_equivalent_to_files_present_in_pr50": true
+  }
+}

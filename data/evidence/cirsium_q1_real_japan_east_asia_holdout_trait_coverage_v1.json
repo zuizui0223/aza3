@@ -1,0 +1,80 @@
+{
+  "version": "cirsium_q1_real_japan_east_asia_holdout_trait_coverage_v1",
+  "as_of": "2026-10-19",
+  "type": "recomputed_descriptive_taxon_trait_states_from_pinned_EAzami_not_inferred_evolutionary_memory",
+  "source_repository": "zuizui0223/EAzami",
+  "source_ref": "c9870e91604ed1514344ddc8f765eae5237dbf27",
+  "source_csv_git_blob_sha": {
+    "data/evidence/moreyra2025_japan_38_membership_audit_2026-08-10.csv": "426d7e5c015d0bd92a22d1cd2f4eba0d39fd49a8",
+    "data/evidence/japan38_nmns_capitulum_trait_seed_v1.csv": "c4da867491e913119d78e4b07df800965a0f021d",
+    "data/evidence/japan38_nmns_capitulum_trait_seed_extension_v2.csv": "346381eeb1326c654cec22888467eb446ab058dd",
+    "data/evidence/heldout_east_asia_trait_state_audit_v1.csv": "95773bbeeed894b3b20565cfccb55dbd0edf5d57"
+  },
+  "observed": {
+    "japan_roster_taxa": 38,
+    "japan_authority_coded_taxa": 24,
+    "japan_unambiguous_orientation_taxa": 19,
+    "japan_upward_or_erect": 13,
+    "japan_downward_or_nodding": 6,
+    "japan_phyllary_resolved_taxa": 10,
+    "japan_stickiness_resolved_taxa": 13,
+    "east_asia_screened_taxa": 19,
+    "east_asia_nondiscovery_taxa": 16,
+    "east_asia_overlap_or_taxonomic_entanglement_excluded": 3,
+    "east_asia_qualifying_orientation_taxa": 11,
+    "east_asia_upward_or_erect": 6,
+    "east_asia_downward_or_nodding": 5,
+    "east_asia_qualifying_phyllary_taxa": 1,
+    "east_asia_qualifying_stickiness_taxa": 2
+  },
+  "current_inference": {
+    "qualitative_state_variation_observed_in_both_regions": true,
+    "comparable_nuclear_branch_lengths_for_external_heldout_taxa": false,
+    "measured_phylogenetic_memory_gradient_rho": null,
+    "heldout_lineage_portability_gain": null,
+    "phylogenetic_memory_transport_claim": "NOT_IDENTIFIABLE_WITH_CURRENT_BOTANICAL_TAXON_STATES",
+    "no_adaptation_or_same_genetic_module_reuse_inferred": true
+  },
+  "next_data": "Harmonized voucher-backed states and independently comparable patristic distances for multiple eligible heldout clades; then predeclared leave-one-clade-out scoring.",
+  "moreyra_linked_nuclear_tip_preflight": {
+    "source": "EAzami@c9870e91604ed1514344ddc8f765eae5237dbf27/data/evidence/moreyra2025_cirsium_reconciliation_v1",
+    "source_manifest_contract": "moreyra2025_cirsium_reconciliation_v1",
+    "source_rows_hash_pinned": 258,
+    "external_unambiguous_orientation_candidates": 11,
+    "same_tree_code_candidate_species": 3,
+    "strict_sra_taxon_matched_species": 2,
+    "strict_upward_or_erect_species": 2,
+    "strict_downward_or_nodding_species": 0,
+    "strict_matches": [
+      {
+        "taxon": "Cirsium argyracanthum",
+        "head_orientation": "upward_or_erect",
+        "voucher": "China",
+        "biosample": "SAMN44017818",
+        "run": "SRR30887304",
+        "tree_code": "Cirsium argyracanthum"
+      },
+      {
+        "taxon": "Cirsium vlassovianum",
+        "head_orientation": "upward_or_erect",
+        "voucher": "Mongolia: Western spurs of Bolshaya Khingan",
+        "biosample": "SAMN34240350",
+        "run": "SRR25265666",
+        "tree_code": "Cirsium vlassovianum"
+      }
+    ],
+    "candidate_rejected_as_same_taxon": {
+      "taxon": "Cirsium lidjiangense",
+      "head_orientation": "downward_or_nodding",
+      "tree_code": "Cirsium lidjiangense",
+      "voucher_geography": "Turkey: Bursa",
+      "biosample": "SAMN34240312",
+      "run": "SRR25265686",
+      "source_name_reconciliation": "different_submitted_or_published_name",
+      "decision": "HOLD_VOUCHER_TAXON_NAME_CONFLICT_NOT_A_CHINESE_EXTERNAL_HEAD_ORIENTATION_RECORD"
+    },
+    "tree_code_match_not_equivalent_to_phylogenetic_distance": true,
+    "phylogenetic_memory_rho_from_these_matching_tips": null,
+    "reason_no_estimate": "Only two source-qualified exact matching external taxa, both upright, and no validated common phylogenetic branch-length ensemble; opposing orientation category has zero reliable nuclear linked taxa."
+  }
+}
