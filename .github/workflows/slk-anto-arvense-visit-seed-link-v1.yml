@@ -69,7 +69,43 @@ jobs:
           import json,math
           a=json.load(open('work/slk_anto_arvense/result.json'))
           b=json.load(open('data/evidence/slk_anto_arvense_bout_seed_link_v1.json'))
-          assert a==b, 'SOURCE_AGGREGATE_RECEIPT_DRIFT'
+          assert a["schema"]=="aza3_slk_anto_source_bout_seed_group_20261020_v1"
+          assert b["schema"]=="aza3_slk_anto_arvense_source_label_numeric_lock_v1"
+          assert a["source"]["raw_seed_rows"]==b["source"]["raw_seed_head_rows"]
+          assert a["source"]["raw_bouts"]==b["source"]["raw_bout_rows"]
+          assert a["source"]["raw_visitor_rows"]==b["source"]["raw_visitor_rows"]
+          assert a["source"]["seed_sha1"]==b["source"]["git_sha1"]["seeds"]
+          assert a["source"]["bout_sha1"]==b["source"]["git_sha1"]["bouts"]
+          assert a["source"]["visitor_sha1"]==b["source"]["git_sha1"]["visitor_id"]
+          assert a["source"]["source_commit"]==b["source"]["immutable_commit"]
+          n=b["eligibility"]
+          assert a["source_link"]["matched_label_groups_before_effort_filter"]==n["matched_label_groups_before_effort_filter"]
+          assert a["source_link"]["matched_label_groups_after_effort_filter"]==n["matched_label_groups_after_effort_filter"]
+          assert a["source_link"]["valid_nonzero_head_bouts"]==n["positive_duration_positive_open_bouts"]
+          assert a["results"]["groups_with_Hym_Dip_share"]==n["groups_with_hymenoptera_diptera_visit_share"]
+          assert a["results"]["groups_one_bout"]==n["n_1_bout_groups"]
+          assert a["results"]["groups_repeated_bouts"]==n["n_repeated_bout_groups"]
+          v=a["results"]["visitor_share_vs_viable_fraction"]
+          o=b["observed_pearson_descriptive"]["visit_share_vs_viable_fraction"]
+          def near(x,y):
+              assert math.isfinite(x) and math.isfinite(y) and math.isclose(x,y,rel_tol=0,abs_tol=1e-10),(x,y)
+          near(v["unadjusted"]["r"],o["pooled_r"])
+          near(v["within_site_and_treatment"]["r"],o["site_treatment_demeaned_r"])
+          near(v["one_bout_only"]["r"],o["one_bout_r"])
+          near(v["repeated_bouts_only"]["r"],o["repeated_bouts_r"])
+          near(v["alternate_line_count"]["r"],o["alternate_row_count_share_r"])
+          near(v["alternate_equal_bout"]["r"],o["alternate_bout_equal_share_r"])
+          for site,expected in o["site_specific_r"].items():
+              near(a["results"]["site_specific_visitor_share_vs_viable_fraction"][site]["r"],expected)
+          x=a["results"]["nominal_visit_count_rate_vs_viable_fraction"]
+          y=b["observed_pearson_descriptive"]["visit_rate_per_nominal_open_head_hour_vs_viable_fraction"]
+          near(x["all"]["r"],y["all_r"])
+          near(x["within_site_and_treatment"]["r"],y["all_site_treatment_demeaned_r"])
+          near(x["remove_top_5_percent_rate"]["r"],y["without_top_5pct_all_r"])
+          near(x["remove_top_5_percent_controlled"]["r"],y["without_top_5pct_controlled_r"])
+          assert not any(a["scientific_boundaries"].values())
+          assert b["evidence_status"]["correlations_not_causal"] is True
+          print("SOURCE_RECOMPUTATION_MATCHES_NUMERIC_FROZEN_ECOLOGICAL_RECEIPT")
           PY
       - uses: actions/upload-artifact@v4
         with:
