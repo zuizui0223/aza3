@@ -75,6 +75,31 @@ class LinkageTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "UNEXPECTED_GUILD"):
             v2.parse_identification_rows(data, strict=False)
 
+    def test_positive_signed_eaten_filter_is_outcome_selection(self):
+        a=seed("ditch","B4","Control",80,2,100)
+        b=seed("ditch","B4","Control",80,1,100)
+        c=seed("ditch","B4","Pollinator Exclusion",10,0,100)
+        a["Missing_Seeds"]="5"
+        a["NViable_Seeds"]="15"
+        b["Missing_Seeds"]="-2"
+        b["NViable_Seeds"]="22"
+        c["Missing_Seeds"]="0"
+        result=v2.signed_eaten_filter_audit([a,b,c],strict=False)
+        self.assertEqual(result["n_eligible_heads"],3)
+        self.assertEqual(result["n_eaten_positive_heads"],1)
+        self.assertEqual(result["n_excluded_due_to_eaten_not_positive"],2)
+        self.assertTrue(result["post_outcome_selection"])
+        self.assertFalse(result["valid_unbiased_florivore_inference"])
+
+    def test_filter_never_calls_negative_residual_a_zero_insect(self):
+        a=seed("ditch","B4","Control",80,5,100)
+        a["Missing_Seeds"]="-2"
+        a["NViable_Seeds"]="22"
+        q=v2.signed_eaten_filter_audit([a],strict=False)
+        self.assertEqual(q["n_eaten_positive_heads"],0)
+        self.assertEqual(q["n_excluded_due_to_eaten_not_positive"],1)
+        self.assertEqual(q["by_treatment"]["Control"]["insects_per_head_all_eligible"],5)
+
     def test_insects_are_head_mean_not_floret_fraction(self):
         rows = [seed("ditch", "B4", "Control", 50, 2, 100),
                 seed("ditch", "B4", "Control", 5, 4, 10)]
