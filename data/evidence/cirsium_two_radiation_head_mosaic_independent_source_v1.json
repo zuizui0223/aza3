@@ -97,6 +97,19 @@
       "all_four_observed": false,
       "leave_one_tip_preserves_all_four_n": 0,
       "fisher_two_sided": null
+    },
+    "na62": {
+      "n": 62,
+      "four_cell_counts": {
+        "erect_not_outward": 45,
+        "erect_outward": 12,
+        "nodding_not_outward": 2,
+        "nodding_outward": 3
+      },
+      "n_observed_combinations": 4,
+      "all_four_observed": true,
+      "leave_one_tip_preserves_all_four_n": 62,
+      "fisher_two_sided": 0.08638739410063541
     }
   },
   "JP_scored": [
@@ -171,6 +184,7 @@
     "no_same_head_contact_or_fitness_data": true,
     "no_cross_lineage_gene_memory_or_convergent_selection_established": true,
     "ontologies_coarsened_not_quantitatively_identical": true,
-    "tip_counts_not_independent_evolutionary_origins": true
+    "tip_counts_not_independent_evolutionary_origins": true,
+    "na_four_combinations_survive_arizonicum_subspecies_collapse": true
   }
 }
