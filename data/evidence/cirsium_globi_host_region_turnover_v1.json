@@ -1,0 +1,207 @@
+{
+  "version": "cirsium_globi_host_region_turnover_v1",
+  "computed_date": "2026-10-20",
+  "source": {
+    "repository": "zuizui0223/aza3",
+    "workflow_run_id": 37743990447,
+    "artifact_id": 11534639952,
+    "snapshot_date": "2026-10-08",
+    "archive_sha256": "ce0513fde35d9c1be42cef87da7a6f4b262e9b4fe237ba0b78e9bf31771b58a4",
+    "observation_csv_sha256": "6d2732565c4f158a0f531b4671832738dafe0b06af7f25b635a5d26b7804deff",
+    "GloBI_citation_doi": "10.5281/zenodo.3950589"
+  },
+  "admission": {
+    "raw_archive_rows": 104162,
+    "incoming_iNaturalist_flower_visit_rows": 7375,
+    "unresolved_observation_id_rows": 114,
+    "ambiguous_observation_ids_excluded": 8,
+    "excluded_flags_nonexclusive": {
+      "not_two_binomial_source_names": 2055,
+      "insect_path_not_supported": 79,
+      "explicit_adult_stage_not_supported": 2750,
+      "coordinates_invalid": 3
+    },
+    "duplicate_rows_collapsed_after_admission": 0,
+    "retained_unique_observations": 3243,
+    "retained_host_name_strings": 42,
+    "retained_visitor_name_strings": 454,
+    "retained_rows_without_event_date": 3243,
+    "taxonomic_names_are_source_strings_not_revalidated_accepted_species": true
+  },
+  "primary": {
+    "n_host_pairs": 3,
+    "n_reused_rectangles": 91,
+    "equal_host_pair_mean_delta": -0.0012684225589185809,
+    "rectangle_weighted_mean_delta": -0.0017972063544135514,
+    "n_host_pairs_positive": 2,
+    "n_host_pairs_negative": 1,
+    "host_pairs": [
+      {
+        "host_a": "Cirsium arvense",
+        "host_b": "Cirsium discolor",
+        "n_reused_rectangles": 15,
+        "same_host_across_regions": 0.7548943894610229,
+        "different_hosts_within_regions": 0.823286676409409,
+        "delta": -0.06839228694838605
+      },
+      {
+        "host_a": "Cirsium arvense",
+        "host_b": "Cirsium vulgare",
+        "n_reused_rectangles": 66,
+        "same_host_across_regions": 0.8045066033139511,
+        "different_hosts_within_regions": 0.800641097362918,
+        "delta": 0.0038655059510331173
+      },
+      {
+        "host_a": "Cirsium discolor",
+        "host_b": "Cirsium vulgare",
+        "n_reused_rectangles": 10,
+        "same_host_across_regions": 0.7286085283505563,
+        "different_hosts_within_regions": 0.6678870150299592,
+        "delta": 0.060721513320597185
+      }
+    ],
+    "grid_degrees": 2,
+    "longitude_offset_degrees": 0,
+    "records_rarefied_per_host_cell": 10,
+    "n_eligible_host_cells": 80,
+    "n_eligible_hosts": 11,
+    "n_eligible_regions": 54,
+    "n_records_in_eligible_units": 2311
+  },
+  "balanced_core": {
+    "status": "COMPLETE_ALL_HOST_COMMON_REGIONS",
+    "hosts": [
+      "Cirsium arvense",
+      "Cirsium discolor",
+      "Cirsium vulgare"
+    ],
+    "cells": [
+      "64_52",
+      "65_51",
+      "65_52",
+      "65_53",
+      "66_53"
+    ],
+    "n_recorded_visits": 513,
+    "n_host_region_units": 15,
+    "contrasts": {
+      "n_host_pairs": 3,
+      "n_reused_rectangles": 30,
+      "equal_host_pair_mean_delta": -0.016720037564747284,
+      "rectangle_weighted_mean_delta": -0.016720037564747284,
+      "n_host_pairs_positive": 1,
+      "n_host_pairs_negative": 2,
+      "host_pairs": [
+        {
+          "host_a": "Cirsium arvense",
+          "host_b": "Cirsium discolor",
+          "n_reused_rectangles": 10,
+          "same_host_across_regions": 0.7587866158918344,
+          "different_hosts_within_regions": 0.8317676662975539,
+          "delta": -0.0729810504057197
+        },
+        {
+          "host_a": "Cirsium arvense",
+          "host_b": "Cirsium vulgare",
+          "n_reused_rectangles": 10,
+          "same_host_across_regions": 0.8034922287068191,
+          "different_hosts_within_regions": 0.8413928043159385,
+          "delta": -0.03790057560911936
+        },
+        {
+          "host_a": "Cirsium discolor",
+          "host_b": "Cirsium vulgare",
+          "n_reused_rectangles": 10,
+          "same_host_across_regions": 0.7286085283505563,
+          "different_hosts_within_regions": 0.6678870150299592,
+          "delta": 0.060721513320597206
+        }
+      ]
+    },
+    "source_order_mean_record_fractions": {
+      "Cirsium arvense": {
+        "Coleoptera": 0.10667065777359894,
+        "Diptera": 0.02589285714285714,
+        "Hymenoptera": 0.0879079254079254,
+        "Lepidoptera": 0.7795285596756185
+      },
+      "Cirsium discolor": {
+        "Coleoptera": 0.014790018259281801,
+        "Diptera": 0.0,
+        "Hymenoptera": 0.2131205982088514,
+        "Lepidoptera": 0.7720893835318667
+      },
+      "Cirsium vulgare": {
+        "Coleoptera": 0.0,
+        "Diptera": 0.008163265306122448,
+        "Hymenoptera": 0.13122448979591836,
+        "Lepidoptera": 0.8606122448979592
+      }
+    }
+  },
+  "balanced_leave_one_region_out_delta_ranges": [
+    {
+      "host_a": "Cirsium arvense",
+      "host_b": "Cirsium discolor",
+      "min": -0.1134008725209061,
+      "max": -0.04405388440000859
+    },
+    {
+      "host_a": "Cirsium arvense",
+      "host_b": "Cirsium vulgare",
+      "min": -0.0707731333746799,
+      "max": -0.02293486408482992
+    },
+    {
+      "host_a": "Cirsium discolor",
+      "host_b": "Cirsium vulgare",
+      "min": 0.010149666904903895,
+      "max": 0.08452688040084416
+    }
+  ],
+  "sensitivity": [
+    {
+      "scenario": "primary",
+      "n_host_pairs": 3,
+      "equal_host_pair_mean_delta": -0.0012684225589185809,
+      "n_pairs_without_arvense_or_vulgare": 0
+    },
+    {
+      "scenario": "grid_1deg",
+      "n_host_pairs": 3,
+      "equal_host_pair_mean_delta": -0.028536879650043426,
+      "n_pairs_without_arvense_or_vulgare": 1
+    },
+    {
+      "scenario": "grid_5deg",
+      "n_host_pairs": 5,
+      "equal_host_pair_mean_delta": 0.006410337005963393,
+      "n_pairs_without_arvense_or_vulgare": 1
+    },
+    {
+      "scenario": "records_5",
+      "n_host_pairs": 7,
+      "equal_host_pair_mean_delta": 0.01978695948837584,
+      "n_pairs_without_arvense_or_vulgare": 2
+    },
+    {
+      "scenario": "records_20",
+      "n_host_pairs": 1,
+      "equal_host_pair_mean_delta": -0.034227898600425945,
+      "n_pairs_without_arvense_or_vulgare": 0
+    },
+    {
+      "scenario": "longitude_shift_1deg",
+      "n_host_pairs": 4,
+      "equal_host_pair_mean_delta": -0.017020438185880688,
+      "n_pairs_without_arvense_or_vulgare": 1
+    }
+  ],
+  "validation": {
+    "local_pytest_passed": 14,
+    "source_sha256_matched": true,
+    "no_raw_precise_coordinates_in_outputs": true
+  },
+  "claim_ceiling": "Exploratory source-record composition; no contemporaneous community, pollination efficacy, trait selection, causal region effect or heritable re-expression."
+}

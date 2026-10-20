@@ -1,0 +1,105 @@
+name: Cirsium flower visitor host-region turnover v1
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'analysis/cirsium_flower_partner_regional_turnover_v1.py'
+      - 'tests/test_cirsium_flower_partner_regional_turnover_v1.py'
+      - 'data/evidence/cirsium_globi_host_region_turnover_v1.json'
+      - 'docs/CIRSIUM_GLOBI_HOST_REGION_FLORAL_TURNOVER_V1.md'
+      - '.github/workflows/cirsium-globi-host-region-turnover-v1.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'analysis/cirsium_flower_partner_regional_turnover_v1.py'
+      - 'tests/test_cirsium_flower_partner_regional_turnover_v1.py'
+      - 'data/evidence/cirsium_globi_host_region_turnover_v1.json'
+      - 'docs/CIRSIUM_GLOBI_HOST_REGION_FLORAL_TURNOVER_V1.md'
+      - '.github/workflows/cirsium-globi-host-region-turnover-v1.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  source-pinned-record-composition:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install tested numerical dependencies
+        run: python -m pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 pytest==9.0.2
+      - name: Test exact combinatorics and source rejection rules
+        run: python -m pytest -q tests/test_cirsium_flower_partner_regional_turnover_v1.py
+      - name: Retrieve original frozen GloBI archive
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work
+          gh api repos/zuizui0223/aza3/actions/artifacts/11534639952/zip > work/source.zip
+          test -s work/source.zip
+      - name: Recompute all six source-record scenarios
+        run: |
+          python analysis/cirsium_flower_partner_regional_turnover_v1.py \
+            --archive work/source.zip --out-dir work/flower_macro
+      - name: Check frozen evidence and common-region sensitivity
+        run: |
+          python - <<'PY'
+          import json,math
+          from pathlib import Path
+          saved=json.loads(Path('data/evidence/cirsium_globi_host_region_turnover_v1.json').read_text())
+          actual=json.loads(Path('work/flower_macro/result.json').read_text())
+          def check_subset(expected,observed,path='root'):
+              if isinstance(expected,dict):
+                  for key,value in expected.items():
+                      assert key in observed,(path,key)
+                      check_subset(value,observed[key],path+'.'+key)
+              elif isinstance(expected,list):
+                  assert len(expected)==len(observed),path
+                  for i,(x,y) in enumerate(zip(expected,observed)):
+                      check_subset(x,y,path+'.'+str(i))
+              elif isinstance(expected,float):
+                  assert math.isfinite(observed) and math.isclose(expected,observed,rel_tol=0,abs_tol=1e-9),(path,expected,observed)
+              else:
+                  assert expected==observed,(path,expected,observed)
+          check_subset(saved['source'],actual['source'])
+          check_subset(saved['admission'],actual['source_admission'])
+          primary=actual['scenarios']['primary']
+          check_subset(saved['primary'],primary)
+          core=primary['complete_primary_host_core']
+          check_subset(saved['balanced_core'],core)
+          for expected in saved['balanced_leave_one_region_out_delta_ranges']:
+              values=[]
+              for entry in core['leave_one_common_region_out'].values():
+                  pair=next(v for v in entry['host_pairs'] if v['host_a']==expected['host_a'] and v['host_b']==expected['host_b'])
+                  values.append(pair['delta'])
+              check_subset({'min':expected['min'],'max':expected['max']},{'min':min(values),'max':max(values)})
+          for expected in saved['sensitivity']:
+              observed=actual['scenarios'][expected['scenario']]
+              check_subset({'n_host_pairs':expected['n_host_pairs'],'equal_host_pair_mean_delta':expected['equal_host_pair_mean_delta']},observed)
+              assert expected['n_pairs_without_arvense_or_vulgare']==observed['excluding_arvense_and_vulgare']['n_host_pairs']
+          assert actual['source_admission']['retained_rows_without_event_date']==3243
+          assert abs(primary['equal_host_pair_mean_delta'])<0.01
+          for file in ['matched_rectangles.csv','host_region_visitor_counts.csv']:
+              cols=Path('work/flower_macro',file).read_text().splitlines()[0].lower().split(',')
+              assert not set(cols)&{'latitude','longitude','lat','lon','event_id','source_specimen_occurrence_id'}
+          print('PASS: original 104162 rows, 3243 source events, six scenarios, paired common-region results and explicit limitations')
+          PY
+      - name: Save full aggregate outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-flower-host-region-turnover-v1
+          path: work/flower_macro/
+          if-no-files-found: error
+          retention-days: 90
+      - name: Preserve exact source archive for reproducibility
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-globi-20261008-original-source-retained
+          path: work/source.zip
+          if-no-files-found: error
+          retention-days: 90
