@@ -1,0 +1,176 @@
+{
+  "version": "cirsium_two_radiation_source_independent_js_lock_v1",
+  "verification_date": "2026-10-21",
+  "source": [
+    {
+      "name": "na_traits",
+      "source_sha": "fa127f0587b676e6e004ea121424d26069586bcb",
+      "git_commit": "c925d4af86160064448f794a9715f70b917a2786",
+      "repo": "carol-siniscalchi/cirsium"
+    },
+    {
+      "name": "na_tree",
+      "source_sha": "6417a38793427bc7c8562dc0e2cab59b74d8c316",
+      "git_commit": "c925d4af86160064448f794a9715f70b917a2786",
+      "repo": "carol-siniscalchi/cirsium"
+    },
+    {
+      "name": "jp_base",
+      "source_sha": "c4da867491e913119d78e4b07df800965a0f021d",
+      "git_commit": "c9870e91604ed1514344ddc8f765eae5237dbf27",
+      "repo": "zuizui0223/EAzami"
+    },
+    {
+      "name": "jp_extra",
+      "source_sha": "346381eeb1326c654cec22888467eb446ab058dd",
+      "git_commit": "c9870e91604ed1514344ddc8f765eae5237dbf27",
+      "repo": "zuizui0223/EAzami"
+    },
+    {
+      "name": "jp_roster",
+      "source_sha": "426d7e5c015d0bd92a22d1cd2f4eba0d39fd49a8",
+      "git_commit": "c9870e91604ed1514344ddc8f765eae5237dbf27",
+      "repo": "zuizui0223/EAzami"
+    }
+  ],
+  "coverage": {
+    "NA_source_taxa": 63,
+    "NA_tree_tips": 63,
+    "NA_tree_tip_set_matches_traits": true,
+    "JP_roster": 38,
+    "JP_botanical_states": 24,
+    "JP_orientation_known": 19,
+    "JP_outer_known": 9,
+    "JP_both_known": 7,
+    "JP_secondary_both_known": 1,
+    "JP_dominant_both_known": 6
+  },
+  "observed_matrices": {
+    "na63": {
+      "n": 63,
+      "four_cell_counts": {
+        "erect_not_outward": 45,
+        "erect_outward": 13,
+        "nodding_not_outward": 2,
+        "nodding_outward": 3
+      },
+      "n_observed_combinations": 4,
+      "all_four_observed": true,
+      "leave_one_tip_preserves_all_four_n": 63,
+      "fisher_two_sided": 0.09891636565712697
+    },
+    "jp7": {
+      "n": 7,
+      "four_cell_counts": {
+        "erect_not_outward": 3,
+        "erect_outward": 1,
+        "nodding_not_outward": 2,
+        "nodding_outward": 1
+      },
+      "n_observed_combinations": 4,
+      "all_four_observed": true,
+      "leave_one_tip_preserves_all_four_n": 5,
+      "fisher_two_sided": 0.8857142857142857
+    },
+    "jp_main6": {
+      "n": 6,
+      "four_cell_counts": {
+        "erect_not_outward": 3,
+        "erect_outward": 0,
+        "nodding_not_outward": 2,
+        "nodding_outward": 1
+      },
+      "n_observed_combinations": 3,
+      "all_four_observed": false,
+      "leave_one_tip_preserves_all_four_n": 0,
+      "fisher_two_sided": 0.8
+    },
+    "jp_secondary1": {
+      "n": 1,
+      "four_cell_counts": {
+        "erect_not_outward": 0,
+        "erect_outward": 1,
+        "nodding_not_outward": 0,
+        "nodding_outward": 0
+      },
+      "n_observed_combinations": 1,
+      "all_four_observed": false,
+      "leave_one_tip_preserves_all_four_n": 0,
+      "fisher_two_sided": null
+    }
+  },
+  "JP_scored": [
+    {
+      "id": "JPN_02",
+      "taxon": "Cirsium aidzuense",
+      "source_orientation": "upward_or_erect",
+      "source_outer": "appressed_or_ascending",
+      "orientation_binary": 0,
+      "outer_binary": 0,
+      "role": "dominant"
+    },
+    {
+      "id": "JPN_03",
+      "taxon": "Cirsium alpicola",
+      "source_orientation": "upward_or_erect",
+      "source_outer": "ascending",
+      "orientation_binary": 0,
+      "outer_binary": 0,
+      "role": "dominant"
+    },
+    {
+      "id": "JPN_06",
+      "taxon": "Cirsium dipsacolepis",
+      "source_orientation": "upward_or_erect",
+      "source_outer": "spreading_or_recurved",
+      "orientation_binary": 0,
+      "outer_binary": 1,
+      "role": "secondary"
+    },
+    {
+      "id": "JPN_09",
+      "taxon": "Cirsium gyojanum",
+      "source_orientation": "upward_or_erect",
+      "source_outer": "ascending",
+      "orientation_binary": 0,
+      "outer_binary": 0,
+      "role": "dominant"
+    },
+    {
+      "id": "JPN_13",
+      "taxon": "Cirsium kasaianum",
+      "source_orientation": "downward_or_nodding",
+      "source_outer": "spreading",
+      "orientation_binary": 1,
+      "outer_binary": 1,
+      "role": "dominant"
+    },
+    {
+      "id": "JPN_30",
+      "taxon": "Cirsium yezoense",
+      "source_orientation": "downward_or_nodding",
+      "source_outer": "ascending",
+      "orientation_binary": 1,
+      "outer_binary": 0,
+      "role": "dominant"
+    },
+    {
+      "id": "JPN_36",
+      "taxon": "Cirsium sieboldii",
+      "source_orientation": "downward_or_nodding",
+      "source_outer": "appressed",
+      "orientation_binary": 1,
+      "outer_binary": 0,
+      "role": "dominant"
+    }
+  ],
+  "claim_guard": {
+    "head_orientation_cannot_determine_outer_in_NA_and_JP": true,
+    "every_NA_source_tip_deletion_retains_four_combinations": true,
+    "all_JP_four_combinations_depend_on_secondary_JPN06": true,
+    "no_same_head_contact_or_fitness_data": true,
+    "no_cross_lineage_gene_memory_or_convergent_selection_established": true,
+    "ontologies_coarsened_not_quantitatively_identical": true,
+    "tip_counts_not_independent_evolutionary_origins": true
+  }
+}
