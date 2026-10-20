@@ -102,7 +102,7 @@ class SourceJoinTests(unittest.TestCase):
         self.assertEqual(r["interpretation"]["analysis_status"],
                          "EXPLORATORY_POST_HOC_SOURCE_LABEL_ASSOCIATION")
 
-    def test_observed_zero_exposure_is_not_missing_head or genetic_loss(self):
+    def test_observed_zero_exposure_is_not_missing_head_or_genetic_loss(self):
         j=join_source_labels([head()],
                     [bout("v",openheads="2")],
                     [visitor("v",order="",n="")],strict=False)
