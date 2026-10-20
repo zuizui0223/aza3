@@ -50,7 +50,16 @@ jobs:
           assert pinned["source"]["original_commit"]==j["source"]["original_commit"]
           assert pinned["source"]["verified_github_git_blob_shas"]==j["source"]["git_blobs"]
           assert pinned["original_rows"]["seed_head_rows"]==a["audit"]["original_seed_rows"]
-          assert pinned["original_rows"]["herbivore_ambiguous_head_joins"]==a["audit"]["herbivore_table_individual_head_join_quality"]
+          # The independently frozen JS receipt uses human-readable outcome keys;
+          # the source-authenticated Python pipeline uses explicit enum labels.
+          # Compare values after semantic key mapping, never the raw dictionaries.
+          observed_joins=a["audit"]["herbivore_table_individual_head_join_quality"]
+          frozen_joins=pinned["original_rows"]["herbivore_ambiguous_head_joins"]
+          assert observed_joins=={
+              "ONE_SOURCE_HEAD_KEY_MATCH":frozen_joins["matched_one"],
+              "MULTIPLE_HEAD_ROWS_SHARE_VIAL_KEY":frozen_joins["matched_multiple"],
+              "SOURCE_NO_HEAD_KEY_MATCH":frozen_joins["unmatched"],
+          }
           for key,upstream in a["matched_site_block_plant_unit_contrasts"]["data"].items():
             matched=pinned["paired_block_contrasts"][key]
             assert upstream["n_paired_blocks"]==matched["n_matched_blocks"]
