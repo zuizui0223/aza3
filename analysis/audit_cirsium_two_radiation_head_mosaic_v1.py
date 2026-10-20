@@ -207,6 +207,19 @@ def analyze(na,jp_base,jp_extra,members,tree_text,source_check=True):
     check(len(scored)==MIN_JAPAN_COMPLETE and len(dominant)==6
           and len(secondary)==1,"SOURCE_JP_COMPLETE_HEAD_COHORT_CHANGED")
     nm=matrix_summary([v for _,v in northern])
+    collapsed_names={"Cirsium_arizonicum_arizonicum",
+                     "Cirsium_arizonicum_rothrockii"}
+    check(collapsed_names.issubset(north) and
+          na_state(north["Cirsium_arizonicum_arizonicum"])==
+          na_state(north["Cirsium_arizonicum_rothrockii"]),
+          "DUPLICATE_SUBSPECIES_OR_STATE_DRIFT")
+    collapsed=matrix_summary([v for taxon,v in northern
+        if taxon!="Cirsium_arizonicum_rothrockii"])
+    check(collapsed["n_taxa"]==62 and
+          collapsed["four_cell_counts"]=={
+             "erect_not_outward":45,"erect_outward":12,
+             "nodding_not_outward":2,"nodding_outward":3},
+          "NA_SUBSPECIES_COLLAPSE_SENSITIVITY_CHANGED")
     jm=matrix_summary(alljp)
     dm=matrix_summary(dominant)
     sm=matrix_summary(secondary)
@@ -238,6 +251,7 @@ def analyze(na,jp_base,jp_extra,members,tree_text,source_check=True):
       },
       "morphological_comparison":{
         "north_america_63":nm,
+        "north_america_second_arizonicum_subspecies_removed_62":collapsed,
         "japan_authority_all_7":jm,
         "japan_dominant_radiation_6":dm,
         "japan_secondary_history_1":sm,
