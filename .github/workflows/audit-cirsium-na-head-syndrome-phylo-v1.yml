@@ -5,7 +5,7 @@ on:
       - 'analysis/audit_cirsium_na_head_pollinator_phylo_v1.py'
       - 'tests/test_cirsium_na_head_pollinator_phylo_v1.py'
       - 'docs/CIRSIUM_NA_HEAD_POLLINATOR_PHYLOGENETIC_PILOT_V1.md'
-      - 'data/evidence/cirsium_na_head_pollinator_phylogenetic_pilot_v1.json'
+      - 'data/evidence/cirsium_na_63_actual_source_phylo_v1.json'
       - '.github/workflows/audit-cirsium-na-head-syndrome-phylo-v1.yml'
   workflow_dispatch:
 permissions:
@@ -100,6 +100,31 @@ jobs:
           assert not any(d['claim_limits'].values())
           assert not m['is_identification_of_natural_selection']
           print('PASS: real pinned 63 species morphometry, 7 syndrome-coded birds, 4 head tests, phylogenetic Mk and no false fitness/selection')
+          PY
+      - name: Verify complete original-source result against frozen evidence JSON
+        run: |
+          python - <<'PY'
+          import json,math
+          live=json.load(open("work/na63_author/cirsium_63_actual_analysis.json"))
+          frozen=json.load(open("data/evidence/cirsium_na_63_actual_source_phylo_v1.json"))
+          def same(x,y,p="root"):
+              if isinstance(y,dict):
+                  assert isinstance(x,dict) and set(x)==set(y),(p,"keys_changed")
+                  for k in y:same(x[k],y[k],p+"."+k)
+              elif isinstance(y,list):
+                  assert isinstance(x,list) and len(x)==len(y),(p,"list_changed")
+                  for i,(u,v) in enumerate(zip(x,y)):same(u,v,p+"["+str(i)+"]")
+              elif isinstance(y,float):
+                  assert isinstance(x,(float,int)) and math.isfinite(x) and math.isfinite(y)
+                  assert math.isclose(x,y,rel_tol=1e-8,abs_tol=1e-9),(p,x,y)
+              else:
+                  assert type(x) is type(y) and x==y,(p,x,y)
+          same(live,frozen)
+          z=live["analysis"]["phylogenetic_sensitivity"]
+          assert z["conditional_Mk_simulation"]["n_conditioned_draws"]==26178
+          assert z["equal_rate_Mk_simulation"]["n_conditioned_draws"]==21655
+          assert live["analysis"]["non_red_corolla_syndrome_sensitivity"]["n_bird_nonred"]==2
+          print("PASS full original-source morphology/pollination/phylogeny, both CTMC models and both tails exactly recomputed")
           PY
       - name: Save source-free numerical evolutionary pilot result
         uses: actions/upload-artifact@v4
