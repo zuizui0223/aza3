@@ -281,6 +281,68 @@ def dual_stage_summary(four_arm_blocks,reps=5000,seed=SEED):
     }
 
 
+def signed_eaten_filter_audit(seed_rows,strict=True):
+    """Audit original Herbivores.R Eaten_Seeds>0 filter, NOT an ecological zero.
+
+    Eaten=Damaged+Missing=Flowers-Viable-NViable; conditioning on it
+    can select on post-treatment fertilisation, damage and accounting.
+    Do not interpret retained head differences as a causal pathway.
+    """
+    eligible=[r for r in seed_rows
+              if r["Site_Code"] in SITES and r["Treatment_Code"] in ARMS]
+    selected=[r for r in eligible
+              if int(float(r["Damaged_Seeds"]))+
+                 int(float(r["Missing_Seeds"]))>0]
+    _,_,blocks,_=prep(eligible,strict=False)
+    _,proxy_positive,_,complete_positive=prep(selected,strict=False)
+    out={"n_eligible_heads":len(eligible),
+         "n_eaten_positive_heads":len(selected),
+         "n_excluded_due_to_eaten_not_positive":len(eligible)-len(selected),
+         "n_original_plant_proxy_groups":len({
+             plant_key(r) for r in eligible}),
+         "n_plant_proxy_groups_after_filter":len(proxy_positive),
+         "n_complete_four_arm_blocks_after_filter":len(complete_positive),
+         "n_original_complete_four_arm_blocks":sum(
+             all(arm in units for arm in ARMS) for units in blocks.values()),
+         "filter_expression":"Damaged_Seeds + Missing_Seeds > 0; equivalently Flowers - Viable_Seeds - NViable_Seeds > 0",
+         "post_outcome_selection":True,
+         "valid_unbiased_florivore_inference":False,
+         "source_application":"Herbivores.R constructs seeds.eaten then seeds.Eat.herb for insect GLMM; not proof every result in other source scripts used the same subset.",
+         "by_treatment":{}}
+    def metric(rows,name):
+        return (sum(int(float(z[name])) for z in rows)/len(rows)
+                if rows else None)
+    for arm in ARMS:
+        orig=[r for r in eligible if r["Treatment_Code"]==arm]
+        post=[r for r in selected if r["Treatment_Code"]==arm]
+        out["by_treatment"][arm]={
+            "n_eligible_heads":len(orig),
+            "n_eaten_positive_heads":len(post),
+            "n_excluded_heads":len(orig)-len(post),
+            "retention_fraction":len(post)/len(orig) if orig else None,
+            "insects_per_head_all_eligible":metric(orig,"Insects"),
+            "insects_per_head_eaten_positive":metric(post,"Insects"),
+            "source_assigned_viable_per_head_all_eligible":metric(orig,"Viable_Seeds"),
+            "source_assigned_viable_per_head_eaten_positive":metric(post,"Viable_Seeds"),
+        }
+    if strict:
+        check(out["n_eligible_heads"]==612 and
+              out["n_eaten_positive_heads"]==523 and
+              out["n_excluded_due_to_eaten_not_positive"]==89,
+              "ORIGINAL_R_OUTCOME_FILTER_ROW_COUNTS_DRIFT")
+        check(out["n_original_plant_proxy_groups"]==164 and
+              out["n_plant_proxy_groups_after_filter"]==161 and
+              out["n_original_complete_four_arm_blocks"]==36 and
+              out["n_complete_four_arm_blocks_after_filter"]==33,
+              "ORIGINAL_R_FILTER_PLANT_BLOCK_REPLICATION_DRIFT")
+        check({a:v["n_excluded_heads"] for a,v in
+               out["by_treatment"].items()}=={
+               "Control":30,"Pollinator Exclusion":16,
+               "Predator Exclusion":25,"Predator Model":18},
+              "TREATMENT_SPECIFIC_SOURCE_FILTER_DRIFT")
+    return out
+
+
 def main():
     p=argparse.ArgumentParser()
     p.add_argument("--seeds",type=Path,required=True)
@@ -304,6 +366,7 @@ def main():
            "year_of_field_experiment":2022,
        },
        "insect_file_reconciliation":linkage_summary(rows,idrows,strict=True),
+       "original_author_outcome_selection":signed_eaten_filter_audit(rows,strict=True),
        "dual_source_matched_block_outcomes":dual_stage_summary(
            four,reps=args.bootstrap,seed=SEED),
        "claim_ceiling":{
