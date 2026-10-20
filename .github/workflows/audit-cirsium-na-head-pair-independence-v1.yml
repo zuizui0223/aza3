@@ -86,6 +86,36 @@ jobs:
                   assert sum(d['overlap_histogram'])==d['accepted_exact_marginal']
           print('PASS original 63+collapsed-62 Cirsium head trait phylogenies, independent/dependent nested CTMC and eight conditional count-matched overlap nulls')
           PY
+      - name: Replay and compare the entire source-backed 63+62 phylogenetic result
+        run: |
+          python - <<'PY'
+          import json,math
+          a=json.load(open('work/cirsium_na_pair/result.json'))
+          b=json.load(open('data/evidence/cirsium_na_head_pair_phylogenetic_fit_v1.json'))
+          def match(x,y,p='result'):
+              if isinstance(y,dict):
+                  assert isinstance(x,dict) and set(x)==set(y),(p,'object_keys_differ')
+                  for k in y:match(x[k],y[k],p+'.'+k)
+              elif isinstance(y,list):
+                  assert isinstance(x,list) and len(x)==len(y),(p,'array_size_differ')
+                  for i,(v,w) in enumerate(zip(x,y)):match(v,w,p+f'[{i}]')
+              elif isinstance(y,float):
+                  assert isinstance(x,(int,float)) and math.isfinite(x) and math.isfinite(y)
+                  assert math.isclose(x,y,rel_tol=2e-5,abs_tol=5e-7),(p,x,y)
+              else:
+                  assert type(x) is type(y) and x==y,(p,x,y)
+          match(a,b)
+          for key,sub in (('NA63',a['real_analysis']),('NA62',a['subspecies_62_tip_sensitivity']['analysis'])):
+              mm=sub['four_state_joint_model_comparison']
+              assert mm['delta_AIC_dependent_minus_independent']>4.5
+              assert mm['dependent']['some_rates_at_search_bound'] is True
+              for root in ('0','1'):
+                  for contrast in ('head_evolved_outer_fixed','outer_evolved_head_fixed'):
+                      x=sub['independence_reference'][root][contrast]
+                      assert x['two_inclusive_tails_doubled_min']>0.15
+                      assert x['two_inclusive_tails_doubled_min']<0.22
+              print(key,'PASS same actual source data, binary-marginal CTMC rates, 8-rate alt, four null tails')
+          PY
       - name: Preserve derived real-data fit and conditional-null metrics
         uses: actions/upload-artifact@v4
         with:
