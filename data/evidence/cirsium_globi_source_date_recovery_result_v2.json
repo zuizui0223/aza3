@@ -1,0 +1,190 @@
+{
+  "version": "cirsium_globi_source_date_recovery_result_v2",
+  "as_of": "2026-10-20",
+  "source": {
+    "original_main_commit": "ebf4b2e6c2d43f3fe7b16e0a75540ba472723a20",
+    "source_snapshot": "2026-10-08",
+    "archive_sha256": "ce0513fde35d9c1be42cef87da7a6f4b262e9b4fe237ba0b78e9bf31771b58a4",
+    "recovery_run_id": 39371758270,
+    "recovery_artifact_id": 12241468591,
+    "recovery_artifact_sha256": "91653e2822a7bdfe89537b1283d39f5d3b14a6fe3f91e5ff1fa418b6665bbfd0",
+    "minimal_metadata_sha256": "313142b1e4fcb1a179533c9b985ea8364b221122ed158b9e2d312ee213a731c9",
+    "metadata_retrieved_at_utc": "2026-10-20T04:51:40.053628+00:00"
+  },
+  "date_recovery": {
+    "input_events": 3243,
+    "metadata_returned": 3243,
+    "dated_valid": 3243,
+    "metadata_unreturned": 0,
+    "missing_observed_date": 0,
+    "invalid_or_partial_date": 0,
+    "after_source_snapshot": 0
+  },
+  "observer_summary": {
+    "n_nonmissing_observers": 1198,
+    "records_with_missing_observer": 0,
+    "top_one_share": 0.020351526364477335,
+    "top_ten_share": 0.11440024668516806,
+    "records_after_daily_observer_dedup": 2985
+  },
+  "current_visitor_name_or_ancestor_concordant": 3187,
+  "scenarios": {
+    "original_all_dates_missing": {
+      "input_records": 3243,
+      "n_host_pairs": 3,
+      "n_reused_rectangles": 91,
+      "equal_host_pair_mean_delta": -0.0012684225589185809
+    },
+    "recovered_dates_unstratified": {
+      "input_records": 3243,
+      "n_host_pairs": 3,
+      "n_reused_rectangles": 91,
+      "equal_host_pair_mean_delta": -0.0012684225589185809
+    },
+    "primary_same_calendar_month": {
+      "input_records": 3243,
+      "n_host_pairs": 1,
+      "n_reused_rectangles": 3,
+      "equal_host_pair_mean_delta": 0.07085169314403743
+    },
+    "strict_same_year_month": {
+      "input_records": 3243,
+      "n_host_pairs": 0,
+      "n_reused_rectangles": 0,
+      "equal_host_pair_mean_delta": null
+    },
+    "same_calendar_quarter": {
+      "input_records": 3243,
+      "n_host_pairs": 3,
+      "n_reused_rectangles": 61,
+      "equal_host_pair_mean_delta": 0.00025642530211690784
+    },
+    "same_month_daily_observer_dedup": {
+      "input_records": 2985,
+      "n_host_pairs": 1,
+      "n_reused_rectangles": 3,
+      "equal_host_pair_mean_delta": 0.06878335268178178
+    },
+    "same_month_draw5_sensitivity": {
+      "input_records": 3243,
+      "n_host_pairs": 5,
+      "n_reused_rectangles": 76,
+      "equal_host_pair_mean_delta": 0.023927861370507664
+    },
+    "same_year_month_draw5_sensitivity": {
+      "input_records": 3243,
+      "n_host_pairs": 0,
+      "n_reused_rectangles": 0,
+      "equal_host_pair_mean_delta": null
+    },
+    "same_month_current_visitor_concordant": {
+      "input_records": 3187,
+      "n_host_pairs": 1,
+      "n_reused_rectangles": 3,
+      "equal_host_pair_mean_delta": 0.07085169314403743
+    }
+  },
+  "primary_month_pair": {
+    "host_a": "Cirsium arvense",
+    "host_b": "Cirsium vulgare",
+    "n_strata": 1,
+    "strata": ["07"],
+    "n_shared_regions": 3,
+    "n_reused_rectangles": 3,
+    "same_host_across_regions": 0.8512749066855045,
+    "different_hosts_within_regions": 0.780423213541467,
+    "delta": 0.07085169314403743,
+    "by_stratum": [
+      {
+        "host_a": "Cirsium arvense",
+        "host_b": "Cirsium vulgare",
+        "stratum": "07",
+        "same_host_across_regions": 0.8512749066855045,
+        "different_hosts_within_regions": 0.780423213541467,
+        "regional_minus_host": 0.07085169314403743
+      }
+    ],
+    "leave_one_region_out_delta": {
+      "65_50": -0.012229328252098548,
+      "66_50": 0.22505503298719376,
+      "66_54": -0.00027062530298294085
+    }
+  },
+  "primary_month_units": {
+    "july_n_observations": 124,
+    "july_n_observers": 53,
+    "july_n_years": 16,
+    "july_source_units": [
+      {"host": "Cirsium arvense", "cell": "65_50", "n": 39},
+      {"host": "Cirsium arvense", "cell": "66_50", "n": 29},
+      {"host": "Cirsium arvense", "cell": "66_54", "n": 15},
+      {"host": "Cirsium vulgare", "cell": "65_50", "n": 15},
+      {"host": "Cirsium vulgare", "cell": "66_50", "n": 12},
+      {"host": "Cirsium vulgare", "cell": "66_54", "n": 14}
+    ]
+  },
+  "original_common_core": {
+    "n_dated_records": 513,
+    "n_host_region_units": 15,
+    "hosts": ["Cirsium arvense", "Cirsium discolor", "Cirsium vulgare"],
+    "n_regions": 5,
+    "month_matched_host_pairs": 0,
+    "year_month_matched_host_pairs": 0,
+    "record_month_fractions_equal_region_weight": {
+      "Cirsium arvense": {
+        "01": 0.0, "02": 0.0, "03": 0.0, "04": 0.0,
+        "05": 0.007142857142857143,
+        "06": 0.35017470274823215,
+        "07": 0.5187986033574269,
+        "08": 0.11289482576247281,
+        "09": 0.006593406593406593,
+        "10": 0.004395604395604396,
+        "11": 0.0, "12": 0.0
+      },
+      "Cirsium discolor": {
+        "01": 0.0, "02": 0.0, "03": 0.0, "04": 0.0, "05": 0.0, "06": 0.0,
+        "07": 0.023880927350190893,
+        "08": 0.5928812514326818,
+        "09": 0.38323782121712735,
+        "10": 0.0, "11": 0.0, "12": 0.0
+      },
+      "Cirsium vulgare": {
+        "01": 0.0, "02": 0.0, "03": 0.0, "04": 0.0, "05": 0.0,
+        "06": 0.004081632653061224,
+        "07": 0.3271428571428571,
+        "08": 0.5161224489795918,
+        "09": 0.1285714285714286,
+        "10": 0.024081632653061225,
+        "11": 0.0, "12": 0.0
+      }
+    }
+  },
+  "post_recovery_support_matched_diagnostic": {
+    "same_three_regions_unstratified_records": 241,
+    "same_three_regions_unstratified_delta": 0.032685702353288014,
+    "status": "POST_RECOVERY_EXPLORATORY_NOT_PREDECLARED"
+  },
+  "interpretation": {
+    "source_dates_recovered_not_new_observations": true,
+    "temporal_alignment_demonstrated_genus_wide_region_dominance": false,
+    "primary_positive_sign_survives_each_region_deletion": false,
+    "strict_same_year_month_effect": "NOT_IDENTIFIABLE_AT_10_OR_5_RECORD_THRESHOLD",
+    "prior_three_pair_core": "ANNUAL_OR_MULTIYEAR_POOLED_RECORD_PATTERN_NOT_CONFIRMED_WITHIN_MONTH",
+    "sampling_effort_controlled": false,
+    "morphological_filter_identified": false
+  },
+  "verification": {
+    "local_tests_passed": 23,
+    "github_recovery_run": "success",
+    "independent_check": "Pandas date join and separate direct combinatorial hypergeometric-PMF implementation agree on the dated cohort and primary contrast within 1e-10"
+  },
+  "claim_limits": [
+    "The comparison was declared before recovering dates, but remains exploratory.",
+    "Month matching pools different years; year-month still pools different days and observers.",
+    "Unreturned or invalid-date observations are not absences; current API labels can differ from the archived snapshot.",
+    "Daily observer deduplication is not a correction for sampling effort, visibility or nondetection.",
+    "Calendar strata can change eligible hosts and regions; changed deltas are not a causal adjustment effect.",
+    "Reused rectangles and shared hosts are not independent replicates; no significance test is claimed.",
+    "Visits are not effective pollination; no head morphology, fitness, re-expression, or collection approval is measured."
+  ]
+}
