@@ -1,0 +1,99 @@
+name: Audit Cirsium 2022 matched seed and insect guild sources v2
+
+on:
+  pull_request:
+    paths:
+      - 'analysis/audit_cirsium_2022_guild_linkage_and_dual_outcomes_v2.py'
+      - 'tests/test_cirsium_2022_guild_linkage_and_dual_outcomes_v2.py'
+      - 'data/evidence/cirsium_2022_insect_linkage_dual_stage_independent_v2.json'
+      - 'docs/CIRSIUM_2022_GUILD_RECONCILIATION_TWO_OUTCOME_V2.md'
+      - '.github/workflows/audit-cirsium-2022-guild-linkage-dual-outcome-v2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-2022-source-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test synthetic error guards and original design invariants
+        run: |
+          python -m py_compile analysis/audit_cirsium_2022_four_arm_head_outcomes_v1.py analysis/audit_cirsium_2022_guild_linkage_and_dual_outcomes_v2.py
+          python -m unittest discover -s tests -p 'test_cirsium_2022_guild_linkage_and_dual_outcomes_v2.py' -v
+          python analysis/validate_chapter3_handoff_v1.py
+      - name: Retrieve both exact author CSVs from frozen author commit (NOT simulation)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work/real_2022
+          gh api 'repos/Yogita25/Multitrophic_Interactions/contents/seeds.csv?ref=8a151c62ed069f775a16b9bc5fbdce209cbb8691' --jq .content | base64 -d > work/real_2022/seeds.csv
+          gh api 'repos/Yogita25/Multitrophic_Interactions/contents/Herbivore.csv?ref=8a151c62ed069f775a16b9bc5fbdce209cbb8691' --jq .content | base64 -d > work/real_2022/Herbivore.csv
+          test -s work/real_2022/seeds.csv
+          test -s work/real_2022/Herbivore.csv
+      - name: Independently recompute all real counts and 5000 site-stratified contrasts
+        run: |
+          python analysis/audit_cirsium_2022_guild_linkage_and_dual_outcomes_v2.py \
+            --seeds work/real_2022/seeds.csv \
+            --identified-insects work/real_2022/Herbivore.csv \
+            --bootstrap 5000 \
+            --out work/real_2022/cirsium_guild_linkage_dual_v2.json
+      - name: Cross-check frozen independent JavaScript original-source receipt
+        run: |
+          python - <<'PY'
+          import json,math
+          a=json.load(open('work/real_2022/cirsium_guild_linkage_dual_v2.json'))
+          b=json.load(open('data/evidence/cirsium_2022_insect_linkage_dual_stage_independent_v2.json'))
+          assert a['source']['seed_heads_blob']==b['original_source']['seeds_blob']
+          assert a['source']['insect_identification_blob']==b['original_source']['identified_insects_blob']
+          assert a['source']['original_head_rows']==615 and a['source']['identified_insect_rows']==181
+          x,y=a['insect_file_reconciliation'],b['join_plant_proxy']
+          def same(u,v,key='root'):
+              if isinstance(v,dict):
+                  assert isinstance(u,dict),(key,u)
+                  for k,val in v.items():
+                      assert k in u,(key,k)
+                      same(u[k],val,key+'.'+k)
+              elif isinstance(v,list):
+                  assert isinstance(u,list) and len(u)==len(v),(key,len(u),len(v))
+                  for i,(p,q) in enumerate(zip(u,v)):
+                      same(p,q,key+f'[{i}]')
+              elif isinstance(v,(int,float)) and not isinstance(v,bool):
+                  assert isinstance(u,(int,float)) and math.isfinite(u)
+                  assert math.isclose(u,v,abs_tol=1e-9,rel_tol=0),(key,u,v)
+              else:
+                  assert u==v,(key,u,v)
+          same(x,y)
+          assert x['n_matching_aggregate_counts']==114 and x['n_mismatching_aggregate_counts']==50
+          assert x['identified_guild_count']=={'Herbivore':498,'Parasitoid':24}
+          assert x['n_groups_no_identification_but_positive_seed_count']==4
+          assert x['identification_count_not_matched_to_seed_proxy']==2
+          d=a['dual_source_matched_block_outcomes']
+          r=b['dual_stage']
+          assert d['n_four_arm_blocks']==r['n_four_arm_blocks']==36
+          same(d['site_n'],r['site_n'])
+          assert d['bootstrap_draws_conditional_on_fixed_sites']==r['bootstrap_draws']==5000
+          assert d['bootstrap_seed']==r['bootstrap_seed']==20261020
+          for name,metrics in r['metrics'].items():
+              for metric,reference in metrics.items():
+                  same(d['contrasts'][name][metric],reference,key=name+'.'+metric)
+          assert d['contrasts']['Pollinator Exclusion MINUS Control']['viable_fraction']['sign']=={'positive':0,'negative':36,'zero':0}
+          assert d['contrasts']['Predator Exclusion MINUS Control']['viable_fraction']['conditional_within_site_block_bootstrap_ci95'][0]<0
+          assert d['contrasts']['Predator Exclusion MINUS Control']['viable_fraction']['conditional_within_site_block_bootstrap_ci95'][1]>0
+          assert d['contrasts']['Predator Exclusion MINUS Control']['emerged_insects_per_head']['conditional_within_site_block_bootstrap_ci95'][1]<0
+          assert a['claim_ceiling']['independent_guild_to_seed_fitness_path_identified'] is False
+          assert a['claim_ceiling']['no_morphological_head_armature_intervention'] is True
+          print('PASS: two original Git blobs, 615+181 records, all 36 complete-block dual-stage intervals matched to independent JS, no invented selection')
+          PY
+      - name: Preserve derived numeric audit (not original third-party CSV)
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-2022-site-block-guild-linkage-dual-stage-v2
+          path: work/real_2022/cirsium_guild_linkage_dual_v2.json
+          if-no-files-found: error
+          retention-days: 30
