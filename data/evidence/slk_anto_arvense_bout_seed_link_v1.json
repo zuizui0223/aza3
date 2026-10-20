@@ -1,0 +1,60 @@
+{
+  "schema": "aza3_slk_anto_arvense_source_label_numeric_lock_v1",
+  "date": "2026-10-20",
+  "source": {
+    "author_repo": "Yogita25/Multitrophic_Interactions",
+    "immutable_commit": "8a151c62ed069f775a16b9bc5fbdce209cbb8691",
+    "git_sha1": {
+      "seeds": "ca99c762162d15f006f0c73b4603ca71fd320a29",
+      "bouts": "1723e96b8fc8ea755832daa786c387c5f3c188a8",
+      "visitor_id": "875f2046e94b5deca62220e605ed60c4efe232bb"
+    },
+    "raw_seed_head_rows": 615,
+    "raw_bout_rows": 120,
+    "raw_visitor_rows": 649
+  },
+  "eligibility": {
+    "original_inferred_mother_plant_label_is_not_a_head_ID": true,
+    "matched_label_groups_before_effort_filter": 84,
+    "matched_label_groups_after_effort_filter": 81,
+    "positive_duration_positive_open_bouts": 98,
+    "groups_with_hymenoptera_diptera_visit_share": 68,
+    "n_site_groups": 4,
+    "n_treatment_groups": 3,
+    "n_1_bout_groups": 67,
+    "n_repeated_bout_groups": 14
+  },
+  "observed_pearson_descriptive": {
+    "visit_share_vs_viable_fraction": {
+      "n": 68,
+      "pooled_r": 0.21034851769822185,
+      "site_treatment_demeaned_r": 0.2849418502196707,
+      "site_specific_r": {
+        "campus": -0.014044504613548841,
+        "construction": -0.17514924122130893,
+        "ditch": 0.5027662052520155,
+        "rapseed": 0.44601155106074725
+      },
+      "one_bout_r": 0.1041757280892434,
+      "repeated_bouts_r": 0.6491253014919478,
+      "alternate_row_count_share_r": 0.15564461768586277,
+      "alternate_bout_equal_share_r": 0.15763176560374378
+    },
+    "visit_rate_per_nominal_open_head_hour_vs_viable_fraction": {
+      "all_r": 0.11271867152224188,
+      "all_site_treatment_demeaned_r": 0.2636408516924516,
+      "without_top_5pct_all_r": -0.026922507544210043,
+      "without_top_5pct_controlled_r": 0.11573000054478154
+    }
+  },
+  "evidence_status": {
+    "observational_exploratory_after_source_inspection": true,
+    "site_specific_sign_heterogeneity": true,
+    "correlations_not_causal": true,
+    "head_specific_contact_unverified": true,
+    "genetic_capacity_and_intergenerational_reexpression_unmeasured": true,
+    "source_not_independent_from_aza3_615_head_seed_study": true,
+    "original_author_paper_preprint": true,
+    "all_Cirsium_empirical_code_owner": "aza3"
+  }
+}
