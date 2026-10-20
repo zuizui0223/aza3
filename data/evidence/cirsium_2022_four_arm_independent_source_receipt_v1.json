@@ -1,0 +1,1555 @@
+{
+  "version": "cirsium_2022_four_arm_independent_js_receipt_v1",
+  "computed_date": "2026-10-20",
+  "source": {
+    "repo": "Yogita25/Multitrophic_Interactions",
+    "commit": "8a151c62ed069f775a16b9bc5fbdce209cbb8691",
+    "git_blob": "ca99c762162d15f006f0c73b4603ca71fd320a29",
+    "year": 2022,
+    "preprint_doi": "10.21203/rs.3.rs-6634172/v1",
+    "source_archive_doi": "10.5281/zenodo.15364152"
+  },
+  "design": {
+    "source_raw_heads": 615,
+    "eligible_heads": 612,
+    "ineligible_source_rows": 3,
+    "proxy_plants": 164,
+    "original_site_blocks": 45,
+    "n_complete_four_arm_site_blocks": 36,
+    "four_arm_site_n": {
+      "campus": 12,
+      "construction": 9,
+      "ditch": 8,
+      "rapseed": 7
+    },
+    "heads_by_arm": {
+      "Control": 164,
+      "Pollinator Exclusion": 142,
+      "Predator Exclusion": 154,
+      "Predator Model": 152
+    },
+    "negative_missing_raw_heads": 80,
+    "negative_signed_eaten_raw_heads": 62
+  },
+  "pairwise_matched": {
+    "Pollinator Exclusion MINUS Control": {
+      "n_matched": 39,
+      "sites": {
+        "campus": 12,
+        "construction": 10,
+        "ditch": 9,
+        "rapseed": 8
+      },
+      "metrics": {
+        "viable_fraction": {
+          "mean": -0.5090891291277234,
+          "sign": {
+            "positive": 0,
+            "negative": 39,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": -0.52483824952638,
+            "construction": -0.4495956184751521,
+            "ditch": -0.6064363211886745,
+            "rapseed": -0.4503167457768826
+          },
+          "leave_one_site_out": {
+            "campus": -0.5020895200616537,
+            "construction": -0.5296041328010237,
+            "ditch": -0.47988497150943793,
+            "rapseed": -0.524256195798908
+          }
+        },
+        "nonviable_fraction": {
+          "mean": 0.3738646594105048,
+          "sign": {
+            "positive": 33,
+            "negative": 6,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": 0.43129473474385743,
+            "construction": 0.2275619118499054,
+            "ditch": 0.4786753107479867,
+            "rapseed": 0.3526859981065576
+          },
+          "leave_one_site_out": {
+            "campus": 0.3483401814845702,
+            "construction": 0.4243138827072632,
+            "ditch": 0.3424214640092602,
+            "rapseed": 0.3793301203921685
+          }
+        },
+        "observed_damaged_fraction": {
+          "mean": -0.043918424998174915,
+          "sign": {
+            "positive": 13,
+            "negative": 21,
+            "zero": 5
+          },
+          "per_site": {
+            "campus": -0.038150302255084145,
+            "construction": -0.024969134388321084,
+            "ditch": -0.10329131837513514,
+            "rapseed": -0.009462717326048071
+          },
+          "leave_one_site_out": {
+            "campus": -0.04648203510621524,
+            "construction": -0.05045266313950381,
+            "ditch": -0.026106556985086838,
+            "rapseed": -0.05281022052646571
+          }
+        },
+        "signed_missing_fraction": {
+          "mean": 0.17914289471539346,
+          "sign": {
+            "positive": 31,
+            "negative": 8,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": 0.13169381703760666,
+            "construction": 0.24700284101356776,
+            "ditch": 0.23105232881582294,
+            "rapseed": 0.10709346499637301
+          },
+          "leave_one_site_out": {
+            "campus": 0.2002313736832988,
+            "construction": 0.15574291323326453,
+            "ditch": 0.16357006448526473,
+            "rapseed": 0.19773629593320524
+          }
+        },
+        "inferred_eaten_signed_fraction": {
+          "mean": 0.1352244697172186,
+          "sign": {
+            "positive": 26,
+            "negative": 13,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": 0.09354351478252253,
+            "construction": 0.22203370662524663,
+            "ditch": 0.12776101044068777,
+            "rapseed": 0.09763074767032498
+          },
+          "leave_one_site_out": {
+            "campus": 0.1537493385770836,
+            "construction": 0.10529025009376071,
+            "ditch": 0.13746350750017786,
+            "rapseed": 0.14492607540673957
+          }
+        },
+        "emerged_insects_per_head": {
+          "mean": -1.6677859177859176,
+          "sign": {
+            "positive": 3,
+            "negative": 28,
+            "zero": 8
+          },
+          "per_site": {
+            "campus": -0.8260582010582013,
+            "construction": -1.3559523809523808,
+            "ditch": -3.962962962962963,
+            "rapseed": -0.738095238095238
+          },
+          "leave_one_site_out": {
+            "campus": -2.041887125220459,
+            "construction": -1.7753147235905857,
+            "ditch": -0.9792328042328042,
+            "rapseed": -1.907706093189964
+          }
+        },
+        "viable_per_head": {
+          "mean": -40.19251119251119,
+          "sign": {
+            "positive": 0,
+            "negative": 39,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": -46.919312169312185,
+            "construction": -32.957142857142856,
+            "ditch": -47.98148148148148,
+            "rapseed": -30.38392857142857
+          },
+          "leave_one_site_out": {
+            "campus": -37.20282186948854,
+            "construction": -42.68746579091407,
+            "ditch": -37.855820105820094,
+            "rapseed": -42.723758320532504
+          }
+        }
+      }
+    },
+    "Predator Exclusion MINUS Control": {
+      "n_matched": 40,
+      "sites": {
+        "campus": 12,
+        "construction": 11,
+        "ditch": 10,
+        "rapseed": 7
+      },
+      "metrics": {
+        "viable_fraction": {
+          "mean": 0.00432501985711279,
+          "sign": {
+            "positive": 20,
+            "negative": 20,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": -0.05096782432322062,
+            "construction": -0.004468348807368203,
+            "ditch": 0.023046264571631198,
+            "rapseed": 0.08618626818969963
+          },
+          "leave_one_site_out": {
+            "campus": 0.028021953077255683,
+            "construction": 0.007660435557433167,
+            "ditch": -0.0019153950477266758,
+            "rapseed": -0.013039487364951087
+          }
+        },
+        "nonviable_fraction": {
+          "mean": 0.0061495293933846755,
+          "sign": {
+            "positive": 22,
+            "negative": 18,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": 0.09741487152749913,
+            "construction": -0.040826227819106255,
+            "ditch": 0.044775248268080416,
+            "rapseed": -0.13166589418074828
+          },
+          "leave_one_site_out": {
+            "campus": -0.032964188664092946,
+            "construction": 0.023967920060191574,
+            "ditch": -0.006725710231513904,
+            "rapseed": 0.03538310409092802
+          }
+        },
+        "observed_damaged_fraction": {
+          "mean": -0.027065462728721235,
+          "sign": {
+            "positive": 16,
+            "negative": 18,
+            "zero": 6
+          },
+          "per_site": {
+            "campus": -0.016144207199996322,
+            "construction": -0.009735404693226214,
+            "ditch": -0.07941558165421282,
+            "rapseed": 0.001765320774103295
+          },
+          "leave_one_site_out": {
+            "campus": -0.031746000812460484,
+            "construction": -0.033638933018046935,
+            "ditch": -0.009615423086890706,
+            "rapseed": -0.03318108347174462
+          }
+        },
+        "signed_missing_fraction": {
+          "mean": 0.01659091347822376,
+          "sign": {
+            "positive": 21,
+            "negative": 19,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": -0.030302840004282183,
+            "construction": 0.05502998131970065,
+            "ditch": 0.011594068814501224,
+            "rapseed": 0.043714305216945366
+          },
+          "leave_one_site_out": {
+            "campus": 0.03668823639929775,
+            "construction": 0.0020105774004221893,
+            "ditch": 0.01825652836613128,
+            "rapseed": 0.010837466745767667
+          }
+        },
+        "inferred_eaten_signed_fraction": {
+          "mean": -0.010474549250497468,
+          "sign": {
+            "positive": 21,
+            "negative": 19,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": -0.04644704720427852,
+            "construction": 0.045294576626474445,
+            "ditch": -0.06782151283971158,
+            "rapseed": 0.04547962599104865
+          },
+          "leave_one_site_out": {
+            "campus": 0.00494223558683727,
+            "construction": -0.03162835561762474,
+            "ditch": 0.008641105279240568,
+            "rapseed": -0.022343616725976952
+          }
+        },
+        "emerged_insects_per_head": {
+          "mean": -0.9083531746031746,
+          "sign": {
+            "positive": 12,
+            "negative": 24,
+            "zero": 4
+          },
+          "per_site": {
+            "campus": -0.4496693121693121,
+            "construction": -1.2454545454545456,
+            "ditch": -1.5333333333333334,
+            "rapseed": -0.27210884353741494
+          },
+          "leave_one_site_out": {
+            "campus": -1.1049319727891156,
+            "construction": -0.7804871373836891,
+            "ditch": -0.700026455026455,
+            "rapseed": -1.0433140933140934
+          }
+        },
+        "viable_per_head": {
+          "mean": -2.6679960317460334,
+          "sign": {
+            "positive": 18,
+            "negative": 21,
+            "zero": 1
+          },
+          "per_site": {
+            "campus": -9.909589947089946,
+            "construction": -0.12727272727272745,
+            "ditch": -0.8500000000000008,
+            "rapseed": 3.1564625850340136
+          },
+          "leave_one_site_out": {
+            "campus": 0.43554421768707474,
+            "construction": -3.6317186644772868,
+            "ditch": -3.2739947089947092,
+            "rapseed": -3.9034872534872567
+          }
+        }
+      }
+    },
+    "Predator Model MINUS Control": {
+      "n_matched": 38,
+      "sites": {
+        "campus": 12,
+        "construction": 10,
+        "ditch": 9,
+        "rapseed": 7
+      },
+      "metrics": {
+        "viable_fraction": {
+          "mean": 0.01862296453002409,
+          "sign": {
+            "positive": 14,
+            "negative": 24,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": -0.05482293207679669,
+            "construction": 0.16580418440554962,
+            "ditch": -0.0197255934627993,
+            "rapseed": -0.016423380832546696
+          },
+          "leave_one_site_out": {
+            "campus": 0.05252107065624905,
+            "construction": -0.03394175685409217,
+            "ditch": 0.030524241148486522,
+            "rapseed": 0.026536655418346513
+          }
+        },
+        "nonviable_fraction": {
+          "mean": 0.03756845023763287,
+          "sign": {
+            "positive": 23,
+            "negative": 15,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": 0.028662786125171924,
+            "construction": 0.05047503271628615,
+            "ditch": 0.12703476116619133,
+            "rapseed": -0.0806307860186568
+          },
+          "leave_one_site_out": {
+            "campus": 0.04167875675107639,
+            "construction": 0.03295895649525669,
+            "ditch": 0.009803043397735411,
+            "rapseed": 0.06425860036002086
+          }
+        },
+        "observed_damaged_fraction": {
+          "mean": -0.02562587309471715,
+          "sign": {
+            "positive": 17,
+            "negative": 14,
+            "zero": 7
+          },
+          "per_site": {
+            "campus": -0.014402374286745697,
+            "construction": 0.011409396666332117,
+            "ditch": -0.11983749860927996,
+            "rapseed": 0.023355547808842168
+          },
+          "leave_one_site_out": {
+            "campus": -0.030805949467627047,
+            "construction": -0.03885275515223475,
+            "ditch": 0.003612217582216139,
+            "rapseed": -0.036686193943907965
+          }
+        },
+        "signed_missing_fraction": {
+          "mean": -0.0305655416729398,
+          "sign": {
+            "positive": 23,
+            "negative": 15,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": 0.0405625202383705,
+            "construction": -0.22768861378816788,
+            "ditch": 0.012528330905887914,
+            "rapseed": 0.07369861904236134
+          },
+          "leave_one_site_out": {
+            "campus": -0.06339387793969836,
+            "construction": 0.03983555551107024,
+            "ditch": -0.043939502128438036,
+            "rapseed": -0.054109061834459383
+          }
+        },
+        "inferred_eaten_signed_fraction": {
+          "mean": -0.05619141476765693,
+          "sign": {
+            "positive": 24,
+            "negative": 14,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": 0.026160145951624792,
+            "construction": -0.21627921712183573,
+            "ditch": -0.10730916770339204,
+            "rapseed": 0.09705416685120351
+          },
+          "leave_one_site_out": {
+            "campus": -0.09419982740732544,
+            "construction": 0.0009828003588354807,
+            "ditch": -0.04032728454622192,
+            "rapseed": -0.09079525577836736
+          }
+        },
+        "emerged_insects_per_head": {
+          "mean": -0.8530910609857977,
+          "sign": {
+            "positive": 16,
+            "negative": 20,
+            "zero": 2
+          },
+          "per_site": {
+            "campus": -0.31216931216931215,
+            "construction": -0.7433333333333333,
+            "ditch": -1.962962962962963,
+            "rapseed": -0.5102040816326531
+          },
+          "leave_one_site_out": {
+            "campus": -1.1027472527472528,
+            "construction": -0.8922902494331065,
+            "ditch": -0.508648056923919,
+            "rapseed": -0.9305171530977985
+          }
+        },
+        "viable_per_head": {
+          "mean": -4.385171261487051,
+          "sign": {
+            "positive": 13,
+            "negative": 25,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": -7.398478835978838,
+            "construction": -3.161666666666667,
+            "ditch": -4.944444444444444,
+            "rapseed": -0.24829931972789104
+          },
+          "leave_one_site_out": {
+            "campus": -2.99441391941392,
+            "construction": -4.822137188208617,
+            "ditch": -4.211603721948549,
+            "rapseed": -5.319303635432669
+          }
+        }
+      }
+    },
+    "Predator Model MINUS Predator Exclusion": {
+      "n_matched": 38,
+      "sites": {
+        "campus": 12,
+        "construction": 10,
+        "ditch": 9,
+        "rapseed": 7
+      },
+      "metrics": {
+        "viable_fraction": {
+          "mean": 0.018810340322354246,
+          "sign": {
+            "positive": 15,
+            "negative": 23,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": -0.0038551077535760683,
+            "construction": 0.1700788862921359,
+            "ditch": -0.024607454941473372,
+            "rapseed": -0.10260964902224633
+          },
+          "leave_one_site_out": {
+            "campus": 0.02927131635739901,
+            "construction": -0.035214140381139195,
+            "ditch": 0.03228482850768006,
+            "rapseed": 0.04622775727113501
+          }
+        },
+        "nonviable_fraction": {
+          "mean": 0.029360738269793445,
+          "sign": {
+            "positive": 19,
+            "negative": 19,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": -0.06875208540232723,
+            "construction": 0.0866810815367322,
+            "ditch": 0.07963072295312393,
+            "rapseed": 0.0510351081620915
+          },
+          "leave_one_site_out": {
+            "campus": 0.07464357996461837,
+            "construction": 0.008889187103029618,
+            "ditch": 0.01375970854048399,
+            "rapseed": 0.02446652571346809
+          }
+        },
+        "observed_damaged_fraction": {
+          "mean": -0.0026024254146806165,
+          "sign": {
+            "positive": 15,
+            "negative": 17,
+            "zero": 6
+          },
+          "per_site": {
+            "campus": 0.001741832913250626,
+            "construction": 0.010772439760276609,
+            "ditch": -0.04207223861808991,
+            "rapseed": 0.02159022703473887
+          },
+          "leave_one_site_out": {
+            "campus": -0.0046074677198796495,
+            "construction": -0.007379162977165342,
+            "ditch": 0.009646826958791231,
+            "rapseed": -0.008065282419388245
+          }
+        },
+        "signed_missing_fraction": {
+          "mean": -0.045568653177467076,
+          "sign": {
+            "positive": 21,
+            "negative": 17,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": 0.07086536024265268,
+            "construction": -0.26753240758914465,
+            "ditch": -0.012951029393560694,
+            "rapseed": 0.029984313825415977
+          },
+          "leave_one_site_out": {
+            "campus": -0.09930742860213773,
+            "construction": 0.03370411625527491,
+            "ditch": -0.05569136400695526,
+            "rapseed": -0.06262900056521487
+          }
+        },
+        "inferred_eaten_signed_fraction": {
+          "mean": -0.0481710785921477,
+          "sign": {
+            "positive": 21,
+            "negative": 17,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": 0.07260719315590332,
+            "construction": -0.25675996782886806,
+            "ditch": -0.0550232680116506,
+            "rapseed": 0.05157454086015486
+          },
+          "leave_one_site_out": {
+            "campus": -0.10391489632201739,
+            "construction": 0.026324953278109582,
+            "ditch": -0.046044537048164046,
+            "rapseed": -0.07069428298460309
+          }
+        },
+        "emerged_insects_per_head": {
+          "mean": -0.028508771929824595,
+          "sign": {
+            "positive": 19,
+            "negative": 10,
+            "zero": 9
+          },
+          "per_site": {
+            "campus": 0.1375,
+            "construction": 0.32666666666666666,
+            "ditch": -0.48148148148148157,
+            "rapseed": -0.2380952380952381
+          },
+          "leave_one_site_out": {
+            "campus": -0.1051282051282052,
+            "construction": -0.1553571428571428,
+            "ditch": 0.1120689655172414,
+            "rapseed": 0.01881720430107526
+          }
+        },
+        "viable_per_head": {
+          "mean": -1.1030701754385959,
+          "sign": {
+            "positive": 19,
+            "negative": 19,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": 2.5111111111111115,
+            "construction": -2.4216666666666664,
+            "ditch": -2.666666666666666,
+            "rapseed": -3.404761904761905
+          },
+          "leave_one_site_out": {
+            "campus": -2.7711538461538465,
+            "construction": -0.6321428571428565,
+            "ditch": -0.6178160919540225,
+            "rapseed": -0.5833333333333326
+          }
+        }
+      }
+    },
+    "Pollinator Exclusion MINUS Predator Exclusion": {
+      "n_matched": 39,
+      "sites": {
+        "campus": 12,
+        "construction": 10,
+        "ditch": 9,
+        "rapseed": 8
+      },
+      "metrics": {
+        "viable_fraction": {
+          "mean": -0.5127931965389066,
+          "sign": {
+            "positive": 0,
+            "negative": 39,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": -0.47387042520315936,
+            "construction": -0.43346205118060366,
+            "ditch": -0.6215710464714445,
+            "rapseed": -0.547966204066302
+          },
+          "leave_one_site_out": {
+            "campus": -0.5300922060214612,
+            "construction": -0.5401487639038389,
+            "ditch": -0.4801598415591455,
+            "rapseed": -0.5037162913705467
+          }
+        },
+        "nonviable_fraction": {
+          "mean": 0.3692589127503675,
+          "sign": {
+            "positive": 35,
+            "negative": 4,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": 0.3338798632163584,
+            "construction": 0.2741407342701478,
+            "ditch": 0.44122048585906765,
+            "rapseed": 0.46026844040436765
+          },
+          "leave_one_site_out": {
+            "campus": 0.3849829347654825,
+            "construction": 0.4020582846400983,
+            "ditch": 0.34767044081775733,
+            "rapseed": 0.34577258303320607
+          }
+        },
+        "observed_damaged_fraction": {
+          "mean": -0.016663474383839562,
+          "sign": {
+            "positive": 10,
+            "negative": 21,
+            "zero": 8
+          },
+          "per_site": {
+            "campus": -0.022006095055087823,
+            "construction": -0.014508945444677717,
+            "ditch": -0.02635121823203615,
+            "rapseed": -0.00044399272169831205
+          },
+          "leave_one_site_out": {
+            "campus": -0.014288976307729224,
+            "construction": -0.017406415397343646,
+            "ditch": -0.013757151229380586,
+            "rapseed": -0.020849147070843753
+          }
+        },
+        "signed_missing_fraction": {
+          "mean": 0.16019775817237902,
+          "sign": {
+            "positive": 30,
+            "negative": 8,
+            "zero": 1
+          },
+          "per_site": {
+            "campus": 0.1619966570418889,
+            "construction": 0.17383026235513363,
+            "ditch": 0.20670177884441296,
+            "rapseed": 0.08814175638363263
+          },
+          "leave_one_site_out": {
+            "campus": 0.159398247563708,
+            "construction": 0.1554968946610843,
+            "ditch": 0.1462465519707688,
+            "rapseed": 0.17879285540818451
+          }
+        },
+        "inferred_eaten_signed_fraction": {
+          "mean": 0.14353428378853944,
+          "sign": {
+            "positive": 27,
+            "negative": 12,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": 0.13999056198680102,
+            "construction": 0.15932131691045587,
+            "ditch": 0.18035056061237686,
+            "rapseed": 0.08769776366193431
+          },
+          "leave_one_site_out": {
+            "campus": 0.1451092712559787,
+            "construction": 0.13809047926374066,
+            "ditch": 0.1324894007413882,
+            "rapseed": 0.15794370833734075
+          }
+        },
+        "emerged_insects_per_head": {
+          "mean": -0.6703296703296703,
+          "sign": {
+            "positive": 7,
+            "negative": 20,
+            "zero": 12
+          },
+          "per_site": {
+            "campus": -0.3763888888888889,
+            "construction": -0.04595238095238095,
+            "ditch": -1.962962962962963,
+            "rapseed": -0.4375
+          },
+          "leave_one_site_out": {
+            "campus": -0.8009700176366842,
+            "construction": -0.885632183908046,
+            "ditch": -0.28253968253968254,
+            "rapseed": -0.7304147465437788
+          }
+        },
+        "viable_per_head": {
+          "mean": -37.516788766788764,
+          "sign": {
+            "positive": 0,
+            "negative": 39,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": -37.00972222222222,
+            "construction": -32.637142857142855,
+            "ditch": -45.81481481481482,
+            "rapseed": -35.04166666666667
+          },
+          "leave_one_site_out": {
+            "campus": -37.74215167548501,
+            "construction": -39.19942528735633,
+            "ditch": -35.02738095238096,
+            "rapseed": -38.15552995391705
+          }
+        }
+      }
+    }
+  },
+  "same_complete_blocks": {
+    "Pollinator Exclusion MINUS Control": {
+      "n_matched": 36,
+      "sites": {
+        "campus": 12,
+        "construction": 9,
+        "ditch": 8,
+        "rapseed": 7
+      },
+      "metrics": {
+        "viable_fraction": {
+          "mean": -0.5230663124174956,
+          "sign": {
+            "positive": 0,
+            "negative": 36,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": -0.52483824952638,
+            "construction": -0.455236701567195,
+            "ditch": -0.640223907435059,
+            "rapseed": -0.4733438113040075
+          },
+          "leave_one_site_out": {
+            "campus": -0.5221803438630533,
+            "construction": -0.545676182700929,
+            "ditch": -0.48959271384104885,
+            "rapseed": -0.5350682954448891
+          }
+        },
+        "nonviable_fraction": {
+          "mean": 0.38871814419478146,
+          "sign": {
+            "positive": 31,
+            "negative": 5,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": 0.43129473474385743,
+            "construction": 0.2566917870747981,
+            "ditch": 0.5191213261047258,
+            "rapseed": 0.33644566879640736
+          },
+          "leave_one_site_out": {
+            "campus": 0.3674298489202434,
+            "construction": 0.43272692990144257,
+            "ditch": 0.3514600922205116,
+            "rapseed": 0.40133563825645796
+          }
+        },
+        "observed_damaged_fraction": {
+          "mean": -0.035998803120399506,
+          "sign": {
+            "positive": 13,
+            "negative": 18,
+            "zero": 5
+          },
+          "per_site": {
+            "campus": -0.038150302255084145,
+            "construction": -0.008119380940036142,
+            "ditch": -0.09673552005727294,
+            "rapseed": 0.0012579005207337946
+          },
+          "leave_one_site_out": {
+            "campus": -0.03492305355305717,
+            "construction": -0.045291943847187294,
+            "ditch": -0.018645455424149943,
+            "rapseed": -0.044991800551017876
+          }
+        },
+        "signed_missing_fraction": {
+          "mean": 0.17034697134311352,
+          "sign": {
+            "positive": 29,
+            "negative": 7,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": 0.13169381703760666,
+            "construction": 0.20666429543243292,
+            "ditch": 0.217838101387606,
+            "rapseed": 0.13564024198686636
+          },
+          "leave_one_site_out": {
+            "campus": 0.18967354849586704,
+            "construction": 0.15824119664667383,
+            "ditch": 0.1567780770446872,
+            "rapseed": 0.17872445773944914
+          }
+        },
+        "inferred_eaten_signed_fraction": {
+          "mean": 0.1343481682227141,
+          "sign": {
+            "positive": 24,
+            "negative": 12,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": 0.09354351478252253,
+            "construction": 0.19854491449239678,
+            "ditch": 0.12110258133033311,
+            "rapseed": 0.13689814250760018
+          },
+          "leave_one_site_out": {
+            "campus": 0.1547504949428099,
+            "construction": 0.11294925279948655,
+            "ditch": 0.13813262162053722,
+            "rapseed": 0.13373265718843125
+          }
+        },
+        "emerged_insects_per_head": {
+          "mean": -1.4502865961199296,
+          "sign": {
+            "positive": 3,
+            "negative": 25,
+            "zero": 8
+          },
+          "per_site": {
+            "campus": -0.8260582010582013,
+            "construction": -1.099206349206349,
+            "ditch": -3.375,
+            "rapseed": -0.7721088435374149
+          },
+          "leave_one_site_out": {
+            "campus": -1.7624007936507942,
+            "construction": -1.5673133450911232,
+            "ditch": -0.9003684807256235,
+            "rapseed": -1.6139846743295019
+          }
+        },
+        "viable_per_head": {
+          "mean": -41.58818342151675,
+          "sign": {
+            "positive": 0,
+            "negative": 36,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": -46.919312169312185,
+            "construction": -33.89682539682539,
+            "ditch": -50.8125,
+            "rapseed": -31.795918367346935
+          },
+          "leave_one_site_out": {
+            "campus": -38.92261904761905,
+            "construction": -44.151969429747204,
+            "ditch": -38.95266439909297,
+            "rapseed": -43.951833607006016
+          }
+        }
+      }
+    },
+    "Predator Exclusion MINUS Control": {
+      "n_matched": 36,
+      "sites": {
+        "campus": 12,
+        "construction": 9,
+        "ditch": 8,
+        "rapseed": 7
+      },
+      "metrics": {
+        "viable_fraction": {
+          "mean": -0.005932062065121156,
+          "sign": {
+            "positive": 17,
+            "negative": 19,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": -0.05096782432322062,
+            "construction": -0.017214539436699563,
+            "ditch": -0.0062891706079144585,
+            "rapseed": 0.08618626818969963
+          },
+          "leave_one_site_out": {
+            "campus": 0.01658581906392857,
+            "construction": -0.00217123627459502,
+            "ditch": -0.005830031052894508,
+            "rapseed": -0.02816752109214687
+          }
+        },
+        "nonviable_fraction": {
+          "mean": 0.005125952164030837,
+          "sign": {
+            "positive": 19,
+            "negative": 17,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": 0.09741487152749913,
+            "construction": -0.04208446737741288,
+            "ditch": 0.03949716065463432,
+            "rapseed": -0.13166589418074828
+          },
+          "leave_one_site_out": {
+            "campus": -0.04101850751770331,
+            "construction": 0.02086275867784541,
+            "ditch": -0.004694393118998723,
+            "rapseed": 0.03814467369552925
+          }
+        },
+        "observed_damaged_fraction": {
+          "mean": -0.02140857039994712,
+          "sign": {
+            "positive": 16,
+            "negative": 14,
+            "zero": 6
+          },
+          "per_site": {
+            "campus": -0.016144207199996322,
+            "construction": 0.0009841256944010915,
+            "ditch": -0.07477405308330913,
+            "rapseed": 0.001765320774103295
+          },
+          "leave_one_site_out": {
+            "campus": -0.024040751999922505,
+            "construction": -0.02887280243139652,
+            "ditch": -0.006161289633272253,
+            "rapseed": -0.02700226826954549
+          }
+        },
+        "signed_missing_fraction": {
+          "mean": 0.022214680301037435,
+          "sign": {
+            "positive": 20,
+            "negative": 16,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": -0.030302840004282183,
+            "construction": 0.058314881119711344,
+            "ditch": 0.04156606303658931,
+            "rapseed": 0.043714305216945366
+          },
+          "leave_one_site_out": {
+            "campus": 0.04847344045369726,
+            "construction": 0.010181280028146136,
+            "ditch": 0.016685713805165477,
+            "rapseed": 0.01702511566616311
+          }
+        },
+        "inferred_eaten_signed_fraction": {
+          "mean": 0.0008061099010903182,
+          "sign": {
+            "positive": 20,
+            "negative": 16,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": -0.04644704720427852,
+            "construction": 0.05929900681411244,
+            "ditch": -0.03320799004671982,
+            "rapseed": 0.04547962599104865
+          },
+          "leave_one_site_out": {
+            "campus": 0.024432688453774738,
+            "construction": -0.01869152240325038,
+            "ditch": 0.010524424171893218,
+            "rapseed": -0.009977152603382377
+          }
+        },
+        "emerged_insects_per_head": {
+          "mean": -0.9277998236331572,
+          "sign": {
+            "positive": 11,
+            "negative": 21,
+            "zero": 4
+          },
+          "per_site": {
+            "campus": -0.4496693121693121,
+            "construction": -1.1222222222222225,
+            "ditch": -2,
+            "rapseed": -0.27210884353741494
+          },
+          "leave_one_site_out": {
+            "campus": -1.1668650793650792,
+            "construction": -0.8629923574368019,
+            "ditch": -0.6214569160997732,
+            "rapseed": -1.0860700602079914
+          }
+        },
+        "viable_per_head": {
+          "mean": -3.819995590828925,
+          "sign": {
+            "positive": 14,
+            "negative": 21,
+            "zero": 1
+          },
+          "per_site": {
+            "campus": -9.909589947089946,
+            "construction": -1.0222222222222221,
+            "ditch": -3.937500000000001,
+            "rapseed": 3.1564625850340136
+          },
+          "leave_one_site_out": {
+            "campus": -0.7751984126984127,
+            "construction": -4.752586713697826,
+            "ditch": -3.7864229024943308,
+            "rapseed": -5.503968253968256
+          }
+        }
+      }
+    },
+    "Predator Model MINUS Control": {
+      "n_matched": 36,
+      "sites": {
+        "campus": 12,
+        "construction": 9,
+        "ditch": 8,
+        "rapseed": 7
+      },
+      "metrics": {
+        "viable_fraction": {
+          "mean": 0.022471633252779708,
+          "sign": {
+            "positive": 13,
+            "negative": 23,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": -0.05482293207679669,
+            "construction": 0.20016569595825764,
+            "ditch": -0.02745920197185777,
+            "rapseed": -0.016423380832546696
+          },
+          "leave_one_site_out": {
+            "campus": 0.061118915917567886,
+            "construction": -0.036759720982379604,
+            "ditch": 0.0367375861741047,
+            "rapseed": 0.03186008492854814
+          }
+        },
+        "nonviable_fraction": {
+          "mean": 0.03667498487686364,
+          "sign": {
+            "positive": 21,
+            "negative": 15,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": 0.028662786125171924,
+            "construction": 0.05504988974148362,
+            "ditch": 0.13066406456528412,
+            "rapseed": -0.0806307860186568
+          },
+          "leave_one_site_out": {
+            "campus": 0.0406810842527095,
+            "construction": 0.030550016588656966,
+            "ditch": 0.009820962108743494,
+            "rapseed": 0.06499017095509271
+          }
+        },
+        "observed_damaged_fraction": {
+          "mean": -0.02510285268824158,
+          "sign": {
+            "positive": 16,
+            "negative": 13,
+            "zero": 7
+          },
+          "per_site": {
+            "campus": -0.014402374286745697,
+            "construction": 0.010806428594976816,
+            "ditch": -0.12395261216905439,
+            "rapseed": 0.023355547808842168
+          },
+          "leave_one_site_out": {
+            "campus": -0.030453091888989522,
+            "construction": -0.03707261311598105,
+            "ditch": 0.0031399357348477924,
+            "rapseed": -0.036799707980641104
+          }
+        },
+        "signed_missing_fraction": {
+          "mean": -0.03404376544140174,
+          "sign": {
+            "positive": 22,
+            "negative": 14,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": 0.0405625202383705,
+            "construction": -0.26602201429471806,
+            "ditch": 0.020747749575628034,
+            "rapseed": 0.07369861904236134
+          },
+          "leave_one_site_out": {
+            "campus": -0.07134690828128785,
+            "construction": 0.0432823175097037,
+            "ditch": -0.04969848401769595,
+            "rapseed": -0.06005054790299972
+          }
+        },
+        "inferred_eaten_signed_fraction": {
+          "mean": -0.059146618129643315,
+          "sign": {
+            "positive": 23,
+            "negative": 13,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": 0.026160145951624792,
+            "construction": -0.2552155856997412,
+            "ditch": -0.10320486259342634,
+            "rapseed": 0.09705416685120351
+          },
+          "leave_one_site_out": {
+            "campus": -0.10180000017027736,
+            "construction": 0.006209704393722632,
+            "ditch": -0.04655854828284818,
+            "rapseed": -0.09685025588364084
+          }
+        },
+        "emerged_insects_per_head": {
+          "mean": -1.0782627865961198,
+          "sign": {
+            "positive": 14,
+            "negative": 20,
+            "zero": 2
+          },
+          "per_site": {
+            "campus": -0.31216931216931215,
+            "construction": -0.8333333333333335,
+            "ditch": -3,
+            "rapseed": -0.5102040816326531
+          },
+          "leave_one_site_out": {
+            "campus": -1.4613095238095237,
+            "construction": -1.1599059376837155,
+            "ditch": -0.5291950113378685,
+            "rapseed": -1.2153804050355774
+          }
+        },
+        "viable_per_head": {
+          "mean": -4.021384479717813,
+          "sign": {
+            "positive": 13,
+            "negative": 23,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": -7.398478835978838,
+            "construction": -1.5277777777777781,
+            "ditch": -5.0625,
+            "rapseed": -0.24829931972789104
+          },
+          "leave_one_site_out": {
+            "campus": -2.332837301587302,
+            "construction": -4.852586713697826,
+            "ditch": -3.72392290249433,
+            "rapseed": -4.932129173508485
+          }
+        }
+      }
+    },
+    "Predator Model MINUS Predator Exclusion": {
+      "n_matched": 36,
+      "sites": {
+        "campus": 12,
+        "construction": 9,
+        "ditch": 8,
+        "rapseed": 7
+      },
+      "metrics": {
+        "viable_fraction": {
+          "mean": 0.028403695317900855,
+          "sign": {
+            "positive": 15,
+            "negative": 21,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": -0.0038551077535760683,
+            "construction": 0.21738023539495716,
+            "ditch": -0.02117003136394332,
+            "rapseed": -0.10260964902224633
+          },
+          "leave_one_site_out": {
+            "campus": 0.04453309685363932,
+            "construction": -0.034588484707784584,
+            "ditch": 0.0425676172269992,
+            "rapseed": 0.060027606020695
+          }
+        },
+        "nonviable_fraction": {
+          "mean": 0.03154903271283279,
+          "sign": {
+            "positive": 19,
+            "negative": 17,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": -0.06875208540232723,
+            "construction": 0.0971343571188965,
+            "ditch": 0.09116690391064979,
+            "rapseed": 0.0510351081620915
+          },
+          "leave_one_site_out": {
+            "campus": 0.08169959177041282,
+            "construction": 0.009687257910811565,
+            "ditch": 0.014515355227742225,
+            "rapseed": 0.026845497259563453
+          }
+        },
+        "observed_damaged_fraction": {
+          "mean": -0.0036942822882944618,
+          "sign": {
+            "positive": 13,
+            "negative": 17,
+            "zero": 6
+          },
+          "per_site": {
+            "campus": 0.001741832913250626,
+            "construction": 0.009822302900575727,
+            "ditch": -0.049178559085745234,
+            "rapseed": 0.02159022703473887
+          },
+          "leave_one_site_out": {
+            "campus": -0.006412339889067004,
+            "construction": -0.008199810684584528,
+            "ditch": 0.00930122536812004,
+            "rapseed": -0.009797439711095613
+          }
+        },
+        "signed_missing_fraction": {
+          "mean": -0.05625844574243918,
+          "sign": {
+            "positive": 19,
+            "negative": 17,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": 0.07086536024265268,
+            "construction": -0.32433689541442934,
+            "ditch": -0.020818313460961285,
+            "rapseed": 0.029984313825415977
+          },
+          "leave_one_site_out": {
+            "campus": -0.11982034873498511,
+            "construction": 0.03310103748155754,
+            "ditch": -0.06638419782286144,
+            "rapseed": -0.07707566356916283
+          }
+        },
+        "inferred_eaten_signed_fraction": {
+          "mean": -0.05995272803073364,
+          "sign": {
+            "positive": 19,
+            "negative": 17,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": 0.07260719315590332,
+            "construction": -0.31451459251385366,
+            "ditch": -0.06999687254670652,
+            "rapseed": 0.05157454086015486
+          },
+          "leave_one_site_out": {
+            "campus": -0.12623268862405213,
+            "construction": 0.02490122679697302,
+            "ditch": -0.05708297245474141,
+            "rapseed": -0.08687310328025846
+          }
+        },
+        "emerged_insects_per_head": {
+          "mean": -0.1504629629629629,
+          "sign": {
+            "positive": 17,
+            "negative": 10,
+            "zero": 9
+          },
+          "per_site": {
+            "campus": 0.1375,
+            "construction": 0.2888888888888889,
+            "ditch": -1,
+            "rapseed": -0.2380952380952381
+          },
+          "leave_one_site_out": {
+            "campus": -0.29444444444444434,
+            "construction": -0.29691358024691356,
+            "ditch": 0.09226190476190477,
+            "rapseed": -0.12931034482758622
+          }
+        },
+        "viable_per_head": {
+          "mean": -0.2013888888888884,
+          "sign": {
+            "positive": 19,
+            "negative": 17,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": 2.5111111111111115,
+            "construction": -0.5055555555555556,
+            "ditch": -1.1249999999999991,
+            "rapseed": -3.404761904761905
+          },
+          "leave_one_site_out": {
+            "campus": -1.5576388888888886,
+            "construction": -0.09999999999999931,
+            "ditch": 0.062499999999999875,
+            "rapseed": 0.5718390804597706
+          }
+        }
+      }
+    },
+    "Pollinator Exclusion MINUS Predator Exclusion": {
+      "n_matched": 36,
+      "sites": {
+        "campus": 12,
+        "construction": 9,
+        "ditch": 8,
+        "rapseed": 7
+      },
+      "metrics": {
+        "viable_fraction": {
+          "mean": -0.5171342503523744,
+          "sign": {
+            "positive": 0,
+            "negative": 36,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": -0.47387042520315936,
+            "construction": -0.4380221621304954,
+            "ditch": -0.6339347368271446,
+            "rapseed": -0.5595300794937071
+          },
+          "leave_one_site_out": {
+            "campus": -0.5387661629269818,
+            "construction": -0.543504946426334,
+            "ditch": -0.4837626827881542,
+            "rapseed": -0.5069007743527423
+          }
+        },
+        "nonviable_fraction": {
+          "mean": 0.38359219203075073,
+          "sign": {
+            "positive": 32,
+            "negative": 4,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": 0.3338798632163584,
+            "construction": 0.298776254452211,
+            "ditch": 0.4796241654500917,
+            "rapseed": 0.4681115629771556
+          },
+          "leave_one_site_out": {
+            "campus": 0.4084483564379468,
+            "construction": 0.41186417122359714,
+            "ditch": 0.35615448533951033,
+            "rapseed": 0.3631909645609288
+          }
+        },
+        "observed_damaged_fraction": {
+          "mean": -0.014590232720452385,
+          "sign": {
+            "positive": 10,
+            "negative": 19,
+            "zero": 7
+          },
+          "per_site": {
+            "campus": -0.022006095055087823,
+            "construction": -0.00910350663443723,
+            "ditch": -0.021961466973963794,
+            "rapseed": -0.0005074202533694995
+          },
+          "leave_one_site_out": {
+            "campus": -0.010882301553134662,
+            "construction": -0.016419141415790768,
+            "ditch": -0.012484165790877697,
+            "rapseed": -0.01798953228147239
+          }
+        },
+        "signed_missing_fraction": {
+          "mean": 0.14813229104207615,
+          "sign": {
+            "positive": 27,
+            "negative": 8,
+            "zero": 1
+          },
+          "per_site": {
+            "campus": 0.1619966570418889,
+            "construction": 0.14834941431272158,
+            "ditch": 0.17627203835101668,
+            "rapseed": 0.09192593676992102
+          },
+          "leave_one_site_out": {
+            "campus": 0.14120010804216981,
+            "construction": 0.1480599166185277,
+            "ditch": 0.1400923632395217,
+            "rapseed": 0.161699342073286
+          }
+        },
+        "inferred_eaten_signed_fraction": {
+          "mean": 0.13354205832162377,
+          "sign": {
+            "positive": 24,
+            "negative": 12,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": 0.13999056198680102,
+            "construction": 0.13924590767828432,
+            "ditch": 0.15431057137705295,
+            "rapseed": 0.09141851651655152
+          },
+          "leave_one_site_out": {
+            "campus": 0.13031780648903515,
+            "construction": 0.13164077520273693,
+            "ditch": 0.127608197448644,
+            "rapseed": 0.14370980979181364
+          }
+        },
+        "emerged_insects_per_head": {
+          "mean": -0.5224867724867724,
+          "sign": {
+            "positive": 7,
+            "negative": 18,
+            "zero": 11
+          },
+          "per_site": {
+            "campus": -0.3763888888888889,
+            "construction": 0.023015873015873014,
+            "ditch": -1.375,
+            "rapseed": -0.5
+          },
+          "leave_one_site_out": {
+            "campus": -0.5955357142857142,
+            "construction": -0.7043209876543209,
+            "ditch": -0.2789115646258503,
+            "rapseed": -0.5279146141215106
+          }
+        },
+        "viable_per_head": {
+          "mean": -37.76818783068783,
+          "sign": {
+            "positive": 0,
+            "negative": 36,
+            "zero": 0
+          },
+          "per_site": {
+            "campus": -37.00972222222222,
+            "construction": -32.87460317460317,
+            "ditch": -46.87500000000001,
+            "rapseed": -34.952380952380956
+          },
+          "leave_one_site_out": {
+            "campus": -38.14742063492064,
+            "construction": -39.39938271604938,
+            "ditch": -35.16624149659864,
+            "rapseed": -38.44786535303776
+          }
+        }
+      }
+    }
+  },
+  "boundary": {
+    "raw_head_observation_not_independent_treatment": "TREATMENT_ON_PROXY_PLANT",
+    "same_four_arm_blocks_not_guaranteed_randomized": true,
+    "no_head_structure_or_spine_manipulated": true,
+    "signed_missing_residual_not_true_predation": true,
+    "all_proxy_id_linkage_inferred_not_author_individual_id": true
+  }
+}
