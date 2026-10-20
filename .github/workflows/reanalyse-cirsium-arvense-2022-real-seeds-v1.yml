@@ -56,6 +56,21 @@ jobs:
             assert upstream["n_paired_blocks"]==matched["n_matched_blocks"]
             assert abs(upstream["mean_paired_plant_fraction_difference"]-
                        matched["mean_paired_plant_fraction_difference"])<1e-12
+            original_sites=pinned["site_stratified_matched_block_effect_directions"]
+            if key=="viable_fraction_all":
+              field="viable"
+            elif key=="nonviable_fraction_all":
+              field="nonviable"
+            elif key=="directly_recorded_damaged_fraction_all":
+              field="direct_damaged"
+            elif key=="inferred_eaten_signed_fraction_all":
+              field="author_eaten_signed"
+            else:
+              field=None
+            if field:
+              for site in original_sites:
+                assert abs(upstream["mean_paired_difference_by_site"][site]-
+                           original_sites[site][field])<1e-12
             # Bootstrap implementations use different verified pseudorandom
             # generators in independent JS/Python calculations; intervals
             # should coincide approximately, not bit-for-bit.
@@ -83,6 +98,7 @@ jobs:
           assert abs(paired["viable_fraction_all"]["mean_paired_plant_fraction_difference"]-(-.5090891291277234))<1e-8
           assert abs(paired["directly_recorded_damaged_fraction_all"]["mean_paired_plant_fraction_difference"]-(-.043918424998174915))<1e-8
           assert abs(paired["inferred_eaten_signed_fraction_all"]["mean_paired_plant_fraction_difference"]-(.1352244697172186))<1e-8
+          assert pinned["site_invariant_direction_check"]["n_sites_with_negative_visible_damaged_but_positive_signed_author_inferred_eaten"]==4
           for metric in paired.values():
             assert metric is None or (
                 metric["n_paired_blocks"]>0
