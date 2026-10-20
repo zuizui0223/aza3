@@ -60,7 +60,7 @@ Lepidoptera記録だけ160件、元と同じ5地域月の下で種名一致を�
 
 ## 出典と再現性
 
-- GloBI原観察ZIP SHA256 `ce0513fde35d9c1be42cef87da7a6f4b262e9bf31771b58a4`（2026-10-08、元GitHub Actions artifact 11534639952）。
+- GloBI原観察ZIP SHA256 `ce0513fde35d9c1be42cef87da7a6f4b262e9b4fe237ba0b78e9bf31771b58a4`（2026-10-08、元GitHub Actions artifact 11534639952）。
 - iNaturalist元観察3,243件の日時・仮名観察者メタデータ SHA256 `313142b1e4fcb1a179533c9b985ea8364b221122ed158b9e2d312ee213a731c9`（GitHub Actions artifact 12241468591）。
 - 同じ191件の固定前段結果：[`v3`](../data/evidence/cirsium_globi_within_season_association_result_v3.json)。新しい観察データ、交配個体、ゲノムは加えていない。
 - Python解析：[`analysis/cirsium_within_order_visitor_identity_v4.py`](../analysis/cirsium_within_order_visitor_identity_v4.py)。
