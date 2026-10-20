@@ -81,6 +81,7 @@ jobs:
           assert frozen["coverage"]==expected
           for key,actual_key in [
               ("na63","north_america_63"),
+              ("na62","north_america_second_arizonicum_subspecies_removed_62"),
               ("jp7","japan_authority_all_7"),
               ("jp_main6","japan_dominant_radiation_6"),
               ("jp_secondary1","japan_secondary_history_1")
