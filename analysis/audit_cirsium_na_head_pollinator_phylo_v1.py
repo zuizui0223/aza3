@@ -340,14 +340,24 @@ def simulate_mk_conditional(tree,tip_states,phenotypes,a,b,
             raise ValueError("INVALID_BINARY_HEAD_FEATURE")
         observed=sum(tip_states[taxa[i]]*int(x[i]) for i in range(len(taxa)))
         hits=np.matmul(x.astype(np.int16),actual[:,mask].astype(np.int16))
-        count=int((hits>=observed).sum())
-        probability=(count+1)/(n_accepted+1)
+        upper=int((hits>=observed).sum())
+        lower=int((hits<=observed).sum())
+        p_upper=(upper+1)/(n_accepted+1)
+        p_lower=(lower+1)/(n_accepted+1)
+        # For a discrete conditional-null statistic report BOTH directions.
+        # Twice smaller inclusive tail is conservative, not Fisher's exact
+        # probability-ordering two-sided p, and does not imply selection.
+        p_twosided=min(1.0,2*min(p_upper,p_lower))
         out["trait_"+str(j)]={
             "bird_head_positive_observed":observed,
-            "upper_tail_probability":probability,
-            "n_upper_tail_draws":count,
+            "upper_tail_probability":p_upper,
+            "lower_tail_probability":p_lower,
+            "doubled_smaller_tail_probability":p_twosided,
+            "n_upper_tail_draws":upper,
+            "n_lower_tail_draws":lower,
             "conditional_monte_carlo_se":float(math.sqrt(
-                probability*(1-probability)/(n_accepted+1))),
+                p_upper*(1-p_upper)/(n_accepted+1))),
+            "null_p_two_sided_definition":"two times the smaller inclusive conditional Monte Carlo tail, clipped at 1",
         }
     return {
         "n_simulated_trees":n_sims,
@@ -472,6 +482,12 @@ def run_analysis(ts,poll,tree,n_sims=250000):
     for j,t in enumerate(HEAD_TRAITS):
         sim["phenotypes"][t]=sim["phenotypes"].pop("trait_"+str(j))
         sim["phenotypes"][t]["observed_trait_two_sided_fisher_p"] = outcomes[t]["p_two_sided"]
+    for reference in (sim,equal):
+        adjusted=bh_adjust([
+            reference["phenotypes"][t]["doubled_smaller_tail_probability"]
+            for t in HEAD_TRAITS])
+        for t,q in zip(HEAD_TRAITS,adjusted):
+            reference["phenotypes"][t]["BH_q_within_four_head_traits_for_two_tail_Mk"]=q
     return {
        "head_trait_binary_associations":outcomes,
        "subspecies_pair_sensitivity":{
