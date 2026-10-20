@@ -1,0 +1,135 @@
+name: Cirsium North American head posture and pollinator syndrome phylogeny v1
+on:
+  pull_request:
+    paths:
+      - 'analysis/audit_cirsium_na_head_pollinator_phylo_v1.py'
+      - 'tests/test_cirsium_na_head_pollinator_phylo_v1.py'
+      - 'docs/CIRSIUM_NA_HEAD_POLLINATOR_PHYLOGENETIC_PILOT_V1.md'
+      - 'data/evidence/cirsium_na_63_actual_source_phylo_v1.json'
+      - '.github/workflows/audit-cirsium-na-head-syndrome-phylo-v1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-phylogenetic-reanalysis:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install the tested deterministic scientific stack
+        run: python -m pip install numpy==2.3.5 scipy==1.17.0 biopython==1.86
+      - name: Run synthetic correctness and claim-boundary tests
+        run: |
+          python -m py_compile analysis/audit_cirsium_na_head_pollinator_phylo_v1.py tests/test_cirsium_na_head_pollinator_phylo_v1.py
+          python -m unittest discover -s tests -p 'test_cirsium_na_head_pollinator_phylo_v1.py' -v
+          python analysis/validate_chapter3_handoff_v1.py
+      - name: Fetch the original 2023-author trait, syndrome and ultrametric phylogeny
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work/na63_author
+          for x in traits.csv poll.csv cirsium.phyluce95p.ultrametric.tre; do
+            gh api "repos/carol-siniscalchi/cirsium/contents/traits/$x?ref=c925d4af86160064448f794a9715f70b917a2786" --jq .content | base64 -d > "work/na63_author/$x"
+            test -s "work/na63_author/$x"
+          done
+      - name: Fit source-pinned head-syndrome associations and conditional Mk null
+        run: |
+          python analysis/audit_cirsium_na_head_pollinator_phylo_v1.py \
+            --traits work/na63_author/traits.csv \
+            --poll work/na63_author/poll.csv \
+            --tree work/na63_author/cirsium.phyluce95p.ultrametric.tre \
+            --simulations 200000 \
+            --output work/na63_author/cirsium_63_actual_analysis.json
+      - name: Prevent descriptive taxon tests from becoming adaptive selection
+        run: |
+          python - <<'PY'
+          import json, math
+          d=json.load(open('work/na63_author/cirsium_63_actual_analysis.json'))
+          s=d['source']
+          assert s['n_traits']==s['n_pollinator']==s['n_tree_tips']==63
+          assert s['n_hummingbird_syndrome']==7 and s['n_insect_syndrome']==56
+          assert s['git_blob_sha1']['traits.csv']=='fa127f0587b676e6e004ea121424d26069586bcb'
+          assert s['git_blob_sha1']['poll.csv']=='641ad617b92857a4db0744f799c7ac66ba483ce7'
+          assert s['git_blob_sha1']['cirsium.phyluce95p.ultrametric.tre']=='6417a38793427bc7c8562dc0e2cab59b74d8c316'
+          v=d['analysis']['head_trait_binary_associations']
+          o=v['outer_phyllaries_spreading_or_reflexed']
+          assert [o['bird_positive'],o['bird_negative'],o['insect_positive'],o['insect_negative']]==[6,1,10,46]
+          assert math.isclose(o['p_two_sided'],0.0007009516685550099,abs_tol=1e-12)
+          assert o['BH_q_within_four_head_traits']<0.01
+          h=v['head_pendulous']
+          assert [h['bird_positive'],h['bird_negative'],h['insect_positive'],h['insect_negative']]==[2,5,3,53]
+          assert h['p_two_sided']>0.05
+          q=d['analysis']['subspecies_pair_sensitivity']
+          assert q['taxon_count_after_collapse']==62 and q['hummingbird_taxa_after_collapse']==6
+          assert math.isclose(q['associations']['outer_phyllaries_spreading_or_reflexed']['p_two_sided'],0.0023773427165814823,abs_tol=1e-12)
+          phy=d['analysis']['phylogenetic_sensitivity']
+          assert phy['minimum_change_count_for_pollinator_with_insect_root']>=2
+          m=phy['conditional_Mk_simulation']
+          assert m['n_simulated_trees']==200000 and m['n_conditioned_draws']>=1000
+          assert set(m['phenotypes'])=={'outer_phyllaries_spreading_or_reflexed','inner_phyllaries_non_green','head_pendulous','glutinous_ridge_present'}
+          for val in m['phenotypes'].values():
+              assert 0<=val['upper_tail_probability']<=1
+              assert 0<=val['conditional_monte_carlo_se']<=0.5
+          nonred=d['analysis']['non_red_corolla_syndrome_sensitivity']
+          assert [nonred['n_bird_nonred'],nonred['n_insect_nonred']]==[2,56]
+          s=nonred['outcomes']['outer_phyllaries_spreading_or_reflexed']
+          assert [s['bird_positive'],s['bird_negative'],s['insect_positive'],s['insect_negative']]==[1,1,10,46]
+          assert math.isclose(s['p_two_sided'],0.3460375075620084,abs_tol=1e-12)
+          mosaic=d['analysis']['post_primary_descriptive_head_state_mosaics']
+          assert [mosaic['Hummingbird'][k] for k in ['both_outer_and_inner','outer_only','inner_only','neither','outer_but_erect']]==[5,1,1,0,4]
+          assert [mosaic['Insect'][k] for k in ['both_outer_and_inner','outer_only','inner_only','neither','outer_but_erect']]==[3,7,3,43,9]
+          eq=phy['equal_rate_Mk_simulation']
+          assert eq['n_simulated_trees']==200000 and eq['n_conditioned_draws']>=1000
+          assert set(eq['phenotypes'])==set(m['phenotypes'])
+          for value in eq['phenotypes'].values():
+              assert 0<=value['upper_tail_probability']<=1
+          assert phy['equal_rate_Mk_fit']['fit_converged'] is True
+          for sim in (m,eq):
+              for trait, val in sim['phenotypes'].items():
+                  assert 0<val['upper_tail_probability']<=1
+                  assert 0<val['lower_tail_probability']<=1
+                  assert 0<val['doubled_smaller_tail_probability']<=1
+                  assert val['doubled_smaller_tail_probability']>=min(
+                      val['upper_tail_probability'],val['lower_tail_probability'])
+                  assert 0<=val['BH_q_within_four_head_traits_for_two_tail_Mk']<=1
+              assert sim['phenotypes']['glutinous_ridge_present']['upper_tail_probability']==1
+              assert sim['phenotypes']['glutinous_ridge_present']['lower_tail_probability']<1
+          assert not any(d['claim_limits'].values())
+          assert not m['is_identification_of_natural_selection']
+          print('PASS: real pinned 63 species morphometry, 7 syndrome-coded birds, 4 head tests, phylogenetic Mk and no false fitness/selection')
+          PY
+      - name: Verify complete original-source result against frozen evidence JSON
+        run: |
+          python - <<'PY'
+          import json,math
+          live=json.load(open("work/na63_author/cirsium_63_actual_analysis.json"))
+          frozen=json.load(open("data/evidence/cirsium_na_63_actual_source_phylo_v1.json"))
+          def same(x,y,p="root"):
+              if isinstance(y,dict):
+                  assert isinstance(x,dict) and set(x)==set(y),(p,"keys_changed")
+                  for k in y:same(x[k],y[k],p+"."+k)
+              elif isinstance(y,list):
+                  assert isinstance(x,list) and len(x)==len(y),(p,"list_changed")
+                  for i,(u,v) in enumerate(zip(x,y)):same(u,v,p+"["+str(i)+"]")
+              elif isinstance(y,float):
+                  assert isinstance(x,(float,int)) and math.isfinite(x) and math.isfinite(y)
+                  assert math.isclose(x,y,rel_tol=1e-8,abs_tol=1e-9),(p,x,y)
+              else:
+                  assert type(x) is type(y) and x==y,(p,x,y)
+          same(live,frozen)
+          z=live["analysis"]["phylogenetic_sensitivity"]
+          assert z["conditional_Mk_simulation"]["n_conditioned_draws"]==26178
+          assert z["equal_rate_Mk_simulation"]["n_conditioned_draws"]==21655
+          assert live["analysis"]["non_red_corolla_syndrome_sensitivity"]["n_bird_nonred"]==2
+          print("PASS full original-source morphology/pollination/phylogeny, both CTMC models and both tails exactly recomputed")
+          PY
+      - name: Save source-free numerical evolutionary pilot result
+        uses: actions/upload-artifact@v4
+        with:
+          name: aza3-north-american-cirsium-head-syndrome-phylo-pilot-v1
+          path: work/na63_author/cirsium_63_actual_analysis.json
+          if-no-files-found: error
+          retention-days: 30
