@@ -1,0 +1,68 @@
+name: Audit Cirsium original syndrome codes vs separately reported visitors
+on:
+  pull_request:
+    paths:
+      - 'analysis/audit_cirsium_na_independent_visitor_labels_v1.py'
+      - 'tests/test_cirsium_na_independent_visitor_labels_v1.py'
+      - 'data/evidence/cirsium_na_independent_visitor_source_audit_v1.json'
+      - 'docs/CIRSIUM_NA_VISITORS_NOT_EXCLUSIVE_SYNDROMES_V1.md'
+      - '.github/workflows/audit-cirsium-na-independent-visitor-code-v1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-syndrome-vs-curated-visitor-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test that syndrome coding cannot substitute for observed guild or pollination effectiveness
+        run: |
+          python -m py_compile analysis/audit_cirsium_na_independent_visitor_labels_v1.py tests/test_cirsium_na_independent_visitor_labels_v1.py
+          python -m unittest discover -s tests -p 'test_cirsium_na_independent_visitor_labels_v1.py' -v
+      - name: Fetch exactly original Cirsium traits and pollination coding
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work/cirsium_na_curated_visitors
+          gh api 'repos/carol-siniscalchi/cirsium/contents/traits/poll.csv?ref=c925d4af86160064448f794a9715f70b917a2786' --jq .content | base64 -d > work/cirsium_na_curated_visitors/poll.csv
+          gh api 'repos/carol-siniscalchi/cirsium/contents/traits/traits.csv?ref=c925d4af86160064448f794a9715f70b917a2786' --jq .content | base64 -d > work/cirsium_na_curated_visitors/traits.csv
+          test -s work/cirsium_na_curated_visitors/poll.csv
+          test -s work/cirsium_na_curated_visitors/traits.csv
+      - name: Verify 63 original author labels and taxon-flora source spot checks
+        run: |
+          python analysis/audit_cirsium_na_independent_visitor_labels_v1.py \
+            --poll work/cirsium_na_curated_visitors/poll.csv \
+            --traits work/cirsium_na_curated_visitors/traits.csv \
+            --catalog data/evidence/cirsium_na_independent_visitor_source_audit_v1.json \
+            --out work/cirsium_na_curated_visitors/summary.json
+          python - <<'PY'
+          import json
+          x=json.load(open("work/cirsium_na_curated_visitors/summary.json"))
+          b=json.load(open("data/evidence/cirsium_na_independent_visitor_source_audit_v1.json"))
+          assert x["n_original_author_classified_taxa"]==63
+          assert x["n_original_author_hummingbird_syndrome"]==7
+          a=x["case_evidence"]
+          assert a["n_taxa_spotchecked"]==4
+          assert a["n_original_bird_coded"]==3 and a["n_original_insect_coded"]==1
+          assert a["n_insect_coded_with_external_hummingbird_visits"]==1
+          assert a["n_bird_coded_with_external_insect_visits"]==3
+          assert not a["direct_effective_pollination_confirmed"]
+          assert not a["no_overlap_in_visitor_records_asserted"]
+          assert not any(x["claim_limits"].values())
+          assert a["spot_checked_taxa"][0]["taxon"]=="Cirsium_wrightii"
+          assert a["spot_checked_taxa"][0]["author_syndrome"]=="Insect"
+          assert a["spot_checked_taxa"][0]["author_outer_phyllary_position"]=="0"
+          assert b["required_interpretation"]["all_63_species_observationally_verified"] is False
+          print("PASS: exact 63 source labels; independent external flora records reveal nonexclusive visits without effective-pollination conflation")
+          PY
+      - name: Persist validated derived summary (no copied flora text and no raw authors' visitor events)
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-na-external-visitor-syndrome-source-audit-v1
+          path: work/cirsium_na_curated_visitors/summary.json
+          if-no-files-found: error
+          retention-days: 30
