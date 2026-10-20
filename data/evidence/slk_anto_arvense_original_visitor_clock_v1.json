@@ -1,0 +1,100 @@
+{
+  "schema": "aza3_slk_anto_original_arvense_visitor_clock_evidence_v1",
+  "as_of": "2026-10-20",
+  "source": {
+    "study": "Karpate et al. 2025 Research Square PREPRINT, field experiment 2022",
+    "doi": "10.21203/rs.3.rs-6634172/v1",
+    "source_repo": "Yogita25/Multitrophic_Interactions",
+    "immutable_commit": "8a151c62ed069f775a16b9bc5fbdce209cbb8691",
+    "author_Pollinators_csv_git_blob_sha1": "1723e96b8fc8ea755832daa786c387c5f3c188a8",
+    "author_Pollinator_Id_csv_git_blob_sha1": "875f2046e94b5deca62220e605ed60c4efe232bb",
+    "raw_author_file_bytes_preserved_in_public_aza3": false
+  },
+  "verified_original_source_counts": {
+    "bout_rows": 120,
+    "insect_record_rows": 649,
+    "original_distinct_bout_keys": 115,
+    "duplicated_bout_key_values": 4,
+    "original_distinct_date_count": 10,
+    "survey_site_count": 4,
+    "number_site_date_cells": 10,
+    "dated_range_start": "2022-07-02",
+    "dated_range_end": "2022-07-20",
+    "named_insect_order_records_with_unique_bout_mapping": 548,
+    "observation_bouts_with_at_least_one_named_order_record": 92,
+    "bouts_with_both_Hymenoptera_and_Diptera": 48,
+    "ambiguous_key_insect_records_excluded": 77,
+    "unmatched_key_insect_records_excluded": 1,
+    "blank_order_insect_records_excluded": 23,
+    "nominal_original_bout_minutes_including_duplicate_rows": 1345,
+    "zero_duration_source_bout_rows": 3,
+    "repeated_site_block_treatment_string_across_distinct_dates": 18
+  },
+  "source_field_clock_aggregation": {
+    "matched_site_date_cells": 10,
+    "first_last_direction_record_weighted_positive_sites": 4,
+    "first_last_direction_equal_bout_positive_sites": 2,
+    "inferential_test_or_causal_time_trend_claimed": false,
+    "site_first_last_order_shares": [
+      {
+        "site": "campus",
+        "first_date": "2022-07-03",
+        "last_date": "2022-07-15",
+        "record_weighted_first": 0.8,
+        "record_weighted_last": 0.927272727273,
+        "equal_bout_first": 0.877551020408,
+        "equal_bout_last": 0.842857142857
+      },
+      {
+        "site": "construction",
+        "first_date": "2022-07-12",
+        "last_date": "2022-07-18",
+        "record_weighted_first": 0.441176470588,
+        "record_weighted_last": 0.612903225806,
+        "equal_bout_first": 0.488553113553,
+        "equal_bout_last": 0.422927689594
+      },
+      {
+        "site": "ditch",
+        "first_date": "2022-07-02",
+        "last_date": "2022-07-16",
+        "record_weighted_first": 0.55,
+        "record_weighted_last": 0.642857142857,
+        "equal_bout_first": 0.417777777778,
+        "equal_bout_last": 0.691666666667
+      },
+      {
+        "site": "rapseed",
+        "first_date": "2022-07-09",
+        "last_date": "2022-07-20",
+        "record_weighted_first": 0.417721518987,
+        "record_weighted_last": 0.818181818182,
+        "equal_bout_first": 0.453134685827,
+        "equal_bout_last": 0.916666666667
+      }
+    ]
+  },
+  "biological_claims": {
+    "positive_support": "Same short plant-observation bouts often contain visitor insect records from both Hymenoptera and Diptera",
+    "outcome_unit": "observer's bout around flowering Cirsium plant, NOT single flower head, unique insect individual or valid pollination success",
+    "ecological_time_window": "ten survey dates within July 2022 at four sites, not serial plant generations",
+    "direct_cirsium_guild_order_diversity_observed": true,
+    "true_taxon_specific_pollination_efficiency_measured": false,
+    "pollen_fate_or_filled_achene_fitness_joined_to_exact_bout": false,
+    "focal_flower_architecture_experiment_performed": false,
+    "endogenous_regain_and_functional_toolkit_in_same_plant_measured": false,
+    "Markov_autocorrelation_parameter_for_ANTO_v6_identified": false,
+    "flowering_season_visit_difference_inferred_as_selective_evolution": false,
+    "data_source_is_user_new_field_samples": false
+  },
+  "related_not_joinable": {
+    "C_arvense_seed_exclusion_source_head_rows": 615,
+    "source_head_seed_study_original_2022": true,
+    "same_head_or_plant_ID_bridge_to_visitor_rows_independently_validated": false,
+    "Ryukyu_anto_leaf_RNA_same_specimens_as_arvense": false,
+    "Cirsium_sieboldii_40_targets_are_collected": false
+  },
+  "script": "analysis/audit_arvense_original_visitor_clock_v1.py",
+  "validation": "GitHub CI pinned two source blobs, 7 synthetic tests plus source-row and weighting checks",
+  "stage": "DESCRIPTIVE_ORIGINAL_PUBLIC_SOURCE_NOT_PROOF_OF_SLK_ANTO_MECHANISM"
+}

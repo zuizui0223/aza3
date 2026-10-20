@@ -1,0 +1,92 @@
+name: Source-verified Cirsium visitation clock and SLK-ANTO biological gate
+on:
+  pull_request:
+    paths:
+      - "analysis/audit_arvense_original_visitor_clock_v1.py"
+      - "tests/test_slk_anto_arvense_visitor_clock_v1.py"
+      - "docs/SLK_ANTO_REAL_ARVENSE_VISITOR_CLOCK_V1.md"
+      - "data/evidence/slk_anto_arvense_original_visitor_clock_v1.json"
+      - ".github/workflows/real-arvense-visitor-clock-v1.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-source-ecology:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify synthetic parsing, duplicate-key and causal-scope tests
+        run: python -m unittest discover -s tests -p 'test_slk_anto_arvense_visitor_clock_v1.py' -v
+      - name: Download two original public author CSV files at exact source commit
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work/cirsium_arvense_visitor_clock
+          gh api 'repos/Yogita25/Multitrophic_Interactions/contents/Pollinators.csv?ref=8a151c62ed069f775a16b9bc5fbdce209cbb8691' --jq .content | base64 -d > work/cirsium_arvense_visitor_clock/Pollinators.csv
+          gh api 'repos/Yogita25/Multitrophic_Interactions/contents/Pollinator_Id.csv?ref=8a151c62ed069f775a16b9bc5fbdce209cbb8691' --jq .content | base64 -d > work/cirsium_arvense_visitor_clock/Pollinator_Id.csv
+          test -s work/cirsium_arvense_visitor_clock/Pollinators.csv
+          test -s work/cirsium_arvense_visitor_clock/Pollinator_Id.csv
+      - name: Recompute date and visit composition support, preserving source SHA
+        run: |
+          python analysis/audit_arvense_original_visitor_clock_v1.py \
+            --bouts work/cirsium_arvense_visitor_clock/Pollinators.csv \
+            --visitors work/cirsium_arvense_visitor_clock/Pollinator_Id.csv \
+            --output work/cirsium_arvense_visitor_clock/result.json
+      - name: Enforce no pseudolongitudinal Markov inference or invented genetics
+        run: |
+          python - <<'PY'
+          import json,math
+          d=json.load(open('work/cirsium_arvense_visitor_clock/result.json'))
+          assert d['source_rows']['bouts']==120
+          assert d['source_rows']['visitor_lines']==649
+          assert d['source_rows']['distinct_calendar_dates']==10
+          assert d['matched_taxonomic_observations']['named_order_visitor_lines']==548
+          assert d['matched_taxonomic_observations']['named_order_bouts']==92
+          assert d['matched_taxonomic_observations']['mixed_Hymenoptera_Diptera_bouts']==48
+          assert d['first_last_comparisons']['site_count']==4
+          assert d['first_last_comparisons']['positive_record_weighted_sites']==4
+          assert d['first_last_comparisons']['positive_equal_bout_sites']==2
+          assert all(v is False for v in d['scientific_boundaries'].values())
+          assert d['source_rows']['survey_site_count']==4
+          assert d['matched_taxonomic_observations']['ambiguous_bout_key_visitor_lines']==77
+          assert d['matched_taxonomic_observations']['unmatched_bout_key_visitor_lines']==1
+          assert d['source_rows']['repeated_site_block_treatment_across_dates']==18
+          f=json.load(open('data/evidence/slk_anto_arvense_original_visitor_clock_v1.json'))
+          q=f['verified_original_source_counts']
+          r=d['source_rows']
+          obs=d['matched_taxonomic_observations']
+          assert d['source']['source_commit']==f['source']['immutable_commit']
+          assert d['source']['raw_bout_git_blob_sha1']==f['source']['author_Pollinators_csv_git_blob_sha1']
+          assert d['source']['raw_visitor_git_blob_sha1']==f['source']['author_Pollinator_Id_csv_git_blob_sha1']
+          for a,b in [('bouts','bout_rows'),('visitor_lines','insect_record_rows'),
+                      ('distinct_calendar_dates','original_distinct_date_count'),
+                      ('distinct_bout_keys','original_distinct_bout_keys'),
+                      ('duplicated_bout_keys','duplicated_bout_key_values'),
+                      ('site_date_strata','number_site_date_cells')]:
+              assert r[a]==q[b],(a,r[a],q[b])
+          for a,b in [('named_order_visitor_lines','named_insect_order_records_with_unique_bout_mapping'),
+                      ('named_order_bouts','observation_bouts_with_at_least_one_named_order_record'),
+                      ('mixed_Hymenoptera_Diptera_bouts','bouts_with_both_Hymenoptera_and_Diptera'),
+                      ('ambiguous_bout_key_visitor_lines','ambiguous_key_insect_records_excluded'),
+                      ('unmatched_bout_key_visitor_lines','unmatched_key_insect_records_excluded')]:
+              assert obs[a]==q[b],(a,obs[a],q[b])
+          actual={x['site']:x for x in d['site_time_comparisons']}
+          for x in f['source_field_clock_aggregation']['site_first_last_order_shares']:
+              v=actual[x['site']]
+              assert v['first_date']==x['first_date'] and v['last_date']==x['last_date']
+              for key,k in [('record_weighted_final_minus_first','record_weighted'),
+                            ('equal_bout_final_minus_first','equal_bout')]:
+                  assert math.isclose(v[key],
+                      x[k+'_last']-x[k+'_first'],abs_tol=1e-9,rel_tol=0)
+          print('ORIGINAL_ARVENSE_VISITOR_CLOCK_VERIFIED',d['matched_taxonomic_observations']['mixed_Hymenoptera_Diptera_bouts'])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-arvense-original-visitor-clock-ecology-v1
+          path: work/cirsium_arvense_visitor_clock/result.json
+          if-no-files-found: error
+          retention-days: 30
