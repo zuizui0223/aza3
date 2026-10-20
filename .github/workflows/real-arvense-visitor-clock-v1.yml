@@ -5,6 +5,7 @@ on:
       - "analysis/audit_arvense_original_visitor_clock_v1.py"
       - "tests/test_slk_anto_arvense_visitor_clock_v1.py"
       - "docs/SLK_ANTO_REAL_ARVENSE_VISITOR_CLOCK_V1.md"
+      - "data/evidence/slk_anto_arvense_original_visitor_clock_v1.json"
       - ".github/workflows/real-arvense-visitor-clock-v1.yml"
   workflow_dispatch:
 permissions:
@@ -54,6 +55,33 @@ jobs:
           assert d['matched_taxonomic_observations']['ambiguous_bout_key_visitor_lines']==77
           assert d['matched_taxonomic_observations']['unmatched_bout_key_visitor_lines']==1
           assert d['source_rows']['repeated_site_block_treatment_across_dates']==18
+          f=json.load(open('data/evidence/slk_anto_arvense_original_visitor_clock_v1.json'))
+          q=f['verified_original_source_counts']
+          r=d['source_rows']
+          obs=d['matched_taxonomic_observations']
+          assert d['source']['source_commit']==f['source']['immutable_commit']
+          assert d['source']['raw_bout_git_blob_sha1']==f['source']['author_Pollinators_csv_git_blob_sha1']
+          assert d['source']['raw_visitor_git_blob_sha1']==f['source']['author_Pollinator_Id_csv_git_blob_sha1']
+          for a,b in [('bouts','bout_rows'),('visitor_lines','insect_record_rows'),
+                      ('distinct_calendar_dates','original_distinct_date_count'),
+                      ('distinct_bout_keys','original_distinct_bout_keys'),
+                      ('duplicated_bout_keys','duplicated_bout_key_values'),
+                      ('site_date_strata','number_site_date_cells')]:
+              assert r[a]==q[b],(a,r[a],q[b])
+          for a,b in [('named_order_visitor_lines','named_insect_order_records_with_unique_bout_mapping'),
+                      ('named_order_bouts','observation_bouts_with_at_least_one_named_order_record'),
+                      ('mixed_Hymenoptera_Diptera_bouts','bouts_with_both_Hymenoptera_and_Diptera'),
+                      ('ambiguous_bout_key_visitor_lines','ambiguous_key_insect_records_excluded'),
+                      ('unmatched_bout_key_visitor_lines','unmatched_key_insect_records_excluded')]:
+              assert obs[a]==q[b],(a,obs[a],q[b])
+          actual={x['site']:x for x in d['site_time_comparisons']}
+          for x in f['source_field_clock_aggregation']['site_first_last_order_shares']:
+              v=actual[x['site']]
+              assert v['first_date']==x['first_date'] and v['last_date']==x['last_date']
+              for key,k in [('record_weighted_final_minus_first','record_weighted'),
+                            ('equal_bout_final_minus_first','equal_bout')]:
+                  assert math.isclose(v[key],
+                      x[k+'_last']-x[k+'_first'],abs_tol=1e-9,rel_tol=0)
           print('ORIGINAL_ARVENSE_VISITOR_CLOCK_VERIFIED',d['matched_taxonomic_observations']['mixed_Hymenoptera_Diptera_bouts'])
           PY
       - uses: actions/upload-artifact@v4
