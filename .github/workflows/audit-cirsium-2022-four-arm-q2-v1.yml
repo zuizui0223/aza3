@@ -1,0 +1,99 @@
+name: Audit authentic Cirsium 2022 four-arm pollinator predator seed outcomes v1
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "analysis/audit_cirsium_2022_four_arm_head_outcomes_v1.py"
+      - "tests/test_cirsium_2022_four_arm_head_outcomes_v1.py"
+      - "data/evidence/cirsium_2022_four_arm_independent_source_receipt_v1.json"
+      - "docs/CIRSIUM_2022_FOUR_ARM_INTERVENTION_VIABLE_ACHENE_Q2_20261020.md"
+      - ".github/workflows/audit-cirsium-2022-four-arm-q2-v1.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  immutable-source-four-treatment-validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run synthetic controls before original data
+        run: |
+          python -m py_compile analysis/audit_cirsium_2022_four_arm_head_outcomes_v1.py tests/test_cirsium_2022_four_arm_head_outcomes_v1.py
+          python -m unittest discover -s tests -p 'test_cirsium_2022_four_arm_head_outcomes_v1.py' -v
+      - name: Pull the exact public author 2022 flowerhead file by immutable SHA
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work
+          gh api 'repos/Yogita25/Multitrophic_Interactions/contents/seeds.csv?ref=8a151c62ed069f775a16b9bc5fbdce209cbb8691' --jq .content | base64 -d > work/source_seeds_2022.csv
+          test -s work/source_seeds_2022.csv
+      - name: Recompute real 615 head rows, 164 proxy plants, 36 complete blocks
+        run: |
+          python analysis/audit_cirsium_2022_four_arm_head_outcomes_v1.py \
+            --seeds work/source_seeds_2022.csv \
+            --bootstrap 5000 \
+            --out work/cirsium_2022_four_arm_source_python_v1.json
+      - name: Compare 5 contrasts by 7 outcomes and site against independent source-JS receipt
+        run: |
+          python - <<'PY'
+          import json,math
+          r=json.load(open('work/cirsium_2022_four_arm_source_python_v1.json'))
+          f=json.load(open('data/evidence/cirsium_2022_four_arm_independent_source_receipt_v1.json'))
+          def near(x,y,label):
+              assert math.isfinite(x) and math.isfinite(y)
+              assert math.isclose(x,y,rel_tol=0,abs_tol=1e-9),(label,x,y)
+          d=f['design']
+          assert r['source']['verified_seeds_csv_git_blob']==f['source']['git_blob']
+          for k,key in [('source_head_rows','source_raw_heads'),('eligible_head_rows','eligible_heads'),
+                         ('inferred_proxy_plants','proxy_plants'),
+                         ('original_distinct_site_blocks','original_site_blocks'),
+                         ('raw_negative_missing_rows','negative_missing_raw_heads'),
+                         ('raw_negative_signed_eaten_rows','negative_signed_eaten_raw_heads')]:
+              assert r['source'][k]==d[key],(k,r['source'][k],d[key])
+          assert r['source']['head_rows_excluded_due_to_missing_arm_or_site']==d['ineligible_source_rows']==3
+          assert r['treated_head_rows']==d['heads_by_arm']
+          assert r['identical_complete_four_arm_blocks']['n_all_four_arms']==d['n_complete_four_arm_site_blocks']==36
+          assert r['identical_complete_four_arm_blocks']['site_n']==d['four_arm_site_n']
+          assert r['synthetic_controls']=="PASS_SYNTHETIC_ACCOUNTING_AND_MISSING_BLOCK_CONTROLS"
+          for pair,expected in f['pairwise_matched'].items():
+              actual=r['paired_block_contrasts'][pair]
+              assert actual['n_matched_blocks']==expected['n_matched']
+              assert actual['n_matched_blocks_per_site']==expected['sites']
+              for name,m in expected['metrics'].items():
+                  a=actual['outcomes'][name]
+                  near(a['mean_a_minus_b'],m['mean'],pair+' '+name)
+                  assert a['sign']==m['sign']
+                  assert a['site_means'].keys()==m['per_site'].keys()
+                  for s,v in m['per_site'].items():near(a['site_means'][s],v,pair+' '+name+' '+s)
+                  for s,v in m['leave_one_site_out'].items():near(a['leave_one_site_out'][s],v,pair+' '+name+' drop '+s)
+          c=r['identical_complete_four_arm_blocks']['contrasts']
+          for arm in ['Pollinator Exclusion','Predator Exclusion','Predator Model']:
+              expected=f['same_complete_blocks'][arm+' MINUS Control']['metrics']['viable_fraction']
+              near(c[arm]['mean_viable_fraction_minus_control'],expected['mean'],arm)
+              assert c[arm]['sign']==expected['sign']
+              for s,v in expected['per_site'].items():near(c[arm]['site_means'][s],v,arm+' '+s)
+              ci=c[arm]['conditional_site_stratified_bootstrap_interval_95']
+              assert len(ci)==2 and all(math.isfinite(x) for x in ci) and ci[0]<=ci[1]
+          k='Pollinator Exclusion minus Predator Exclusion'
+          expected=f['same_complete_blocks']['Pollinator Exclusion MINUS Predator Exclusion']['metrics']['viable_fraction']
+          near(c[k]['mean_viable_fraction_difference'],expected['mean'],k)
+          assert c[k]['sign']==expected['sign']=={'positive':0,'negative':36,'zero':0}
+          assert c['Pollinator Exclusion']['sign']=={'positive':0,'negative':36,'zero':0}
+          assert c['Predator Exclusion']['sign']=={'positive':17,'negative':19,'zero':0}
+          assert not r['claim_limit']['new_Cirsium_individual_field_experiments_completed']
+          assert r['claim_limit']['does_not_establish_zero_predator_effect']
+          print('PASS: pinned author 615 real heads, 4 original arms, 36 complete site blocks, all independent contrasts verified')
+          PY
+      - name: Archive resulting numerical receipt only, not original author CSV
+        uses: actions/upload-artifact@v4
+        with:
+          name: Cirsium-2022-four-arm-original-block-outcomes-v1
+          path: work/cirsium_2022_four_arm_source_python_v1.json
+          retention-days: 30
+          if-no-files-found: error
