@@ -1,0 +1,114 @@
+name: Source audit Cirsium insect-order conditioned visitor identity v4
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'analysis/cirsium_within_order_visitor_identity_v4.py'
+      - 'tests/test_cirsium_within_order_visitor_identity_v4.py'
+      - 'verification/independent_within_order_v4.py'
+      - 'data/evidence/cirsium_within_order_visitor_identity_v4.json'
+      - 'docs/CIRSIUM_Q2_WITHIN_ORDER_VISITOR_IDENTITY_V4.md'
+      - '.github/workflows/cirsium-within-order-visitor-identity-v4.yml'
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  real-observation-pair-and-fixed-order-label-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install exact versions from v3 source analysis
+        run: python -m pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 pytest==9.0.2
+      - name: Run 52 targeted unit tests and original authorization guard
+        run: |
+          python -m pytest -q tests/test_cirsium_flower_partner_regional_turnover_v1.py tests/test_cirsium_visit_dates_v2.py tests/test_cirsium_within_season_host_association_v3.py tests/test_cirsium_within_order_visitor_identity_v4.py
+          python analysis/validate_chapter3_handoff_v1.py
+      - name: Download SOURCE-PINNED previous actual observation and date archives
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work
+          gh api repos/zuizui0223/aza3/actions/artifacts/11534639952/zip > work/globi.zip
+          gh api repos/zuizui0223/aza3/actions/artifacts/12241468591/zip > work/dates.zip
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          from zipfile import ZipFile
+          want={'globi.zip':'ce0513fde35d9c1be42cef87da7a6f4b262e9bf31771b58a4',
+                'dates.zip':'91653e2822a7bdfe89537b1283d39f5d3b14a6fe3f91e5ff1fa418b6665bbfd0'}
+          for name,digest in want.items():
+              actual=hashlib.sha256(Path('work',name).read_bytes()).hexdigest()
+              if actual!=digest:raise AssertionError('SOURCE_ARCHIVE_HASH_DRIFT:'+name)
+          with ZipFile('work/dates.zip') as z:data=z.read('source_dates_v2.json')
+          assert hashlib.sha256(data).hexdigest()=='313142b1e4fcb1a179533c9b985ea8364b221122ed158b9e2d312ee213a731c9'
+          Path('work/source_dates_v2.json').write_bytes(data)
+          # The source receipt on current main must be exactly the canonical Git blob,
+          # not a differerently serialized earlier exported local copy.
+          p=Path('data/evidence/cirsium_globi_within_season_association_result_v3.json').read_bytes()
+          blob=hashlib.sha1(b'blob '+str(len(p)).encode()+b'\0'+p).hexdigest()
+          assert blob=='b5ce6ee6c394f1769e2d612ca74d396d48aca040',blob
+          PY
+      - name: Recompute original 191 source observations, label reference and taxonomy layers
+        run: |
+          python analysis/cirsium_within_order_visitor_identity_v4.py \
+            --archive work/globi.zip \
+            --metadata work/source_dates_v2.json \
+            --prior-receipt data/evidence/cirsium_globi_within_season_association_result_v3.json \
+            --permutations 49999 \
+            --out work/cirsium_real_observer_order_result_v4.json
+          python verification/independent_within_order_v4.py \
+            --archive work/globi.zip \
+            --metadata work/source_dates_v2.json \
+            --result work/cirsium_real_observer_order_result_v4.json
+      - name: Compare all real numeric outcomes and inferential limits with frozen receipt
+        run: |
+          python - <<'PY'
+          import json,math
+          r=json.load(open('work/cirsium_real_observer_order_result_v4.json'))
+          frozen=json.load(open('data/evidence/cirsium_within_order_visitor_identity_v4.json'))
+          def same(a,b):
+              if isinstance(a,dict):
+                  assert set(a)==set(b)
+                  for k in a:same(a[k],b[k])
+              elif isinstance(a,list):
+                  assert len(a)==len(b)
+                  for x,y in zip(a,b):same(x,y)
+              elif isinstance(a,float):
+                  assert math.isfinite(a) and math.isfinite(b) and math.isclose(a,b,rel_tol=0,abs_tol=1e-10),(a,b)
+              else:assert a==b,(a,b)
+          same(frozen,r)
+          v=r['primary_observations_and_exact_reference']
+          assert v['n_same_cohort_records']==191 and v['n_original_observers']==86
+          assert v['n_observer_order_exchangeable_records']==46
+          assert abs(v['previous_observer_only_excess_u']-.02466126430512612)<1e-10
+          assert abs(v['observer_plus_order_residual_u']-.013983792078392806)<1e-10
+          assert abs(v['hymenoptera_share_observer_fixed_excess']-.08319649698960045)<1e-10
+          assert v['leave_one_visitor']['n_positive_fixed_strata_excess']==58
+          assert v['leave_one_visitor']['n_still_meeting_original_minimum']==52
+          assert v['post_hoc_observer_day_order_residual']<.01
+          assert not v['observer_x_order_label_reference']['randomized_field_experiment']
+          assert not v['observer_x_order_label_reference']['prospectively_preregistered']
+          assert 'fitness' in ' '.join(r['biological_claim_limit'])
+          prohibited={'event_id','observer_key','lat','lon','latitude','longitude','observed_on','date'}
+          def scan(z):
+              if isinstance(z,dict):
+                  assert not (set(z)&prohibited)
+                  for val in z.values():scan(val)
+              elif isinstance(z,list):
+                  for val in z:scan(val)
+          scan(r)
+          print('PASS: 191 real observations, observer×order conditional species identity, independent pair enumeration and no adaptive inference')
+          PY
+      - name: Archive real source-derived aggregate result (not precise source coordinates)
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-real-observer-order-identity-v4
+          path: work/cirsium_real_observer_order_result_v4.json
+          if-no-files-found: error
+          retention-days: 30
