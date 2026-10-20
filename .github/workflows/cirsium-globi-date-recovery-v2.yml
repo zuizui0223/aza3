@@ -1,0 +1,75 @@
+name: Cirsium source dates and season-matched visitor turnover v2
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'analysis/cirsium_visit_dates_v2.py'
+      - 'tests/test_cirsium_visit_dates_v2.py'
+      - 'docs/CIRSIUM_GLOBI_TEMPORAL_MATCHING_DESIGN_V2.md'
+      - '.github/workflows/cirsium-globi-date-recovery-v2.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  temporal-source-recovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install exact numerical dependencies
+        run: python -m pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 pytest==9.0.2
+      - name: Test source ID, date, observer and calendar matching rules
+        run: |
+          python -m pytest -q tests/test_cirsium_visit_dates_v2.py tests/test_cirsium_flower_partner_regional_turnover_v1.py
+      - name: Retrieve exact original GloBI archive
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work
+          gh api repos/zuizui0223/aza3/actions/artifacts/11534639952/zip > work/source.zip
+          test -s work/source.zip
+      - name: Recover original observation dates and compute declared scenarios
+        run: |
+          python analysis/cirsium_visit_dates_v2.py \
+            --archive work/source.zip \
+            --metadata work/source_dates_v2.json \
+            --out-dir work/temporal_results_v2
+      - name: Verify source recovery, unchanged cohort and output limits
+        run: |
+          python - <<'PY'
+          import json,math
+          from pathlib import Path
+          r=json.loads(Path('work/temporal_results_v2/result.json').read_text())
+          m=json.loads(Path('work/source_dates_v2.json').read_text())
+          assert r['original_admission']['retained_unique_observations']==3243
+          assert m['requested_count']==3243
+          assert not m['retrieval_errors'],m['retrieval_errors']
+          assert r['date_recovery']['metadata_returned']>0
+          assert r['date_recovery']['dated_valid']>0
+          assert len({x['event_id'] for x in m['observations']})==len(m['observations'])
+          assert len(m['observations'])+len(m['unreturned_ids'])==3243
+          prohibited={'lat','lon','latitude','longitude','geojson','location','login','name','user'}
+          assert not any(prohibited.intersection(x) for x in m['observations'])
+          assert abs(r['scenarios']['original_all_dates_missing']['equal_host_pair_mean_delta']-(-0.001268248897))<1e-6
+          for scenario in r['scenarios'].values():
+              value=scenario['equal_host_pair_mean_delta']
+              assert value is None or (math.isfinite(value) and -1<=value<=1)
+              if scenario['n_host_pairs']==0:assert value is None
+          print('PASS: genuine source-date recovery; absent comparisons remain unidentified; no synthetic biological observations')
+          PY
+      - name: Preserve minimal source snapshot and aggregate results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-source-dates-and-season-matched-v2
+          path: |
+            work/source_dates_v2.json
+            work/temporal_results_v2/
+          if-no-files-found: warn
+          retention-days: 30
