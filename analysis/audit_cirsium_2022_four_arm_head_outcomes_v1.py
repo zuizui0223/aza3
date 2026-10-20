@@ -150,8 +150,10 @@ def summarize_contrast(blocks, arm_a,arm_b):
         rr["leave_one_site_out"]={
             s:mean([z for z,v in zip(values,rows) if v["site"]!=s])
             for s in SITES if any(v["site"]!=s for v in rows)}
-        d=[mean(values[:i]+values[i+1:]) for i in range(len(values))]
-        rr["leave_one_block_out_range"]=[min(d),max(d)]
+        # With one matched block, deletion leaves no comparable units. Keep
+        # this sensitivity undefined; missing is not a biological zero.
+        d=[mean(values[:i]+values[i+1:]) for i in range(len(values))] if len(values)>1 else []
+        rr["leave_one_block_out_range"]=[min(d),max(d)] if d else None
         r["outcomes"][metric]=rr
     return r
 
