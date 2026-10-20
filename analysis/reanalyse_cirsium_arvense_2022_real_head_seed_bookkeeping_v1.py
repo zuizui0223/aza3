@@ -193,6 +193,8 @@ def stratified_pair_bootstrap(paired,metric,n_boot,seed):
     return {
        "n_paired_blocks":n,
        "n_paired_blocks_by_site":{x:len(by_site[x]) for x in sites},
+       "mean_paired_difference_by_site":{
+           site:sum(by_site[site])/len(by_site[site]) for site in sites},
        "mean_paired_plant_fraction_difference":obs,
        "stratified_block_bootstrap_percentile_CI95":[
            percentile(boots,.025),percentile(boots,.975)],
