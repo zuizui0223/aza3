@@ -1,0 +1,119 @@
+name: Cirsium source dates and season-matched visitor turnover v2
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'analysis/cirsium_visit_dates_v2.py'
+      - 'tests/test_cirsium_visit_dates_v2.py'
+      - 'data/evidence/cirsium_globi_source_date_recovery_result_v2.json'
+      - 'docs/CIRSIUM_GLOBI_TEMPORAL_MATCHING_DESIGN_V2.md'
+      - 'docs/CIRSIUM_GLOBI_TEMPORAL_MATCHING_RESULT_V2.md'
+      - '.github/workflows/cirsium-globi-date-recovery-v2.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'analysis/cirsium_visit_dates_v2.py'
+      - 'tests/test_cirsium_visit_dates_v2.py'
+      - 'data/evidence/cirsium_globi_source_date_recovery_result_v2.json'
+      - '.github/workflows/cirsium-globi-date-recovery-v2.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  temporal-source-recovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install exact numerical dependencies
+        run: python -m pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 pytest==9.0.2
+      - name: Test source ID, date, observer and calendar matching rules
+        run: |
+          python -m pytest -q tests/test_cirsium_visit_dates_v2.py tests/test_cirsium_flower_partner_regional_turnover_v1.py
+      - name: Retrieve immutable source archives without re-querying live observations
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work
+          gh api repos/zuizui0223/aza3/actions/artifacts/11534639952/zip > work/source.zip
+          gh api repos/zuizui0223/aza3/actions/artifacts/12241468591/zip > work/date_snapshot.zip
+          python - <<'PY'
+          import hashlib,json,zipfile
+          from pathlib import Path
+          saved=json.loads(Path('data/evidence/cirsium_globi_source_date_recovery_result_v2.json').read_text())
+          p=Path('work/date_snapshot.zip')
+          assert hashlib.sha256(p.read_bytes()).hexdigest()==saved['source']['recovery_artifact_sha256']
+          with zipfile.ZipFile(p) as z:
+              raw=z.read('source_dates_v2.json')
+          assert hashlib.sha256(raw).hexdigest()==saved['source']['minimal_metadata_sha256']
+          Path('work/source_dates_v2.json').write_bytes(raw)
+          PY
+      - name: Replay all declared temporal scenarios on recovered original dates
+        run: |
+          python analysis/cirsium_visit_dates_v2.py \
+            --archive work/source.zip \
+            --metadata work/source_dates_v2.json \
+            --out-dir work/temporal_results_v2
+      - name: Verify all frozen source and seasonal results
+        run: |
+          python - <<'PY'
+          import json,math
+          import pandas as pd
+          from pathlib import Path
+          r=json.loads(Path('work/temporal_results_v2/result.json').read_text())
+          m=json.loads(Path('work/source_dates_v2.json').read_text())
+          f=json.loads(Path('data/evidence/cirsium_globi_source_date_recovery_result_v2.json').read_text())
+          def check(expected,actual):
+              if isinstance(expected,dict):
+                  for k,v in expected.items():
+                      assert k in actual,k
+                      check(v,actual[k])
+              elif isinstance(expected,list):
+                  assert len(expected)==len(actual)
+                  for a,b in zip(expected,actual):check(a,b)
+              elif isinstance(expected,float):
+                  assert math.isfinite(actual) and math.isclose(expected,actual,rel_tol=0,abs_tol=1e-10),(expected,actual)
+              else:assert expected==actual,(expected,actual)
+          assert r['original_admission']['retained_unique_observations']==3243
+          assert m['requested_count']==3243 and not m['retrieval_errors']
+          check(f['date_recovery'],r['date_recovery'])
+          check(f['observer_summary'],r['observer_summary'])
+          check(f['scenarios'],r['scenarios'])
+          check(f['primary_month_pair'],r['scenarios']['primary_same_calendar_month']['host_pairs'][0])
+          assert r['minimal_metadata_sha256']==f['source']['minimal_metadata_sha256']
+          assert r['current_visitor_name_or_ancestor_concordant']==3187
+          prohibited={'lat','lon','latitude','longitude','geojson','location','login','name','user'}
+          assert not any(prohibited.intersection(x) for x in m['observations'])
+          assert len({x['event_id'] for x in m['observations']})==len(m['observations'])==3243
+          core=r['original_common_core']
+          assert core['n_dated_records']==513
+          assert core['comparisons']['same_calendar_month']['n_host_pairs']==0
+          assert core['comparisons']['same_year_month']['n_host_pairs']==0
+          df=pd.read_csv('work/temporal_results_v2/original_core_month_composition.csv',dtype={'month':str})
+          wide=df.pivot_table(index=['focal_taxon','cell'],columns='month',values='record_fraction_within_host_cell',fill_value=0)
+          wide=wide.reindex(columns=[f'{i:02d}' for i in range(1,13)],fill_value=0)
+          check(f['original_common_core']['record_month_fractions_equal_region_weight'],wide.groupby(level=0).mean().to_dict('index'))
+          for scenario in r['scenarios'].values():
+              value=scenario['equal_host_pair_mean_delta']
+              assert value is None or (math.isfinite(value) and -1<=value<=1)
+              if scenario['n_host_pairs']==0:assert value is None
+          loo=f['primary_month_pair']['leave_one_region_out_delta'].values()
+          assert min(loo)<0<max(loo)
+          print('PASS: all 3243 dates, nine scenarios, seasonal record separation and nonrobust July sign reproduced')
+          PY
+      - name: Preserve minimal source snapshot and aggregate results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-source-dates-and-season-matched-v2
+          path: |
+            work/source_dates_v2.json
+            work/temporal_results_v2/
+          if-no-files-found: warn
+          retention-days: 90
