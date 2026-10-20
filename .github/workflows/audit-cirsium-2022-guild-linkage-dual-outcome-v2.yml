@@ -69,6 +69,16 @@ jobs:
               else:
                   assert u==v,(key,u,v)
           same(x,y)
+          # Recompute the original R script's Eaten>0 outcome-selected cohort independently.
+          selfilter=a['original_author_outcome_selection']
+          source_filter=b['original_R_eaten_positive_subset']
+          same(selfilter,source_filter)
+          assert selfilter['n_eligible_heads']==612
+          assert selfilter['n_eaten_positive_heads']==523
+          assert selfilter['n_excluded_due_to_eaten_not_positive']==89
+          assert selfilter['n_original_complete_four_arm_blocks']==36
+          assert selfilter['n_complete_four_arm_blocks_after_filter']==33
+          assert not selfilter['valid_unbiased_florivore_inference']
           assert x['n_matching_aggregate_counts']==114 and x['n_mismatching_aggregate_counts']==50
           assert x['identified_guild_count']=={'Herbivore':498,'Parasitoid':24}
           assert x['n_groups_no_identification_but_positive_seed_count']==4
