@@ -1,0 +1,51 @@
+{
+  "version": "jpn19_original_source_independent_bound_receipt_20261021_v1",
+  "source": {
+    "EAzami_commit": "c9870e91604ed1514344ddc8f765eae5237dbf27",
+    "NMNS_seed_git_blob": "c4da867491e913119d78e4b07df800965a0f021d",
+    "original_authority_url": "https://www.kahaku.go.jp/research/db/botany/azami/detail.html?no=110",
+    "aza3_previous_main_source_json_blob": "805d19f4be9860bdf643eac5574df61ef4c1e911"
+  },
+  "jpn19_source_row": {
+    "id": "JPN_19",
+    "name": "Cirsium nippoense",
+    "orientation": "upward_or_erect",
+    "phyllary_direction": "ascending_or_recurved",
+    "sticky": "sticky"
+  },
+  "existing_dominant6": {
+    "erect_not_outward": 3,
+    "erect_outward": 0,
+    "nodding_not_outward": 2,
+    "nodding_outward": 1
+  },
+  "possible_if_ascending": {
+    "n": 7,
+    "counts": {
+      "erect_not_outward": 4,
+      "erect_outward": 0,
+      "nodding_not_outward": 2,
+      "nodding_outward": 1
+    },
+    "n_states": 3
+  },
+  "possible_if_shortly_recurved": {
+    "n": 7,
+    "counts": {
+      "erect_not_outward": 3,
+      "erect_outward": 1,
+      "nodding_not_outward": 2,
+      "nodding_outward": 1
+    },
+    "n_states": 4
+  },
+  "n_state_range": [
+    3,
+    4
+  ],
+  "source_original_two_possibilities_represent_description_not_two_separately_measured_plants": true,
+  "fixed_tip_assignment_authorized": false,
+  "clade_independent_evolutionary_transitions_estimated": false,
+  "same_individual_phyllary_polymorphism_observed": false,
+  "biological_sample_count_added": 0
+}

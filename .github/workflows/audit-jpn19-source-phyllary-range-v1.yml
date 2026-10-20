@@ -1,0 +1,71 @@
+name: Verify JPN19 NMNS mixed phyllary posture without false binary coding
+on:
+  pull_request:
+    paths:
+      - 'analysis/audit_jpn19_source_phyllary_range_v1.py'
+      - 'tests/test_jpn19_source_phyllary_range_v1.py'
+      - 'data/evidence/cirsium_jpn19_phyllary_range_source_envelope_v1.json'
+      - 'docs/CIRSIUM_JPN19_MIXED_PHYLLARY_DIRECTION_PARTIAL_IDENTIFICATION_20261021.md'
+      - '.github/workflows/audit-jpn19-source-phyllary-range-v1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-nmns-jpn19-mixed-state:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test ambiguous category preservation and source-envelope math
+        run: |
+          python -m py_compile analysis/audit_jpn19_source_phyllary_range_v1.py tests/test_jpn19_source_phyllary_range_v1.py
+          python -m unittest discover -s tests -p 'test_jpn19_source_phyllary_range_v1.py' -v
+      - name: Recover exact NMNS authority classification as stored by EAzami
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work/jpn19
+          gh api 'repos/zuizui0223/EAzami/contents/data/evidence/japan38_nmns_capitulum_trait_seed_v1.csv?ref=c9870e91604ed1514344ddc8f765eae5237dbf27' --jq .content | base64 -d > work/jpn19/nmns22.csv
+          test -s work/jpn19/nmns22.csv
+      - name: Recompute JPN19 possible extension without forced tip coding
+        run: |
+          python analysis/audit_jpn19_source_phyllary_range_v1.py \
+            --nmns work/jpn19/nmns22.csv \
+            --existing-receipt data/evidence/cirsium_two_radiation_head_mosaic_independent_source_v1.json \
+            --out work/jpn19/possible_state_range.json
+      - name: Strict independently locked source and 3-vs-4 categorical interval
+        run: |
+          python - <<'PY'
+          import json
+          a=json.load(open("work/jpn19/possible_state_range.json"))
+          b=json.load(open("data/evidence/cirsium_jpn19_phyllary_range_source_envelope_v1.json"))
+          x=a["actual_source_state"]
+          s=b["jpn19_source_row"]
+          assert a["source"]["original_nmns_git_blob"]==b["source"]["NMNS_seed_git_blob"]
+          assert a["source"]["commit"]==b["source"]["EAzami_commit"]
+          assert x["authority_record_id"]==s["id"]=="JPN_19"
+          assert x["authority_taxon"]==s["name"]=="Cirsium nippoense"
+          assert x["original_orientation"]==s["orientation"]
+          assert x["original_outer_phyllary_descriptor"]==s["phyllary_direction"]=="ascending_or_recurved"
+          assert x["sticky_original_botanical_description"] is True
+          assert x["source_authority_url"]==b["source"]["original_authority_url"]
+          assert x["n_existing_confirmed_dominant_taxa"]==6
+          assert x["forced_new_source_tip_state"] is None
+          assert x["if_ascending"]["four_cell_counts"]==b["possible_if_ascending"]["counts"]
+          assert x["if_recurved"]["four_cell_counts"]==b["possible_if_shortly_recurved"]["counts"]
+          assert x["n_observed_combinations_bound"]==b["n_state_range"]==[3,4]
+          assert not x["within_single_plant_polymorphism_demonstrated"]
+          assert not a["claim_ceiling"]["confirmed_fourth_state_in_Japan_dominant_radiation"]
+          assert a["source"]["biological_data_added"]==0
+          print("PASS: original NMNS source has range not fixed binary; dominant-radiation state count only partially identified [3,4].")
+          PY
+      - name: Preserve just derived numeric bounds (not original botanist CSV)
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-nippoense-source-mixed-phyllary-range-v1
+          path: work/jpn19/possible_state_range.json
+          if-no-files-found: error
+          retention-days: 30
