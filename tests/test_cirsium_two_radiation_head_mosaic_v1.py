@@ -69,6 +69,8 @@ class TestMosaic(unittest.TestCase):
     def test_fisher_manual_cumulative_exact(self):
         self.assertAlmostEqual(m.fisher_exact_two_sided(1,0,0,1),1.0)
         self.assertAlmostEqual(m.fisher_exact_two_sided(3,0,0,3),0.1)
+        self.assertAlmostEqual(m.fisher_exact_two_sided(1,2,1,3),1.0)
+        self.assertAlmostEqual(m.fisher_exact_two_sided(1,2,0,3),1.0)
         self.assertAlmostEqual(m.fisher_exact_two_sided(6,1,10,46),
                                0.0007009516685550101,places=12)
 
