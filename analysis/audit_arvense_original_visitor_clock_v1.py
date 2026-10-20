@@ -44,7 +44,7 @@ def require(condition: bool, reason: str):
 
 def git_blob_sha1(source: bytes) -> str:
     return hashlib.sha1(b"blob " + str(len(source)).encode("ascii") +
-                        b"\\0" + source).hexdigest()
+                        b"\0" + source).hexdigest()
 
 
 def parse_source_csv(source: bytes, columns: tuple,
