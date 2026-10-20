@@ -70,6 +70,40 @@ class TestOriginalSourceSemantics(unittest.TestCase):
         self.assertTrue(all(0<=d["upper_tail_probability"]<=1 for d in q["phenotypes"].values()))
         self.assertEqual(q["null_condition"],"SIMULATED_BINARY_CTMC_CONDITION_ON_EXACT_OBSERVED_BIRD_TIP_COUNT")
 
+    def test_equal_rate_Mk_fit_is_separate_sensitivity(self):
+        t=Phylo.read(io.StringIO("((A:1,B:1):1,(C:1,D:1):1);"),"newick")
+        model=v.fit_equal_rate_binary_mk(t,{"A":0,"B":1,"C":0,"D":1})
+        self.assertTrue(model["fit_converged"])
+        self.assertGreater(model["equal_rate"],0)
+        self.assertTrue(math.isfinite(model["maximum_loglik"]))
+
+    def test_nonred_head_association_is_a_separate_small_sample(self):
+        rows=[
+            {"Species":"A","CorollaColor":"0","OuterPhyllaryPosition":"1"},
+            {"Species":"B","CorollaColor":"1","OuterPhyllaryPosition":"1"},
+            {"Species":"C","CorollaColor":"2","OuterPhyllaryPosition":"0"},
+            {"Species":"D","CorollaColor":"2","OuterPhyllaryPosition":"1"},
+            {"Species":"E","CorollaColor":"2","OuterPhyllaryPosition":"0"},
+        ]
+        poll={"A":"Hummingbird","B":"Hummingbird","C":"Hummingbird",
+              "D":"Insect","E":"Insect"}
+        r=v.nonred_phenotype_associations(rows,poll,
+                                            ["outer_phyllaries_spreading_or_reflexed"])
+        self.assertEqual(r["n_bird_nonred"],2)
+        self.assertEqual(r["n_insect_nonred"],2)
+        self.assertEqual(r["outcomes"]["outer_phyllaries_spreading_or_reflexed"]["bird_positive"],1)
+
+    def test_head_module_mosaic_not_forced_to_be_synchronous(self):
+        rows=[{"Species":"A","OuterPhyllaryPosition":"1","InnerPhyllaryColor":"0","HeadPosition":"0"},
+              {"Species":"B","OuterPhyllaryPosition":"0","InnerPhyllaryColor":"1","HeadPosition":"1"},
+              {"Species":"C","OuterPhyllaryPosition":"1","InnerPhyllaryColor":"1","HeadPosition":"1"},
+              {"Species":"D","OuterPhyllaryPosition":"0","InnerPhyllaryColor":"0","HeadPosition":"0"}]
+        p={"A":"Hummingbird","B":"Hummingbird","C":"Insect","D":"Insect"}
+        z=v.head_state_combinations(rows,p)
+        self.assertEqual(z["Hummingbird"]["outer_only"],1)
+        self.assertEqual(z["Hummingbird"]["inner_only"],1)
+        self.assertEqual(z["Insect"]["both_outer_and_inner"],1)
+
     def test_result_not_an_adaptive_mechanism(self):
         d=v.claim_limits()
         for key in ("same_head_morphology_and_fitness_measured",
