@@ -244,12 +244,12 @@ def simulate_mk_conditional(tree,tip_states,phenotypes,a,b,
     rate=a+b
     pi1=a/rate
     pi0=b/rate
+    parent_lookup={child:node for node in tree.find_clades(order="preorder")
+                   for child in node.clades}
     for node in tree.find_clades(order="preorder"):
         if node is tree.root:
             continue
-        # clade instances have identity-hash semantics in Biopython
-        parent=None
-        # a single precomputed parent map is much cheaper than nested searches
+        # derive parent within this tree, never from global state
         if node not in parent_lookup:
             raise ValueError("TREE_PARENT_LOOKUP_DRIFT")
         parent=parent_lookup[node]
@@ -382,9 +382,6 @@ def run_analysis(ts,poll,tree,n_sims=250000):
     mk=fit_independent_binary_mk(tree,binary_poll)
     # exact tip identity, orders from original HEAD_TRAITS dict insertion
     matrix={s:[binary_phen[t][s] for t in HEAD_TRAITS] for s in names}
-    global parent_lookup
-    parent_lookup={child:node for node in tree.find_clades(order="preorder")
-                   for child in node.clades}
     sim=simulate_mk_conditional(
         tree,binary_poll,matrix,
         a=mk["insect_to_bird_rate"],b=mk["bird_to_insect_rate"],
