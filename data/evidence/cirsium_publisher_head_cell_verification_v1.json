@@ -1,0 +1,20 @@
+{
+  "version": "cirsium_michalkova_2023_original_publisher_cell_audit_v1",
+  "status": "PASS_ALL_SELECTED_AUTHOR_CELLS",
+  "xlsx_sha256": "c06423cc6f9800ba4775a4428afa072ba1b3dc6fb48ccd05fdb7e42a2f03ee79",
+  "head_subset_csv_sha256": "e69b20badd340e08b366ac51596661a2f8951b020994bc2f3154d838f1c2c9dc",
+  "n_nonhybrid_source_plants": 114,
+  "head_numeric_columns": [
+    "Cor_L",
+    "Inv_L",
+    "Inv_W",
+    "Ibr_W",
+    "Cap_W",
+    "Nec_P",
+    "Nec_W",
+    "Inv_Sp"
+  ],
+  "source_numeric_cells_confirmed": 912,
+  "source_sheet": "S5 Morphometry",
+  "provenance_only_not_an_independent_experiment": true
+}
