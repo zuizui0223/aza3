@@ -1,0 +1,718 @@
+{
+  "version": "aza3_20261020_na_63_head_syndrome_phylogenetic_sensitivity_v1",
+  "source": {
+    "author_repo": "carol-siniscalchi/cirsium",
+    "git_commit": "c925d4af86160064448f794a9715f70b917a2786",
+    "published_paper_doi": "10.1086/724310",
+    "published_year": 2023,
+    "git_blob_sha1": {
+      "traits.csv": "fa127f0587b676e6e004ea121424d26069586bcb",
+      "poll.csv": "641ad617b92857a4db0744f799c7ac66ba483ce7",
+      "cirsium.phyluce95p.ultrametric.tre": "6417a38793427bc7c8562dc0e2cab59b74d8c316"
+    },
+    "source_classification_not_field_service": true,
+    "n_traits": 63,
+    "n_pollinator": 63,
+    "n_tree_tips": 63,
+    "n_hummingbird_syndrome": 7,
+    "n_insect_syndrome": 56,
+    "tree_depth_range": [
+      5.469379,
+      5.469381
+    ]
+  },
+  "analysis": {
+    "head_trait_binary_associations": {
+      "outer_phyllaries_spreading_or_reflexed": {
+        "bird_positive": 6,
+        "bird_negative": 1,
+        "insect_positive": 10,
+        "insect_negative": 46,
+        "bird_fraction": 0.8571428571428571,
+        "insect_fraction": 0.17857142857142858,
+        "bird_minus_insect_prevalence": 0.6785714285714285,
+        "odds_ratio": 27.6,
+        "p_two_sided": 0.0007009516685550099,
+        "p_is_iid_label_test_not_phylogenetically_independent": true,
+        "analysis_set": "FOUR_DECLARED_HEAD_TRAITS",
+        "BH_q_within_four_head_traits": 0.0014019033371100197
+      },
+      "inner_phyllaries_non_green": {
+        "bird_positive": 6,
+        "bird_negative": 1,
+        "insect_positive": 6,
+        "insect_negative": 50,
+        "bird_fraction": 0.8571428571428571,
+        "insect_fraction": 0.10714285714285714,
+        "bird_minus_insect_prevalence": 0.75,
+        "odds_ratio": 50.0,
+        "p_two_sided": 8.660498832044543e-05,
+        "p_is_iid_label_test_not_phylogenetically_independent": true,
+        "analysis_set": "FOUR_DECLARED_HEAD_TRAITS",
+        "BH_q_within_four_head_traits": 0.00034641995328178174
+      },
+      "head_pendulous": {
+        "bird_positive": 2,
+        "bird_negative": 5,
+        "insect_positive": 3,
+        "insect_negative": 53,
+        "bird_fraction": 0.2857142857142857,
+        "insect_fraction": 0.05357142857142857,
+        "bird_minus_insect_prevalence": 0.23214285714285712,
+        "odds_ratio": 7.066666666666666,
+        "p_two_sided": 0.09076894119334222,
+        "p_is_iid_label_test_not_phylogenetically_independent": true,
+        "analysis_set": "FOUR_DECLARED_HEAD_TRAITS",
+        "BH_q_within_four_head_traits": 0.09076894119334222
+      },
+      "glutinous_ridge_present": {
+        "bird_positive": 0,
+        "bird_negative": 7,
+        "insect_positive": 23,
+        "insect_negative": 33,
+        "bird_fraction": 0.0,
+        "insect_fraction": 0.4107142857142857,
+        "bird_minus_insect_prevalence": -0.4107142857142857,
+        "odds_ratio": 0.0,
+        "p_two_sided": 0.04143830172411217,
+        "p_is_iid_label_test_not_phylogenetically_independent": true,
+        "analysis_set": "FOUR_DECLARED_HEAD_TRAITS",
+        "BH_q_within_four_head_traits": 0.055251068965482895
+      },
+      "outer_phyllaries_reflexed": {
+        "bird_positive": 3,
+        "bird_negative": 4,
+        "insect_positive": 1,
+        "insect_negative": 55,
+        "bird_fraction": 0.42857142857142855,
+        "insect_fraction": 0.017857142857142856,
+        "bird_minus_insect_prevalence": 0.4107142857142857,
+        "odds_ratio": 41.25,
+        "p_two_sided": 0.0033491979552265124,
+        "p_is_iid_label_test_not_phylogenetically_independent": true,
+        "analysis_set": "ANCILLARY_SYNDROME_OR_OUTER_SUBSTATE"
+      },
+      "red_corolla_positive_control": {
+        "bird_positive": 5,
+        "bird_negative": 2,
+        "insect_positive": 0,
+        "insect_negative": 56,
+        "bird_fraction": 0.7142857142857143,
+        "insect_fraction": 0.0,
+        "bird_minus_insect_prevalence": 0.7142857142857143,
+        "odds_ratio": null,
+        "p_two_sided": 2.987687738828288e-06,
+        "p_is_iid_label_test_not_phylogenetically_independent": true,
+        "analysis_set": "ANCILLARY_SYNDROME_OR_OUTER_SUBSTATE"
+      }
+    },
+    "subspecies_pair_sensitivity": {
+      "removed_second_subspecies": "Cirsium_arizonicum_rothrockii",
+      "taxon_count_after_collapse": 62,
+      "hummingbird_taxa_after_collapse": 6,
+      "associations": {
+        "outer_phyllaries_spreading_or_reflexed": {
+          "bird_positive": 5,
+          "bird_negative": 1,
+          "insect_positive": 10,
+          "insect_negative": 46,
+          "bird_fraction": 0.8333333333333334,
+          "insect_fraction": 0.17857142857142858,
+          "bird_minus_insect_prevalence": 0.6547619047619048,
+          "odds_ratio": 23.0,
+          "p_two_sided": 0.0023773427165814823,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        },
+        "inner_phyllaries_non_green": {
+          "bird_positive": 5,
+          "bird_negative": 1,
+          "insect_positive": 6,
+          "insect_negative": 50,
+          "bird_fraction": 0.8333333333333334,
+          "insect_fraction": 0.10714285714285714,
+          "bird_minus_insect_prevalence": 0.7261904761904763,
+          "odds_ratio": 41.666666666666664,
+          "p_two_sided": 0.0003907960629996959,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        },
+        "head_pendulous": {
+          "bird_positive": 2,
+          "bird_negative": 4,
+          "insect_positive": 3,
+          "insect_negative": 53,
+          "bird_fraction": 0.3333333333333333,
+          "insect_fraction": 0.05357142857142857,
+          "bird_minus_insect_prevalence": 0.27976190476190477,
+          "odds_ratio": 8.833333333333334,
+          "p_two_sided": 0.06914632386143597,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        },
+        "glutinous_ridge_present": {
+          "bird_positive": 0,
+          "bird_negative": 6,
+          "insect_positive": 23,
+          "insect_negative": 33,
+          "bird_fraction": 0.0,
+          "insect_fraction": 0.4107142857142857,
+          "bird_minus_insect_prevalence": -0.4107142857142857,
+          "odds_ratio": 0.0,
+          "p_two_sided": 0.07606209981081756,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        }
+      }
+    },
+    "leave_one_bird_taxon_out": {
+      "outer_phyllaries_spreading_or_reflexed": {
+        "Cirsium_andersonii": {
+          "bird_positive": 6,
+          "bird_negative": 0,
+          "insect_positive": 10,
+          "insect_negative": 46,
+          "bird_fraction": 1.0,
+          "insect_fraction": 0.17857142857142858,
+          "bird_minus_insect_prevalence": 0.8214285714285714,
+          "odds_ratio": null,
+          "p_two_sided": 0.00013026535433323193,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        },
+        "Cirsium_arizonicum_arizonicum": {
+          "bird_positive": 5,
+          "bird_negative": 1,
+          "insect_positive": 10,
+          "insect_negative": 46,
+          "bird_fraction": 0.8333333333333334,
+          "insect_fraction": 0.17857142857142858,
+          "bird_minus_insect_prevalence": 0.6547619047619048,
+          "odds_ratio": 23.0,
+          "p_two_sided": 0.0023773427165814823,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        },
+        "Cirsium_arizonicum_rothrockii": {
+          "bird_positive": 5,
+          "bird_negative": 1,
+          "insect_positive": 10,
+          "insect_negative": 46,
+          "bird_fraction": 0.8333333333333334,
+          "insect_fraction": 0.17857142857142858,
+          "bird_minus_insect_prevalence": 0.6547619047619048,
+          "odds_ratio": 23.0,
+          "p_two_sided": 0.0023773427165814823,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        },
+        "Cirsium_conspicuum": {
+          "bird_positive": 5,
+          "bird_negative": 1,
+          "insect_positive": 10,
+          "insect_negative": 46,
+          "bird_fraction": 0.8333333333333334,
+          "insect_fraction": 0.17857142857142858,
+          "bird_minus_insect_prevalence": 0.6547619047619048,
+          "odds_ratio": 23.0,
+          "p_two_sided": 0.0023773427165814823,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        },
+        "Cirsium_occidentale_candidissimum": {
+          "bird_positive": 5,
+          "bird_negative": 1,
+          "insect_positive": 10,
+          "insect_negative": 46,
+          "bird_fraction": 0.8333333333333334,
+          "insect_fraction": 0.17857142857142858,
+          "bird_minus_insect_prevalence": 0.6547619047619048,
+          "odds_ratio": 23.0,
+          "p_two_sided": 0.0023773427165814823,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        },
+        "Cirsium_turneri": {
+          "bird_positive": 5,
+          "bird_negative": 1,
+          "insect_positive": 10,
+          "insect_negative": 46,
+          "bird_fraction": 0.8333333333333334,
+          "insect_fraction": 0.17857142857142858,
+          "bird_minus_insect_prevalence": 0.6547619047619048,
+          "odds_ratio": 23.0,
+          "p_two_sided": 0.0023773427165814823,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        },
+        "Cirsium_vinaceum": {
+          "bird_positive": 5,
+          "bird_negative": 1,
+          "insect_positive": 10,
+          "insect_negative": 46,
+          "bird_fraction": 0.8333333333333334,
+          "insect_fraction": 0.17857142857142858,
+          "bird_minus_insect_prevalence": 0.6547619047619048,
+          "odds_ratio": 23.0,
+          "p_two_sided": 0.0023773427165814823,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        }
+      },
+      "inner_phyllaries_non_green": {
+        "Cirsium_andersonii": {
+          "bird_positive": 5,
+          "bird_negative": 1,
+          "insect_positive": 6,
+          "insect_negative": 50,
+          "bird_fraction": 0.8333333333333334,
+          "insect_fraction": 0.10714285714285714,
+          "bird_minus_insect_prevalence": 0.7261904761904763,
+          "odds_ratio": 41.666666666666664,
+          "p_two_sided": 0.0003907960629996959,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        },
+        "Cirsium_arizonicum_arizonicum": {
+          "bird_positive": 5,
+          "bird_negative": 1,
+          "insect_positive": 6,
+          "insect_negative": 50,
+          "bird_fraction": 0.8333333333333334,
+          "insect_fraction": 0.10714285714285714,
+          "bird_minus_insect_prevalence": 0.7261904761904763,
+          "odds_ratio": 41.666666666666664,
+          "p_two_sided": 0.0003907960629996959,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        },
+        "Cirsium_arizonicum_rothrockii": {
+          "bird_positive": 5,
+          "bird_negative": 1,
+          "insect_positive": 6,
+          "insect_negative": 50,
+          "bird_fraction": 0.8333333333333334,
+          "insect_fraction": 0.10714285714285714,
+          "bird_minus_insect_prevalence": 0.7261904761904763,
+          "odds_ratio": 41.666666666666664,
+          "p_two_sided": 0.0003907960629996959,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        },
+        "Cirsium_conspicuum": {
+          "bird_positive": 5,
+          "bird_negative": 1,
+          "insect_positive": 6,
+          "insect_negative": 50,
+          "bird_fraction": 0.8333333333333334,
+          "insect_fraction": 0.10714285714285714,
+          "bird_minus_insect_prevalence": 0.7261904761904763,
+          "odds_ratio": 41.666666666666664,
+          "p_two_sided": 0.0003907960629996959,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        },
+        "Cirsium_occidentale_candidissimum": {
+          "bird_positive": 6,
+          "bird_negative": 0,
+          "insect_positive": 6,
+          "insect_negative": 50,
+          "bird_fraction": 1.0,
+          "insect_fraction": 0.10714285714285714,
+          "bird_minus_insect_prevalence": 0.8928571428571429,
+          "odds_ratio": null,
+          "p_two_sided": 1.5030617807680611e-05,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        },
+        "Cirsium_turneri": {
+          "bird_positive": 5,
+          "bird_negative": 1,
+          "insect_positive": 6,
+          "insect_negative": 50,
+          "bird_fraction": 0.8333333333333334,
+          "insect_fraction": 0.10714285714285714,
+          "bird_minus_insect_prevalence": 0.7261904761904763,
+          "odds_ratio": 41.666666666666664,
+          "p_two_sided": 0.0003907960629996959,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        },
+        "Cirsium_vinaceum": {
+          "bird_positive": 5,
+          "bird_negative": 1,
+          "insect_positive": 6,
+          "insect_negative": 50,
+          "bird_fraction": 0.8333333333333334,
+          "insect_fraction": 0.10714285714285714,
+          "bird_minus_insect_prevalence": 0.7261904761904763,
+          "odds_ratio": 41.666666666666664,
+          "p_two_sided": 0.0003907960629996959,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        }
+      },
+      "head_pendulous": {
+        "Cirsium_andersonii": {
+          "bird_positive": 2,
+          "bird_negative": 4,
+          "insect_positive": 3,
+          "insect_negative": 53,
+          "bird_fraction": 0.3333333333333333,
+          "insect_fraction": 0.05357142857142857,
+          "bird_minus_insect_prevalence": 0.27976190476190477,
+          "odds_ratio": 8.833333333333334,
+          "p_two_sided": 0.06914632386143597,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        },
+        "Cirsium_arizonicum_arizonicum": {
+          "bird_positive": 2,
+          "bird_negative": 4,
+          "insect_positive": 3,
+          "insect_negative": 53,
+          "bird_fraction": 0.3333333333333333,
+          "insect_fraction": 0.05357142857142857,
+          "bird_minus_insect_prevalence": 0.27976190476190477,
+          "odds_ratio": 8.833333333333334,
+          "p_two_sided": 0.06914632386143597,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        },
+        "Cirsium_arizonicum_rothrockii": {
+          "bird_positive": 2,
+          "bird_negative": 4,
+          "insect_positive": 3,
+          "insect_negative": 53,
+          "bird_fraction": 0.3333333333333333,
+          "insect_fraction": 0.05357142857142857,
+          "bird_minus_insect_prevalence": 0.27976190476190477,
+          "odds_ratio": 8.833333333333334,
+          "p_two_sided": 0.06914632386143597,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        },
+        "Cirsium_conspicuum": {
+          "bird_positive": 1,
+          "bird_negative": 5,
+          "insect_positive": 3,
+          "insect_negative": 53,
+          "bird_fraction": 0.16666666666666666,
+          "insect_fraction": 0.05357142857142857,
+          "bird_minus_insect_prevalence": 0.11309523809523808,
+          "odds_ratio": 3.533333333333333,
+          "p_two_sided": 0.3415913022434547,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        },
+        "Cirsium_occidentale_candidissimum": {
+          "bird_positive": 2,
+          "bird_negative": 4,
+          "insect_positive": 3,
+          "insect_negative": 53,
+          "bird_fraction": 0.3333333333333333,
+          "insect_fraction": 0.05357142857142857,
+          "bird_minus_insect_prevalence": 0.27976190476190477,
+          "odds_ratio": 8.833333333333334,
+          "p_two_sided": 0.06914632386143597,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        },
+        "Cirsium_turneri": {
+          "bird_positive": 2,
+          "bird_negative": 4,
+          "insect_positive": 3,
+          "insect_negative": 53,
+          "bird_fraction": 0.3333333333333333,
+          "insect_fraction": 0.05357142857142857,
+          "bird_minus_insect_prevalence": 0.27976190476190477,
+          "odds_ratio": 8.833333333333334,
+          "p_two_sided": 0.06914632386143597,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        },
+        "Cirsium_vinaceum": {
+          "bird_positive": 1,
+          "bird_negative": 5,
+          "insect_positive": 3,
+          "insect_negative": 53,
+          "bird_fraction": 0.16666666666666666,
+          "insect_fraction": 0.05357142857142857,
+          "bird_minus_insect_prevalence": 0.11309523809523808,
+          "odds_ratio": 3.533333333333333,
+          "p_two_sided": 0.3415913022434547,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        }
+      },
+      "glutinous_ridge_present": {
+        "Cirsium_andersonii": {
+          "bird_positive": 0,
+          "bird_negative": 6,
+          "insect_positive": 23,
+          "insect_negative": 33,
+          "bird_fraction": 0.0,
+          "insect_fraction": 0.4107142857142857,
+          "bird_minus_insect_prevalence": -0.4107142857142857,
+          "odds_ratio": 0.0,
+          "p_two_sided": 0.07606209981081756,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        },
+        "Cirsium_arizonicum_arizonicum": {
+          "bird_positive": 0,
+          "bird_negative": 6,
+          "insect_positive": 23,
+          "insect_negative": 33,
+          "bird_fraction": 0.0,
+          "insect_fraction": 0.4107142857142857,
+          "bird_minus_insect_prevalence": -0.4107142857142857,
+          "odds_ratio": 0.0,
+          "p_two_sided": 0.07606209981081756,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        },
+        "Cirsium_arizonicum_rothrockii": {
+          "bird_positive": 0,
+          "bird_negative": 6,
+          "insect_positive": 23,
+          "insect_negative": 33,
+          "bird_fraction": 0.0,
+          "insect_fraction": 0.4107142857142857,
+          "bird_minus_insect_prevalence": -0.4107142857142857,
+          "odds_ratio": 0.0,
+          "p_two_sided": 0.07606209981081756,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        },
+        "Cirsium_conspicuum": {
+          "bird_positive": 0,
+          "bird_negative": 6,
+          "insect_positive": 23,
+          "insect_negative": 33,
+          "bird_fraction": 0.0,
+          "insect_fraction": 0.4107142857142857,
+          "bird_minus_insect_prevalence": -0.4107142857142857,
+          "odds_ratio": 0.0,
+          "p_two_sided": 0.07606209981081756,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        },
+        "Cirsium_occidentale_candidissimum": {
+          "bird_positive": 0,
+          "bird_negative": 6,
+          "insect_positive": 23,
+          "insect_negative": 33,
+          "bird_fraction": 0.0,
+          "insect_fraction": 0.4107142857142857,
+          "bird_minus_insect_prevalence": -0.4107142857142857,
+          "odds_ratio": 0.0,
+          "p_two_sided": 0.07606209981081756,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        },
+        "Cirsium_turneri": {
+          "bird_positive": 0,
+          "bird_negative": 6,
+          "insect_positive": 23,
+          "insect_negative": 33,
+          "bird_fraction": 0.0,
+          "insect_fraction": 0.4107142857142857,
+          "bird_minus_insect_prevalence": -0.4107142857142857,
+          "odds_ratio": 0.0,
+          "p_two_sided": 0.07606209981081756,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        },
+        "Cirsium_vinaceum": {
+          "bird_positive": 0,
+          "bird_negative": 6,
+          "insect_positive": 23,
+          "insect_negative": 33,
+          "bird_fraction": 0.0,
+          "insect_fraction": 0.4107142857142857,
+          "bird_minus_insect_prevalence": -0.4107142857142857,
+          "odds_ratio": 0.0,
+          "p_two_sided": 0.07606209981081756,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        }
+      }
+    },
+    "non_red_corolla_syndrome_sensitivity": {
+      "n_bird_nonred": 2,
+      "n_insect_nonred": 56,
+      "n_bird_excluded_as_red": 5,
+      "n_insect_excluded_as_red": 0,
+      "outcomes": {
+        "outer_phyllaries_spreading_or_reflexed": {
+          "bird_positive": 1,
+          "bird_negative": 1,
+          "insect_positive": 10,
+          "insect_negative": 46,
+          "bird_fraction": 0.5,
+          "insect_fraction": 0.17857142857142858,
+          "bird_minus_insect_prevalence": 0.3214285714285714,
+          "odds_ratio": 4.6,
+          "p_two_sided": 0.3460375075620084,
+          "p_is_iid_label_test_not_phylogenetically_independent": true
+        }
+      },
+      "not_separately_verified_pollination_service": true,
+      "conditional_on_colour_may_overspecify_syndrome": true
+    },
+    "post_primary_descriptive_head_state_mosaics": {
+      "Hummingbird": {
+        "n_taxa": 7,
+        "both_outer_and_inner": 5,
+        "outer_only": 1,
+        "inner_only": 1,
+        "neither": 0,
+        "outer_and_pendulous": 2,
+        "outer_but_erect": 4
+      },
+      "Insect": {
+        "n_taxa": 56,
+        "both_outer_and_inner": 3,
+        "outer_only": 7,
+        "inner_only": 3,
+        "neither": 43,
+        "outer_and_pendulous": 1,
+        "outer_but_erect": 9
+      }
+    },
+    "phylogenetic_sensitivity": {
+      "minimum_change_count_for_pollinator_with_insect_root": 6,
+      "minimum_head_state_changes_unconstrained_root": {
+        "outer_phyllaries_spreading_or_reflexed": 13,
+        "inner_phyllaries_non_green": 11,
+        "head_pendulous": 4,
+        "glutinous_ridge_present": 11
+      },
+      "parsimony_change_count_not_identified_convergent_gain_count": true,
+      "independent_pollinator_Mk_fit": {
+        "insect_to_bird_rate": 0.12159719256683867,
+        "bird_to_insect_rate": 0.8123133991436662,
+        "root_condition": "INSECT_STATE_0_FIXED",
+        "fit_source": "POLLINATOR_TIP_LABELS_ONLY",
+        "maximum_loglik": -21.933807414648246,
+        "minimizer_converged": true
+      },
+      "equal_rate_Mk_fit": {
+        "equal_rate": 0.07267060592129734,
+        "maximum_loglik": -22.045298156997877,
+        "fit_converged": true,
+        "root_condition": "INSECT_STATE_0_FIXED",
+        "source_only_pollen_syndrome_tip_fit": true
+      },
+      "equal_rate_Mk_simulation": {
+        "n_simulated_trees": 200000,
+        "n_conditioned_draws": 21655,
+        "observed_bird_tips": 7,
+        "seed": 20261021,
+        "null_condition": "SIMULATED_BINARY_CTMC_CONDITION_ON_EXACT_OBSERVED_BIRD_TIP_COUNT",
+        "phenotypes": {
+          "outer_phyllaries_spreading_or_reflexed": {
+            "bird_head_positive_observed": 6,
+            "upper_tail_probability": 0.0010620613224972294,
+            "lower_tail_probability": 1.0,
+            "doubled_smaller_tail_probability": 0.002124122644994459,
+            "n_upper_tail_draws": 22,
+            "n_lower_tail_draws": 21655,
+            "conditional_monte_carlo_se": 0.00022133746366695273,
+            "null_p_two_sided_definition": "two times the smaller inclusive conditional Monte Carlo tail, clipped at 1",
+            "BH_q_within_four_head_traits_for_two_tail_Mk": 0.004248245289988918
+          },
+          "inner_phyllaries_non_green": {
+            "bird_head_positive_observed": 6,
+            "upper_tail_probability": 0.00027705947543405987,
+            "lower_tail_probability": 1.0,
+            "doubled_smaller_tail_probability": 0.0005541189508681197,
+            "n_upper_tail_draws": 5,
+            "n_lower_tail_draws": 21655,
+            "conditional_monte_carlo_se": 0.00011309338714928248,
+            "null_p_two_sided_definition": "two times the smaller inclusive conditional Monte Carlo tail, clipped at 1",
+            "BH_q_within_four_head_traits_for_two_tail_Mk": 0.002216475803472479
+          },
+          "head_pendulous": {
+            "bird_head_positive_observed": 2,
+            "upper_tail_probability": 0.092584041374215,
+            "lower_tail_probability": 0.9912726265238271,
+            "doubled_smaller_tail_probability": 0.18516808274843,
+            "n_upper_tail_draws": 2004,
+            "n_lower_tail_draws": 21466,
+            "conditional_monte_carlo_se": 0.0019696186694484613,
+            "null_p_two_sided_definition": "two times the smaller inclusive conditional Monte Carlo tail, clipped at 1",
+            "BH_q_within_four_head_traits_for_two_tail_Mk": 0.18516808274843
+          },
+          "glutinous_ridge_present": {
+            "bird_head_positive_observed": 0,
+            "upper_tail_probability": 1.0,
+            "lower_tail_probability": 0.040912449205762834,
+            "doubled_smaller_tail_probability": 0.08182489841152567,
+            "n_upper_tail_draws": 21655,
+            "n_lower_tail_draws": 885,
+            "conditional_monte_carlo_se": 0.0,
+            "null_p_two_sided_definition": "two times the smaller inclusive conditional Monte Carlo tail, clipped at 1",
+            "BH_q_within_four_head_traits_for_two_tail_Mk": 0.1090998645487009
+          }
+        },
+        "is_identification_of_natural_selection": false,
+        "is_inference_of_mechanistic_spine_or_pollination_success": false,
+        "trait_order": [
+          "outer_phyllaries_spreading_or_reflexed",
+          "inner_phyllaries_non_green",
+          "head_pendulous",
+          "glutinous_ridge_present"
+        ]
+      },
+      "conditional_Mk_simulation": {
+        "n_simulated_trees": 200000,
+        "n_conditioned_draws": 26178,
+        "observed_bird_tips": 7,
+        "seed": 20261020,
+        "null_condition": "SIMULATED_BINARY_CTMC_CONDITION_ON_EXACT_OBSERVED_BIRD_TIP_COUNT",
+        "phenotypes": {
+          "outer_phyllaries_spreading_or_reflexed": {
+            "bird_head_positive_observed": 6,
+            "upper_tail_probability": 0.00103136101455365,
+            "lower_tail_probability": 0.9998854043317162,
+            "doubled_smaller_tail_probability": 0.0020627220291073,
+            "n_upper_tail_draws": 26,
+            "n_lower_tail_draws": 26175,
+            "conditional_monte_carlo_se": 0.00019838313827632355,
+            "null_p_two_sided_definition": "two times the smaller inclusive conditional Monte Carlo tail, clipped at 1",
+            "observed_trait_two_sided_fisher_p": 0.0007009516685550099,
+            "BH_q_within_four_head_traits_for_two_tail_Mk": 0.0041254440582146
+          },
+          "inner_phyllaries_non_green": {
+            "bird_head_positive_observed": 6,
+            "upper_tail_probability": 0.00019099278047289813,
+            "lower_tail_probability": 0.9999618014439055,
+            "doubled_smaller_tail_probability": 0.00038198556094579627,
+            "n_upper_tail_draws": 4,
+            "n_lower_tail_draws": 26177,
+            "conditional_monte_carlo_se": 8.54064108973858e-05,
+            "null_p_two_sided_definition": "two times the smaller inclusive conditional Monte Carlo tail, clipped at 1",
+            "observed_trait_two_sided_fisher_p": 8.660498832044543e-05,
+            "BH_q_within_four_head_traits_for_two_tail_Mk": 0.001527942243783185
+          },
+          "head_pendulous": {
+            "bird_head_positive_observed": 2,
+            "upper_tail_probability": 0.0941212422170442,
+            "lower_tail_probability": 0.9916345162152871,
+            "doubled_smaller_tail_probability": 0.1882424844340884,
+            "n_upper_tail_draws": 2463,
+            "n_lower_tail_draws": 25959,
+            "conditional_monte_carlo_se": 0.001804688856054415,
+            "null_p_two_sided_definition": "two times the smaller inclusive conditional Monte Carlo tail, clipped at 1",
+            "observed_trait_two_sided_fisher_p": 0.09076894119334222,
+            "BH_q_within_four_head_traits_for_two_tail_Mk": 0.1882424844340884
+          },
+          "glutinous_ridge_present": {
+            "bird_head_positive_observed": 0,
+            "upper_tail_probability": 1.0,
+            "lower_tail_probability": 0.035257267275296995,
+            "doubled_smaller_tail_probability": 0.07051453455059399,
+            "n_upper_tail_draws": 26178,
+            "n_lower_tail_draws": 922,
+            "conditional_monte_carlo_se": 0.0,
+            "null_p_two_sided_definition": "two times the smaller inclusive conditional Monte Carlo tail, clipped at 1",
+            "observed_trait_two_sided_fisher_p": 0.04143830172411217,
+            "BH_q_within_four_head_traits_for_two_tail_Mk": 0.09401937940079198
+          }
+        },
+        "is_identification_of_natural_selection": false,
+        "is_inference_of_mechanistic_spine_or_pollination_success": false,
+        "trait_order": [
+          "outer_phyllaries_spreading_or_reflexed",
+          "inner_phyllaries_non_green",
+          "head_pendulous",
+          "glutinous_ridge_present"
+        ]
+      }
+    }
+  },
+  "claim_limits": {
+    "same_head_morphology_and_fitness_measured": false,
+    "direct_bird_pollination_assayed": false,
+    "adaptation_or_convergent_selection_identified": false,
+    "independent_origins_of_correlated_trait_changes_identified": false,
+    "hummingbird_label_independent_of_flower_colour_classification_verified": false,
+    "true_spine_barrier_geometry_measured": false,
+    "species_or_subspecies_are_independent_evolutionary_replicates": false,
+    "generalize_to_east_asian_ryukyu_thistles": false,
+    "phylogenetic_Mk_model_proves_discrete_evolution_history": false,
+    "source_has_original_filled_achene_or_bird_pollen_success": false
+  },
+  "primary_hypothesis": "Do outer phyllary posture and other capitulum features show a specific taxon-state association with the original bird-vs-insect syndrome after phylogenetic and subspecies caution?",
+  "interpretation_ceiling": "Comparative phylogenetic coding of head phenotype and pollinator syndromes. Not measured pollination efficiency, structural defence, correlated adaptive evolution, independent trait origin co-localization or genetic LEGO. Hummingbird classification might use the same flower characters."
+}
