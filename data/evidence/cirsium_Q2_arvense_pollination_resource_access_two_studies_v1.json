@@ -48,9 +48,24 @@
       "live_raw_archive": {
         "doi": "10.5281/zenodo.15364152",
         "code": "analysis/probe_cirsium_arvense_2025_zenodo_v1.py",
-        "metadata_and_head_csv_download_status": "UNVERIFIED_AT_MANIFEST_AUTHORING",
-        "raw_head_rows_recomputed": 0,
-        "reestimated_P_or_SE": false
+        "metadata_and_head_csv_download_status": "VERIFIED_REAL_AUTHOR_GITHUB_SOURCE_FILES_AT_SHA_8a151c62ed069f775a16b9bc5fbdce209cbb8691",
+        "raw_head_rows_recomputed": 615,
+        "reestimated_P_or_SE": false,
+        "original_github": "https://github.com/Yogita25/Multitrophic_Interactions/tree/8a151c62ed069f775a16b9bc5fbdce209cbb8691",
+        "original_seed_blob_sha1": "ca99c762162d15f006f0c73b4603ca71fd320a29",
+        "original_voucher_and_head_structural_features_measured": false,
+        "descriptive_control_poll_exclusion_39_block_pairs": {
+          "n_pairs": 39,
+          "viable_fraction_delta_bag_minus_control": -0.5090891291277233,
+          "directly_damaged_fraction_delta_bag_minus_control": -0.04391842499817492,
+          "inferred_eaten_signed_fraction_delta_bag_minus_control": 0.1352244697172186,
+          "n_negative_missing_residual_head_rows": 80,
+          "n_negative_author_inferred_eaten_head_rows": 62,
+          "raw_head_count": 615,
+          "paper_mature_head_count_stated": 609,
+          "analysis_result": "data/evidence/cirsium_arvense_2022_seed_residual_and_partner_exclusion_result_v1.json",
+          "inferential_status": "REAL_SOURCE_DESCRIPTIVE_BOOTSTRAP_NOT_CAUSAL_POLLINATION_ONLY_EFFECT"
+        }
       },
       "source_url": "https://www.researchgate.net/publication/393225910_Pollinators_not_predators_affect_florivore_survival_in_Cirsium_arvense_Asteraceae_reveals_an_experiment_based_on_Structural_Causal_Modelling"
     },
@@ -89,6 +104,8 @@
     ],
     "novel_test_target": "Condition on measured resource provisioning and truly independently verified ovipositor access at an authentic bract/spine interface, then compare confirmed eggs/larval survival and absolute filled achenes on the same pre-enrolled biological head",
     "study_unit": "individual biological plant, repeated head nested, site and block preserved",
-    "existing_aza3_real_complete_reproductive_contact_head_rows": 0
+    "existing_aza3_real_complete_reproductive_contact_head_rows": 0,
+    "source_reanalysis_upgraded_in_aza3": "REAL source-authenticated 615 heads, descriptive contrasts on 39 paired site×block units, no morphology effect",
+    "core_new_Q2_inference_risk": "Original author Eaten_Seeds=Damaged_Seeds+Missing_Seeds=Flowers-Viable_Seeds-NViable_Seeds; all rows obey mass balance. Counterintuitive inferred predation increase need not equal an independently measured increase in physically damaged seeds. Organza pollinator exclusion also changes adult enemy access."
   }
 }
