@@ -1,0 +1,79 @@
+name: Real Cirsium source-linked visitor and seed outcomes
+on:
+  pull_request:
+    paths:
+      - "analysis/audit_slk_anto_arvense_bout_seed_join_v1.py"
+      - "tests/test_slk_anto_arvense_bout_seed_join_v1.py"
+      - "data/evidence/slk_anto_arvense_bout_seed_link_v1.json"
+      - "docs/SLK_ANTO_ARVENSE_VISIT_SEED_SOURCE_LINK_V1.md"
+      - ".github/workflows/slk-anto-arvense-visit-seed-link-v1.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  same-label-source-join:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Synthetic source-link and no-biological-overclaim controls
+        run: python -m unittest discover -s tests -p 'test_slk_anto_arvense_bout_seed_join_v1.py' -v
+      - name: Fetch three byte-pinned original CSVs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work/slk_anto_arvense
+          for src in seeds.csv Pollinators.csv Pollinator_Id.csv; do
+            gh api "repos/Yogita25/Multitrophic_Interactions/contents/$src?ref=8a151c62ed069f775a16b9bc5fbdce209cbb8691" --jq .content | base64 -d > "work/slk_anto_arvense/$src"
+            test -s "work/slk_anto_arvense/$src"
+          done
+      - name: Recompute source-authenticated aggregate, rejecting invented fitness/genetics
+        run: |
+          python analysis/audit_slk_anto_arvense_bout_seed_join_v1.py \
+            --seeds work/slk_anto_arvense/seeds.csv \
+            --bouts work/slk_anto_arvense/Pollinators.csv \
+            --visitors work/slk_anto_arvense/Pollinator_Id.csv \
+            --output work/slk_anto_arvense/result.json
+          python - <<'PY'
+          import json,math
+          x=json.load(open('work/slk_anto_arvense/result.json'))
+          assert x['source']['raw_seed_rows']==615
+          assert x['source']['raw_bouts']==120
+          assert x['source']['raw_visitor_rows']==649
+          assert x['source_link']['matched_label_groups_before_effort_filter']==84
+          assert x['source_link']['matched_label_groups_after_effort_filter']==81
+          assert x['source_link']['valid_nonzero_head_bouts']==98
+          assert x['results']['total_groups_with_valid_nominal_rate']==81
+          assert x['results']['groups_with_Hym_Dip_share']==68
+          assert all(v is False for v in x['scientific_boundaries'].values())
+          assert x['results']['actual_plant_genomic_data_records']==0
+          y=x['results']['visitor_share_vs_viable_fraction']
+          assert y['unadjusted']['n']==68
+          assert 0.1 < y['unadjusted']['r'] < 0.3
+          assert y['within_site_and_treatment']['n']==68
+          assert 0.2 < y['within_site_and_treatment']['r'] < 0.4
+          s=x['results']['site_specific_visitor_share_vs_viable_fraction']
+          assert s['campus']['r']<0
+          assert s['construction']['r']<0
+          assert s['ditch']['r']>0
+          assert s['rapseed']['r']>0
+          assert x['interpretation']['analysis_status']=='EXPLORATORY_POST_HOC_SOURCE_LABEL_ASSOCIATION'
+          print('PASS_ORIGINAL_SOURCE_LABEL_JOIN_AND_FITNESS_ASSOCIATION',x['source_link']['matched_label_groups_after_effort_filter'])
+          PY
+      - name: Compare source recomputation to frozen site/treatment descriptive receipt
+        run: |
+          python - <<'PY'
+          import json,math
+          a=json.load(open('work/slk_anto_arvense/result.json'))
+          b=json.load(open('data/evidence/slk_anto_arvense_bout_seed_link_v1.json'))
+          assert a==b, 'SOURCE_AGGREGATE_RECEIPT_DRIFT'
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: source-verified-cirsium-arvense-visitor-seed-link-v1
+          path: work/slk_anto_arvense/result.json
+          if-no-files-found: error
+          retention-days: 30
