@@ -1,0 +1,7 @@
+run_accession,sample_accession,specimen_code,taxon_as_study_title,complete_R1_reads_passing_QC,high_confidence_source_candidate_mapped_fragments,n_matching_selected_source_transcripts,R1_fragments_to_2020_TR39766,shuffled_reference_decoy_hits,TR1144|c0_g2_i1,TR17354|c0_g1_i1,TR2471|c0_g2_i1,TR34395|c0_g4_i1,TR35526|c0_g1_i1,TR37950|c0_g1_i1,TR37950|c0_g2_i1,TR38587|c0_g1_i1,TR38874|c0_g3_i8,TR38875|c0_g3_i1,TR39766|c0_g1_i2,TR41106|c0_g1_i5,TR46338|c0_g1_i1,TR52731|c6_g7_i2,TR57954|c0_g5_i1,TR58302|c0_g1_i1,TR69433|c0_g1_i1,TR9321|c0_g1_i1
+SRR35152724,SAMN50798037,YGN-4296,Cirsium irumtiense,262388,119,13,15,0,0,0,0,1,3,0,5,2,1,0,15,66,2,14,1,4,2,3
+SRR35152725,SAMN50798036,OKN-4295,Cirsium brevicaule,261137,85,14,29,0,2,0,1,0,0,2,2,3,2,0,29,16,1,18,5,1,2,1
+SRR35152729,SAMN50798033,YRN-4166,Cirsium brevicaule,235060,92,13,19,0,3,0,0,0,1,1,5,4,1,0,19,40,1,12,2,0,2,1
+SRR35152730,SAMN50798032,AMM-4163,Cirsium brevicaule,234011,103,11,34,0,1,0,0,0,0,0,3,0,1,1,34,46,2,10,3,1,1,0
+SRR35152731,SAMN50798031,ISG-4111,Cirsium irumtiense,260579,149,12,36,0,0,0,0,3,1,1,6,1,0,0,36,82,1,7,2,5,4,0
+SRR35152732,SAMN50798030,MMY-4078,Cirsium irumtiense,246017,88,12,28,0,1,2,0,2,1,0,9,5,1,0,28,20,1,14,4,0,0,0

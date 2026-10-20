@@ -1,5 +1,19 @@
 # aza3 — source of phenotypic evolvability in a young thistle radiation
 
+## New source-backed 2026 Ryukyu thistle RNA observations (19 October 2026)
+
+**Six original public young-leaf RNA runs analysed (3 *C. brevicaule*, 3 *C. irumtiense*).** A capped 8 MiB-first-R1-per-source reanalysis of **747,234 real reads** against the **entire 104,890-transcript *C. japonicum* 2020 publisher reference** (plus composition-shuffled decoys) produced **215 strict selected-candidate-mapped fragments** and zero strict shuffled-decoy matches. The previously identified **DFR-like TR39766** source transcript had **66** compatible fragments, and **ANS-annotated TR41106** had **106**; both were detected in **all six** taxon-labelled source samples. This observation survives competition against the previously omitted ~104k author transcripts, not merely a 26-candidate index.
+
+Read this as **shared young-leaf transcript-fragment homology between taxon-labelled white and coloured Cirsium lineages**, NOT intact catalytic DFR/ANS genes, known flower pigment concentration, genetic ancestral retention, heritable colour reactivation or adaptive genetic LEGO modules. The reference transcript IDs belong to *C. japonicum* 2020, not sequence-confirmed Ryukyu allele IDs. Original per-plant flower colour is not assayed. Raw 8/16 MiB prefixes are nonrandom, and read counts are not expression contrasts.
+
+- [Actual six-run whole-author-transcriptome source result and experimental meaning](docs/RYUKYU_FULL_AUTHOR_TRANSCRIPTOME_RESULTS_V7.md)
+- [Machine-frozen public evidence with accession joins](data/anto_source_handoff/public_sra/ryukyu_full_104890_reference_competition_8MiB_v7.json)
+- [Independent source/biology claim validator](analysis/validate_ryukyu_104890_full_reference_v7.py)
+- [Underlying capped read/whole-reference competitive analysis](analysis/anto_empirical/ryukyu_full_unigene_competition_v7.py)
+
+The next biological gate is to verify real DFR/ANR/ANS/FLS locus orthology and catalytic activity in focal plants, and compare stage-matched floret/involucre/nonfloral metabolism and developmental regulatory function. Evolutionary-regain history remains unpolarized. **anto remains general theoretical work; aza3 exclusively owns these biological observations and follow-up experiments.**
+
+
 
 ## anto × aza3: empirical ownership and LEGO hypothesis (18 October 2026)
 
@@ -12,6 +26,8 @@
 **New v2 genomic LEGO test (19 October 2026):** [Higher-order module measurement and power plan](docs/ANTO_HIGHER_ORDER_LEGO_MEASUREMENT_PLAN_V2.md) operationalizes anto's exact result that identical marginal and pairwise module frequencies **do not identify 3-way genetic resource availability**. The first within-species focal system is the **prospective 40-individual C. sieboldii target**, with same-individual colour, orientation and involucre phenotypes measured separately from **functional genetic resources**. Phenotypic correlation is not yet genetic LEGO. [Machine contract](data/contracts/aza3_capitulum_higher_order_lego_v2.json) and [outcome-blind feasibility checks](analysis/validate_aza3_capitulum_higher_order_lego_v2.py) require population/ancestry controls, held-out replication, mechanistic compatibility, and separate viable-achene fitness evidence. All relevant individual datasets will live here, not in anto.
 
 **Authoritative biological execution and decision gates:** [ANTO_ACCESSIBILITY_TO_AZA3_HEAD_LEGO_EMPIRICAL_MASTER_V1.md](docs/ANTO_ACCESSIBILITY_TO_AZA3_HEAD_LEGO_EMPIRICAL_MASTER_V1.md), [machine-readable contract](data/contracts/aza3_anto_empirical_lego_bridge_v1.json), and [fail-closed validator](analysis/validate_anto_lego_empirical_bridge_v1.py).
+
+**New actual Ryukyu molecular observation (19 October 2026):** For the FIRST time, the [six source-verified 2026 Cirsium young-leaf RNA R1 prefixes](docs/RYUKYU_REAL_LEAF_RNA_PREFIX_PILOT_V6.md) have been analyzed, not just registered. Among six original 2026 *C. brevicaule* / *C. irumtiense* source libraries, a larger [104,890-source-transcript competition](docs/RYUKYU_FULL_2020_UNIGENE_COMPETITIVE_MAPPING_V7.md) still finds 215 stringently mapped R1 fragments to 26 2020 *C. japonicum* BLAST pigment-pathway gene-family candidates, including DFR-like TR39766 (66) and ANS-BLAST-like TR41106 (106), detected in all six; 0 shuffled decoy matches. [Actual source-frozen data and accession-by-accession counts](data/anto_source_handoff/public_sra/ryukyu_six_full_104890_unigene_competitive_mapping_v7.json). **This is young-leaf cross-study sequence homology after full published 2020 transcriptome competition, NOT a verified gene's function, whole locus, flower anthocyanin, white-ancestral re-expression or colour regain.** No comparative expression estimation was performed from these biased first-in-file R1 prefixes. The [offline verifier](analysis/validate_ryukyu_full_104890_unigene_mapping_v7.py) requires exact biological source accession, read-count conservation and stringent claim limits.
 
 **v5 source gene-family trees (19 October 2026):** [Real MAFFT/NJ uncertainty audit](docs/CIRSIUM_FLAVONOID_GENE_FAMILY_UNCERTAINTY_V5.md) retains seven tested DFR/ANR or ANS/FLS candidate placements (only five distinct *2020 Cirsium japonicum* transcripts). **All seven identity-difference 95% intervals include zero; no candidate is confirmed as a functional anthocyanin enzyme or Ryukyu re-expression locus.** A second approximate-ML FastTree comparison is implemented with independent regression tests and must be interpreted as methodology sensitivity, not biochemical assay evidence.
 

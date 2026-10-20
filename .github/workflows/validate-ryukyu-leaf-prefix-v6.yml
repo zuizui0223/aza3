@@ -1,0 +1,55 @@
+name: Validate capped public Ryukyu leaf RNA pilot
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'analysis/anto_empirical/ryukyu_ena_prefix_homology_v6.py'
+      - 'analysis/test_ryukyu_ena_prefix_homology_v6.py'
+      - 'data/anto_source_handoff/public_sra/ryukyu_six_R1_prefix_source_v6.json'
+      - '.github/workflows/validate-ryukyu-leaf-prefix-v6.yml'
+  pull_request:
+    paths:
+      - 'analysis/anto_empirical/ryukyu_ena_prefix_homology_v6.py'
+      - 'analysis/test_ryukyu_ena_prefix_homology_v6.py'
+      - 'data/anto_source_handoff/public_sra/ryukyu_six_R1_prefix_source_v6.json'
+      - '.github/workflows/validate-ryukyu-leaf-prefix-v6.yml'
+permissions:
+  contents: read
+jobs:
+  capped-ENA-six-run-pilot:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install short-read mapping executables
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq minimap2 samtools
+          minimap2 --version
+          samtools --version | head -n 2
+      - name: Compile and test bounded source downloader, gzip, mapq and decoy logic offline
+        run: |
+          python -m py_compile analysis/anto_empirical/ryukyu_ena_prefix_homology_v6.py
+          python analysis/test_ryukyu_ena_prefix_homology_v6.py -v
+      - name: Source-verified actual 2026 Ryukyu young-leaf RNA R1 prefix (8 MiB maximum)
+        run: |
+          python analysis/anto_empirical/ryukyu_ena_prefix_homology_v6.py --runs SRR35152730 --bytes-per-run 8388608 --output /tmp/aza3_one_run_ryukyu_prefix_v6.json
+          python -c "import json; r=json.load(open('/tmp/aza3_one_run_ryukyu_prefix_v6.json')); assert r['n_Ryukyu_source_specimens_queried']==1; assert r['runs'][0]['run']=='SRR35152730'; assert not r['floral_reexpression_demonstrated']; assert not r['gene_copy_numbers_inferred']; assert not r['full_run_gene_absence_evidence']"
+      - name: Apply equal capped R1 prefixes to all six real Ryukyu Cirsium specimens (16 MiB each)
+        run: |
+          python analysis/anto_empirical/ryukyu_ena_prefix_homology_v6.py --bytes-per-run 16777216 --output /tmp/aza3_six_Ryukyu_leaf_prefix_v6.json
+          python -c "import json,collections; r=json.load(open('/tmp/aza3_six_Ryukyu_leaf_prefix_v6.json')); assert r['n_Ryukyu_source_specimens_queried']==6; assert len({x['biosample'] for x in r['runs']})==6; assert collections.Counter(x['taxon'] for x in r['runs'])=={'Cirsium brevicaule':3,'Cirsium irumtiense':3}; assert sum(x['download']['compressed_bytes_retrieved'] for x in r['runs'])==6*16777216; assert not r['floral_reexpression_demonstrated']; assert not r['gene_copy_numbers_inferred']; assert not r['RNA_expression_quantified_or_compared_between_species']; assert not r['full_run_gene_absence_evidence']"
+      - name: Save only bounded run-level source/read-mapping QC, never raw library FASTQ
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aza3-v6-six-Ryukyu-capped-leaf-R1-prefix-QC
+          path: |
+            /tmp/aza3_one_run_ryukyu_prefix_v6.json
+            /tmp/aza3_six_Ryukyu_leaf_prefix_v6.json
+          retention-days: 10
+          if-no-files-found: ignore

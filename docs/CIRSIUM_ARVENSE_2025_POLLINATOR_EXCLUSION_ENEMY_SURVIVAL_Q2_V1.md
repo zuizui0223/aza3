@@ -91,3 +91,21 @@ These designs require independent permits, plant number/power evaluation, full r
 - The **Q2 Nature threshold** is demonstrating the actual *same structural axis* changes relative partner effects on **head/plant fitness**, not repeating the already observed pollinator-exclusion effect on seed-feeder emergence.
 
 **Research programme integration:** This is the most relevant currently identified *within-one-Cirsium-species four-site field intervention* for Q2, stronger than subtracting effect sizes from separate species and experiments. But it alone cannot fulfill Q1 genetic memory or Q3 lost-pigment re-expression, and the true armature structural trait was **not manipulated**.
+
+## Independent same-Cirsium resource manipulation (2008): do not confuse soil fertilization with pollen fertilization
+
+Walker et al. (2008), *Journal of Animal Ecology*, [DOI 10.1111/j.1365-2656.2008.01406.x](https://doi.org/10.1111/j.1365-2656.2008.01406.x), previously used **the same botanical species *Cirsium arvense*** to manipulate *host-plant nutrient supply/quality* and *bud availability*, examining *Xyphosia miliaria* tephritid and Hymenoptera parasitoids in potted/natural systems.
+
+The original author-reported findings distinguish independent routes:
+- higher host-plant **nutrient supply and bud availability** increased tephritid abundance;
+- the ovipositing tephritid **did not preferentially place eggs on nutrient-fertilized plants**, under that study's direct choice test;
+- parasitoid attack was **more frequent on nutrient-fertilized thistles**, and the response to host density was variable;
+- bottom-up resource availability and plant quality could matter even when a direct oviposition-preference response was not detected.
+
+**Critical bilingual scientific definition:** in Walker et al.'s original abstract, `fertilized C. arvense` means **mineral/nutrient fertilization of HOST PLANTS**, **NOT pollen fertilization of ovules**. Therefore its lack of host-choice preference on nutrient-fertilized thistles cannot refute the 2025 preprint's suggested consequences of POLLINATOR REMOVAL for developing fertilized-seed resources. The two studies are different field designs, different cohorts, and measure different processes. We did not retrieve Walker's individual plant records or fit any new effect size.
+
+### Guild annotation caution in the 2025 preprint
+
+The 2025 report identifies emerged floral occupants including **Cecidomyiidae, Syrphidae, Platygastridae and Tephritidae**. A family label is **not sufficient** to conclude that every emerging insect is a seed consumer: many hoverfly larvae are predators and platygastrids are parasitoids. Their particular head occupancy and feeding role must be demonstrated from species/morphospecies and host association. Consequently even a downloaded "total emerged insects" variable must not be recoded wholesale as successful **seed-feeder emergence** without an explicit source-backed family/larval-role ledger.
+
+**Biological reconciliation:** Cirsium may change the realized insect community via at least three mechanisms: **(a)** anatomical physical access and ovipositor reach; **(b)** pollen-dependent developing food tissues; and **(c)** nutrient/bud abundance. Their patterns cannot be reduced to a single monotonic "defense strength." To demonstrate a true interaction-partner-dependent payoff for a *head module*, compare real **head structural access** while measuring **absolute species-specific eggs/larvae and plant filled seeds**, not just the treatment differences already published.

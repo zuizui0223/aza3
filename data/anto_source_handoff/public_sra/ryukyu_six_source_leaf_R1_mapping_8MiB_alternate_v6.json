@@ -1,0 +1,221 @@
+{
+  "version": "aza3_Ryukyu_six_leaf_R1_fragment_8MiB_sensitivity_v6",
+  "parent_biological_material": "SAME SIX real PRJNA1311153 young-leaf RNA libraries as 16MiB run; NOT independent biological replication",
+  "method": "Alternative implementation with 8 MiB compressed R1 first-byte prefixes per run; primary aligner MAPQ >=20, >=85 aligned read bases, identity >=85%, 26 real 2020 Cirsium source transcript fragments plus 26 independently shuffled decoys",
+  "workflow_run_id": 39228426774,
+  "job_id": 117980289900,
+  "full_download_not_attempted": true,
+  "unaltered_original_R1_MD5_not_verified": true,
+  "n_source_runs": 6,
+  "total_prefix_gzip_bytes": 50331648,
+  "total_complete_R1_reads": 747995,
+  "total_strict_source_fragments": 378,
+  "total_strict_decoy_fragments": 0,
+  "source_gene_occupancy": {
+    "TR37950|c0_g2_i1": {
+      "n": 19,
+      "samples": 6
+    },
+    "TR39766|c0_g1_i2": {
+      "n": 83,
+      "samples": 6
+    },
+    "TR41106|c0_g1_i5": {
+      "n": 182,
+      "samples": 6
+    },
+    "TR52731|c6_g7_i2": {
+      "n": 40,
+      "samples": 6
+    },
+    "TR69433|c0_g1_i1": {
+      "n": 9,
+      "samples": 5
+    },
+    "TR38587|c0_g1_i1": {
+      "n": 8,
+      "samples": 4
+    },
+    "TR57954|c0_g5_i1": {
+      "n": 7,
+      "samples": 4
+    },
+    "TR58302|c0_g1_i1": {
+      "n": 5,
+      "samples": 4
+    },
+    "TR34395|c0_g4_i1": {
+      "n": 3,
+      "samples": 3
+    },
+    "TR46338|c0_g1_i1": {
+      "n": 3,
+      "samples": 3
+    },
+    "TR2471|c0_g2_i1": {
+      "n": 3,
+      "samples": 3
+    },
+    "TR1144|c0_g2_i1": {
+      "n": 5,
+      "samples": 3
+    },
+    "TR38874|c0_g3_i8": {
+      "n": 2,
+      "samples": 2
+    },
+    "TR9321|c0_g1_i1": {
+      "n": 2,
+      "samples": 2
+    },
+    "TR37950|c0_g1_i1": {
+      "n": 3,
+      "samples": 2
+    },
+    "TR35526|c0_g1_i1": {
+      "n": 3,
+      "samples": 1
+    },
+    "TR17354|c0_g1_i1": {
+      "n": 1,
+      "samples": 1
+    }
+  },
+  "per_run": [
+    {
+      "run_accession": "SRR35152724",
+      "specimen": "YGN-4296",
+      "taxon_title": "Cirsium irumtiense",
+      "complete_R1_prefix_reads": 130790,
+      "strict_source_fragments": 67,
+      "strict_decoy_fragments": 0,
+      "per_source": {
+        "TR34395|c0_g4_i1": 1,
+        "TR35526|c0_g1_i1": 3,
+        "TR37950|c0_g2_i1": 2,
+        "TR38587|c0_g1_i1": 1,
+        "TR38874|c0_g3_i8": 1,
+        "TR39766|c0_g1_i2": 5,
+        "TR41106|c0_g1_i5": 39,
+        "TR46338|c0_g1_i1": 1,
+        "TR52731|c6_g7_i2": 9,
+        "TR57954|c0_g5_i1": 1,
+        "TR58302|c0_g1_i1": 1,
+        "TR69433|c0_g1_i1": 2,
+        "TR9321|c0_g1_i1": 1
+      },
+      "retrieval_status": "PREFIX_ANALYZED"
+    },
+    {
+      "run_accession": "SRR35152725",
+      "specimen": "OKN-4295",
+      "taxon_title": "Cirsium brevicaule",
+      "complete_R1_prefix_reads": 130243,
+      "strict_source_fragments": 56,
+      "strict_decoy_fragments": 0,
+      "per_source": {
+        "TR2471|c0_g2_i1": 1,
+        "TR37950|c0_g1_i1": 2,
+        "TR37950|c0_g2_i1": 2,
+        "TR39766|c0_g1_i2": 20,
+        "TR41106|c0_g1_i5": 17,
+        "TR52731|c6_g7_i2": 9,
+        "TR58302|c0_g1_i1": 1,
+        "TR69433|c0_g1_i1": 3,
+        "TR9321|c0_g1_i1": 1
+      },
+      "retrieval_status": "PREFIX_ANALYZED"
+    },
+    {
+      "run_accession": "SRR35152729",
+      "specimen": "YRN-4166",
+      "taxon_title": "Cirsium brevicaule",
+      "complete_R1_prefix_reads": 117106,
+      "strict_source_fragments": 62,
+      "strict_decoy_fragments": 0,
+      "per_source": {
+        "TR1144|c0_g2_i1": 3,
+        "TR37950|c0_g2_i1": 2,
+        "TR38587|c0_g1_i1": 3,
+        "TR39766|c0_g1_i2": 9,
+        "TR41106|c0_g1_i5": 35,
+        "TR52731|c6_g7_i2": 8,
+        "TR57954|c0_g5_i1": 1,
+        "TR69433|c0_g1_i1": 1
+      },
+      "retrieval_status": "PREFIX_ANALYZED"
+    },
+    {
+      "run_accession": "SRR35152730",
+      "specimen": "AMM-4163",
+      "taxon_title": "Cirsium brevicaule",
+      "complete_R1_prefix_reads": 116686,
+      "strict_source_fragments": 57,
+      "strict_decoy_fragments": 0,
+      "per_source": {
+        "TR1144|c0_g2_i1": 1,
+        "TR2471|c0_g2_i1": 1,
+        "TR37950|c0_g2_i1": 3,
+        "TR38587|c0_g1_i1": 1,
+        "TR38874|c0_g3_i8": 1,
+        "TR39766|c0_g1_i2": 14,
+        "TR41106|c0_g1_i5": 21,
+        "TR46338|c0_g1_i1": 1,
+        "TR52731|c6_g7_i2": 9,
+        "TR57954|c0_g5_i1": 3,
+        "TR58302|c0_g1_i1": 1,
+        "TR69433|c0_g1_i1": 1
+      },
+      "retrieval_status": "PREFIX_ANALYZED"
+    },
+    {
+      "run_accession": "SRR35152731",
+      "specimen": "ISG-4111",
+      "taxon_title": "Cirsium irumtiense",
+      "complete_R1_prefix_reads": 130309,
+      "strict_source_fragments": 90,
+      "strict_decoy_fragments": 0,
+      "per_source": {
+        "TR2471|c0_g2_i1": 1,
+        "TR34395|c0_g4_i1": 1,
+        "TR37950|c0_g1_i1": 1,
+        "TR37950|c0_g2_i1": 5,
+        "TR39766|c0_g1_i2": 20,
+        "TR41106|c0_g1_i5": 56,
+        "TR52731|c6_g7_i2": 2,
+        "TR58302|c0_g1_i1": 2,
+        "TR69433|c0_g1_i1": 2
+      },
+      "retrieval_status": "PREFIX_ANALYZED"
+    },
+    {
+      "run_accession": "SRR35152732",
+      "specimen": "MMY-4078",
+      "taxon_title": "Cirsium irumtiense",
+      "complete_R1_prefix_reads": 122861,
+      "strict_source_fragments": 46,
+      "strict_decoy_fragments": 0,
+      "per_source": {
+        "TR1144|c0_g2_i1": 1,
+        "TR17354|c0_g1_i1": 1,
+        "TR34395|c0_g4_i1": 1,
+        "TR37950|c0_g2_i1": 5,
+        "TR38587|c0_g1_i1": 3,
+        "TR39766|c0_g1_i2": 15,
+        "TR41106|c0_g1_i5": 14,
+        "TR46338|c0_g1_i1": 1,
+        "TR52731|c6_g7_i2": 3,
+        "TR57954|c0_g5_i1": 2
+      },
+      "retrieval_status": "PREFIX_ANALYZED"
+    }
+  ],
+  "distinct_method_from_16MiB_pipeline": true,
+  "scope": "Both methods observed source-like fragments in every one of the same six libraries, but filters/read quantities differ and observations must NOT be pooled as independent replicates or species-level differential expression.",
+  "claims": {
+    "flower_stage_phenotype_assayed": false,
+    "biochemical_function_assayed": false,
+    "whole_gene_verified": false,
+    "genotype_ancestral_reacquisition_established": false
+  }
+}
