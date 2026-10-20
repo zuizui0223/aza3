@@ -1,0 +1,247 @@
+{
+  "version": "cirsium_arvense_2022_real_raw_seed_bookkeeping_independent_js_receipt_v1",
+  "as_of": "2026-10-20",
+  "source": {
+    "original_research_square_doi": "10.21203/rs.3.rs-6634172/v1",
+    "source_ccby_zenodo_doi": "10.5281/zenodo.15364152",
+    "original_author_github_repository": "Yogita25/Multitrophic_Interactions",
+    "original_commit": "8a151c62ed069f775a16b9bc5fbdce209cbb8691",
+    "verified_github_git_blob_shas": {
+      "seeds.csv": "ca99c762162d15f006f0c73b4603ca71fd320a29",
+      "Herbivore.csv": "b0578e8c814b371e910da119c66e45575bc8b675",
+      "Pollinators.csv": "1723e96b8fc8ea755832daa786c387c5f3c188a8",
+      "Herbivores.R": "6016c74ef3a8783a376f6a6f5e50a4c35f81a75a"
+    },
+    "source_files_read_directly_with_connected_GitHub_app": true,
+    "not_a_synthetic_ecology_model": true
+  },
+  "original_rows": {
+    "seed_head_rows": 615,
+    "herbivore_rows": 181,
+    "pollinator_observation_windows": 120,
+    "registered_seed_rows_with_known_site_treatment": 612,
+    "site_treatment_derived_plants": 164,
+    "unique_site_blocks": 45,
+    "matched_site_blocks": 39,
+    "source_negative_missing_heads": 80,
+    "source_negative_inferred_eaten_heads": 62,
+    "source_zero_inferred_eaten_heads": 27,
+    "source_positive_inferred_eaten_heads": 526,
+    "verified_seed_mass_balance_across_all_head_rows": true,
+    "author_R_filters_positive_eaten_heads": true,
+    "duplicate_vial_keys_in_source_site_block_treatment": 134,
+    "herbivore_ambiguous_head_joins": {
+      "matched_one": 99,
+      "matched_multiple": 75,
+      "unmatched": 7
+    },
+    "manuscript_reported_mature_heads": 609
+  },
+  "treatment_arms": {
+    "Control": {
+      "n_heads": 164,
+      "n_derived_plants": 42,
+      "negative_missing": 26,
+      "negative_eaten": 19,
+      "visible_damaged_per_floret": 0.06356421912319901,
+      "inferred_eaten_signed_per_floret": 0.15833269127051391,
+      "viable_per_floret": 0.564296170737345,
+      "missing_residual_per_floret": 0.09476847214731489
+    },
+    "Pollinator Exclusion": {
+      "n_heads": 142,
+      "n_derived_plants": 42,
+      "negative_missing": 12,
+      "negative_eaten": 11,
+      "visible_damaged_per_floret": 0.02201371346084446,
+      "inferred_eaten_signed_per_floret": 0.294929628293035,
+      "viable_per_floret": 0.08182966438108986,
+      "missing_residual_per_floret": 0.2729159148321905
+    },
+    "Predator Exclusion": {
+      "n_heads": 154,
+      "n_derived_plants": 41,
+      "negative_missing": 25,
+      "negative_eaten": 18,
+      "visible_damaged_per_floret": 0.04139624627258376,
+      "inferred_eaten_signed_per_floret": 0.15699000175407823,
+      "viable_per_floret": 0.5587616207682863,
+      "missing_residual_per_floret": 0.11559375548149448
+    },
+    "Predator Model": {
+      "n_heads": 152,
+      "n_derived_plants": 39,
+      "negative_missing": 17,
+      "negative_eaten": 14,
+      "visible_damaged_per_floret": 0.0344184469311631,
+      "inferred_eaten_signed_per_floret": 0.16412343167175314,
+      "viable_per_floret": 0.5530688368938623,
+      "missing_residual_per_floret": 0.12970498474059003
+    }
+  },
+  "paired_block_contrasts": {
+    "viable_fraction_all": {
+      "n_matched_blocks": 39,
+      "mean_paired_plant_fraction_difference": -0.5090891291277233,
+      "CI95_site_stratified_block_bootstrap": [
+        -0.5720336866766949,
+        -0.4456251636453654
+      ],
+      "n_pos": 0,
+      "n_neg": 39,
+      "n_zero": 0,
+      "n_by_site": {
+        "campus": 12,
+        "construction": 10,
+        "ditch": 9,
+        "rapseed": 8
+      },
+      "reps": 20000,
+      "seed": 20261020
+    },
+    "nonviable_fraction_all": {
+      "n_matched_blocks": 39,
+      "mean_paired_plant_fraction_difference": 0.3738646594105049,
+      "CI95_site_stratified_block_bootstrap": [
+        0.278427644365739,
+        0.4731538711061298
+      ],
+      "n_pos": 33,
+      "n_neg": 6,
+      "n_zero": 0,
+      "n_by_site": {
+        "campus": 12,
+        "construction": 10,
+        "ditch": 9,
+        "rapseed": 8
+      },
+      "reps": 20000,
+      "seed": 20261053
+    },
+    "directly_recorded_damaged_fraction_all": {
+      "n_matched_blocks": 39,
+      "mean_paired_plant_fraction_difference": -0.04391842499817492,
+      "CI95_site_stratified_block_bootstrap": [
+        -0.07992712983817406,
+        -0.01145294220966536
+      ],
+      "n_pos": 13,
+      "n_neg": 21,
+      "n_zero": 5,
+      "n_by_site": {
+        "campus": 12,
+        "construction": 10,
+        "ditch": 9,
+        "rapseed": 8
+      },
+      "reps": 20000,
+      "seed": 20261086
+    },
+    "inferred_eaten_signed_fraction_all": {
+      "n_matched_blocks": 39,
+      "mean_paired_plant_fraction_difference": 0.1352244697172186,
+      "CI95_site_stratified_block_bootstrap": [
+        0.02872970364379324,
+        0.23109174143742334
+      ],
+      "n_pos": 26,
+      "n_neg": 13,
+      "n_zero": 0,
+      "n_by_site": {
+        "campus": 12,
+        "construction": 10,
+        "ditch": 9,
+        "rapseed": 8
+      },
+      "reps": 20000,
+      "seed": 20261119
+    },
+    "missing_residual_signed_fraction_all": {
+      "n_matched_blocks": 39,
+      "mean_paired_plant_fraction_difference": 0.1791428947153935,
+      "CI95_site_stratified_block_bootstrap": [
+        0.08407155884273541,
+        0.26875477636591927
+      ],
+      "n_pos": 31,
+      "n_neg": 8,
+      "n_zero": 0,
+      "n_by_site": {
+        "campus": 12,
+        "construction": 10,
+        "ditch": 9,
+        "rapseed": 8
+      },
+      "reps": 20000,
+      "seed": 20261152
+    },
+    "emerged_insects_per_head_all": {
+      "n_matched_blocks": 39,
+      "mean_paired_plant_fraction_difference": -1.6677859177859171,
+      "CI95_site_stratified_block_bootstrap": [
+        -2.7006791819291824,
+        -0.8075880138380138
+      ],
+      "n_pos": 3,
+      "n_neg": 28,
+      "n_zero": 8,
+      "n_by_site": {
+        "campus": 12,
+        "construction": 10,
+        "ditch": 9,
+        "rapseed": 8
+      },
+      "reps": 20000,
+      "seed": 20261185
+    },
+    "inferred_eaten_fraction_positive_only": {
+      "n_matched_blocks": 39,
+      "mean_paired_plant_fraction_difference": 0.10523984400661189,
+      "CI95_site_stratified_block_bootstrap": [
+        0.02222140492506894,
+        0.18831118607468733
+      ],
+      "n_pos": 28,
+      "n_neg": 11,
+      "n_zero": 0,
+      "n_by_site": {
+        "campus": 12,
+        "construction": 10,
+        "ditch": 9,
+        "rapseed": 8
+      },
+      "reps": 20000,
+      "seed": 20261218
+    },
+    "inferred_eaten_fraction_nonnegative_missing_only": {
+      "n_matched_blocks": 37,
+      "mean_paired_plant_fraction_difference": 0.14094207368501174,
+      "CI95_site_stratified_block_bootstrap": [
+        0.06475097866042863,
+        0.2178486234921929
+      ],
+      "n_pos": 27,
+      "n_neg": 10,
+      "n_zero": 0,
+      "n_by_site": {
+        "campus": 11,
+        "construction": 10,
+        "ditch": 8,
+        "rapseed": 8
+      },
+      "reps": 20000,
+      "seed": 20261251
+    }
+  },
+  "critical_identity": "Eaten_Seeds=Damaged_Seeds+Missing_Seeds=Flowers-Viable_Seeds-NViable_Seeds (exact for all 615 source heads)",
+  "inference_boundaries": [
+    "The raw Missing_Seeds category is a balance residual, not independently verified insect-consumed seed quantity.",
+    "Eaten_Seeds may be negative and is removed when author conditions on >0; filtering induces analysis subset selection.",
+    "Pollinator exclusion used physical organza bags, so direct pollen-resource facilitation is not isolated from ovipositor/microclimate access.",
+    "This analysis has no botanical true spine/gravity orientation or independent flower stigma and seed viability assays.",
+    "The matched maternal units are inferred from site×block×treatment, not verified linked genotype/voucher samples.",
+    "Site-stratified paired block resampling percentile intervals are descriptive; this is not a randomized mediation model.",
+    "Rows of Herbivore.csv cannot all be unambiguously matched to individual heads by vial code."
+  ],
+  "result_scope": "Genuine descriptive Q2 process-denominator contrast and source-limited sensitivity; NOT causal partner-specific head module fitness or Q3 genetic re-expression."
+}
