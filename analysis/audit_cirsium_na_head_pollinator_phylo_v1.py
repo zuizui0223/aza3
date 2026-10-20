@@ -24,7 +24,7 @@ from pathlib import Path
 
 import numpy as np
 from Bio import Phylo
-from scipy.optimize import minimize
+from scipy.optimize import minimize, minimize_scalar
 from scipy.stats import fisher_exact
 
 SOURCE_REPO = "carol-siniscalchi/cirsium"
@@ -220,6 +220,76 @@ def fit_independent_binary_mk(tree,states):
     }
 
 
+def fit_equal_rate_binary_mk(tree,states):
+    """Second null: constrain gains and losses to the same Mk transition rate."""
+    def objective(z):
+        rate=math.exp(z)
+        ll=binary_mk_loglik(tree,states,rate,rate)
+        return -ll if math.isfinite(ll) else 1e250
+    x=minimize_scalar(objective,bounds=(-9,3),method="bounded",
+                      options={"xatol":1e-7})
+    if not x.success or not math.isfinite(x.fun):
+        raise ValueError("SYMMETRIC_MK_PARAMETER_FIT_NOT_CONVERGED")
+    return {
+        "equal_rate":float(math.exp(x.x)),
+        "maximum_loglik":float(-x.fun),
+        "fit_converged":True,
+        "root_condition":"INSECT_STATE_0_FIXED",
+        "source_only_pollen_syndrome_tip_fit":True,
+    }
+
+
+def nonred_phenotype_associations(ts,poll,names):
+    """Stop circular red corolla syndrome from becoming a purported control."""
+    included=[r for r in ts if r["CorollaColor"]!="0"]
+    bird=[r for r in included if poll[r["Species"]]=="Hummingbird"]
+    insect=[r for r in included if poll[r["Species"]]=="Insect"]
+    if not bird or not insect:
+        raise ValueError("NO_BOTH_SYNDROME_GROUPS_IN_NONRED_SUBSET")
+    out={}
+    for name in names:
+        a=sum(trait_positive(r,name) for r in bird)
+        b=sum(trait_positive(r,name) for r in insect)
+        out[name]=fisher_binary(a,len(bird)-a,b,len(insect)-b)
+    return {
+        "n_bird_nonred":len(bird),
+        "n_insect_nonred":len(insect),
+        "n_bird_excluded_as_red":sum(poll[r["Species"]]=="Hummingbird"
+                                     and r["CorollaColor"]=="0" for r in ts),
+        "n_insect_excluded_as_red":sum(poll[r["Species"]]=="Insect"
+                                       and r["CorollaColor"]=="0" for r in ts),
+        "outcomes":out,
+        "not_separately_verified_pollination_service":True,
+        "conditional_on_colour_may_overspecify_syndrome":True,
+    }
+
+
+def head_state_combinations(ts,poll):
+    """Descriptive complete 2x2 mosaic, never a head fitness experiment."""
+    out={}
+    for mode in ("Hummingbird","Insect"):
+        group=[r for r in ts if poll[r["Species"]]==mode]
+        both=outer_only=inner_only=neither=outer_down=outer_erect=0
+        for r in group:
+            outer=trait_positive(r,"outer_phyllaries_spreading_or_reflexed")
+            inner=trait_positive(r,"inner_phyllaries_non_green")
+            down=trait_positive(r,"head_pendulous")
+            if outer and inner: both+=1
+            elif outer: outer_only+=1
+            elif inner: inner_only+=1
+            else: neither+=1
+            outer_down+=int(outer and down)
+            outer_erect+=int(outer and not down)
+        out[mode]={
+            "n_taxa":len(group),"both_outer_and_inner":both,
+            "outer_only":outer_only,"inner_only":inner_only,
+            "neither":neither,"outer_and_pendulous":outer_down,
+            "outer_but_erect":outer_erect,
+        }
+        assert both+outer_only+inner_only+neither==len(group)
+    return out
+
+
 def simulate_mk_conditional(tree,tip_states,phenotypes,a,b,
                             n_sims=250000,seed=SEED,min_accepted=1000):
     """Independent-head Mk null, conditional on observed total bird tips.
@@ -387,6 +457,17 @@ def run_analysis(ts,poll,tree,n_sims=250000):
         a=mk["insect_to_bird_rate"],b=mk["bird_to_insect_rate"],
         n_sims=n_sims,seed=SEED,
         min_accepted=1000 if n_sims>=100000 else 25)
+    same=fit_equal_rate_binary_mk(tree,binary_poll)
+    equal=simulate_mk_conditional(
+        tree,binary_poll,matrix,a=same["equal_rate"],b=same["equal_rate"],
+        n_sims=n_sims,seed=SEED+1,
+        min_accepted=1000 if n_sims>=100000 else 25)
+    equal["trait_order"]=list(HEAD_TRAITS)
+    for j,t in enumerate(HEAD_TRAITS):
+        equal["phenotypes"][t]=equal["phenotypes"].pop("trait_"+str(j))
+    colour_sensitivity=nonred_phenotype_associations(
+        ts,poll,["outer_phyllaries_spreading_or_reflexed"])
+    mosaics=head_state_combinations(ts,poll)
     sim["trait_order"]=list(HEAD_TRAITS)
     for j,t in enumerate(HEAD_TRAITS):
         sim["phenotypes"][t]=sim["phenotypes"].pop("trait_"+str(j))
@@ -400,6 +481,8 @@ def run_analysis(ts,poll,tree,n_sims=250000):
            "associations":collapse,
        },
        "leave_one_bird_taxon_out":leave_one,
+       "non_red_corolla_syndrome_sensitivity":colour_sensitivity,
+       "post_primary_descriptive_head_state_mosaics":mosaics,
        "phylogenetic_sensitivity":{
            "minimum_change_count_for_pollinator_with_insect_root":
                parsimony_cost(tree,binary_poll,root_state=0),
@@ -408,6 +491,8 @@ def run_analysis(ts,poll,tree,n_sims=250000):
            },
            "parsimony_change_count_not_identified_convergent_gain_count":True,
            "independent_pollinator_Mk_fit":mk,
+           "equal_rate_Mk_fit":same,
+           "equal_rate_Mk_simulation":equal,
            "conditional_Mk_simulation":sim,
        },
     }
