@@ -70,7 +70,7 @@
       "n_observed_combinations": 4,
       "all_four_observed": true,
       "leave_one_tip_preserves_all_four_n": 5,
-      "fisher_two_sided": 0.8857142857142857
+      "fisher_two_sided": 1
     },
     "jp_main6": {
       "n": 6,
@@ -83,7 +83,7 @@
       "n_observed_combinations": 3,
       "all_four_observed": false,
       "leave_one_tip_preserves_all_four_n": 0,
-      "fisher_two_sided": 0.8
+      "fisher_two_sided": 1
     },
     "jp_secondary1": {
       "n": 1,
@@ -186,5 +186,15 @@
     "ontologies_coarsened_not_quantitatively_identical": true,
     "tip_counts_not_independent_evolutionary_origins": true,
     "na_four_combinations_survive_arizonicum_subspecies_collapse": true
+  },
+  "correctness_receipt": {
+    "cause": "Independent JavaScript hypergeometric choose(n,k) recurrence originally used unreduced k in numerator after choosing min(k,n-k), giving wrong p when k>n/2; Python calculation correct",
+    "fix": "Use kk=min(k,n-k) in BOTH bound and numerator, four independent synthetic validation cases including (1,2,1,3) exact p=1.0",
+    "reference_cases": {
+      "JP7_Fisher_two_sided_expected": 1,
+      "JP_dominant6_Fisher_two_sided_expected": 1,
+      "NA63_Fisher_two_sided_expected": 0.09891636565712698
+    },
+    "biological_trait_matrix_changed": false
   }
 }
