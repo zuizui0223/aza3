@@ -40,20 +40,11 @@ jobs:
           from pathlib import Path
           import hashlib
           from zipfile import ZipFile
-          want={'globi.zip':'ce0513fde35d9c1be42cef87da7a6f4b262e9bf31771b58a4',
+          want={'globi.zip':'ce0513fde35d9c1be42cef87da7a6f4b262e9b4fe237ba0b78e9bf31771b58a4',
                 'dates.zip':'91653e2822a7bdfe89537b1283d39f5d3b14a6fe3f91e5ff1fa418b6665bbfd0'}
           for name,digest in want.items():
               actual=hashlib.sha256(Path('work',name).read_bytes()).hexdigest()
-              if actual!=digest:
-                  print('SOURCE_ZIP_DIAG',name,'bytes',Path('work',name).stat().st_size,'actual_zip_sha',actual,'expected_zip_sha',digest)
-                  try:
-                      with ZipFile(Path('work',name)) as probe:
-                          print('ZIP_MEMBERS',probe.namelist())
-                          for member in probe.namelist()[:5]:
-                              data=probe.read(member)
-                              print('MEMBER',member,len(data),hashlib.sha256(data).hexdigest())
-                  except Exception as err:print('NOT_A_SOURCE_ZIP',type(err).__name__,str(err)[:200])
-                  raise AssertionError('SOURCE_ARCHIVE_HASH_DRIFT:'+name)
+              if actual!=digest:raise AssertionError('SOURCE_ARCHIVE_HASH_DRIFT:'+name)
           with ZipFile('work/dates.zip') as z:data=z.read('source_dates_v2.json')
           assert hashlib.sha256(data).hexdigest()=='313142b1e4fcb1a179533c9b985ea8364b221122ed158b9e2d312ee213a731c9'
           Path('work/source_dates_v2.json').write_bytes(data)
