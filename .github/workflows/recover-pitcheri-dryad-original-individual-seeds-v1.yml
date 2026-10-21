@@ -1,0 +1,80 @@
+name: Recover official Cirsium pitcheri Dryad individual-seed workbook
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/recover-pitcheri-dryad-original-individual-seeds-v1.yml"
+      - "data/evidence/cirsium_pitcheri_dryad_original_source_manifest_v1.json"
+      - "docs/CIRSIUM_PITCHERI_DRYAD_RAW_SOURCE_GATE_V1.md"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  fetch-original-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - name: Recover PUBLIC original XLSX from official Dryad API by fixed file ID
+        id: retrieve
+        shell: bash
+        run: |
+          set -uo pipefail
+          mkdir -p work/source
+          expected="abb7709533f82a83435fdaa59175fc55ca1dea8685e788c52d35fad2208fffd4"
+          for url in \
+            'https://datadryad.org/api/v2/files/483373/download' \
+            'https://datadryad.org/downloads/file_stream/483373'; do
+            echo "Trying Dryad download"
+            rm -f work/source/candidate
+            curl --location --fail --silent --show-error \
+              --retry 1 --connect-timeout 12 --max-time 45 \
+              -H 'Accept: application/octet-stream' \
+              -A 'Mozilla/5.0 (compatible; AcademicEcologyResearch/1.0)' \
+              "$url" -o work/source/candidate || continue
+            sz=$(wc -c < work/source/candidate)
+            sha=$(sha256sum work/source/candidate | awk '{print $1}')
+            echo "Candidate byte count $sz, digest $sha"
+            if [[ "$sz" -eq 117373 && "$sha" == "$expected" ]]; then
+              mv work/source/candidate work/source/Publication_Data.xlsx
+              echo "success=true" >> "$GITHUB_OUTPUT"
+              break
+            fi
+          done
+          if [[ -s work/source/Publication_Data.xlsx ]]; then
+            python - <<'PY'
+          import hashlib,zipfile,json,pathlib
+          p=pathlib.Path('work/source/Publication_Data.xlsx')
+          with zipfile.ZipFile(p) as z:
+              members=z.namelist()
+              assert '[Content_Types].xml' in members
+              assert 'xl/workbook.xml' in members
+              sheets=[x for x in members if x.startswith('xl/worksheets/sheet') and x.endswith('.xml')]
+              assert sheets
+              receipt={"source_doi":"10.5061/dryad.xksn02vdw",
+                       "file_id":483373,"bytes":p.stat().st_size,
+                       "sha256":hashlib.sha256(p.read_bytes()).hexdigest(),
+                       "worksheets_xml":sheets,"retrieval":"ACTUAL_DRYAD_FILE_SHA_VERIFIED"}
+              pathlib.Path('work/source/retrieval.json').write_text(json.dumps(receipt,indent=2)+'\n')
+              print(receipt)
+          PY
+          else
+            echo "Original source not available by listed Dryad public endpoints"
+            echo "success=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Archive ONLY verified public source and receipt
+        if: steps.retrieve.outputs.success == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: pitcheri-dryad-published-individual-seed-source-v1
+          path: |
+            work/source/Publication_Data.xlsx
+            work/source/retrieval.json
+          retention-days: 7
+          if-no-files-found: error
+      - name: Declare original data gate result without substituting fabricated observations
+        run: |
+          if [[ "${{ steps.retrieve.outputs.success }}" != "true" ]]; then
+            echo "::error::Original Dryad binary could not be SHA-verified. DO NOT claim individual seed-level reanalysis."
+            exit 1
+          fi
+          echo 'PASS source SHA and true XLSX container'
