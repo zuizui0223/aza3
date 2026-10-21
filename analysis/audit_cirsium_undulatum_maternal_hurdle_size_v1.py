@@ -365,6 +365,12 @@ def source_groups(mothers):
     require(len(mothers)==106,"ORIGINAL_106_MOTHERS_CHANGED")
     ids=[r["year"]+"|"+r["plt"] for r in mothers]
     require(len(set(ids))==106,"DUPLICATE_SOURCE_MOTHER_ID")
+    # A malformed treatment code must fail before the frozen-group count
+    # check; otherwise the expected scientific invalid-input error is masked.
+    for r in mothers:
+        require(r["year"] in YEARS and
+                r["trt"]==r["dam"]+r["ins"] and
+                r["trt"] in ARMS,"SOURCE_TREATMENT_NOT_VERIFIED")
     groups={y:{a:[r for r in mothers
                    if r["year"]==y and r["trt"]==a] for a in ARMS}
             for y in YEARS}
@@ -373,9 +379,6 @@ def source_groups(mothers):
        "2007":{"ndni":9,"dni":9,"ndi":10,"di":11},
        "2008":{"ndni":15,"dni":12,"ndi":21,"di":19}},
        "USDA_ORIGINAL_TWO_YEAR_ARM_COUNTS_CHANGED")
-    for r in mothers:
-        require(r["trt"]==r["dam"]+r["ins"]
-                and r["trt"] in ARMS,"SOURCE_TREATMENT_NOT_VERIFIED")
     return groups
 
 
