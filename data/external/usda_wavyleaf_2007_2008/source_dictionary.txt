@@ -1,0 +1,30 @@
+WL Plant Data
+Column title Definition Description
+plt Unique Identifier Plant Individual
+year Year sampled 2007 or 2008
+av.dam Average proportion flowerhead area damaged over all flowerheads produced per plant Average is of four quarters of the receptacle scored for damage and converted to a proportion. See full explanation in associated journal article.
+no.flw Number of flowerheads Total number of buds that reached anthesis (flowered)
+n.fl.sds Number of flowerheads with successful seed set Only includes flowerheads from which seeds were counted
+plt.gsd "Number of ""good"" seed produced per plant" Sum of all seeds that appeared fully developed and with minimal to no insect feeding damage produced from all flowerheads on a plant
+dam Apical Damage Treatment "nd: apical flowerhead undamage, protected by insecticide; d: apical flowerhead damaged, received water treatment (see full explaination in associated journal article)"
+ins Insecticide Treatment i: flowerheads protected with insecticide (reduced herbivore pressure); ni: flowerheads received water treatment (ambient herbivore pressure)
+trt Treatment "Combined 2x2 treatment: ndi, ndni = no apical damage under reduced and ambient herbivore pressure; di, dni = apical damage under reduced and ambient herbivore pressure"
+ap.hd "Number of ""good"" seeds produced by the apical flowerhead" Seeds that appeared fully developed and with minimal to no insect feeding
+o.hds "Summed total number of ""good"" seed produced by all non-apical flowerheads " Seeds that appeared fully developed and with minimal to no insect feeding
+n.hds Total number of flower buds per plant All buds greater than or equal to 2-mm in diameter
+r.diam Basal rosette diameter Calculated as average of two perpendicular measurements
+n.br Number of branches Branches from the main stem greater than 1 cm length
+plt.ht Plant height "in cm, to the base of the highest flowerhead"
+pnt.flw Proportion of non-apical flower buds that flowered Calculated as: no.flw/n.hds
+pnt.ohds Proportion of seed production from non-apical flower heads Calculated as: o.hds/plt.gsd
+sds.flhd "Average number of ""good"" seeds produced per total flowerheads" Calculated as: o.hds/no.flw
+sd.fh.sd "Average number of ""good"" seeds produced per seed-producing flowerhead" Calculated as: o.hds/n.fl.sds
+WL Flowerhead Data
+Column title Definition Description
+plt Unique Identifier Plant Individual
+year Year sampled 2007 or 2008
+dam Apical Damage Treatment "nd: apical flowerhead undamage, protected by insecticide; d: apical flowerhead damaged, received water treatment (see full explaination in associated journal article)"
+ins Insecticide Treatment i: flowerheads protected with insecticide (reduced herbivore pressure); ni: flowerheads received water treatment (ambient herbivore pressure)
+hd Head number "Flowerhead position on plant. Apical head is ""100""; successive '00 heads are branch terminal flowerheads, branches between the terminals and stem are '0 (e.g., 310)"
+av.dam Average proportion flowerhead area damaged Average is of four quarters of the receptacle scored for damage and converted to a proportion. See full explanation in associated journal article
+hd.gsd "Number of ""good"" seed produced by that flowerhead" seeds that appeared fully developed and with minimal to no insect feeding
