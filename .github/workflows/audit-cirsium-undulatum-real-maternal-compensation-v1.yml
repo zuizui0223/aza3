@@ -1,0 +1,88 @@
+name: Cirsium undulatum original USDA mother-head compensation under herbivory
+on:
+  pull_request:
+    paths:
+      - "analysis/audit_cirsium_undulatum_mother_head_compensation_v1.py"
+      - "tests/test_cirsium_undulatum_mother_head_compensation_v1.py"
+      - "data/external/usda_wavyleaf_2007_2008/**"
+      - "data/evidence/cirsium_undulatum_real_mother_head_original_js_receipt_v1.json"
+      - "docs/CIRSIUM_UNDULATUM_APICAL_DAMAGE_MATERNAL_COMPENSATION_20261021.md"
+      - ".github/workflows/audit-cirsium-undulatum-real-maternal-compensation-v1.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  actual-published-106-mothers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify original USDA CC0 Git blobs, treatment, plant-head joins and negative tests
+        run: |
+          python -m py_compile analysis/audit_cirsium_undulatum_mother_head_compensation_v1.py tests/test_cirsium_undulatum_mother_head_compensation_v1.py
+          python -m unittest discover -s tests -p 'test_cirsium_undulatum_mother_head_compensation_v1.py' -v
+      - name: Recalculate 106 actual mothers and 323 original heads with 10000 mother resamples
+        run: |
+          mkdir -p work/wavyleaf
+          python analysis/audit_cirsium_undulatum_mother_head_compensation_v1.py \
+            --mothers data/external/usda_wavyleaf_2007_2008/mother_plants.csv \
+            --heads data/external/usda_wavyleaf_2007_2008/flower_heads.csv \
+            --dictionary data/external/usda_wavyleaf_2007_2008/source_dictionary.txt \
+            --bootstrap 10000 \
+            --out work/wavyleaf/actual_maternal_results.json
+      - name: Independent JS/Python exact original source contrast and bootstrap replay
+        run: |
+          python - <<'PY'
+          import json,math
+          actual=json.load(open('work/wavyleaf/actual_maternal_results.json'))
+          frozen=json.load(open('data/evidence/cirsium_undulatum_real_mother_head_original_js_receipt_v1.json'))
+          assert actual['source']['doi']==frozen['source']['doi']=='10.15482/USDA.ADC/1522649'
+          assert actual['source']['paper_doi']=='10.1002/ajb2.1744'
+          b=frozen['source']['aza3_source_git_blobs']
+          for short,long in [('mother','mother_plants.csv'),('heads','flower_heads.csv'),('dictionary','source_dictionary.txt')]:
+              assert actual['source']['git_blob_source_locks'][long]==b[short]
+          def same(a,b,path='root'):
+              if isinstance(b,dict):
+                  assert isinstance(a,dict) and set(a)==set(b),(path,'keys')
+                  for key in b:same(a[key],b[key],path+'.'+key)
+              elif isinstance(b,list):
+                  assert isinstance(a,list) and len(a)==len(b),(path,'list')
+                  for j,(x,y) in enumerate(zip(a,b)):same(x,y,path+f'[{j}]')
+              elif isinstance(b,(int,float)) and not isinstance(b,bool):
+                  assert isinstance(a,(float,int)) and math.isfinite(a) and math.isfinite(b)
+                  assert math.isclose(a,b,rel_tol=0,abs_tol=1e-9),(path,a,b)
+              else:
+                  assert type(a) is type(b) and a==b,(path,a,b)
+          same(actual['source_reconciliation'],frozen['source_reconciliation'])
+          same(actual['cohort']['year_n'],frozen['cohort']['year_n'])
+          same(actual['cohort']['year_treatment_mothers'],frozen['cohort']['year_treatment_mothers'])
+          same(actual['measured_group_outcomes'],frozen['measured_group_outcomes'])
+          same(actual['year_specific_contrasts_plant_bootstrap'],frozen['year_specific_contrasts_plant_bootstrap'])
+          same(actual['sensitivity_drop_two_treatment_mismatch_and_one_component_mismatch'],
+               frozen['sensitivity_drop_two_treatment_mismatch_and_one_component_mismatch'])
+          assert actual['bootstrap_contract']['n_draws']==10000
+          assert actual['bootstrap_contract']['seed']==20261021
+          assert actual['source_reconciliation']['n_head_rows_treatment_label_conflicts']==12
+          assert actual['source_reconciliation']['n_mothers_with_apical_plus_lateral_accounting_mismatch']==1
+          assert actual['source_reconciliation']['n_heads_with_matching_mother']==309
+          assert actual['claims']['apical_damage_treatment_does_not_guarantee_all_apical_seed_loss']
+          assert actual['claims']['high_pooled_lateral_share_does_not_prove_absolute_lateral_increase']
+          assert not actual['claims']['genetically_selected_lego_or_ancestral_memory_identified']
+          assert not actual['claims']['same_head_pollinator_oviposition_and_seed_fitness_measured']
+          r=actual['year_specific_contrasts_plant_bootstrap']['2008']['total']
+          assert r['insecticide_under_apical_damage']['bootstrap_percentile_CI95'][0]>0
+          assert r['insecticide_under_protected_apex']['bootstrap_percentile_CI95'][0]>0
+          assert r['damage_under_ambient_insects']['bootstrap_percentile_CI95'][0]<0
+          assert r['damage_under_ambient_insects']['bootstrap_percentile_CI95'][1]>0
+          print('PASS: source-locked 106 actual mothers, 323 original head rows, treatment mismatches detected, all year×arm outcomes, all 10000 maternal resampling CI endpoints independently JS/Python reproduced')
+          PY
+      - name: Preserve genuine mother-level derived numerical results only
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-undulatum-2007-2008-original-maternal-compensation-v1
+          path: work/wavyleaf/actual_maternal_results.json
+          if-no-files-found: error
+          retention-days: 30
