@@ -89,14 +89,12 @@ class TestOriginalAndPublishedGrain(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"CANESCENS_PUBLISHED_NOT_RAW"):
             q.analyze(bad,self.und)
 
-    def test_source_mother_treatment_fiction_rejected(self):
-        bad=copy.deepcopy(self.und)
-        bad[0]["trt"]="incorrect"
-        # These original rows are loaded by frozen git blob; synthetic validator:
-        with self.assertRaisesRegex(ValueError,"EMPTY_UNDULATUM_YEAR_TREATMENT_CELL|UNDULATUM"):
-            q.means_from_undulatum([r for r in bad if r["trt"]!="incorrect"]
-                                   if len([r for r in bad if r["trt"]=="incorrect"])>0
-                                   else [])
+    def test_missing_actual_year_treatment_group_fails_closed(self):
+        # Synthetic deletion removes one full original group: do not zero-fill.
+        incomplete=[r for r in self.und
+                    if not (r["year"]=="2007" and r["trt"]=="ndi")]
+        with self.assertRaisesRegex(ValueError,"EMPTY_UNDULATUM_YEAR_TREATMENT_CELL"):
+            q.means_from_undulatum(incomplete)
 
     def test_cross_species_lifehistory_causation_disallowed(self):
         z=q.analyze(self.can,self.und)
