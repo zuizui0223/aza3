@@ -214,7 +214,11 @@ def assert_provenance(source):
                  "head_rank_is_not_outer_phyllary_spread",
                  "germination_lab_temp_is_not_field_temperature")),
             "HEAD_STRUCTURE_AND_RANK_ONTOLOGY_CONFUSED")
-    require(all(source["claim_ceiling"].values()),"INFERENCE_CEILING_CHANGED")
+    limits=source["claim_ceiling"]
+    require(limits["original_seed_level_data_downloaded_and_reanalysed"] is False and
+            all(value is True for key,value in limits.items()
+                if key!="original_seed_level_data_downloaded_and_reanalysed"),
+            "INFERENCE_CEILING_CHANGED")
 
 
 def run(source):
