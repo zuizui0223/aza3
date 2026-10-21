@@ -1,0 +1,74 @@
+name: Cirsium pitcheri 2020 rank-specific weevil and terminal loss context
+on:
+  pull_request:
+    paths:
+      - "analysis/audit_cirsium_pitcheri_2020_competing_enemies_v1.py"
+      - "tests/test_cirsium_pitcheri_2020_competing_enemies_v1.py"
+      - "data/evidence/cirsium_pitcheri_2020_multi_enemy_rank_source_v1.json"
+      - "data/evidence/cirsium_pitcheri_2020_competing_risk_independent_JS_v1.json"
+      - "docs/CIRSIUM_PITCHERI_HEAD_RANK_MULTI_ENEMY_BOTTLENECK_20261021.md"
+      - ".github/workflows/audit-cirsium-pitcheri-2020-competing-enemies-v1.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  primary-publication-numerical-and-biological-inference:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate source semantics and 10 biological negative controls
+        run: |
+          python -m py_compile analysis/audit_cirsium_pitcheri_2020_competing_enemies_v1.py tests/test_cirsium_pitcheri_2020_competing_enemies_v1.py
+          python -m unittest discover -s tests -p "test_cirsium_pitcheri_2020_competing_enemies_v1.py" -v
+      - name: Compute original article's rounded data without pretending raw individual acquisition
+        run: |
+          mkdir -p work/pitcheri
+          python analysis/audit_cirsium_pitcheri_2020_competing_enemies_v1.py \
+            --source data/evidence/cirsium_pitcheri_2020_multi_enemy_rank_source_v1.json \
+            --out work/pitcheri/derived_rank_enemy_data.json
+      - name: Independently cross-check every numerical finding and forbids causal enemy attribution
+        run: |
+          python - <<'PY'
+          import json, math
+          got=json.load(open("work/pitcheri/derived_rank_enemy_data.json"))
+          lock=json.load(open("data/evidence/cirsium_pitcheri_2020_competing_risk_independent_JS_v1.json"))
+          source=json.load(open("data/evidence/cirsium_pitcheri_2020_multi_enemy_rank_source_v1.json"))
+          def eq(a,b):
+              assert math.isclose(a,b,rel_tol=0,abs_tol=1e-12),(a,b)
+          assert got["source_doi"]==lock["paper_doi"]=="10.1016/j.gecco.2020.e00945"
+          f=got["within_WFD_2016_weevil_head_rank"]
+          eq(f["secondary_vs_terminal_infestation_ratio"],lock["ratio_secondary_to_terminal"])
+          eq(f["tertiary_vs_terminal_infestation_ratio"],lock["ratio_tertiary_to_terminal"])
+          w=got["WFD_2016_head_seed_weight"]
+          eq(w["terminal_infested_minus_uninfested_mg"],lock["terminal_seed_mass_infested_minus_uninfested_mg"])
+          assert w["terminal_CI95_infested_minus_uninfested_mg"]==lock["terminal_seed_mass_interval"]
+          assert w["secondary_CI95_infested_minus_uninfested_mg"]==lock["secondary_seed_mass_interval"]
+          assert w["secondary_CI95_contains_zero"] is True
+          assert w["difference_of_terminal_and_secondary_effects_significance_known"] is False
+          d=got["terminal_head_loss_cross_year_observations"]
+          for site in ("SC","WFD"):
+              eq(d[site]["difference_in_missing_terminal_plant_fraction"],lock["missing_terminal_delta"][site])
+              assert d[site]["original_cause_is_verified_deer_attack"] is False
+          year=got["field_year_head_output"]
+          eq(year["terminal_mature_seed_count_relative_to_2016_approx"],lock["mature_seed_relative_count_in_year_2_terminal"])
+          assert year["tertiary_mature_seeds_reported_at_both_sites_in_2017"]==lock["tertiary_second_year_count"]==0
+          assert year["secondary_year_effect_not_detected"] is True
+          eq(got["site_fraction_of_attempted_seeds_mature_2016"]["WFD_minus_SC"],lock["whole_plant_mature_fraction_site_difference"])
+          assert got["site_fraction_of_attempted_seeds_mature_2016"]["WFD_site_difference_is_positive_effect_of_weevils"] is False
+          assert all(got["inference_guards"].values())
+          assert source["dryad_blocked_separately"]["api_returned_http"]==401
+          assert source["dryad_blocked_separately"]["no_verified_raw_xlsx"] is True
+          assert got["n_new_individual_head_field_observations"]==0
+          print("PASS: published 2020 head rank exposures, seed quality, 2017 terminal loss and original data-access fail-close; no new raw head rows")
+          PY
+      - name: Save reproducible derived values (not a substitute for authors' raw observations)
+        uses: actions/upload-artifact@v4
+        with:
+          name: pitcheri-published-2020-two-enemy-head-rank-evidence
+          path: work/pitcheri/derived_rank_enemy_data.json
+          if-no-files-found: error
+          retention-days: 30
