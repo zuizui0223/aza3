@@ -1,0 +1,111 @@
+{
+  "version": "cirsium_pitcheri_original_primary_2020_multi_enemy_rank_source_v1",
+  "source": {
+    "paper": "Gijsman, Havens & Vitt (2020), Global Ecology and Conservation 22:e00945",
+    "doi": "10.1016/j.gecco.2020.e00945",
+    "public_url": "https://www.sciencedirect.com/science/article/pii/S2351989419307243",
+    "study_years": [
+      2016,
+      2017
+    ],
+    "primary_published_article_transcription_not_raw_head_rows": true
+  },
+  "abbreviations": {
+    "SC": "Ship Canal",
+    "WFD": "Whitefish Dunes"
+  },
+  "rank_weevil_2016_WFD": {
+    "infestation_evidence_fractions_approx": {
+      "terminal": 0.27,
+      "secondary": 0.5,
+      "tertiary": 0.8
+    },
+    "mature_seed_infested_to_uninfested_approx_ratio": 0.4,
+    "unfilled_seed_infested_to_uninfested_approx_ratio": 0.6,
+    "mature_model_head_position_F": 16.8,
+    "mature_model_weevil_F": 112.8,
+    "model_p_less_than": 0.0001,
+    "rank_causal_weevil_assignment": false
+  },
+  "rank_specific_seed_mass_2016_WFD": {
+    "terminal": {
+      "infested_minus_uninfested_seed_mass_mg": -1.83,
+      "CI95_infested_minus_uninfested_mg": [
+        -2.73,
+        -0.93
+      ],
+      "paper_p_less_than": 0.0001
+    },
+    "secondary": {
+      "infested_minus_uninfested_seed_mass_mg": null,
+      "CI95_infested_minus_uninfested_mg": [
+        -0.76,
+        0.061
+      ],
+      "paper_p": 0.095
+    },
+    "tertiary": {
+      "measured": false,
+      "reason": "few seeds and extensive damage"
+    },
+    "cross_rank_weevil_effect_difference_statistically_tested": false
+  },
+  "field_seed_output_by_rank_year": {
+    "terminal_2017_mature_count_relative_to_2016_approx": 0.3,
+    "terminal_2017_reduction_observed_at_both_sites": true,
+    "secondary_2017_vs_2016_F": 1.39,
+    "secondary_year_difference_p": 0.24,
+    "tertiary_2017_mature_seeds_both_sites": 0
+  },
+  "site_level_mature_seed_attempted_2016": {
+    "SC_no_weevils": {
+      "mature_fraction_approx": 0.38
+    },
+    "WFD_weevils_present": {
+      "mature_fraction_approx": 0.71
+    },
+    "comparison_is_different_plant_level_estimand_than_infested_head_40percent_ratio": true,
+    "no_cross_site_weevil_effect_identified": true
+  },
+  "terminal_head_absence_by_site_year": {
+    "2016": {
+      "SC": 0,
+      "WFD": 0.089
+    },
+    "2017": {
+      "SC": 0.27,
+      "WFD": 0.33
+    },
+    "sampling_2017_parent_plants_per_site": 15,
+    "authorship": "authors hypothesize deer browsing; no individual deer-to-terminal attack ID recovered",
+    "specific_herbivore_causation_identified": false,
+    "other_confounders": [
+      "plant crown diameter 2017 not measured",
+      "80 mm more seasonal rain 2017 vs 2016",
+      "pollination service may vary",
+      "distinct parent cohorts and site conditions"
+    ]
+  },
+  "material_limit": {
+    "rank_is_branch_position_not_head_inclination": true,
+    "no_measured_spines_phyllary_angle_or_mucilage": true,
+    "no_randomized_weevil_or_deer_exposure": true,
+    "terminal_missing_head_not_direct_deer_observation": true,
+    "site_year_weevil_potentially_confound": true,
+    "2020_and_2021_seeds_not_joined_by_original_head_id": true,
+    "no_plant_level_total_net_fitness_estimated": true,
+    "no_valid_causal_rank_by_enemy_interaction": true,
+    "no_significant_between_rank_weevil_seedweight_effect_estimated": true,
+    "original_plant_and_head_rows_not_downloaded": true,
+    "new_field_observations_added": 0
+  },
+  "dryad_blocked_separately": {
+    "individual_germination_file_id": 483373,
+    "doi": "10.5061/dryad.xksn02vdw",
+    "official_sha256": "abb7709533f82a83435fdaa59175fc55ca1dea8685e788c52d35fad2208fffd4",
+    "pr70_action_run": 39526471504,
+    "api_returned_http": 401,
+    "alternate_download_returned_protected_html_bytes": 4278,
+    "no_verified_raw_xlsx": true
+  }
+}
