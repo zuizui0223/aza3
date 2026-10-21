@@ -43,7 +43,7 @@ jobs:
           for name in y:
               actual=x[name]
               ref=y[name]
-              assert actual['n_hypothetical_rank_positions']==ref['n']
+              assert actual['n_hypothetical_rank_positions']==len(ref['rates'])
               for f,g in [('input_published_like_rank_marginals','rates'),
                           ('joint_all_infested_sharp_bounds','all_infested_joint'),
                           ('at_least_one_free_sharp_bounds','at_least_one_not_infested'),
