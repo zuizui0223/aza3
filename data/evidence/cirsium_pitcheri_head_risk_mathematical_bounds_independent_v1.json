@@ -1,0 +1,143 @@
+{
+  "version": "cirsium_pitcheri_head_risk_mathematical_bounds_independent_v1",
+  "evaluated_on": "2026-10-21",
+  "original_paper_doi": "10.1016/j.gecco.2020.e00945",
+  "source_field_grain": "published approximate rank-specific head weevil incidence, not joint heads within mothers",
+  "original_mother_level_data_unavailable": "author request stated in 2020 paper",
+  "conditional_one_head_per_rank_couplings": {
+    "terminal_secondary": {
+      "rates": [
+        0.27,
+        0.5
+      ],
+      "all_infested_joint": [
+        0,
+        0.27
+      ],
+      "at_least_one_not_infested": [
+        0.73,
+        1
+      ],
+      "under_independent_head_events": 0.865,
+      "extra_over_first_rank": [
+        0,
+        0.27
+      ],
+      "real_within_parent_joint_estimate": false
+    },
+    "terminal_tertiary": {
+      "rates": [
+        0.27,
+        0.8
+      ],
+      "all_infested_joint": [
+        0.07000000000000006,
+        0.27
+      ],
+      "at_least_one_not_infested": [
+        0.73,
+        0.9299999999999999
+      ],
+      "under_independent_head_events": 0.784,
+      "extra_over_first_rank": [
+        0,
+        0.19999999999999996
+      ],
+      "real_within_parent_joint_estimate": false
+    },
+    "secondary_tertiary": {
+      "rates": [
+        0.5,
+        0.8
+      ],
+      "all_infested_joint": [
+        0.30000000000000004,
+        0.5
+      ],
+      "at_least_one_not_infested": [
+        0.5,
+        0.7
+      ],
+      "under_independent_head_events": 0.6,
+      "extra_over_first_rank": [
+        0,
+        0.19999999999999996
+      ],
+      "real_within_parent_joint_estimate": false
+    },
+    "terminal_secondary_tertiary": {
+      "rates": [
+        0.27,
+        0.5,
+        0.8
+      ],
+      "all_infested_joint": [
+        0,
+        0.27
+      ],
+      "at_least_one_not_infested": [
+        0.73,
+        1
+      ],
+      "under_independent_head_events": 0.892,
+      "extra_over_first_rank": [
+        0,
+        0.27
+      ],
+      "real_within_parent_joint_estimate": false
+    }
+  },
+  "weevil_only_constant_damage_scenario": {
+    "assumed_pooled_infested_head_loss_all_ranks": 0.6,
+    "remaining_fitted_seed_output_per_equal_effort": {
+      "terminal": 0.838,
+      "secondary": 0.7,
+      "tertiary": 0.52
+    },
+    "secondary_allocation_minus_terminal_per_equal_effort": -0.138,
+    "break_even_terminal_whole_loss_by_relative_side_intrinsic_fecundity": {
+      "0.25": 0.7911694510739857,
+      "0.5": 0.5823389021479713,
+      "0.75": 0.3735083532219571,
+      "1.0": 0.1646778042959427
+    },
+    "not_empirical_effect_estimate": true
+  },
+  "missing_terminal_and_secondary_rescue_unidentified": {
+    "SC": {
+      "p_missing_terminal": 0.27,
+      "possible_joint_missing_terminal_and_secondary_with_mature_seeds": [
+        0,
+        0.27
+      ],
+      "possible_conditional_secondary_maturity_given_missing_terminal": [
+        0,
+        1
+      ],
+      "observed_same_parent_joint_count": false
+    },
+    "WFD": {
+      "p_missing_terminal": 0.33,
+      "possible_joint_missing_terminal_and_secondary_with_mature_seeds": [
+        0,
+        0.33
+      ],
+      "possible_conditional_secondary_maturity_given_missing_terminal": [
+        0,
+        1
+      ],
+      "observed_same_parent_joint_count": false
+    }
+  },
+  "inference": {
+    "nominal_weevil_probability_not_joint_mother_plant_probability": true,
+    "free_of_weevil_does_not_guarantee_seeds": true,
+    "independence_has_not_been_measured": true,
+    "loss_L_is_pooled_nonrandomized_not_rank_specific": true,
+    "never_insert_terminal_missing_2017_in_2016_weevil_model_as_observed_rate": true,
+    "source_2020_raw_data_by_request_only": true,
+    "deer_browsing_of_missing_terminal_unverified": true,
+    "original_head_access_fitness_or_genetic_modularity_newly_measured": false
+  },
+  "n_new_observed_plants": 0
+}
