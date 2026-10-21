@@ -1,0 +1,30 @@
+{
+  "version": "cirsium_pitcheri_dryad_original_source_manifest_v1",
+  "verified_as_of": "2026-10-21",
+  "source": {
+    "doi": "10.5061/dryad.xksn02vdw",
+    "official_dataset_url": "https://datadryad.org/dataset/doi:10.5061/dryad.xksn02vdw",
+    "api_version_url": "https://datadryad.org/api/v2/versions/97292",
+    "file_api_url": "https://datadryad.org/api/v2/files/483373",
+    "file_download_url": "https://datadryad.org/api/v2/files/483373/download",
+    "file_fallback_url": "https://datadryad.org/downloads/file_stream/483373",
+    "file_id": 483373,
+    "original_name": "Publication_Data.xlsx",
+    "size_bytes": 117373,
+    "sha256": "abb7709533f82a83435fdaa59175fc55ca1dea8685e788c52d35fad2208fffd4",
+    "publisher_doi": "10.1002/ece3.7109",
+    "license": "CC0-1.0",
+    "n_archive_files": 1,
+    "original_collection_years": [
+      2016,
+      2017
+    ]
+  },
+  "meaningful_rule": "Only a full successful 117373-byte download with exact original SHA proves possession of seed-level data; published marginal mean/SE values are NOT raw individual observations",
+  "download_confirmed_in_this_chat": false,
+  "science_claim_limit": {
+    "same_head_weevil_oviposition_not_linked_from_2020_publication": true,
+    "parent_plant_ID_must_be_read_from_actual_XLSX_if_present": true,
+    "never_attribute_2020_infested_heads_to_2021_assayed_seeds_without_real_original_id_bridge": true
+  }
+}
