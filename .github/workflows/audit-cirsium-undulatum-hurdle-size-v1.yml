@@ -1,0 +1,85 @@
+name: Audit Cirsium maternal seed-bearing hurdle and rosette sensitivity
+on:
+  pull_request:
+    paths:
+      - 'analysis/audit_cirsium_undulatum_maternal_hurdle_size_v1.py'
+      - 'tests/test_cirsium_undulatum_maternal_hurdle_size_v1.py'
+      - 'data/evidence/cirsium_undulatum_hurdle_size_independent_js_receipt_v1.json'
+      - 'docs/CIRSIUM_UNDULATUM_MATERNAL_ZERO_SEED_HURDLE_AND_SIZE_20261022.md'
+      - '.github/workflows/audit-cirsium-undulatum-hurdle-size-v1.yml'
+      - 'data/external/usda_wavyleaf_2007_2008/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  actual-usda-106-mothers-source-faithful:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test exact Fisher, source semantics, and size model negative controls
+        run: |
+          python -m py_compile analysis/audit_cirsium_undulatum_maternal_hurdle_size_v1.py tests/test_cirsium_undulatum_maternal_hurdle_size_v1.py
+          python -m unittest discover -s tests -p 'test_cirsium_undulatum_maternal_hurdle_size_v1.py' -v
+      - name: Rerun original USDA mother/head data and all year-specific analyses
+        run: |
+          mkdir -p work/undulatum_hurdle
+          python analysis/audit_cirsium_undulatum_maternal_hurdle_size_v1.py \
+            --mothers data/external/usda_wavyleaf_2007_2008/mother_plants.csv \
+            --heads data/external/usda_wavyleaf_2007_2008/flower_heads.csv \
+            --dictionary data/external/usda_wavyleaf_2007_2008/source_dictionary.txt \
+            --output work/undulatum_hurdle/recomputed.json > work/undulatum_hurdle/summary_stdout.json
+      - name: Independently check every original-source and model outcome
+        run: |
+          python - <<'PY'
+          import json,math
+          actual=json.load(open('work/undulatum_hurdle/recomputed.json'))
+          independent=json.load(open('data/evidence/cirsium_undulatum_hurdle_size_independent_js_receipt_v1.json'))
+          def match(x,y,path='root'):
+              if isinstance(y,dict):
+                  assert isinstance(x,dict) and set(x)==set(y),(path,'object_keys_changed',set(x)^set(y))
+                  for key in y: match(x[key],y[key],path+'.'+key)
+              elif isinstance(y,list):
+                  assert isinstance(x,list) and len(x)==len(y),(path,'array_shape')
+                  for i,(u,v) in enumerate(zip(x,y)): match(u,v,path+f'[{i}]')
+              elif type(y) is bool:
+                  assert type(x) is bool and x==y,(path,x,y)
+              elif type(y) in (int,float):
+                  assert type(x) in (int,float) and math.isfinite(x) and math.isfinite(y)
+                  assert math.isclose(x,y,rel_tol=2e-8,abs_tol=1e-9),(path,x,y)
+              else:
+                  assert type(x) is type(y) and x==y,(path,x,y)
+          match(actual,independent)
+          stage=actual['maternal_year_treatment_hurdle']['2008']
+          assert [stage[a]['n_seed_bearing_mothers'] for a in ('ndni','dni','ndi','di')]==[3,7,21,19]
+          tests=actual['maternal_year_probability_exact_tests']['2008']
+          assert tests['insecticide_intact']['BH_q_across_eight_predefined_contrasts']<.001
+          assert tests['insecticide_damaged']['BH_q_across_eight_predefined_contrasts']<.05
+          assert tests['damage_ambient']['BH_q_across_eight_predefined_contrasts']>.05
+          models=actual['rosette_complete_case_log1p_HC3_sensitivity']
+          assert models['2008']['complete_cases_with_rosette_covariate']['n_mothers']==56
+          assert models['2008']['n_missing_or_invalid_rosette']==11
+          c=models['2008']['complete_cases_with_rosette_covariate']['HC3_log1p_contrasts']
+          assert c['insecticide_intact']['normal_approximate_95_interval'][0]>0
+          assert c['insecticide_damaged']['normal_approximate_95_interval'][0]>0
+          assert c['damage_ambient']['normal_approximate_95_interval'][0]<0
+          q=actual['source_head_count_semantics']
+          assert q['n_positive_mothers_no_reported_flowered_heads']==10
+          assert q['n_positive_mothers_zero_reported_seed_bearing_heads']==17
+          assert q['all_such_positive_seed_cases_are_apical_only']
+          assert not q['these_rows_are_proven_data_errors']
+          assert actual['source']['original_mother_n']==106 and actual['source']['original_head_n']==323
+          assert actual['scientific_limits']['eleven_mothers_in_2008_have_missing_rosette']
+          assert actual['scientific_limits']['new_field_plants_or_heads_collected']==0
+          print('PASS: exact USDA 106 mothers, 323 head source, 8 Fisher/BH, factorized 2-stage seed results, both-year raw+complete-case 5-parameter HC3, and 10/17 ambiguous head-count rows: independent JS/Python whole-receipt agreement')
+          PY
+      - name: Preserve derived original-source numeric receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-undulatum-106-mother-hurdle-size-real-v1
+          path: work/undulatum_hurdle/recomputed.json
+          if-no-files-found: error
+          retention-days: 30

@@ -1,0 +1,750 @@
+{
+  "version": "aza3_cirsium_undulatum_original_two_part_hurdle_exact_size_v1",
+  "source": {
+    "dataset_doi": "10.15482/USDA.ADC/1522649",
+    "paper_doi": "10.1002/ajb2.1744",
+    "source_git_blobs": {
+      "mother_plants.csv": "458800272c3d0a03c7653702027a8f8578d9e88c",
+      "flower_heads.csv": "637a4dcd5194d0bf5b26e7f9cf0dde56a50d7616",
+      "source_dictionary.txt": "5e20c9d4609abc982287bd12f739c76d7c6d1d2f"
+    },
+    "original_mother_n": 106,
+    "original_head_n": 323,
+    "real_original_sources_not_simulated": true
+  },
+  "maternal_year_treatment_hurdle": {
+    "2007": {
+      "ndni": {
+        "n_mothers": 9,
+        "n_seed_bearing_mothers": 9,
+        "n_seed_free_mothers": 0,
+        "p_any_good_seeds": 1,
+        "mean_good_seeds_all_mothers": 59.888888888888886,
+        "mean_good_seeds_given_positive": 59.888888888888886,
+        "mean_lateral_good_seeds_all_mothers": 29.333333333333332,
+        "p_any_lateral_good_seeds": 0.7777777777777778,
+        "n_rosette_measurements": 9,
+        "mean_rosette_cm_if_measured": 28,
+        "mean_good_seeds_if_size_known": 59.888888888888886
+      },
+      "dni": {
+        "n_mothers": 9,
+        "n_seed_bearing_mothers": 7,
+        "n_seed_free_mothers": 2,
+        "p_any_good_seeds": 0.7777777777777778,
+        "mean_good_seeds_all_mothers": 41.44444444444444,
+        "mean_good_seeds_given_positive": 53.285714285714285,
+        "mean_lateral_good_seeds_all_mothers": 39.333333333333336,
+        "p_any_lateral_good_seeds": 0.7777777777777778,
+        "n_rosette_measurements": 7,
+        "mean_rosette_cm_if_measured": 35.714285714285715,
+        "mean_good_seeds_if_size_known": 43.714285714285715
+      },
+      "ndi": {
+        "n_mothers": 10,
+        "n_seed_bearing_mothers": 10,
+        "n_seed_free_mothers": 0,
+        "p_any_good_seeds": 1,
+        "mean_good_seeds_all_mothers": 88.4,
+        "mean_good_seeds_given_positive": 88.4,
+        "mean_lateral_good_seeds_all_mothers": 59.4,
+        "p_any_lateral_good_seeds": 0.7,
+        "n_rosette_measurements": 9,
+        "mean_rosette_cm_if_measured": 29.555555555555557,
+        "mean_good_seeds_if_size_known": 91.22222222222223
+      },
+      "di": {
+        "n_mothers": 11,
+        "n_seed_bearing_mothers": 11,
+        "n_seed_free_mothers": 0,
+        "p_any_good_seeds": 1,
+        "mean_good_seeds_all_mothers": 60,
+        "mean_good_seeds_given_positive": 60,
+        "mean_lateral_good_seeds_all_mothers": 52.81818181818182,
+        "p_any_lateral_good_seeds": 0.9090909090909091,
+        "n_rosette_measurements": 11,
+        "mean_rosette_cm_if_measured": 30.727272727272727,
+        "mean_good_seeds_if_size_known": 60
+      }
+    },
+    "2008": {
+      "ndni": {
+        "n_mothers": 15,
+        "n_seed_bearing_mothers": 3,
+        "n_seed_free_mothers": 12,
+        "p_any_good_seeds": 0.2,
+        "mean_good_seeds_all_mothers": 2.6666666666666665,
+        "mean_good_seeds_given_positive": 13.333333333333334,
+        "mean_lateral_good_seeds_all_mothers": 1.4,
+        "p_any_lateral_good_seeds": 0.13333333333333333,
+        "n_rosette_measurements": 13,
+        "mean_rosette_cm_if_measured": 23.596153846153847,
+        "mean_good_seeds_if_size_known": 3
+      },
+      "dni": {
+        "n_mothers": 12,
+        "n_seed_bearing_mothers": 7,
+        "n_seed_free_mothers": 5,
+        "p_any_good_seeds": 0.5833333333333334,
+        "mean_good_seeds_all_mothers": 8.916666666666666,
+        "mean_good_seeds_given_positive": 15.285714285714286,
+        "mean_lateral_good_seeds_all_mothers": 8.916666666666666,
+        "p_any_lateral_good_seeds": 0.5833333333333334,
+        "n_rosette_measurements": 11,
+        "mean_rosette_cm_if_measured": 21.227272727272727,
+        "mean_good_seeds_if_size_known": 9.454545454545455
+      },
+      "ndi": {
+        "n_mothers": 21,
+        "n_seed_bearing_mothers": 21,
+        "n_seed_free_mothers": 0,
+        "p_any_good_seeds": 1,
+        "mean_good_seeds_all_mothers": 138.38095238095238,
+        "mean_good_seeds_given_positive": 138.38095238095238,
+        "mean_lateral_good_seeds_all_mothers": 74.0952380952381,
+        "p_any_lateral_good_seeds": 0.6666666666666666,
+        "n_rosette_measurements": 17,
+        "mean_rosette_cm_if_measured": 22.279411764705884,
+        "mean_good_seeds_if_size_known": 126.52941176470588
+      },
+      "di": {
+        "n_mothers": 19,
+        "n_seed_bearing_mothers": 19,
+        "n_seed_free_mothers": 0,
+        "p_any_good_seeds": 1,
+        "mean_good_seeds_all_mothers": 151.89473684210526,
+        "mean_good_seeds_given_positive": 151.89473684210526,
+        "mean_lateral_good_seeds_all_mothers": 111.3157894736842,
+        "p_any_lateral_good_seeds": 0.7894736842105263,
+        "n_rosette_measurements": 15,
+        "mean_rosette_cm_if_measured": 24.85,
+        "mean_good_seeds_if_size_known": 149.86666666666667
+      }
+    }
+  },
+  "maternal_year_probability_exact_tests": {
+    "2007": {
+      "insecticide_intact": {
+        "tested_arms": [
+          "ndi",
+          "ndni"
+        ],
+        "mothers_positive_negative": [
+          [
+            10,
+            0
+          ],
+          [
+            9,
+            0
+          ]
+        ],
+        "difference_in_seed_bearing_probability": 0,
+        "fisher_exact_two_sided_p": 1,
+        "BH_q_across_eight_predefined_contrasts": 1
+      },
+      "insecticide_damaged": {
+        "tested_arms": [
+          "di",
+          "dni"
+        ],
+        "mothers_positive_negative": [
+          [
+            11,
+            0
+          ],
+          [
+            7,
+            2
+          ]
+        ],
+        "difference_in_seed_bearing_probability": 0.2222222222222222,
+        "fisher_exact_two_sided_p": 0.1894736842105263,
+        "BH_q_across_eight_predefined_contrasts": 0.3789473684210526
+      },
+      "damage_ambient": {
+        "tested_arms": [
+          "dni",
+          "ndni"
+        ],
+        "mothers_positive_negative": [
+          [
+            7,
+            2
+          ],
+          [
+            9,
+            0
+          ]
+        ],
+        "difference_in_seed_bearing_probability": -0.2222222222222222,
+        "fisher_exact_two_sided_p": 0.47058823529411764,
+        "BH_q_across_eight_predefined_contrasts": 0.7529411764705882
+      },
+      "damage_reduced": {
+        "tested_arms": [
+          "di",
+          "ndi"
+        ],
+        "mothers_positive_negative": [
+          [
+            11,
+            0
+          ],
+          [
+            10,
+            0
+          ]
+        ],
+        "difference_in_seed_bearing_probability": 0,
+        "fisher_exact_two_sided_p": 1,
+        "BH_q_across_eight_predefined_contrasts": 1
+      }
+    },
+    "2008": {
+      "insecticide_intact": {
+        "tested_arms": [
+          "ndi",
+          "ndni"
+        ],
+        "mothers_positive_negative": [
+          [
+            21,
+            0
+          ],
+          [
+            3,
+            12
+          ]
+        ],
+        "difference_in_seed_bearing_probability": 0.8,
+        "fisher_exact_two_sided_p": 3.635121085883371e-7,
+        "BH_q_across_eight_predefined_contrasts": 0.0000029080968687066968
+      },
+      "insecticide_damaged": {
+        "tested_arms": [
+          "di",
+          "dni"
+        ],
+        "mothers_positive_negative": [
+          [
+            19,
+            0
+          ],
+          [
+            7,
+            5
+          ]
+        ],
+        "difference_in_seed_bearing_probability": 0.41666666666666663,
+        "fisher_exact_two_sided_p": 0.00466126383812702,
+        "BH_q_across_eight_predefined_contrasts": 0.01864505535250808
+      },
+      "damage_ambient": {
+        "tested_arms": [
+          "dni",
+          "ndni"
+        ],
+        "mothers_positive_negative": [
+          [
+            7,
+            5
+          ],
+          [
+            3,
+            12
+          ]
+        ],
+        "difference_in_seed_bearing_probability": 0.38333333333333336,
+        "fisher_exact_two_sided_p": 0.056750572082379866,
+        "BH_q_across_eight_predefined_contrasts": 0.15133485888634632
+      },
+      "damage_reduced": {
+        "tested_arms": [
+          "di",
+          "ndi"
+        ],
+        "mothers_positive_negative": [
+          [
+            19,
+            0
+          ],
+          [
+            21,
+            0
+          ]
+        ],
+        "difference_in_seed_bearing_probability": 0,
+        "fisher_exact_two_sided_p": 1,
+        "BH_q_across_eight_predefined_contrasts": 1
+      }
+    }
+  },
+  "maternal_group_mean_identity_factorization": {
+    "2007": {
+      "insecticide_intact": {
+        "observed_mean_good_seed_ratio": 1.4760667903525049,
+        "probability_any_seed_ratio": 1,
+        "positive_mother_conditional_mean_seed_ratio": 1.4760667903525049,
+        "product_identity_verified": true,
+        "reproductive_processes_are_causally_decomposed": false
+      },
+      "insecticide_damaged": {
+        "observed_mean_good_seed_ratio": 1.447721179624665,
+        "probability_any_seed_ratio": 1.2857142857142856,
+        "positive_mother_conditional_mean_seed_ratio": 1.126005361930295,
+        "product_identity_verified": true,
+        "reproductive_processes_are_causally_decomposed": false
+      },
+      "damage_ambient": {
+        "observed_mean_good_seed_ratio": 0.6920222634508348,
+        "probability_any_seed_ratio": 0.7777777777777778,
+        "positive_mother_conditional_mean_seed_ratio": 0.8897429101510734,
+        "product_identity_verified": true,
+        "reproductive_processes_are_causally_decomposed": false
+      },
+      "damage_reduced": {
+        "observed_mean_good_seed_ratio": 0.6787330316742081,
+        "probability_any_seed_ratio": 1,
+        "positive_mother_conditional_mean_seed_ratio": 0.6787330316742081,
+        "product_identity_verified": true,
+        "reproductive_processes_are_causally_decomposed": false
+      }
+    },
+    "2008": {
+      "insecticide_intact": {
+        "observed_mean_good_seed_ratio": 51.892857142857146,
+        "probability_any_seed_ratio": 5,
+        "positive_mother_conditional_mean_seed_ratio": 10.378571428571428,
+        "product_identity_verified": true,
+        "reproductive_processes_are_causally_decomposed": false
+      },
+      "insecticide_damaged": {
+        "observed_mean_good_seed_ratio": 17.034923757993113,
+        "probability_any_seed_ratio": 1.7142857142857142,
+        "positive_mother_conditional_mean_seed_ratio": 9.937038858829316,
+        "product_identity_verified": true,
+        "reproductive_processes_are_causally_decomposed": false
+      },
+      "damage_ambient": {
+        "observed_mean_good_seed_ratio": 3.34375,
+        "probability_any_seed_ratio": 2.9166666666666665,
+        "positive_mother_conditional_mean_seed_ratio": 1.1464285714285714,
+        "product_identity_verified": true,
+        "reproductive_processes_are_causally_decomposed": false
+      },
+      "damage_reduced": {
+        "observed_mean_good_seed_ratio": 1.0976563914949107,
+        "probability_any_seed_ratio": 1,
+        "positive_mother_conditional_mean_seed_ratio": 1.0976563914949107,
+        "product_identity_verified": true,
+        "reproductive_processes_are_causally_decomposed": false
+      }
+    }
+  },
+  "rosette_complete_case_log1p_HC3_sensitivity": {
+    "2007": {
+      "all_mothers_no_size_adjustment": {
+        "n_mothers": 39,
+        "n_parameters": 4,
+        "design": "intercept + damage + insecticide + interaction ",
+        "coefficient_order": [
+          "intercept",
+          "apical_damage",
+          "insecticide",
+          "damage_by_insecticide"
+        ],
+        "betas": [
+          3.6190772218197473,
+          -0.6848243161696423,
+          0.04074613965716978,
+          0.6390504338577561
+        ],
+        "HC3_log1p_contrasts": {
+          "insecticide_intact": {
+            "difference_log1p_good_seeds": 0.04074613965716978,
+            "se_HC3": 0.6739652835811344,
+            "normal_approximate_95_interval": [
+              -1.2802258161618536,
+              1.3617180954761932
+            ],
+            "exp_difference_is_ratio_of_geometric_1plus_counts": 1.0415876541810647
+          },
+          "insecticide_damaged": {
+            "difference_log1p_good_seeds": 0.6797965735149258,
+            "se_HC3": 0.711020269420823,
+            "normal_approximate_95_interval": [
+              -0.7138031545498871,
+              2.0733963015797388
+            ],
+            "exp_difference_is_ratio_of_geometric_1plus_counts": 1.973476234060479
+          },
+          "damage_ambient": {
+            "difference_log1p_good_seeds": -0.6848243161696423,
+            "se_HC3": 0.743881992417086,
+            "normal_approximate_95_interval": [
+              -2.1428330213071307,
+              0.773184388967846
+            ],
+            "exp_difference_is_ratio_of_geometric_1plus_counts": 0.5041787978569828
+          },
+          "damage_reduced": {
+            "difference_log1p_good_seeds": -0.04577388231188628,
+            "se_HC3": 0.6375096927556828,
+            "normal_approximate_95_interval": [
+              -1.2952928801130246,
+              1.203745115489252
+            ],
+            "exp_difference_is_ratio_of_geometric_1plus_counts": 0.9552579384883672
+          }
+        },
+        "claim": "DESCRIPTIVE_COMPLETE_CASE_COVARIATE_SENSITIVITY_NOT_CAUSAL_ADJUSTED_MATERNAL_SEED_COUNTS"
+      },
+      "complete_cases_no_size_adjustment": {
+        "n_mothers": 36,
+        "n_parameters": 4,
+        "design": "intercept + damage + insecticide + interaction ",
+        "coefficient_order": [
+          "intercept",
+          "apical_damage",
+          "insecticide",
+          "damage_by_insecticide"
+        ],
+        "betas": [
+          3.6190772218197527,
+          -0.8344268357883742,
+          -0.014704940552032753,
+          0.8441040336856851
+        ],
+        "HC3_log1p_contrasts": {
+          "insecticide_intact": {
+            "difference_log1p_good_seeds": -0.014704940552032753,
+            "se_HC3": 0.7270175773959318,
+            "normal_approximate_95_interval": [
+              -1.439659392248059,
+              1.4102495111439934
+            ],
+            "exp_difference_is_ratio_of_geometric_1plus_counts": 0.9854026490743268
+          },
+          "insecticide_damaged": {
+            "difference_log1p_good_seeds": 0.8293990931336523,
+            "se_HC3": 0.8853645530851963,
+            "normal_approximate_95_interval": [
+              -0.9059154309133324,
+              2.564713617180637
+            ],
+            "exp_difference_is_ratio_of_geometric_1plus_counts": 2.291941083249669
+          },
+          "damage_ambient": {
+            "difference_log1p_good_seeds": -0.8344268357883742,
+            "se_HC3": 0.9119654527310248,
+            "normal_approximate_95_interval": [
+              -2.6218791231411824,
+              0.9530254515644343
+            ],
+            "exp_difference_is_ratio_of_geometric_1plus_counts": 0.4341232340393218
+          },
+          "damage_reduced": {
+            "difference_log1p_good_seeds": 0.009677197897310919,
+            "se_HC3": 0.6933570239980958,
+            "normal_approximate_95_interval": [
+              -1.3493025691389569,
+              1.3686569649335787
+            ],
+            "exp_difference_is_ratio_of_geometric_1plus_counts": 1.0097241733849684
+          }
+        },
+        "claim": "DESCRIPTIVE_COMPLETE_CASE_COVARIATE_SENSITIVITY_NOT_CAUSAL_ADJUSTED_MATERNAL_SEED_COUNTS"
+      },
+      "complete_cases_with_rosette_covariate": {
+        "n_mothers": 36,
+        "n_parameters": 5,
+        "design": "intercept + damage + insecticide + interaction +log(rosette)",
+        "coefficient_order": [
+          "intercept",
+          "apical_damage",
+          "insecticide",
+          "damage_by_insecticide",
+          "log_rosette_cm"
+        ],
+        "betas": [
+          -6.253580864954415,
+          -1.5268849087049645,
+          -0.12788874494128777,
+          1.4212592444013623,
+          2.9725777842303955
+        ],
+        "HC3_log1p_contrasts": {
+          "insecticide_intact": {
+            "difference_log1p_good_seeds": -0.12788874494128777,
+            "se_HC3": 0.5893911152939477,
+            "normal_approximate_95_interval": [
+              -1.2830953309174253,
+              1.0273178410348498
+            ],
+            "exp_difference_is_ratio_of_geometric_1plus_counts": 0.879951272729476
+          },
+          "insecticide_damaged": {
+            "difference_log1p_good_seeds": 1.2933704994600745,
+            "se_HC3": 0.9160061064343286,
+            "normal_approximate_95_interval": [
+              -0.5020014691512094,
+              3.0887424680713584
+            ],
+            "exp_difference_is_ratio_of_geometric_1plus_counts": 3.645051518792089
+          },
+          "damage_ambient": {
+            "difference_log1p_good_seeds": -1.5268849087049645,
+            "se_HC3": 0.9640120828324791,
+            "normal_approximate_95_interval": [
+              -3.4163485910566234,
+              0.36257877364669455
+            ],
+            "exp_difference_is_ratio_of_geometric_1plus_counts": 0.21721124738882244
+          },
+          "damage_reduced": {
+            "difference_log1p_good_seeds": -0.1056256643036022,
+            "se_HC3": 0.5217611085653496,
+            "normal_approximate_95_interval": [
+              -1.1282774370916875,
+              0.9170261084844831
+            ],
+            "exp_difference_is_ratio_of_geometric_1plus_counts": 0.8997613978527177
+          }
+        },
+        "claim": "DESCRIPTIVE_COMPLETE_CASE_COVARIATE_SENSITIVITY_NOT_CAUSAL_ADJUSTED_MATERNAL_SEED_COUNTS"
+      },
+      "n_missing_or_invalid_rosette": 3
+    },
+    "2008": {
+      "all_mothers_no_size_adjustment": {
+        "n_mothers": 67,
+        "n_parameters": 4,
+        "design": "intercept + damage + insecticide + interaction ",
+        "coefficient_order": [
+          "intercept",
+          "apical_damage",
+          "insecticide",
+          "damage_by_insecticide"
+        ],
+        "betas": [
+          0.4026836474184936,
+          1.0256643411208408,
+          4.130279078690533,
+          -0.8830288336775212
+        ],
+        "HC3_log1p_contrasts": {
+          "insecticide_intact": {
+            "difference_log1p_good_seeds": 4.130279078690533,
+            "se_HC3": 0.34049056909930664,
+            "normal_approximate_95_interval": [
+              3.462917563255892,
+              4.797640594125174
+            ],
+            "exp_difference_is_ratio_of_geometric_1plus_counts": 62.1952778896599
+          },
+          "insecticide_damaged": {
+            "difference_log1p_good_seeds": 3.247250245013012,
+            "se_HC3": 0.503632470190473,
+            "normal_approximate_95_interval": [
+              2.260130603439685,
+              4.234369886586339
+            ],
+            "exp_difference_is_ratio_of_geometric_1plus_counts": 25.719520214428275
+          },
+          "damage_ambient": {
+            "difference_log1p_good_seeds": 1.0256643411208408,
+            "se_HC3": 0.509622855915336,
+            "normal_approximate_95_interval": [
+              0.02680354352678238,
+              2.0245251387148993
+            ],
+            "exp_difference_is_ratio_of_geometric_1plus_counts": 2.788947657865306
+          },
+          "damage_reduced": {
+            "difference_log1p_good_seeds": 0.14263550744331965,
+            "se_HC3": 0.3314574443339961,
+            "normal_approximate_95_interval": [
+              -0.5070210834513127,
+              0.792292098337952
+            ],
+            "exp_difference_is_ratio_of_geometric_1plus_counts": 1.153309352370857
+          }
+        },
+        "claim": "DESCRIPTIVE_COMPLETE_CASE_COVARIATE_SENSITIVITY_NOT_CAUSAL_ADJUSTED_MATERNAL_SEED_COUNTS"
+      },
+      "complete_cases_no_size_adjustment": {
+        "n_mothers": 56,
+        "n_parameters": 4,
+        "design": "intercept + damage + insecticide + interaction ",
+        "coefficient_order": [
+          "intercept",
+          "apical_damage",
+          "insecticide",
+          "damage_by_insecticide"
+        ],
+        "betas": [
+          0.4113159639013464,
+          1.02085508167613,
+          3.9899719400879654,
+          -0.8157650760400337
+        ],
+        "HC3_log1p_contrasts": {
+          "insecticide_intact": {
+            "difference_log1p_good_seeds": 3.9899719400879654,
+            "se_HC3": 0.3911087142981134,
+            "normal_approximate_95_interval": [
+              3.2233988600636634,
+              4.756545020112267
+            ],
+            "exp_difference_is_ratio_of_geometric_1plus_counts": 54.053372609166104
+          },
+          "insecticide_damaged": {
+            "difference_log1p_good_seeds": 3.1742068640479317,
+            "se_HC3": 0.5727855328438606,
+            "normal_approximate_95_interval": [
+              2.051547219673965,
+              4.296866508421898
+            ],
+            "exp_difference_is_ratio_of_geometric_1plus_counts": 23.907850171087752
+          },
+          "damage_ambient": {
+            "difference_log1p_good_seeds": 1.02085508167613,
+            "se_HC3": 0.5685363047306122,
+            "normal_approximate_95_interval": [
+              -0.09347607559587012,
+              2.1351862389481298
+            ],
+            "exp_difference_is_ratio_of_geometric_1plus_counts": 2.7755670861113555
+          },
+          "damage_reduced": {
+            "difference_log1p_good_seeds": 0.20509000563609625,
+            "se_HC3": 0.3972603217518822,
+            "normal_approximate_95_interval": [
+              -0.5735402249975928,
+              0.9837202362697853
+            ],
+            "exp_difference_is_ratio_of_geometric_1plus_counts": 1.2276355541097221
+          }
+        },
+        "claim": "DESCRIPTIVE_COMPLETE_CASE_COVARIATE_SENSITIVITY_NOT_CAUSAL_ADJUSTED_MATERNAL_SEED_COUNTS"
+      },
+      "complete_cases_with_rosette_covariate": {
+        "n_mothers": 56,
+        "n_parameters": 5,
+        "design": "intercept + damage + insecticide + interaction +log(rosette)",
+        "coefficient_order": [
+          "intercept",
+          "apical_damage",
+          "insecticide",
+          "damage_by_insecticide",
+          "log_rosette_cm"
+        ],
+        "betas": [
+          -2.5651892523617335,
+          1.0880940055983377,
+          4.033090683763323,
+          -0.9661469876137296,
+          0.957143137110819
+        ],
+        "HC3_log1p_contrasts": {
+          "insecticide_intact": {
+            "difference_log1p_good_seeds": 4.033090683763323,
+            "se_HC3": 0.3924278823020671,
+            "normal_approximate_95_interval": [
+              3.2639320344512717,
+              4.802249333075374
+            ],
+            "exp_difference_is_ratio_of_geometric_1plus_counts": 56.435064920363146
+          },
+          "insecticide_damaged": {
+            "difference_log1p_good_seeds": 3.0669436961495933,
+            "se_HC3": 0.5903810283726113,
+            "normal_approximate_95_interval": [
+              1.909796880539275,
+              4.224090511759911
+            ],
+            "exp_difference_is_ratio_of_geometric_1plus_counts": 21.476164583873818
+          },
+          "damage_ambient": {
+            "difference_log1p_good_seeds": 1.0880940055983377,
+            "se_HC3": 0.5820659861158332,
+            "normal_approximate_95_interval": [
+              -0.052755327188695356,
+              2.2289433383853705
+            ],
+            "exp_difference_is_ratio_of_geometric_1plus_counts": 2.968610521894237
+          },
+          "damage_reduced": {
+            "difference_log1p_good_seeds": 0.12194701798460805,
+            "se_HC3": 0.39973570447051,
+            "normal_approximate_95_interval": [
+              -0.6615349627775915,
+              0.9054289987468076
+            ],
+            "exp_difference_is_ratio_of_geometric_1plus_counts": 1.129694246716744
+          }
+        },
+        "claim": "DESCRIPTIVE_COMPLETE_CASE_COVARIATE_SENSITIVITY_NOT_CAUSAL_ADJUSTED_MATERNAL_SEED_COUNTS"
+      },
+      "n_missing_or_invalid_rosette": 11
+    }
+  },
+  "source_head_count_semantics": {
+    "n_source_heads": 323,
+    "n_head_rows_matching_original_mothers": 309,
+    "n_head_rows_with_treatment_disagreement": 12,
+    "n_positive_mothers_no_reported_flowered_heads": 10,
+    "n_positive_mothers_zero_reported_seed_bearing_heads": 17,
+    "zero_reported_flowered_but_positive_seed_mother_ids": [
+      "2007|306",
+      "2007|341",
+      "2007|354",
+      "2007|363",
+      "2008|ES78",
+      "2008|WR39",
+      "2008|WR49.1",
+      "2008|WR53",
+      "2008|WR60",
+      "2008|WR64.1"
+    ],
+    "zero_reported_seed_head_but_positive_seed_mother_ids": [
+      "2007|306",
+      "2007|312",
+      "2007|341",
+      "2007|353",
+      "2007|354",
+      "2007|363",
+      "2008|ES78",
+      "2008|WG36",
+      "2008|WR38",
+      "2008|WR39",
+      "2008|WR49.1",
+      "2008|WR49.2",
+      "2008|WR53",
+      "2008|WR60",
+      "2008|WR61",
+      "2008|WR64.1",
+      "2008|WR64.2"
+    ],
+    "all_such_positive_seed_cases_are_apical_only": true,
+    "no_flw_and_n_fl_sds_count_full_flowering_capitula_confirmed": false,
+    "these_rows_are_proven_data_errors": false,
+    "documented_variable_dictionary_may_use_nonapical_stage_count": true,
+    "original_head_treatment_discrepancies_are_not_autocorrected": true
+  },
+  "scientific_limits": {
+    "reproductive_success_means_at_least_one_author_good_seed_not_germination": true,
+    "mean_output_prob_times_positive_conditional_mean_is_identity_not_causal_mediation": true,
+    "fisher_exact_tests_use_mother_not_head_independent_n": true,
+    "year_group_treatment_populations_are_not_matched_repeated_mothers": true,
+    "normal_HC3_interval_does_not_prove_randomization_causal_effect": true,
+    "rosette_measurement_timing_is_not_verified_pre_treatment": true,
+    "eleven_mothers_in_2008_have_missing_rosette": true,
+    "head_count_zero_with_apical_seeds_may_reflect_variable_ontology": true,
+    "insecticide_is_not_selective_to_flowerhead_seed_predators_alone": true,
+    "independent_C_canescens_original_134_mother_rows_unavailable": true,
+    "genetic_module_evolution_and_trait_reexpression_unmeasured": true,
+    "new_field_plants_or_heads_collected": 0
+  }
+}
