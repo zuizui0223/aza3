@@ -1,0 +1,88 @@
+name: Audit Cirsium pitcheri head-risk coupling and fecundity partial identification
+on:
+  pull_request:
+    paths:
+      - "analysis/audit_cirsium_pitcheri_head_risk_sharp_bounds_v1.py"
+      - "tests/test_cirsium_pitcheri_head_risk_sharp_bounds_v1.py"
+      - "data/evidence/cirsium_pitcheri_head_risk_mathematical_bounds_independent_v1.json"
+      - "docs/CIRSIUM_PITCHERI_WHOLE_PLANT_HEAD_RANK_RISK_IDENTIFICATION_20261021.md"
+      - ".github/workflows/audit-cirsium-pitcheri-head-risk-sharp-bounds-v1.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  logical-frechet-and-nonidentifiability:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test mathematical sharp bounds and forbid false mother/seed/adaptation claims
+        run: |
+          python -m py_compile analysis/audit_cirsium_pitcheri_head_risk_sharp_bounds_v1.py tests/test_cirsium_pitcheri_head_risk_sharp_bounds_v1.py
+          python -m unittest discover -s tests -p 'test_cirsium_pitcheri_head_risk_sharp_bounds_v1.py' -v
+      - name: Recalculate published head-rank marginals only
+        run: |
+          mkdir -p work/pitcheri_risk
+          python analysis/audit_cirsium_pitcheri_head_risk_sharp_bounds_v1.py \
+            --source data/evidence/cirsium_pitcheri_2020_multi_enemy_rank_source_v1.json \
+            --out work/pitcheri_risk/source_limited_bounds.json
+      - name: Check independent JS receipt and all inferential stopping rules
+        run: |
+          python - <<'PY'
+          import json,math
+          a=json.load(open('work/pitcheri_risk/source_limited_bounds.json'))
+          b=json.load(open('data/evidence/cirsium_pitcheri_head_risk_mathematical_bounds_independent_v1.json'))
+          x=a['hypothetical_if_exact_same_plant_one_head_per_rank_marginals']
+          y=b['conditional_one_head_per_rank_couplings']
+          def close(l,r):
+              assert math.isfinite(l) and math.isfinite(r)
+              assert math.isclose(l,r,abs_tol=1e-12,rel_tol=0),(l,r)
+          for name in y:
+              actual=x[name]
+              ref=y[name]
+              assert actual['n_hypothetical_rank_positions']==len(ref['rates'])
+              for f,g in [('input_published_like_rank_marginals','rates'),
+                          ('joint_all_infested_sharp_bounds','all_infested_joint'),
+                          ('at_least_one_free_sharp_bounds','at_least_one_not_infested'),
+                          ('sharp_extra_chance_over_terminal_alone','extra_over_first_rank')]:
+                  for l,r in zip(actual[f],ref[g]):close(l,r)
+              close(actual['independent_reference_at_least_one_free'],
+                    ref['under_independent_head_events'])
+              assert actual['assumption_exact_same_plant_one_per_rank_marginals_verified'] is False
+              assert actual['not_infested_equals_reproductive_success'] is False
+          f=a['equal_cost_mechanism_only_scenarios']
+          z=b['weevil_only_constant_damage_scenario']
+          close(f['published_pooled_infested_head_mature_seed_count_deficit_used_only_as_hypothetical_uniform_loss'],
+                z['assumed_pooled_infested_head_loss_all_ranks'])
+          for rank in ['terminal','secondary','tertiary']:
+              close(f['remaining_mature_seed_proxy_if_weevil_loss_rate_rank_invariant'][rank],
+                    z['remaining_fitted_seed_output_per_equal_effort'][rank])
+          for ratio,ref in z['break_even_terminal_whole_loss_by_relative_side_intrinsic_fecundity'].items():
+              close(f['whole_terminal_loss_fraction_break_even_for_secondary_equal_cost_resource_ratios'][ratio],ref)
+          assert not f['assumptions_confirmed_in_original_study']
+          assert not f['terminal_absence_2017_can_be_plugged_into_2016_weevil_scenario_as_estimate']
+          for site in ['SC','WFD']:
+              actual=a['observed_terminal_absence_and_untested_recovery'][site]
+              ref=b['missing_terminal_and_secondary_rescue_unidentified'][site]
+              close(actual['missing_terminal_fraction'],ref['p_missing_terminal'])
+              for ll,rr in zip(actual['joint_missing_terminal_and_successful_secondary_sharp_bound_without_secondary_marginal'],
+                               ref['possible_joint_missing_terminal_and_secondary_with_mature_seeds']):
+                  close(ll,rr)
+              assert not actual['has_original_plant_level_joint_seed_counts']
+          assert a['source_2020_individual_head_data_access']=='AUTHOR_REQUEST_REQUIRED_FOR_INDIVIDUAL_HEAD_OR_PLANT_DATA'
+          assert a['inference_limit']['no_plant_specific_compensation_claim']
+          assert not a['inference_limit']['adaptive_rank_insurance_established']
+          assert a['n_new_independent_biological_field_observations']==0
+          assert b['inference']['deer_browsing_of_missing_terminal_unverified']
+          print('PASS: all Fréchet sharp coupling limits and independent reference scenarios, source-defined biology remains NOT IDENTIFIABLE')
+          PY
+      - name: Preserve only computed scenario and no invented biological rows
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-pitcheri-source-conditional-head-risk-bounds-v1
+          path: work/pitcheri_risk/source_limited_bounds.json
+          retention-days: 30
+          if-no-files-found: error
