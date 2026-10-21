@@ -1,0 +1,480 @@
+{
+  "version": "cirsium_pitcheri_original_published_rank_germination_cells_v1",
+  "as_of": "2026-10-21",
+  "taxon": "Cirsium pitcheri",
+  "source2021": {
+    "doi": "10.1002/ece3.7109",
+    "title": "Seed size and capitulum position drive germination and dormancy responses to projected warming for the threatened dune endemic Cirsium pitcheri (Asteraceae)",
+    "journal": "Ecology and Evolution",
+    "authors": "Gijsman & Vitt",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7820163/",
+    "table1_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7820163/table/ece37109-tbl-0001/",
+    "table2_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7820163/table/ece37109-tbl-0002/",
+    "status": "MANUALLY_TRANSCRIBED_PUBLISHED_MODEL_FITTED_MEANS_AND_SE_NOT_ORIGINAL_INDIVIDUAL_ROWS",
+    "source_collection_2016": "2016 Table1 cumulative fitted proportions over 3 cold rounds",
+    "source_collection_2017": "2017 Table2 total fitted proportion and mean germination days"
+  },
+  "source2020": {
+    "doi": "10.1016/j.gecco.2020.e00945",
+    "authors": "Gijsman, Havens & Vitt",
+    "journal": "Global Ecology and Conservation",
+    "source_url": "https://www.sciencedirect.com/science/article/pii/S2351989419307243",
+    "design": "WFD field 2016 weevil infestation by head rank, seed output; other sites and years also assessed",
+    "status": "PUBLISHED_APPROXIMATE_POINT_SUMMARIES_NOT_ORIGINAL_HEAD_LEVEL_RAW_CSV",
+    "weevil_species": "Larinus planus",
+    "study_site_for_rank_infestation": "WFD",
+    "rank_infestation_approximate_fraction": {
+      "terminal": 0.27,
+      "secondary": 0.5,
+      "tertiary": 0.8
+    },
+    "mature_seed_count_infested_relative_to_uninfested": 0.4,
+    "unfilled_seed_count_infested_relative_to_uninfested": 0.6,
+    "infestation_is_observed_evidence_not_randomized_weevil_assignment": true
+  },
+  "published_2021_model_rows": [
+    {
+      "collection_year": 2016,
+      "site": "SC",
+      "head_rank": "terminal",
+      "day_temp_c": 20,
+      "night_temp_c": 10,
+      "study_table": "Table 1",
+      "measurement": "fitted_cumulative_germination_three_cold_rounds",
+      "round1": {
+        "fraction": 0.267,
+        "se": 0.038
+      },
+      "round2": {
+        "fraction": 0.798,
+        "se": 0.04
+      },
+      "round3": {
+        "fraction": 0.828,
+        "se": 0.038
+      }
+    },
+    {
+      "collection_year": 2016,
+      "site": "SC",
+      "head_rank": "terminal",
+      "day_temp_c": 25,
+      "night_temp_c": 10,
+      "study_table": "Table 1",
+      "measurement": "fitted_cumulative_germination_three_cold_rounds",
+      "round1": {
+        "fraction": 0.159,
+        "se": 0.029
+      },
+      "round2": {
+        "fraction": 0.283,
+        "se": 0.045
+      },
+      "round3": {
+        "fraction": 0.343,
+        "se": 0.048
+      }
+    },
+    {
+      "collection_year": 2016,
+      "site": "SC",
+      "head_rank": "terminal",
+      "day_temp_c": 30,
+      "night_temp_c": 10,
+      "study_table": "Table 1",
+      "measurement": "fitted_cumulative_germination_three_cold_rounds",
+      "round1": {
+        "fraction": 0.028,
+        "se": 0.011
+      },
+      "round2": {
+        "fraction": 0.061,
+        "se": 0.024
+      },
+      "round3": {
+        "fraction": 0.061,
+        "se": 0.024
+      }
+    },
+    {
+      "collection_year": 2016,
+      "site": "WFD",
+      "head_rank": "terminal",
+      "day_temp_c": 20,
+      "night_temp_c": 10,
+      "study_table": "Table 1",
+      "measurement": "fitted_cumulative_germination_three_cold_rounds",
+      "round1": {
+        "fraction": 0.406,
+        "se": 0.044
+      },
+      "round2": {
+        "fraction": 0.72,
+        "se": 0.045
+      },
+      "round3": {
+        "fraction": 0.75,
+        "se": 0.043
+      }
+    },
+    {
+      "collection_year": 2016,
+      "site": "WFD",
+      "head_rank": "terminal",
+      "day_temp_c": 25,
+      "night_temp_c": 10,
+      "study_table": "Table 1",
+      "measurement": "fitted_cumulative_germination_three_cold_rounds",
+      "round1": {
+        "fraction": 0.262,
+        "se": 0.038
+      },
+      "round2": {
+        "fraction": 0.34,
+        "se": 0.047
+      },
+      "round3": {
+        "fraction": 0.38,
+        "se": 0.049
+      }
+    },
+    {
+      "collection_year": 2016,
+      "site": "WFD",
+      "head_rank": "terminal",
+      "day_temp_c": 30,
+      "night_temp_c": 10,
+      "study_table": "Table 1",
+      "measurement": "fitted_cumulative_germination_three_cold_rounds",
+      "round1": {
+        "fraction": 0.052,
+        "se": 0.018
+      },
+      "round2": {
+        "fraction": 0.1,
+        "se": 0.03
+      },
+      "round3": {
+        "fraction": 0.12,
+        "se": 0.032
+      }
+    },
+    {
+      "collection_year": 2016,
+      "site": "SC",
+      "head_rank": "secondary",
+      "day_temp_c": 20,
+      "night_temp_c": 10,
+      "study_table": "Table 1",
+      "measurement": "fitted_cumulative_germination_three_cold_rounds",
+      "round1": {
+        "fraction": 0.168,
+        "se": 0.019
+      },
+      "round2": {
+        "fraction": 0.194,
+        "se": 0.022
+      },
+      "round3": {
+        "fraction": 0.197,
+        "se": 0.022
+      }
+    },
+    {
+      "collection_year": 2016,
+      "site": "SC",
+      "head_rank": "secondary",
+      "day_temp_c": 25,
+      "night_temp_c": 10,
+      "study_table": "Table 1",
+      "measurement": "fitted_cumulative_germination_three_cold_rounds",
+      "round1": {
+        "fraction": 0.089,
+        "se": 0.014
+      },
+      "round2": {
+        "fraction": 0.107,
+        "se": 0.018
+      },
+      "round3": {
+        "fraction": 0.127,
+        "se": 0.019
+      }
+    },
+    {
+      "collection_year": 2016,
+      "site": "SC",
+      "head_rank": "secondary",
+      "day_temp_c": 30,
+      "night_temp_c": 10,
+      "study_table": "Table 1",
+      "measurement": "fitted_cumulative_germination_three_cold_rounds",
+      "round1": {
+        "fraction": 0.049,
+        "se": 0.01
+      },
+      "round2": {
+        "fraction": 0.07,
+        "se": 0.015
+      },
+      "round3": {
+        "fraction": 0.073,
+        "se": 0.015
+      }
+    },
+    {
+      "collection_year": 2016,
+      "site": "WFD",
+      "head_rank": "secondary",
+      "day_temp_c": 20,
+      "night_temp_c": 10,
+      "study_table": "Table 1",
+      "measurement": "fitted_cumulative_germination_three_cold_rounds",
+      "round1": {
+        "fraction": 0.163,
+        "se": 0.02
+      },
+      "round2": {
+        "fraction": 0.432,
+        "se": 0.031
+      },
+      "round3": {
+        "fraction": 0.436,
+        "se": 0.031
+      }
+    },
+    {
+      "collection_year": 2016,
+      "site": "WFD",
+      "head_rank": "secondary",
+      "day_temp_c": 25,
+      "night_temp_c": 10,
+      "study_table": "Table 1",
+      "measurement": "fitted_cumulative_germination_three_cold_rounds",
+      "round1": {
+        "fraction": 0.086,
+        "se": 0.014
+      },
+      "round2": {
+        "fraction": 0.162,
+        "se": 0.023
+      },
+      "round3": {
+        "fraction": 0.192,
+        "se": 0.024
+      }
+    },
+    {
+      "collection_year": 2016,
+      "site": "WFD",
+      "head_rank": "secondary",
+      "day_temp_c": 30,
+      "night_temp_c": 10,
+      "study_table": "Table 1",
+      "measurement": "fitted_cumulative_germination_three_cold_rounds",
+      "round1": {
+        "fraction": 0.048,
+        "se": 0.01
+      },
+      "round2": {
+        "fraction": 0.085,
+        "se": 0.017
+      },
+      "round3": {
+        "fraction": 0.097,
+        "se": 0.018
+      }
+    },
+    {
+      "collection_year": 2017,
+      "site": "SC",
+      "head_rank": "terminal",
+      "day_temp_c": 20,
+      "night_temp_c": 10,
+      "study_table": "Table 2",
+      "measurement": "fitted_total_germination_after_three_rounds",
+      "total_fraction": 0.636,
+      "total_se": 0.03,
+      "mean_days_to_germinate": 142,
+      "days_se": 6.8
+    },
+    {
+      "collection_year": 2017,
+      "site": "SC",
+      "head_rank": "terminal",
+      "day_temp_c": 25,
+      "night_temp_c": 10,
+      "study_table": "Table 2",
+      "measurement": "fitted_total_germination_after_three_rounds",
+      "total_fraction": 0.552,
+      "total_se": 0.032,
+      "mean_days_to_germinate": 142,
+      "days_se": 7.4
+    },
+    {
+      "collection_year": 2017,
+      "site": "SC",
+      "head_rank": "terminal",
+      "day_temp_c": 30,
+      "night_temp_c": 10,
+      "study_table": "Table 2",
+      "measurement": "fitted_total_germination_after_three_rounds",
+      "total_fraction": 0.355,
+      "total_se": 0.031,
+      "mean_days_to_germinate": 173,
+      "days_se": 10.6
+    },
+    {
+      "collection_year": 2017,
+      "site": "WFD",
+      "head_rank": "terminal",
+      "day_temp_c": 20,
+      "night_temp_c": 10,
+      "study_table": "Table 2",
+      "measurement": "fitted_total_germination_after_three_rounds",
+      "total_fraction": 0.36,
+      "total_se": 0.057,
+      "mean_days_to_germinate": 252,
+      "days_se": 15.9
+    },
+    {
+      "collection_year": 2017,
+      "site": "WFD",
+      "head_rank": "terminal",
+      "day_temp_c": 25,
+      "night_temp_c": 10,
+      "study_table": "Table 2",
+      "measurement": "fitted_total_germination_after_three_rounds",
+      "total_fraction": 0.128,
+      "total_se": 0.031,
+      "mean_days_to_germinate": 212,
+      "days_se": 18.7
+    },
+    {
+      "collection_year": 2017,
+      "site": "WFD",
+      "head_rank": "terminal",
+      "day_temp_c": 30,
+      "night_temp_c": 10,
+      "study_table": "Table 2",
+      "measurement": "fitted_total_germination_after_three_rounds",
+      "total_fraction": 0.071,
+      "total_se": 0.019,
+      "mean_days_to_germinate": 157,
+      "days_se": 17.2
+    },
+    {
+      "collection_year": 2017,
+      "site": "SC",
+      "head_rank": "secondary",
+      "day_temp_c": 20,
+      "night_temp_c": 10,
+      "study_table": "Table 2",
+      "measurement": "fitted_total_germination_after_three_rounds",
+      "total_fraction": 0.52,
+      "total_se": 0.03,
+      "mean_days_to_germinate": 111,
+      "days_se": 5.3
+    },
+    {
+      "collection_year": 2017,
+      "site": "SC",
+      "head_rank": "secondary",
+      "day_temp_c": 25,
+      "night_temp_c": 10,
+      "study_table": "Table 2",
+      "measurement": "fitted_total_germination_after_three_rounds",
+      "total_fraction": 0.432,
+      "total_se": 0.029,
+      "mean_days_to_germinate": 111,
+      "days_se": 5.5
+    },
+    {
+      "collection_year": 2017,
+      "site": "SC",
+      "head_rank": "secondary",
+      "day_temp_c": 30,
+      "night_temp_c": 10,
+      "study_table": "Table 2",
+      "measurement": "fitted_total_germination_after_three_rounds",
+      "total_fraction": 0.254,
+      "total_se": 0.025,
+      "mean_days_to_germinate": 136,
+      "days_se": 8.5
+    },
+    {
+      "collection_year": 2017,
+      "site": "WFD",
+      "head_rank": "secondary",
+      "day_temp_c": 20,
+      "night_temp_c": 10,
+      "study_table": "Table 2",
+      "measurement": "fitted_total_germination_after_three_rounds",
+      "total_fraction": 0.393,
+      "total_se": 0.024,
+      "mean_days_to_germinate": 198,
+      "days_se": 8.9
+    },
+    {
+      "collection_year": 2017,
+      "site": "WFD",
+      "head_rank": "secondary",
+      "day_temp_c": 25,
+      "night_temp_c": 10,
+      "study_table": "Table 2",
+      "measurement": "fitted_total_germination_after_three_rounds",
+      "total_fraction": 0.145,
+      "total_se": 0.017,
+      "mean_days_to_germinate": 166,
+      "days_se": 12.5
+    },
+    {
+      "collection_year": 2017,
+      "site": "WFD",
+      "head_rank": "secondary",
+      "day_temp_c": 30,
+      "night_temp_c": 10,
+      "study_table": "Table 2",
+      "measurement": "fitted_total_germination_after_three_rounds",
+      "total_fraction": 0.081,
+      "total_se": 0.013,
+      "mean_days_to_germinate": 123,
+      "days_se": 12.3
+    }
+  ],
+  "study_population_sample_info": {
+    "source_collection_2016": {
+      "SC_parent_plants": 34,
+      "WFD_parent_plants": 43,
+      "SC_germination_seeds": 1217,
+      "WFD_germination_seeds": 1078
+    },
+    "source_collection_2017": {
+      "SC_parent_plants": 15,
+      "WFD_parent_plants": 15,
+      "SC_germination_seeds": 1073,
+      "WFD_germination_seeds": 1277
+    },
+    "samples_per_table_cell_missing": true,
+    "head_level_link_to_2020_weevil_evidence_available": false
+  },
+  "ontology": {
+    "terminal": "apical head rank one; first formed",
+    "secondary": "first-order lateral branch head",
+    "tertiary": "second-order branch head, included only 2020 infestation source",
+    "head_rank_is_not_world_gravity_angle": true,
+    "head_rank_is_not_outer_phyllary_spread": true,
+    "germination_lab_temp_is_not_field_temperature": true
+  },
+  "claim_ceiling": {
+    "not_a_single_matched_head_weevil_germination_dataset": true,
+    "original_seed_level_data_downloaded_and_reanalysed": false,
+    "reported_head_infested_percentages_are_approximate": true,
+    "not_all_sites_2020_weevil_infestation_ascertained": true,
+    "fitted_mean_SE_is_not_individual_trial_data": true,
+    "year_and_site_are_not_randomized_contexts": true,
+    "no_claim_that_germination_rank_flip_significantly_differs": true,
+    "no_trait_specific_pollinator_selection_measured": true,
+    "no_genetic_lego_or_ancestral_reexpression_inferred": true
+  }
+}

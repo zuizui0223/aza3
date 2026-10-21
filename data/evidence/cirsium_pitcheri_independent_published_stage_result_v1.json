@@ -1,0 +1,282 @@
+{
+  "version": "cirsium_pitcheri_independent_js_published_stage_contrasts_v1",
+  "date": "2026-10-21",
+  "source": {
+    "first_original_paper_doi": "10.1016/j.gecco.2020.e00945",
+    "second_original_paper_doi": "10.1002/ece3.7109",
+    "first_published_weevil_numbers_are_approximate": true,
+    "second_are_fitted_model_proportions": true,
+    "original_individual_row_reanalysis": false
+  },
+  "published_weevil": {
+    "fractions": {
+      "terminal": 0.27,
+      "secondary": 0.5,
+      "tertiary": 0.8
+    },
+    "secondary_vs_terminal_approx_ratio": 1.8518518518518516,
+    "tertiary_vs_terminal_approx_ratio": 2.962962962962963,
+    "relative_mature_seed_production_with_observed_weevil_presence": 0.4
+  },
+  "source_counts": {
+    "model_rows": 24,
+    "table1_2016": 12,
+    "table2_2017": 12,
+    "matched_site_year_temperature_contrasts": 12,
+    "sign_terminal_advantage_2016": 5,
+    "sign_terminal_advantage_2017": 3
+  },
+  "by_collection_year_site": {
+    "2016_SC": {
+      "n": 3,
+      "terminal_higher": 2,
+      "secondary_higher": 1,
+      "by_temp": {
+        "20": {
+          "terminal": 0.828,
+          "secondary": 0.197,
+          "delta": 0.631,
+          "ratio": 4.2030456852791875
+        },
+        "25": {
+          "terminal": 0.343,
+          "secondary": 0.127,
+          "delta": 0.21600000000000003,
+          "ratio": 2.7007874015748032
+        },
+        "30": {
+          "terminal": 0.061,
+          "secondary": 0.073,
+          "delta": -0.011999999999999997,
+          "ratio": 0.8356164383561644
+        }
+      },
+      "temp20_to30_drop_by_rank": {
+        "terminal": 0.7669999999999999,
+        "secondary": 0.12400000000000001
+      }
+    },
+    "2016_WFD": {
+      "n": 3,
+      "terminal_higher": 3,
+      "secondary_higher": 0,
+      "by_temp": {
+        "20": {
+          "terminal": 0.75,
+          "secondary": 0.436,
+          "delta": 0.314,
+          "ratio": 1.7201834862385321
+        },
+        "25": {
+          "terminal": 0.38,
+          "secondary": 0.192,
+          "delta": 0.188,
+          "ratio": 1.9791666666666667
+        },
+        "30": {
+          "terminal": 0.12,
+          "secondary": 0.097,
+          "delta": 0.022999999999999993,
+          "ratio": 1.2371134020618555
+        }
+      },
+      "temp20_to30_drop_by_rank": {
+        "terminal": 0.63,
+        "secondary": 0.33899999999999997
+      }
+    },
+    "2017_SC": {
+      "n": 3,
+      "terminal_higher": 3,
+      "secondary_higher": 0,
+      "by_temp": {
+        "20": {
+          "terminal": 0.636,
+          "secondary": 0.52,
+          "delta": 0.11599999999999999,
+          "ratio": 1.223076923076923
+        },
+        "25": {
+          "terminal": 0.552,
+          "secondary": 0.432,
+          "delta": 0.12000000000000005,
+          "ratio": 1.277777777777778
+        },
+        "30": {
+          "terminal": 0.355,
+          "secondary": 0.254,
+          "delta": 0.10099999999999998,
+          "ratio": 1.3976377952755905
+        }
+      },
+      "temp20_to30_drop_by_rank": {
+        "terminal": 0.281,
+        "secondary": 0.266
+      }
+    },
+    "2017_WFD": {
+      "n": 3,
+      "terminal_higher": 0,
+      "secondary_higher": 3,
+      "by_temp": {
+        "20": {
+          "terminal": 0.36,
+          "secondary": 0.393,
+          "delta": -0.03300000000000003,
+          "ratio": 0.916030534351145
+        },
+        "25": {
+          "terminal": 0.128,
+          "secondary": 0.145,
+          "delta": -0.016999999999999987,
+          "ratio": 0.8827586206896553
+        },
+        "30": {
+          "terminal": 0.071,
+          "secondary": 0.081,
+          "delta": -0.010000000000000009,
+          "ratio": 0.8765432098765431
+        }
+      },
+      "temp20_to30_drop_by_rank": {
+        "terminal": 0.289,
+        "secondary": 0.312
+      }
+    }
+  },
+  "year_comparison_cautions": {
+    "difference_in_fitted_point_estimates_2017_minus_2016": {
+      "SC_20": -0.515,
+      "SC_25": -0.09599999999999997,
+      "SC_30": 0.11299999999999998,
+      "WFD_20": -0.34700000000000003,
+      "WFD_25": -0.205,
+      "WFD_30": -0.033
+    },
+    "same_plant_individual_tracking": false,
+    "same_seed_head_weevil_germination_reproductive_fate": false,
+    "do_not_infer_significance_from_mean_SE": true
+  },
+  "all_source_table_cell_pairs": [
+    {
+      "year": 2016,
+      "site": "SC",
+      "day_temp_c": 20,
+      "terminal": 0.828,
+      "secondary": 0.197,
+      "terminal_minus_secondary": 0.631,
+      "terminal_ratio": 4.2030456852791875,
+      "days_difference": null
+    },
+    {
+      "year": 2016,
+      "site": "SC",
+      "day_temp_c": 25,
+      "terminal": 0.343,
+      "secondary": 0.127,
+      "terminal_minus_secondary": 0.21600000000000003,
+      "terminal_ratio": 2.7007874015748032,
+      "days_difference": null
+    },
+    {
+      "year": 2016,
+      "site": "SC",
+      "day_temp_c": 30,
+      "terminal": 0.061,
+      "secondary": 0.073,
+      "terminal_minus_secondary": -0.011999999999999997,
+      "terminal_ratio": 0.8356164383561644,
+      "days_difference": null
+    },
+    {
+      "year": 2016,
+      "site": "WFD",
+      "day_temp_c": 20,
+      "terminal": 0.75,
+      "secondary": 0.436,
+      "terminal_minus_secondary": 0.314,
+      "terminal_ratio": 1.7201834862385321,
+      "days_difference": null
+    },
+    {
+      "year": 2016,
+      "site": "WFD",
+      "day_temp_c": 25,
+      "terminal": 0.38,
+      "secondary": 0.192,
+      "terminal_minus_secondary": 0.188,
+      "terminal_ratio": 1.9791666666666667,
+      "days_difference": null
+    },
+    {
+      "year": 2016,
+      "site": "WFD",
+      "day_temp_c": 30,
+      "terminal": 0.12,
+      "secondary": 0.097,
+      "terminal_minus_secondary": 0.022999999999999993,
+      "terminal_ratio": 1.2371134020618555,
+      "days_difference": null
+    },
+    {
+      "year": 2017,
+      "site": "SC",
+      "day_temp_c": 20,
+      "terminal": 0.636,
+      "secondary": 0.52,
+      "terminal_minus_secondary": 0.11599999999999999,
+      "terminal_ratio": 1.223076923076923,
+      "days_difference": 31
+    },
+    {
+      "year": 2017,
+      "site": "SC",
+      "day_temp_c": 25,
+      "terminal": 0.552,
+      "secondary": 0.432,
+      "terminal_minus_secondary": 0.12000000000000005,
+      "terminal_ratio": 1.277777777777778,
+      "days_difference": 31
+    },
+    {
+      "year": 2017,
+      "site": "SC",
+      "day_temp_c": 30,
+      "terminal": 0.355,
+      "secondary": 0.254,
+      "terminal_minus_secondary": 0.10099999999999998,
+      "terminal_ratio": 1.3976377952755905,
+      "days_difference": 37
+    },
+    {
+      "year": 2017,
+      "site": "WFD",
+      "day_temp_c": 20,
+      "terminal": 0.36,
+      "secondary": 0.393,
+      "terminal_minus_secondary": -0.03300000000000003,
+      "terminal_ratio": 0.916030534351145,
+      "days_difference": 54
+    },
+    {
+      "year": 2017,
+      "site": "WFD",
+      "day_temp_c": 25,
+      "terminal": 0.128,
+      "secondary": 0.145,
+      "terminal_minus_secondary": -0.016999999999999987,
+      "terminal_ratio": 0.8827586206896553,
+      "days_difference": 46
+    },
+    {
+      "year": 2017,
+      "site": "WFD",
+      "day_temp_c": 30,
+      "terminal": 0.071,
+      "secondary": 0.081,
+      "terminal_minus_secondary": -0.010000000000000009,
+      "terminal_ratio": 0.8765432098765431,
+      "days_difference": 34
+    }
+  ]
+}
