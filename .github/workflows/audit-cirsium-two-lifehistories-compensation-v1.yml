@@ -1,0 +1,116 @@
+name: Audit Cirsium canescens vs undulatum apical compensation
+on:
+  pull_request:
+    paths:
+      - "analysis/audit_cirsium_cross_lifehistory_compensation_v1.py"
+      - "tests/test_cirsium_cross_lifehistory_compensation_v1.py"
+      - "data/evidence/cirsium_canescens_2018_original_table1_source_v1.json"
+      - "data/evidence/cirsium_two_life_histories_apical_compensation_independent_JS_v1.json"
+      - "docs/CIRSIUM_MONOCARPIC_ITEROCARPIC_COMPENSATION_COMPARISON_20261021.md"
+      - ".github/workflows/audit-cirsium-two-lifehistories-compensation-v1.yml"
+      - "data/external/usda_wavyleaf_2007_2008/mother_plants.csv"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verified-published-134-and-real-mothers-106:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fail-close published versus raw source grain and original cohort counts
+        run: |
+          python -m py_compile analysis/audit_cirsium_cross_lifehistory_compensation_v1.py tests/test_cirsium_cross_lifehistory_compensation_v1.py
+          python -m unittest discover -s tests -p 'test_cirsium_cross_lifehistory_compensation_v1.py' -v
+      - name: Recompute exactly the original 106 mother observations against original 134 published source summary
+        run: |
+          mkdir -p work/cirsium_2_life
+          python analysis/audit_cirsium_cross_lifehistory_compensation_v1.py \
+            --canescens-published-json data/evidence/cirsium_canescens_2018_original_table1_source_v1.json \
+            --undulatum-mothers data/external/usda_wavyleaf_2007_2008/mother_plants.csv \
+            --out work/cirsium_2_life/verified_original_source_contrasts.json
+      - name: Compare independent JS source-group treatment contrasts and life-history inference guards
+        run: |
+          python - <<'PY'
+          import json, math
+          actual=json.load(open('work/cirsium_2_life/verified_original_source_contrasts.json'))
+          lock=json.load(open('data/evidence/cirsium_two_life_histories_apical_compensation_independent_JS_v1.json'))
+          can=json.load(open('data/evidence/cirsium_canescens_2018_original_table1_source_v1.json'))
+          def close(a,b,key=''):
+              assert type(a) in (float,int) and type(b) in (float,int) and math.isfinite(a) and math.isfinite(b),(key,a,b)
+              assert math.isclose(a,b,rel_tol=0,abs_tol=1e-9),(key,a,b)
+          assert actual['study_registry']['canescens']['author_original_plant_level_n']==134
+          assert actual['study_registry']['undulatum']['actual_plant_level_n']==106
+          assert lock['sources']['published_monocarpic']['n_published_plants']==134
+          assert lock['sources']['original_iterocarpic']['n_original_mothers']==106
+          assert lock['sources']['original_iterocarpic']['original_USDA_mother_csv_git_blob']=='458800272c3d0a03c7653702027a8f8578d9e88c'
+          assert actual['study_registry']['canescens']['original_author_apical_damage_by_herbivory_model_p']==.04
+          a=actual['canescens_author_published_2_year_plant_treatment_stats']
+          for arm,z in lock['group_means']['published_canescens_two_year_treatment_groups'].items():
+              assert a[arm]['n_mothers']==z['n_mothers']
+              for k,l in [('mean_good_seed_per_plant','mean_good_seed_per_plant'),
+                          ('author_published_mean_se','published_SE'),
+                          ('mean_nonapical_heads_with_seed','mean_matured_nonapical_seed_heads'),
+                          ('mean_mature_seed_per_nonapical_head','mean_matured_seeds_per_nonapical_head'),
+                          ('mean_damage_pct_nonapical_head','mean_nonapical_head_damage_percent')]:
+                  close(a[arm][k],z[l],arm+'.'+k)
+          b=actual['undulatum_direct_original_mother_data']
+          for key,x,y in [
+              ('year_by_arm',b['year_by_arm'],lock['group_means']['original_undulatum_year_by_arm']),
+              ('original_sample_weighted_pooled_by_arm',b['original_sample_weighted_pooled_by_arm'],lock['group_means']['original_undulatum_mother_weighted_pooled']),
+              ('equal_year_weighted_by_arm',b['equal_year_weighted_by_arm'],lock['group_means']['original_undulatum_equal_weighted_year_means'])
+          ]:
+              for year_or_arm,z in y.items():
+                  if key=='year_by_arm':
+                      for arm,v in z.items():
+                          assert x[year_or_arm][arm]['n_mothers']==v['n_mothers']
+                          close(x[year_or_arm][arm]['mean_good_seed_per_plant'],v['mean_good_seed_per_plant'])
+                          close(x[year_or_arm][arm]['mean_nonapical_good_seed_per_plant'],v['mean_nonapical_good_seed_per_plant'])
+                  else:
+                      item=x[year_or_arm]
+                      close(item['mean_good_seed_per_plant'],z['mean_good_seed_per_plant'])
+                      if 'n_mothers' in z:assert item['n_mothers']==z['n_mothers']
+          mapping={
+              'canescens_published_pooled':'canescens_author_two_year_pooled',
+              'undulatum_actual_mother_pooled':'undulatum_original_mother_sample_weighted_two_year_pooled',
+              'undulatum_equal_year':'undulatum_original_mother_equal_year_weighted',
+          }
+          for src,live in mapping.items():
+              obs=actual['compensation_contrasts'][live]
+              ref=lock['comparative_contrasts'][src]
+              for pair_a,pair_b in [
+                  ('damage_minus_intact_good_seeds_under_reduced_herbivory','damage_delta_under_reduced'),
+                  ('damage_minus_intact_good_seeds_under_ambient_herbivory','damage_delta_under_ambient'),
+                  ('damage_differences_difference_reduced_minus_ambient','damage_by_herbivory_difference_in_differences'),
+                  ('ratio_of_damage_ratios_reduced_to_ambient','ratio_of_ratios_reduced_vs_ambient'),
+              ]:close(obs[pair_a],ref[pair_b],src+'.'+pair_a)
+              close(obs['damage_to_intact_seed_mean_ratio_by_herbivory']['reduced'],ref['ratio_damage_to_intact_reduced'])
+              close(obs['damage_to_intact_seed_mean_ratio_by_herbivory']['ambient'],ref['ratio_damage_to_intact_ambient'])
+          for y in ('2007','2008'):
+              obs=actual['compensation_contrasts']['undulatum_real_year_specific'][y]
+              ref=lock['comparative_contrasts']['undulatum_'+y]
+              close(obs['ratio_of_damage_ratios_reduced_to_ambient'],ref['ratio_of_ratios_reduced_vs_ambient'],y)
+              close(obs['damage_minus_intact_good_seeds_under_ambient_herbivory'],ref['damage_delta_under_ambient'],y)
+          for path_a,path_b in [('by_year','undulatum_2007_without_pr73_source_conflicting_three_mothers'),
+                                ('sample_weighted_pooled','undulatum_mother_pooled_without_conflicting_three_mothers')]:
+              obs=actual['compensation_contrasts']['undulatum_exclude_3_conflicting_mothers'][path_a]
+              if path_a=='by_year':obs=obs['2007']
+              ref=lock['comparative_contrasts'][path_b]
+              close(obs['ratio_of_damage_ratios_reduced_to_ambient'],ref['ratio_of_ratios_reduced_vs_ambient'])
+          close(actual['cross_species_descriptive_ratio_pattern']['ratio_of_damage_ratios_canescens_divided_by_undulatum_pooled'],
+                lock['comparative_contrasts']['between_source_ratio_of_ratios_canescens_over_undulatum'])
+          assert not any(actual['all_scientific_inference_limits'].values())
+          assert actual['no_canescens_raw_bootstrap_or_constructed_p_from_SEs']
+          assert can['provenance']['original_raw_plant_rows_available_here'] is False
+          print('PASS: original 134 published Canescens means and 106 measured Undulatum mothers; year/pooling/source-ID sensitivity, NO inferred species-by-life-history causation')
+          PY
+      - name: Save derived source-bounded comparison for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-canescens-undulatum-original-134-vs-106-compensation-comparison-v1
+          path: work/cirsium_2_life/verified_original_source_contrasts.json
+          if-no-files-found: error
+          retention-days: 30

@@ -1,0 +1,296 @@
+{
+  "version": "cirsium_canescens_undulatum_crossstudy_independent_js_receipt_v1",
+  "as_of": "2026-10-21",
+  "sources": {
+    "published_monocarpic": {
+      "doi": "10.1007/s00442-017-4027-9",
+      "paper": "West & Louda (2018) Oecologia, Table 1",
+      "published_source_json_git_blob": "4a14005fd49f2a890065a1b87d4dbcb064d368c0",
+      "source_field_plant_rows_recovered": false,
+      "n_published_plants": 134,
+      "cohorts": [
+        2007,
+        2008
+      ]
+    },
+    "original_iterocarpic": {
+      "doi": "10.1002/ajb2.1744",
+      "dataset_doi": "10.15482/USDA.ADC/1522649",
+      "original_USDA_mother_csv_git_blob": "458800272c3d0a03c7653702027a8f8578d9e88c",
+      "n_original_mothers": 106,
+      "cohorts": [
+        2007,
+        2008
+      ]
+    }
+  },
+  "group_means": {
+    "published_canescens_two_year_treatment_groups": {
+      "reduced_intact": {
+        "n_mothers": 37,
+        "mean_good_seed_per_plant": 355.9,
+        "published_SE": 49,
+        "mean_matured_nonapical_seed_heads": 1.9,
+        "mean_matured_seeds_per_nonapical_head": 69.6,
+        "mean_nonapical_head_damage_percent": 48.1
+      },
+      "reduced_damaged": {
+        "n_mothers": 31,
+        "mean_good_seed_per_plant": 477.8,
+        "published_SE": 81.8,
+        "mean_matured_nonapical_seed_heads": 3.5,
+        "mean_matured_seeds_per_nonapical_head": 99,
+        "mean_nonapical_head_damage_percent": 48.4
+      },
+      "ambient_intact": {
+        "n_mothers": 34,
+        "mean_good_seed_per_plant": 186.3,
+        "published_SE": 29.6,
+        "mean_matured_nonapical_seed_heads": 1.5,
+        "mean_matured_seeds_per_nonapical_head": 30.7,
+        "mean_nonapical_head_damage_percent": 78.5
+      },
+      "ambient_damaged": {
+        "n_mothers": 32,
+        "mean_good_seed_per_plant": 112,
+        "published_SE": 27.9,
+        "mean_matured_nonapical_seed_heads": 1.3,
+        "mean_matured_seeds_per_nonapical_head": 31.5,
+        "mean_nonapical_head_damage_percent": 72.9
+      }
+    },
+    "original_undulatum_year_by_arm": {
+      "2007": {
+        "reduced_intact": {
+          "n_mothers": 10,
+          "mean_good_seed_per_plant": 88.4,
+          "mean_nonapical_good_seed_per_plant": 59.4,
+          "n_zero_good_seed_mothers": 0,
+          "source_good_seed_sum": 884
+        },
+        "reduced_damaged": {
+          "n_mothers": 11,
+          "mean_good_seed_per_plant": 60,
+          "mean_nonapical_good_seed_per_plant": 52.81818181818182,
+          "n_zero_good_seed_mothers": 0,
+          "source_good_seed_sum": 660
+        },
+        "ambient_intact": {
+          "n_mothers": 9,
+          "mean_good_seed_per_plant": 59.888888888888886,
+          "mean_nonapical_good_seed_per_plant": 29.333333333333332,
+          "n_zero_good_seed_mothers": 0,
+          "source_good_seed_sum": 539
+        },
+        "ambient_damaged": {
+          "n_mothers": 9,
+          "mean_good_seed_per_plant": 41.44444444444444,
+          "mean_nonapical_good_seed_per_plant": 39.333333333333336,
+          "n_zero_good_seed_mothers": 2,
+          "source_good_seed_sum": 373
+        }
+      },
+      "2008": {
+        "reduced_intact": {
+          "n_mothers": 21,
+          "mean_good_seed_per_plant": 138.38095238095238,
+          "mean_nonapical_good_seed_per_plant": 74.0952380952381,
+          "n_zero_good_seed_mothers": 0,
+          "source_good_seed_sum": 2906
+        },
+        "reduced_damaged": {
+          "n_mothers": 19,
+          "mean_good_seed_per_plant": 151.89473684210526,
+          "mean_nonapical_good_seed_per_plant": 111.3157894736842,
+          "n_zero_good_seed_mothers": 0,
+          "source_good_seed_sum": 2886
+        },
+        "ambient_intact": {
+          "n_mothers": 15,
+          "mean_good_seed_per_plant": 2.6666666666666665,
+          "mean_nonapical_good_seed_per_plant": 1.4,
+          "n_zero_good_seed_mothers": 12,
+          "source_good_seed_sum": 40
+        },
+        "ambient_damaged": {
+          "n_mothers": 12,
+          "mean_good_seed_per_plant": 8.916666666666666,
+          "mean_nonapical_good_seed_per_plant": 8.916666666666666,
+          "n_zero_good_seed_mothers": 5,
+          "source_good_seed_sum": 107
+        }
+      }
+    },
+    "original_undulatum_mother_weighted_pooled": {
+      "reduced_intact": {
+        "n_mothers": 31,
+        "mean_good_seed_per_plant": 122.25806451612904,
+        "mean_nonapical_good_seed_per_plant": 69.35483870967742,
+        "n_zero_good_seed_mothers": 0,
+        "source_good_seed_sum": 3790
+      },
+      "reduced_damaged": {
+        "n_mothers": 30,
+        "mean_good_seed_per_plant": 118.2,
+        "mean_nonapical_good_seed_per_plant": 89.86666666666666,
+        "n_zero_good_seed_mothers": 0,
+        "source_good_seed_sum": 3546
+      },
+      "ambient_intact": {
+        "n_mothers": 24,
+        "mean_good_seed_per_plant": 24.125,
+        "mean_nonapical_good_seed_per_plant": 11.875,
+        "n_zero_good_seed_mothers": 12,
+        "source_good_seed_sum": 579
+      },
+      "ambient_damaged": {
+        "n_mothers": 21,
+        "mean_good_seed_per_plant": 22.857142857142858,
+        "mean_nonapical_good_seed_per_plant": 21.952380952380953,
+        "n_zero_good_seed_mothers": 7,
+        "source_good_seed_sum": 480
+      }
+    },
+    "original_undulatum_equal_weighted_year_means": {
+      "reduced_intact": {
+        "n_equal_weighted_years": 2,
+        "mean_good_seed_per_plant": 113.39047619047619
+      },
+      "reduced_damaged": {
+        "n_equal_weighted_years": 2,
+        "mean_good_seed_per_plant": 105.94736842105263
+      },
+      "ambient_intact": {
+        "n_equal_weighted_years": 2,
+        "mean_good_seed_per_plant": 31.277777777777775
+      },
+      "ambient_damaged": {
+        "n_equal_weighted_years": 2,
+        "mean_good_seed_per_plant": 25.180555555555554
+      }
+    }
+  },
+  "comparative_contrasts": {
+    "canescens_published_pooled": {
+      "mean_source_maternal_seeds_by_treatment": {
+        "reduced_intact": 355.9,
+        "reduced_damaged": 477.8,
+        "ambient_intact": 186.3,
+        "ambient_damaged": 112
+      },
+      "damage_delta_under_reduced": 121.90000000000003,
+      "damage_delta_under_ambient": -74.30000000000001,
+      "damage_by_herbivory_difference_in_differences": 196.20000000000005,
+      "ratio_damage_to_intact_reduced": 1.3425119415566171,
+      "ratio_damage_to_intact_ambient": 0.6011808910359635,
+      "ratio_of_ratios_reduced_vs_ambient": 2.2331247742142657
+    },
+    "undulatum_actual_mother_pooled": {
+      "mean_source_maternal_seeds_by_treatment": {
+        "reduced_intact": 122.25806451612904,
+        "reduced_damaged": 118.2,
+        "ambient_intact": 24.125,
+        "ambient_damaged": 22.857142857142858
+      },
+      "damage_delta_under_reduced": -4.058064516129036,
+      "damage_delta_under_ambient": -1.2678571428571423,
+      "damage_by_herbivory_difference_in_differences": -2.790207373271894,
+      "ratio_damage_to_intact_reduced": 0.9668073878627969,
+      "ratio_damage_to_intact_ambient": 0.9474463360473724,
+      "ratio_of_ratios_reduced_vs_ambient": 1.0204349851583112
+    },
+    "undulatum_equal_year": {
+      "mean_source_maternal_seeds_by_treatment": {
+        "reduced_intact": 113.39047619047619,
+        "reduced_damaged": 105.94736842105263,
+        "ambient_intact": 31.277777777777775,
+        "ambient_damaged": 25.180555555555554
+      },
+      "damage_delta_under_reduced": -7.443107769423563,
+      "damage_delta_under_ambient": -6.097222222222221,
+      "damage_by_herbivory_difference_in_differences": -1.3458855472013411,
+      "ratio_damage_to_intact_reduced": 0.9343586161776017,
+      "ratio_damage_to_intact_ambient": 0.8050621669626998,
+      "ratio_of_ratios_reduced_vs_ambient": 1.160604304264732
+    },
+    "undulatum_2007": {
+      "mean_source_maternal_seeds_by_treatment": {
+        "reduced_intact": 88.4,
+        "reduced_damaged": 60,
+        "ambient_intact": 59.888888888888886,
+        "ambient_damaged": 41.44444444444444
+      },
+      "damage_delta_under_reduced": -28.400000000000006,
+      "damage_delta_under_ambient": -18.444444444444443,
+      "damage_by_herbivory_difference_in_differences": -9.955555555555563,
+      "ratio_damage_to_intact_reduced": 0.6787330316742081,
+      "ratio_damage_to_intact_ambient": 0.6920222634508348,
+      "ratio_of_ratios_reduced_vs_ambient": 0.9807965256632659
+    },
+    "undulatum_2008": {
+      "mean_source_maternal_seeds_by_treatment": {
+        "reduced_intact": 138.38095238095238,
+        "reduced_damaged": 151.89473684210526,
+        "ambient_intact": 2.6666666666666665,
+        "ambient_damaged": 8.916666666666666
+      },
+      "damage_delta_under_reduced": 13.51378446115288,
+      "damage_delta_under_ambient": 6.25,
+      "damage_by_herbivory_difference_in_differences": 7.263784461152881,
+      "ratio_damage_to_intact_reduced": 1.0976563914949107,
+      "ratio_damage_to_intact_ambient": 3.34375,
+      "ratio_of_ratios_reduced_vs_ambient": 0.32827107035361813
+    },
+    "undulatum_2007_without_pr73_source_conflicting_three_mothers": {
+      "mean_source_maternal_seeds_by_treatment": {
+        "reduced_intact": 95.88888888888889,
+        "reduced_damaged": 60,
+        "ambient_intact": 40.75,
+        "ambient_damaged": 44.125
+      },
+      "damage_delta_under_reduced": -35.888888888888886,
+      "damage_delta_under_ambient": 3.375,
+      "damage_by_herbivory_difference_in_differences": -39.263888888888886,
+      "ratio_damage_to_intact_reduced": 0.6257242178447278,
+      "ratio_damage_to_intact_ambient": 1.0828220858895705,
+      "ratio_of_ratios_reduced_vs_ambient": 0.5778642918339413
+    },
+    "undulatum_mother_pooled_without_conflicting_three_mothers": {
+      "mean_source_maternal_seeds_by_treatment": {
+        "reduced_intact": 125.63333333333334,
+        "reduced_damaged": 118.2,
+        "ambient_intact": 15.91304347826087,
+        "ambient_damaged": 23
+      },
+      "damage_delta_under_reduced": -7.433333333333337,
+      "damage_delta_under_ambient": 7.086956521739131,
+      "damage_by_herbivory_difference_in_differences": -14.520289855072468,
+      "ratio_damage_to_intact_reduced": 0.9408331122313611,
+      "ratio_damage_to_intact_ambient": 1.4453551912568305,
+      "ratio_of_ratios_reduced_vs_ambient": 0.6509355748141364
+    },
+    "between_source_ratio_of_ratios_canescens_over_undulatum": 2.18840475551494
+  },
+  "source_head_registry": {
+    "n_original_undulatum_heads": 323,
+    "original_canescens_mother_group_n": {
+      "reduced_intact": 37,
+      "reduced_damaged": 31,
+      "ambient_intact": 34,
+      "ambient_damaged": 32
+    },
+    "number_of_species_per_reproductive_strategy_class": 1,
+    "source_canescens_author_reported_factorial_interaction_p": 0.04,
+    "independent_bootstrap_or_SE_test_of_species_interaction_performed": false
+  },
+  "claim_limits": {
+    "no_inference_life_history_causal_moderator": true,
+    "no_original_canescens_per_mother_data": true,
+    "no_canescens_bootstrap_from_group_SE": true,
+    "year_2007_2008_same_calendar_years_not_same_individuals": true,
+    "undulatum_2007_source_label_inconsistency_changes_ambient_damage_mean_difference_sign": true,
+    "no_standardized_herbivory_intensity_across_species": true,
+    "no_joint_taxon_randomized_experiment_or_replicated_species_groups": true,
+    "new_biological_field_rows_collected": 0
+  }
+}

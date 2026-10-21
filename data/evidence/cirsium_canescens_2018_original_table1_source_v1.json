@@ -1,0 +1,169 @@
+{
+  "version": "cirsium_canescens_west_louda_2018_original_published_table1_v1",
+  "transcribed_on": "2026-10-21",
+  "provenance": {
+    "study": "West, N. M. & Louda, S. M. (2018). Cumulative herbivory outpaces compensation for early floral damage on a monocarpic perennial thistle.",
+    "journal": "Oecologia 186:495-506",
+    "doi": "10.1007/s00442-017-4027-9",
+    "source_pdf": "https://digitalcommons.unl.edu/cgi/viewcontent.cgi?article=1632&context=bioscifacpub",
+    "source_repository": "https://digitalcommons.unl.edu/bioscifacpub/629/",
+    "page_locator": "Table 1: End-of-season plant performance for C. canescens by treatment (mean ± SE) across two years; source manuscript also gives model interaction p A×H=0.04",
+    "publication_year": 2018,
+    "original_field_cohorts": [
+      2007,
+      2008
+    ],
+    "original_raw_plant_rows_available_here": false,
+    "means_transcribed_from_published_article_not_independently_measured": true,
+    "canescens_life_history": "monocarpic (semelparous by seed)",
+    "design": "Two apical damage treatments (AN and AD) × herbivory reduced versus ambient on later flower heads; two field-year cohorts combined in original Table 1",
+    "study_sites": "Six interconnected sand-prairie sites in western Nebraska; three Arapaho Prairie Preserve and three surrounding pastures",
+    "author_reported_plant_level_apical_damage_by_herbivory_interaction_p": 0.04,
+    "p_is_author_statistical_model_not_computed_from_published_mean_SE": true
+  },
+  "definitions": {
+    "reduced": "Insecticide-mediated herbivory reduction on later nonapical capitula",
+    "ambient": "Ambient insect floral herbivory on later nonapical capitula",
+    "intact": "AN = no experimental apical head damage",
+    "damaged": "AD = experimental apical head damage",
+    "good_seed_equivalent": "undamaged seeds matured per plant as published; comparable biologically but exact scoring protocol may differ from undulatum good seeds",
+    "potential_seeds": "author-derived estimated potential from head sizes, not actually matured seeds",
+    "nonapical_heads_maturing": "head counts excluding the early apical head"
+  },
+  "treatment_order": [
+    "reduced_intact",
+    "reduced_damaged",
+    "ambient_intact",
+    "ambient_damaged"
+  ],
+  "table1_plant_rows": [
+    {
+      "treatment": "reduced_intact",
+      "n_plants": 37,
+      "undamaged_seeds_per_plant": {
+        "mean": 355.9,
+        "se": 49
+      },
+      "potential_seeds_per_plant": {
+        "mean": 562.7,
+        "se": 55.1
+      },
+      "nonapical_heads_matured": {
+        "mean": 2.9,
+        "se": 0.4
+      },
+      "nonapical_heads_with_seed": {
+        "mean": 1.9,
+        "se": 0.3
+      },
+      "nonapical_head_damage_percent": {
+        "mean": 48.1,
+        "se": 2.6,
+        "n_heads": 138
+      },
+      "matured_seeds_per_nonapical_head": {
+        "mean": 69.6,
+        "se": 7.5
+      }
+    },
+    {
+      "treatment": "reduced_damaged",
+      "n_plants": 31,
+      "undamaged_seeds_per_plant": {
+        "mean": 477.8,
+        "se": 81.8
+      },
+      "potential_seeds_per_plant": {
+        "mean": 721.8,
+        "se": 99.4
+      },
+      "nonapical_heads_matured": {
+        "mean": 4.2,
+        "se": 0.6
+      },
+      "nonapical_heads_with_seed": {
+        "mean": 3.5,
+        "se": 0.5
+      },
+      "nonapical_head_damage_percent": {
+        "mean": 48.4,
+        "se": 2.9,
+        "n_heads": 146
+      },
+      "matured_seeds_per_nonapical_head": {
+        "mean": 99,
+        "se": 6.8
+      }
+    },
+    {
+      "treatment": "ambient_intact",
+      "n_plants": 34,
+      "undamaged_seeds_per_plant": {
+        "mean": 186.3,
+        "se": 29.6
+      },
+      "potential_seeds_per_plant": {
+        "mean": 604.6,
+        "se": 64.6
+      },
+      "nonapical_heads_matured": {
+        "mean": 2.8,
+        "se": 0.4
+      },
+      "nonapical_heads_with_seed": {
+        "mean": 1.5,
+        "se": 0.2
+      },
+      "nonapical_head_damage_percent": {
+        "mean": 78.5,
+        "se": 2.5,
+        "n_heads": 124
+      },
+      "matured_seeds_per_nonapical_head": {
+        "mean": 30.7,
+        "se": 5.3
+      }
+    },
+    {
+      "treatment": "ambient_damaged",
+      "n_plants": 32,
+      "undamaged_seeds_per_plant": {
+        "mean": 112,
+        "se": 27.9
+      },
+      "potential_seeds_per_plant": {
+        "mean": 446.4,
+        "se": 46.2
+      },
+      "nonapical_heads_matured": {
+        "mean": 2.3,
+        "se": 0.3
+      },
+      "nonapical_heads_with_seed": {
+        "mean": 1.3,
+        "se": 0.2
+      },
+      "nonapical_head_damage_percent": {
+        "mean": 72.9,
+        "se": 4.3,
+        "n_heads": 96
+      },
+      "matured_seeds_per_nonapical_head": {
+        "mean": 31.5,
+        "se": 6.5
+      }
+    }
+  ],
+  "interpretation_limits": {
+    "original_source_2018_life_history_experiment_replicated_across_more_than_one_semelparous_species": false,
+    "original_table1_year_specific_outcome_means_available": false,
+    "original_individual_2018_canescens_rows_recovered": false,
+    "canescens_mean_SE_are_raw_individual_records": false,
+    "undulatum_and_canescens_can_be_jointly_randomized_as_species": false,
+    "cross_species_difference_can_be_attributed_to_monocarpic_vs_iterocarpic_only": false,
+    "experiments_use_identical_seed_scoring_or_herbivory_reduction_strength_verified": false,
+    "head_orientation_or_spine_module_manipulated": false,
+    "published_damage_treatments_remove_all_apical_seeds": false,
+    "causal_taxon_life_history_interaction_identified": false
+  }
+}
