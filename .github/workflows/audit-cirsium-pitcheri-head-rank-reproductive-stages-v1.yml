@@ -1,0 +1,90 @@
+name: Cirsium pitcheri head rank, weevils, and seed germination by stage
+on:
+  pull_request:
+    paths:
+      - 'analysis/audit_cirsium_pitcheri_headrank_oviposition_germination_v1.py'
+      - 'tests/test_cirsium_pitcheri_headrank_oviposition_germination_v1.py'
+      - 'data/evidence/cirsium_pitcheri_published_rank_germination_cells_v1.json'
+      - 'data/evidence/cirsium_pitcheri_independent_published_stage_result_v1.json'
+      - 'docs/CIRSIUM_PITCHERI_HEAD_RANK_ENEMY_SEED_GERMINATION_20261021.md'
+      - '.github/workflows/audit-cirsium-pitcheri-head-rank-reproductive-stages-v1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  published-table-cohort-sensitivity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Reject fabricated seed-level joins, false significance and corrupt original table cells
+        run: |
+          python -m py_compile analysis/audit_cirsium_pitcheri_headrank_oviposition_germination_v1.py tests/test_cirsium_pitcheri_headrank_oviposition_germination_v1.py
+          python -m unittest discover -s tests -p 'test_cirsium_pitcheri_headrank_oviposition_germination_v1.py' -v
+      - name: Recompute the independently transcribed 2020 + 2021 original paper summaries
+        run: |
+          mkdir -p work/cirsium_pitcheri
+          python analysis/audit_cirsium_pitcheri_headrank_oviposition_germination_v1.py \
+            --published data/evidence/cirsium_pitcheri_published_rank_germination_cells_v1.json \
+            --out work/cirsium_pitcheri/recomputed_published_tables.json
+      - name: Cross-check all 12 context contrasts and forbid invented fitness endpoint
+        run: |
+          python - <<'PY'
+          import json,math
+          j=json.load(open('work/cirsium_pitcheri/recomputed_published_tables.json'))
+          r=json.load(open('data/evidence/cirsium_pitcheri_independent_published_stage_result_v1.json'))
+          src=json.load(open('data/evidence/cirsium_pitcheri_published_rank_germination_cells_v1.json'))
+          def close(x,y):
+              assert math.isfinite(x) and math.isfinite(y)
+              assert math.isclose(x,y,rel_tol=0,abs_tol=1e-12),(x,y)
+          a=j['published_2016_and_2017_rank_germination']
+          b=r['source_counts']
+          assert j['coverage']['n_source_model_cells']==b['model_rows']==24
+          assert b['table1_2016']==b['table2_2017']==12
+          assert len(a['paired_model_rows'])==len(r['all_source_table_cell_pairs'])==12
+          for x,y in zip(a['paired_model_rows'],r['all_source_table_cell_pairs']):
+              assert (x['collection_year'],x['site'],x['day_temp_c'])==(y['year'],y['site'],y['day_temp_c'])
+              for u,v in [('terminal_model_fitted_germination','terminal'),
+                          ('secondary_model_fitted_germination','secondary'),
+                          ('terminal_minus_secondary','terminal_minus_secondary'),
+                          ('terminal_divided_by_secondary','terminal_ratio')]:
+                  close(x[u],y[v])
+              if x['collection_year']==2017:
+                  close(x['days_to_germination_terminal_minus_secondary'],y['days_difference'])
+              else:assert y['days_difference'] is None
+          assert a['n_2016_terminal_better_out_of_six']==5
+          assert a['n_2017_terminal_better_out_of_six']==3
+          for key,y in r['by_collection_year_site'].items():
+              z=a['by_site_collection_year'][key]
+              assert z['terminal_higher_point_estimates']==y['terminal_higher']
+              assert z['secondary_higher_point_estimates']==y['secondary_higher']
+              for temp,row in y['by_temp'].items():
+                  close(z['temperature_specific_rank_difference'][temp],row['delta'])
+          for site in ('SC','WFD'):
+              for temp in ('20','25','30'):
+                  close(a['between_study_year_method_point_contrast_changes_not_statistical_interactions'][site][temp],
+                        r['year_comparison_cautions']['difference_in_fitted_point_estimates_2017_minus_2016'][f'{site}_{temp}'])
+          v=j['reported_weevil_seed_stage']
+          z=r['published_weevil']
+          assert v['rank_infestation_approximate_fraction']==z['fractions']
+          close(v['secondary_to_terminal_approx_infested_fraction_ratio'],z['secondary_vs_terminal_approx_ratio'])
+          close(v['tertiary_to_terminal_approx_infested_fraction_ratio'],z['tertiary_vs_terminal_approx_ratio'])
+          close(v['mature_seeds_infested_vs_uninfested_observed_association_ratio'],
+                z['relative_mature_seed_production_with_observed_weevil_presence'])
+          assert all(j['claim_ceiling'].values())
+          assert src['claim_ceiling']['original_seed_level_data_downloaded_and_reanalysed'] is False
+          assert j['source_2021']['status']=='MANUALLY_TRANSCRIBED_PUBLISHED_MODEL_FITTED_MEANS_AND_SE_NOT_ORIGINAL_INDIVIDUAL_ROWS'
+          assert j['source_2020']['status']=='PUBLISHED_APPROXIMATE_POINT_SUMMARIES_NOT_ORIGINAL_HEAD_LEVEL_RAW_CSV'
+          assert not a['paired_model_rows'][0]['independently_tested_rank_difference_from_original_se']
+          print('PASS: actual author-published 2020+2021 numbers, 24 fitted source cells, 12 independent JS/Python site/year/temp contrasts, no fake individual samples, year interaction or direct seed-to-weevil join')
+          PY
+      - name: Publish numeric-only derived reproducibility receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-pitcheri-original-published-head-rank-stage-v1
+          path: work/cirsium_pitcheri/recomputed_published_tables.json
+          if-no-files-found: error
+          retention-days: 30
