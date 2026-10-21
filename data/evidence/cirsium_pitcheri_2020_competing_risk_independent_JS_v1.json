@@ -1,0 +1,29 @@
+{
+  "version": "cirsium_pitcheri_2020_competing_risk_independent_JS_source_recalculation_v1",
+  "verification_date": "2026-10-21",
+  "paper_doi": "10.1016/j.gecco.2020.e00945",
+  "source_is_author_published_non_raw_summary": true,
+  "ratio_secondary_to_terminal": 1.8518518518518516,
+  "ratio_tertiary_to_terminal": 2.962962962962963,
+  "terminal_seed_mass_infested_minus_uninfested_mg": -1.83,
+  "terminal_seed_mass_interval": [
+    -2.73,
+    -0.93
+  ],
+  "secondary_seed_mass_interval": [
+    -0.76,
+    0.061
+  ],
+  "secondary_seed_mass_difference_significant": null,
+  "missing_terminal_delta": {
+    "SC": 0.27,
+    "WFD": 0.24100000000000002
+  },
+  "mature_seed_relative_count_in_year_2_terminal": 0.3,
+  "tertiary_second_year_count": 0,
+  "whole_plant_mature_fraction_site_difference": 0.32999999999999996,
+  "cross_study_head_id_join_observed": false,
+  "origin_of_terminal_absence_confirmed_deer": false,
+  "population_selection_for_adaptive_risk_diversification_identified": false,
+  "newly_observed_plant_sample_rows": 0
+}
