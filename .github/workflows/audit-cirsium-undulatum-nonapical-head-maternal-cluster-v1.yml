@@ -1,0 +1,90 @@
+name: Source-verified Cirsium nonapical head injury and maternal clustered seed output
+on:
+  pull_request:
+    paths:
+      - "analysis/audit_cirsium_undulatum_nonapical_head_maternal_cluster_v1.py"
+      - "tests/test_cirsium_undulatum_nonapical_head_maternal_cluster_v1.py"
+      - "data/evidence/cirsium_undulatum_nonapical_head_cluster_JS_lock_v1.json"
+      - "docs/CIRSIUM_UNDULATUM_LATERAL_HEAD_INJURY_MOTHER_CLUSTER_20261022.md"
+      - ".github/workflows/audit-cirsium-undulatum-nonapical-head-maternal-cluster-v1.yml"
+      - "data/external/usda_wavyleaf_2007_2008/**"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  rerun-original-head-and-mother-sample:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test actual head and mother linking, no pseudo replication and no fake biology
+        run: |
+          python -m py_compile analysis/audit_cirsium_undulatum_nonapical_head_maternal_cluster_v1.py tests/test_cirsium_undulatum_nonapical_head_maternal_cluster_v1.py
+          python -m unittest discover -s tests -p 'test_cirsium_undulatum_nonapical_head_maternal_cluster_v1.py' -v
+      - name: Replay original 106 mothers and 323 heads at mother-cluster grain
+        run: |
+          mkdir -p work/real_lateral
+          python analysis/audit_cirsium_undulatum_nonapical_head_maternal_cluster_v1.py \
+            --mothers data/external/usda_wavyleaf_2007_2008/mother_plants.csv \
+            --heads data/external/usda_wavyleaf_2007_2008/flower_heads.csv \
+            --dictionary data/external/usda_wavyleaf_2007_2008/source_dictionary.txt \
+            --bootstrap 5000 \
+            --out work/real_lateral/actual_nonapical_result.json
+      - name: Match every source count, mother-weighted mean and independent JS 5000 bootstrap value
+        run: |
+          python - <<'PY'
+          import json,math
+          x=json.load(open("work/real_lateral/actual_nonapical_result.json"))
+          y=json.load(open("data/evidence/cirsium_undulatum_nonapical_head_cluster_JS_lock_v1.json"))
+          def match(a,b,where='root'):
+              if isinstance(b,dict):
+                  assert isinstance(a,dict) and set(a)==set(b),(where,'key_drift',set(a)^set(b))
+                  for k in b: match(a[k],b[k],where+'.'+k)
+              elif isinstance(b,list):
+                  assert isinstance(a,list) and len(a)==len(b),(where,'list_shape')
+                  for i,(u,v) in enumerate(zip(a,b)):match(u,v,where+'['+str(i)+']')
+              elif isinstance(b,bool):
+                  assert isinstance(a,bool) and a==b,(where,a,b)
+              elif isinstance(b,(int,float)):
+                  assert isinstance(a,(int,float)) and not isinstance(a,bool)
+                  assert math.isfinite(a) and math.isfinite(b)
+                  assert math.isclose(a,b,rel_tol=0,abs_tol=1e-8),(where,a,b)
+              else:
+                  assert type(a) is type(b) and a==b,(where,a,b)
+          match(x,y)
+          q=x["source_audit"]
+          assert q["n_source_mothers"]==106 and q["n_source_head_rows"]==323
+          assert q["n_head_source_aligned"]==297
+          assert q["n_mothers_with_scored_nonapical_heads"]==87
+          assert q["n_apical_lateral_damage_pairs"]==82
+          assert q["n_head_treatment_label_mismatch"]==12
+          assert q["n_matched_heads_with_nonmissing_damage_score"]==290
+          h=x["head_record_group_by_year_treatment"]["2008"]
+          assert sum(h[a]["n_lateral_head_records"] for a in ("ndni","dni"))==45
+          assert sum(h[a]["n_lateral_head_records"] for a in ("ndi","di"))==66
+          assert sum(h[a]["n_highest_recorded_damage_score"] for a in ("ndni","dni"))==35
+          assert sum(h[a]["n_highest_recorded_damage_score"] for a in ("ndi","di"))==10
+          assert sum(h[a]["n_any_good_seed_heads"] for a in ("ndni","dni"))==10
+          assert sum(h[a]["n_any_good_seed_heads"] for a in ("ndi","di"))==55
+          z=x["exact_maternal_any_lateral_seed_comparisons"]["2008"]
+          assert z["intact"]["BH_q_four_year_damage_strata"]<0.01
+          assert z["damaged"]["BH_q_four_year_damage_strata"]>0.05
+          d=x["year_apical_strata_reduced_minus_ambient_mother_cluster_bootstrap"]["2008"]
+          for arm in ("intact","damaged"):
+              assert d[arm]["mean_damage"]["maternal_percentile_CI95"][1]<0
+              assert d[arm]["fraction_positive"]["maternal_percentile_CI95"][0]>0
+          assert x["inference_limits"]["individual_source_head_rows_are_not_independent_mother_replicates"]
+          assert x["inference_limits"]["original_mothers_with_no_lateral_heads_not_imputed_damage_zero"]
+          assert not x["inference_limits"]["new_biological_field_samples_added"]
+          print("PASS real 106 maternal / 323 head source and 297 correct treatment-linked head records, 87 lateral mother clusters, four 5k maternal bootstrap differences and four exact lateral seed tests; no invented adaptive outcome")
+          PY
+      - name: Archive derived numeric result, not a fabricated new experiment
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-undulatum-source-aligned-lateral-head-2007-2008-v1
+          path: work/real_lateral/actual_nonapical_result.json
+          retention-days: 30
+          if-no-files-found: error
