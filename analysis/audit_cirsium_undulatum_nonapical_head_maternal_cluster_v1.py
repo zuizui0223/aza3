@@ -236,7 +236,7 @@ def head_arm_summary(original_heads,mothers):
                "high_score_is_max_observed_0p88_not_exact_fraction_destroyed":True,
             }
     require(sum(z["n_lateral_head_records"] for y in YEARS
-                for z in out[y].values())==193,
+                for z in out[y].values())==194,
             "SOURCE_CLEAN_LATERAL_HEAD_TOTAL_CHANGED")
     return out
 
