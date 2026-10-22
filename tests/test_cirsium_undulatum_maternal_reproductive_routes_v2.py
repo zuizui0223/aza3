@@ -104,7 +104,7 @@ class MotherRouteTests(unittest.TestCase):
             t["2008_insecticide_intact"]["p_exact"],0.0021770639606882775,places=12)
         self.assertAlmostEqual(
             t["2008_insecticide_intact"]["q_BH_eight"],0.01741651168550622,places=12)
-        self.assertEqual(t["2007_damage_ambient"]["p_exact"],1)
+        self.assertAlmostEqual(t["2007_damage_ambient"]["p_exact"],1,places=12)
         self.assertFalse(self.r["scientific_limits"]["new_treatment_effect_is_randomized_between_plant_genotypes_proven"])
 
     def test_parental_source_hurdle_consistent_with_reproductive_states(self):
