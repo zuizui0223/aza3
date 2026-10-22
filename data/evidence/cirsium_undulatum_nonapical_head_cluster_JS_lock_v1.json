@@ -1,0 +1,494 @@
+{
+  "version": "aza3_20261022_undulatum_nonapical_head_2007_2008_source_JS_v1",
+  "source": {
+    "repo": "zuizui0223/aza3",
+    "original_head_git_blob": "637a4dcd5194d0bf5b26e7f9cf0dde56a50d7616",
+    "original_mother_git_blob": "458800272c3d0a03c7653702027a8f8578d9e88c",
+    "original_dictionary_git_blob": "5e20c9d4609abc982287bd12f739c76d7c6d1d2f",
+    "dataset_doi": "10.15482/USDA.ADC/1522649",
+    "published_paper_doi": "10.1002/ajb2.1744"
+  },
+  "source_audit": {
+    "n_source_mothers": 106,
+    "n_source_head_rows": 323,
+    "n_head_with_mother": 309,
+    "n_head_without_mother": 14,
+    "n_head_treatment_label_mismatch": 12,
+    "n_head_source_aligned": 297,
+    "n_mothers_with_scored_nonapical_heads": 87,
+    "n_matched_heads_with_nonmissing_damage_score": 290,
+    "n_apical_lateral_damage_pairs": 82,
+    "head_conflicting_source_mother_ids": [
+      "2007|323",
+      "2007|375"
+    ]
+  },
+  "head_record_group_by_year_treatment": {
+    "2007": {
+      "ndni": {
+        "n_lateral_head_records": 14,
+        "n_lateral_damage_scored": 14,
+        "n_highest_recorded_damage_score": 5,
+        "n_any_good_seed_heads": 12,
+        "mean_lateral_damage_score_scored": 0.5996428571428571,
+        "high_score_is_max_observed_0p88_not_exact_fraction_destroyed": true
+      },
+      "dni": {
+        "n_lateral_head_records": 17,
+        "n_lateral_damage_scored": 17,
+        "n_highest_recorded_damage_score": 3,
+        "n_any_good_seed_heads": 12,
+        "mean_lateral_damage_score_scored": 0.6351470588235296,
+        "high_score_is_max_observed_0p88_not_exact_fraction_destroyed": true
+      },
+      "ndi": {
+        "n_lateral_head_records": 17,
+        "n_lateral_damage_scored": 16,
+        "n_highest_recorded_damage_score": 1,
+        "n_any_good_seed_heads": 11,
+        "mean_lateral_damage_score_scored": 0.41164062500000004,
+        "high_score_is_max_observed_0p88_not_exact_fraction_destroyed": true
+      },
+      "di": {
+        "n_lateral_head_records": 35,
+        "n_lateral_damage_scored": 34,
+        "n_highest_recorded_damage_score": 2,
+        "n_any_good_seed_heads": 26,
+        "mean_lateral_damage_score_scored": 0.4038970588235294,
+        "high_score_is_max_observed_0p88_not_exact_fraction_destroyed": true
+      }
+    },
+    "2008": {
+      "ndni": {
+        "n_lateral_head_records": 22,
+        "n_lateral_damage_scored": 22,
+        "n_highest_recorded_damage_score": 18,
+        "n_any_good_seed_heads": 3,
+        "mean_lateral_damage_score_scored": 0.8686363636363638,
+        "high_score_is_max_observed_0p88_not_exact_fraction_destroyed": true
+      },
+      "dni": {
+        "n_lateral_head_records": 23,
+        "n_lateral_damage_scored": 23,
+        "n_highest_recorded_damage_score": 17,
+        "n_any_good_seed_heads": 7,
+        "mean_lateral_damage_score_scored": 0.8036413043478262,
+        "high_score_is_max_observed_0p88_not_exact_fraction_destroyed": true
+      },
+      "ndi": {
+        "n_lateral_head_records": 28,
+        "n_lateral_damage_scored": 28,
+        "n_highest_recorded_damage_score": 6,
+        "n_any_good_seed_heads": 22,
+        "mean_lateral_damage_score_scored": 0.4929464285714286,
+        "high_score_is_max_observed_0p88_not_exact_fraction_destroyed": true
+      },
+      "di": {
+        "n_lateral_head_records": 38,
+        "n_lateral_damage_scored": 38,
+        "n_highest_recorded_damage_score": 4,
+        "n_any_good_seed_heads": 33,
+        "mean_lateral_damage_score_scored": 0.4533552631578948,
+        "high_score_is_max_observed_0p88_not_exact_fraction_destroyed": true
+      }
+    }
+  },
+  "mother_balanced_nonapical_head_groups": {
+    "2007": {
+      "ndni": {
+        "n_mothers": 7,
+        "n_head_rows": 14,
+        "mean_scored_damage_per_mother": 0.6206249999999999,
+        "mean_fraction_max_damage_per_mother": 0.40476190476190477,
+        "mean_fraction_seed_positive_heads_per_mother": 0.8333333333333333,
+        "mean_seed_count_per_lateral_head_with_mother_equal_weight": 14.714285714285714,
+        "n_lateral_heads_per_mother": 2
+      },
+      "dni": {
+        "n_mothers": 8,
+        "n_head_rows": 17,
+        "mean_scored_damage_per_mother": 0.6311328125,
+        "mean_fraction_max_damage_per_mother": 0.275,
+        "mean_fraction_seed_positive_heads_per_mother": 0.66875,
+        "mean_seed_count_per_lateral_head_with_mother_equal_weight": 17.83125,
+        "n_lateral_heads_per_mother": 2.125
+      },
+      "ndi": {
+        "n_mothers": 7,
+        "n_head_rows": 17,
+        "mean_scored_damage_per_mother": 0.3982291666666667,
+        "mean_fraction_max_damage_per_mother": 0.07142857142857142,
+        "mean_fraction_seed_positive_heads_per_mother": 0.5476190476190476,
+        "mean_seed_count_per_lateral_head_with_mother_equal_weight": 27.297619047619047,
+        "n_lateral_heads_per_mother": 2.4285714285714284
+      },
+      "di": {
+        "n_mothers": 10,
+        "n_head_rows": 35,
+        "mean_scored_damage_per_mother": 0.368125,
+        "mean_fraction_max_damage_per_mother": 0.05,
+        "mean_fraction_seed_positive_heads_per_mother": 0.7533333333333333,
+        "mean_seed_count_per_lateral_head_with_mother_equal_weight": 16.556666666666665,
+        "n_lateral_heads_per_mother": 3.5
+      }
+    },
+    "2008": {
+      "ndni": {
+        "n_mothers": 11,
+        "n_head_rows": 22,
+        "mean_scored_damage_per_mother": 0.8672159090909092,
+        "mean_fraction_max_damage_per_mother": 0.7954545454545454,
+        "mean_fraction_seed_positive_heads_per_mother": 0.13636363636363635,
+        "mean_seed_count_per_lateral_head_with_mother_equal_weight": 0.5454545454545454,
+        "n_lateral_heads_per_mother": 2
+      },
+      "dni": {
+        "n_mothers": 12,
+        "n_head_rows": 23,
+        "mean_scored_damage_per_mother": 0.8029166666666666,
+        "mean_fraction_max_damage_per_mother": 0.775,
+        "mean_fraction_seed_positive_heads_per_mother": 0.32916666666666666,
+        "mean_seed_count_per_lateral_head_with_mother_equal_weight": 5.054166666666666,
+        "n_lateral_heads_per_mother": 1.9166666666666667
+      },
+      "ndi": {
+        "n_mothers": 17,
+        "n_head_rows": 28,
+        "mean_scored_damage_per_mother": 0.5004656862745098,
+        "mean_fraction_max_damage_per_mother": 0.22549019607843135,
+        "mean_fraction_seed_positive_heads_per_mother": 0.7549019607843137,
+        "mean_seed_count_per_lateral_head_with_mother_equal_weight": 49.029411764705884,
+        "n_lateral_heads_per_mother": 1.6470588235294117
+      },
+      "di": {
+        "n_mothers": 15,
+        "n_head_rows": 38,
+        "mean_scored_damage_per_mother": 0.4844166666666666,
+        "mean_fraction_max_damage_per_mother": 0.13333333333333333,
+        "mean_fraction_seed_positive_heads_per_mother": 0.9055555555555554,
+        "mean_seed_count_per_lateral_head_with_mother_equal_weight": 60.79444444444445,
+        "n_lateral_heads_per_mother": 2.533333333333333
+      }
+    }
+  },
+  "year_apical_strata_reduced_minus_ambient_mother_cluster_bootstrap": {
+    "2007": {
+      "intact": {
+        "mean_damage": {
+          "estimated_reduced_minus_ambient": -0.22239583333333318,
+          "maternal_percentile_CI95": [
+            -0.4206194196428571,
+            -0.008552827380952378
+          ]
+        },
+        "fraction_max": {
+          "estimated_reduced_minus_ambient": -0.33333333333333337,
+          "maternal_percentile_CI95": [
+            -0.6904761904761905,
+            0
+          ]
+        },
+        "fraction_positive": {
+          "estimated_reduced_minus_ambient": -0.2857142857142857,
+          "maternal_percentile_CI95": [
+            -0.6666666666666667,
+            0.11904761904761918
+          ]
+        },
+        "mean_goodseed": {
+          "estimated_reduced_minus_ambient": 12.583333333333334,
+          "maternal_percentile_CI95": [
+            -13.179464285714287,
+            42.762499999999996
+          ]
+        }
+      },
+      "damaged": {
+        "mean_damage": {
+          "estimated_reduced_minus_ambient": -0.2630078125,
+          "maternal_percentile_CI95": [
+            -0.4125787760416667,
+            -0.09600065104166665
+          ]
+        },
+        "fraction_max": {
+          "estimated_reduced_minus_ambient": -0.22500000000000003,
+          "maternal_percentile_CI95": [
+            -0.5416666666666666,
+            0.041666666666666664
+          ]
+        },
+        "fraction_positive": {
+          "estimated_reduced_minus_ambient": 0.08458333333333334,
+          "maternal_percentile_CI95": [
+            -0.2287499999999999,
+            0.41791666666666666
+          ]
+        },
+        "mean_goodseed": {
+          "estimated_reduced_minus_ambient": -1.2745833333333358,
+          "maternal_percentile_CI95": [
+            -16.81875,
+            13.725020833333323
+          ]
+        }
+      }
+    },
+    "2008": {
+      "intact": {
+        "mean_damage": {
+          "estimated_reduced_minus_ambient": -0.36675022281639935,
+          "maternal_percentile_CI95": [
+            -0.4806961619875223,
+            -0.24642825311942973
+          ]
+        },
+        "fraction_max": {
+          "estimated_reduced_minus_ambient": -0.5699643493761141,
+          "maternal_percentile_CI95": [
+            -0.8141711229946523,
+            -0.2959001782531195
+          ]
+        },
+        "fraction_positive": {
+          "estimated_reduced_minus_ambient": 0.6185383244206774,
+          "maternal_percentile_CI95": [
+            0.33774509803921565,
+            0.8565062388591801
+          ]
+        },
+        "mean_goodseed": {
+          "estimated_reduced_minus_ambient": 48.48395721925134,
+          "maternal_percentile_CI95": [
+            30.232620320855617,
+            68.27647058823527
+          ]
+        }
+      },
+      "damaged": {
+        "mean_damage": {
+          "estimated_reduced_minus_ambient": -0.3185,
+          "maternal_percentile_CI95": [
+            -0.43631180555555565,
+            -0.1941531250000001
+          ]
+        },
+        "fraction_max": {
+          "estimated_reduced_minus_ambient": -0.6416666666666667,
+          "maternal_percentile_CI95": [
+            -0.8333333333333334,
+            -0.4166666666666667
+          ]
+        },
+        "fraction_positive": {
+          "estimated_reduced_minus_ambient": 0.5763888888888888,
+          "maternal_percentile_CI95": [
+            0.3541666666666665,
+            0.786145833333333
+          ]
+        },
+        "mean_goodseed": {
+          "estimated_reduced_minus_ambient": 55.740277777777784,
+          "maternal_percentile_CI95": [
+            35.838576388888896,
+            77.31569444444442
+          ]
+        }
+      }
+    }
+  },
+  "bootstrap": {
+    "n_draws": 5000,
+    "seed": 20261022,
+    "PRNG": "xorshift32 with unsigned modulo",
+    "sample_order": "replicate > year ascending > source treatment arm ndni,dni,ndi,di > mother IDs sorted lexicographically",
+    "percentile_interpolation": "linear over 0-based sorted rank (N-1)*p",
+    "n_biological_sample_unit_mothers": 106
+  },
+  "original_mothers_any_lateral_good_seed_by_year_arm": {
+    "2007": {
+      "ndni": {
+        "n_mothers": 9,
+        "n_positive_nonapical_seed_mothers": 7
+      },
+      "dni": {
+        "n_mothers": 9,
+        "n_positive_nonapical_seed_mothers": 7
+      },
+      "ndi": {
+        "n_mothers": 10,
+        "n_positive_nonapical_seed_mothers": 7
+      },
+      "di": {
+        "n_mothers": 11,
+        "n_positive_nonapical_seed_mothers": 10
+      }
+    },
+    "2008": {
+      "ndni": {
+        "n_mothers": 15,
+        "n_positive_nonapical_seed_mothers": 2
+      },
+      "dni": {
+        "n_mothers": 12,
+        "n_positive_nonapical_seed_mothers": 7
+      },
+      "ndi": {
+        "n_mothers": 21,
+        "n_positive_nonapical_seed_mothers": 14
+      },
+      "di": {
+        "n_mothers": 19,
+        "n_positive_nonapical_seed_mothers": 15
+      }
+    }
+  },
+  "exact_maternal_any_lateral_seed_comparisons": {
+    "2007": {
+      "intact": {
+        "arms_reduced_ambient": [
+          "ndi",
+          "ndni"
+        ],
+        "n_mothers_reduced_ambient": [
+          10,
+          9
+        ],
+        "n_any_lateral_seeds_reduced_ambient": [
+          7,
+          7
+        ],
+        "p_any_lateral_seed_difference": -0.07777777777777783,
+        "fisher_p": 0.9999999999999999,
+        "BH_q_four_year_damage_strata": 0.9999999999999999
+      },
+      "damaged": {
+        "arms_reduced_ambient": [
+          "di",
+          "dni"
+        ],
+        "n_mothers_reduced_ambient": [
+          11,
+          9
+        ],
+        "n_any_lateral_seeds_reduced_ambient": [
+          10,
+          7
+        ],
+        "p_any_lateral_seed_difference": 0.13131313131313127,
+        "fisher_p": 0.5657894736842104,
+        "BH_q_four_year_damage_strata": 0.7543859649122805
+      }
+    },
+    "2008": {
+      "intact": {
+        "arms_reduced_ambient": [
+          "ndi",
+          "ndni"
+        ],
+        "n_mothers_reduced_ambient": [
+          21,
+          15
+        ],
+        "n_any_lateral_seeds_reduced_ambient": [
+          14,
+          2
+        ],
+        "p_any_lateral_seed_difference": 0.5333333333333333,
+        "fisher_p": 0.0021770639606882775,
+        "BH_q_four_year_damage_strata": 0.00870825584275311
+      },
+      "damaged": {
+        "arms_reduced_ambient": [
+          "di",
+          "dni"
+        ],
+        "n_mothers_reduced_ambient": [
+          19,
+          12
+        ],
+        "n_any_lateral_seeds_reduced_ambient": [
+          15,
+          7
+        ],
+        "p_any_lateral_seed_difference": 0.20614035087719296,
+        "fisher_p": 0.25344980115401355,
+        "BH_q_four_year_damage_strata": 0.5068996023080271
+      }
+    }
+  },
+  "within_mother_apical_vs_lateral_damage": {
+    "2007": {
+      "ndni": {
+        "n_mothers_with_both_position_damage_scores": 7,
+        "nonapical_minus_apical_damage_mother_mean": -0.20580357142857147,
+        "n_lateral_more_damaged": 1,
+        "n_lateral_less_damaged": 5,
+        "n_equal": 1
+      },
+      "dni": {
+        "n_mothers_with_both_position_damage_scores": 8,
+        "nonapical_minus_apical_damage_mother_mean": -0.16449218750000005,
+        "n_lateral_more_damaged": 1,
+        "n_lateral_less_damaged": 6,
+        "n_equal": 1
+      },
+      "ndi": {
+        "n_mothers_with_both_position_damage_scores": 7,
+        "nonapical_minus_apical_damage_mother_mean": -0.0514136904761905,
+        "n_lateral_more_damaged": 3,
+        "n_lateral_less_damaged": 4,
+        "n_equal": 0
+      },
+      "di": {
+        "n_mothers_with_both_position_damage_scores": 9,
+        "nonapical_minus_apical_damage_mother_mean": -0.3770833333333334,
+        "n_lateral_more_damaged": 1,
+        "n_lateral_less_damaged": 8,
+        "n_equal": 0
+      }
+    },
+    "2008": {
+      "ndni": {
+        "n_mothers_with_both_position_damage_scores": 8,
+        "nonapical_minus_apical_damage_mother_mean": 0.053515625,
+        "n_lateral_more_damaged": 1,
+        "n_lateral_less_damaged": 2,
+        "n_equal": 5
+      },
+      "dni": {
+        "n_mothers_with_both_position_damage_scores": 12,
+        "nonapical_minus_apical_damage_mother_mean": -0.07708333333333332,
+        "n_lateral_more_damaged": 0,
+        "n_lateral_less_damaged": 5,
+        "n_equal": 7
+      },
+      "ndi": {
+        "n_mothers_with_both_position_damage_scores": 16,
+        "nonapical_minus_apical_damage_mother_mean": -0.04075520833333332,
+        "n_lateral_more_damaged": 9,
+        "n_lateral_less_damaged": 7,
+        "n_equal": 0
+      },
+      "di": {
+        "n_mothers_with_both_position_damage_scores": 15,
+        "nonapical_minus_apical_damage_mother_mean": -0.1880833333333333,
+        "n_lateral_more_damaged": 2,
+        "n_lateral_less_damaged": 12,
+        "n_equal": 1
+      }
+    }
+  },
+  "inference_limits": {
+    "individual_source_head_rows_are_not_independent_mother_replicates": true,
+    "head_damage_score_0p88_is_max_coded_score_not_direct_proportion_of_florets_lost": true,
+    "head_damage_score_is_measured_after_access_treatment_and_not_causal_independent_covariate": true,
+    "original_head_labels_disagree_for_two_2007_mothers_not_repaired": true,
+    "original_mothers_with_no_lateral_heads_not_imputed_damage_zero": true,
+    "high_lateral_goodseed_success_under_insecticide_not_genetic_lego_effect": true,
+    "head_rank_not_orientation_or_phyllary_spine_geometry": true,
+    "randomized_main_design_not_verified_here_against_original_assignment_logs": true,
+    "no_florivore_oviposition_pollinator_delivery_or_seed_germination_at_same_head": true,
+    "new_biological_field_samples_added": 0
+  }
+}
