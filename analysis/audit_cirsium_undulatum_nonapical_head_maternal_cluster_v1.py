@@ -67,8 +67,12 @@ def source_audit(mothers,heads):
     conflicts=[h for h in matched if (
         h["dam"]!=ix[identity(h)]["dam"] or
         h["ins"]!=ix[identity(h)]["ins"])]
-    clean=[h for h in matched if identity(h) not in {
-        identity(x) for x in conflicts}]
+    # Preserve the correctly assigned apical head on 2007|375 even though
+    # its five lateral head rows disagree with the mother-source label.
+    # Reject individual mismatching head rows, NOT every row from their parent.
+    clean=[h for h in matched if (
+        h["dam"]==ix[identity(h)]["dam"] and
+        h["ins"]==ix[identity(h)]["ins"])]
     matched_ids=sorted(set(identity(h) for h in matched))
     unique_heads=[identity(h)+"|"+h["hd"] for h in heads]
     require(len(unique_heads)==len(set(unique_heads)),
