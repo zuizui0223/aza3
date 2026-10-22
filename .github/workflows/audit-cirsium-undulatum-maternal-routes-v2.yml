@@ -1,0 +1,65 @@
+name: Original Cirsium undulatum maternal apex-vs-lateral reproductive routes
+on:
+  pull_request:
+    paths:
+      - 'analysis/audit_cirsium_undulatum_maternal_reproductive_routes_v2.py'
+      - 'tests/test_cirsium_undulatum_maternal_reproductive_routes_v2.py'
+      - 'data/evidence/cirsium_undulatum_real_maternal_reproductive_routes_independent_js_v2.json'
+      - 'docs/CIRSIUM_UNDULATUM_REAL_APICAL_LATERAL_MATERNAL_ROUTES_20261022.md'
+      - '.github/workflows/audit-cirsium-undulatum-maternal-routes-v2.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-usda-mother-route-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify original-sample and negative control tests
+        run: |
+          python -m py_compile analysis/audit_cirsium_undulatum_maternal_reproductive_routes_v2.py tests/test_cirsium_undulatum_maternal_reproductive_routes_v2.py
+          python -m unittest discover -s tests -p 'test_cirsium_undulatum_maternal_reproductive_routes_v2.py' -v
+      - name: Reproduce source-authenticated USDA maternal four-state outcomes
+        run: |
+          python analysis/audit_cirsium_undulatum_maternal_reproductive_routes_v2.py --output /tmp/undulatum_real_reproductive_routes_v2.json
+          python - <<'PY'
+          import json,math
+          a=json.load(open('/tmp/undulatum_real_reproductive_routes_v2.json'))
+          b=json.load(open('data/evidence/cirsium_undulatum_real_maternal_reproductive_routes_independent_js_v2.json'))
+          def check(x,y,path='root'):
+              if isinstance(y,dict):
+                  assert isinstance(x,dict) and set(x)==set(y),(path,'keys',set(x)^set(y))
+                  for key in y:check(x[key],y[key],path+'.'+str(key))
+              elif isinstance(y,list):
+                  assert isinstance(x,list) and len(x)==len(y),(path,'array')
+                  for i,(xx,yy) in enumerate(zip(x,y)):check(xx,yy,path+f'[{i}]')
+              elif isinstance(y,bool):
+                  assert type(x) is bool and x==y,(path,x,y)
+              elif isinstance(y,(int,float)):
+                  assert isinstance(x,(int,float)) and math.isfinite(x)
+                  assert math.isclose(x,y,abs_tol=1e-9,rel_tol=1e-11),(path,x,y)
+              else:
+                  assert x==y,(path,x,y)
+          check(a,b)
+          s=a['maternal_route_states']['2008']
+          assert (s['dni']['states']['lateral_only'],s['dni']['states']['no_good_seed'])==(7,5)
+          assert (s['di']['states']['both_sites'],s['di']['states']['lateral_only'],
+                  s['di']['states']['apical_only'])==(7,8,4)
+          t=a['lateral_presence_fisher_tests']
+          assert t['2008_insecticide_intact']['q_BH_eight']<.05
+          assert t['2008_damage_ambient']['p_exact']<.05
+          assert t['2008_damage_ambient']['q_BH_eight']>.05
+          assert a['source']['coherent_mother_rows']==105
+          assert a['source']['inconsistent_mother_identifiers']==['2007|327']
+          assert not any(a['scientific_limits'].values())
+          print('PASS_105_SOURCE_COHERENT_MOTHER_ROUTE_STATES_2008_SPATIAL_FALLBACK_BH_NEGATIVE_CONTROLS')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-undulatum-original-maternal-routes-v2
+          path: /tmp/undulatum_real_reproductive_routes_v2.json
+          retention-days: 30
