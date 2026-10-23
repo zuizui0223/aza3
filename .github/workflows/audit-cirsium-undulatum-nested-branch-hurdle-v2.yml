@@ -1,0 +1,91 @@
+name: Audit Cirsium actual nested branch seed hurdles
+on:
+  pull_request:
+    paths:
+      - 'analysis/audit_cirsium_undulatum_nested_branch_hurdle_v2.py'
+      - 'tests/test_cirsium_undulatum_nested_branch_hurdle_v2.py'
+      - 'data/evidence/cirsium_undulatum_nested_branch_hurdle_independent_js_v2.json'
+      - 'docs/CIRSIUM_UNDULATUM_NESTED_BRANCH_SEED_HURDLE_20261023.md'
+      - '.github/workflows/audit-cirsium-undulatum-nested-branch-hurdle-v2.yml'
+      - 'data/external/usda_wavyleaf_2007_2008/**'
+      - 'README.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  nested-original-branch-seed-hurdle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test source ontology, same-branch pairs, zero hurdle and negative controls
+        run: |
+          python -m py_compile analysis/audit_cirsium_undulatum_nested_branch_hurdle_v2.py
+          python -m unittest discover -s tests -p 'test_cirsium_undulatum_nested_branch_hurdle_v2.py' -v
+      - name: Reproduce 106 source mothers, 323 heads and 20 actual source-matched branch pairs
+        run: |
+          mkdir -p work/nested_branch
+          python analysis/audit_cirsium_undulatum_nested_branch_hurdle_v2.py \
+            --mothers data/external/usda_wavyleaf_2007_2008/mother_plants.csv \
+            --heads data/external/usda_wavyleaf_2007_2008/flower_heads.csv \
+            --dictionary data/external/usda_wavyleaf_2007_2008/source_dictionary.txt \
+            --bootstrap 5000 \
+            --out work/nested_branch/result.json
+      - name: Match original Git blobs and every original branch pair to independent JS receipt
+        run: |
+          python - <<'PY'
+          import json, math
+          a=json.load(open('work/nested_branch/result.json'))
+          b=json.load(open('data/evidence/cirsium_undulatum_nested_branch_hurdle_independent_js_v2.json'))
+          def match(x,y,key='root'):
+              if isinstance(y,dict):
+                  assert isinstance(x,dict),key
+                  for k,v in y.items():
+                      assert k in x,(key,k)
+                      match(x[k],v,key+'.'+k)
+              elif isinstance(y,list):
+                  assert isinstance(x,list) and len(x)==len(y),(key,len(x),len(y))
+                  for i,(xi,yi) in enumerate(zip(x,y)):match(xi,yi,key+f'[{i}]')
+              elif isinstance(y,bool):
+                  assert isinstance(x,bool) and x==y,(key,x,y)
+              elif isinstance(y,(int,float)):
+                  assert isinstance(x,(int,float)) and math.isfinite(x),(key,x)
+                  assert math.isclose(x,y,rel_tol=1e-10,abs_tol=1e-10),(key,x,y)
+              else:
+                  assert x==y,(key,x,y)
+          source=a['source']['git_blob_sources']
+          for original,field in [('mother_plants.csv','mother_blob_sha'),
+                                 ('flower_heads.csv','head_blob_sha'),
+                                 ('source_dictionary.txt','dictionary_blob_sha')]:
+              assert source[original]==b['source'][field]
+          c=b['counts'];audit=a['source_audit']
+          assert audit['n_original_mothers']==c['mothers']==106
+          assert audit['n_original_head_rows']==c['heads']==323
+          assert audit['n_head_rows_matching_mother']==c['joined_head_rows']==309
+          assert audit['n_clean_head_rows']==c['clean_head_rows']==297
+          assert a['n_exact_branch_pairs']==c['matched_branches']==20
+          assert a['n_original_mothers_with_exact_branch_pairs']==c['matched_mothers']==14
+          match(a['unmatched_intermediate_branch_ids'],b['unmatched_intermediate_branch_ids'])
+          match(a['paired_branches'],b['paired_branches'],'all_original_20_pairs')
+          for year in ('2007','2008'):
+              match(a['by_year'][year],b['by_year'][year],f'{year}_independent')
+          assert a['by_year']['2008']['paired_branch_seed_directions']=={
+              'negative':7,'positive':1,'equal':1}
+          assert a['by_year']['2008']['branch_seed_routes']=={
+              'neither':1,'terminal_only':5,'intermediate_only':0,'both':3}
+          assert a['by_year']['2008']['paired_branch_damage_directions']=={
+              'negative':2,'positive':3,'equal':4}
+          assert a['limits']['no_genetic_lego_or_evolutionary_regain_test']
+          assert a['limits']['new_field_observations']==0
+          print('PASS independent source join: 20 same-code-block branch comparisons; 2008 5 terminal-only + 3 both + 1 neither; no pseudo-replication.')
+          PY
+      - name: Upload computed original-source branch and mother-level results
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-undulatum-nested-branch-seed-hurdle-source-result-v2
+          path: work/nested_branch/result.json
+          if-no-files-found: error
+          retention-days: 30
