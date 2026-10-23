@@ -1,0 +1,3237 @@
+{
+  "version": "aza3_arvense_head_floret_conversion_original_JS_v1",
+  "as_of": "2026-10-23",
+  "source": {
+    "original_author": "Yogita Karpate et al",
+    "study_year": 2022,
+    "preprint_doi": "10.21203/rs.3.rs-6634172/v1",
+    "data_doi": "10.5281/zenodo.15364152",
+    "repo": "Yogita25/Multitrophic_Interactions",
+    "commit": "8a151c62ed069f775a16b9bc5fbdce209cbb8691",
+    "seeds_csv_git_blob": "ca99c762162d15f006f0c73b4603ca71fd320a29"
+  },
+  "source_counts": {
+    "raw_heads": 615,
+    "eligible_heads": 612,
+    "plant_proxies": 164,
+    "site_blocks": 45,
+    "complete_blocks": 36,
+    "complete_sites": {
+      "campus": 12,
+      "construction": 9,
+      "ditch": 8,
+      "rapseed": 7
+    }
+  },
+  "design": {
+    "unit": "site-block x treatment plant proxy (not known biological plant identifier)",
+    "method": "symmetric Shapley/Kitagawa two-factor accounting identity applied to all 36 original four-arm complete blocks",
+    "product": "viable_seeds_per_head = (source Flowers/number sampled heads) * (source Viable_Seeds/source Flowers)",
+    "split": "quantity = (Florets_A-Florets_B)*(p_A+p_B)/2; rate = (p_A-p_B)*(Florets_A+Florets_B)/2",
+    "fraction_identity": "p_good + p_nonviable + p_direct_damaged + p_signed_missing == 1",
+    "source_signed_missing_is_residual_not_confirmed_eaten": true
+  },
+  "bootstrap": {
+    "seed": 20261023,
+    "draws": 10000,
+    "unit": "complete original site block",
+    "sites_fixed": true,
+    "resample_within_each_original_site": true,
+    "site_order": [
+      "campus",
+      "construction",
+      "ditch",
+      "rapseed"
+    ],
+    "sort_order": "site then original block lexicographic",
+    "algorithm": "xorshift32",
+    "conditional_descriptive_not_causal": true
+  },
+  "comparisons": {
+    "bag_minus_control": {
+      "arm_a": "Pollinator Exclusion",
+      "arm_b": "Control",
+      "n_blocks": 36,
+      "measurements": {
+        "florets_per_head_delta": {
+          "mean": -1.3056657848324502,
+          "sign": {
+            "positive": 13,
+            "negative": 22,
+            "zero": 1
+          },
+          "site_means": {
+            "campus": -7.967592592592591,
+            "construction": 3.648148148148146,
+            "ditch": -1.90625,
+            "rapseed": 4.431972789115648
+          },
+          "leave_one_site_out": {
+            "campus": 2.025297619047619,
+            "construction": -2.9569370958259835,
+            "ditch": -1.1340702947845789,
+            "rapseed": -2.6906130268199226
+          },
+          "bootstrap_ci95": [
+            -7.1286541005291,
+            4.080850418871251
+          ]
+        },
+        "good_fraction_delta": {
+          "mean": -0.5230663124174955,
+          "sign": {
+            "positive": 0,
+            "negative": 36,
+            "zero": 0
+          },
+          "site_means": {
+            "campus": -0.52483824952638,
+            "construction": -0.455236701567195,
+            "ditch": -0.6402239074350591,
+            "rapseed": -0.4733438113040075
+          },
+          "leave_one_site_out": {
+            "campus": -0.5221803438630533,
+            "construction": -0.545676182700929,
+            "ditch": -0.4895927138410489,
+            "rapseed": -0.5350682954448891
+          },
+          "bootstrap_ci95": [
+            -0.586733965245683,
+            -0.4556072845699715
+          ]
+        },
+        "good_seeds_per_head_delta": {
+          "mean": -41.58818342151676,
+          "sign": {
+            "positive": 0,
+            "negative": 36,
+            "zero": 0
+          },
+          "site_means": {
+            "campus": -46.91931216931218,
+            "construction": -33.8968253968254,
+            "ditch": -50.8125,
+            "rapseed": -31.795918367346935
+          },
+          "leave_one_site_out": {
+            "campus": -38.922619047619044,
+            "construction": -44.15196942974722,
+            "ditch": -38.95266439909297,
+            "rapseed": -43.95183360700602
+          },
+          "bootstrap_ci95": [
+            -46.767694554673696,
+            -36.26366016313933
+          ]
+        },
+        "floret_quantity_component": {
+          "mean": -0.3333878774364861,
+          "sign": {
+            "positive": 13,
+            "negative": 22,
+            "zero": 1
+          },
+          "site_means": {
+            "campus": -2.3891318243063773,
+            "construction": 1.4754754245860497,
+            "ditch": -0.7963494781580545,
+            "rapseed": 1.39416218685043
+          },
+          "leave_one_site_out": {
+            "campus": 0.6944840959984594,
+            "construction": -0.936342311443998,
+            "ditch": -0.2011131343731807,
+            "rapseed": -0.7503827205402244
+          },
+          "bootstrap_ci95": [
+            -2.1648438299978197,
+            1.364560689525871
+          ]
+        },
+        "good_fraction_component": {
+          "mean": -41.254795544080274,
+          "sign": {
+            "positive": 0,
+            "negative": 36,
+            "zero": 0
+          },
+          "site_means": {
+            "campus": -44.53018034500579,
+            "construction": -35.37230082141146,
+            "ditch": -50.01615052184195,
+            "rapseed": -33.19008055419737
+          },
+          "leave_one_site_out": {
+            "campus": -39.617103143617506,
+            "construction": -43.21562711830321,
+            "ditch": -38.751551264719794,
+            "rapseed": -43.20145088646579
+          },
+          "bootstrap_ci95": [
+            -46.55601998719051,
+            -35.77320957696528
+          ]
+        },
+        "nonviable_fraction_delta": {
+          "mean": 0.38871814419478146,
+          "sign": {
+            "positive": 31,
+            "negative": 5,
+            "zero": 0
+          },
+          "site_means": {
+            "campus": 0.43129473474385754,
+            "construction": 0.2566917870747981,
+            "ditch": 0.5191213261047258,
+            "rapseed": 0.3364456687964073
+          },
+          "leave_one_site_out": {
+            "campus": 0.36742984892024344,
+            "construction": 0.43272692990144257,
+            "ditch": 0.35146009222051156,
+            "rapseed": 0.40133563825645796
+          },
+          "bootstrap_ci95": [
+            0.2900425515519715,
+            0.4945387997936383
+          ]
+        },
+        "direct_damage_fraction_delta": {
+          "mean": -0.03599880312039949,
+          "sign": {
+            "positive": 13,
+            "negative": 18,
+            "zero": 5
+          },
+          "site_means": {
+            "campus": -0.03815030225508415,
+            "construction": -0.008119380940036138,
+            "ditch": -0.09673552005727293,
+            "rapseed": 0.0012579005207337946
+          },
+          "leave_one_site_out": {
+            "campus": -0.03492305355305717,
+            "construction": -0.04529194384718728,
+            "ditch": -0.01864545542414994,
+            "rapseed": -0.04499180055101786
+          },
+          "bootstrap_ci95": [
+            -0.07433031665219172,
+            -0.002452570427897165
+          ]
+        },
+        "signed_missing_fraction_delta": {
+          "mean": 0.17034697134311355,
+          "sign": {
+            "positive": 29,
+            "negative": 7,
+            "zero": 0
+          },
+          "site_means": {
+            "campus": 0.13169381703760666,
+            "construction": 0.20666429543243295,
+            "ditch": 0.217838101387606,
+            "rapseed": 0.1356402419868664
+          },
+          "leave_one_site_out": {
+            "campus": 0.18967354849586707,
+            "construction": 0.15824119664667383,
+            "ditch": 0.15677807704468716,
+            "rapseed": 0.17872445773944912
+          },
+          "bootstrap_ci95": [
+            0.06779096328863897,
+            0.2615327742805713
+          ]
+        }
+      },
+      "paired_block_rows": [
+        {
+          "site": "campus",
+          "block": "B1",
+          "florets_per_head_delta": -15.666666666666671,
+          "good_fraction_delta": -0.5323795287920848,
+          "good_seeds_per_head_delta": -48.47619047619048,
+          "floret_quantity_component": -4.732339193774172,
+          "good_fraction_component": -43.7438512824163,
+          "nonviable_fraction_delta": 0.10219944480034165,
+          "direct_damage_fraction_delta": -0.17626877357819062,
+          "signed_missing_fraction_delta": 0.6064488575699338
+        },
+        {
+          "site": "campus",
+          "block": "B11",
+          "florets_per_head_delta": -5.666666666666657,
+          "good_fraction_delta": -0.610511516941691,
+          "good_seeds_per_head_delta": -56.333333333333336,
+          "floret_quantity_component": -2.303064083993672,
+          "good_fraction_component": -54.03026924933965,
+          "nonviable_fraction_delta": -0.08209548694935953,
+          "direct_damage_fraction_delta": 0.007782101167315175,
+          "signed_missing_fraction_delta": 0.6848249027237354
+        },
+        {
+          "site": "campus",
+          "block": "B12",
+          "florets_per_head_delta": 20.08333333333333,
+          "good_fraction_delta": -0.5717189253276311,
+          "good_seeds_per_head_delta": -44.5,
+          "floret_quantity_component": 6.549735707379725,
+          "good_fraction_component": -51.049735707379725,
+          "nonviable_fraction_delta": 0.5977071115533631,
+          "direct_damage_fraction_delta": -0.07255520504731862,
+          "signed_missing_fraction_delta": 0.04656701882158659
+        },
+        {
+          "site": "campus",
+          "block": "B13",
+          "florets_per_head_delta": -5.166666666666657,
+          "good_fraction_delta": -0.5310328957461263,
+          "good_seeds_per_head_delta": -39.333333333333336,
+          "floret_quantity_component": -1.4972395114218269,
+          "good_fraction_component": -37.836093821911504,
+          "nonviable_fraction_delta": -0.07321001994345702,
+          "direct_damage_fraction_delta": 0.00961011637335904,
+          "signed_missing_fraction_delta": 0.5946327993162244
+        },
+        {
+          "site": "campus",
+          "block": "B2",
+          "florets_per_head_delta": 6.2222222222222285,
+          "good_fraction_delta": -0.4781342966425839,
+          "good_seeds_per_head_delta": -37.888888888888886,
+          "floret_quantity_component": 2.0618878972470154,
+          "good_fraction_component": -39.9507767861359,
+          "nonviable_fraction_delta": 0.20330429239269018,
+          "direct_damage_fraction_delta": 0.020856353591160223,
+          "signed_missing_fraction_delta": 0.25397365065873356
+        },
+        {
+          "site": "campus",
+          "block": "B21",
+          "florets_per_head_delta": -68.33333333333333,
+          "good_fraction_delta": -0.21756410256410255,
+          "good_seeds_per_head_delta": -36.66666666666667,
+          "floret_quantity_component": -20.530662393162395,
+          "good_fraction_component": -16.13600427350427,
+          "nonviable_fraction_delta": 1.422051282051282,
+          "direct_damage_fraction_delta": -0.20884615384615385,
+          "signed_missing_fraction_delta": -0.9956410256410256
+        },
+        {
+          "site": "campus",
+          "block": "B3",
+          "florets_per_head_delta": -8,
+          "good_fraction_delta": -0.8051572253660813,
+          "good_seeds_per_head_delta": -82,
+          "floret_quantity_component": -3.362977655912724,
+          "good_fraction_component": -78.63702234408727,
+          "nonviable_fraction_delta": 0.7125488594597749,
+          "direct_damage_fraction_delta": 0,
+          "signed_missing_fraction_delta": 0.09260836590630653
+        },
+        {
+          "site": "campus",
+          "block": "B4",
+          "florets_per_head_delta": -1,
+          "good_fraction_delta": -0.548901098901099,
+          "good_seeds_per_head_delta": -57.666666666666664,
+          "floret_quantity_component": -0.3065018315018315,
+          "good_fraction_component": -57.36016483516484,
+          "nonviable_fraction_delta": 0.6207570207570208,
+          "direct_damage_fraction_delta": -0.05396825396825397,
+          "signed_missing_fraction_delta": -0.017887667887667894
+        },
+        {
+          "site": "campus",
+          "block": "B5",
+          "florets_per_head_delta": -2.3333333333333286,
+          "good_fraction_delta": -0.8846105419790533,
+          "good_seeds_per_head_delta": -76.66666666666667,
+          "floret_quantity_component": -1.179900417787441,
+          "good_fraction_component": -75.48676624887922,
+          "nonviable_fraction_delta": 0.6864304927602587,
+          "direct_damage_fraction_delta": 0.03762376237623762,
+          "signed_missing_fraction_delta": 0.1605562868425571
+        },
+        {
+          "site": "campus",
+          "block": "B6",
+          "florets_per_head_delta": -2.0833333333333286,
+          "good_fraction_delta": -0.39808690519590995,
+          "good_seeds_per_head_delta": -28.166666666666664,
+          "floret_quantity_component": -0.5825615274667394,
+          "good_fraction_component": -27.584105139199924,
+          "nonviable_fraction_delta": 0.6169470340086454,
+          "direct_damage_fraction_delta": -0.052132701421800945,
+          "signed_missing_fraction_delta": -0.1667274273909345
+        },
+        {
+          "site": "campus",
+          "block": "B8",
+          "florets_per_head_delta": -4.666666666666671,
+          "good_fraction_delta": -0.6656704781704782,
+          "good_seeds_per_head_delta": -50,
+          "floret_quantity_component": -2.2936157311157332,
+          "good_fraction_component": -47.706384268884264,
+          "nonviable_fraction_delta": 0.3363218988218988,
+          "direct_damage_fraction_delta": 0.03365384615384615,
+          "signed_missing_fraction_delta": 0.29569473319473316
+        },
+        {
+          "site": "campus",
+          "block": "B9",
+          "florets_per_head_delta": -9,
+          "good_fraction_delta": -0.054291478689718946,
+          "good_seeds_per_head_delta": -5.333333333333334,
+          "floret_quantity_component": -0.49234315016672736,
+          "good_fraction_component": -4.840990183166606,
+          "nonviable_fraction_delta": 0.032574887213831394,
+          "direct_damage_fraction_delta": -0.0035587188612099642,
+          "signed_missing_fraction_delta": 0.02527531033709754
+        },
+        {
+          "site": "construction",
+          "block": "B10",
+          "florets_per_head_delta": -19.41666666666667,
+          "good_fraction_delta": -0.3894099737275027,
+          "good_seeds_per_head_delta": -36.416666666666664,
+          "floret_quantity_component": -4.111864262855928,
+          "good_fraction_component": -32.30480240381075,
+          "nonviable_fraction_delta": 0.1623984089179169,
+          "direct_damage_fraction_delta": 0.030532570530606234,
+          "signed_missing_fraction_delta": 0.19647899427897952
+        },
+        {
+          "site": "construction",
+          "block": "B18",
+          "florets_per_head_delta": -18.16666666666667,
+          "good_fraction_delta": -0.29345794392523367,
+          "good_seeds_per_head_delta": -26.166666666666668,
+          "floret_quantity_component": -2.6655763239875396,
+          "good_fraction_component": -23.50109034267913,
+          "nonviable_fraction_delta": -0.12643148611293925,
+          "direct_damage_fraction_delta": 0.15923390812162694,
+          "signed_missing_fraction_delta": 0.260655521916546
+        },
+        {
+          "site": "construction",
+          "block": "B19",
+          "florets_per_head_delta": 1.3333333333333286,
+          "good_fraction_delta": -0.6258615288220551,
+          "good_seeds_per_head_delta": -46.66666666666667,
+          "floret_quantity_component": 0.48156850459481876,
+          "good_fraction_component": -47.1482351712615,
+          "nonviable_fraction_delta": 0.15625,
+          "direct_damage_fraction_delta": 0.07017543859649122,
+          "signed_missing_fraction_delta": 0.39943609022556387
+        },
+        {
+          "site": "construction",
+          "block": "B20",
+          "florets_per_head_delta": 8.833333333333329,
+          "good_fraction_delta": -0.6336474101534343,
+          "good_seeds_per_head_delta": -43.166666666666664,
+          "floret_quantity_component": 3.4592219304568683,
+          "good_fraction_component": -46.62588859712355,
+          "nonviable_fraction_delta": 0.40229121614663776,
+          "direct_damage_fraction_delta": 0.01545669858922871,
+          "signed_missing_fraction_delta": 0.21589949541756773
+        },
+        {
+          "site": "construction",
+          "block": "B24",
+          "florets_per_head_delta": -1.1666666666666714,
+          "good_fraction_delta": -0.3875543660086985,
+          "good_seeds_per_head_delta": -27.90476190476191,
+          "floret_quantity_component": -0.5498829039812668,
+          "good_fraction_component": -27.35487900078064,
+          "nonviable_fraction_delta": 0.3321512211441954,
+          "direct_damage_fraction_delta": -0.007159585145533623,
+          "signed_missing_fraction_delta": 0.06256273001003679
+        },
+        {
+          "site": "construction",
+          "block": "B34",
+          "florets_per_head_delta": 16.166666666666657,
+          "good_fraction_delta": -0.455915449450598,
+          "good_seeds_per_head_delta": -30.833333333333336,
+          "floret_quantity_component": 5.52592376035185,
+          "good_fraction_component": -36.35925709368519,
+          "nonviable_fraction_delta": 0.35299413088566256,
+          "direct_damage_fraction_delta": -0.002325581395348837,
+          "signed_missing_fraction_delta": 0.10524689996028419
+        },
+        {
+          "site": "construction",
+          "block": "B35",
+          "florets_per_head_delta": -1.6666666666666572,
+          "good_fraction_delta": -0.511921458625526,
+          "good_seeds_per_head_delta": -43.333333333333336,
+          "floret_quantity_component": -0.5878915381019135,
+          "good_fraction_component": -42.745441795231415,
+          "nonviable_fraction_delta": 0.4310850439882698,
+          "direct_damage_fraction_delta": -0.027508606400612014,
+          "signed_missing_fraction_delta": 0.1083450210378682
+        },
+        {
+          "site": "construction",
+          "block": "B39",
+          "florets_per_head_delta": 39,
+          "good_fraction_delta": -0.4635416666666667,
+          "good_seeds_per_head_delta": -29.666666666666668,
+          "floret_quantity_component": 9.0390625,
+          "good_fraction_component": -38.70572916666667,
+          "nonviable_fraction_delta": 0.16216626213592233,
+          "direct_damage_fraction_delta": -0.140625,
+          "signed_missing_fraction_delta": 0.44200040453074435
+        },
+        {
+          "site": "construction",
+          "block": "B7",
+          "florets_per_head_delta": 7.916666666666671,
+          "good_fraction_delta": -0.3358205167250393,
+          "good_seeds_per_head_delta": -20.916666666666664,
+          "floret_quantity_component": 2.6887171547975584,
+          "good_fraction_component": -23.60538382146422,
+          "nonviable_fraction_delta": 0.4373212865675177,
+          "direct_damage_fraction_delta": -0.1708542713567839,
+          "signed_missing_fraction_delta": 0.06935350151430553
+        },
+        {
+          "site": "ditch",
+          "block": "B37",
+          "florets_per_head_delta": 27.33333333333333,
+          "good_fraction_delta": -0.7419550698239223,
+          "good_seeds_per_head_delta": -38.833333333333336,
+          "floret_quantity_component": 11.372293058085406,
+          "good_fraction_component": -50.20562639141874,
+          "nonviable_fraction_delta": 0.7489374620522161,
+          "direct_damage_fraction_delta": -0.5227686703096539,
+          "signed_missing_fraction_delta": 0.51578627808136
+        },
+        {
+          "site": "ditch",
+          "block": "B38",
+          "florets_per_head_delta": -4.333333333333343,
+          "good_fraction_delta": -0.46974554197555596,
+          "good_seeds_per_head_delta": -36.33333333333333,
+          "floret_quantity_component": -1.337290456154414,
+          "good_fraction_component": -34.996042877178915,
+          "nonviable_fraction_delta": 0.6574033259867762,
+          "direct_damage_fraction_delta": -0.20869565217391303,
+          "signed_missing_fraction_delta": 0.021037868162692847
+        },
+        {
+          "site": "ditch",
+          "block": "B40",
+          "florets_per_head_delta": -24.25,
+          "good_fraction_delta": -0.5617254493658989,
+          "good_seeds_per_head_delta": -53.083333333333336,
+          "floret_quantity_component": -9.900689413329863,
+          "good_fraction_component": -43.18264392000347,
+          "nonviable_fraction_delta": 0.5818330368892167,
+          "direct_damage_fraction_delta": -0.1409555623038769,
+          "signed_missing_fraction_delta": 0.12084797478055903
+        },
+        {
+          "site": "ditch",
+          "block": "B42",
+          "florets_per_head_delta": -6.666666666666657,
+          "good_fraction_delta": -0.8332330284063553,
+          "good_seeds_per_head_delta": -75,
+          "floret_quantity_component": -3.3419595570534373,
+          "good_fraction_component": -71.65804044294656,
+          "nonviable_fraction_delta": 0.3432233991333654,
+          "direct_damage_fraction_delta": 0.10887096774193548,
+          "signed_missing_fraction_delta": 0.3811386615310544
+        },
+        {
+          "site": "ditch",
+          "block": "B43",
+          "florets_per_head_delta": -13,
+          "good_fraction_delta": -0.8177854619258814,
+          "good_seeds_per_head_delta": -68.66666666666667,
+          "floret_quantity_component": -5.560888521386154,
+          "good_fraction_component": -63.10577814528052,
+          "nonviable_fraction_delta": 0.6003908892730963,
+          "direct_damage_fraction_delta": 0,
+          "signed_missing_fraction_delta": 0.21739457265278508
+        },
+        {
+          "site": "ditch",
+          "block": "B45",
+          "florets_per_head_delta": 0,
+          "good_fraction_delta": -0.3082191780821918,
+          "good_seeds_per_head_delta": -22.5,
+          "floret_quantity_component": 0,
+          "good_fraction_component": -22.5,
+          "nonviable_fraction_delta": 0.2671232876712329,
+          "direct_damage_fraction_delta": 0,
+          "signed_missing_fraction_delta": 0.0410958904109589
+        },
+        {
+          "site": "ditch",
+          "block": "B47",
+          "florets_per_head_delta": 1,
+          "good_fraction_delta": -0.6574346165148398,
+          "good_seeds_per_head_delta": -53.75,
+          "floret_quantity_component": 0.48835586247428736,
+          "good_fraction_component": -54.238355862474286,
+          "nonviable_fraction_delta": 0.15153296111274367,
+          "direct_damage_fraction_delta": 0.018831423253991578,
+          "signed_missing_fraction_delta": 0.4870702321481046
+        },
+        {
+          "site": "ditch",
+          "block": "B48",
+          "florets_per_head_delta": 4.666666666666671,
+          "good_fraction_delta": -0.7316929133858268,
+          "good_seeds_per_head_delta": -58.333333333333336,
+          "floret_quantity_component": 1.9093832020997397,
+          "good_fraction_component": -60.242716535433075,
+          "nonviable_fraction_delta": 0.8025262467191601,
+          "direct_damage_fraction_delta": -0.029166666666666667,
+          "signed_missing_fraction_delta": -0.041666666666666664
+        },
+        {
+          "site": "rapseed",
+          "block": "B17",
+          "florets_per_head_delta": 3.857142857142861,
+          "good_fraction_delta": -0.006339144215530904,
+          "good_seeds_per_head_delta": -0.5714285714285714,
+          "floret_quantity_component": 0.012225492415666755,
+          "good_fraction_component": -0.5836540638442382,
+          "nonviable_fraction_delta": -0.021164199570646636,
+          "direct_damage_fraction_delta": -0.014263074484944533,
+          "signed_missing_fraction_delta": 0.04176641827112204
+        },
+        {
+          "site": "rapseed",
+          "block": "B26",
+          "florets_per_head_delta": 12.333333333333329,
+          "good_fraction_delta": -0.8064516129032258,
+          "good_seeds_per_head_delta": -50,
+          "floret_quantity_component": 4.97311827956989,
+          "good_fraction_component": -54.97311827956988,
+          "nonviable_fraction_delta": 0.48707748686050434,
+          "direct_damage_fraction_delta": 0.04484304932735426,
+          "signed_missing_fraction_delta": 0.27453107671536714
+        },
+        {
+          "site": "rapseed",
+          "block": "B27",
+          "florets_per_head_delta": -6,
+          "good_fraction_delta": -0.824004455583403,
+          "good_seeds_per_head_delta": -52.333333333333336,
+          "floret_quantity_component": -2.8930659983291562,
+          "good_fraction_component": -49.44026733500418,
+          "nonviable_fraction_delta": 0.8755221386800334,
+          "direct_damage_fraction_delta": 0,
+          "signed_missing_fraction_delta": -0.05151768309663046
+        },
+        {
+          "site": "rapseed",
+          "block": "B28",
+          "florets_per_head_delta": -4,
+          "good_fraction_delta": -0.3612643064697859,
+          "good_seeds_per_head_delta": -28,
+          "floret_quantity_component": -0.9051770147660558,
+          "good_fraction_component": -27.094822985233943,
+          "nonviable_fraction_delta": 0.3711676451402478,
+          "direct_damage_fraction_delta": 0,
+          "signed_missing_fraction_delta": -0.009903338670461961
+        },
+        {
+          "site": "rapseed",
+          "block": "B30",
+          "florets_per_head_delta": -7.166666666666664,
+          "good_fraction_delta": -0.5066806408511995,
+          "good_seeds_per_head_delta": -36.66666666666667,
+          "floret_quantity_component": -2.5079467959483033,
+          "good_fraction_component": -34.158719870718365,
+          "nonviable_fraction_delta": 0.561124799274323,
+          "direct_damage_fraction_delta": -0.028169014084507043,
+          "signed_missing_fraction_delta": -0.026275144338616552
+        },
+        {
+          "site": "rapseed",
+          "block": "B31",
+          "florets_per_head_delta": -3.666666666666657,
+          "good_fraction_delta": -0.23618483412322272,
+          "good_seeds_per_head_delta": -16.666666666666668,
+          "floret_quantity_component": -0.4880055292259071,
+          "good_fraction_component": -16.178661137440756,
+          "nonviable_fraction_delta": 0.22310426540284356,
+          "direct_damage_fraction_delta": -0.009478672985781991,
+          "signed_missing_fraction_delta": 0.022559241706161137
+        },
+        {
+          "site": "rapseed",
+          "block": "B32",
+          "florets_per_head_delta": 35.66666666666667,
+          "good_fraction_delta": -0.5724816849816851,
+          "good_seeds_per_head_delta": -38.333333333333336,
+          "floret_quantity_component": 11.567986874236876,
+          "good_fraction_component": -49.90132020757021,
+          "nonviable_fraction_delta": -0.1417124542124542,
+          "direct_damage_fraction_delta": 0.015873015873015872,
+          "signed_missing_fraction_delta": 0.6983211233211234
+        }
+      ],
+      "total_identity_mean_residual": 0,
+      "good_fraction_categories_identity_mean_residual": 5.551115123125783e-17
+    },
+    "predator_exclusion_minus_control": {
+      "arm_a": "Predator Exclusion",
+      "arm_b": "Control",
+      "n_blocks": 36,
+      "measurements": {
+        "florets_per_head_delta": {
+          "mean": -5.818628747795415,
+          "sign": {
+            "positive": 11,
+            "negative": 24,
+            "zero": 1
+          },
+          "site_means": {
+            "campus": -12.057870370370372,
+            "construction": -0.662962962962964,
+            "ditch": -4.125000000000001,
+            "rapseed": -3.6870748299319698
+          },
+          "leave_one_site_out": {
+            "campus": -2.699007936507936,
+            "construction": -7.537184009406234,
+            "ditch": -6.30252267573696,
+            "rapseed": -6.333141762452109
+          },
+          "bootstrap_ci95": [
+            -9.871994598765433,
+            -1.8807831790123508
+          ]
+        },
+        "good_fraction_delta": {
+          "mean": -0.00593206206512116,
+          "sign": {
+            "positive": 17,
+            "negative": 19,
+            "zero": 0
+          },
+          "site_means": {
+            "campus": -0.05096782432322062,
+            "construction": -0.017214539436699563,
+            "ditch": -0.0062891706079144585,
+            "rapseed": 0.08618626818969963
+          },
+          "leave_one_site_out": {
+            "campus": 0.01658581906392857,
+            "construction": -0.002171236274595032,
+            "ditch": -0.005830031052894506,
+            "rapseed": -0.028167521092146864
+          },
+          "bootstrap_ci95": [
+            -0.06417105341038234,
+            0.05207994902577053
+          ]
+        },
+        "good_seeds_per_head_delta": {
+          "mean": -3.8199955908289263,
+          "sign": {
+            "positive": 14,
+            "negative": 21,
+            "zero": 1
+          },
+          "site_means": {
+            "campus": -9.90958994708995,
+            "construction": -1.0222222222222217,
+            "ditch": -3.937500000000001,
+            "rapseed": 3.1564625850340136
+          },
+          "leave_one_site_out": {
+            "campus": -0.7751984126984129,
+            "construction": -4.752586713697826,
+            "ditch": -3.786422902494333,
+            "rapseed": -5.503968253968257
+          },
+          "bootstrap_ci95": [
+            -8.75088955026455,
+            1.1977992724867716
+          ]
+        },
+        "floret_quantity_component": {
+          "mean": -3.7729988481266625,
+          "sign": {
+            "positive": 11,
+            "negative": 24,
+            "zero": 1
+          },
+          "site_means": {
+            "campus": -7.1799120781469545,
+            "construction": 0.030949740316319127,
+            "ditch": -3.7715500563720874,
+            "rapseed": -2.8250229723809426
+          },
+          "leave_one_site_out": {
+            "campus": -2.0695422331165174,
+            "construction": -5.04098171094099,
+            "ditch": -3.77341278862797,
+            "rapseed": -4.001820611237699
+          },
+          "bootstrap_ci95": [
+            -6.432375848977402,
+            -1.220288726230444
+          ]
+        },
+        "good_fraction_component": {
+          "mean": -0.046996742702260126,
+          "sign": {
+            "positive": 17,
+            "negative": 19,
+            "zero": 0
+          },
+          "site_means": {
+            "campus": -2.729677868942991,
+            "construction": -1.0531719625385427,
+            "ditch": -0.1659499436279117,
+            "rapseed": 5.981485557414956
+          },
+          "leave_one_site_out": {
+            "campus": 1.2943438204181048,
+            "construction": 0.28839499724316703,
+            "ditch": -0.013010113866359798,
+            "rapseed": -1.502147642730554
+          },
+          "bootstrap_ci95": [
+            -4.42128518990567,
+            4.431110119350396
+          ]
+        },
+        "nonviable_fraction_delta": {
+          "mean": 0.00512595216403084,
+          "sign": {
+            "positive": 19,
+            "negative": 17,
+            "zero": 0
+          },
+          "site_means": {
+            "campus": 0.09741487152749913,
+            "construction": -0.042084467377412886,
+            "ditch": 0.03949716065463432,
+            "rapseed": -0.1316658941807483
+          },
+          "leave_one_site_out": {
+            "campus": -0.04101850751770331,
+            "construction": 0.02086275867784541,
+            "ditch": -0.0046943931189987265,
+            "rapseed": 0.03814467369552925
+          },
+          "bootstrap_ci95": [
+            -0.05411701579601944,
+            0.06149796235823005
+          ]
+        },
+        "direct_damage_fraction_delta": {
+          "mean": -0.021408570399947115,
+          "sign": {
+            "positive": 16,
+            "negative": 14,
+            "zero": 6
+          },
+          "site_means": {
+            "campus": -0.016144207199996333,
+            "construction": 0.0009841256944010852,
+            "ditch": -0.07477405308330913,
+            "rapseed": 0.001765320774103295
+          },
+          "leave_one_site_out": {
+            "campus": -0.02404075199992251,
+            "construction": -0.028872802431396515,
+            "ditch": -0.006161289633272255,
+            "rapseed": -0.02700226826954549
+          },
+          "bootstrap_ci95": [
+            -0.06224253368388093,
+            0.015456960394089074
+          ]
+        },
+        "signed_missing_fraction_delta": {
+          "mean": 0.022214680301037446,
+          "sign": {
+            "positive": 20,
+            "negative": 16,
+            "zero": 0
+          },
+          "site_means": {
+            "campus": -0.030302840004282183,
+            "construction": 0.058314881119711344,
+            "ditch": 0.0415660630365893,
+            "rapseed": 0.04371430521694536
+          },
+          "leave_one_site_out": {
+            "campus": 0.048473440453697274,
+            "construction": 0.01018128002814614,
+            "ditch": 0.016685713805165477,
+            "rapseed": 0.017025115666163115
+          },
+          "bootstrap_ci95": [
+            -0.021167445646087843,
+            0.07254928933148821
+          ]
+        }
+      },
+      "paired_block_rows": [
+        {
+          "site": "campus",
+          "block": "B1",
+          "florets_per_head_delta": -5,
+          "good_fraction_delta": -0.24766573295985056,
+          "good_seeds_per_head_delta": -23.892857142857146,
+          "floret_quantity_component": -2.2221055088702144,
+          "good_fraction_component": -21.670751633986924,
+          "nonviable_fraction_delta": 0.22913165266106444,
+          "direct_damage_fraction_delta": -0.20317460317460317,
+          "signed_missing_fraction_delta": 0.22170868347338935
+        },
+        {
+          "site": "campus",
+          "block": "B11",
+          "florets_per_head_delta": 1.3333333333333428,
+          "good_fraction_delta": -0.010239983195925006,
+          "good_seeds_per_head_delta": 0,
+          "floret_quantity_component": 0.9420784540251077,
+          "good_fraction_component": -0.9420784540251006,
+          "nonviable_fraction_delta": -0.11565929737961453,
+          "direct_damage_fraction_delta": 0.046762589928057555,
+          "signed_missing_fraction_delta": 0.07913669064748201
+        },
+        {
+          "site": "campus",
+          "block": "B12",
+          "florets_per_head_delta": -5.25,
+          "good_fraction_delta": 0.06368829397220566,
+          "good_seeds_per_head_delta": 1.5,
+          "floret_quantity_component": -3.3801155256202575,
+          "good_fraction_component": 4.880115525620258,
+          "nonviable_fraction_delta": 0.14226845141671637,
+          "direct_damage_fraction_delta": -0.07255520504731862,
+          "signed_missing_fraction_delta": -0.13340154034160343
+        },
+        {
+          "site": "campus",
+          "block": "B13",
+          "florets_per_head_delta": -11.666666666666664,
+          "good_fraction_delta": -0.16388382887817038,
+          "good_seeds_per_head_delta": -16.666666666666668,
+          "floret_quantity_component": -5.522566302951078,
+          "good_fraction_component": -11.144100363715586,
+          "nonviable_fraction_delta": 0.14128020624670928,
+          "direct_damage_fraction_delta": 0.009180641374009771,
+          "signed_missing_fraction_delta": 0.013422981257451339
+        },
+        {
+          "site": "campus",
+          "block": "B2",
+          "florets_per_head_delta": -7.444444444444443,
+          "good_fraction_delta": -0.10194883826534468,
+          "good_seeds_per_head_delta": -11.688888888888883,
+          "floret_quantity_component": -3.867147464197717,
+          "good_fraction_component": -7.821741424691167,
+          "nonviable_fraction_delta": 0.13220313327783242,
+          "direct_damage_fraction_delta": 0.07530840838568077,
+          "signed_missing_fraction_delta": -0.10556270339816846
+        },
+        {
+          "site": "campus",
+          "block": "B21",
+          "florets_per_head_delta": -28.5,
+          "good_fraction_delta": 0.14818050425566082,
+          "good_seeds_per_head_delta": 0.1666666666666643,
+          "floret_quantity_component": -13.77464910872009,
+          "good_fraction_component": 13.941315775386755,
+          "nonviable_fraction_delta": 0.2249044483700016,
+          "direct_damage_fraction_delta": -0.22549542315721857,
+          "signed_missing_fraction_delta": -0.1475895294684439
+        },
+        {
+          "site": "campus",
+          "block": "B3",
+          "florets_per_head_delta": -24,
+          "good_fraction_delta": 0.09550411595018649,
+          "good_seeds_per_head_delta": -12.333333333333343,
+          "floret_quantity_component": -20.896869063533384,
+          "good_fraction_component": 8.563535730200055,
+          "nonviable_fraction_delta": -0.009962710194891991,
+          "direct_damage_fraction_delta": 0,
+          "signed_missing_fraction_delta": -0.08554140575529445
+        },
+        {
+          "site": "campus",
+          "block": "B4",
+          "florets_per_head_delta": -2.6666666666666714,
+          "good_fraction_delta": 0.04771211416162546,
+          "good_seeds_per_head_delta": 3.3333333333333286,
+          "floret_quantity_component": -1.612822501421853,
+          "good_fraction_component": 4.946155834755173,
+          "nonviable_fraction_delta": 0.041704151801871675,
+          "direct_damage_fraction_delta": -0.05396825396825397,
+          "signed_missing_fraction_delta": -0.035448011995243264
+        },
+        {
+          "site": "campus",
+          "block": "B5",
+          "florets_per_head_delta": -37.833333333333336,
+          "good_fraction_delta": -0.4068809882017578,
+          "good_seeds_per_head_delta": -55.66666666666667,
+          "floret_quantity_component": -28.1682932140312,
+          "good_fraction_component": -27.498373452635462,
+          "nonviable_fraction_delta": 0.2071818829677726,
+          "direct_damage_fraction_delta": 0.0958904109589041,
+          "signed_missing_fraction_delta": 0.10380869427508116
+        },
+        {
+          "site": "campus",
+          "block": "B6",
+          "florets_per_head_delta": -5,
+          "good_fraction_delta": -0.3613260470064803,
+          "good_seeds_per_head_delta": -25.999999999999996,
+          "floret_quantity_component": -1.490049811393752,
+          "good_fraction_component": -24.509950188606247,
+          "nonviable_fraction_delta": 0.534529451591063,
+          "direct_damage_fraction_delta": 0.11623464551697456,
+          "signed_missing_fraction_delta": -0.2894380501015572
+        },
+        {
+          "site": "campus",
+          "block": "B8",
+          "florets_per_head_delta": -2,
+          "good_fraction_delta": -0.0604354354354355,
+          "good_seeds_per_head_delta": -6,
+          "floret_quantity_component": -1.5882132132132132,
+          "good_fraction_component": -4.4117867867867915,
+          "nonviable_fraction_delta": -0.014639639639639629,
+          "direct_damage_fraction_delta": 0,
+          "signed_missing_fraction_delta": 0.07507507507507508
+        },
+        {
+          "site": "campus",
+          "block": "B9",
+          "florets_per_head_delta": -16.66666666666667,
+          "good_fraction_delta": 0.3856819337246383,
+          "good_seeds_per_head_delta": 28.333333333333332,
+          "floret_quantity_component": -4.578191677835807,
+          "good_fraction_component": 32.91152501116914,
+          "nonviable_fraction_delta": -0.3439632727888956,
+          "direct_damage_fraction_delta": 0.01808630278381168,
+          "signed_missing_fraction_delta": -0.05980496371955446
+        },
+        {
+          "site": "construction",
+          "block": "B10",
+          "florets_per_head_delta": -21.5,
+          "good_fraction_delta": 0.12514110491466313,
+          "good_seeds_per_head_delta": 0.1666666666666714,
+          "floret_quantity_component": -10.084475510926154,
+          "good_fraction_component": 10.251142177592822,
+          "nonviable_fraction_delta": -0.4417131400266203,
+          "direct_damage_fraction_delta": 0.20014995029737334,
+          "signed_missing_fraction_delta": 0.11642208481458392
+        },
+        {
+          "site": "construction",
+          "block": "B18",
+          "florets_per_head_delta": -22.96666666666667,
+          "good_fraction_delta": 0.1687777056215941,
+          "good_seeds_per_head_delta": 4.433333333333334,
+          "floret_quantity_component": -8.677881431704172,
+          "good_fraction_component": 13.111214765037504,
+          "nonviable_fraction_delta": -0.26495750628229375,
+          "direct_damage_fraction_delta": 0.03755823474602592,
+          "signed_missing_fraction_delta": 0.058621565914673726
+        },
+        {
+          "site": "construction",
+          "block": "B19",
+          "florets_per_head_delta": -6,
+          "good_fraction_delta": -0.09158287101248275,
+          "good_seeds_per_head_delta": -10.333333333333336,
+          "floret_quantity_component": -3.7698942441054095,
+          "good_fraction_component": -6.563439089227931,
+          "nonviable_fraction_delta": 0.022754854368932043,
+          "direct_damage_fraction_delta": 0,
+          "signed_missing_fraction_delta": 0.0688280166435506
+        },
+        {
+          "site": "construction",
+          "block": "B20",
+          "florets_per_head_delta": 3.5,
+          "good_fraction_delta": -0.09146125787553883,
+          "good_seeds_per_head_delta": -4.166666666666664,
+          "floret_quantity_component": 2.3194608710069637,
+          "good_fraction_component": -6.486127537673629,
+          "nonviable_fraction_delta": -0.0005747761688957576,
+          "direct_damage_fraction_delta": 0.01306510445451531,
+          "signed_missing_fraction_delta": 0.0789709295899193
+        },
+        {
+          "site": "construction",
+          "block": "B24",
+          "florets_per_head_delta": -8.500000000000007,
+          "good_fraction_delta": -0.05872240769345749,
+          "good_seeds_per_head_delta": -9.333333333333336,
+          "floret_quantity_component": -5.403825551846136,
+          "good_fraction_component": -3.9295077814871973,
+          "nonviable_fraction_delta": -0.09863471024963874,
+          "direct_damage_fraction_delta": -0.03981264637002342,
+          "signed_missing_fraction_delta": 0.19716976431311972
+        },
+        {
+          "site": "construction",
+          "block": "B34",
+          "florets_per_head_delta": 5.833333333333329,
+          "good_fraction_delta": -0.22138034508627158,
+          "good_seeds_per_head_delta": -13.833333333333336,
+          "floret_quantity_component": 2.677950737684419,
+          "good_fraction_component": -16.51128407101776,
+          "nonviable_fraction_delta": -0.013103275818954763,
+          "direct_damage_fraction_delta": 0.11380345086271568,
+          "signed_missing_fraction_delta": 0.12068017004251061
+        },
+        {
+          "site": "construction",
+          "block": "B35",
+          "florets_per_head_delta": 20.66666666666667,
+          "good_fraction_delta": -0.008695652173913104,
+          "good_seeds_per_head_delta": 11.666666666666664,
+          "floret_quantity_component": 12.489855072463772,
+          "good_fraction_component": -0.8231884057971072,
+          "nonviable_fraction_delta": 0.16103896103896104,
+          "direct_damage_fraction_delta": -0.026049313005834747,
+          "signed_missing_fraction_delta": -0.12629399585921325
+        },
+        {
+          "site": "construction",
+          "block": "B39",
+          "florets_per_head_delta": 15.333333333333329,
+          "good_fraction_delta": -0.0937937675070028,
+          "good_seeds_per_head_delta": -0.3333333333333357,
+          "floret_quantity_component": 6.388553338001866,
+          "good_fraction_component": -6.7218866713351995,
+          "nonviable_fraction_delta": 0.18027836134453779,
+          "direct_damage_fraction_delta": -0.140625,
+          "signed_missing_fraction_delta": 0.05414040616246499
+        },
+        {
+          "site": "construction",
+          "block": "B7",
+          "florets_per_head_delta": 7.666666666666671,
+          "good_fraction_delta": 0.11678663588211324,
+          "good_seeds_per_head_delta": 12.533333333333339,
+          "floret_quantity_component": 4.3388043822717215,
+          "good_fraction_component": 8.194528951061612,
+          "nonviable_fraction_delta": 0.07615102539725654,
+          "direct_damage_fraction_delta": -0.1492326497351623,
+          "signed_missing_fraction_delta": -0.04370501154420753
+        },
+        {
+          "site": "ditch",
+          "block": "B37",
+          "florets_per_head_delta": 23.66666666666667,
+          "good_fraction_delta": -0.28489111429025593,
+          "good_seeds_per_head_delta": -3.5,
+          "floret_quantity_component": 15.255331690775186,
+          "good_fraction_component": -18.755331690775186,
+          "nonviable_fraction_delta": 0.1581227149896678,
+          "direct_damage_fraction_delta": -0.5040534096328088,
+          "signed_missing_fraction_delta": 0.6308218089333969
+        },
+        {
+          "site": "ditch",
+          "block": "B38",
+          "florets_per_head_delta": 4.666666666666657,
+          "good_fraction_delta": 0.3458660014255168,
+          "good_seeds_per_head_delta": 30.666666666666664,
+          "floret_quantity_component": 3.343252554050837,
+          "good_fraction_component": 27.32341411261583,
+          "nonviable_fraction_delta": -0.07320028510334997,
+          "direct_damage_fraction_delta": -0.20869565217391303,
+          "signed_missing_fraction_delta": -0.06397006414825374
+        },
+        {
+          "site": "ditch",
+          "block": "B40",
+          "florets_per_head_delta": -25.666666666666664,
+          "good_fraction_delta": -0.031243839936920925,
+          "good_seeds_per_head_delta": -19.66666666666667,
+          "floret_quantity_component": -17.28692752480452,
+          "good_fraction_component": -2.379739141862144,
+          "nonviable_fraction_delta": 0.1282870096589789,
+          "direct_damage_fraction_delta": -0.11222156514882711,
+          "signed_missing_fraction_delta": 0.015178395426769166
+        },
+        {
+          "site": "ditch",
+          "block": "B42",
+          "florets_per_head_delta": -17.33333333333333,
+          "good_fraction_delta": 0.026533996683250405,
+          "good_seeds_per_head_delta": -14,
+          "floret_quantity_component": -16.140409065782197,
+          "good_fraction_component": 2.1404090657821992,
+          "nonviable_fraction_delta": 0.03199281370923162,
+          "direct_damage_fraction_delta": 0,
+          "signed_missing_fraction_delta": -0.05852681039248203
+        },
+        {
+          "site": "ditch",
+          "block": "B43",
+          "florets_per_head_delta": -8.666666666666671,
+          "good_fraction_delta": 0.0433466135458167,
+          "good_seeds_per_head_delta": -4,
+          "floret_quantity_component": -7.438831341301465,
+          "good_fraction_component": 3.438831341301459,
+          "nonviable_fraction_delta": -0.09990261177512172,
+          "direct_damage_fraction_delta": 0.0044444444444444444,
+          "signed_missing_fraction_delta": 0.052111553784860556
+        },
+        {
+          "site": "ditch",
+          "block": "B45",
+          "florets_per_head_delta": 1,
+          "good_fraction_delta": 0.19622362088115514,
+          "good_seeds_per_head_delta": 15,
+          "floret_quantity_component": 0.5775638652350981,
+          "good_fraction_component": 14.422436134764903,
+          "nonviable_fraction_delta": -0.2191780821917808,
+          "direct_damage_fraction_delta": 0.07657657657657657,
+          "signed_missing_fraction_delta": -0.05362211526595087
+        },
+        {
+          "site": "ditch",
+          "block": "B47",
+          "florets_per_head_delta": -15,
+          "good_fraction_delta": -0.12055575779638383,
+          "good_seeds_per_head_delta": -20.333333333333336,
+          "floret_quantity_component": -11.35192937750273,
+          "good_fraction_component": -8.981403955830595,
+          "nonviable_fraction_delta": 0.20410144399951463,
+          "direct_damage_fraction_delta": 0.06425191117582818,
+          "signed_missing_fraction_delta": -0.14779759737895887
+        },
+        {
+          "site": "ditch",
+          "block": "B48",
+          "florets_per_head_delta": 4.333333333333329,
+          "good_fraction_delta": -0.22559288537549405,
+          "good_seeds_per_head_delta": -15.666666666666664,
+          "floret_quantity_component": 2.8695487483530933,
+          "good_fraction_component": -18.536215415019758,
+          "nonviable_fraction_delta": 0.1857542819499341,
+          "direct_damage_fraction_delta": 0.0815052700922266,
+          "signed_missing_fraction_delta": -0.041666666666666664
+        },
+        {
+          "site": "rapseed",
+          "block": "B17",
+          "florets_per_head_delta": 4.857142857142861,
+          "good_fraction_delta": 0.005941557538855061,
+          "good_seeds_per_head_delta": 0.5952380952380953,
+          "floret_quantity_component": 0.045219625926941,
+          "good_fraction_component": 0.5500184693111543,
+          "nonviable_fraction_delta": -0.17536352767814944,
+          "direct_damage_fraction_delta": -0.00022798676564628716,
+          "signed_missing_fraction_delta": 0.16964995690494067
+        },
+        {
+          "site": "rapseed",
+          "block": "B26",
+          "florets_per_head_delta": -10,
+          "good_fraction_delta": 0.0076509511993383406,
+          "good_seeds_per_head_delta": -7.666666666666664,
+          "floret_quantity_component": -8.10277088502895,
+          "good_fraction_component": 0.4361042183622854,
+          "nonviable_fraction_delta": 0.023986765922249798,
+          "direct_damage_fraction_delta": 0,
+          "signed_missing_fraction_delta": -0.031637717121588096
+        },
+        {
+          "site": "rapseed",
+          "block": "B27",
+          "florets_per_head_delta": 0,
+          "good_fraction_delta": -0.015873015873015928,
+          "good_seeds_per_head_delta": -1,
+          "floret_quantity_component": 0,
+          "good_fraction_component": -1.0000000000000036,
+          "nonviable_fraction_delta": -0.0582010582010582,
+          "direct_damage_fraction_delta": 0,
+          "signed_missing_fraction_delta": 0.07407407407407407
+        },
+        {
+          "site": "rapseed",
+          "block": "B28",
+          "florets_per_head_delta": -2.3333333333333286,
+          "good_fraction_delta": 0.2537878787878788,
+          "good_seeds_per_head_delta": 18.000000000000004,
+          "floret_quantity_component": -1.2455808080808057,
+          "good_fraction_component": 19.24558080808081,
+          "nonviable_fraction_delta": -0.29836309523809523,
+          "direct_damage_fraction_delta": 0.008928571428571428,
+          "signed_missing_fraction_delta": 0.035646645021645024
+        },
+        {
+          "site": "rapseed",
+          "block": "B30",
+          "florets_per_head_delta": -2,
+          "good_fraction_delta": -0.13468735116010072,
+          "good_seeds_per_head_delta": -10.5,
+          "floret_quantity_component": -1.071885418792951,
+          "good_fraction_component": -9.428114581207051,
+          "nonviable_fraction_delta": 0.07324624072940056,
+          "direct_damage_fraction_delta": -0.025753555147308975,
+          "signed_missing_fraction_delta": 0.0871946655780091
+        },
+        {
+          "site": "rapseed",
+          "block": "B31",
+          "florets_per_head_delta": -6.999999999999993,
+          "good_fraction_delta": 0.2803941132451983,
+          "good_seeds_per_head_delta": 15.999999999999996,
+          "floret_quantity_component": -2.7396732352207502,
+          "good_fraction_component": 18.739673235220753,
+          "nonviable_fraction_delta": -0.20715889249189323,
+          "direct_damage_fraction_delta": -0.009478672985781991,
+          "signed_missing_fraction_delta": -0.06375654776752308
+        },
+        {
+          "site": "rapseed",
+          "block": "B32",
+          "florets_per_head_delta": -9.333333333333329,
+          "good_fraction_delta": 0.20608974358974352,
+          "good_seeds_per_head_delta": 6.666666666666664,
+          "floret_quantity_component": -6.660470085470083,
+          "good_fraction_component": 13.327136752136745,
+          "nonviable_fraction_delta": -0.2798076923076923,
+          "direct_damage_fraction_delta": 0.03888888888888889,
+          "signed_missing_fraction_delta": 0.03482905982905983
+        }
+      ],
+      "total_identity_mean_residual": -3.552713678800501e-15,
+      "good_fraction_categories_identity_mean_residual": 1.0408340855860843e-17
+    },
+    "predator_model_minus_control": {
+      "arm_a": "Predator Model",
+      "arm_b": "Control",
+      "n_blocks": 36,
+      "measurements": {
+        "florets_per_head_delta": {
+          "mean": -3.8936287477954132,
+          "sign": {
+            "positive": 14,
+            "negative": 21,
+            "zero": 1
+          },
+          "site_means": {
+            "campus": -5.60648148148148,
+            "construction": -4.731481481481483,
+            "ditch": -4.833333333333334,
+            "rapseed": 1.1938775510204118
+          },
+          "leave_one_site_out": {
+            "campus": -3.037202380952381,
+            "construction": -3.6143445032333905,
+            "ditch": -3.625141723356008,
+            "rapseed": -5.121647509578544
+          },
+          "bootstrap_ci95": [
+            -8.920728615520282,
+            0.9297894620811283
+          ]
+        },
+        "good_fraction_delta": {
+          "mean": 0.022471633252779705,
+          "sign": {
+            "positive": 13,
+            "negative": 23,
+            "zero": 0
+          },
+          "site_means": {
+            "campus": -0.05482293207679669,
+            "construction": 0.20016569595825764,
+            "ditch": -0.027459201971857777,
+            "rapseed": -0.016423380832546703
+          },
+          "leave_one_site_out": {
+            "campus": 0.061118915917567886,
+            "construction": -0.03675972098237961,
+            "ditch": 0.036737586174104685,
+            "rapseed": 0.031860084928548145
+          },
+          "bootstrap_ci95": [
+            -0.08357993174577068,
+            0.16891663821614541
+          ]
+        },
+        "good_seeds_per_head_delta": {
+          "mean": -4.021384479717814,
+          "sign": {
+            "positive": 13,
+            "negative": 23,
+            "zero": 0
+          },
+          "site_means": {
+            "campus": -7.398478835978836,
+            "construction": -1.5277777777777786,
+            "ditch": -5.0625,
+            "rapseed": -0.24829931972789104
+          },
+          "leave_one_site_out": {
+            "campus": -2.3328373015873023,
+            "construction": -4.852586713697825,
+            "ditch": -3.723922902494331,
+            "rapseed": -4.932129173508486
+          },
+          "bootstrap_ci95": [
+            -9.386033950617284,
+            1.3911816578483216
+          ]
+        },
+        "floret_quantity_component": {
+          "mean": -3.5831662712045595,
+          "sign": {
+            "positive": 14,
+            "negative": 21,
+            "zero": 1
+          },
+          "site_means": {
+            "campus": -3.171238064920486,
+            "construction": -7.405570910046917,
+            "ditch": -3.766984388680878,
+            "rapseed": 0.8352691879358568
+          },
+          "leave_one_site_out": {
+            "campus": -3.789130374346595,
+            "construction": -2.3090313915904392,
+            "ditch": -3.5306468090684677,
+            "rapseed": -4.649685175135004
+          },
+          "bootstrap_ci95": [
+            -8.838965550224763,
+            0.3989147601530448
+          ]
+        },
+        "good_fraction_component": {
+          "mean": -0.4382182085132539,
+          "sign": {
+            "positive": 13,
+            "negative": 23,
+            "zero": 0
+          },
+          "site_means": {
+            "campus": -4.227240771058347,
+            "construction": 5.8777931322691375,
+            "ditch": -1.2955156113191233,
+            "rapseed": -1.0835685076637465
+          },
+          "leave_one_site_out": {
+            "campus": 1.456293072759293,
+            "construction": -2.5435553221073857,
+            "ditch": -0.19327609342586285,
+            "rapseed": -0.28244399837347994
+          },
+          "bootstrap_ci95": [
+            -6.553787830707628,
+            6.671305696736281
+          ]
+        },
+        "nonviable_fraction_delta": {
+          "mean": 0.03667498487686365,
+          "sign": {
+            "positive": 21,
+            "negative": 15,
+            "zero": 0
+          },
+          "site_means": {
+            "campus": 0.028662786125171924,
+            "construction": 0.055049889741483615,
+            "ditch": 0.13066406456528412,
+            "rapseed": -0.0806307860186568
+          },
+          "leave_one_site_out": {
+            "campus": 0.04068108425270949,
+            "construction": 0.030550016588656984,
+            "ditch": 0.009820962108743506,
+            "rapseed": 0.06499017095509273
+          },
+          "bootstrap_ci95": [
+            -0.0312905432194853,
+            0.1109333884255402
+          ]
+        },
+        "direct_damage_fraction_delta": {
+          "mean": -0.02510285268824158,
+          "sign": {
+            "positive": 16,
+            "negative": 13,
+            "zero": 7
+          },
+          "site_means": {
+            "campus": -0.014402374286745706,
+            "construction": 0.010806428594976821,
+            "ditch": -0.12395261216905439,
+            "rapseed": 0.023355547808842168
+          },
+          "leave_one_site_out": {
+            "campus": -0.03045309188898952,
+            "construction": -0.03707261311598104,
+            "ditch": 0.003139935734847787,
+            "rapseed": -0.036799707980641104
+          },
+          "bootstrap_ci95": [
+            -0.06369055826306082,
+            0.009552903483061414
+          ]
+        },
+        "signed_missing_fraction_delta": {
+          "mean": -0.034043765441401745,
+          "sign": {
+            "positive": 22,
+            "negative": 14,
+            "zero": 0
+          },
+          "site_means": {
+            "campus": 0.04056252023837049,
+            "construction": -0.26602201429471806,
+            "ditch": 0.020747749575628024,
+            "rapseed": 0.07369861904236133
+          },
+          "leave_one_site_out": {
+            "campus": -0.07134690828128787,
+            "construction": 0.04328231750970369,
+            "ditch": -0.04969848401769596,
+            "rapseed": -0.06005054790299973
+          },
+          "bootstrap_ci95": [
+            -0.22237800051706758,
+            0.08716468270191698
+          ]
+        }
+      },
+      "paired_block_rows": [
+        {
+          "site": "campus",
+          "block": "B1",
+          "florets_per_head_delta": -16.5,
+          "good_fraction_delta": -0.16009070294784578,
+          "good_seeds_per_head_delta": -21.142857142857146,
+          "floret_quantity_component": -8.055442176870748,
+          "good_fraction_component": -13.087414965986392,
+          "nonviable_fraction_delta": 0.00952380952380949,
+          "direct_damage_fraction_delta": -0.15782312925170067,
+          "signed_missing_fraction_delta": 0.30839002267573695
+        },
+        {
+          "site": "campus",
+          "block": "B11",
+          "florets_per_head_delta": -14.333333333333329,
+          "good_fraction_delta": -0.06232818276613894,
+          "good_seeds_per_head_delta": -15,
+          "floret_quantity_component": -9.7540446171833,
+          "good_fraction_component": -5.245955382816693,
+          "nonviable_fraction_delta": 0.03635415679211301,
+          "direct_damage_fraction_delta": 0,
+          "signed_missing_fraction_delta": 0.025974025974025976
+        },
+        {
+          "site": "campus",
+          "block": "B12",
+          "florets_per_head_delta": 23.75,
+          "good_fraction_delta": -0.21392912927628555,
+          "good_seeds_per_head_delta": -7.5,
+          "floret_quantity_component": 11.994291905301523,
+          "good_fraction_component": -19.49429190530152,
+          "nonviable_fraction_delta": 0.1628229865343583,
+          "direct_damage_fraction_delta": -0.040192745500393055,
+          "signed_missing_fraction_delta": 0.0912988882423203
+        },
+        {
+          "site": "campus",
+          "block": "B13",
+          "florets_per_head_delta": 11.333333333333343,
+          "good_fraction_delta": 0.1863782341533664,
+          "good_seeds_per_head_delta": 22.166666666666664,
+          "floret_quantity_component": 7.349597051474048,
+          "good_fraction_component": 14.81706961519263,
+          "nonviable_fraction_delta": -0.023858852424980037,
+          "direct_damage_fraction_delta": -0.06320541760722348,
+          "signed_missing_fraction_delta": -0.09931396412116286
+        },
+        {
+          "site": "campus",
+          "block": "B2",
+          "florets_per_head_delta": 3.7222222222222285,
+          "good_fraction_delta": -0.05163010776215737,
+          "good_seeds_per_head_delta": -2.2222222222222214,
+          "floret_quantity_component": 2.0272224805353494,
+          "good_fraction_component": -4.249444702757564,
+          "nonviable_fraction_delta": 0.08603468081614793,
+          "direct_damage_fraction_delta": 0.045361304086209725,
+          "signed_missing_fraction_delta": -0.0797658771402002
+        },
+        {
+          "site": "campus",
+          "block": "B21",
+          "florets_per_head_delta": -11,
+          "good_fraction_delta": 0.08220758693361435,
+          "good_seeds_per_head_delta": 3.5,
+          "floret_quantity_component": -4.9536801896733405,
+          "good_fraction_component": 8.453680189673342,
+          "nonviable_fraction_delta": 0.2851791359325606,
+          "direct_damage_fraction_delta": -0.1995995785036881,
+          "signed_missing_fraction_delta": -0.16778714436248682
+        },
+        {
+          "site": "campus",
+          "block": "B3",
+          "florets_per_head_delta": -17.91666666666667,
+          "good_fraction_delta": -0.11548813310496697,
+          "good_seeds_per_head_delta": -24.41666666666667,
+          "floret_quantity_component": -13.709954326727022,
+          "good_fraction_component": -10.706712339939648,
+          "nonviable_fraction_delta": 0.10736481526792269,
+          "direct_damage_fraction_delta": 0,
+          "signed_missing_fraction_delta": 0.008123317837044286
+        },
+        {
+          "site": "campus",
+          "block": "B4",
+          "florets_per_head_delta": -18.66666666666667,
+          "good_fraction_delta": -0.03268983268983272,
+          "good_seeds_per_head_delta": -13.666666666666664,
+          "floret_quantity_component": -10.539339339339342,
+          "good_fraction_component": -3.12732732732733,
+          "nonviable_fraction_delta": -0.0362076362076362,
+          "direct_damage_fraction_delta": 0.1081939081939082,
+          "signed_missing_fraction_delta": -0.039296439296439306
+        },
+        {
+          "site": "campus",
+          "block": "B5",
+          "florets_per_head_delta": -5.833333333333329,
+          "good_fraction_delta": -0.22896861414990677,
+          "good_seeds_per_head_delta": -24,
+          "floret_quantity_component": -4.862040000636949,
+          "good_fraction_component": -19.137959999363044,
+          "nonviable_fraction_delta": 0.11698036592939379,
+          "direct_damage_fraction_delta": 0.01652892561983471,
+          "signed_missing_fraction_delta": 0.09545932260067835
+        },
+        {
+          "site": "campus",
+          "block": "B6",
+          "florets_per_head_delta": -1.1666666666666572,
+          "good_fraction_delta": -0.14373322674584593,
+          "good_seeds_per_head_delta": -10.499999999999996,
+          "floret_quantity_component": -0.4746074344772417,
+          "good_fraction_component": -10.025392565522754,
+          "nonviable_fraction_delta": 0.07652600925027125,
+          "direct_damage_fraction_delta": 0.02497573231313882,
+          "signed_missing_fraction_delta": 0.042231485182435885
+        },
+        {
+          "site": "campus",
+          "block": "B8",
+          "florets_per_head_delta": -3,
+          "good_fraction_delta": -0.3313665778454511,
+          "good_seeds_per_head_delta": -26,
+          "floret_quantity_component": -1.9759231062047964,
+          "good_fraction_component": -24.024076893795204,
+          "nonviable_fraction_delta": -0.05043776170536733,
+          "direct_damage_fraction_delta": 0,
+          "signed_missing_fraction_delta": 0.3818043395508184
+        },
+        {
+          "site": "campus",
+          "block": "B9",
+          "florets_per_head_delta": -17.66666666666667,
+          "good_fraction_delta": 0.4137635012798901,
+          "good_seeds_per_head_delta": 29.999999999999996,
+          "floret_quantity_component": -5.100937025244012,
+          "good_fraction_component": 35.100937025244015,
+          "nonviable_fraction_delta": -0.4263282762065306,
+          "direct_damage_fraction_delta": 0.09293250920896547,
+          "signed_missing_fraction_delta": -0.08036773428232503
+        },
+        {
+          "site": "construction",
+          "block": "B10",
+          "florets_per_head_delta": -19.16666666666667,
+          "good_fraction_delta": -0.2704203983751774,
+          "good_seeds_per_head_delta": -27.666666666666664,
+          "floret_quantity_component": -5.1992385683290125,
+          "good_fraction_component": -22.467428098337656,
+          "nonviable_fraction_delta": -0.2686340723339695,
+          "direct_damage_fraction_delta": 0.12565457837811383,
+          "signed_missing_fraction_delta": 0.41339989233103314
+        },
+        {
+          "site": "construction",
+          "block": "B18",
+          "florets_per_head_delta": -16.333333333333343,
+          "good_fraction_delta": 0.4410958318184734,
+          "good_seeds_per_head_delta": 27.333333333333332,
+          "floret_quantity_component": -8.39542904396302,
+          "good_fraction_component": 35.72876237729634,
+          "nonviable_fraction_delta": -0.4350820162963279,
+          "direct_damage_fraction_delta": 0.015214183365769157,
+          "signed_missing_fraction_delta": -0.02122799888791463
+        },
+        {
+          "site": "construction",
+          "block": "B19",
+          "florets_per_head_delta": -6,
+          "good_fraction_delta": -0.009058599167822479,
+          "good_seeds_per_head_delta": -4.666666666666671,
+          "floret_quantity_component": -4.01746705963939,
+          "good_fraction_component": -0.6491996070272776,
+          "nonviable_fraction_delta": 0.00819174757281553,
+          "direct_damage_fraction_delta": 0.0048543689320388345,
+          "signed_missing_fraction_delta": -0.003987517337031898
+        },
+        {
+          "site": "construction",
+          "block": "B20",
+          "florets_per_head_delta": 18,
+          "good_fraction_delta": -0.2858715934483632,
+          "good_seeds_per_head_delta": -12.166666666666664,
+          "floret_quantity_component": 10.178962887880392,
+          "good_fraction_component": -22.34562955454706,
+          "nonviable_fraction_delta": 0.08630929070008522,
+          "direct_damage_fraction_delta": 0.054375820682346976,
+          "signed_missing_fraction_delta": 0.14518648206593102
+        },
+        {
+          "site": "construction",
+          "block": "B24",
+          "florets_per_head_delta": 27.666666666666657,
+          "good_fraction_delta": -0.22665681980640645,
+          "good_seeds_per_head_delta": -4,
+          "floret_quantity_component": 15.265829683544547,
+          "good_fraction_component": -19.26582968354455,
+          "nonviable_fraction_delta": 0.12433899001228227,
+          "direct_damage_fraction_delta": 0.012463913495069326,
+          "signed_missing_fraction_delta": 0.08985391629905493
+        },
+        {
+          "site": "construction",
+          "block": "B34",
+          "florets_per_head_delta": 0,
+          "good_fraction_delta": 0.016279069767441867,
+          "good_seeds_per_head_delta": 1.1666666666666643,
+          "floret_quantity_component": 0,
+          "good_fraction_component": 1.1666666666666672,
+          "nonviable_fraction_delta": -0.04186046511627908,
+          "direct_damage_fraction_delta": 0.0069767441860465115,
+          "signed_missing_fraction_delta": 0.018604651162790697
+        },
+        {
+          "site": "construction",
+          "block": "B35",
+          "florets_per_head_delta": -11.666666666666657,
+          "good_fraction_delta": -0.22796170721978465,
+          "good_seeds_per_head_delta": -23.666666666666668,
+          "floret_quantity_component": -5.7716726499135715,
+          "good_fraction_component": -17.894994016753095,
+          "nonviable_fraction_delta": 0.13010842368640535,
+          "direct_damage_fraction_delta": 0.18919751967219062,
+          "signed_missing_fraction_delta": -0.09134423613881132
+        },
+        {
+          "site": "construction",
+          "block": "B39",
+          "florets_per_head_delta": -50,
+          "good_fraction_delta": 2.1793154761904763,
+          "good_seeds_per_head_delta": 7.333333333333332,
+          "floret_quantity_component": -77.65997023809523,
+          "good_fraction_component": 84.99330357142857,
+          "nonviable_fraction_delta": 0.9575892857142858,
+          "direct_damage_fraction_delta": -0.140625,
+          "signed_missing_fraction_delta": -2.996279761904762
+        },
+        {
+          "site": "construction",
+          "block": "B7",
+          "florets_per_head_delta": 14.916666666666671,
+          "good_fraction_delta": 0.18477000386548126,
+          "good_seeds_per_head_delta": 22.583333333333336,
+          "floret_quantity_component": 8.948846798093033,
+          "good_fraction_component": 13.634486535240303,
+          "nonviable_fraction_delta": -0.0655121762659451,
+          "direct_damage_fraction_delta": -0.1708542713567839,
+          "signed_missing_fraction_delta": 0.05159644375724777
+        },
+        {
+          "site": "ditch",
+          "block": "B37",
+          "florets_per_head_delta": 6.333333333333336,
+          "good_fraction_delta": -0.2897994679762636,
+          "good_seeds_per_head_delta": -12.5,
+          "floret_quantity_component": 4.066869585976401,
+          "good_fraction_component": -16.566869585976406,
+          "nonviable_fraction_delta": 0.4106302435031717,
+          "direct_damage_fraction_delta": -0.5168815224063843,
+          "signed_missing_fraction_delta": 0.39605074687947617
+        },
+        {
+          "site": "ditch",
+          "block": "B38",
+          "florets_per_head_delta": 9.666666666666657,
+          "good_fraction_delta": 0.20169548430417994,
+          "good_seeds_per_head_delta": 22.666666666666664,
+          "floret_quantity_component": 6.228484695875993,
+          "good_fraction_component": 16.438181970790666,
+          "nonviable_fraction_delta": 0.0195903978512674,
+          "direct_damage_fraction_delta": -0.18552962900788986,
+          "signed_missing_fraction_delta": -0.035756253147557496
+        },
+        {
+          "site": "ditch",
+          "block": "B40",
+          "florets_per_head_delta": -22.66666666666667,
+          "good_fraction_delta": 0.06965539307021995,
+          "good_seeds_per_head_delta": -11,
+          "floret_quantity_component": -16.409902195120424,
+          "good_fraction_component": 5.409902195120416,
+          "nonviable_fraction_delta": 0.20681120960608285,
+          "direct_damage_fraction_delta": -0.24906367041198502,
+          "signed_missing_fraction_delta": -0.027402932264317843
+        },
+        {
+          "site": "ditch",
+          "block": "B42",
+          "florets_per_head_delta": -25.999999999999993,
+          "good_fraction_delta": -0.2968578161822466,
+          "good_seeds_per_head_delta": -42.666666666666664,
+          "floret_quantity_component": -20.006520031421832,
+          "good_fraction_component": -22.66014663524482,
+          "nonviable_fraction_delta": 0.2703456402199529,
+          "direct_damage_fraction_delta": 0,
+          "signed_missing_fraction_delta": 0.026512175962293792
+        },
+        {
+          "site": "ditch",
+          "block": "B43",
+          "florets_per_head_delta": 2,
+          "good_fraction_delta": -0.03509696622072023,
+          "good_seeds_per_head_delta": -1.3333333333333286,
+          "floret_quantity_component": 1.6382098066876463,
+          "good_fraction_component": -2.9715431400209793,
+          "nonviable_fraction_delta": 0.004619653680995872,
+          "direct_damage_fraction_delta": 0,
+          "signed_missing_fraction_delta": 0.030477312539724372
+        },
+        {
+          "site": "ditch",
+          "block": "B45",
+          "florets_per_head_delta": -1.6666666666666714,
+          "good_fraction_delta": 0.09998719754192803,
+          "good_seeds_per_head_delta": 6.333333333333336,
+          "floret_quantity_component": -0.8824094226091435,
+          "good_fraction_component": 7.215742755942472,
+          "nonviable_fraction_delta": 0.0892331327614902,
+          "direct_damage_fraction_delta": 0.009345794392523364,
+          "signed_missing_fraction_delta": -0.1985661246959416
+        },
+        {
+          "site": "ditch",
+          "block": "B47",
+          "florets_per_head_delta": -8.333333333333329,
+          "good_fraction_delta": -0.08856638340139056,
+          "good_seeds_per_head_delta": -13.333333333333336,
+          "floret_quantity_component": -6.439916491925096,
+          "good_fraction_component": -6.893416841408232,
+          "nonviable_fraction_delta": 0.1413383364602877,
+          "direct_damage_fraction_delta": -0.02032520325203252,
+          "signed_missing_fraction_delta": -0.03244674980686458
+        },
+        {
+          "site": "ditch",
+          "block": "B48",
+          "florets_per_head_delta": 2,
+          "good_fraction_delta": 0.11930894308943085,
+          "good_seeds_per_head_delta": 11.333333333333329,
+          "floret_quantity_component": 1.669308943089431,
+          "good_fraction_component": 9.664024390243899,
+          "nonviable_fraction_delta": -0.09725609756097561,
+          "direct_damage_fraction_delta": -0.029166666666666667,
+          "signed_missing_fraction_delta": 0.007113821138211386
+        },
+        {
+          "site": "rapseed",
+          "block": "B17",
+          "florets_per_head_delta": -10.976190476190467,
+          "good_fraction_delta": -0.00212861789974143,
+          "good_seeds_per_head_delta": -0.23809523809523808,
+          "floret_quantity_component": -0.05789759660641298,
+          "good_fraction_component": -0.18019764148882508,
+          "nonviable_fraction_delta": -0.06413545750271077,
+          "direct_damage_fraction_delta": -0.014263074484944533,
+          "signed_missing_fraction_delta": 0.08052714988739679
+        },
+        {
+          "site": "rapseed",
+          "block": "B26",
+          "florets_per_head_delta": 8.666666666666671,
+          "good_fraction_delta": -0.05173463177115023,
+          "good_seeds_per_head_delta": 3.3333333333333357,
+          "floret_quantity_component": 6.765063907486309,
+          "good_fraction_component": -3.4317305741529656,
+          "nonviable_fraction_delta": 0.03596064110367214,
+          "direct_damage_fraction_delta": 0,
+          "signed_missing_fraction_delta": 0.015773990667478185
+        },
+        {
+          "site": "rapseed",
+          "block": "B27",
+          "florets_per_head_delta": -10.666666666666664,
+          "good_fraction_delta": -0.05341556296970307,
+          "good_seeds_per_head_delta": -12.333333333333336,
+          "floret_quantity_component": -9.25303586874712,
+          "good_fraction_component": -3.0802974645862107,
+          "nonviable_fraction_delta": -0.07612981498331817,
+          "direct_damage_fraction_delta": 0.050955414012738856,
+          "signed_missing_fraction_delta": 0.0785899639402824
+        },
+        {
+          "site": "rapseed",
+          "block": "B28",
+          "florets_per_head_delta": -1,
+          "good_fraction_delta": -0.16131237183868763,
+          "good_seeds_per_head_delta": -12.666666666666664,
+          "floret_quantity_component": -0.3262702210070631,
+          "good_fraction_component": -12.340396445659604,
+          "nonviable_fraction_delta": -0.08959899749373434,
+          "direct_damage_fraction_delta": 0.06578947368421052,
+          "signed_missing_fraction_delta": 0.18512189564821147
+        },
+        {
+          "site": "rapseed",
+          "block": "B30",
+          "florets_per_head_delta": 3.3333333333333286,
+          "good_fraction_delta": -0.18176172129939583,
+          "good_seeds_per_head_delta": -11.500000000000004,
+          "floret_quantity_component": 1.7080184144227575,
+          "good_fraction_component": -13.208018414422762,
+          "nonviable_fraction_delta": -0.07071727825848964,
+          "direct_damage_fraction_delta": 0.07048569443567232,
+          "signed_missing_fraction_delta": 0.18199330512221312
+        },
+        {
+          "site": "rapseed",
+          "block": "B31",
+          "florets_per_head_delta": 16.333333333333343,
+          "good_fraction_delta": 0.12189208895370035,
+          "good_seeds_per_head_delta": 14.666666666666668,
+          "floret_quantity_component": 5.098137683801194,
+          "good_fraction_component": 9.568528982865477,
+          "nonviable_fraction_delta": -0.040357273058694854,
+          "direct_damage_fraction_delta": -0.009478672985781991,
+          "signed_missing_fraction_delta": -0.07205614290922348
+        },
+        {
+          "site": "rapseed",
+          "block": "B32",
+          "florets_per_head_delta": 2.6666666666666714,
+          "good_fraction_delta": 0.21349715099715094,
+          "good_seeds_per_head_delta": 17,
+          "floret_quantity_component": 1.912867996201333,
+          "good_fraction_component": 15.087132003798665,
+          "nonviable_fraction_delta": -0.25943732193732194,
+          "direct_damage_fraction_delta": 0,
+          "signed_missing_fraction_delta": 0.04594017094017094
+        }
+      ],
+      "total_identity_mean_residual": -8.881784197001252e-16,
+      "good_fraction_categories_identity_mean_residual": 3.469446951953614e-17
+    },
+    "predator_model_minus_predator_exclusion": {
+      "arm_a": "Predator Model",
+      "arm_b": "Predator Exclusion",
+      "n_blocks": 36,
+      "measurements": {
+        "florets_per_head_delta": {
+          "mean": 1.9250000000000012,
+          "sign": {
+            "positive": 21,
+            "negative": 14,
+            "zero": 1
+          },
+          "site_means": {
+            "campus": 6.45138888888889,
+            "construction": -4.068518518518519,
+            "ditch": -0.708333333333333,
+            "rapseed": 4.880952380952381
+          },
+          "leave_one_site_out": {
+            "campus": -0.3381944444444442,
+            "construction": 3.9228395061728403,
+            "ditch": 2.677380952380954,
+            "rapseed": 1.2114942528735646
+          },
+          "bootstrap_ci95": [
+            -4.214039351851851,
+            7.503935185185181
+          ]
+        },
+        "good_fraction_delta": {
+          "mean": 0.02840369531790084,
+          "sign": {
+            "positive": 15,
+            "negative": 21,
+            "zero": 0
+          },
+          "site_means": {
+            "campus": -0.0038551077535760683,
+            "construction": 0.21738023539495716,
+            "ditch": -0.021170031363943312,
+            "rapseed": -0.10260964902224631
+          },
+          "leave_one_site_out": {
+            "campus": 0.0445330968536393,
+            "construction": -0.034588484707784584,
+            "ditch": 0.042567617226999185,
+            "rapseed": 0.06002760602069499
+          },
+          "bootstrap_ci95": [
+            -0.08128361576773849,
+            0.17755751499434974
+          ]
+        },
+        "good_seeds_per_head_delta": {
+          "mean": -0.2013888888888887,
+          "sign": {
+            "positive": 19,
+            "negative": 17,
+            "zero": 0
+          },
+          "site_means": {
+            "campus": 2.511111111111111,
+            "construction": -0.5055555555555556,
+            "ditch": -1.1249999999999991,
+            "rapseed": -3.404761904761905
+          },
+          "leave_one_site_out": {
+            "campus": -1.5576388888888888,
+            "construction": -0.09999999999999971,
+            "ditch": 0.0625,
+            "rapseed": 0.5718390804597703
+          },
+          "bootstrap_ci95": [
+            -5.628240740740739,
+            5.173194444444445
+          ]
+        },
+        "floret_quantity_component": {
+          "mean": -0.20075047782421457,
+          "sign": {
+            "positive": 21,
+            "negative": 14,
+            "zero": 1
+          },
+          "site_means": {
+            "campus": 3.663904525299868,
+            "construction": -9.004515594706842,
+            "ditch": 0.14084292804880497,
+            "rapseed": 4.10286077467157
+          },
+          "leave_one_site_out": {
+            "campus": -2.1330779793862558,
+            "construction": 2.7338378944699944,
+            "ditch": -0.2983485937879345,
+            "rapseed": -1.2395531939438866
+          },
+          "bootstrap_ci95": [
+            -6.779546983686813,
+            4.57003182691631
+          ]
+        },
+        "good_fraction_component": {
+          "mean": -0.0006384110646742466,
+          "sign": {
+            "positive": 15,
+            "negative": 21,
+            "zero": 0
+          },
+          "site_means": {
+            "campus": -1.1527934141887555,
+            "construction": 8.498960039151285,
+            "ditch": -1.2658429280488086,
+            "rapseed": -7.507622679433474
+          },
+          "leave_one_site_out": {
+            "campus": 0.5754390904973657,
+            "construction": -2.8338378944699945,
+            "ditch": 0.3608485937879351,
+            "rapseed": 1.8113922744036566
+          },
+          "bootstrap_ci95": [
+            -6.509690258411825,
+            7.715181654738592
+          ]
+        },
+        "nonviable_fraction_delta": {
+          "mean": 0.03154903271283279,
+          "sign": {
+            "positive": 19,
+            "negative": 17,
+            "zero": 0
+          },
+          "site_means": {
+            "campus": -0.06875208540232723,
+            "construction": 0.0971343571188965,
+            "ditch": 0.09116690391064977,
+            "rapseed": 0.05103510816209151
+          },
+          "leave_one_site_out": {
+            "campus": 0.08169959177041282,
+            "construction": 0.009687257910811556,
+            "ditch": 0.014515355227742222,
+            "rapseed": 0.026845497259563443
+          },
+          "bootstrap_ci95": [
+            -0.027633651726088112,
+            0.09617597171179688
+          ]
+        },
+        "direct_damage_fraction_delta": {
+          "mean": -0.0036942822882944657,
+          "sign": {
+            "positive": 13,
+            "negative": 17,
+            "zero": 6
+          },
+          "site_means": {
+            "campus": 0.0017418329132506255,
+            "construction": 0.009822302900575727,
+            "ditch": -0.04917855908574524,
+            "rapseed": 0.021590227034738875
+          },
+          "leave_one_site_out": {
+            "campus": -0.00641233988906701,
+            "construction": -0.008199810684584526,
+            "ditch": 0.009301225368120043,
+            "rapseed": -0.009797439711095616
+          },
+          "bootstrap_ci95": [
+            -0.02485869619017304,
+            0.01953558515114327
+          ]
+        },
+        "signed_missing_fraction_delta": {
+          "mean": -0.05625844574243915,
+          "sign": {
+            "positive": 19,
+            "negative": 17,
+            "zero": 0
+          },
+          "site_means": {
+            "campus": 0.07086536024265269,
+            "construction": -0.32433689541442934,
+            "ditch": -0.020818313460961288,
+            "rapseed": 0.02998431382541598
+          },
+          "leave_one_site_out": {
+            "campus": -0.11982034873498508,
+            "construction": 0.033101037481557544,
+            "ditch": -0.06638419782286144,
+            "rapseed": -0.0770756635691628
+          },
+          "bootstrap_ci95": [
+            -0.24207288002744415,
+            0.058487416591275924
+          ]
+        }
+      },
+      "paired_block_rows": [
+        {
+          "site": "campus",
+          "block": "B1",
+          "florets_per_head_delta": -11.5,
+          "good_fraction_delta": 0.08757503001200478,
+          "good_seeds_per_head_delta": 2.75,
+          "floret_quantity_component": -4.19032112845138,
+          "good_fraction_component": 6.940321128451379,
+          "nonviable_fraction_delta": -0.21960784313725495,
+          "direct_damage_fraction_delta": 0.045351473922902494,
+          "signed_missing_fraction_delta": 0.08668133920234761
+        },
+        {
+          "site": "campus",
+          "block": "B11",
+          "florets_per_head_delta": -15.666666666666671,
+          "good_fraction_delta": -0.05208819957021393,
+          "good_seeds_per_head_delta": -15,
+          "floret_quantity_component": -10.581184403126853,
+          "good_fraction_component": -4.4188155968731495,
+          "nonviable_fraction_delta": 0.15201345417172754,
+          "direct_damage_fraction_delta": -0.046762589928057555,
+          "signed_missing_fraction_delta": -0.05316266467345603
+        },
+        {
+          "site": "campus",
+          "block": "B12",
+          "florets_per_head_delta": 29,
+          "good_fraction_delta": -0.2776174232484912,
+          "good_seeds_per_head_delta": -9,
+          "floret_quantity_component": 15.569141957491473,
+          "good_fraction_component": -24.56914195749147,
+          "nonviable_fraction_delta": 0.020554535117641937,
+          "direct_damage_fraction_delta": 0.032362459546925564,
+          "signed_missing_fraction_delta": 0.22470042858392372
+        },
+        {
+          "site": "campus",
+          "block": "B13",
+          "florets_per_head_delta": 23.000000000000007,
+          "good_fraction_delta": 0.3502620630315368,
+          "good_seeds_per_head_delta": 38.83333333333333,
+          "floret_quantity_component": 13.030694690010131,
+          "good_fraction_component": 25.80263864332321,
+          "nonviable_fraction_delta": -0.16513905867168932,
+          "direct_damage_fraction_delta": -0.07238605898123325,
+          "signed_missing_fraction_delta": -0.1127369453786142
+        },
+        {
+          "site": "campus",
+          "block": "B2",
+          "florets_per_head_delta": 11.166666666666671,
+          "good_fraction_delta": 0.0503187305031873,
+          "good_seeds_per_head_delta": 9.466666666666661,
+          "floret_quantity_component": 5.512453094624533,
+          "good_fraction_component": 3.954213572042136,
+          "nonviable_fraction_delta": -0.046168452461684495,
+          "direct_damage_fraction_delta": -0.029947104299471047,
+          "signed_missing_fraction_delta": 0.025796826257968267
+        },
+        {
+          "site": "campus",
+          "block": "B21",
+          "florets_per_head_delta": 17.5,
+          "good_fraction_delta": -0.06597291732204646,
+          "good_seeds_per_head_delta": 3.3333333333333357,
+          "floret_quantity_component": 9.177434259444619,
+          "good_fraction_component": -5.844100926111282,
+          "nonviable_fraction_delta": 0.06027468756255899,
+          "direct_damage_fraction_delta": 0.02589584465353047,
+          "signed_missing_fraction_delta": -0.020197614894042953
+        },
+        {
+          "site": "campus",
+          "block": "B3",
+          "florets_per_head_delta": 6.083333333333329,
+          "good_fraction_delta": -0.21099224905515346,
+          "good_seeds_per_head_delta": -12.083333333333329,
+          "floret_quantity_component": 4.94549943415967,
+          "good_fraction_component": -17.02883276749301,
+          "nonviable_fraction_delta": 0.11732752546281468,
+          "direct_damage_fraction_delta": 0,
+          "signed_missing_fraction_delta": 0.09366472359233874
+        },
+        {
+          "site": "campus",
+          "block": "B4",
+          "florets_per_head_delta": -16,
+          "good_fraction_delta": -0.08040194685145818,
+          "good_seeds_per_head_delta": -16.999999999999993,
+          "floret_quantity_component": -9.415416347012439,
+          "good_fraction_component": -7.584583652987555,
+          "nonviable_fraction_delta": -0.07791178800950788,
+          "direct_damage_fraction_delta": 0.16216216216216217,
+          "signed_missing_fraction_delta": -0.003848427301196042
+        },
+        {
+          "site": "campus",
+          "block": "B5",
+          "florets_per_head_delta": 32.00000000000001,
+          "good_fraction_delta": 0.177912374051851,
+          "good_seeds_per_head_delta": 31.666666666666668,
+          "floret_quantity_component": 20.161666477980308,
+          "good_fraction_component": 11.505000188686367,
+          "nonviable_fraction_delta": -0.09020151703837881,
+          "direct_damage_fraction_delta": -0.0793614853390694,
+          "signed_missing_fraction_delta": -0.008349371674402806
+        },
+        {
+          "site": "campus",
+          "block": "B6",
+          "florets_per_head_delta": 3.833333333333343,
+          "good_fraction_delta": 0.21759282026063437,
+          "good_seeds_per_head_delta": 15.5,
+          "floret_quantity_component": 0.8668828374723405,
+          "good_fraction_component": 14.633117162527661,
+          "nonviable_fraction_delta": -0.4580034423407917,
+          "direct_damage_fraction_delta": -0.09125891320383574,
+          "signed_missing_fraction_delta": 0.3316695352839931
+        },
+        {
+          "site": "campus",
+          "block": "B8",
+          "florets_per_head_delta": -1,
+          "good_fraction_delta": -0.2709311424100156,
+          "good_seeds_per_head_delta": -20,
+          "floret_quantity_component": -0.628423317683881,
+          "good_fraction_component": -19.371576682316114,
+          "nonviable_fraction_delta": -0.0357981220657277,
+          "direct_damage_fraction_delta": 0,
+          "signed_missing_fraction_delta": 0.30672926447574334
+        },
+        {
+          "site": "campus",
+          "block": "B9",
+          "florets_per_head_delta": -1,
+          "good_fraction_delta": 0.028081567555251763,
+          "good_seeds_per_head_delta": 1.6666666666666643,
+          "floret_quantity_component": -0.48157325131009343,
+          "good_fraction_component": 2.1482399179767597,
+          "nonviable_fraction_delta": -0.08236500341763497,
+          "direct_damage_fraction_delta": 0.07484620642515379,
+          "signed_missing_fraction_delta": -0.020562770562770574
+        },
+        {
+          "site": "construction",
+          "block": "B10",
+          "florets_per_head_delta": 2.3333333333333286,
+          "good_fraction_delta": -0.3955615032898405,
+          "good_seeds_per_head_delta": -27.833333333333336,
+          "floret_quantity_component": 0.7789487379651299,
+          "good_fraction_component": -28.61228207129847,
+          "nonviable_fraction_delta": 0.17307906769265083,
+          "direct_damage_fraction_delta": -0.0744953719192595,
+          "signed_missing_fraction_delta": 0.2969778075164492
+        },
+        {
+          "site": "construction",
+          "block": "B18",
+          "florets_per_head_delta": 6.633333333333326,
+          "good_fraction_delta": 0.2723181261968793,
+          "good_seeds_per_head_delta": 22.9,
+          "floret_quantity_component": 3.9693515938802695,
+          "good_fraction_component": 18.930648406119726,
+          "nonviable_fraction_delta": -0.17012451001403417,
+          "direct_damage_fraction_delta": -0.02234405138025676,
+          "signed_missing_fraction_delta": -0.07984956480258835
+        },
+        {
+          "site": "construction",
+          "block": "B19",
+          "florets_per_head_delta": 0,
+          "good_fraction_delta": 0.08252427184466027,
+          "good_seeds_per_head_delta": 5.666666666666664,
+          "floret_quantity_component": 0,
+          "good_fraction_component": 5.666666666666672,
+          "nonviable_fraction_delta": -0.014563106796116512,
+          "direct_damage_fraction_delta": 0.0048543689320388345,
+          "signed_missing_fraction_delta": -0.07281553398058249
+        },
+        {
+          "site": "construction",
+          "block": "B20",
+          "florets_per_head_delta": 14.5,
+          "good_fraction_delta": -0.1944103355728244,
+          "good_seeds_per_head_delta": -8,
+          "floret_quantity_component": 7.536625984528216,
+          "good_fraction_component": -15.536625984528216,
+          "nonviable_fraction_delta": 0.08688406686898098,
+          "direct_damage_fraction_delta": 0.04131071622783167,
+          "signed_missing_fraction_delta": 0.06621555247601171
+        },
+        {
+          "site": "construction",
+          "block": "B24",
+          "florets_per_head_delta": 36.166666666666664,
+          "good_fraction_delta": -0.16793441211294896,
+          "good_seeds_per_head_delta": 5.333333333333336,
+          "floret_quantity_component": 18.89403711145396,
+          "good_fraction_component": -13.56070377812063,
+          "nonviable_fraction_delta": 0.222973700261921,
+          "direct_damage_fraction_delta": 0.05227655986509275,
+          "signed_missing_fraction_delta": -0.1073158480140648
+        },
+        {
+          "site": "construction",
+          "block": "B34",
+          "florets_per_head_delta": -5.833333333333329,
+          "good_fraction_delta": 0.23765941485371345,
+          "good_seeds_per_head_delta": 15,
+          "floret_quantity_component": -2.7254313578394576,
+          "good_fraction_component": 17.725431357839465,
+          "nonviable_fraction_delta": -0.02875718929732432,
+          "direct_damage_fraction_delta": -0.10682670667666917,
+          "signed_missing_fraction_delta": -0.10207551887971991
+        },
+        {
+          "site": "construction",
+          "block": "B35",
+          "florets_per_head_delta": -32.33333333333333,
+          "good_fraction_delta": -0.21926605504587154,
+          "good_seeds_per_head_delta": -35.33333333333333,
+          "floret_quantity_component": -15.855198776758407,
+          "good_fraction_component": -19.478134556574926,
+          "nonviable_fraction_delta": -0.030930537352555687,
+          "direct_damage_fraction_delta": 0.21524683267802536,
+          "signed_missing_fraction_delta": 0.03494975972040193
+        },
+        {
+          "site": "construction",
+          "block": "B39",
+          "florets_per_head_delta": -65.33333333333333,
+          "good_fraction_delta": 2.273109243697479,
+          "good_seeds_per_head_delta": 7.666666666666668,
+          "floret_quantity_component": -98.41176470588235,
+          "good_fraction_component": 106.078431372549,
+          "nonviable_fraction_delta": 0.777310924369748,
+          "direct_damage_fraction_delta": 0,
+          "signed_missing_fraction_delta": -3.0504201680672267
+        },
+        {
+          "site": "construction",
+          "block": "B7",
+          "florets_per_head_delta": 7.25,
+          "good_fraction_delta": 0.06798336798336801,
+          "good_seeds_per_head_delta": 10.049999999999997,
+          "floret_quantity_component": 4.77279106029106,
+          "good_fraction_component": 5.277208939708943,
+          "nonviable_fraction_delta": -0.14166320166320165,
+          "direct_damage_fraction_delta": -0.021621621621621623,
+          "signed_missing_fraction_delta": 0.0953014553014553
+        },
+        {
+          "site": "ditch",
+          "block": "B37",
+          "florets_per_head_delta": -17.333333333333336,
+          "good_fraction_delta": -0.0049083536860076715,
+          "good_seeds_per_head_delta": -9,
+          "floret_quantity_component": -8.661323595665474,
+          "good_fraction_component": -0.33867640433452934,
+          "nonviable_fraction_delta": 0.2525075285135039,
+          "direct_damage_fraction_delta": -0.012828112773575512,
+          "signed_missing_fraction_delta": -0.23477106205392073
+        },
+        {
+          "site": "ditch",
+          "block": "B38",
+          "florets_per_head_delta": 5,
+          "good_fraction_delta": -0.14417051712133688,
+          "good_seeds_per_head_delta": -8,
+          "floret_quantity_component": 4.086295018672068,
+          "good_fraction_component": -12.086295018672075,
+          "nonviable_fraction_delta": 0.09279068295461737,
+          "direct_damage_fraction_delta": 0.023166023166023165,
+          "signed_missing_fraction_delta": 0.028213811000696247
+        },
+        {
+          "site": "ditch",
+          "block": "B40",
+          "florets_per_head_delta": 2.999999999999993,
+          "good_fraction_delta": 0.10089923300714088,
+          "good_seeds_per_head_delta": 8.666666666666671,
+          "floret_quantity_component": 2.125033060037022,
+          "good_fraction_component": 6.541633606629633,
+          "nonviable_fraction_delta": 0.07852419994710394,
+          "direct_damage_fraction_delta": -0.1368421052631579,
+          "signed_missing_fraction_delta": -0.04258132769108701
+        },
+        {
+          "site": "ditch",
+          "block": "B42",
+          "florets_per_head_delta": -8.666666666666664,
+          "good_fraction_delta": -0.323391812865497,
+          "good_seeds_per_head_delta": -28.666666666666664,
+          "floret_quantity_component": -6.783820662768029,
+          "good_fraction_component": -21.88284600389863,
+          "nonviable_fraction_delta": 0.23835282651072126,
+          "direct_damage_fraction_delta": 0,
+          "signed_missing_fraction_delta": 0.08503898635477583
+        },
+        {
+          "site": "ditch",
+          "block": "B43",
+          "florets_per_head_delta": 10.666666666666671,
+          "good_fraction_delta": -0.07844357976653693,
+          "good_seeds_per_head_delta": 2.6666666666666714,
+          "floret_quantity_component": 8.968300907911807,
+          "good_fraction_component": -6.301634241245134,
+          "nonviable_fraction_delta": 0.10452226545611759,
+          "direct_damage_fraction_delta": -0.0044444444444444444,
+          "signed_missing_fraction_delta": -0.021634241245136188
+        },
+        {
+          "site": "ditch",
+          "block": "B45",
+          "florets_per_head_delta": -2.6666666666666714,
+          "good_fraction_delta": -0.0962364233392271,
+          "good_seeds_per_head_delta": -8.666666666666664,
+          "floret_quantity_component": -1.6734865706828355,
+          "good_fraction_component": -6.993180095983836,
+          "nonviable_fraction_delta": 0.308411214953271,
+          "direct_damage_fraction_delta": -0.0672307821840532,
+          "signed_missing_fraction_delta": -0.14494400942999075
+        },
+        {
+          "site": "ditch",
+          "block": "B47",
+          "florets_per_head_delta": 6.666666666666671,
+          "good_fraction_delta": 0.031989374394993275,
+          "good_seeds_per_head_delta": 7,
+          "floret_quantity_component": 4.750080667552137,
+          "good_fraction_component": 2.2499193324478606,
+          "nonviable_fraction_delta": -0.06276310753922693,
+          "direct_damage_fraction_delta": -0.0845771144278607,
+          "signed_missing_fraction_delta": 0.11535084757209427
+        },
+        {
+          "site": "ditch",
+          "block": "B48",
+          "florets_per_head_delta": -2.3333333333333286,
+          "good_fraction_delta": 0.3449018284649249,
+          "good_seeds_per_head_delta": 26.999999999999993,
+          "floret_quantity_component": -1.6843354006662563,
+          "good_fraction_component": 28.68433540066625,
+          "nonviable_fraction_delta": -0.28301037951090974,
+          "direct_damage_fraction_delta": -0.11067193675889328,
+          "signed_missing_fraction_delta": 0.04878048780487805
+        },
+        {
+          "site": "rapseed",
+          "block": "B17",
+          "florets_per_head_delta": -15.833333333333329,
+          "good_fraction_delta": -0.008070175438596491,
+          "good_seeds_per_head_delta": -0.8333333333333335,
+          "floret_quantity_component": -0.1305555555555555,
+          "good_fraction_component": -0.7027777777777778,
+          "nonviable_fraction_delta": 0.11122807017543868,
+          "direct_damage_fraction_delta": -0.014035087719298246,
+          "signed_missing_fraction_delta": -0.08912280701754388
+        },
+        {
+          "site": "rapseed",
+          "block": "B26",
+          "florets_per_head_delta": 18.66666666666667,
+          "good_fraction_delta": -0.05938558297048857,
+          "good_seeds_per_head_delta": 11,
+          "floret_quantity_component": 14.642315755523306,
+          "good_fraction_component": -3.642315755523299,
+          "nonviable_fraction_delta": 0.011973875181422344,
+          "direct_damage_fraction_delta": 0,
+          "signed_missing_fraction_delta": 0.04741170778906628
+        },
+        {
+          "site": "rapseed",
+          "block": "B27",
+          "florets_per_head_delta": -10.666666666666664,
+          "good_fraction_delta": -0.03754254709668714,
+          "good_seeds_per_head_delta": -11.333333333333336,
+          "floret_quantity_component": -9.168379784091035,
+          "good_fraction_component": -2.1649535492422918,
+          "nonviable_fraction_delta": -0.017928756782259966,
+          "direct_damage_fraction_delta": 0.050955414012738856,
+          "signed_missing_fraction_delta": 0.004515889866208336
+        },
+        {
+          "site": "rapseed",
+          "block": "B28",
+          "florets_per_head_delta": 1.3333333333333286,
+          "good_fraction_delta": -0.4151002506265664,
+          "good_seeds_per_head_delta": -30.666666666666668,
+          "floret_quantity_component": 0.6042188805346679,
+          "good_fraction_component": -31.270885547201342,
+          "nonviable_fraction_delta": 0.20876409774436092,
+          "direct_damage_fraction_delta": 0.0568609022556391,
+          "signed_missing_fraction_delta": 0.1494752506265664
+        },
+        {
+          "site": "rapseed",
+          "block": "B30",
+          "florets_per_head_delta": 5.333333333333329,
+          "good_fraction_delta": -0.04707437013929511,
+          "good_seeds_per_head_delta": -1.0000000000000036,
+          "floret_quantity_component": 2.373663193316145,
+          "good_fraction_component": -3.373663193316149,
+          "nonviable_fraction_delta": -0.1439635189878902,
+          "direct_damage_fraction_delta": 0.0962392495829813,
+          "signed_missing_fraction_delta": 0.094798639544204
+        },
+        {
+          "site": "rapseed",
+          "block": "B31",
+          "florets_per_head_delta": 23.333333333333336,
+          "good_fraction_delta": -0.15850202429149796,
+          "good_seeds_per_head_delta": -1.3333333333333286,
+          "floret_quantity_component": 10.554318488529017,
+          "good_fraction_component": -11.887651821862347,
+          "nonviable_fraction_delta": 0.16680161943319838,
+          "direct_damage_fraction_delta": 0,
+          "signed_missing_fraction_delta": -0.008299595141700394
+        },
+        {
+          "site": "rapseed",
+          "block": "B32",
+          "florets_per_head_delta": 12,
+          "good_fraction_delta": 0.007407407407407418,
+          "good_seeds_per_head_delta": 10.333333333333336,
+          "floret_quantity_component": 9.844444444444445,
+          "good_fraction_component": 0.4888888888888896,
+          "nonviable_fraction_delta": 0.020370370370370358,
+          "direct_damage_fraction_delta": -0.03888888888888889,
+          "signed_missing_fraction_delta": 0.011111111111111106
+        }
+      ],
+      "total_identity_mean_residual": 1.1102230246251565e-16,
+      "good_fraction_categories_identity_mean_residual": 2.0816681711721685e-17
+    },
+    "bag_minus_predator_exclusion": {
+      "arm_a": "Pollinator Exclusion",
+      "arm_b": "Predator Exclusion",
+      "n_blocks": 36,
+      "measurements": {
+        "florets_per_head_delta": {
+          "mean": 4.5129629629629635,
+          "sign": {
+            "positive": 24,
+            "negative": 12,
+            "zero": 0
+          },
+          "site_means": {
+            "campus": 4.0902777777777795,
+            "construction": 4.31111111111111,
+            "ditch": 2.218750000000001,
+            "rapseed": 8.119047619047619
+          },
+          "leave_one_site_out": {
+            "campus": 4.7243055555555555,
+            "construction": 4.580246913580249,
+            "ditch": 5.168452380952381,
+            "rapseed": 3.6425287356321845
+          },
+          "bootstrap_ci95": [
+            -0.37923611111111144,
+            9.224537037037031
+          ]
+        },
+        "good_fraction_delta": {
+          "mean": -0.5171342503523743,
+          "sign": {
+            "positive": 0,
+            "negative": 36,
+            "zero": 0
+          },
+          "site_means": {
+            "campus": -0.47387042520315936,
+            "construction": -0.43802216213049533,
+            "ditch": -0.6339347368271446,
+            "rapseed": -0.5595300794937071
+          },
+          "leave_one_site_out": {
+            "campus": -0.5387661629269819,
+            "construction": -0.5435049464263341,
+            "ditch": -0.4837626827881544,
+            "rapseed": -0.5069007743527423
+          },
+          "bootstrap_ci95": [
+            -0.5785877993171594,
+            -0.4536605249737351
+          ]
+        },
+        "good_seeds_per_head_delta": {
+          "mean": -37.768187830687836,
+          "sign": {
+            "positive": 0,
+            "negative": 36,
+            "zero": 0
+          },
+          "site_means": {
+            "campus": -37.00972222222223,
+            "construction": -32.87460317460317,
+            "ditch": -46.87500000000001,
+            "rapseed": -34.95238095238095
+          },
+          "leave_one_site_out": {
+            "campus": -38.14742063492063,
+            "construction": -39.39938271604938,
+            "ditch": -35.166241496598644,
+            "rapseed": -38.44786535303777
+          },
+          "bootstrap_ci95": [
+            -42.777422288359794,
+            -32.813334986772496
+          ]
+        },
+        "floret_quantity_component": {
+          "mean": 1.5037635424926163,
+          "sign": {
+            "positive": 24,
+            "negative": 12,
+            "zero": 0
+          },
+          "site_means": {
+            "campus": 1.1957175141730396,
+            "construction": 0.9068842080441014,
+            "ditch": 0.911418298138065,
+            "rapseed": 3.476224728879468
+          },
+          "leave_one_site_out": {
+            "campus": 1.6577865566524046,
+            "construction": 1.702723320642121,
+            "ditch": 1.6730050408796306,
+            "rapseed": 1.0276522216406176
+          },
+          "bootstrap_ci95": [
+            -0.2779867073246619,
+            3.2749633635770365
+          ]
+        },
+        "good_fraction_component": {
+          "mean": -39.27195137318044,
+          "sign": {
+            "positive": 0,
+            "negative": 36,
+            "zero": 0
+          },
+          "site_means": {
+            "campus": -38.20543973639527,
+            "construction": -33.78148738264727,
+            "ditch": -47.78641829813807,
+            "rapseed": -38.42860568126043
+          },
+          "leave_one_site_out": {
+            "campus": -39.80520719157304,
+            "construction": -41.10210603669151,
+            "ditch": -36.839246537478274,
+            "rapseed": -39.47551757467839
+          },
+          "bootstrap_ci95": [
+            -44.42888615660953,
+            -34.08651125104672
+          ]
+        },
+        "nonviable_fraction_delta": {
+          "mean": 0.3835921920307506,
+          "sign": {
+            "positive": 32,
+            "negative": 4,
+            "zero": 0
+          },
+          "site_means": {
+            "campus": 0.3338798632163584,
+            "construction": 0.298776254452211,
+            "ditch": 0.47962416545009157,
+            "rapseed": 0.4681115629771556
+          },
+          "leave_one_site_out": {
+            "campus": 0.4084483564379468,
+            "construction": 0.41186417122359725,
+            "ditch": 0.3561544853395104,
+            "rapseed": 0.36319096456092875
+          },
+          "bootstrap_ci95": [
+            0.2929411466844322,
+            0.47926458992547116
+          ]
+        },
+        "direct_damage_fraction_delta": {
+          "mean": -0.014590232720452382,
+          "sign": {
+            "positive": 10,
+            "negative": 19,
+            "zero": 7
+          },
+          "site_means": {
+            "campus": -0.022006095055087823,
+            "construction": -0.00910350663443723,
+            "ditch": -0.021961466973963794,
+            "rapseed": -0.0005074202533695005
+          },
+          "leave_one_site_out": {
+            "campus": -0.010882301553134665,
+            "construction": -0.01641914141579077,
+            "ditch": -0.012484165790877697,
+            "rapseed": -0.017989532281472386
+          },
+          "bootstrap_ci95": [
+            -0.034147887812274444,
+            0.004711245760283833
+          ]
+        },
+        "signed_missing_fraction_delta": {
+          "mean": 0.14813229104207618,
+          "sign": {
+            "positive": 27,
+            "negative": 8,
+            "zero": 1
+          },
+          "site_means": {
+            "campus": 0.16199665704188884,
+            "construction": 0.14834941431272158,
+            "ditch": 0.17627203835101674,
+            "rapseed": 0.09192593676992103
+          },
+          "leave_one_site_out": {
+            "campus": 0.1412001080421698,
+            "construction": 0.1480599166185277,
+            "ditch": 0.1400923632395217,
+            "rapseed": 0.16169934207328604
+          },
+          "bootstrap_ci95": [
+            0.05575611470140199,
+            0.2330143859035195
+          ]
+        }
+      },
+      "paired_block_rows": [
+        {
+          "site": "campus",
+          "block": "B1",
+          "florets_per_head_delta": -10.666666666666671,
+          "good_fraction_delta": -0.2847137958322343,
+          "good_seeds_per_head_delta": -24.583333333333332,
+          "floret_quantity_component": -1.9011342653653398,
+          "good_fraction_component": -22.682199067967993,
+          "nonviable_fraction_delta": -0.1269322078607228,
+          "direct_damage_fraction_delta": 0.026905829596412557,
+          "signed_missing_fraction_delta": 0.3847401740965445
+        },
+        {
+          "site": "campus",
+          "block": "B11",
+          "florets_per_head_delta": -7,
+          "good_fraction_delta": -0.600271533745766,
+          "good_seeds_per_head_delta": -56.333333333333336,
+          "floret_quantity_component": -2.8091215743358617,
+          "good_fraction_component": -53.524211758997474,
+          "nonviable_fraction_delta": 0.033563810430255,
+          "direct_damage_fraction_delta": -0.03898048876074238,
+          "signed_missing_fraction_delta": 0.6056882120762535
+        },
+        {
+          "site": "campus",
+          "block": "B12",
+          "florets_per_head_delta": 25.33333333333333,
+          "good_fraction_delta": -0.6354072192998368,
+          "good_seeds_per_head_delta": -46,
+          "floret_quantity_component": 9.068625672652516,
+          "good_fraction_component": -55.068625672652516,
+          "nonviable_fraction_delta": 0.4554386601366467,
+          "direct_damage_fraction_delta": 0,
+          "signed_missing_fraction_delta": 0.17996855916319002
+        },
+        {
+          "site": "campus",
+          "block": "B13",
+          "florets_per_head_delta": 6.500000000000007,
+          "good_fraction_delta": -0.36714906686795595,
+          "good_seeds_per_head_delta": -22.666666666666664,
+          "floret_quantity_component": 1.3510014576121203,
+          "good_fraction_component": -24.01766812427879,
+          "nonviable_fraction_delta": -0.2144902261901663,
+          "direct_damage_fraction_delta": 0.00042947499934926914,
+          "signed_missing_fraction_delta": 0.581209818058773
+        },
+        {
+          "site": "campus",
+          "block": "B2",
+          "florets_per_head_delta": 13.666666666666671,
+          "good_fraction_delta": -0.3761854583772392,
+          "good_seeds_per_head_delta": -26.200000000000003,
+          "floret_quantity_component": 3.8321390937829314,
+          "good_fraction_component": -30.032139093782934,
+          "nonviable_fraction_delta": 0.07110115911485776,
+          "direct_damage_fraction_delta": -0.05445205479452055,
+          "signed_missing_fraction_delta": 0.35953635405690204
+        },
+        {
+          "site": "campus",
+          "block": "B21",
+          "florets_per_head_delta": -39.83333333333333,
+          "good_fraction_delta": -0.3657446068197634,
+          "good_seeds_per_head_delta": -36.833333333333336,
+          "floret_quantity_component": -14.919135641382507,
+          "good_fraction_component": -21.91419769195082,
+          "nonviable_fraction_delta": 1.1971468336812805,
+          "direct_damage_fraction_delta": 0.01664926931106472,
+          "signed_missing_fraction_delta": -0.8480514961725818
+        },
+        {
+          "site": "campus",
+          "block": "B3",
+          "florets_per_head_delta": 16,
+          "good_fraction_delta": -0.9006613413162677,
+          "good_seeds_per_head_delta": -69.66666666666666,
+          "floret_quantity_component": 7.48998823942694,
+          "good_fraction_component": -77.1566549060936,
+          "nonviable_fraction_delta": 0.7225115696546669,
+          "direct_damage_fraction_delta": 0,
+          "signed_missing_fraction_delta": 0.17814977166160098
+        },
+        {
+          "site": "campus",
+          "block": "B4",
+          "florets_per_head_delta": 1.6666666666666714,
+          "good_fraction_delta": -0.5966132130627244,
+          "good_seeds_per_head_delta": -60.99999999999999,
+          "floret_quantity_component": 0.5505964809710753,
+          "good_fraction_component": -61.550596480971066,
+          "nonviable_fraction_delta": 0.5790528689551491,
+          "direct_damage_fraction_delta": 0,
+          "signed_missing_fraction_delta": 0.01756034410757537
+        },
+        {
+          "site": "campus",
+          "block": "B5",
+          "florets_per_head_delta": 35.50000000000001,
+          "good_fraction_delta": -0.4777295537772956,
+          "good_seeds_per_head_delta": -21,
+          "floret_quantity_component": 10.729204530042047,
+          "good_fraction_component": -31.72920453004205,
+          "nonviable_fraction_delta": 0.47924860979248607,
+          "direct_damage_fraction_delta": -0.05826664858266648,
+          "signed_missing_fraction_delta": 0.05674759256747594
+        },
+        {
+          "site": "campus",
+          "block": "B6",
+          "florets_per_head_delta": 2.9166666666666714,
+          "good_fraction_delta": -0.03676085818942962,
+          "good_seeds_per_head_delta": -2.166666666666667,
+          "floret_quantity_component": 0.2886523199023204,
+          "good_fraction_component": -2.455318986568986,
+          "nonviable_fraction_delta": 0.08241758241758246,
+          "direct_damage_fraction_delta": -0.1683673469387755,
+          "signed_missing_fraction_delta": 0.1227106227106227
+        },
+        {
+          "site": "campus",
+          "block": "B8",
+          "florets_per_head_delta": -2.6666666666666714,
+          "good_fraction_delta": -0.6052350427350427,
+          "good_seeds_per_head_delta": -44,
+          "floret_quantity_component": -1.2300569800569823,
+          "good_fraction_component": -42.769943019943014,
+          "nonviable_fraction_delta": 0.35096153846153844,
+          "direct_damage_fraction_delta": 0.03365384615384615,
+          "signed_missing_fraction_delta": 0.2206196581196581
+        },
+        {
+          "site": "campus",
+          "block": "B9",
+          "florets_per_head_delta": 7.666666666666671,
+          "good_fraction_delta": -0.4399734124143573,
+          "good_seeds_per_head_delta": -33.666666666666664,
+          "floret_quantity_component": 1.897850836827216,
+          "good_fraction_component": -35.56451750349388,
+          "nonviable_fraction_delta": 0.376538160002727,
+          "direct_damage_fraction_delta": -0.021645021645021644,
+          "signed_missing_fraction_delta": 0.085080274056652
+        },
+        {
+          "site": "construction",
+          "block": "B10",
+          "florets_per_head_delta": 2.0833333333333286,
+          "good_fraction_delta": -0.5145510786421658,
+          "good_seeds_per_head_delta": -36.583333333333336,
+          "floret_quantity_component": 0.5715424702863845,
+          "good_fraction_component": -37.154875803619724,
+          "nonviable_fraction_delta": 0.6041115489445372,
+          "direct_damage_fraction_delta": -0.1696173797667671,
+          "signed_missing_fraction_delta": 0.08005690946439561
+        },
+        {
+          "site": "construction",
+          "block": "B18",
+          "florets_per_head_delta": 4.799999999999997,
+          "good_fraction_delta": -0.4622356495468278,
+          "good_seeds_per_head_delta": -30.6,
+          "floret_quantity_component": 1.109365558912386,
+          "good_fraction_component": -31.70936555891238,
+          "nonviable_fraction_delta": 0.1385260201693545,
+          "direct_damage_fraction_delta": 0.12167567337560103,
+          "signed_missing_fraction_delta": 0.20203395600187227
+        },
+        {
+          "site": "construction",
+          "block": "B19",
+          "florets_per_head_delta": 7.333333333333329,
+          "good_fraction_delta": -0.5342786578095724,
+          "good_seeds_per_head_delta": -36.333333333333336,
+          "floret_quantity_component": 2.3128229148924073,
+          "good_fraction_component": -38.64615624822574,
+          "nonviable_fraction_delta": 0.13349514563106796,
+          "direct_damage_fraction_delta": 0.07017543859649122,
+          "signed_missing_fraction_delta": 0.3306080735820133
+        },
+        {
+          "site": "construction",
+          "block": "B20",
+          "florets_per_head_delta": 5.333333333333329,
+          "good_fraction_delta": -0.5421861522778955,
+          "good_seeds_per_head_delta": -39,
+          "floret_quantity_component": 1.8446901382681182,
+          "good_fraction_component": -40.84469013826813,
+          "nonviable_fraction_delta": 0.40286599231553355,
+          "direct_damage_fraction_delta": 0.0023915941347134005,
+          "signed_missing_fraction_delta": 0.13692856582764842
+        },
+        {
+          "site": "construction",
+          "block": "B24",
+          "florets_per_head_delta": 7.333333333333336,
+          "good_fraction_delta": -0.32883195831524104,
+          "good_seeds_per_head_delta": -18.571428571428573,
+          "floret_quantity_component": 3.2410913301490822,
+          "good_fraction_component": -21.812519901577655,
+          "nonviable_fraction_delta": 0.43078593139383414,
+          "direct_damage_fraction_delta": 0.0326530612244898,
+          "signed_missing_fraction_delta": -0.13460703430308293
+        },
+        {
+          "site": "construction",
+          "block": "B34",
+          "florets_per_head_delta": 10.333333333333329,
+          "good_fraction_delta": -0.2345351043643264,
+          "good_seeds_per_head_delta": -17,
+          "floret_quantity_component": 2.3882352941176457,
+          "good_fraction_component": -19.388235294117646,
+          "nonviable_fraction_delta": 0.3660974067046173,
+          "direct_damage_fraction_delta": -0.11612903225806452,
+          "signed_missing_fraction_delta": -0.015433270082226419
+        },
+        {
+          "site": "construction",
+          "block": "B35",
+          "florets_per_head_delta": -22.33333333333333,
+          "good_fraction_delta": -0.5032258064516129,
+          "good_seeds_per_head_delta": -55,
+          "floret_quantity_component": -7.780645161290321,
+          "good_fraction_component": -47.21935483870968,
+          "nonviable_fraction_delta": 0.27004608294930876,
+          "direct_damage_fraction_delta": -0.0014592933947772668,
+          "signed_missing_fraction_delta": 0.23463901689708144
+        },
+        {
+          "site": "construction",
+          "block": "B39",
+          "florets_per_head_delta": 23.66666666666667,
+          "good_fraction_delta": -0.3697478991596639,
+          "good_seeds_per_head_delta": -29.333333333333332,
+          "floret_quantity_component": 4.375350140056024,
+          "good_fraction_component": -33.70868347338936,
+          "nonviable_fraction_delta": -0.01811209920861545,
+          "direct_damage_fraction_delta": 0,
+          "signed_missing_fraction_delta": 0.38785999836827934
+        },
+        {
+          "site": "construction",
+          "block": "B7",
+          "florets_per_head_delta": 0.25,
+          "good_fraction_delta": -0.45260715260715256,
+          "good_seeds_per_head_delta": -33.45,
+          "floret_quantity_component": 0.099505187005187,
+          "good_fraction_component": -33.54950518700518,
+          "nonviable_fraction_delta": 0.36117026117026113,
+          "direct_damage_fraction_delta": -0.021621621621621623,
+          "signed_missing_fraction_delta": 0.11305851305851305
+        },
+        {
+          "site": "ditch",
+          "block": "B37",
+          "florets_per_head_delta": 3.666666666666657,
+          "good_fraction_delta": -0.4570639555336664,
+          "good_seeds_per_head_delta": -35.333333333333336,
+          "floret_quantity_component": 1.0032511315931398,
+          "good_fraction_component": -36.33658446492648,
+          "nonviable_fraction_delta": 0.5908147470625484,
+          "direct_damage_fraction_delta": -0.01871526067684514,
+          "signed_missing_fraction_delta": -0.11503553085203685
+        },
+        {
+          "site": "ditch",
+          "block": "B38",
+          "florets_per_head_delta": -9,
+          "good_fraction_delta": -0.8156115434010728,
+          "good_seeds_per_head_delta": -67,
+          "floret_quantity_component": -4.33384641535091,
+          "good_fraction_component": -62.66615358464909,
+          "nonviable_fraction_delta": 0.7306036110901262,
+          "direct_damage_fraction_delta": 0,
+          "signed_missing_fraction_delta": 0.08500793231094658
+        },
+        {
+          "site": "ditch",
+          "block": "B40",
+          "florets_per_head_delta": 1.4166666666666643,
+          "good_fraction_delta": -0.5304816094289779,
+          "good_seeds_per_head_delta": -33.416666666666664,
+          "floret_quantity_component": 0.5562597371807889,
+          "good_fraction_component": -33.97292640384747,
+          "nonviable_fraction_delta": 0.45354602723023774,
+          "direct_damage_fraction_delta": -0.02873399715504979,
+          "signed_missing_fraction_delta": 0.10566957935378987
+        },
+        {
+          "site": "ditch",
+          "block": "B42",
+          "florets_per_head_delta": 10.666666666666671,
+          "good_fraction_delta": -0.8597670250896057,
+          "good_seeds_per_head_delta": -61,
+          "floret_quantity_component": 5.488649940262846,
+          "good_fraction_component": -66.48864994026285,
+          "nonviable_fraction_delta": 0.3112305854241338,
+          "direct_damage_fraction_delta": 0.10887096774193548,
+          "signed_missing_fraction_delta": 0.43966547192353644
+        },
+        {
+          "site": "ditch",
+          "block": "B43",
+          "florets_per_head_delta": -4.333333333333329,
+          "good_fraction_delta": -0.8611320754716981,
+          "good_seeds_per_head_delta": -64.66666666666667,
+          "floret_quantity_component": -1.9475471698113187,
+          "good_fraction_component": -62.719119496855356,
+          "nonviable_fraction_delta": 0.700293501048218,
+          "direct_damage_fraction_delta": -0.0044444444444444444,
+          "signed_missing_fraction_delta": 0.1652830188679245
+        },
+        {
+          "site": "ditch",
+          "block": "B45",
+          "florets_per_head_delta": -1,
+          "good_fraction_delta": -0.5044427989633469,
+          "good_seeds_per_head_delta": -37.5,
+          "floret_quantity_component": -0.4234542761940022,
+          "good_fraction_component": -37.07654572380599,
+          "nonviable_fraction_delta": 0.4863013698630137,
+          "direct_damage_fraction_delta": -0.07657657657657657,
+          "signed_missing_fraction_delta": 0.09471800567690977
+        },
+        {
+          "site": "ditch",
+          "block": "B47",
+          "florets_per_head_delta": 16,
+          "good_fraction_delta": -0.536878858718456,
+          "good_seeds_per_head_delta": -33.416666666666664,
+          "floret_quantity_component": 6.849247737217527,
+          "good_fraction_component": -40.265914403884196,
+          "nonviable_fraction_delta": -0.05256848288677096,
+          "direct_damage_fraction_delta": -0.0454204879218366,
+          "signed_missing_fraction_delta": 0.6348678295270634
+        },
+        {
+          "site": "ditch",
+          "block": "B48",
+          "florets_per_head_delta": 0.3333333333333428,
+          "good_fraction_delta": -0.5061000280103327,
+          "good_seeds_per_head_delta": -42.66666666666667,
+          "floret_quantity_component": 0.09878570020644935,
+          "good_fraction_component": -42.76545236687311,
+          "nonviable_fraction_delta": 0.616771964769226,
+          "direct_damage_fraction_delta": -0.11067193675889328,
+          "signed_missing_fraction_delta": 0
+        },
+        {
+          "site": "rapseed",
+          "block": "B17",
+          "florets_per_head_delta": -1,
+          "good_fraction_delta": -0.012280701754385965,
+          "good_seeds_per_head_delta": -1.1666666666666667,
+          "floret_quantity_component": -0.0061403508771929825,
+          "good_fraction_component": -1.1605263157894736,
+          "nonviable_fraction_delta": 0.1541993281075028,
+          "direct_damage_fraction_delta": -0.014035087719298246,
+          "signed_missing_fraction_delta": -0.12788353863381863
+        },
+        {
+          "site": "rapseed",
+          "block": "B26",
+          "florets_per_head_delta": 22.33333333333333,
+          "good_fraction_delta": -0.8141025641025641,
+          "good_seeds_per_head_delta": -42.333333333333336,
+          "floret_quantity_component": 9.090811965811964,
+          "good_fraction_component": -51.424145299145295,
+          "nonviable_fraction_delta": 0.46309072093825454,
+          "direct_damage_fraction_delta": 0.04484304932735426,
+          "signed_missing_fraction_delta": 0.3061687938369553
+        },
+        {
+          "site": "rapseed",
+          "block": "B27",
+          "florets_per_head_delta": -6,
+          "good_fraction_delta": -0.808131439710387,
+          "good_seeds_per_head_delta": -51.333333333333336,
+          "floret_quantity_component": -2.8454469507101083,
+          "good_fraction_component": -48.48788638262322,
+          "nonviable_fraction_delta": 0.9337231968810915,
+          "direct_damage_fraction_delta": 0,
+          "signed_missing_fraction_delta": -0.12559175717070453
+        },
+        {
+          "site": "rapseed",
+          "block": "B28",
+          "florets_per_head_delta": -1.6666666666666714,
+          "good_fraction_delta": -0.6150521852576647,
+          "good_seeds_per_head_delta": -46,
+          "floret_quantity_component": -0.5886469884757572,
+          "good_fraction_component": -45.41135301152425,
+          "nonviable_fraction_delta": 0.669530740378343,
+          "direct_damage_fraction_delta": -0.008928571428571428,
+          "signed_missing_fraction_delta": -0.045549983692106985
+        },
+        {
+          "site": "rapseed",
+          "block": "B30",
+          "florets_per_head_delta": -5.166666666666664,
+          "good_fraction_delta": -0.3719932896910988,
+          "good_seeds_per_head_delta": -26.166666666666668,
+          "floret_quantity_component": -1.4601123430161906,
+          "good_fraction_component": -24.70655432365048,
+          "nonviable_fraction_delta": 0.48787855854492246,
+          "direct_damage_fraction_delta": -0.0024154589371980675,
+          "signed_missing_fraction_delta": -0.11346980991662566
+        },
+        {
+          "site": "rapseed",
+          "block": "B31",
+          "florets_per_head_delta": 3.3333333333333357,
+          "good_fraction_delta": -0.516578947368421,
+          "good_seeds_per_head_delta": -32.666666666666664,
+          "floret_quantity_component": 0.9109649122807024,
+          "good_fraction_component": -33.57763157894737,
+          "nonviable_fraction_delta": 0.4302631578947368,
+          "direct_damage_fraction_delta": 0,
+          "signed_missing_fraction_delta": 0.08631578947368422
+        },
+        {
+          "site": "rapseed",
+          "block": "B32",
+          "florets_per_head_delta": 45,
+          "good_fraction_delta": -0.7785714285714286,
+          "good_seeds_per_head_delta": -45,
+          "floret_quantity_component": 19.232142857142858,
+          "good_fraction_component": -64.23214285714286,
+          "nonviable_fraction_delta": 0.13809523809523808,
+          "direct_damage_fraction_delta": -0.023015873015873017,
+          "signed_missing_fraction_delta": 0.6634920634920636
+        }
+      ],
+      "total_identity_mean_residual": -7.105427357601002e-15,
+      "good_fraction_categories_identity_mean_residual": 1.6653345369377348e-16
+    }
+  },
+  "bag_fraction_component_share_of_mean_good_seed_difference": 0.9919835912509706,
+  "limits": {
+    "not_true_pre_treatment_floret_count": true,
+    "flower_count_is_author_Flowers_not_calibrated_head_geometry": true,
+    "ratio_of_components_not_separate_causal_path_effects": true,
+    "bag_blocks_both_pollinators_and_some_antagonists": true,
+    "signed_missing_cannot_be_called_direct_consumption": true,
+    "zero_new_fieldwork_or_anatomical_measurements": 0,
+    "no_trait_partner_genetic_LEGO_causal_evidence": true
+  }
+}
