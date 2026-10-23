@@ -1,0 +1,79 @@
+name: Audit authentic Cirsium head floret versus seed conversion
+on:
+  pull_request:
+    paths:
+      - 'analysis/audit_cirsium_arvense_head_floret_conversion_v1.py'
+      - 'tests/test_cirsium_arvense_head_floret_conversion_v1.py'
+      - 'data/evidence/cirsium_arvense_head_floret_conversion_independent_js_v1.json'
+      - 'docs/CIRSIUM_ARVENSE_ORIGINAL_HEAD_FLORET_VS_SEED_CONVERSION_20261023.md'
+      - '.github/workflows/audit-cirsium-arvense-head-stage-decomposition-v1.yml'
+      - 'README.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  immutable-original-author-source-36-block-decomposition:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify mathematical identities and negative controls
+        run: |
+          python -m py_compile analysis/audit_cirsium_arvense_head_floret_conversion_v1.py
+          python -m unittest discover -s tests -p 'test_cirsium_arvense_head_floret_conversion_v1.py' -v
+      - name: Retrieve authentic author 2022 seeds.csv at fixed Git SHA
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work/cirsium_stage
+          gh api 'repos/Yogita25/Multitrophic_Interactions/contents/seeds.csv?ref=8a151c62ed069f775a16b9bc5fbdce209cbb8691' --jq .content | base64 -d > work/cirsium_stage/author_2022_seeds.csv
+          test -s work/cirsium_stage/author_2022_seeds.csv
+      - name: Recompute original four-arm seed stages and 10000 site-preserved resamples
+        run: |
+          python analysis/audit_cirsium_arvense_head_floret_conversion_v1.py \
+            --seeds work/cirsium_stage/author_2022_seeds.csv \
+            --bootstrap 10000 \
+            --out work/cirsium_stage/result_python.json
+      - name: Independently match all 36 blocks and every numerical attribution component with JS original-source receipt
+        run: |
+          python - <<'PY'
+          import json,math
+          a=json.load(open('work/cirsium_stage/result_python.json'))
+          b=json.load(open('data/evidence/cirsium_arvense_head_floret_conversion_independent_js_v1.json'))
+          def match(x,y,key='root'):
+              if isinstance(y,dict):
+                  assert isinstance(x,dict) and set(x)==set(y),(key,set(x)^set(y))
+                  for k in y: match(x[k],y[k],key+'.'+k)
+              elif isinstance(y,list):
+                  assert isinstance(x,list) and len(x)==len(y),(key,'len')
+                  for i,(u,v) in enumerate(zip(x,y)): match(u,v,key+f'[{i}]')
+              elif isinstance(y,bool):
+                  assert isinstance(x,bool) and x==y,(key,x,y)
+              elif type(y) in (int,float):
+                  assert type(x) in (int,float) and math.isfinite(x) and math.isfinite(y),(key,x,y)
+                  assert math.isclose(x,y,abs_tol=1e-9,rel_tol=1e-10),(key,x,y)
+              else:
+                  assert x==y,(key,x,y)
+          for name in ('as_of','source','source_counts','design','bootstrap','comparisons',
+                       'bag_fraction_component_share_of_mean_good_seed_difference','limits'):
+              match(a[name],b[name],name)
+          assert a['synthetic_control']=='PASS_SOURCE_FLORET_PRODUCT_AND_TWO_CATEGORY_IDENTITIES'
+          assert a['source_counts']['raw_heads']==615
+          assert a['source_counts']['complete_blocks']==36
+          main=a['comparisons']['bag_minus_control']['measurements']
+          assert main['good_fraction_delta']['sign']=={'positive':0,'negative':36,'zero':0}
+          assert abs(main['floret_quantity_component']['mean'])<1
+          assert main['good_fraction_component']['mean']< -40
+          assert a['limits']['zero_new_fieldwork_or_anatomical_measurements']==0
+          print('PASS original author 615 rows, 36 complete 4-arm site blocks, 5x8 identity/stage component matrices, all 36 original per-block deltas and 10000 independently calculated JS/Python bootstrap resamples.')
+          PY
+      - name: Archive only computed summary rather than authors original data
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-original-head-floret-conversion-decomposition-v1
+          path: work/cirsium_stage/result_python.json
+          if-no-files-found: error
+          retention-days: 30
