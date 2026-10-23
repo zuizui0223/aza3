@@ -1,0 +1,77 @@
+name: Audit 114 original Cirsium reproductive head core/exterior mosaics
+on:
+  pull_request:
+    paths:
+      - 'analysis/audit_cirsium_core_matched_outer_mosaic_v1.py'
+      - 'tests/test_cirsium_core_matched_outer_mosaic_v1.py'
+      - 'data/evidence/cirsium_2023_same_plant_head_morphology_subset_v1.csv'
+      - 'data/evidence/cirsium_core_matched_outer_mosaic_independent_js_v1.json'
+      - 'docs/CIRSIUM_REAL_CORE_MATCHED_OUTER_HEAD_MOSAIC_20261023.md'
+      - '.github/workflows/audit-cirsium-core-matched-outer-mosaic-v1.yml'
+      - 'README.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  true-original-individual-head-morphology:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test original source SHA, anatomical-ratio ontology, independent-plant matching, and negative controls
+        run: |
+          python -m py_compile analysis/audit_cirsium_core_matched_outer_mosaic_v1.py
+          python -m unittest discover -s tests -p 'test_cirsium_core_matched_outer_mosaic_v1.py' -v
+      - name: Replay 114 same-original-plant phenotype rows in source taxon and sex strata
+        run: |
+          mkdir -p work/core_outer
+          python analysis/audit_cirsium_core_matched_outer_mosaic_v1.py \
+            --subset data/evidence/cirsium_2023_same_plant_head_morphology_subset_v1.csv \
+            --out work/core_outer/recomputed.json
+      - name: Independently compare all 5 threshold variants, all 114 source plants and nonoverlapping matched pairs
+        run: |
+          python - <<'PY'
+          import json,math
+          x=json.load(open('work/core_outer/recomputed.json'))
+          y=json.load(open('data/evidence/cirsium_core_matched_outer_mosaic_independent_js_v1.json'))
+          def same(a,b,path="root"):
+              if isinstance(b,dict):
+                  assert isinstance(a,dict) and set(a)==set(b),(path,set(a)^set(b))
+                  for k in b:same(a[k],b[k],path+"."+k)
+              elif isinstance(b,list):
+                  assert isinstance(a,list) and len(a)==len(b),(path,'list-length')
+                  for i,(p,q) in enumerate(zip(a,b)): same(p,q,path+f'[{i}]')
+              elif isinstance(b,bool):
+                  assert type(a) is bool and a==b,(path,a,b)
+              elif type(b) in (int,float):
+                  assert type(a) in (int,float) and math.isfinite(a) and math.isfinite(b)
+                  assert math.isclose(a,b,rel_tol=1e-11,abs_tol=1e-11),(path,a,b)
+              else:
+                  assert a==b,(path,a,b)
+          same(x,y)
+          assert x['source']['n_original_individuals']==114
+          q=x['analyses']['primary']
+          assert (q['n_core_compatible_edges'],q['n_outer_divergent_edges'],
+                  q['n_disjoint_core_first_pairs'],
+                  q['n_disjoint_core_first_outer_divergent'],
+                  q['n_disjoint_outer_first_pairs'])==(239,67,44,9,16)
+          w=x['analyses']['width_denominator_control']
+          assert (w['n_core_compatible_edges'],w['n_outer_divergent_edges'],
+                  w['n_disjoint_core_first_pairs'],
+                  w['n_disjoint_core_first_outer_divergent'],
+                  w['n_disjoint_outer_first_pairs'])==(97,34,33,11,13)
+          assert x['denominator_controlled_absolute_outer_tip_width']['n_pairs_with_abs_Ibr_W_log_ratio_ge_0p1']==10
+          assert not x['caveats']['genetic_LEGO_ancestral_regain_or_selection_evidence']
+          assert x['caveats']['new_own_biological_samples']==0
+          print('PASS: publisher-verified subset 114 plants/6 strata, 5 size-matching settings, exact pair IDs/contrasts and source-fixed biological inference limits')
+          PY
+      - name: Upload source-hash-stable computation receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: Cirsium-real-head-core-exterior-mosaic-matched-original-plants
+          path: work/core_outer/recomputed.json
+          if-no-files-found: error
+          retention-days: 30
