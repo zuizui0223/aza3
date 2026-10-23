@@ -1,0 +1,511 @@
+{
+  "schema": "aza3_original_Cirsium_maternal_joint_route_coverage_v3",
+  "source": {
+    "dataset_doi": "10.15482/USDA.ADC/1522649",
+    "original_study_DOI": "10.1002/ajb2.1744",
+    "source_owner": "West & Louda (2021) USDA CC0 original experiment",
+    "genuine_maternal_rows": 106,
+    "jointly_consistent_mothers": 105,
+    "original_individual_head_rows": 323,
+    "bad_joint_maternal_route_IDs": [
+      "2007|327"
+    ],
+    "USDA_original_git_blob_mothers": "458800272c3d0a03c7653702027a8f8578d9e88c",
+    "not_a_new_independent_Cirsium_sample": true
+  },
+  "year_arm_observed_coverage": {
+    "2007": {
+      "ndni": {
+        "n_mothers": 9,
+        "four_anatomical_routes": {
+          "no_good_seed": 0,
+          "apical_only": 2,
+          "lateral_only": 2,
+          "both_sites": 5
+        },
+        "P_apical_good_seed": 0.7777777777777778,
+        "P_lateral_good_seed": 0.7777777777777778,
+        "P_both_apical_and_lateral": 0.5555555555555556,
+        "P_joint_failure_both_routes": 0,
+        "P_any_maternal_good_seed": 1,
+        "observed_union_surplus_over_apical_route": 0.2222222222222222,
+        "observed_union_surplus_over_lateral_route": 0.2222222222222222,
+        "observed_union_surplus_over_better_single_route": 0.2222222222222222,
+        "fraction_positive_mothers_using_exactly_one_route": 0.4444444444444444,
+        "P_lateral_positive_given_apical_negative": 1,
+        "P_apical_positive_given_lateral_negative": 1,
+        "conditional_independence_benchmark_P_union": 0.9506172839506173,
+        "observed_minus_independence_benchmark_P_union": 0.04938271604938271,
+        "independence_benchmark_is_only_product_of_marginals": true,
+        "conditional_independence_is_a_realistic_biological_null": false,
+        "observed_correlated_routes_are_molecularly_independent": false,
+        "organ_removal_causal_selection_estimated": false,
+        "vegetative_clonal_or_future_generation_success_not_measured": true
+      },
+      "dni": {
+        "n_mothers": 8,
+        "four_anatomical_routes": {
+          "no_good_seed": 2,
+          "apical_only": 0,
+          "lateral_only": 6,
+          "both_sites": 0
+        },
+        "P_apical_good_seed": 0,
+        "P_lateral_good_seed": 0.75,
+        "P_both_apical_and_lateral": 0,
+        "P_joint_failure_both_routes": 0.25,
+        "P_any_maternal_good_seed": 0.75,
+        "observed_union_surplus_over_apical_route": 0.75,
+        "observed_union_surplus_over_lateral_route": 0,
+        "observed_union_surplus_over_better_single_route": 0,
+        "fraction_positive_mothers_using_exactly_one_route": 1,
+        "P_lateral_positive_given_apical_negative": 0.75,
+        "P_apical_positive_given_lateral_negative": 0,
+        "conditional_independence_benchmark_P_union": 0.75,
+        "observed_minus_independence_benchmark_P_union": 0,
+        "independence_benchmark_is_only_product_of_marginals": true,
+        "conditional_independence_is_a_realistic_biological_null": false,
+        "observed_correlated_routes_are_molecularly_independent": false,
+        "organ_removal_causal_selection_estimated": false,
+        "vegetative_clonal_or_future_generation_success_not_measured": true
+      },
+      "ndi": {
+        "n_mothers": 10,
+        "four_anatomical_routes": {
+          "no_good_seed": 0,
+          "apical_only": 3,
+          "lateral_only": 2,
+          "both_sites": 5
+        },
+        "P_apical_good_seed": 0.8,
+        "P_lateral_good_seed": 0.7,
+        "P_both_apical_and_lateral": 0.5,
+        "P_joint_failure_both_routes": 0,
+        "P_any_maternal_good_seed": 1,
+        "observed_union_surplus_over_apical_route": 0.2,
+        "observed_union_surplus_over_lateral_route": 0.3,
+        "observed_union_surplus_over_better_single_route": 0.2,
+        "fraction_positive_mothers_using_exactly_one_route": 0.5,
+        "P_lateral_positive_given_apical_negative": 1,
+        "P_apical_positive_given_lateral_negative": 1,
+        "conditional_independence_benchmark_P_union": 0.9400000000000001,
+        "observed_minus_independence_benchmark_P_union": 0.05999999999999994,
+        "independence_benchmark_is_only_product_of_marginals": true,
+        "conditional_independence_is_a_realistic_biological_null": false,
+        "observed_correlated_routes_are_molecularly_independent": false,
+        "organ_removal_causal_selection_estimated": false,
+        "vegetative_clonal_or_future_generation_success_not_measured": true
+      },
+      "di": {
+        "n_mothers": 11,
+        "four_anatomical_routes": {
+          "no_good_seed": 0,
+          "apical_only": 1,
+          "lateral_only": 6,
+          "both_sites": 4
+        },
+        "P_apical_good_seed": 0.45454545454545453,
+        "P_lateral_good_seed": 0.9090909090909091,
+        "P_both_apical_and_lateral": 0.36363636363636365,
+        "P_joint_failure_both_routes": 0,
+        "P_any_maternal_good_seed": 1,
+        "observed_union_surplus_over_apical_route": 0.5454545454545454,
+        "observed_union_surplus_over_lateral_route": 0.09090909090909091,
+        "observed_union_surplus_over_better_single_route": 0.09090909090909091,
+        "fraction_positive_mothers_using_exactly_one_route": 0.6363636363636364,
+        "P_lateral_positive_given_apical_negative": 1,
+        "P_apical_positive_given_lateral_negative": 1,
+        "conditional_independence_benchmark_P_union": 0.9504132231404958,
+        "observed_minus_independence_benchmark_P_union": 0.04958677685950419,
+        "independence_benchmark_is_only_product_of_marginals": true,
+        "conditional_independence_is_a_realistic_biological_null": false,
+        "observed_correlated_routes_are_molecularly_independent": false,
+        "organ_removal_causal_selection_estimated": false,
+        "vegetative_clonal_or_future_generation_success_not_measured": true
+      }
+    },
+    "2008": {
+      "ndni": {
+        "n_mothers": 15,
+        "four_anatomical_routes": {
+          "no_good_seed": 12,
+          "apical_only": 1,
+          "lateral_only": 1,
+          "both_sites": 1
+        },
+        "P_apical_good_seed": 0.13333333333333333,
+        "P_lateral_good_seed": 0.13333333333333333,
+        "P_both_apical_and_lateral": 0.06666666666666667,
+        "P_joint_failure_both_routes": 0.8,
+        "P_any_maternal_good_seed": 0.2,
+        "observed_union_surplus_over_apical_route": 0.06666666666666667,
+        "observed_union_surplus_over_lateral_route": 0.06666666666666667,
+        "observed_union_surplus_over_better_single_route": 0.06666666666666667,
+        "fraction_positive_mothers_using_exactly_one_route": 0.6666666666666666,
+        "P_lateral_positive_given_apical_negative": 0.07692307692307693,
+        "P_apical_positive_given_lateral_negative": 0.07692307692307693,
+        "conditional_independence_benchmark_P_union": 0.24888888888888888,
+        "observed_minus_independence_benchmark_P_union": -0.04888888888888887,
+        "independence_benchmark_is_only_product_of_marginals": true,
+        "conditional_independence_is_a_realistic_biological_null": false,
+        "observed_correlated_routes_are_molecularly_independent": false,
+        "organ_removal_causal_selection_estimated": false,
+        "vegetative_clonal_or_future_generation_success_not_measured": true
+      },
+      "dni": {
+        "n_mothers": 12,
+        "four_anatomical_routes": {
+          "no_good_seed": 5,
+          "apical_only": 0,
+          "lateral_only": 7,
+          "both_sites": 0
+        },
+        "P_apical_good_seed": 0,
+        "P_lateral_good_seed": 0.5833333333333334,
+        "P_both_apical_and_lateral": 0,
+        "P_joint_failure_both_routes": 0.4166666666666667,
+        "P_any_maternal_good_seed": 0.5833333333333334,
+        "observed_union_surplus_over_apical_route": 0.5833333333333334,
+        "observed_union_surplus_over_lateral_route": 0,
+        "observed_union_surplus_over_better_single_route": 0,
+        "fraction_positive_mothers_using_exactly_one_route": 1,
+        "P_lateral_positive_given_apical_negative": 0.5833333333333334,
+        "P_apical_positive_given_lateral_negative": 0,
+        "conditional_independence_benchmark_P_union": 0.5833333333333334,
+        "observed_minus_independence_benchmark_P_union": 0,
+        "independence_benchmark_is_only_product_of_marginals": true,
+        "conditional_independence_is_a_realistic_biological_null": false,
+        "observed_correlated_routes_are_molecularly_independent": false,
+        "organ_removal_causal_selection_estimated": false,
+        "vegetative_clonal_or_future_generation_success_not_measured": true
+      },
+      "ndi": {
+        "n_mothers": 21,
+        "four_anatomical_routes": {
+          "no_good_seed": 0,
+          "apical_only": 7,
+          "lateral_only": 1,
+          "both_sites": 13
+        },
+        "P_apical_good_seed": 0.9523809523809523,
+        "P_lateral_good_seed": 0.6666666666666666,
+        "P_both_apical_and_lateral": 0.6190476190476191,
+        "P_joint_failure_both_routes": 0,
+        "P_any_maternal_good_seed": 1,
+        "observed_union_surplus_over_apical_route": 0.047619047619047616,
+        "observed_union_surplus_over_lateral_route": 0.3333333333333333,
+        "observed_union_surplus_over_better_single_route": 0.047619047619047616,
+        "fraction_positive_mothers_using_exactly_one_route": 0.38095238095238093,
+        "P_lateral_positive_given_apical_negative": 1,
+        "P_apical_positive_given_lateral_negative": 1,
+        "conditional_independence_benchmark_P_union": 0.9841269841269842,
+        "observed_minus_independence_benchmark_P_union": 0.015873015873015817,
+        "independence_benchmark_is_only_product_of_marginals": true,
+        "conditional_independence_is_a_realistic_biological_null": false,
+        "observed_correlated_routes_are_molecularly_independent": false,
+        "organ_removal_causal_selection_estimated": false,
+        "vegetative_clonal_or_future_generation_success_not_measured": true
+      },
+      "di": {
+        "n_mothers": 19,
+        "four_anatomical_routes": {
+          "no_good_seed": 0,
+          "apical_only": 4,
+          "lateral_only": 8,
+          "both_sites": 7
+        },
+        "P_apical_good_seed": 0.5789473684210527,
+        "P_lateral_good_seed": 0.7894736842105263,
+        "P_both_apical_and_lateral": 0.3684210526315789,
+        "P_joint_failure_both_routes": 0,
+        "P_any_maternal_good_seed": 1,
+        "observed_union_surplus_over_apical_route": 0.42105263157894735,
+        "observed_union_surplus_over_lateral_route": 0.21052631578947367,
+        "observed_union_surplus_over_better_single_route": 0.21052631578947367,
+        "fraction_positive_mothers_using_exactly_one_route": 0.631578947368421,
+        "P_lateral_positive_given_apical_negative": 1,
+        "P_apical_positive_given_lateral_negative": 1,
+        "conditional_independence_benchmark_P_union": 0.9113573407202216,
+        "observed_minus_independence_benchmark_P_union": 0.08864265927977844,
+        "independence_benchmark_is_only_product_of_marginals": true,
+        "conditional_independence_is_a_realistic_biological_null": false,
+        "observed_correlated_routes_are_molecularly_independent": false,
+        "organ_removal_causal_selection_estimated": false,
+        "vegetative_clonal_or_future_generation_success_not_measured": true
+      }
+    }
+  },
+  "paired_route_discordance_exact_tests": {
+    "2007_ndni": {
+      "apical_only_vs_lateral_only": [
+        2,
+        2
+      ],
+      "number_of_discordant_mothers": 4,
+      "p_two_sided": 1,
+      "paired_unit": "maternal_individual_not_two_independent_heads",
+      "route_outcome_not_natural_gene_reexpression": true,
+      "q_BH_eight": 1
+    },
+    "2007_dni": {
+      "apical_only_vs_lateral_only": [
+        0,
+        6
+      ],
+      "number_of_discordant_mothers": 6,
+      "p_two_sided": 0.03125,
+      "paired_unit": "maternal_individual_not_two_independent_heads",
+      "route_outcome_not_natural_gene_reexpression": true,
+      "q_BH_eight": 0.125
+    },
+    "2007_ndi": {
+      "apical_only_vs_lateral_only": [
+        3,
+        2
+      ],
+      "number_of_discordant_mothers": 5,
+      "p_two_sided": 1,
+      "paired_unit": "maternal_individual_not_two_independent_heads",
+      "route_outcome_not_natural_gene_reexpression": true,
+      "q_BH_eight": 1
+    },
+    "2007_di": {
+      "apical_only_vs_lateral_only": [
+        1,
+        6
+      ],
+      "number_of_discordant_mothers": 7,
+      "p_two_sided": 0.125,
+      "paired_unit": "maternal_individual_not_two_independent_heads",
+      "route_outcome_not_natural_gene_reexpression": true,
+      "q_BH_eight": 0.25
+    },
+    "2008_ndni": {
+      "apical_only_vs_lateral_only": [
+        1,
+        1
+      ],
+      "number_of_discordant_mothers": 2,
+      "p_two_sided": 1,
+      "paired_unit": "maternal_individual_not_two_independent_heads",
+      "route_outcome_not_natural_gene_reexpression": true,
+      "q_BH_eight": 1
+    },
+    "2008_dni": {
+      "apical_only_vs_lateral_only": [
+        0,
+        7
+      ],
+      "number_of_discordant_mothers": 7,
+      "p_two_sided": 0.015625,
+      "paired_unit": "maternal_individual_not_two_independent_heads",
+      "route_outcome_not_natural_gene_reexpression": true,
+      "q_BH_eight": 0.125
+    },
+    "2008_ndi": {
+      "apical_only_vs_lateral_only": [
+        7,
+        1
+      ],
+      "number_of_discordant_mothers": 8,
+      "p_two_sided": 0.0703125,
+      "paired_unit": "maternal_individual_not_two_independent_heads",
+      "route_outcome_not_natural_gene_reexpression": true,
+      "q_BH_eight": 0.1875
+    },
+    "2008_di": {
+      "apical_only_vs_lateral_only": [
+        4,
+        8
+      ],
+      "number_of_discordant_mothers": 12,
+      "p_two_sided": 0.3876953125,
+      "paired_unit": "maternal_individual_not_two_independent_heads",
+      "route_outcome_not_natural_gene_reexpression": true,
+      "q_BH_eight": 0.6203125
+    }
+  },
+  "original_alternative_route_presence_tests": {
+    "2007_insecticide_intact": {
+      "compared_arms": [
+        "ndi",
+        "ndni"
+      ],
+      "lateral_positive_negative_counts": [
+        [
+          7,
+          3
+        ],
+        [
+          7,
+          2
+        ]
+      ],
+      "difference_lateral_success_probability": -0.07777777777777783,
+      "p_exact": 1,
+      "association_not_measured_causal_pollen_herbivory_decomposition": true,
+      "q_BH_eight": 1
+    },
+    "2007_insecticide_damaged": {
+      "compared_arms": [
+        "di",
+        "dni"
+      ],
+      "lateral_positive_negative_counts": [
+        [
+          10,
+          1
+        ],
+        [
+          6,
+          2
+        ]
+      ],
+      "difference_lateral_success_probability": 0.15909090909090906,
+      "p_exact": 0.545923632610939,
+      "association_not_measured_causal_pollen_herbivory_decomposition": true,
+      "q_BH_eight": 0.7278981768145854
+    },
+    "2007_damage_ambient": {
+      "compared_arms": [
+        "dni",
+        "ndni"
+      ],
+      "lateral_positive_negative_counts": [
+        [
+          6,
+          2
+        ],
+        [
+          7,
+          2
+        ]
+      ],
+      "difference_lateral_success_probability": -0.02777777777777779,
+      "p_exact": 1,
+      "association_not_measured_causal_pollen_herbivory_decomposition": true,
+      "q_BH_eight": 1
+    },
+    "2007_damage_reduced": {
+      "compared_arms": [
+        "di",
+        "ndi"
+      ],
+      "lateral_positive_negative_counts": [
+        [
+          10,
+          1
+        ],
+        [
+          7,
+          3
+        ]
+      ],
+      "difference_lateral_success_probability": 0.2090909090909091,
+      "p_exact": 0.3107769423558897,
+      "association_not_measured_causal_pollen_herbivory_decomposition": true,
+      "q_BH_eight": 0.6215538847117794
+    },
+    "2008_insecticide_intact": {
+      "compared_arms": [
+        "ndi",
+        "ndni"
+      ],
+      "lateral_positive_negative_counts": [
+        [
+          14,
+          7
+        ],
+        [
+          2,
+          13
+        ]
+      ],
+      "difference_lateral_success_probability": 0.5333333333333333,
+      "p_exact": 0.002177063960688278,
+      "association_not_measured_causal_pollen_herbivory_decomposition": true,
+      "q_BH_eight": 0.017416511685506224
+    },
+    "2008_insecticide_damaged": {
+      "compared_arms": [
+        "di",
+        "dni"
+      ],
+      "lateral_positive_negative_counts": [
+        [
+          15,
+          4
+        ],
+        [
+          7,
+          5
+        ]
+      ],
+      "difference_lateral_success_probability": 0.20614035087719296,
+      "p_exact": 0.25344980115401355,
+      "association_not_measured_causal_pollen_herbivory_decomposition": true,
+      "q_BH_eight": 0.6215538847117794
+    },
+    "2008_damage_ambient": {
+      "compared_arms": [
+        "dni",
+        "ndni"
+      ],
+      "lateral_positive_negative_counts": [
+        [
+          7,
+          5
+        ],
+        [
+          2,
+          13
+        ]
+      ],
+      "difference_lateral_success_probability": 0.45000000000000007,
+      "p_exact": 0.03691838291380626,
+      "association_not_measured_causal_pollen_herbivory_decomposition": true,
+      "q_BH_eight": 0.14767353165522504
+    },
+    "2008_damage_reduced": {
+      "compared_arms": [
+        "di",
+        "ndi"
+      ],
+      "lateral_positive_negative_counts": [
+        [
+          15,
+          4
+        ],
+        [
+          14,
+          7
+        ]
+      ],
+      "difference_lateral_success_probability": 0.1228070175438597,
+      "p_exact": 0.48823854872241973,
+      "association_not_measured_causal_pollen_herbivory_decomposition": true,
+      "q_BH_eight": 0.7278981768145854
+    }
+  },
+  "biology": {
+    "sibling_heads_are_present_before_this_season_not_evolutionarily_resurrected": true,
+    "same_mother_but_not_same_genetic_program_assayed": true,
+    "joint_structural_seed_states_not_causal_architecture_manipulations": true,
+    "apical_damage_not_equal_complete_anatomical_apex_removal": true,
+    "normal_insects_and_reduced_insects_change_multiple_interactors": true,
+    "unadjusted_conditional_outcome_not_independent_genetic_trait": true
+  },
+  "biological_claim_limits": {
+    "common_antagonist_proven_to_cause_both_failures": false,
+    "cause_of_lateral_seed_success_separately_identified": false,
+    "literal_removal_of_apical_route_experiment_conducted": false,
+    "alternative_heads_reconstruct_lost_ancestral_stamen_gene": false,
+    "structural_division_of_labour_fitness_quantified": false,
+    "ancestral_genetic_retention_or_regain_measured": false,
+    "established_descendant_recruitment_recorded": false,
+    "treatment_is_selective_to_antagonists_excluding_pollinators": false,
+    "two_years_are_same_individual_longitudinal_records": false,
+    "source_floral_seed_stage_equals_pollinator_pollen_deposition": false
+  },
+  "conclusion": "OBSERVED_CONDITIONAL_MATERNAL_ROUTE_COVERAGE_NOT_CAUSAL_ARCHITECTURE_FITNESS_OR_NATIVE_REGAIN"
+}
