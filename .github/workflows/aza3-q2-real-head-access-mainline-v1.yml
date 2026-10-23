@@ -1,0 +1,61 @@
+name: Q2 mainline continuous head video and guild event evidence gate
+on:
+  pull_request:
+    paths:
+      - 'analysis/validate_capitulum_video_effort_denominator_v1.py'
+      - 'analysis/validate_capitulum_guild_access_event_ledger_v1.py'
+      - 'data/contracts/capitulum_video_effort_denominator_v1.json'
+      - 'data/contracts/capitulum_guild_access_event_contract_v1.json'
+      - 'data/intake/capitulum_video_effort_denominator_v1.csv'
+      - 'data/intake/capitulum_guild_access_event_ledger_v1.csv'
+      - 'tests/test_capitulum_q2_video_access_mainline_v1.py'
+      - 'docs/AZA3_Q2_REAL_HEAD_FUNCTIONAL_ACCESS_MAINLINE_20261023.md'
+      - '.github/workflows/aza3-q2-real-head-access-mainline-v1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  legitimate-head-access-source-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Scientific unit tests; no synthetic episodes inserted into source
+        run: |
+          python -m py_compile analysis/validate_capitulum_video_effort_denominator_v1.py analysis/validate_capitulum_guild_access_event_ledger_v1.py
+          python -m unittest discover -s tests -p 'test_capitulum_q2_video_access_mainline_v1.py' -v
+      - name: Validate actual zero-row source intake and independently run negative controls
+        run: |
+          mkdir -p work/q2_access
+          python analysis/validate_capitulum_video_effort_denominator_v1.py \
+            --contract data/contracts/capitulum_video_effort_denominator_v1.json \
+            --effort data/intake/capitulum_video_effort_denominator_v1.csv \
+            --events data/intake/capitulum_guild_access_event_ledger_v1.csv \
+            --self-test > work/q2_access/effort.json
+          python analysis/validate_capitulum_guild_access_event_ledger_v1.py \
+            --contract data/contracts/capitulum_guild_access_event_contract_v1.json \
+            --events data/intake/capitulum_guild_access_event_ledger_v1.csv \
+            --self-test > work/q2_access/events.json
+          python - <<'PY'
+          import json
+          e=json.load(open('work/q2_access/effort.json'))
+          v=json.load(open('work/q2_access/events.json'))
+          assert e['status']=='NOT_IDENTIFIABLE_NO_REAL_VIDEO_BOUTS'
+          assert e['n_effort_bouts']==0 and e['n_events_total']==0
+          assert e['observed_raw_arrival_rate_per_minute'] is None
+          assert e['synthetic_tests']['status']=='PASS_SYNTHETIC_DENOMINATOR_FIREWALL'
+          assert v['n_approach_episodes']==0
+          assert v['direct_trait_impact_on_seed_fitness']=='NOT_IDENTIFIED'
+          assert v['synthetic_tests']['status']=='PASS_SYNTHETIC_SEMANTIC_FIREWALL_NOT_FIELD_DATA'
+          print('PASS: genuine field observations 0; video rate not identifiable, no fictitious zero arrivals, synthetic invalid cases rejected.')
+          PY
+      - name: Archive only machine-readable readiness status
+        uses: actions/upload-artifact@v4
+        with:
+          name: aza3-q2-real-head-approach-source-gate-v1
+          path: work/q2_access/*.json
+          if-no-files-found: error
+          retention-days: 30
