@@ -92,7 +92,7 @@ class TestMeasuredRouteOverlap(unittest.TestCase):
 
     def test_marginals_and_strata_frozen(self):
         a=copy.deepcopy(self.coherent)
-        z=a["2008|1"] if "2008|1" in a else next(iter(a.values()))
+        z=next(r for r in a.values() if r["year"]=="2008" and r["arm"]=="di" and r["state"]=="both")
         z["state"]="apical_only"
         with self.assertRaisesRegex(ValueError,"ORIGINAL_FOUR_STATE_MOTHER_CELLS_CHANGED"):
             v.exact_route_analysis(a)
