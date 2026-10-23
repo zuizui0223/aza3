@@ -8,6 +8,7 @@ on:
       - 'docs/CIRSIUM_UNDULATUM_NESTED_BRANCH_SEED_HURDLE_20261023.md'
       - '.github/workflows/audit-cirsium-undulatum-nested-branch-hurdle-v2.yml'
       - 'data/external/usda_wavyleaf_2007_2008/**'
+      - 'README.md'
   workflow_dispatch:
 permissions:
   contents: read
