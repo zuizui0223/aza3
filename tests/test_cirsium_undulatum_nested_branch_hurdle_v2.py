@@ -133,9 +133,12 @@ class NestedBranchHurdleTest(unittest.TestCase):
 
     def test_negative_control_branch_replication_count(self):
         with self.assertRaisesRegex(ValueError, "ORIGINAL_20_SAME_BRANCH"):
-            h = [x for x in self.heads
-                 if not (x["year"] == "2008" and x["plt"] == "WR56"
-                         and x["hd"] == "310")]
+            h = copy.deepcopy(self.heads)
+            target = next(x for x in h if x["year"] == "2008"
+                          and x["plt"] == "WR56" and x["hd"] == "310")
+            # Keep raw row count and intermediate count unchanged, but
+            # reassign to a branch with no matching terminal head.
+            target["hd"] = "410"
             v.build_pairs(self.mothers, h, self.dictionary)
 
     def test_negative_control_bootstrap_budget(self):
