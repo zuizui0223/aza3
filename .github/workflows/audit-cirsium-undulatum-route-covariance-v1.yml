@@ -1,0 +1,75 @@
+name: Audit original Cirsium apical-lateral maternal route covariance
+on:
+  pull_request:
+    paths:
+      - "analysis/audit_cirsium_undulatum_route_covariance_v1.py"
+      - "tests/test_cirsium_undulatum_route_covariance_v1.py"
+      - "data/evidence/cirsium_undulatum_route_covariance_independent_js_v1.json"
+      - "docs/CIRSIUM_UNDULATUM_WITHIN_MOTHER_ROUTE_COVARIANCE_20261023.md"
+      - ".github/workflows/audit-cirsium-undulatum-route-covariance-v1.yml"
+      - "data/external/usda_wavyleaf_2007_2008/mother_plants.csv"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-source-null:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test original 105/106 maternal source grain and exact hypergeometric math
+        run: |
+          python -m py_compile analysis/audit_cirsium_undulatum_route_covariance_v1.py tests/test_cirsium_undulatum_route_covariance_v1.py
+          python -m unittest discover -s tests -p 'test_cirsium_undulatum_route_covariance_v1.py' -v
+      - name: Recalculate eight exact year-by-apex-by-herbivory source joint distributions
+        run: |
+          mkdir -p work/cirsium_routes
+          python analysis/audit_cirsium_undulatum_route_covariance_v1.py \
+            --mothers data/external/usda_wavyleaf_2007_2008/mother_plants.csv \
+            --out work/cirsium_routes/recomputed.json
+      - name: Independent JavaScript original-mother full-results equality with numeric tolerance
+        run: |
+          python - <<'PY'
+          import json, math
+          x=json.load(open("work/cirsium_routes/recomputed.json"))
+          y=json.load(open("data/evidence/cirsium_undulatum_route_covariance_independent_js_v1.json"))
+          def same(a,b,path="root"):
+              if isinstance(b,dict):
+                  assert isinstance(a,dict) and set(a)==set(b),(path,"keys",set(a)^set(b))
+                  for k in b:same(a[k],b[k],path+"."+k)
+              elif isinstance(b,list):
+                  assert isinstance(a,list) and len(a)==len(b),(path,"list")
+                  for i,(u,v) in enumerate(zip(a,b)):same(u,v,path+f"[{i}]")
+              elif type(b) is bool:
+                  assert type(a) is bool and a==b,(path,a,b)
+              elif type(b) in (int,float):
+                  assert type(a) in (int,float) and math.isfinite(a) and math.isfinite(b)
+                  assert math.isclose(a,b,abs_tol=1e-9,rel_tol=0),(path,a,b)
+              else:
+                  assert type(a) is type(b) and a==b,(path,a,b)
+          same(x,y)
+          assert x["source"]["joint_state_coherent_n"]==105
+          p=x["pooled_ignoring_year_and_treatment"]
+          s=x["stratified_conditional_marginal_independence"]
+          assert [p["apical_only"],p["lateral_only"],p["both_positive"],p["neither_positive"]]==[18,33,35,19]
+          assert p["observed_minus_independence_expected_both"]>0
+          assert s["observed_minus_expected_both"]<0
+          assert abs(s["exact_two_inclusive_tails_doubled_min"]-.09078087375301)<1e-10
+          assert s["exact_two_inclusive_tails_doubled_min"]>.05
+          assert abs(s["probability_ordered_exact_two_sided_sensitivity"]-.08449727424787624)<1e-10
+          assert abs(sum(s["null_total_overlap_distribution"].values())-1)<1e-10
+          assert x["scientific_claim_limits"]["newly_observed_individual_plants_or_heads"]==0
+          assert x["scientific_claim_limits"]["head_pair_null_does_not_establish_selected_bet_hedging"]
+          assert not s["evidence_supports_nonzero_negative_genetic_covariance"]
+          print("PASS 106 originals -> 105 coherent maternal co-success states, all 8 hypergeometric distributions and exact convolutions, pooled versus stratified sign reversal, both-sided p, no false adaptive claims")
+          PY
+      - name: Save source-derived small numeric receipt only
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-original-105-mother-route-covariance-exact-v1
+          path: work/cirsium_routes/recomputed.json
+          retention-days: 30
+          if-no-files-found: error
