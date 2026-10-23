@@ -1,0 +1,326 @@
+{
+  "version": "cirsium_undulatum_two_reproductive_routes_exact_null_v1",
+  "source": {
+    "paper_doi": "10.1002/ajb2.1744",
+    "dataset_doi": "10.15482/USDA.ADC/1522649",
+    "mother_csv_git_blob": "458800272c3d0a03c7653702027a8f8578d9e88c",
+    "original_mother_n": 106,
+    "joint_state_coherent_n": 105,
+    "excluded_mother_ids": [
+      "2007|327"
+    ]
+  },
+  "eight_original_year_by_treatment_strata": [
+    {
+      "year": "2007",
+      "arm": "ndni",
+      "n_mothers": 9,
+      "route_counts": {
+        "neither": 0,
+        "apical_only": 2,
+        "lateral_only": 2,
+        "both": 5
+      },
+      "apical_positive": 7,
+      "lateral_positive": 7,
+      "both_positive_observed": 5,
+      "neither_positive_observed": 0,
+      "independent_expected_both_conditioning_on_source_margins": 5.444444444444445,
+      "independent_expected_neither_conditioning_on_source_margins": 0.4444444444444444,
+      "overlap_sharp_support": [
+        5,
+        7
+      ],
+      "overlap_null_distribution": {
+        "5": 0.5833333333333334,
+        "6": 0.3888888888888889,
+        "7": 0.027777777777777776
+      },
+      "exact_conditioning_on_original_margins": true,
+      "is_a_randomized_head_module_independence_test": false
+    },
+    {
+      "year": "2007",
+      "arm": "dni",
+      "n_mothers": 8,
+      "route_counts": {
+        "neither": 2,
+        "apical_only": 0,
+        "lateral_only": 6,
+        "both": 0
+      },
+      "apical_positive": 0,
+      "lateral_positive": 6,
+      "both_positive_observed": 0,
+      "neither_positive_observed": 2,
+      "independent_expected_both_conditioning_on_source_margins": 0,
+      "independent_expected_neither_conditioning_on_source_margins": 2,
+      "overlap_sharp_support": [
+        0,
+        0
+      ],
+      "overlap_null_distribution": {
+        "0": 1
+      },
+      "exact_conditioning_on_original_margins": true,
+      "is_a_randomized_head_module_independence_test": false
+    },
+    {
+      "year": "2007",
+      "arm": "ndi",
+      "n_mothers": 10,
+      "route_counts": {
+        "neither": 0,
+        "apical_only": 3,
+        "lateral_only": 2,
+        "both": 5
+      },
+      "apical_positive": 8,
+      "lateral_positive": 7,
+      "both_positive_observed": 5,
+      "neither_positive_observed": 0,
+      "independent_expected_both_conditioning_on_source_margins": 5.6,
+      "independent_expected_neither_conditioning_on_source_margins": 0.6,
+      "overlap_sharp_support": [
+        5,
+        7
+      ],
+      "overlap_null_distribution": {
+        "5": 0.4666666666666667,
+        "6": 0.4666666666666667,
+        "7": 0.06666666666666667
+      },
+      "exact_conditioning_on_original_margins": true,
+      "is_a_randomized_head_module_independence_test": false
+    },
+    {
+      "year": "2007",
+      "arm": "di",
+      "n_mothers": 11,
+      "route_counts": {
+        "neither": 0,
+        "apical_only": 1,
+        "lateral_only": 6,
+        "both": 4
+      },
+      "apical_positive": 5,
+      "lateral_positive": 10,
+      "both_positive_observed": 4,
+      "neither_positive_observed": 0,
+      "independent_expected_both_conditioning_on_source_margins": 4.545454545454546,
+      "independent_expected_neither_conditioning_on_source_margins": 0.5454545454545454,
+      "overlap_sharp_support": [
+        4,
+        5
+      ],
+      "overlap_null_distribution": {
+        "4": 0.45454545454545453,
+        "5": 0.5454545454545454
+      },
+      "exact_conditioning_on_original_margins": true,
+      "is_a_randomized_head_module_independence_test": false
+    },
+    {
+      "year": "2008",
+      "arm": "ndni",
+      "n_mothers": 15,
+      "route_counts": {
+        "neither": 12,
+        "apical_only": 1,
+        "lateral_only": 1,
+        "both": 1
+      },
+      "apical_positive": 2,
+      "lateral_positive": 2,
+      "both_positive_observed": 1,
+      "neither_positive_observed": 12,
+      "independent_expected_both_conditioning_on_source_margins": 0.26666666666666666,
+      "independent_expected_neither_conditioning_on_source_margins": 11.266666666666667,
+      "overlap_sharp_support": [
+        0,
+        2
+      ],
+      "overlap_null_distribution": {
+        "0": 0.7428571428571429,
+        "1": 0.24761904761904763,
+        "2": 0.009523809523809525
+      },
+      "exact_conditioning_on_original_margins": true,
+      "is_a_randomized_head_module_independence_test": false
+    },
+    {
+      "year": "2008",
+      "arm": "dni",
+      "n_mothers": 12,
+      "route_counts": {
+        "neither": 5,
+        "apical_only": 0,
+        "lateral_only": 7,
+        "both": 0
+      },
+      "apical_positive": 0,
+      "lateral_positive": 7,
+      "both_positive_observed": 0,
+      "neither_positive_observed": 5,
+      "independent_expected_both_conditioning_on_source_margins": 0,
+      "independent_expected_neither_conditioning_on_source_margins": 5,
+      "overlap_sharp_support": [
+        0,
+        0
+      ],
+      "overlap_null_distribution": {
+        "0": 1
+      },
+      "exact_conditioning_on_original_margins": true,
+      "is_a_randomized_head_module_independence_test": false
+    },
+    {
+      "year": "2008",
+      "arm": "ndi",
+      "n_mothers": 21,
+      "route_counts": {
+        "neither": 0,
+        "apical_only": 7,
+        "lateral_only": 1,
+        "both": 13
+      },
+      "apical_positive": 20,
+      "lateral_positive": 14,
+      "both_positive_observed": 13,
+      "neither_positive_observed": 0,
+      "independent_expected_both_conditioning_on_source_margins": 13.333333333333334,
+      "independent_expected_neither_conditioning_on_source_margins": 0.3333333333333333,
+      "overlap_sharp_support": [
+        13,
+        14
+      ],
+      "overlap_null_distribution": {
+        "13": 0.6666666666666666,
+        "14": 0.3333333333333333
+      },
+      "exact_conditioning_on_original_margins": true,
+      "is_a_randomized_head_module_independence_test": false
+    },
+    {
+      "year": "2008",
+      "arm": "di",
+      "n_mothers": 19,
+      "route_counts": {
+        "neither": 0,
+        "apical_only": 4,
+        "lateral_only": 8,
+        "both": 7
+      },
+      "apical_positive": 11,
+      "lateral_positive": 15,
+      "both_positive_observed": 7,
+      "neither_positive_observed": 0,
+      "independent_expected_both_conditioning_on_source_margins": 8.68421052631579,
+      "independent_expected_neither_conditioning_on_source_margins": 1.6842105263157894,
+      "overlap_sharp_support": [
+        7,
+        11
+      ],
+      "overlap_null_distribution": {
+        "7": 0.08513931888544891,
+        "8": 0.34055727554179566,
+        "9": 0.3973168214654283,
+        "10": 0.15892672858617132,
+        "11": 0.01805985552115583
+      },
+      "exact_conditioning_on_original_margins": true,
+      "is_a_randomized_head_module_independence_test": false
+    }
+  ],
+  "pooled_ignoring_year_and_treatment": {
+    "n_mothers": 105,
+    "apical_positive": 53,
+    "lateral_positive": 68,
+    "both_positive": 35,
+    "neither_positive": 19,
+    "apical_only": 18,
+    "lateral_only": 33,
+    "observed_minus_independence_expected_both": 0.6761904761904773,
+    "independent_expected_both": 34.32380952380952,
+    "pooled_odds_ratio_both_vs_mutual_failure": 1.1195286195286196,
+    "positive_residual_relative_to_pooled_null": true,
+    "pooled_expectation_not_valid_under_stratified_treatment": true
+  },
+  "stratified_conditional_marginal_independence": {
+    "observed_both": 35,
+    "independent_expected_both": 37.87410951621478,
+    "observed_minus_expected_both": -2.87410951621478,
+    "observed_neither": 19,
+    "independent_expected_neither": 21.87410951621478,
+    "observed_minus_expected_neither": -2.87410951621478,
+    "prob_neither_observed": 0.18095238095238095,
+    "prob_neither_if_each_stratum_marginals_independent": 0.20832485253537886,
+    "observed_conditional_MH_odds_ratio_numerator_over_denominator": 0.21773983504557953,
+    "exact_conditional_lower_tail_inclusive": 0.045390436876504986,
+    "exact_conditional_upper_tail_inclusive": 0.9947827084049995,
+    "exact_two_inclusive_tails_doubled_min": 0.09078087375300997,
+    "probability_ordered_exact_two_sided_sensitivity": 0.08449727424787624,
+    "null_total_overlap_distribution": {
+      "34": 0.005217291595000573,
+      "35": 0.04017314528150441,
+      "36": 0.12986979067130427,
+      "37": 0.23430194039929164,
+      "38": 0.2630390375379482,
+      "39": 0.19329569660380347,
+      "40": 0.09499626053977618,
+      "41": 0.03128405507949138,
+      "42": 0.00679953194974408,
+      "43": 0.000941883989699607,
+      "44": 0.00007791286715721986,
+      "45": 0.000003395573284347507,
+      "46": 5.791199461650097e-8
+    },
+    "independence_is_statistical_conditional_reference_not_measured": true,
+    "evidence_supports_nonzero_negative_genetic_covariance": false
+  },
+  "year_conditioned_sensitivity": {
+    "2007": {
+      "n_mothers": 38,
+      "both_observed": 14,
+      "both_expected_under_conditional_independence": 15.589898989898991,
+      "exact_two_inclusive_tails_doubled_min": 0.2474747474747475,
+      "null_overlap_distribution": {
+        "14": 0.12373737373737374,
+        "15": 0.35471380471380476,
+        "16": 0.35353535353535354,
+        "17": 0.14494949494949494,
+        "18": 0.02205387205387205,
+        "19": 0.0010101010101010099
+      }
+    },
+    "2008": {
+      "n_mothers": 67,
+      "both_observed": 21,
+      "both_expected_under_conditional_independence": 22.28421052631579,
+      "exact_two_inclusive_tails_doubled_min": 0.49191606467148263,
+      "null_overlap_distribution": {
+        "20": 0.04216423411469851,
+        "21": 0.2037937982210428,
+        "22": 0.34488181237407245,
+        "23": 0.2732206332825528,
+        "24": 0.11093092207643292,
+        "25": 0.02284141726866185,
+        "26": 0.002109849787868364,
+        "27": 0.00005733287467033597
+      }
+    }
+  },
+  "scientific_claim_limits": {
+    "source_seed_routes_are_author_scored_good_seeds_not_confirmed_seedlings": true,
+    "conditioned_on_year_and_herbivory_intervention_margins": true,
+    "two_observed_routes_are_not_lost_ancestral_genes": true,
+    "route_correlation_can_reflect_maternal_quality_resource_allocation_or_sampling": true,
+    "no_independent_oviposition_or_effective_pollination_at_same_head": true,
+    "head_orientation_true_spine_or_phyllary_shape_not_measured": true,
+    "post_treatment_selection_cannot_identify_optimal_resource_allocation": true,
+    "negative_covariance_direction_is_not_significant_at_doubled_tail_0p05": true,
+    "head_pair_null_does_not_establish_selected_bet_hedging": true,
+    "does_not_infer_species_or_lifehistory_wide_conclusion": true,
+    "newly_observed_individual_plants_or_heads": 0
+  }
+}
