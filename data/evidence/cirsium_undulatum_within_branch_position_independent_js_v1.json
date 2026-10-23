@@ -1,0 +1,400 @@
+{
+  "version": "aza3_cirsium_undulatum_within_branch_position_independent_js_v1",
+  "source": {
+    "mothers_sha": "458800272c3d0a03c7653702027a8f8578d9e88c",
+    "heads_sha": "637a4dcd5194d0bf5b26e7f9cf0dde56a50d7616",
+    "dictionary_sha": "5e20c9d4609abc982287bd12f739c76d7c6d1d2f",
+    "paper_doi": "10.1002/ajb2.1744",
+    "dataset_doi": "10.15482/USDA.ADC/1522649"
+  },
+  "audited_counts": {
+    "n_original_mothers": 106,
+    "n_original_heads": 323,
+    "n_source_aligned_heads": 297,
+    "n_apical": 103,
+    "n_branch_terminal": 173,
+    "n_intermediate": 21,
+    "n_mothers_with_intermediate": 15,
+    "n_mothers_with_both": 14
+  },
+  "per_year_paired": {
+    "2007": {
+      "n_paired_mothers": 7,
+      "n_branch_terminal_heads_in_pairs": 26,
+      "n_intermediate_heads_in_pairs": 11,
+      "position_differences": {
+        "good_seed_per_head": {
+          "mean_intermediate_minus_branch_terminal": -0.5214285714285715,
+          "median_intermediate_minus_branch_terminal": -1.4500000000000002,
+          "n_increase": 3,
+          "n_decrease": 4,
+          "n_equal": 0,
+          "posthoc_exact_two_sided_sign_p": 1,
+          "paired_mother_delta_ordered": [
+            -10.5,
+            2.9999999999999982,
+            38.5,
+            -20.25,
+            -11.5,
+            -4.4,
+            1.5
+          ],
+          "BH_q_six_exploratory_sign_tests": 1,
+          "paired_mother_bootstrap_ci95": [
+            -11.25,
+            14
+          ]
+        },
+        "seed_positive_fraction": {
+          "mean_intermediate_minus_branch_terminal": -0.030952380952380953,
+          "median_intermediate_minus_branch_terminal": 0.09999999999999998,
+          "n_increase": 3,
+          "n_decrease": 2,
+          "n_equal": 2,
+          "posthoc_exact_two_sided_sign_p": 1,
+          "paired_mother_delta_ordered": [
+            -0.75,
+            0.33333333333333337,
+            0,
+            -0.25,
+            0,
+            0.19999999999999996,
+            0.25
+          ],
+          "BH_q_six_exploratory_sign_tests": 1,
+          "paired_mother_bootstrap_ci95": [
+            -0.3095238095238095,
+            0.1904761904761905
+          ]
+        },
+        "damage_score": {
+          "mean_intermediate_minus_branch_terminal": -0.016726190476190474,
+          "median_intermediate_minus_branch_terminal": 0.05677083333333338,
+          "n_increase": 3,
+          "n_decrease": 4,
+          "n_equal": 0,
+          "posthoc_exact_two_sided_sign_p": 1,
+          "paired_mother_delta_ordered": [
+            0.23281249999999998,
+            -0.014583333333333282,
+            -0.19531249999999997,
+            -0.125,
+            0.12812500000000004,
+            0.35375,
+            -0.49687500000000007
+          ],
+          "BH_q_six_exploratory_sign_tests": 1,
+          "paired_mother_bootstrap_ci95": [
+            -0.2252232142857143,
+            0.17140848214285684
+          ]
+        }
+      }
+    },
+    "2008": {
+      "n_paired_mothers": 7,
+      "n_branch_terminal_heads_in_pairs": 18,
+      "n_intermediate_heads_in_pairs": 9,
+      "position_differences": {
+        "good_seed_per_head": {
+          "mean_intermediate_minus_branch_terminal": -27.476190476190474,
+          "median_intermediate_minus_branch_terminal": -12.833333333333334,
+          "n_increase": 0,
+          "n_decrease": 7,
+          "n_equal": 0,
+          "posthoc_exact_two_sided_sign_p": 0.015625,
+          "paired_mother_delta_ordered": [
+            -18,
+            -0.6666666666666666,
+            -108.5,
+            -31.666666666666668,
+            -7.666666666666667,
+            -6.666666666666667,
+            -19.16666666666667
+          ],
+          "BH_q_six_exploratory_sign_tests": 0.09375,
+          "paired_mother_bootstrap_ci95": [
+            -55.73988095238095,
+            -8.35476190476194
+          ]
+        },
+        "seed_positive_fraction": {
+          "mean_intermediate_minus_branch_terminal": -0.47619047619047616,
+          "median_intermediate_minus_branch_terminal": -0.3333333333333333,
+          "n_increase": 0,
+          "n_decrease": 5,
+          "n_equal": 2,
+          "posthoc_exact_two_sided_sign_p": 0.0625,
+          "paired_mother_delta_ordered": [
+            0,
+            -0.3333333333333333,
+            -1,
+            -1,
+            -0.3333333333333333,
+            -0.6666666666666666,
+            0
+          ],
+          "BH_q_six_exploratory_sign_tests": 0.1875,
+          "paired_mother_bootstrap_ci95": [
+            -0.7619047619047619,
+            -0.19047619047619047
+          ]
+        },
+        "damage_score": {
+          "mean_intermediate_minus_branch_terminal": -0.03630952380952381,
+          "median_intermediate_minus_branch_terminal": 0.02291666666666664,
+          "n_increase": 4,
+          "n_decrease": 3,
+          "n_equal": 0,
+          "posthoc_exact_two_sided_sign_p": 1,
+          "paired_mother_delta_ordered": [
+            -0.7375,
+            -0.0625,
+            0.025000000000000022,
+            0.47500000000000003,
+            0.08333333333333326,
+            0.02083333333333326,
+            -0.05833333333333324
+          ],
+          "BH_q_six_exploratory_sign_tests": 1,
+          "paired_mother_bootstrap_ci95": [
+            -0.31370535714285713,
+            0.2017857142857143
+          ]
+        }
+      }
+    }
+  },
+  "head_by_year": {
+    "2007": {
+      "apical": {
+        "n_heads": 36,
+        "n_scored_damage": 35,
+        "n_positive_seed_heads": 20,
+        "mean_good_seed": 17.88888888888889,
+        "seed_positive_fraction": 0.5555555555555556,
+        "mean_damage": 0.6819642857142856
+      },
+      "branch_terminal": {
+        "n_heads": 71,
+        "n_scored_damage": 69,
+        "n_positive_seed_heads": 52,
+        "mean_good_seed": 19.619718309859156,
+        "seed_positive_fraction": 0.7323943661971831,
+        "mean_damage": 0.49585144927536207
+      },
+      "intermediate": {
+        "n_heads": 12,
+        "n_scored_damage": 12,
+        "n_positive_seed_heads": 9,
+        "mean_good_seed": 17,
+        "seed_positive_fraction": 0.75,
+        "mean_damage": 0.44145833333333334
+      }
+    },
+    "2008": {
+      "apical": {
+        "n_heads": 67,
+        "n_scored_damage": 63,
+        "n_positive_seed_heads": 33,
+        "mean_good_seed": 31.940298507462686,
+        "seed_positive_fraction": 0.4925373134328358,
+        "mean_damage": 0.7084722222222225
+      },
+      "branch_terminal": {
+        "n_heads": 102,
+        "n_scored_damage": 102,
+        "n_positive_seed_heads": 62,
+        "mean_good_seed": 35.48039215686274,
+        "seed_positive_fraction": 0.6078431372549019,
+        "mean_damage": 0.6186642156862752
+      },
+      "intermediate": {
+        "n_heads": 9,
+        "n_scored_damage": 9,
+        "n_positive_seed_heads": 3,
+        "mean_good_seed": 20,
+        "seed_positive_fraction": 0.3333333333333333,
+        "mean_damage": 0.6133333333333333
+      }
+    }
+  },
+  "source_paired_mothers": [
+    {
+      "id": "2007|305",
+      "year": "2007",
+      "arm": "dni",
+      "n_branch_terminal": 4,
+      "n_intermediate": 1,
+      "delta": {
+        "good_seed_per_head": -10.5,
+        "seed_positive_fraction": -0.75,
+        "damage_score": 0.23281249999999998
+      }
+    },
+    {
+      "id": "2007|307",
+      "year": "2007",
+      "arm": "di",
+      "n_branch_terminal": 3,
+      "n_intermediate": 3,
+      "delta": {
+        "good_seed_per_head": 2.9999999999999982,
+        "seed_positive_fraction": 0.33333333333333337,
+        "damage_score": -0.014583333333333282
+      }
+    },
+    {
+      "id": "2007|330",
+      "year": "2007",
+      "arm": "di",
+      "n_branch_terminal": 4,
+      "n_intermediate": 1,
+      "delta": {
+        "good_seed_per_head": 38.5,
+        "seed_positive_fraction": 0,
+        "damage_score": -0.19531249999999997
+      }
+    },
+    {
+      "id": "2007|351",
+      "year": "2007",
+      "arm": "di",
+      "n_branch_terminal": 4,
+      "n_intermediate": 1,
+      "delta": {
+        "good_seed_per_head": -20.25,
+        "seed_positive_fraction": -0.25,
+        "damage_score": -0.125
+      }
+    },
+    {
+      "id": "2007|356",
+      "year": "2007",
+      "arm": "ndi",
+      "n_branch_terminal": 2,
+      "n_intermediate": 2,
+      "delta": {
+        "good_seed_per_head": -11.5,
+        "seed_positive_fraction": 0,
+        "damage_score": 0.12812500000000004
+      }
+    },
+    {
+      "id": "2007|368",
+      "year": "2007",
+      "arm": "di",
+      "n_branch_terminal": 5,
+      "n_intermediate": 1,
+      "delta": {
+        "good_seed_per_head": -4.4,
+        "seed_positive_fraction": 0.19999999999999996,
+        "damage_score": 0.35375
+      }
+    },
+    {
+      "id": "2007|374",
+      "year": "2007",
+      "arm": "ndni",
+      "n_branch_terminal": 4,
+      "n_intermediate": 2,
+      "delta": {
+        "good_seed_per_head": 1.5,
+        "seed_positive_fraction": 0.25,
+        "damage_score": -0.49687500000000007
+      }
+    },
+    {
+      "id": "2008|ES73",
+      "year": "2008",
+      "arm": "ndi",
+      "n_branch_terminal": 1,
+      "n_intermediate": 1,
+      "delta": {
+        "good_seed_per_head": -18,
+        "seed_positive_fraction": 0,
+        "damage_score": -0.7375
+      }
+    },
+    {
+      "id": "2008|SD05",
+      "year": "2008",
+      "arm": "dni",
+      "n_branch_terminal": 3,
+      "n_intermediate": 2,
+      "delta": {
+        "good_seed_per_head": -0.6666666666666666,
+        "seed_positive_fraction": -0.3333333333333333,
+        "damage_score": -0.0625
+      }
+    },
+    {
+      "id": "2008|WG25",
+      "year": "2008",
+      "arm": "di",
+      "n_branch_terminal": 2,
+      "n_intermediate": 1,
+      "delta": {
+        "good_seed_per_head": -108.5,
+        "seed_positive_fraction": -1,
+        "damage_score": 0.025000000000000022
+      }
+    },
+    {
+      "id": "2008|WG30",
+      "year": "2008",
+      "arm": "di",
+      "n_branch_terminal": 3,
+      "n_intermediate": 1,
+      "delta": {
+        "good_seed_per_head": -31.666666666666668,
+        "seed_positive_fraction": -1,
+        "damage_score": 0.47500000000000003
+      }
+    },
+    {
+      "id": "2008|WR46",
+      "year": "2008",
+      "arm": "dni",
+      "n_branch_terminal": 3,
+      "n_intermediate": 1,
+      "delta": {
+        "good_seed_per_head": -7.666666666666667,
+        "seed_positive_fraction": -0.3333333333333333,
+        "damage_score": 0.08333333333333326
+      }
+    },
+    {
+      "id": "2008|WR51",
+      "year": "2008",
+      "arm": "ndni",
+      "n_branch_terminal": 3,
+      "n_intermediate": 1,
+      "delta": {
+        "good_seed_per_head": -6.666666666666667,
+        "seed_positive_fraction": -0.6666666666666666,
+        "damage_score": 0.02083333333333326
+      }
+    },
+    {
+      "id": "2008|WR56",
+      "year": "2008",
+      "arm": "di",
+      "n_branch_terminal": 3,
+      "n_intermediate": 2,
+      "delta": {
+        "good_seed_per_head": -19.16666666666667,
+        "seed_positive_fraction": 0,
+        "damage_score": -0.05833333333333324
+      }
+    }
+  ],
+  "bootstrap_seed": 20261023,
+  "bootstrap_draws": 5000,
+  "claim_limit": {
+    "posthoc_small_matched_cohort": true,
+    "do_not_call_intermediate_position_a_randomized_treatment": true,
+    "source_damage_score_not_independent_seed_causal_mediator": true,
+    "new_biological_field_observations": 0
+  }
+}
