@@ -1,0 +1,398 @@
+{
+  "version": "aza3_usda_Cirsium_undulatum_real_maternal_reproductive_routes_v2",
+  "source": {
+    "dataset_doi": "10.15482/USDA.ADC/1522649",
+    "original_paper_doi": "10.1002/ajb2.1744",
+    "published_experiment_ownership": "West and Louda (2021)",
+    "original_mother_rows": 106,
+    "coherent_mother_rows": 105,
+    "inconsistent_mother_identifiers": [
+      "2007|327"
+    ],
+    "original_heads_in_related_USDA_source": 323,
+    "source_verification": "existing_parent_USDA_git_sha_and_exact_row_count_contract",
+    "missing_fraction_rejected_not_imputed": true
+  },
+  "maternal_route_states": {
+    "2007": {
+      "ndni": {
+        "n": 9,
+        "original_n_mothers": 9,
+        "excluded_incoherent_mothers": 0,
+        "states": {
+          "no_good_seed": 0,
+          "apical_only": 2,
+          "lateral_only": 2,
+          "both_sites": 5
+        },
+        "apical_positive_mothers": 7,
+        "lateral_positive_mothers": 7,
+        "seed_positive_mothers": 9,
+        "apical_success_fraction": 0.7777777777777778,
+        "lateral_success_fraction": 0.7777777777777778,
+        "p_lateral_only": 0.2222222222222222,
+        "p_no_good_seed": 0,
+        "apical_mean_good_seed_count": 30.555555555555557,
+        "lateral_mean_good_seed_count": 29.333333333333332,
+        "maternal_mean_good_seed_count": 59.888888888888886,
+        "among_apical_negative_lateral_success_fraction": 1,
+        "pollen_deposition_not_measured": true,
+        "apical_and_lateral_genotype_not_two_independent_mothers": true
+      },
+      "dni": {
+        "n": 8,
+        "original_n_mothers": 9,
+        "excluded_incoherent_mothers": 1,
+        "states": {
+          "no_good_seed": 2,
+          "apical_only": 0,
+          "lateral_only": 6,
+          "both_sites": 0
+        },
+        "apical_positive_mothers": 0,
+        "lateral_positive_mothers": 6,
+        "seed_positive_mothers": 6,
+        "apical_success_fraction": 0,
+        "lateral_success_fraction": 0.75,
+        "p_lateral_only": 0.75,
+        "p_no_good_seed": 0.25,
+        "apical_mean_good_seed_count": 0,
+        "lateral_mean_good_seed_count": 44.125,
+        "maternal_mean_good_seed_count": 44.125,
+        "among_apical_negative_lateral_success_fraction": 0.75,
+        "pollen_deposition_not_measured": true,
+        "apical_and_lateral_genotype_not_two_independent_mothers": true
+      },
+      "ndi": {
+        "n": 10,
+        "original_n_mothers": 10,
+        "excluded_incoherent_mothers": 0,
+        "states": {
+          "no_good_seed": 0,
+          "apical_only": 3,
+          "lateral_only": 2,
+          "both_sites": 5
+        },
+        "apical_positive_mothers": 8,
+        "lateral_positive_mothers": 7,
+        "seed_positive_mothers": 10,
+        "apical_success_fraction": 0.8,
+        "lateral_success_fraction": 0.7,
+        "p_lateral_only": 0.2,
+        "p_no_good_seed": 0,
+        "apical_mean_good_seed_count": 29,
+        "lateral_mean_good_seed_count": 59.4,
+        "maternal_mean_good_seed_count": 88.4,
+        "among_apical_negative_lateral_success_fraction": 1,
+        "pollen_deposition_not_measured": true,
+        "apical_and_lateral_genotype_not_two_independent_mothers": true
+      },
+      "di": {
+        "n": 11,
+        "original_n_mothers": 11,
+        "excluded_incoherent_mothers": 0,
+        "states": {
+          "no_good_seed": 0,
+          "apical_only": 1,
+          "lateral_only": 6,
+          "both_sites": 4
+        },
+        "apical_positive_mothers": 5,
+        "lateral_positive_mothers": 10,
+        "seed_positive_mothers": 11,
+        "apical_success_fraction": 0.45454545454545453,
+        "lateral_success_fraction": 0.9090909090909091,
+        "p_lateral_only": 0.5454545454545454,
+        "p_no_good_seed": 0,
+        "apical_mean_good_seed_count": 7.181818181818182,
+        "lateral_mean_good_seed_count": 52.81818181818182,
+        "maternal_mean_good_seed_count": 60,
+        "among_apical_negative_lateral_success_fraction": 1,
+        "pollen_deposition_not_measured": true,
+        "apical_and_lateral_genotype_not_two_independent_mothers": true
+      }
+    },
+    "2008": {
+      "ndni": {
+        "n": 15,
+        "original_n_mothers": 15,
+        "excluded_incoherent_mothers": 0,
+        "states": {
+          "no_good_seed": 12,
+          "apical_only": 1,
+          "lateral_only": 1,
+          "both_sites": 1
+        },
+        "apical_positive_mothers": 2,
+        "lateral_positive_mothers": 2,
+        "seed_positive_mothers": 3,
+        "apical_success_fraction": 0.13333333333333333,
+        "lateral_success_fraction": 0.13333333333333333,
+        "p_lateral_only": 0.06666666666666667,
+        "p_no_good_seed": 0.8,
+        "apical_mean_good_seed_count": 1.2666666666666666,
+        "lateral_mean_good_seed_count": 1.4,
+        "maternal_mean_good_seed_count": 2.6666666666666665,
+        "among_apical_negative_lateral_success_fraction": 0.07692307692307693,
+        "pollen_deposition_not_measured": true,
+        "apical_and_lateral_genotype_not_two_independent_mothers": true
+      },
+      "dni": {
+        "n": 12,
+        "original_n_mothers": 12,
+        "excluded_incoherent_mothers": 0,
+        "states": {
+          "no_good_seed": 5,
+          "apical_only": 0,
+          "lateral_only": 7,
+          "both_sites": 0
+        },
+        "apical_positive_mothers": 0,
+        "lateral_positive_mothers": 7,
+        "seed_positive_mothers": 7,
+        "apical_success_fraction": 0,
+        "lateral_success_fraction": 0.5833333333333334,
+        "p_lateral_only": 0.5833333333333334,
+        "p_no_good_seed": 0.4166666666666667,
+        "apical_mean_good_seed_count": 0,
+        "lateral_mean_good_seed_count": 8.916666666666666,
+        "maternal_mean_good_seed_count": 8.916666666666666,
+        "among_apical_negative_lateral_success_fraction": 0.5833333333333334,
+        "pollen_deposition_not_measured": true,
+        "apical_and_lateral_genotype_not_two_independent_mothers": true
+      },
+      "ndi": {
+        "n": 21,
+        "original_n_mothers": 21,
+        "excluded_incoherent_mothers": 0,
+        "states": {
+          "no_good_seed": 0,
+          "apical_only": 7,
+          "lateral_only": 1,
+          "both_sites": 13
+        },
+        "apical_positive_mothers": 20,
+        "lateral_positive_mothers": 14,
+        "seed_positive_mothers": 21,
+        "apical_success_fraction": 0.9523809523809523,
+        "lateral_success_fraction": 0.6666666666666666,
+        "p_lateral_only": 0.047619047619047616,
+        "p_no_good_seed": 0,
+        "apical_mean_good_seed_count": 64.28571428571429,
+        "lateral_mean_good_seed_count": 74.0952380952381,
+        "maternal_mean_good_seed_count": 138.38095238095238,
+        "among_apical_negative_lateral_success_fraction": 1,
+        "pollen_deposition_not_measured": true,
+        "apical_and_lateral_genotype_not_two_independent_mothers": true
+      },
+      "di": {
+        "n": 19,
+        "original_n_mothers": 19,
+        "excluded_incoherent_mothers": 0,
+        "states": {
+          "no_good_seed": 0,
+          "apical_only": 4,
+          "lateral_only": 8,
+          "both_sites": 7
+        },
+        "apical_positive_mothers": 11,
+        "lateral_positive_mothers": 15,
+        "seed_positive_mothers": 19,
+        "apical_success_fraction": 0.5789473684210527,
+        "lateral_success_fraction": 0.7894736842105263,
+        "p_lateral_only": 0.42105263157894735,
+        "p_no_good_seed": 0,
+        "apical_mean_good_seed_count": 40.578947368421055,
+        "lateral_mean_good_seed_count": 111.3157894736842,
+        "maternal_mean_good_seed_count": 151.89473684210526,
+        "among_apical_negative_lateral_success_fraction": 1,
+        "pollen_deposition_not_measured": true,
+        "apical_and_lateral_genotype_not_two_independent_mothers": true
+      }
+    }
+  },
+  "lateral_presence_fisher_tests": {
+    "2007_insecticide_intact": {
+      "compared_arms": [
+        "ndi",
+        "ndni"
+      ],
+      "lateral_positive_negative_counts": [
+        [
+          7,
+          3
+        ],
+        [
+          7,
+          2
+        ]
+      ],
+      "difference_lateral_success_probability": -0.07777777777777783,
+      "p_exact": 1,
+      "association_not_measured_causal_pollen_herbivory_decomposition": true,
+      "q_BH_eight": 1
+    },
+    "2007_insecticide_damaged": {
+      "compared_arms": [
+        "di",
+        "dni"
+      ],
+      "lateral_positive_negative_counts": [
+        [
+          10,
+          1
+        ],
+        [
+          6,
+          2
+        ]
+      ],
+      "difference_lateral_success_probability": 0.15909090909090906,
+      "p_exact": 0.545923632610939,
+      "association_not_measured_causal_pollen_herbivory_decomposition": true,
+      "q_BH_eight": 0.7278981768145854
+    },
+    "2007_damage_ambient": {
+      "compared_arms": [
+        "dni",
+        "ndni"
+      ],
+      "lateral_positive_negative_counts": [
+        [
+          6,
+          2
+        ],
+        [
+          7,
+          2
+        ]
+      ],
+      "difference_lateral_success_probability": -0.02777777777777779,
+      "p_exact": 1,
+      "association_not_measured_causal_pollen_herbivory_decomposition": true,
+      "q_BH_eight": 1
+    },
+    "2007_damage_reduced": {
+      "compared_arms": [
+        "di",
+        "ndi"
+      ],
+      "lateral_positive_negative_counts": [
+        [
+          10,
+          1
+        ],
+        [
+          7,
+          3
+        ]
+      ],
+      "difference_lateral_success_probability": 0.2090909090909091,
+      "p_exact": 0.3107769423558897,
+      "association_not_measured_causal_pollen_herbivory_decomposition": true,
+      "q_BH_eight": 0.6215538847117794
+    },
+    "2008_insecticide_intact": {
+      "compared_arms": [
+        "ndi",
+        "ndni"
+      ],
+      "lateral_positive_negative_counts": [
+        [
+          14,
+          7
+        ],
+        [
+          2,
+          13
+        ]
+      ],
+      "difference_lateral_success_probability": 0.5333333333333333,
+      "p_exact": 0.002177063960688278,
+      "association_not_measured_causal_pollen_herbivory_decomposition": true,
+      "q_BH_eight": 0.017416511685506224
+    },
+    "2008_insecticide_damaged": {
+      "compared_arms": [
+        "di",
+        "dni"
+      ],
+      "lateral_positive_negative_counts": [
+        [
+          15,
+          4
+        ],
+        [
+          7,
+          5
+        ]
+      ],
+      "difference_lateral_success_probability": 0.20614035087719296,
+      "p_exact": 0.25344980115401355,
+      "association_not_measured_causal_pollen_herbivory_decomposition": true,
+      "q_BH_eight": 0.6215538847117794
+    },
+    "2008_damage_ambient": {
+      "compared_arms": [
+        "dni",
+        "ndni"
+      ],
+      "lateral_positive_negative_counts": [
+        [
+          7,
+          5
+        ],
+        [
+          2,
+          13
+        ]
+      ],
+      "difference_lateral_success_probability": 0.45000000000000007,
+      "p_exact": 0.03691838291380626,
+      "association_not_measured_causal_pollen_herbivory_decomposition": true,
+      "q_BH_eight": 0.14767353165522504
+    },
+    "2008_damage_reduced": {
+      "compared_arms": [
+        "di",
+        "ndi"
+      ],
+      "lateral_positive_negative_counts": [
+        [
+          15,
+          4
+        ],
+        [
+          14,
+          7
+        ]
+      ],
+      "difference_lateral_success_probability": 0.1228070175438597,
+      "p_exact": 0.48823854872241973,
+      "association_not_measured_causal_pollen_herbivory_decomposition": true,
+      "q_BH_eight": 0.7278981768145854
+    }
+  },
+  "inference": {
+    "observed_entity": "maternal_good_seed_anatomical_route",
+    "biological_conclusion": "OBSERVED_REAL_SPATIAL_REPRODUCTIVE_FALLBACK_NOT_ADAPTIVE_SELECTION_OR_GENETIC_REGAIN",
+    "original_author_damage_compensation_already_prior_art": true,
+    "2008_ambient_apical_damaged_lateral_only_mothers": 7,
+    "2008_ambient_apical_damaged_zero_good_seed_mothers": 5,
+    "2008_insecticide_apical_damaged_apical_positive_mothers": 11,
+    "exclude_year2007_bad_sum_but_do_not_erase_from_parent_study": true
+  },
+  "scientific_limits": {
+    "apical_damage_means_apical_function_completely_removed": false,
+    "same_mother_lateral_positive_means_extra_compensation_caused_by_damage": false,
+    "new_treatment_effect_is_randomized_between_plant_genotypes_proven": false,
+    "posthoc_fisher_nominal_p_is_robust_BH_significance": false,
+    "insecticide_selectively_eliminated_seed_predator_without_pollinators": false,
+    "maternal_seed_presence_means_established_seedling": false,
+    "documented_heritable_anatomical_reexpression_or_gene_toolkit": false,
+    "SLK_continuous_architecture_payoff_or_rare_invader_estimated": false,
+    "ANTO_lost_ancestral_trait_regained_by_native_allele": false,
+    "different_years_are_repeated_same_maternal_genotypes": false,
+    "public_original_plant_data_collected_by_this_repository": false
+  }
+}
