@@ -170,7 +170,7 @@ def quantile(a,p):
 
 def analyze(mothers,heads,source_dictionary,reps=REPS):
     check("Flowerhead position on plant" in source_dictionary
-          and 'Apical head is "100"' in source_dictionary
+          and 'Apical head is ""100""' in source_dictionary
           and "between the terminals and stem" in source_dictionary,
           "SOURCE_HEAD_POSITION_ONTOLOGY_UNVERIFIED")
     check(100<=reps<=15000,"REPLICATE_BUDGET_INVALID")
