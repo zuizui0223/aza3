@@ -1,0 +1,4309 @@
+{
+  "version": "aza3_actual_cirsium_outer_head_mosaic_matched_source_JS_v1",
+  "source": {
+    "publication": "Michalkova et al 2023 Plant Systematics and Evolution",
+    "doi": "10.1007/s00606-023-01854-2",
+    "source_original_xlsx_sha256": "c06423cc6f9800ba4775a4428afa072ba1b3dc6fb48ccd05fdb7e42a2f03ee79",
+    "aza3_publisher_cell_replay": "114/114 rows, 912/912 morphology cells verified",
+    "subset_csv_git_blob_sha": "be95e6002ab45393786de05a7180eb77f38d941d",
+    "n_original_individuals": 114,
+    "n_strata": 6,
+    "taxa_concept_count": 3,
+    "numerical_proxy": "Inv_Sp = Ibr_W / Inv_W; not physical spine length"
+  },
+  "estimand": "Within identical taxon and reproductive-sex strata, are there same-individual reproductive core size-compatible pairs whose relative external phyllary-tip spread differs? Descriptive feasibility, not selection.",
+  "matching": {
+    "core_variables": [
+      "Cor_L",
+      "Inv_L",
+      "Cap_W"
+    ],
+    "core_match_maximum_absolute_log_ratio": {
+      "Cor_L": 0.1,
+      "Inv_L": 0.1,
+      "Cap_W": 0.15
+    },
+    "external_proxy": "log(Ibr_W/Inv_W) = log(Inv_Sp)",
+    "external_contrast_absolute_log_ratio_at_least": 0.1,
+    "core_first": "greedy across eligible edges ranked by scaled normalized core distance ascending; row id tie break; does not select on outer contrast",
+    "outer_first": "greedy across only outer-divergent eligible edges ranked by outer contrast descending; row id tie break",
+    "greedy_not_optimal_maximum_cardinality": true,
+    "source_strata_individuals_not_assumed_independent_phylogenetic_lineages": true
+  },
+  "analyses": {
+    "primary": {
+      "thresholds": {
+        "cor_tol": 0.1,
+        "inv_tol": 0.1,
+        "cap_tol": 0.15,
+        "outer_min": 0.1
+      },
+      "n_core_compatible_edges": 239,
+      "n_outer_divergent_edges": 67,
+      "n_disjoint_core_first_pairs": 44,
+      "n_disjoint_core_first_outer_divergent": 9,
+      "n_disjoint_outer_first_pairs": 16,
+      "group_counts": {
+        "Cirsium acaulon|f": {
+          "n_individuals": 10,
+          "core_compatible_edges": 7,
+          "outer_divergent_edges": 0,
+          "core_first_disjoint_pairs": 3,
+          "core_first_pairs_outer_divergent": 0,
+          "outer_first_disjoint_pairs": 0
+        },
+        "Cirsium acaulon|h": {
+          "n_individuals": 30,
+          "core_compatible_edges": 83,
+          "outer_divergent_edges": 0,
+          "core_first_disjoint_pairs": 13,
+          "core_first_pairs_outer_divergent": 0,
+          "outer_first_disjoint_pairs": 0
+        },
+        "Cirsium bertolonii - Monte Sagro|f": {
+          "n_individuals": 10,
+          "core_compatible_edges": 7,
+          "outer_divergent_edges": 4,
+          "core_first_disjoint_pairs": 2,
+          "core_first_pairs_outer_divergent": 2,
+          "outer_first_disjoint_pairs": 2
+        },
+        "Cirsium bertolonii - Monte Sagro|h": {
+          "n_individuals": 24,
+          "core_compatible_edges": 45,
+          "outer_divergent_edges": 28,
+          "core_first_disjoint_pairs": 9,
+          "core_first_pairs_outer_divergent": 5,
+          "outer_first_disjoint_pairs": 7
+        },
+        "Cirsium erisithales|f": {
+          "n_individuals": 10,
+          "core_compatible_edges": 11,
+          "outer_divergent_edges": 3,
+          "core_first_disjoint_pairs": 4,
+          "core_first_pairs_outer_divergent": 0,
+          "outer_first_disjoint_pairs": 1
+        },
+        "Cirsium erisithales|h": {
+          "n_individuals": 30,
+          "core_compatible_edges": 86,
+          "outer_divergent_edges": 32,
+          "core_first_disjoint_pairs": 13,
+          "core_first_pairs_outer_divergent": 2,
+          "outer_first_disjoint_pairs": 6
+        }
+      },
+      "core_first_pairs": [
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            41,
+            43
+          ],
+          "core_distance_scaled": 0.11043413667437088,
+          "outer_log_contrast": 0.021506205220963682,
+          "outer_spread_ratio_max_over_min": 1.0217391304347827,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.007926065272420603,
+            "Inv_L": 0.006598740020289455,
+            "Cap_W": 0.005922835972928268
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            83,
+            90
+          ],
+          "core_distance_scaled": 0.15880197431432208,
+          "outer_log_contrast": 0.059815634181139846,
+          "outer_spread_ratio_max_over_min": 1.0616407982261642,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.006997929187644637,
+            "Inv_L": 0.007241161256559474,
+            "Cap_W": 0.01841858552401836
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            76,
+            92
+          ],
+          "core_distance_scaled": 0.16244013542211208,
+          "outer_log_contrast": 0.17801816123390166,
+          "outer_spread_ratio_max_over_min": 1.1948470209339774,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.005643189472062937,
+            "Inv_L": 0.015215719886023093,
+            "Cap_W": 0.0010651657181144694
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            80,
+            94
+          ],
+          "core_distance_scaled": 0.16626999648385926,
+          "outer_log_contrast": 0.02985296314968113,
+          "outer_spread_ratio_max_over_min": 1.0303030303030303,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.007326040092072881,
+            "Inv_L": 0.014729693144985652,
+            "Cap_W": 0.0036194455232107948
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            123,
+            141
+          ],
+          "core_distance_scaled": 0.19783073311929086,
+          "outer_log_contrast": 0.0883596739778017,
+          "outer_spread_ratio_max_over_min": 1.0923809523809525,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.01438873745209967,
+            "Inv_L": 0.013267846519526205,
+            "Cap_W": 0.004321060529719916
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            120,
+            132
+          ],
+          "core_distance_scaled": 0.24163696279911273,
+          "outer_log_contrast": 0.0073467411542454605,
+          "outer_spread_ratio_max_over_min": 1.0073737946681796,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.00464037955650208,
+            "Inv_L": 0.01932427282640259,
+            "Cap_W": 0.020617420891635457
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            119,
+            125
+          ],
+          "core_distance_scaled": 0.26805141101664837,
+          "outer_log_contrast": 0.09710978861054985,
+          "outer_spread_ratio_max_over_min": 1.101981351981352,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.009804000096620615,
+            "Inv_L": 0.02469261259037152,
+            "Cap_W": 0.005339674508503607
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            35,
+            46
+          ],
+          "core_distance_scaled": 0.28986323504177997,
+          "outer_log_contrast": 0.023530497410194272,
+          "outer_spread_ratio_max_over_min": 1.023809523809524,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.02710192977779127,
+            "Inv_L": 0.0100861133887867,
+            "Cap_W": 0.0029859681785659883
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            130,
+            144
+          ],
+          "core_distance_scaled": 0.3203325339542589,
+          "outer_log_contrast": 0.20253950557434988,
+          "outer_spread_ratio_max_over_min": 1.2245084590763602,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.004819286435948995,
+            "Inv_L": 0.009852296443011594,
+            "Cap_W": 0.0451456656426887
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            25,
+            38
+          ],
+          "core_distance_scaled": 0.32906432233192373,
+          "outer_log_contrast": 0.04271772968515444,
+          "outer_spread_ratio_max_over_min": 1.043643263757116,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.032260862218221435,
+            "Inv_L": 0.0044020417074575584,
+            "Cap_W": 0.007145430717314596
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "f",
+          "excel_rows": [
+            18,
+            21
+          ],
+          "core_distance_scaled": 0.3423685929285774,
+          "outer_log_contrast": 0,
+          "outer_spread_ratio_max_over_min": 1,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0,
+            "Inv_L": 0.02933188102403404,
+            "Cap_W": 0.026486928891802746
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "f",
+          "excel_rows": [
+            62,
+            64
+          ],
+          "core_distance_scaled": 0.42790147329079464,
+          "outer_log_contrast": 0.1759453396546786,
+          "outer_spread_ratio_max_over_min": 1.1923728813559322,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.010929070532190449,
+            "Inv_L": 0.03574244877695655,
+            "Cap_W": 0.03125006132218117
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "f",
+          "excel_rows": [
+            109,
+            114
+          ],
+          "core_distance_scaled": 0.43028872449742095,
+          "outer_log_contrast": 0.013937507843781678,
+          "outer_spread_ratio_max_over_min": 1.0140350877192983,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.026386755173194887,
+            "Inv_L": 0.011620531023018871,
+            "Cap_W": 0.047910532428219604
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            74,
+            85
+          ],
+          "core_distance_scaled": 0.45864658201255365,
+          "outer_log_contrast": 0.2227269714289935,
+          "outer_spread_ratio_max_over_min": 1.2494793835901707,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.00510205188389551,
+            "Inv_L": 0.026419944591036228,
+            "Cap_W": 0.055712884947486246
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            40,
+            50
+          ],
+          "core_distance_scaled": 0.47134551475127556,
+          "outer_log_contrast": 0.0012079727661765012,
+          "outer_spread_ratio_max_over_min": 1.0012087026591459,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.0026631174194836284,
+            "Inv_L": 0.009661716834037368,
+            "Cap_W": 0.06908513730483812
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            79,
+            87
+          ],
+          "core_distance_scaled": 0.4813617771639213,
+          "outer_log_contrast": 0.09210485860569173,
+          "outer_spread_ratio_max_over_min": 1.0964797913950455,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.02542509836581017,
+            "Inv_L": 0.040821994520254985,
+            "Cap_W": 0.0030816665374081144
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            27,
+            42
+          ],
+          "core_distance_scaled": 0.5333594127498906,
+          "outer_log_contrast": 0.02985296314968116,
+          "outer_spread_ratio_max_over_min": 1.0303030303030303,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.0055710450494554295,
+            "Inv_L": 0.0482848570759592,
+            "Cap_W": 0.032940582846626744
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            121,
+            136
+          ],
+          "core_distance_scaled": 0.5383315518244245,
+          "outer_log_contrast": 0.06899287148695143,
+          "outer_spread_ratio_max_over_min": 1.0714285714285714,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.033099948426344956,
+            "Inv_L": 0.03307795109290965,
+            "Cap_W": 0.03991948290962637
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "f",
+          "excel_rows": [
+            69,
+            70
+          ],
+          "core_distance_scaled": 0.5431927730626074,
+          "outer_log_contrast": 0.14478363747488937,
+          "outer_spread_ratio_max_over_min": 1.1557894736842105,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.022448269261394992,
+            "Inv_L": 0.049315236378922656,
+            "Cap_W": 0.005744540804104977
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            73,
+            84
+          ],
+          "core_distance_scaled": 0.5549647819801574,
+          "outer_log_contrast": 0.017082007217182216,
+          "outer_spread_ratio_max_over_min": 1.0172287390029326,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.0046046445284160156,
+            "Inv_L": 0.02381631284459656,
+            "Cap_W": 0.07487148364488083
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            122,
+            133
+          ],
+          "core_distance_scaled": 0.5642065430031498,
+          "outer_log_contrast": 0.14107859825990562,
+          "outer_spread_ratio_max_over_min": 1.1515151515151516,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.04145671367834634,
+            "Inv_L": 0.021142436573809383,
+            "Cap_W": 0.04785043491314208
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            28,
+            36
+          ],
+          "core_distance_scaled": 0.5643779804757779,
+          "outer_log_contrast": 0,
+          "outer_spread_ratio_max_over_min": 1,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.041242958534049,
+            "Inv_L": 0.010486445760108076,
+            "Cap_W": 0.05560688104057765
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            127,
+            128
+          ],
+          "core_distance_scaled": 0.5737643274055166,
+          "outer_log_contrast": 0.09893994785490366,
+          "outer_spread_ratio_max_over_min": 1.104,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.028987536873252406,
+            "Inv_L": 0.0031553625781216843,
+            "Cap_W": 0.07412218433687925
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            81,
+            91
+          ],
+          "core_distance_scaled": 0.5766254928834815,
+          "outer_log_contrast": 0.24846135929849972,
+          "outer_spread_ratio_max_over_min": 1.2820512820512822,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.0037486900641515992,
+            "Inv_L": 0.03385662400921667,
+            "Cap_W": 0.06978863323528016
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            39,
+            44
+          ],
+          "core_distance_scaled": 0.5835201434738054,
+          "outer_log_contrast": 0.0183491386681964,
+          "outer_spread_ratio_max_over_min": 1.0185185185185184,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.03270731797578421,
+            "Inv_L": 0.028437935320533514,
+            "Cap_W": 0.05860515095833515
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            32,
+            49
+          ],
+          "core_distance_scaled": 0.6159809232304873,
+          "outer_log_contrast": 0,
+          "outer_spread_ratio_max_over_min": 1,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.055350095083164956,
+            "Inv_L": 0.02630862905516862,
+            "Cap_W": 0.009313054067392945
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "f",
+          "excel_rows": [
+            13,
+            15
+          ],
+          "core_distance_scaled": 0.6197438728175907,
+          "outer_log_contrast": 0,
+          "outer_spread_ratio_max_over_min": 1,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.03184060585565884,
+            "Inv_L": 0.02306742210031801,
+            "Cap_W": 0.07185758626974997
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            82,
+            88
+          ],
+          "core_distance_scaled": 0.6368145717262095,
+          "outer_log_contrast": 0.17715843807238643,
+          "outer_spread_ratio_max_over_min": 1.1938202247191012,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.005673774085907655,
+            "Inv_L": 0.06075779829766494,
+            "Cap_W": 0.027315911075032402
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            124,
+            134
+          ],
+          "core_distance_scaled": 0.6573838676628114,
+          "outer_log_contrast": 0.01769957709940086,
+          "outer_spread_ratio_max_over_min": 1.0178571428571428,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.021164811192043116,
+            "Inv_L": 0.03330719801776855,
+            "Cap_W": 0.07886372962013558
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "f",
+          "excel_rows": [
+            107,
+            115
+          ],
+          "core_distance_scaled": 0.6928672250886873,
+          "outer_log_contrast": 0.07046969209695807,
+          "outer_spread_ratio_max_over_min": 1.0730120481927707,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.049392755329576474,
+            "Inv_L": 0.028778964550043327,
+            "Cap_W": 0.058726040917995416
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            23,
+            30
+          ],
+          "core_distance_scaled": 0.7184019412642646,
+          "outer_log_contrast": 0,
+          "outer_spread_ratio_max_over_min": 1,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.004773278752657771,
+            "Inv_L": 0.0704898777545448,
+            "Cap_W": 0.01952343416251709
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            26,
+            37
+          ],
+          "core_distance_scaled": 0.748529029799266,
+          "outer_log_contrast": 0,
+          "outer_spread_ratio_max_over_min": 1,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.06305813596713691,
+            "Inv_L": 0.03181911411385974,
+            "Cap_W": 0.03717375737309174
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            34,
+            48
+          ],
+          "core_distance_scaled": 0.7929569735826932,
+          "outer_log_contrast": 0.0018957351648990896,
+          "outer_spread_ratio_max_over_min": 1.0018975332068312,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.012150817782512528,
+            "Inv_L": 0.05181110780062316,
+            "Cap_W": 0.08817875197149766
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            118,
+            143
+          ],
+          "core_distance_scaled": 0.8337446891798486,
+          "outer_log_contrast": 0.07748362663974163,
+          "outer_spread_ratio_max_over_min": 1.0805645398412231,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.004987541511039162,
+            "Inv_L": 0.07410797215372183,
+            "Cap_W": 0.05681090265665091
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            22,
+            31
+          ],
+          "core_distance_scaled": 0.8526901475475671,
+          "outer_log_contrast": 0,
+          "outer_spread_ratio_max_over_min": 1,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.06521214864704536,
+            "Inv_L": 0.04424880400964079,
+            "Cap_W": 0.04884161905637131
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "f",
+          "excel_rows": [
+            111,
+            116
+          ],
+          "core_distance_scaled": 0.9177716444116838,
+          "outer_log_contrast": 0.00878482955573303,
+          "outer_spread_ratio_max_over_min": 1.008823529411765,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.0763729787845741,
+            "Inv_L": 0.022472855852058514,
+            "Cap_W": 0.06849576806008478
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            72,
+            75
+          ],
+          "core_distance_scaled": 0.9963089742572293,
+          "outer_log_contrast": 0.22119233118294793,
+          "outer_spread_ratio_max_over_min": 1.2475633528265107,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.004922581984126197,
+            "Inv_L": 0.09521606658605394,
+            "Cap_W": 0.04337009670009279
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            137,
+            145
+          ],
+          "core_distance_scaled": 1.0180763759984894,
+          "outer_log_contrast": 0.04361036580264221,
+          "outer_spread_ratio_max_over_min": 1.0445752733389402,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.02398196468648521,
+            "Inv_L": 0.007785329222649178,
+            "Cap_W": 0.14795391328974697
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            131,
+            138
+          ],
+          "core_distance_scaled": 1.034886654839566,
+          "outer_log_contrast": 0.050643732818754915,
+          "outer_spread_ratio_max_over_min": 1.051948051948052,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.04020642047804071,
+            "Inv_L": 0.048790164169432174,
+            "Cap_W": 0.1228981363231539
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            140,
+            142
+          ],
+          "core_distance_scaled": 1.1319516931866214,
+          "outer_log_contrast": 0.018401085370891374,
+          "outer_spread_ratio_max_over_min": 1.0185714285714287,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.03704127168034887,
+            "Inv_L": 0.09976453015370505,
+            "Cap_W": 0.057864414049877966
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            129,
+            135
+          ],
+          "core_distance_scaled": 1.1325028626141431,
+          "outer_log_contrast": 0.002560820861673481,
+          "outer_spread_ratio_max_over_min": 1.0025641025641023,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.053776396780804064,
+            "Inv_L": 0.08036450976802703,
+            "Cap_W": 0.0884271571913778
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "f",
+          "excel_rows": [
+            112,
+            113
+          ],
+          "core_distance_scaled": 1.173046054059054,
+          "outer_log_contrast": 0.005449604767564906,
+          "outer_spread_ratio_max_over_min": 1.0054644808743172,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.0059347355198145265,
+            "Inv_L": 0.06731078530396654,
+            "Cap_W": 0.1438312100254801
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "f",
+          "excel_rows": [
+            12,
+            19
+          ],
+          "core_distance_scaled": 1.3261815971095283,
+          "outer_log_contrast": 0.051152389779736664,
+          "outer_spread_ratio_max_over_min": 1.0524832687566044,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.0749976519277085,
+            "Inv_L": 0.07666387858938532,
+            "Cap_W": 0.11701517411295269
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            33,
+            47
+          ],
+          "core_distance_scaled": 1.4173324777770697,
+          "outer_log_contrast": 0.01980262729617973,
+          "outer_spread_ratio_max_over_min": 1.02,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.08747295096505299,
+            "Inv_L": 0.09013530806075673,
+            "Cap_W": 0.09850355773127331
+          }
+        }
+      ],
+      "outer_first_pairs": [
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            75,
+            92
+          ],
+          "core_distance_scaled": 0.7769513342365687,
+          "outer_log_contrast": 0.37534301101020623,
+          "outer_spread_ratio_max_over_min": 1.4554905782975958,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.03155137433072755,
+            "Inv_L": 0.04376081576442987,
+            "Cap_W": 0.08386644122165907
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            78,
+            90
+          ],
+          "core_distance_scaled": 0.9427709527055579,
+          "outer_log_contrast": 0.31577292060806267,
+          "outer_spread_ratio_max_over_min": 1.3713188220230472,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.005991962531969039,
+            "Inv_L": 0.0716562179825903,
+            "Cap_W": 0.09145884527876995
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            125,
+            144
+          ],
+          "core_distance_scaled": 0.30282577044486697,
+          "outer_log_contrast": 0.2955425122322465,
+          "outer_spread_ratio_max_over_min": 1.3438552188552189,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.02433210065953044,
+            "Inv_L": 0.014742281737203431,
+            "Cap_W": 0.015563067758125495
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            81,
+            91
+          ],
+          "core_distance_scaled": 0.5766254928834815,
+          "outer_log_contrast": 0.24846135929849972,
+          "outer_spread_ratio_max_over_min": 1.2820512820512822,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.0037486900641515992,
+            "Inv_L": 0.03385662400921667,
+            "Cap_W": 0.06978863323528016
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            118,
+            128
+          ],
+          "core_distance_scaled": 0.9828142498754461,
+          "outer_log_contrast": 0.23984540093214138,
+          "outer_spread_ratio_max_over_min": 1.2710526315789477,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.019802627296179643,
+            "Inv_L": 0.09279256164541898,
+            "Cap_W": 0.03843733399082435
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "f",
+          "excel_rows": [
+            110,
+            114
+          ],
+          "core_distance_scaled": 1.053748094047801,
+          "outer_log_contrast": 0.23151621452458399,
+          "outer_spread_ratio_max_over_min": 1.260509764978484,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.06062462181643484,
+            "Inv_L": 0.08597885237544069,
+            "Cap_W": 0.009017811239312248
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            74,
+            85
+          ],
+          "core_distance_scaled": 0.45864658201255365,
+          "outer_log_contrast": 0.2227269714289935,
+          "outer_spread_ratio_max_over_min": 1.2494793835901707,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.00510205188389551,
+            "Inv_L": 0.026419944591036228,
+            "Cap_W": 0.055712884947486246
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            88,
+            93
+          ],
+          "core_distance_scaled": 0.9479916395773644,
+          "outer_log_contrast": 0.1888544778355777,
+          "outer_spread_ratio_max_over_min": 1.207865168539326,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.019718948788955505,
+            "Inv_L": 0.006633791822312749,
+            "Cap_W": 0.1387320584492127
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "f",
+          "excel_rows": [
+            62,
+            64
+          ],
+          "core_distance_scaled": 0.42790147329079464,
+          "outer_log_contrast": 0.1759453396546786,
+          "outer_spread_ratio_max_over_min": 1.1923728813559322,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.010929070532190449,
+            "Inv_L": 0.03574244877695655,
+            "Cap_W": 0.03125006132218117
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "f",
+          "excel_rows": [
+            65,
+            70
+          ],
+          "core_distance_scaled": 1.1315308343871588,
+          "outer_log_contrast": 0.17218261166300375,
+          "outer_spread_ratio_max_over_min": 1.1878947368421051,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.020970072392083976,
+            "Inv_L": 0.08119421834361552,
+            "Cap_W": 0.11395435201009374
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            122,
+            133
+          ],
+          "core_distance_scaled": 0.5642065430031498,
+          "outer_log_contrast": 0.14107859825990562,
+          "outer_spread_ratio_max_over_min": 1.1515151515151516,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.04145671367834634,
+            "Inv_L": 0.021142436573809383,
+            "Cap_W": 0.04785043491314208
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            82,
+            83
+          ],
+          "core_distance_scaled": 0.7847867141709767,
+          "outer_log_contrast": 0.13661052879435684,
+          "outer_spread_ratio_max_over_min": 1.1463815789473684,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.014045174703047865,
+            "Inv_L": 0.07696104113612819,
+            "Cap_W": 0.009323327460884092
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            126,
+            130
+          ],
+          "core_distance_scaled": 0.9971383827664112,
+          "outer_log_contrast": 0.13215870881255037,
+          "outer_spread_ratio_max_over_min": 1.1412894375857339,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.009708814126960938,
+            "Inv_L": 0.01093229975015434,
+            "Cap_W": 0.14795409731444525
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            131,
+            134
+          ],
+          "core_distance_scaled": 1.0936174837758181,
+          "outer_log_contrast": 0.11778303565638364,
+          "outer_spread_ratio_max_over_min": 1.1250000000000002,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.04189094170916013,
+            "Inv_L": 0.07037123145707298,
+            "Cap_W": 0.10871669276981678
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            72,
+            94
+          ],
+          "core_distance_scaled": 0.6853625335332513,
+          "outer_log_contrast": 0.11778303565638346,
+          "outer_spread_ratio_max_over_min": 1.125,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.007326040092072881,
+            "Inv_L": 0.04652001563489282,
+            "Cap_W": 0.07469089260158923
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            127,
+            142
+          ],
+          "core_distance_scaled": 0.7484007016390645,
+          "outer_log_contrast": 0.10178269430994238,
+          "outer_spread_ratio_max_over_min": 1.1071428571428572,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.0465200156348927,
+            "Inv_L": 0.052343248043753024,
+            "Cap_W": 0.03960422226632317
+          }
+        }
+      ]
+    },
+    "strict_core": {
+      "thresholds": {
+        "cor_tol": 0.05,
+        "inv_tol": 0.05,
+        "cap_tol": 0.1,
+        "outer_min": 0.1
+      },
+      "n_core_compatible_edges": 63,
+      "n_outer_divergent_edges": 16,
+      "n_disjoint_core_first_pairs": 28,
+      "n_disjoint_core_first_outer_divergent": 7,
+      "n_disjoint_outer_first_pairs": 9,
+      "group_counts": {
+        "Cirsium acaulon|f": {
+          "n_individuals": 10,
+          "core_compatible_edges": 2,
+          "outer_divergent_edges": 0,
+          "core_first_disjoint_pairs": 2,
+          "core_first_pairs_outer_divergent": 0,
+          "outer_first_disjoint_pairs": 0
+        },
+        "Cirsium acaulon|h": {
+          "n_individuals": 30,
+          "core_compatible_edges": 18,
+          "outer_divergent_edges": 0,
+          "core_first_disjoint_pairs": 7,
+          "core_first_pairs_outer_divergent": 0,
+          "outer_first_disjoint_pairs": 0
+        },
+        "Cirsium bertolonii - Monte Sagro|f": {
+          "n_individuals": 10,
+          "core_compatible_edges": 3,
+          "outer_divergent_edges": 2,
+          "core_first_disjoint_pairs": 2,
+          "core_first_pairs_outer_divergent": 2,
+          "outer_first_disjoint_pairs": 2
+        },
+        "Cirsium bertolonii - Monte Sagro|h": {
+          "n_individuals": 24,
+          "core_compatible_edges": 15,
+          "outer_divergent_edges": 8,
+          "core_first_disjoint_pairs": 7,
+          "core_first_pairs_outer_divergent": 3,
+          "outer_first_disjoint_pairs": 4
+        },
+        "Cirsium erisithales|f": {
+          "n_individuals": 10,
+          "core_compatible_edges": 3,
+          "outer_divergent_edges": 0,
+          "core_first_disjoint_pairs": 2,
+          "core_first_pairs_outer_divergent": 0,
+          "outer_first_disjoint_pairs": 0
+        },
+        "Cirsium erisithales|h": {
+          "n_individuals": 30,
+          "core_compatible_edges": 22,
+          "outer_divergent_edges": 6,
+          "core_first_disjoint_pairs": 8,
+          "core_first_pairs_outer_divergent": 2,
+          "outer_first_disjoint_pairs": 3
+        }
+      },
+      "core_first_pairs": [
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            41,
+            43
+          ],
+          "core_distance_scaled": 0.2146027744914728,
+          "outer_log_contrast": 0.021506205220963682,
+          "outer_spread_ratio_max_over_min": 1.0217391304347827,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.007926065272420603,
+            "Inv_L": 0.006598740020289455,
+            "Cap_W": 0.005922835972928268
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            83,
+            90
+          ],
+          "core_distance_scaled": 0.27292233505902835,
+          "outer_log_contrast": 0.059815634181139846,
+          "outer_spread_ratio_max_over_min": 1.0616407982261642,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.006997929187644637,
+            "Inv_L": 0.007241161256559474,
+            "Cap_W": 0.01841858552401836
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            76,
+            92
+          ],
+          "core_distance_scaled": 0.32474443094179894,
+          "outer_log_contrast": 0.17801816123390166,
+          "outer_spread_ratio_max_over_min": 1.1948470209339774,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.005643189472062937,
+            "Inv_L": 0.015215719886023093,
+            "Cap_W": 0.0010651657181144694
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            80,
+            94
+          ],
+          "core_distance_scaled": 0.3310044229613672,
+          "outer_log_contrast": 0.02985296314968113,
+          "outer_spread_ratio_max_over_min": 1.0303030303030303,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.007326040092072881,
+            "Inv_L": 0.014729693144985652,
+            "Cap_W": 0.0036194455232107948
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            123,
+            141
+          ],
+          "core_distance_scaled": 0.39382199418343067,
+          "outer_log_contrast": 0.0883596739778017,
+          "outer_spread_ratio_max_over_min": 1.0923809523809525,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.01438873745209967,
+            "Inv_L": 0.013267846519526205,
+            "Cap_W": 0.004321060529719916
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            120,
+            132
+          ],
+          "core_distance_scaled": 0.44776339901932827,
+          "outer_log_contrast": 0.0073467411542454605,
+          "outer_spread_ratio_max_over_min": 1.0073737946681796,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.00464037955650208,
+            "Inv_L": 0.01932427282640259,
+            "Cap_W": 0.020617420891635457
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            125,
+            130
+          ],
+          "core_distance_scaled": 0.49937737213508515,
+          "outer_log_contrast": 0.09300300665789653,
+          "outer_spread_ratio_max_over_min": 1.097465034965035,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.01951281422358149,
+            "Inv_L": 0.004889985294191792,
+            "Cap_W": 0.029582597884563303
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            35,
+            46
+          ],
+          "core_distance_scaled": 0.5791280626813532,
+          "outer_log_contrast": 0.023530497410194272,
+          "outer_spread_ratio_max_over_min": 1.023809523809524,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.02710192977779127,
+            "Inv_L": 0.0100861133887867,
+            "Cap_W": 0.0029859681785659883
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "f",
+          "excel_rows": [
+            18,
+            21
+          ],
+          "core_distance_scaled": 0.6436609650857948,
+          "outer_log_contrast": 0,
+          "outer_spread_ratio_max_over_min": 1,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0,
+            "Inv_L": 0.02933188102403404,
+            "Cap_W": 0.026486928891802746
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            25,
+            38
+          ],
+          "core_distance_scaled": 0.6551047236255433,
+          "outer_log_contrast": 0.04271772968515444,
+          "outer_spread_ratio_max_over_min": 1.043643263757116,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.032260862218221435,
+            "Inv_L": 0.0044020417074575584,
+            "Cap_W": 0.007145430717314596
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            40,
+            50
+          ],
+          "core_distance_scaled": 0.7193413697760368,
+          "outer_log_contrast": 0.0012079727661765012,
+          "outer_spread_ratio_max_over_min": 1.0012087026591459,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.0026631174194836284,
+            "Inv_L": 0.009661716834037368,
+            "Cap_W": 0.06908513730483812
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "f",
+          "excel_rows": [
+            109,
+            114
+          ],
+          "core_distance_scaled": 0.7497072413191543,
+          "outer_log_contrast": 0.013937507843781678,
+          "outer_spread_ratio_max_over_min": 1.0140350877192983,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.026386755173194887,
+            "Inv_L": 0.011620531023018871,
+            "Cap_W": 0.047910532428219604
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            74,
+            85
+          ],
+          "core_distance_scaled": 0.7746033289141857,
+          "outer_log_contrast": 0.2227269714289935,
+          "outer_spread_ratio_max_over_min": 1.2494793835901707,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.00510205188389551,
+            "Inv_L": 0.026419944591036228,
+            "Cap_W": 0.055712884947486246
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "f",
+          "excel_rows": [
+            62,
+            64
+          ],
+          "core_distance_scaled": 0.8102120242087195,
+          "outer_log_contrast": 0.1759453396546786,
+          "outer_spread_ratio_max_over_min": 1.1923728813559322,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.010929070532190449,
+            "Inv_L": 0.03574244877695655,
+            "Cap_W": 0.03125006132218117
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            119,
+            144
+          ],
+          "core_distance_scaled": 0.8661195656857809,
+          "outer_log_contrast": 0.19843272362169673,
+          "outer_spread_ratio_max_over_min": 1.219489981785064,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.014528100562909969,
+            "Inv_L": 0.03943489432757503,
+            "Cap_W": 0.02090274226662908
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            73,
+            84
+          ],
+          "core_distance_scaled": 0.8921556533567851,
+          "outer_log_contrast": 0.017082007217182216,
+          "outer_spread_ratio_max_over_min": 1.0172287390029326,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.0046046445284160156,
+            "Inv_L": 0.02381631284459656,
+            "Cap_W": 0.07487148364488083
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            127,
+            128
+          ],
+          "core_distance_scaled": 0.943134806842618,
+          "outer_log_contrast": 0.09893994785490366,
+          "outer_spread_ratio_max_over_min": 1.104,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.028987536873252406,
+            "Inv_L": 0.0031553625781216843,
+            "Cap_W": 0.07412218433687925
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            79,
+            87
+          ],
+          "core_distance_scaled": 0.9623398631844772,
+          "outer_log_contrast": 0.09210485860569173,
+          "outer_spread_ratio_max_over_min": 1.0964797913950455,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.02542509836581017,
+            "Inv_L": 0.040821994520254985,
+            "Cap_W": 0.0030816665374081144
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            81,
+            91
+          ],
+          "core_distance_scaled": 0.9752819076986198,
+          "outer_log_contrast": 0.24846135929849972,
+          "outer_spread_ratio_max_over_min": 1.2820512820512822,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.0037486900641515992,
+            "Inv_L": 0.03385662400921667,
+            "Cap_W": 0.06978863323528016
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            28,
+            36
+          ],
+          "core_distance_scaled": 1.0166569683204285,
+          "outer_log_contrast": 0,
+          "outer_spread_ratio_max_over_min": 1,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.041242958534049,
+            "Inv_L": 0.010486445760108076,
+            "Cap_W": 0.05560688104057765
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            121,
+            136
+          ],
+          "core_distance_scaled": 1.0174770195487672,
+          "outer_log_contrast": 0.06899287148695143,
+          "outer_spread_ratio_max_over_min": 1.0714285714285714,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.033099948426344956,
+            "Inv_L": 0.03307795109290965,
+            "Cap_W": 0.03991948290962637
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            27,
+            42
+          ],
+          "core_distance_scaled": 1.0263984538877169,
+          "outer_log_contrast": 0.02985296314968116,
+          "outer_spread_ratio_max_over_min": 1.0303030303030303,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.0055710450494554295,
+            "Inv_L": 0.0482848570759592,
+            "Cap_W": 0.032940582846626744
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            39,
+            44
+          ],
+          "core_distance_scaled": 1.0463509438379108,
+          "outer_log_contrast": 0.0183491386681964,
+          "outer_spread_ratio_max_over_min": 1.0185185185185184,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.03270731797578421,
+            "Inv_L": 0.028437935320533514,
+            "Cap_W": 0.05860515095833515
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            122,
+            133
+          ],
+          "core_distance_scaled": 1.0465328974533294,
+          "outer_log_contrast": 0.14107859825990562,
+          "outer_spread_ratio_max_over_min": 1.1515151515151516,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.04145671367834634,
+            "Inv_L": 0.021142436573809383,
+            "Cap_W": 0.04785043491314208
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "f",
+          "excel_rows": [
+            13,
+            15
+          ],
+          "core_distance_scaled": 1.065233931066467,
+          "outer_log_contrast": 0,
+          "outer_spread_ratio_max_over_min": 1,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.03184060585565884,
+            "Inv_L": 0.02306742210031801,
+            "Cap_W": 0.07185758626974997
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "f",
+          "excel_rows": [
+            69,
+            70
+          ],
+          "core_distance_scaled": 1.085203624985397,
+          "outer_log_contrast": 0.14478363747488937,
+          "outer_spread_ratio_max_over_min": 1.1557894736842105,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.022448269261394992,
+            "Inv_L": 0.049315236378922656,
+            "Cap_W": 0.005744540804104977
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            124,
+            134
+          ],
+          "core_distance_scaled": 1.1157402269326209,
+          "outer_log_contrast": 0.01769957709940086,
+          "outer_spread_ratio_max_over_min": 1.0178571428571428,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.021164811192043116,
+            "Inv_L": 0.03330719801776855,
+            "Cap_W": 0.07886372962013558
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "f",
+          "excel_rows": [
+            107,
+            115
+          ],
+          "core_distance_scaled": 1.2853108651366132,
+          "outer_log_contrast": 0.07046969209695807,
+          "outer_spread_ratio_max_over_min": 1.0730120481927707,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.049392755329576474,
+            "Inv_L": 0.028778964550043327,
+            "Cap_W": 0.058726040917995416
+          }
+        }
+      ],
+      "outer_first_pairs": [
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            75,
+            92
+          ],
+          "core_distance_scaled": 1.366585995731343,
+          "outer_log_contrast": 0.37534301101020623,
+          "outer_spread_ratio_max_over_min": 1.4554905782975958,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.03155137433072755,
+            "Inv_L": 0.04376081576442987,
+            "Cap_W": 0.08386644122165907
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            125,
+            144
+          ],
+          "core_distance_scaled": 0.5898943169197699,
+          "outer_log_contrast": 0.2955425122322465,
+          "outer_spread_ratio_max_over_min": 1.3438552188552189,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.02433210065953044,
+            "Inv_L": 0.014742281737203431,
+            "Cap_W": 0.015563067758125495
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            81,
+            91
+          ],
+          "core_distance_scaled": 0.9752819076986198,
+          "outer_log_contrast": 0.24846135929849972,
+          "outer_spread_ratio_max_over_min": 1.2820512820512822,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.0037486900641515992,
+            "Inv_L": 0.03385662400921667,
+            "Cap_W": 0.06978863323528016
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            74,
+            85
+          ],
+          "core_distance_scaled": 0.7746033289141857,
+          "outer_log_contrast": 0.2227269714289935,
+          "outer_spread_ratio_max_over_min": 1.2494793835901707,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.00510205188389551,
+            "Inv_L": 0.026419944591036228,
+            "Cap_W": 0.055712884947486246
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "f",
+          "excel_rows": [
+            62,
+            64
+          ],
+          "core_distance_scaled": 0.8102120242087195,
+          "outer_log_contrast": 0.1759453396546786,
+          "outer_spread_ratio_max_over_min": 1.1923728813559322,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.010929070532190449,
+            "Inv_L": 0.03574244877695655,
+            "Cap_W": 0.03125006132218117
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "f",
+          "excel_rows": [
+            69,
+            70
+          ],
+          "core_distance_scaled": 1.085203624985397,
+          "outer_log_contrast": 0.14478363747488937,
+          "outer_spread_ratio_max_over_min": 1.1557894736842105,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.022448269261394992,
+            "Inv_L": 0.049315236378922656,
+            "Cap_W": 0.005744540804104977
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            122,
+            133
+          ],
+          "core_distance_scaled": 1.0465328974533294,
+          "outer_log_contrast": 0.14107859825990562,
+          "outer_spread_ratio_max_over_min": 1.1515151515151516,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.04145671367834634,
+            "Inv_L": 0.021142436573809383,
+            "Cap_W": 0.04785043491314208
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            72,
+            94
+          ],
+          "core_distance_scaled": 1.2020757176662151,
+          "outer_log_contrast": 0.11778303565638346,
+          "outer_spread_ratio_max_over_min": 1.125,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.007326040092072881,
+            "Inv_L": 0.04652001563489282,
+            "Cap_W": 0.07469089260158923
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            136,
+            142
+          ],
+          "core_distance_scaled": 1.3698611261311635,
+          "outer_log_contrast": 0.10178269430994238,
+          "outer_spread_ratio_max_over_min": 1.1071428571428572,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.022989518224698604,
+            "Inv_L": 0.04226603809248894,
+            "Cap_W": 0.09749590428266972
+          }
+        }
+      ]
+    },
+    "relaxed_core": {
+      "thresholds": {
+        "cor_tol": 0.15,
+        "inv_tol": 0.15,
+        "cap_tol": 0.15,
+        "outer_min": 0.1
+      },
+      "n_core_compatible_edges": 331,
+      "n_outer_divergent_edges": 88,
+      "n_disjoint_core_first_pairs": 48,
+      "n_disjoint_core_first_outer_divergent": 11,
+      "n_disjoint_outer_first_pairs": 19,
+      "group_counts": {
+        "Cirsium acaulon|f": {
+          "n_individuals": 10,
+          "core_compatible_edges": 9,
+          "outer_divergent_edges": 0,
+          "core_first_disjoint_pairs": 3,
+          "core_first_pairs_outer_divergent": 0,
+          "outer_first_disjoint_pairs": 0
+        },
+        "Cirsium acaulon|h": {
+          "n_individuals": 30,
+          "core_compatible_edges": 129,
+          "outer_divergent_edges": 0,
+          "core_first_disjoint_pairs": 14,
+          "core_first_pairs_outer_divergent": 0,
+          "outer_first_disjoint_pairs": 0
+        },
+        "Cirsium bertolonii - Monte Sagro|f": {
+          "n_individuals": 10,
+          "core_compatible_edges": 9,
+          "outer_divergent_edges": 6,
+          "core_first_disjoint_pairs": 3,
+          "core_first_pairs_outer_divergent": 3,
+          "outer_first_disjoint_pairs": 2
+        },
+        "Cirsium bertolonii - Monte Sagro|h": {
+          "n_individuals": 24,
+          "core_compatible_edges": 63,
+          "outer_divergent_edges": 38,
+          "core_first_disjoint_pairs": 11,
+          "core_first_pairs_outer_divergent": 6,
+          "outer_first_disjoint_pairs": 10
+        },
+        "Cirsium erisithales|f": {
+          "n_individuals": 10,
+          "core_compatible_edges": 14,
+          "outer_divergent_edges": 5,
+          "core_first_disjoint_pairs": 4,
+          "core_first_pairs_outer_divergent": 0,
+          "outer_first_disjoint_pairs": 1
+        },
+        "Cirsium erisithales|h": {
+          "n_individuals": 30,
+          "core_compatible_edges": 107,
+          "outer_divergent_edges": 39,
+          "core_first_disjoint_pairs": 13,
+          "core_first_pairs_outer_divergent": 2,
+          "outer_first_disjoint_pairs": 6
+        }
+      },
+      "core_first_pairs": [
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            41,
+            43
+          ],
+          "core_distance_scaled": 0.07928734423888699,
+          "outer_log_contrast": 0.021506205220963682,
+          "outer_spread_ratio_max_over_min": 1.0217391304347827,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.007926065272420603,
+            "Inv_L": 0.006598740020289455,
+            "Cap_W": 0.005922835972928268
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            76,
+            92
+          ],
+          "core_distance_scaled": 0.10842269075235474,
+          "outer_log_contrast": 0.17801816123390166,
+          "outer_spread_ratio_max_over_min": 1.1948470209339774,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.005643189472062937,
+            "Inv_L": 0.015215719886023093,
+            "Cap_W": 0.0010651657181144694
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            80,
+            94
+          ],
+          "core_distance_scaled": 0.11229625688262419,
+          "outer_log_contrast": 0.02985296314968113,
+          "outer_spread_ratio_max_over_min": 1.0303030303030303,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.007326040092072881,
+            "Inv_L": 0.014729693144985652,
+            "Cap_W": 0.0036194455232107948
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            123,
+            141
+          ],
+          "core_distance_scaled": 0.13362353100037144,
+          "outer_log_contrast": 0.0883596739778017,
+          "outer_spread_ratio_max_over_min": 1.0923809523809525,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.01438873745209967,
+            "Inv_L": 0.013267846519526205,
+            "Cap_W": 0.004321060529719916
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            83,
+            90
+          ],
+          "core_distance_scaled": 0.13994438926696967,
+          "outer_log_contrast": 0.059815634181139846,
+          "outer_spread_ratio_max_over_min": 1.0616407982261642,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.006997929187644637,
+            "Inv_L": 0.007241161256559474,
+            "Cap_W": 0.01841858552401836
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            119,
+            125
+          ],
+          "core_distance_scaled": 0.1806599824457812,
+          "outer_log_contrast": 0.09710978861054985,
+          "outer_spread_ratio_max_over_min": 1.101981351981352,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.009804000096620615,
+            "Inv_L": 0.02469261259037152,
+            "Cap_W": 0.005339674508503607
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            120,
+            132
+          ],
+          "core_distance_scaled": 0.19090878414345658,
+          "outer_log_contrast": 0.0073467411542454605,
+          "outer_spread_ratio_max_over_min": 1.0073737946681796,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.00464037955650208,
+            "Inv_L": 0.01932427282640259,
+            "Cap_W": 0.020617420891635457
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            35,
+            46
+          ],
+          "core_distance_scaled": 0.1938109373057729,
+          "outer_log_contrast": 0.023530497410194272,
+          "outer_spread_ratio_max_over_min": 1.023809523809524,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.02710192977779127,
+            "Inv_L": 0.0100861133887867,
+            "Cap_W": 0.0029859681785659883
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            25,
+            38
+          ],
+          "core_distance_scaled": 0.2222309491790722,
+          "outer_log_contrast": 0.04271772968515444,
+          "outer_spread_ratio_max_over_min": 1.043643263757116,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.032260862218221435,
+            "Inv_L": 0.0044020417074575584,
+            "Cap_W": 0.007145430717314596
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "f",
+          "excel_rows": [
+            18,
+            21
+          ],
+          "core_distance_scaled": 0.2634739410709237,
+          "outer_log_contrast": 0,
+          "outer_spread_ratio_max_over_min": 1,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0,
+            "Inv_L": 0.02933188102403404,
+            "Cap_W": 0.026486928891802746
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            130,
+            144
+          ],
+          "core_distance_scaled": 0.30972564155136784,
+          "outer_log_contrast": 0.20253950557434988,
+          "outer_spread_ratio_max_over_min": 1.2245084590763602,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.004819286435948995,
+            "Inv_L": 0.009852296443011594,
+            "Cap_W": 0.0451456656426887
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            79,
+            87
+          ],
+          "core_distance_scaled": 0.32127299102653994,
+          "outer_log_contrast": 0.09210485860569173,
+          "outer_spread_ratio_max_over_min": 1.0964797913950455,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.02542509836581017,
+            "Inv_L": 0.040821994520254985,
+            "Cap_W": 0.0030816665374081144
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "f",
+          "excel_rows": [
+            62,
+            64
+          ],
+          "core_distance_scaled": 0.3247928269535685,
+          "outer_log_contrast": 0.1759453396546786,
+          "outer_spread_ratio_max_over_min": 1.1923728813559322,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.010929070532190449,
+            "Inv_L": 0.03574244877695655,
+            "Cap_W": 0.03125006132218117
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            37,
+            50
+          ],
+          "core_distance_scaled": 0.36312885987032884,
+          "outer_log_contrast": 0.028987536873252413,
+          "outer_spread_ratio_max_over_min": 1.0294117647058825,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.040821994520255166,
+            "Inv_L": 0.03181911411385978,
+            "Cap_W": 0.016971050055572205
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "f",
+          "excel_rows": [
+            69,
+            70
+          ],
+          "core_distance_scaled": 0.36325180008676167,
+          "outer_log_contrast": 0.14478363747488937,
+          "outer_spread_ratio_max_over_min": 1.1557894736842105,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.022448269261394992,
+            "Inv_L": 0.049315236378922656,
+            "Cap_W": 0.005744540804104977
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "f",
+          "excel_rows": [
+            109,
+            114
+          ],
+          "core_distance_scaled": 0.37278034684620937,
+          "outer_log_contrast": 0.013937507843781678,
+          "outer_spread_ratio_max_over_min": 1.0140350877192983,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.026386755173194887,
+            "Inv_L": 0.011620531023018871,
+            "Cap_W": 0.047910532428219604
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            27,
+            42
+          ],
+          "core_distance_scaled": 0.39143871176663997,
+          "outer_log_contrast": 0.02985296314968116,
+          "outer_spread_ratio_max_over_min": 1.0303030303030303,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.0055710450494554295,
+            "Inv_L": 0.0482848570759592,
+            "Cap_W": 0.032940582846626744
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            122,
+            138
+          ],
+          "core_distance_scaled": 0.3982894607978743,
+          "outer_log_contrast": 0.07558268116600696,
+          "outer_spread_ratio_max_over_min": 1.0785123966942147,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.030002250303798904,
+            "Inv_L": 0.04652001563489291,
+            "Cap_W": 0.022472855852058514
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            121,
+            136
+          ],
+          "core_distance_scaled": 0.41005812867627933,
+          "outer_log_contrast": 0.06899287148695143,
+          "outer_spread_ratio_max_over_min": 1.0714285714285714,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.033099948426344956,
+            "Inv_L": 0.03307795109290965,
+            "Cap_W": 0.03991948290962637
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            74,
+            85
+          ],
+          "core_distance_scaled": 0.41247060257759116,
+          "outer_log_contrast": 0.2227269714289935,
+          "outer_spread_ratio_max_over_min": 1.2494793835901707,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.00510205188389551,
+            "Inv_L": 0.026419944591036228,
+            "Cap_W": 0.055712884947486246
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            32,
+            49
+          ],
+          "core_distance_scaled": 0.41325321613536703,
+          "outer_log_contrast": 0,
+          "outer_spread_ratio_max_over_min": 1,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.055350095083164956,
+            "Inv_L": 0.02630862905516862,
+            "Cap_W": 0.009313054067392945
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            39,
+            48
+          ],
+          "core_distance_scaled": 0.42494949737543575,
+          "outer_log_contrast": 0.013399559646384037,
+          "outer_spread_ratio_max_over_min": 1.0134897360703814,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.045007596057436074,
+            "Inv_L": 0.038889885529833614,
+            "Cap_W": 0.02291265578886263
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            82,
+            88
+          ],
+          "core_distance_scaled": 0.44571344876459873,
+          "outer_log_contrast": 0.17715843807238643,
+          "outer_spread_ratio_max_over_min": 1.1938202247191012,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.005673774085907655,
+            "Inv_L": 0.06075779829766494,
+            "Cap_W": 0.027315911075032402
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            28,
+            36
+          ],
+          "core_distance_scaled": 0.4668129481390892,
+          "outer_log_contrast": 0,
+          "outer_spread_ratio_max_over_min": 1,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.041242958534049,
+            "Inv_L": 0.010486445760108076,
+            "Cap_W": 0.05560688104057765
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            23,
+            30
+          ],
+          "core_distance_scaled": 0.4886612795246204,
+          "outer_log_contrast": 0,
+          "outer_spread_ratio_max_over_min": 1,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.004773278752657771,
+            "Inv_L": 0.0704898777545448,
+            "Cap_W": 0.01952343416251709
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            73,
+            77
+          ],
+          "core_distance_scaled": 0.5081028534137452,
+          "outer_log_contrast": 0.0650581366338041,
+          "outer_spread_ratio_max_over_min": 1.0672210672210674,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.012793351459909322,
+            "Inv_L": 0.06735939747921237,
+            "Cap_W": 0.03328412830047507
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            78,
+            91
+          ],
+          "core_distance_scaled": 0.515128568710258,
+          "outer_log_contrast": 0.28533189510682744,
+          "outer_spread_ratio_max_over_min": 1.3302034428794993,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.022642476749759752,
+            "Inv_L": 0.05519018601489965,
+            "Cap_W": 0.049111139938517435
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            127,
+            128
+          ],
+          "core_distance_scaled": 0.5310087598293098,
+          "outer_log_contrast": 0.09893994785490366,
+          "outer_spread_ratio_max_over_min": 1.104,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.028987536873252406,
+            "Inv_L": 0.0031553625781216843,
+            "Cap_W": 0.07412218433687925
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "f",
+          "excel_rows": [
+            13,
+            15
+          ],
+          "core_distance_scaled": 0.5460745918980592,
+          "outer_log_contrast": 0,
+          "outer_spread_ratio_max_over_min": 1,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.03184060585565884,
+            "Inv_L": 0.02306742210031801,
+            "Cap_W": 0.07185758626974997
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "f",
+          "excel_rows": [
+            107,
+            115
+          ],
+          "core_distance_scaled": 0.5463666234121198,
+          "outer_log_contrast": 0.07046969209695807,
+          "outer_spread_ratio_max_over_min": 1.0730120481927707,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.049392755329576474,
+            "Inv_L": 0.028778964550043327,
+            "Cap_W": 0.058726040917995416
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            124,
+            134
+          ],
+          "core_distance_scaled": 0.5879080246352799,
+          "outer_log_contrast": 0.01769957709940086,
+          "outer_spread_ratio_max_over_min": 1.0178571428571428,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.021164811192043116,
+            "Inv_L": 0.03330719801776855,
+            "Cap_W": 0.07886372962013558
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            22,
+            31
+          ],
+          "core_distance_scaled": 0.6181004858793192,
+          "outer_log_contrast": 0,
+          "outer_spread_ratio_max_over_min": 1,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.06521214864704536,
+            "Inv_L": 0.04424880400964079,
+            "Cap_W": 0.04884161905637131
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            118,
+            143
+          ],
+          "core_distance_scaled": 0.6234080442829155,
+          "outer_log_contrast": 0.07748362663974163,
+          "outer_spread_ratio_max_over_min": 1.0805645398412231,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.004987541511039162,
+            "Inv_L": 0.07410797215372183,
+            "Cap_W": 0.05681090265665091
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            72,
+            75
+          ],
+          "core_distance_scaled": 0.6982930437792401,
+          "outer_log_contrast": 0.22119233118294793,
+          "outer_spread_ratio_max_over_min": 1.2475633528265107,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.004922581984126197,
+            "Inv_L": 0.09521606658605394,
+            "Cap_W": 0.04337009670009279
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "f",
+          "excel_rows": [
+            111,
+            116
+          ],
+          "core_distance_scaled": 0.7001438385778656,
+          "outer_log_contrast": 0.00878482955573303,
+          "outer_spread_ratio_max_over_min": 1.008823529411765,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.0763729787845741,
+            "Inv_L": 0.022472855852058514,
+            "Cap_W": 0.06849576806008478
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            26,
+            40
+          ],
+          "core_distance_scaled": 0.7841287991761499,
+          "outer_log_contrast": 0.027779564107075935,
+          "outer_spread_ratio_max_over_min": 1.0281690140845072,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.10654324790687562,
+            "Inv_L": 0.00966171683403736,
+            "Cap_W": 0.048882429987318704
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            140,
+            142
+          ],
+          "core_distance_scaled": 0.8075561954391273,
+          "outer_log_contrast": 0.018401085370891374,
+          "outer_spread_ratio_max_over_min": 1.0185714285714287,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.03704127168034887,
+            "Inv_L": 0.09976453015370505,
+            "Cap_W": 0.057864414049877966
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            34,
+            44
+          ],
+          "core_distance_scaled": 0.8120292441462226,
+          "outer_log_contrast": 0.029852963149681343,
+          "outer_spread_ratio_max_over_min": 1.0303030303030305,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.024451095864164336,
+            "Inv_L": 0.11913892865099025,
+            "Cap_W": 0.006660945224299982
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            129,
+            135
+          ],
+          "core_distance_scaled": 0.8735551222175183,
+          "outer_log_contrast": 0.002560820861673481,
+          "outer_spread_ratio_max_over_min": 1.0025641025641023,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.053776396780804064,
+            "Inv_L": 0.08036450976802703,
+            "Cap_W": 0.0884271571913778
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            24,
+            29
+          ],
+          "core_distance_scaled": 0.9323739636687366,
+          "outer_log_contrast": 0,
+          "outer_spread_ratio_max_over_min": 1,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.005934735519814578,
+            "Inv_L": 0.12491325860863531,
+            "Cap_W": 0.06261935739807169
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "f",
+          "excel_rows": [
+            67,
+            68
+          ],
+          "core_distance_scaled": 0.9626595357205512,
+          "outer_log_contrast": 0.14334463140721762,
+          "outer_spread_ratio_max_over_min": 1.1541274817136886,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.03596514869351524,
+            "Inv_L": 0.1352572476828418,
+            "Cap_W": 0.03553921942409728
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            137,
+            145
+          ],
+          "core_distance_scaled": 1.0005799749051953,
+          "outer_log_contrast": 0.04361036580264221,
+          "outer_spread_ratio_max_over_min": 1.0445752733389402,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.02398196468648521,
+            "Inv_L": 0.007785329222649178,
+            "Cap_W": 0.14795391328974697
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "f",
+          "excel_rows": [
+            12,
+            19
+          ],
+          "core_distance_scaled": 1.0581860589963976,
+          "outer_log_contrast": 0.051152389779736664,
+          "outer_spread_ratio_max_over_min": 1.0524832687566044,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.0749976519277085,
+            "Inv_L": 0.07666387858938532,
+            "Cap_W": 0.11701517411295269
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "f",
+          "excel_rows": [
+            112,
+            113
+          ],
+          "core_distance_scaled": 1.0594208036327228,
+          "outer_log_contrast": 0.005449604767564906,
+          "outer_spread_ratio_max_over_min": 1.0054644808743172,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.0059347355198145265,
+            "Inv_L": 0.06731078530396654,
+            "Cap_W": 0.1438312100254801
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            33,
+            47
+          ],
+          "core_distance_scaled": 1.064139543803879,
+          "outer_log_contrast": 0.01980262729617973,
+          "outer_spread_ratio_max_over_min": 1.02,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.08747295096505299,
+            "Inv_L": 0.09013530806075673,
+            "Cap_W": 0.09850355773127331
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            131,
+            133
+          ],
+          "core_distance_scaled": 1.1247372707356265,
+          "outer_log_contrast": 0.11613964991265358,
+          "outer_spread_ratio_max_over_min": 1.123152709359606,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.03125254350410453,
+            "Inv_L": 0.07416774323051581,
+            "Cap_W": 0.1482757153842375
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            84,
+            93
+          ],
+          "core_distance_scaled": 1.1609991007185119,
+          "outer_log_contrast": 0.06428848988236181,
+          "outer_spread_ratio_max_over_min": 1.0664,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.008027102377484776,
+            "Inv_L": 0.14697523936351728,
+            "Cap_W": 0.09306997452731482
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            86,
+            89
+          ],
+          "core_distance_scaled": 1.359502218485392,
+          "outer_log_contrast": 0.1064192770060682,
+          "outer_spread_ratio_max_over_min": 1.1122881355932202,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.013642776403786376,
+            "Inv_L": 0.1407646265147832,
+            "Cap_W": 0.14691744593699788
+          }
+        }
+      ],
+      "outer_first_pairs": [
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            75,
+            92
+          ],
+          "core_distance_scaled": 0.6647999927033047,
+          "outer_log_contrast": 0.37534301101020623,
+          "outer_spread_ratio_max_over_min": 1.4554905782975958,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.03155137433072755,
+            "Inv_L": 0.04376081576442987,
+            "Cap_W": 0.08386644122165907
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            78,
+            90
+          ],
+          "core_distance_scaled": 0.7756069328175337,
+          "outer_log_contrast": 0.31577292060806267,
+          "outer_spread_ratio_max_over_min": 1.3713188220230472,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.005991962531969039,
+            "Inv_L": 0.0716562179825903,
+            "Cap_W": 0.09145884527876995
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            125,
+            144
+          ],
+          "core_distance_scaled": 0.21618871091593503,
+          "outer_log_contrast": 0.2955425122322465,
+          "outer_spread_ratio_max_over_min": 1.3438552188552189,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.02433210065953044,
+            "Inv_L": 0.014742281737203431,
+            "Cap_W": 0.015563067758125495
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            81,
+            91
+          ],
+          "core_distance_scaled": 0.5177205164241927,
+          "outer_log_contrast": 0.24846135929849972,
+          "outer_spread_ratio_max_over_min": 1.2820512820512822,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.0037486900641515992,
+            "Inv_L": 0.03385662400921667,
+            "Cap_W": 0.06978863323528016
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            118,
+            128
+          ],
+          "core_distance_scaled": 0.682480189012349,
+          "outer_log_contrast": 0.23984540093214138,
+          "outer_spread_ratio_max_over_min": 1.2710526315789477,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.019802627296179643,
+            "Inv_L": 0.09279256164541898,
+            "Cap_W": 0.03843733399082435
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "f",
+          "excel_rows": [
+            110,
+            114
+          ],
+          "core_distance_scaled": 0.7039264085820157,
+          "outer_log_contrast": 0.23151621452458399,
+          "outer_spread_ratio_max_over_min": 1.260509764978484,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.06062462181643484,
+            "Inv_L": 0.08597885237544069,
+            "Cap_W": 0.009017811239312248
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            74,
+            85
+          ],
+          "core_distance_scaled": 0.41247060257759116,
+          "outer_log_contrast": 0.2227269714289935,
+          "outer_spread_ratio_max_over_min": 1.2494793835901707,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.00510205188389551,
+            "Inv_L": 0.026419944591036228,
+            "Cap_W": 0.055712884947486246
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "f",
+          "excel_rows": [
+            64,
+            67
+          ],
+          "core_distance_scaled": 1.0496241488919769,
+          "outer_log_contrast": 0.20597574769184457,
+          "outer_spread_ratio_max_over_min": 1.2287234042553195,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.025036078161324832,
+            "Inv_L": 0.1348333514211875,
+            "Cap_W": 0.07734116852244831
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            88,
+            93
+          ],
+          "core_distance_scaled": 0.9352225683247574,
+          "outer_log_contrast": 0.1888544778355777,
+          "outer_spread_ratio_max_over_min": 1.207865168539326,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.019718948788955505,
+            "Inv_L": 0.006633791822312749,
+            "Cap_W": 0.1387320584492127
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            77,
+            79
+          ],
+          "core_distance_scaled": 1.302573582494802,
+          "outer_log_contrast": 0.183307264118714,
+          "outer_spread_ratio_max_over_min": 1.2011834319526629,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0,
+            "Inv_L": 0.1255632229753456,
+            "Cap_W": 0.14969829871058604
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "f",
+          "excel_rows": [
+            65,
+            70
+          ],
+          "core_distance_scaled": 0.9432294258580244,
+          "outer_log_contrast": 0.17218261166300375,
+          "outer_spread_ratio_max_over_min": 1.1878947368421051,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.020970072392083976,
+            "Inv_L": 0.08119421834361552,
+            "Cap_W": 0.11395435201009374
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            142,
+            145
+          ],
+          "core_distance_scaled": 0.9587547575234313,
+          "outer_log_contrast": 0.15405112285569927,
+          "outer_spread_ratio_max_over_min": 1.1665505226480837,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.04176941287629493,
+            "Inv_L": 0.10375923429085242,
+            "Cap_W": 0.09039678015010494
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            122,
+            133
+          ],
+          "core_distance_scaled": 0.4449881823480903,
+          "outer_log_contrast": 0.14107859825990562,
+          "outer_spread_ratio_max_over_min": 1.1515151515151516,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.04145671367834634,
+            "Inv_L": 0.021142436573809383,
+            "Cap_W": 0.04785043491314208
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            82,
+            83
+          ],
+          "core_distance_scaled": 0.5252382832852078,
+          "outer_log_contrast": 0.13661052879435684,
+          "outer_spread_ratio_max_over_min": 1.1463815789473684,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.014045174703047865,
+            "Inv_L": 0.07696104113612819,
+            "Cap_W": 0.009323327460884092
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            126,
+            130
+          ],
+          "core_distance_scaled": 0.9911652213814123,
+          "outer_log_contrast": 0.13215870881255037,
+          "outer_spread_ratio_max_over_min": 1.1412894375857339,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.009708814126960938,
+            "Inv_L": 0.01093229975015434,
+            "Cap_W": 0.14795409731444525
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            71,
+            80
+          ],
+          "core_distance_scaled": 1.1374736652248896,
+          "outer_log_contrast": 0.12142015667517168,
+          "outer_spread_ratio_max_over_min": 1.129099211290992,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.002361761122452351,
+            "Inv_L": 0.11694813083021857,
+            "Cap_W": 0.12421392598666943
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            131,
+            134
+          ],
+          "core_distance_scaled": 0.9074085322957883,
+          "outer_log_contrast": 0.11778303565638364,
+          "outer_spread_ratio_max_over_min": 1.1250000000000002,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.04189094170916013,
+            "Inv_L": 0.07037123145707298,
+            "Cap_W": 0.10871669276981678
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            72,
+            94
+          ],
+          "core_distance_scaled": 0.5886524028367569,
+          "outer_log_contrast": 0.11778303565638346,
+          "outer_spread_ratio_max_over_min": 1.125,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.007326040092072881,
+            "Inv_L": 0.04652001563489282,
+            "Cap_W": 0.07469089260158923
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            86,
+            89
+          ],
+          "core_distance_scaled": 1.359502218485392,
+          "outer_log_contrast": 0.1064192770060682,
+          "outer_spread_ratio_max_over_min": 1.1122881355932202,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.013642776403786376,
+            "Inv_L": 0.1407646265147832,
+            "Cap_W": 0.14691744593699788
+          }
+        }
+      ]
+    },
+    "modest_outer": {
+      "thresholds": {
+        "cor_tol": 0.1,
+        "inv_tol": 0.1,
+        "cap_tol": 0.15,
+        "outer_min": 0.05
+      },
+      "n_core_compatible_edges": 239,
+      "n_outer_divergent_edges": 117,
+      "n_disjoint_core_first_pairs": 44,
+      "n_disjoint_core_first_outer_divergent": 19,
+      "n_disjoint_outer_first_pairs": 27,
+      "group_counts": {
+        "Cirsium acaulon|f": {
+          "n_individuals": 10,
+          "core_compatible_edges": 7,
+          "outer_divergent_edges": 1,
+          "core_first_disjoint_pairs": 3,
+          "core_first_pairs_outer_divergent": 1,
+          "outer_first_disjoint_pairs": 1
+        },
+        "Cirsium acaulon|h": {
+          "n_individuals": 30,
+          "core_compatible_edges": 83,
+          "outer_divergent_edges": 6,
+          "core_first_disjoint_pairs": 13,
+          "core_first_pairs_outer_divergent": 0,
+          "outer_first_disjoint_pairs": 1
+        },
+        "Cirsium bertolonii - Monte Sagro|f": {
+          "n_individuals": 10,
+          "core_compatible_edges": 7,
+          "outer_divergent_edges": 4,
+          "core_first_disjoint_pairs": 2,
+          "core_first_pairs_outer_divergent": 2,
+          "outer_first_disjoint_pairs": 2
+        },
+        "Cirsium bertolonii - Monte Sagro|h": {
+          "n_individuals": 24,
+          "core_compatible_edges": 45,
+          "outer_divergent_edges": 36,
+          "core_first_disjoint_pairs": 9,
+          "core_first_pairs_outer_divergent": 7,
+          "outer_first_disjoint_pairs": 9
+        },
+        "Cirsium erisithales|f": {
+          "n_individuals": 10,
+          "core_compatible_edges": 11,
+          "outer_divergent_edges": 7,
+          "core_first_disjoint_pairs": 4,
+          "core_first_pairs_outer_divergent": 1,
+          "outer_first_disjoint_pairs": 3
+        },
+        "Cirsium erisithales|h": {
+          "n_individuals": 30,
+          "core_compatible_edges": 86,
+          "outer_divergent_edges": 63,
+          "core_first_disjoint_pairs": 13,
+          "core_first_pairs_outer_divergent": 8,
+          "outer_first_disjoint_pairs": 11
+        }
+      },
+      "core_first_pairs": [
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            41,
+            43
+          ],
+          "core_distance_scaled": 0.11043413667437088,
+          "outer_log_contrast": 0.021506205220963682,
+          "outer_spread_ratio_max_over_min": 1.0217391304347827,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.007926065272420603,
+            "Inv_L": 0.006598740020289455,
+            "Cap_W": 0.005922835972928268
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            83,
+            90
+          ],
+          "core_distance_scaled": 0.15880197431432208,
+          "outer_log_contrast": 0.059815634181139846,
+          "outer_spread_ratio_max_over_min": 1.0616407982261642,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.006997929187644637,
+            "Inv_L": 0.007241161256559474,
+            "Cap_W": 0.01841858552401836
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            76,
+            92
+          ],
+          "core_distance_scaled": 0.16244013542211208,
+          "outer_log_contrast": 0.17801816123390166,
+          "outer_spread_ratio_max_over_min": 1.1948470209339774,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.005643189472062937,
+            "Inv_L": 0.015215719886023093,
+            "Cap_W": 0.0010651657181144694
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            80,
+            94
+          ],
+          "core_distance_scaled": 0.16626999648385926,
+          "outer_log_contrast": 0.02985296314968113,
+          "outer_spread_ratio_max_over_min": 1.0303030303030303,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.007326040092072881,
+            "Inv_L": 0.014729693144985652,
+            "Cap_W": 0.0036194455232107948
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            123,
+            141
+          ],
+          "core_distance_scaled": 0.19783073311929086,
+          "outer_log_contrast": 0.0883596739778017,
+          "outer_spread_ratio_max_over_min": 1.0923809523809525,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.01438873745209967,
+            "Inv_L": 0.013267846519526205,
+            "Cap_W": 0.004321060529719916
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            120,
+            132
+          ],
+          "core_distance_scaled": 0.24163696279911273,
+          "outer_log_contrast": 0.0073467411542454605,
+          "outer_spread_ratio_max_over_min": 1.0073737946681796,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.00464037955650208,
+            "Inv_L": 0.01932427282640259,
+            "Cap_W": 0.020617420891635457
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            119,
+            125
+          ],
+          "core_distance_scaled": 0.26805141101664837,
+          "outer_log_contrast": 0.09710978861054985,
+          "outer_spread_ratio_max_over_min": 1.101981351981352,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.009804000096620615,
+            "Inv_L": 0.02469261259037152,
+            "Cap_W": 0.005339674508503607
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            35,
+            46
+          ],
+          "core_distance_scaled": 0.28986323504177997,
+          "outer_log_contrast": 0.023530497410194272,
+          "outer_spread_ratio_max_over_min": 1.023809523809524,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.02710192977779127,
+            "Inv_L": 0.0100861133887867,
+            "Cap_W": 0.0029859681785659883
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            130,
+            144
+          ],
+          "core_distance_scaled": 0.3203325339542589,
+          "outer_log_contrast": 0.20253950557434988,
+          "outer_spread_ratio_max_over_min": 1.2245084590763602,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.004819286435948995,
+            "Inv_L": 0.009852296443011594,
+            "Cap_W": 0.0451456656426887
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            25,
+            38
+          ],
+          "core_distance_scaled": 0.32906432233192373,
+          "outer_log_contrast": 0.04271772968515444,
+          "outer_spread_ratio_max_over_min": 1.043643263757116,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.032260862218221435,
+            "Inv_L": 0.0044020417074575584,
+            "Cap_W": 0.007145430717314596
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "f",
+          "excel_rows": [
+            18,
+            21
+          ],
+          "core_distance_scaled": 0.3423685929285774,
+          "outer_log_contrast": 0,
+          "outer_spread_ratio_max_over_min": 1,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0,
+            "Inv_L": 0.02933188102403404,
+            "Cap_W": 0.026486928891802746
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "f",
+          "excel_rows": [
+            62,
+            64
+          ],
+          "core_distance_scaled": 0.42790147329079464,
+          "outer_log_contrast": 0.1759453396546786,
+          "outer_spread_ratio_max_over_min": 1.1923728813559322,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.010929070532190449,
+            "Inv_L": 0.03574244877695655,
+            "Cap_W": 0.03125006132218117
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "f",
+          "excel_rows": [
+            109,
+            114
+          ],
+          "core_distance_scaled": 0.43028872449742095,
+          "outer_log_contrast": 0.013937507843781678,
+          "outer_spread_ratio_max_over_min": 1.0140350877192983,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.026386755173194887,
+            "Inv_L": 0.011620531023018871,
+            "Cap_W": 0.047910532428219604
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            74,
+            85
+          ],
+          "core_distance_scaled": 0.45864658201255365,
+          "outer_log_contrast": 0.2227269714289935,
+          "outer_spread_ratio_max_over_min": 1.2494793835901707,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.00510205188389551,
+            "Inv_L": 0.026419944591036228,
+            "Cap_W": 0.055712884947486246
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            40,
+            50
+          ],
+          "core_distance_scaled": 0.47134551475127556,
+          "outer_log_contrast": 0.0012079727661765012,
+          "outer_spread_ratio_max_over_min": 1.0012087026591459,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.0026631174194836284,
+            "Inv_L": 0.009661716834037368,
+            "Cap_W": 0.06908513730483812
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            79,
+            87
+          ],
+          "core_distance_scaled": 0.4813617771639213,
+          "outer_log_contrast": 0.09210485860569173,
+          "outer_spread_ratio_max_over_min": 1.0964797913950455,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.02542509836581017,
+            "Inv_L": 0.040821994520254985,
+            "Cap_W": 0.0030816665374081144
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            27,
+            42
+          ],
+          "core_distance_scaled": 0.5333594127498906,
+          "outer_log_contrast": 0.02985296314968116,
+          "outer_spread_ratio_max_over_min": 1.0303030303030303,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.0055710450494554295,
+            "Inv_L": 0.0482848570759592,
+            "Cap_W": 0.032940582846626744
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            121,
+            136
+          ],
+          "core_distance_scaled": 0.5383315518244245,
+          "outer_log_contrast": 0.06899287148695143,
+          "outer_spread_ratio_max_over_min": 1.0714285714285714,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.033099948426344956,
+            "Inv_L": 0.03307795109290965,
+            "Cap_W": 0.03991948290962637
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "f",
+          "excel_rows": [
+            69,
+            70
+          ],
+          "core_distance_scaled": 0.5431927730626074,
+          "outer_log_contrast": 0.14478363747488937,
+          "outer_spread_ratio_max_over_min": 1.1557894736842105,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.022448269261394992,
+            "Inv_L": 0.049315236378922656,
+            "Cap_W": 0.005744540804104977
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            73,
+            84
+          ],
+          "core_distance_scaled": 0.5549647819801574,
+          "outer_log_contrast": 0.017082007217182216,
+          "outer_spread_ratio_max_over_min": 1.0172287390029326,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.0046046445284160156,
+            "Inv_L": 0.02381631284459656,
+            "Cap_W": 0.07487148364488083
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            122,
+            133
+          ],
+          "core_distance_scaled": 0.5642065430031498,
+          "outer_log_contrast": 0.14107859825990562,
+          "outer_spread_ratio_max_over_min": 1.1515151515151516,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.04145671367834634,
+            "Inv_L": 0.021142436573809383,
+            "Cap_W": 0.04785043491314208
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            28,
+            36
+          ],
+          "core_distance_scaled": 0.5643779804757779,
+          "outer_log_contrast": 0,
+          "outer_spread_ratio_max_over_min": 1,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.041242958534049,
+            "Inv_L": 0.010486445760108076,
+            "Cap_W": 0.05560688104057765
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            127,
+            128
+          ],
+          "core_distance_scaled": 0.5737643274055166,
+          "outer_log_contrast": 0.09893994785490366,
+          "outer_spread_ratio_max_over_min": 1.104,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.028987536873252406,
+            "Inv_L": 0.0031553625781216843,
+            "Cap_W": 0.07412218433687925
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            81,
+            91
+          ],
+          "core_distance_scaled": 0.5766254928834815,
+          "outer_log_contrast": 0.24846135929849972,
+          "outer_spread_ratio_max_over_min": 1.2820512820512822,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.0037486900641515992,
+            "Inv_L": 0.03385662400921667,
+            "Cap_W": 0.06978863323528016
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            39,
+            44
+          ],
+          "core_distance_scaled": 0.5835201434738054,
+          "outer_log_contrast": 0.0183491386681964,
+          "outer_spread_ratio_max_over_min": 1.0185185185185184,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.03270731797578421,
+            "Inv_L": 0.028437935320533514,
+            "Cap_W": 0.05860515095833515
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            32,
+            49
+          ],
+          "core_distance_scaled": 0.6159809232304873,
+          "outer_log_contrast": 0,
+          "outer_spread_ratio_max_over_min": 1,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.055350095083164956,
+            "Inv_L": 0.02630862905516862,
+            "Cap_W": 0.009313054067392945
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "f",
+          "excel_rows": [
+            13,
+            15
+          ],
+          "core_distance_scaled": 0.6197438728175907,
+          "outer_log_contrast": 0,
+          "outer_spread_ratio_max_over_min": 1,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.03184060585565884,
+            "Inv_L": 0.02306742210031801,
+            "Cap_W": 0.07185758626974997
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            82,
+            88
+          ],
+          "core_distance_scaled": 0.6368145717262095,
+          "outer_log_contrast": 0.17715843807238643,
+          "outer_spread_ratio_max_over_min": 1.1938202247191012,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.005673774085907655,
+            "Inv_L": 0.06075779829766494,
+            "Cap_W": 0.027315911075032402
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            124,
+            134
+          ],
+          "core_distance_scaled": 0.6573838676628114,
+          "outer_log_contrast": 0.01769957709940086,
+          "outer_spread_ratio_max_over_min": 1.0178571428571428,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.021164811192043116,
+            "Inv_L": 0.03330719801776855,
+            "Cap_W": 0.07886372962013558
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "f",
+          "excel_rows": [
+            107,
+            115
+          ],
+          "core_distance_scaled": 0.6928672250886873,
+          "outer_log_contrast": 0.07046969209695807,
+          "outer_spread_ratio_max_over_min": 1.0730120481927707,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.049392755329576474,
+            "Inv_L": 0.028778964550043327,
+            "Cap_W": 0.058726040917995416
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            23,
+            30
+          ],
+          "core_distance_scaled": 0.7184019412642646,
+          "outer_log_contrast": 0,
+          "outer_spread_ratio_max_over_min": 1,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.004773278752657771,
+            "Inv_L": 0.0704898777545448,
+            "Cap_W": 0.01952343416251709
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            26,
+            37
+          ],
+          "core_distance_scaled": 0.748529029799266,
+          "outer_log_contrast": 0,
+          "outer_spread_ratio_max_over_min": 1,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.06305813596713691,
+            "Inv_L": 0.03181911411385974,
+            "Cap_W": 0.03717375737309174
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            34,
+            48
+          ],
+          "core_distance_scaled": 0.7929569735826932,
+          "outer_log_contrast": 0.0018957351648990896,
+          "outer_spread_ratio_max_over_min": 1.0018975332068312,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.012150817782512528,
+            "Inv_L": 0.05181110780062316,
+            "Cap_W": 0.08817875197149766
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            118,
+            143
+          ],
+          "core_distance_scaled": 0.8337446891798486,
+          "outer_log_contrast": 0.07748362663974163,
+          "outer_spread_ratio_max_over_min": 1.0805645398412231,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.004987541511039162,
+            "Inv_L": 0.07410797215372183,
+            "Cap_W": 0.05681090265665091
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            22,
+            31
+          ],
+          "core_distance_scaled": 0.8526901475475671,
+          "outer_log_contrast": 0,
+          "outer_spread_ratio_max_over_min": 1,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.06521214864704536,
+            "Inv_L": 0.04424880400964079,
+            "Cap_W": 0.04884161905637131
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "f",
+          "excel_rows": [
+            111,
+            116
+          ],
+          "core_distance_scaled": 0.9177716444116838,
+          "outer_log_contrast": 0.00878482955573303,
+          "outer_spread_ratio_max_over_min": 1.008823529411765,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.0763729787845741,
+            "Inv_L": 0.022472855852058514,
+            "Cap_W": 0.06849576806008478
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            72,
+            75
+          ],
+          "core_distance_scaled": 0.9963089742572293,
+          "outer_log_contrast": 0.22119233118294793,
+          "outer_spread_ratio_max_over_min": 1.2475633528265107,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.004922581984126197,
+            "Inv_L": 0.09521606658605394,
+            "Cap_W": 0.04337009670009279
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            137,
+            145
+          ],
+          "core_distance_scaled": 1.0180763759984894,
+          "outer_log_contrast": 0.04361036580264221,
+          "outer_spread_ratio_max_over_min": 1.0445752733389402,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.02398196468648521,
+            "Inv_L": 0.007785329222649178,
+            "Cap_W": 0.14795391328974697
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            131,
+            138
+          ],
+          "core_distance_scaled": 1.034886654839566,
+          "outer_log_contrast": 0.050643732818754915,
+          "outer_spread_ratio_max_over_min": 1.051948051948052,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.04020642047804071,
+            "Inv_L": 0.048790164169432174,
+            "Cap_W": 0.1228981363231539
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            140,
+            142
+          ],
+          "core_distance_scaled": 1.1319516931866214,
+          "outer_log_contrast": 0.018401085370891374,
+          "outer_spread_ratio_max_over_min": 1.0185714285714287,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.03704127168034887,
+            "Inv_L": 0.09976453015370505,
+            "Cap_W": 0.057864414049877966
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            129,
+            135
+          ],
+          "core_distance_scaled": 1.1325028626141431,
+          "outer_log_contrast": 0.002560820861673481,
+          "outer_spread_ratio_max_over_min": 1.0025641025641023,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.053776396780804064,
+            "Inv_L": 0.08036450976802703,
+            "Cap_W": 0.0884271571913778
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "f",
+          "excel_rows": [
+            112,
+            113
+          ],
+          "core_distance_scaled": 1.173046054059054,
+          "outer_log_contrast": 0.005449604767564906,
+          "outer_spread_ratio_max_over_min": 1.0054644808743172,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.0059347355198145265,
+            "Inv_L": 0.06731078530396654,
+            "Cap_W": 0.1438312100254801
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "f",
+          "excel_rows": [
+            12,
+            19
+          ],
+          "core_distance_scaled": 1.3261815971095283,
+          "outer_log_contrast": 0.051152389779736664,
+          "outer_spread_ratio_max_over_min": 1.0524832687566044,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.0749976519277085,
+            "Inv_L": 0.07666387858938532,
+            "Cap_W": 0.11701517411295269
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            33,
+            47
+          ],
+          "core_distance_scaled": 1.4173324777770697,
+          "outer_log_contrast": 0.01980262729617973,
+          "outer_spread_ratio_max_over_min": 1.02,
+          "is_outer_divergent": false,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.08747295096505299,
+            "Inv_L": 0.09013530806075673,
+            "Cap_W": 0.09850355773127331
+          }
+        }
+      ],
+      "outer_first_pairs": [
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            75,
+            92
+          ],
+          "core_distance_scaled": 0.7769513342365687,
+          "outer_log_contrast": 0.37534301101020623,
+          "outer_spread_ratio_max_over_min": 1.4554905782975958,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.03155137433072755,
+            "Inv_L": 0.04376081576442987,
+            "Cap_W": 0.08386644122165907
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            78,
+            90
+          ],
+          "core_distance_scaled": 0.9427709527055579,
+          "outer_log_contrast": 0.31577292060806267,
+          "outer_spread_ratio_max_over_min": 1.3713188220230472,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.005991962531969039,
+            "Inv_L": 0.0716562179825903,
+            "Cap_W": 0.09145884527876995
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            125,
+            144
+          ],
+          "core_distance_scaled": 0.30282577044486697,
+          "outer_log_contrast": 0.2955425122322465,
+          "outer_spread_ratio_max_over_min": 1.3438552188552189,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.02433210065953044,
+            "Inv_L": 0.014742281737203431,
+            "Cap_W": 0.015563067758125495
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            81,
+            91
+          ],
+          "core_distance_scaled": 0.5766254928834815,
+          "outer_log_contrast": 0.24846135929849972,
+          "outer_spread_ratio_max_over_min": 1.2820512820512822,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.0037486900641515992,
+            "Inv_L": 0.03385662400921667,
+            "Cap_W": 0.06978863323528016
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            118,
+            128
+          ],
+          "core_distance_scaled": 0.9828142498754461,
+          "outer_log_contrast": 0.23984540093214138,
+          "outer_spread_ratio_max_over_min": 1.2710526315789477,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.019802627296179643,
+            "Inv_L": 0.09279256164541898,
+            "Cap_W": 0.03843733399082435
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "f",
+          "excel_rows": [
+            110,
+            114
+          ],
+          "core_distance_scaled": 1.053748094047801,
+          "outer_log_contrast": 0.23151621452458399,
+          "outer_spread_ratio_max_over_min": 1.260509764978484,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.06062462181643484,
+            "Inv_L": 0.08597885237544069,
+            "Cap_W": 0.009017811239312248
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            74,
+            85
+          ],
+          "core_distance_scaled": 0.45864658201255365,
+          "outer_log_contrast": 0.2227269714289935,
+          "outer_spread_ratio_max_over_min": 1.2494793835901707,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.00510205188389551,
+            "Inv_L": 0.026419944591036228,
+            "Cap_W": 0.055712884947486246
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            88,
+            93
+          ],
+          "core_distance_scaled": 0.9479916395773644,
+          "outer_log_contrast": 0.1888544778355777,
+          "outer_spread_ratio_max_over_min": 1.207865168539326,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.019718948788955505,
+            "Inv_L": 0.006633791822312749,
+            "Cap_W": 0.1387320584492127
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "f",
+          "excel_rows": [
+            62,
+            64
+          ],
+          "core_distance_scaled": 0.42790147329079464,
+          "outer_log_contrast": 0.1759453396546786,
+          "outer_spread_ratio_max_over_min": 1.1923728813559322,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.010929070532190449,
+            "Inv_L": 0.03574244877695655,
+            "Cap_W": 0.03125006132218117
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "f",
+          "excel_rows": [
+            65,
+            70
+          ],
+          "core_distance_scaled": 1.1315308343871588,
+          "outer_log_contrast": 0.17218261166300375,
+          "outer_spread_ratio_max_over_min": 1.1878947368421051,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.020970072392083976,
+            "Inv_L": 0.08119421834361552,
+            "Cap_W": 0.11395435201009374
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            122,
+            133
+          ],
+          "core_distance_scaled": 0.5642065430031498,
+          "outer_log_contrast": 0.14107859825990562,
+          "outer_spread_ratio_max_over_min": 1.1515151515151516,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.04145671367834634,
+            "Inv_L": 0.021142436573809383,
+            "Cap_W": 0.04785043491314208
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            82,
+            83
+          ],
+          "core_distance_scaled": 0.7847867141709767,
+          "outer_log_contrast": 0.13661052879435684,
+          "outer_spread_ratio_max_over_min": 1.1463815789473684,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.014045174703047865,
+            "Inv_L": 0.07696104113612819,
+            "Cap_W": 0.009323327460884092
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            126,
+            130
+          ],
+          "core_distance_scaled": 0.9971383827664112,
+          "outer_log_contrast": 0.13215870881255037,
+          "outer_spread_ratio_max_over_min": 1.1412894375857339,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.009708814126960938,
+            "Inv_L": 0.01093229975015434,
+            "Cap_W": 0.14795409731444525
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            131,
+            134
+          ],
+          "core_distance_scaled": 1.0936174837758181,
+          "outer_log_contrast": 0.11778303565638364,
+          "outer_spread_ratio_max_over_min": 1.1250000000000002,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.04189094170916013,
+            "Inv_L": 0.07037123145707298,
+            "Cap_W": 0.10871669276981678
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            72,
+            94
+          ],
+          "core_distance_scaled": 0.6853625335332513,
+          "outer_log_contrast": 0.11778303565638346,
+          "outer_spread_ratio_max_over_min": 1.125,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.007326040092072881,
+            "Inv_L": 0.04652001563489282,
+            "Cap_W": 0.07469089260158923
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            127,
+            142
+          ],
+          "core_distance_scaled": 0.7484007016390645,
+          "outer_log_contrast": 0.10178269430994238,
+          "outer_spread_ratio_max_over_min": 1.1071428571428572,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.0465200156348927,
+            "Inv_L": 0.052343248043753024,
+            "Cap_W": 0.03960422226632317
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            136,
+            141
+          ],
+          "core_distance_scaled": 0.6487478808989092,
+          "outer_log_contrast": 0.09639184567506597,
+          "outer_spread_ratio_max_over_min": 1.1011904761904763,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.03791923486229389,
+            "Inv_L": 0.03232846632857723,
+            "Cap_W": 0.06231304076611187
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            79,
+            87
+          ],
+          "core_distance_scaled": 0.4813617771639213,
+          "outer_log_contrast": 0.09210485860569173,
+          "outer_spread_ratio_max_over_min": 1.0964797913950455,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.02542509836581017,
+            "Inv_L": 0.040821994520254985,
+            "Cap_W": 0.0030816665374081144
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            119,
+            121
+          ],
+          "core_distance_scaled": 0.6106010112056883,
+          "outer_log_contrast": 0.09168428268902228,
+          "outer_spread_ratio_max_over_min": 1.0960187353629978,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.014528100562909969,
+            "Inv_L": 0.0031090409231970925,
+            "Cap_W": 0.08883754409993778
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            124,
+            135
+          ],
+          "core_distance_scaled": 0.9050831412048459,
+          "outer_log_contrast": 0.08915438802479247,
+          "outer_spread_ratio_max_over_min": 1.0932494279176204,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0,
+            "Inv_L": 0.044597285909396066,
+            "Cap_W": 0.11813713760925376
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "f",
+          "excel_rows": [
+            109,
+            111
+          ],
+          "core_distance_scaled": 0.6120043295283,
+          "outer_log_contrast": 0.08614595071320119,
+          "outer_spread_ratio_max_over_min": 1.0899653979238757,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.010638398205055754,
+            "Inv_L": 0.03960173811502566,
+            "Cap_W": 0.06814722727231988
+          }
+        },
+        {
+          "taxon": "Cirsium bertolonii - Monte Sagro",
+          "sex": "h",
+          "excel_rows": [
+            77,
+            84
+          ],
+          "core_distance_scaled": 0.860095343140396,
+          "outer_log_contrast": 0.08214014385098625,
+          "outer_spread_ratio_max_over_min": 1.0856079404466503,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.017397995988325417,
+            "Inv_L": 0.04354308463461572,
+            "Cap_W": 0.10815561194535603
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            123,
+            140
+          ],
+          "core_distance_scaled": 0.7921620330376181,
+          "outer_log_contrast": 0.07534943724178679,
+          "outer_spread_ratio_max_over_min": 1.0782608695652174,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.009478743954543883,
+            "Inv_L": 0.07655911187026723,
+            "Cap_W": 0.02700261106304012
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "f",
+          "excel_rows": [
+            107,
+            115
+          ],
+          "core_distance_scaled": 0.6928672250886873,
+          "outer_log_contrast": 0.07046969209695807,
+          "outer_spread_ratio_max_over_min": 1.0730120481927707,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.049392755329576474,
+            "Inv_L": 0.028778964550043327,
+            "Cap_W": 0.058726040917995416
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "h",
+          "excel_rows": [
+            38,
+            45
+          ],
+          "core_distance_scaled": 0.5232170406337219,
+          "outer_log_contrast": 0.06252035698133393,
+          "outer_spread_ratio_max_over_min": 1.064516129032258,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.02868514799885855,
+            "Inv_L": 0.03540083372517765,
+            "Cap_W": 0.03857957927281298
+          }
+        },
+        {
+          "taxon": "Cirsium erisithales",
+          "sex": "h",
+          "excel_rows": [
+            132,
+            139
+          ],
+          "core_distance_scaled": 0.9580425097953856,
+          "outer_log_contrast": 0.05290803902416163,
+          "outer_spread_ratio_max_over_min": 1.0543326831986626,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.004662013105811371,
+            "Inv_L": 0.09412111902213431,
+            "Cap_W": 0.025891194652603377
+          }
+        },
+        {
+          "taxon": "Cirsium acaulon",
+          "sex": "f",
+          "excel_rows": [
+            12,
+            19
+          ],
+          "core_distance_scaled": 1.3261815971095283,
+          "outer_log_contrast": 0.051152389779736664,
+          "outer_spread_ratio_max_over_min": 1.0524832687566044,
+          "is_outer_divergent": true,
+          "core_absolute_log_differences": {
+            "Cor_L": 0.0749976519277085,
+            "Inv_L": 0.07666387858938532,
+            "Cap_W": 0.11701517411295269
+          }
+        }
+      ]
+    }
+  },
+  "caveats": {
+    "same_plant_trait_matrix_not_necessarily_same_exact_floret_timepoint": true,
+    "external_ratio_wider_phyllary_tip_envelope_not_true_spine_geometry": true,
+    "C_acaulon_spread_near_floor": true,
+    "selection_of_pairs_not_population_prevalence_estimate": true,
+    "within_taxon_sex_not_proven_same_field_population": true,
+    "random_photo_measurement_error_not_reestimated": true,
+    "head_access_events_or_pollen_or_seed_fitness_measured": 0,
+    "genetic_LEGO_ancestral_regain_or_selection_evidence": false,
+    "new_own_biological_samples": 0
+  }
+}
