@@ -1,0 +1,80 @@
+name: Original Cirsium arvense joint seed and insect access response
+on:
+  pull_request:
+    paths:
+      - 'analysis/audit_cirsium_arvense_joint_access_response_v1.py'
+      - 'tests/test_cirsium_arvense_joint_access_response_v1.py'
+      - 'docs/CIRSIUM_ARVENSE_2022_JOINT_SEED_INSECT_ACCESS_RESPONSE_20261023.md'
+      - 'data/evidence/cirsium_arvense_four_arm_joint_response_independent_js_v1.json'
+      - '.github/workflows/audit-cirsium-arvense-joint-access-v1.yml'
+      - 'README.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-authenticated-joint-guild-response:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate ecological outcome/grain inference guard and synthetic negative controls
+        run: |
+          python -m py_compile analysis/audit_cirsium_arvense_joint_access_response_v1.py
+          python -m unittest discover -s tests -p 'test_cirsium_arvense_joint_access_response_v1.py' -v
+      - name: Fetch immutable 2022 author flowerhead CSV using GitHub contents API
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work/arvense_joint
+          gh api 'repos/Yogita25/Multitrophic_Interactions/contents/seeds.csv?ref=8a151c62ed069f775a16b9bc5fbdce209cbb8691' --jq .content | base64 -d > work/arvense_joint/source_seeds.csv
+          test -s work/arvense_joint/source_seeds.csv
+      - name: Recompute 36 original complete four-arm blocks from 615 original heads
+        run: |
+          python analysis/audit_cirsium_arvense_joint_access_response_v1.py \
+            --seeds work/arvense_joint/source_seeds.csv \
+            --bootstrap 10000 \
+            --out work/arvense_joint/joint_response_python.json
+      - name: Independently compare every source count, sign matrix, site estimate and bootstrap interval
+        run: |
+          python - <<'PY'
+          import json,math
+          a=json.load(open('work/arvense_joint/joint_response_python.json'))
+          b=json.load(open('data/evidence/cirsium_arvense_four_arm_joint_response_independent_js_v1.json'))
+          def compare(x,y,key='root'):
+              if isinstance(y,dict):
+                  assert isinstance(x,dict) and set(x)==set(y),(key,'keys',set(x)^set(y))
+                  for k in y:compare(x[k],y[k],key+'.'+k)
+              elif isinstance(y,list):
+                  assert isinstance(x,list) and len(x)==len(y),(key,'list size')
+                  for i,(xx,yy) in enumerate(zip(x,y)):compare(xx,yy,key+f'[{i}]')
+              elif isinstance(y,bool):
+                  assert isinstance(x,bool) and x==y,(key,x,y)
+              elif type(y) in (int,float):
+                  assert type(x) in (int,float) and math.isfinite(x) and math.isfinite(y),(key,x,y)
+                  assert math.isclose(x,y,rel_tol=1e-10,abs_tol=1e-10),(key,x,y)
+              else:
+                  assert x==y,(key,x,y)
+          for key in ('analyzed_date','source','source_counts','bootstrap','comparisons','limits'):
+              compare(a[key],b[key],key)
+          assert a['source_counts']['heads_all']==615
+          assert a['source_counts']['plant_proxy_groups']==164
+          assert a['source_counts']['complete_four_arm_blocks']==36
+          assert a['comparisons']['bag_minus_control']['joint_response_counts']=={
+              'viable_down__emerged_down':25,
+              'viable_down__emerged_equal':8,
+              'viable_down__emerged_up':3}
+          assert a['comparisons']['bag_minus_pred_exclusion']['measures'][
+              'viable_fraction']['sign']=={'positive':0,'negative':36,'zero':0}
+          assert a['synthetic_controls']=='PASS_MUTUALLY_EXCLUSIVE_JOINT_SIGNS_AND_PREDATOR_NEGATIVE_CONTROL'
+          print('PASS original 615 head counts; 164 plant proxies; 36 same-site four-arm blocks; all 5x4 independent response matrices, CI bounds and 25/36 co-loss validated.')
+          PY
+      - name: Preserve computed trace without copying source CSV to project
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-original-arvense-four-arm-joint-response-20261023
+          path: work/arvense_joint/joint_response_python.json
+          if-no-files-found: error
+          retention-days: 30
