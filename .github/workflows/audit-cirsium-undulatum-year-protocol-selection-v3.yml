@@ -1,0 +1,109 @@
+name: Cirsium actual source mother selection and year-method sensitivity
+on:
+  pull_request:
+    paths:
+      - 'analysis/audit_cirsium_undulatum_year_protocol_selection_gate_v3.py'
+      - 'tests/test_cirsium_undulatum_year_protocol_selection_gate_v3.py'
+      - 'data/evidence/cirsium_undulatum_year_protocol_selection_independent_js_v3.json'
+      - 'docs/CIRSIUM_UNDULATUM_2012_SOURCE_YEAR_PROTOCOL_SELECTION_20261023.md'
+      - '.github/workflows/audit-cirsium-undulatum-year-protocol-selection-v3.yml'
+      - 'data/external/usda_wavyleaf_2007_2008/**'
+      - 'README.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-mother-denominator-and-method-sensitivity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run raw-source selection, inference guard and negative controls
+        run: |
+          python -m py_compile analysis/audit_cirsium_undulatum_year_protocol_selection_gate_v3.py
+          python -m unittest discover -s tests -p 'test_cirsium_undulatum_year_protocol_selection_gate_v3.py' -v
+      - name: Recompute source-locked 106 original mothers and 20 actual head location code pairs
+        run: |
+          mkdir -p work/undulatum_protocol
+          python analysis/audit_cirsium_undulatum_year_protocol_selection_gate_v3.py \
+            --mothers data/external/usda_wavyleaf_2007_2008/mother_plants.csv \
+            --heads data/external/usda_wavyleaf_2007_2008/flower_heads.csv \
+            --dictionary data/external/usda_wavyleaf_2007_2008/source_dictionary.txt \
+            --out work/undulatum_protocol/result.json
+      - name: Independently check original mother-treatment denominators and one-branch sensitivity
+        run: |
+          python - <<'PY'
+          import json,math
+          a=json.load(open('work/undulatum_protocol/result.json'))
+          b=json.load(open('data/evidence/cirsium_undulatum_year_protocol_selection_independent_js_v3.json'))
+          sha=a['original_sources']['source_git_blob_shas']
+          for k,name in [('mother_plants.csv','original_plant_blob_sha'),
+                         ('flower_heads.csv','original_head_blob_sha'),
+                         ('source_dictionary.txt','original_dictionary_blob_sha')]:
+              assert sha[k]==b['source'][name],(k,sha[k],b['source'][name])
+          original=a['original_source_audit'];grain=b['verified_source_grain']
+          for k,j in [('n_original_mothers','n_original_mothers'),
+                      ('n_original_head_rows','n_original_heads'),
+                      ('n_head_rows_matching_mother','n_parent_joined_heads'),
+                      ('n_clean_head_rows','n_consistent_head_rows')]:
+              assert original[k]==grain[j],(k,original[k],grain[j])
+          assert grain['n_matched_code_pairs']==20
+          assert grain['n_matched_original_mothers']==14
+          def num(a,b,key):
+              assert a is None and b is None if a is None or b is None else (
+                  isinstance(a,(int,float)) and isinstance(b,(int,float)) and
+                  math.isclose(a,b,rel_tol=1e-10,abs_tol=1e-10)),(key,a,b)
+          def compare_route(x,y,key):
+              assert x['n_distinct_mothers']==y['n_distinct_mothers']==7
+              assert x['selected_mother_branch_ids']==y['selected_mother_branch_ids'],key
+              assert x['route_counts']==y['route_counts'],key
+              num(x['two_sided_exact_discordant_symmetry_reference'],
+                  y['p_two_sided_exact_discordant_symmetry'],key+'.p')
+          for year in ('2007','2008'):
+              y=b['years'][year]
+              x=a['original_denominator_selection'][year]
+              for k,j in [('all_original_mothers','original'),
+                          ('mothers_with_both_branch_code_positions','selected'),
+                          ('mothers_without_both_branch_code_positions','excluded'),
+                          ('fraction_with_both','selected_fraction')]:
+                  num(x[k],y['denominators'][j],year+'.'+k)
+              for k,j in [('selected','selected_group'),('not_selected','nonselected_group')]:
+                  actual=x[k];direct=y[j]
+                  assert actual['n_original_mothers']==direct['original_mothers']
+                  for k1,j1 in [('author_good_seed_total','good_seed_stats'),
+                                ('source_rosette_diameter_nonmissing','rosette_nonmissing_stats')]:
+                      p=actual[k1];q=direct[j1]
+                      num(p['n_observed'],q['n'],year+'.'+k1+'.n')
+                      num(p['mean'],q['mean'],year+'.'+k1+'.mean')
+                      num(p['median'],q['median'],year+'.'+k1+'.median')
+              for arm in ('ndi','ndni','di','dni'):
+                  p=x['by_year_treatment_arm'][arm];q=y['arms'][arm]
+                  for k,j in [('n_original_mothers','total'),
+                              ('n_with_matching_branch_codes','selected')]:
+                      num(p[k],q[j],year+'.'+arm+'.'+k)
+                  num(p['selected']['author_good_seed_total']['mean'],
+                      q['selected_mean_good_seed'],year+'.'+arm+'.selected_mean')
+                  num(p['not_selected']['author_good_seed_total']['mean'],
+                      q['not_selected_mean_good_seed'],year+'.'+arm+'.other_mean')
+              z=a['nested_branch_binary_route_sensitivity'][year]
+              assert z['all_actual_recorded_branch_code_pairs']==y['n_actual_code_pairs']
+              assert z['all_pair_route_counts_descriptive_not_independent']==y['route_counts_all_pairs']
+              compare_route(z['lowest_code_one_per_mother'],
+                            y['smallest_code_one_per_mother'],year+'.min')
+              compare_route(z['highest_code_one_per_mother'],
+                            y['largest_code_one_per_mother'],year+'.max')
+          assert a['limits']['year_environment_protocol_is_perfectly_conflated']
+          assert a['limits']['conditioning_on_observed_both_head_types_is_post_outcome_selection']
+          assert a['limits']['new_field_observations']==0
+          print('PASS independent direct-USDA 106 mothers, 14 selected, all four treatment arms, source-protocol guards and one-per-mother branch sensitivity.')
+          PY
+      - name: Upload original-source reproducible analysis
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-undulatum-original-design-identifiability-gate-v3
+          path: work/undulatum_protocol/result.json
+          if-no-files-found: error
+          retention-days: 30
