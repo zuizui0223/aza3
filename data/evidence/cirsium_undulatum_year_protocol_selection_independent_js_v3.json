@@ -1,0 +1,245 @@
+{
+  "version": "independent_js_source_original_selection_protocol_check_v3",
+  "source": {
+    "dataset_doi": "10.15482/USDA.ADC/1522649",
+    "original_plant_blob_sha": "458800272c3d0a03c7653702027a8f8578d9e88c",
+    "original_head_blob_sha": "637a4dcd5194d0bf5b26e7f9cf0dde56a50d7616",
+    "original_dictionary_blob_sha": "5e20c9d4609abc982287bd12f739c76d7c6d1d2f"
+  },
+  "verified_source_grain": {
+    "n_original_mothers": 106,
+    "n_original_heads": 323,
+    "n_parent_joined_heads": 309,
+    "n_consistent_head_rows": 297,
+    "n_matched_code_pairs": 20,
+    "n_matched_original_mothers": 14
+  },
+  "years": {
+    "2007": {
+      "denominators": {
+        "original": 39,
+        "selected": 7,
+        "excluded": 32,
+        "selected_fraction": 0.1794871794871795
+      },
+      "selected_group": {
+        "original_mothers": 7,
+        "good_seed_stats": {
+          "n": 7,
+          "mean": 102.57142857142857,
+          "median": 95
+        },
+        "rosette_nonmissing_stats": {
+          "n": 7,
+          "mean": 37.142857142857146,
+          "median": 38
+        }
+      },
+      "nonselected_group": {
+        "original_mothers": 32,
+        "good_seed_stats": {
+          "n": 32,
+          "mean": 54.3125,
+          "median": 29.5
+        },
+        "rosette_nonmissing_stats": {
+          "n": 29,
+          "mean": 29.17241379310345,
+          "median": 28
+        }
+      },
+      "arms": {
+        "ndi": {
+          "total": 10,
+          "selected": 1,
+          "not_selected": 9,
+          "selected_mean_good_seed": 146,
+          "not_selected_mean_good_seed": 82
+        },
+        "ndni": {
+          "total": 9,
+          "selected": 1,
+          "not_selected": 8,
+          "selected_mean_good_seed": 87,
+          "not_selected_mean_good_seed": 56.5
+        },
+        "di": {
+          "total": 11,
+          "selected": 4,
+          "not_selected": 7,
+          "selected_mean_good_seed": 110.75,
+          "not_selected_mean_good_seed": 31
+        },
+        "dni": {
+          "total": 9,
+          "selected": 1,
+          "not_selected": 8,
+          "selected_mean_good_seed": 42,
+          "not_selected_mean_good_seed": 41.375
+        }
+      },
+      "n_actual_code_pairs": 11,
+      "route_counts_all_pairs": {
+        "neither": 0,
+        "terminal_only": 2,
+        "intermediate_only": 1,
+        "both": 8
+      },
+      "smallest_code_one_per_mother": {
+        "n_distinct_mothers": 7,
+        "route_counts": {
+          "neither": 0,
+          "terminal_only": 2,
+          "intermediate_only": 1,
+          "both": 4
+        },
+        "selected_mother_branch_ids": [
+          "2007|305|3",
+          "2007|307|2",
+          "2007|330|2",
+          "2007|351|3",
+          "2007|356|2",
+          "2007|368|4",
+          "2007|374|3"
+        ],
+        "p_two_sided_exact_discordant_symmetry": 1
+      },
+      "largest_code_one_per_mother": {
+        "n_distinct_mothers": 7,
+        "route_counts": {
+          "neither": 0,
+          "terminal_only": 2,
+          "intermediate_only": 0,
+          "both": 5
+        },
+        "selected_mother_branch_ids": [
+          "2007|305|3",
+          "2007|307|4",
+          "2007|330|2",
+          "2007|351|3",
+          "2007|356|3",
+          "2007|368|4",
+          "2007|374|4"
+        ],
+        "p_two_sided_exact_discordant_symmetry": 0.5
+      }
+    },
+    "2008": {
+      "denominators": {
+        "original": 67,
+        "selected": 7,
+        "excluded": 60,
+        "selected_fraction": 0.1044776119402985
+      },
+      "selected_group": {
+        "original_mothers": 7,
+        "good_seed_stats": {
+          "n": 7,
+          "mean": 147.71428571428572,
+          "median": 183
+        },
+        "rosette_nonmissing_stats": {
+          "n": 7,
+          "mean": 30.142857142857142,
+          "median": 28.5
+        }
+      },
+      "nonselected_group": {
+        "original_mothers": 60,
+        "good_seed_stats": {
+          "n": 60,
+          "mean": 81.75,
+          "median": 39
+        },
+        "rosette_nonmissing_stats": {
+          "n": 49,
+          "mean": 22.056122448979593,
+          "median": 22.5
+        }
+      },
+      "arms": {
+        "ndi": {
+          "total": 21,
+          "selected": 1,
+          "not_selected": 20,
+          "selected_mean_good_seed": 186,
+          "not_selected_mean_good_seed": 136
+        },
+        "ndni": {
+          "total": 15,
+          "selected": 1,
+          "not_selected": 14,
+          "selected_mean_good_seed": 34,
+          "not_selected_mean_good_seed": 0.42857142857142855
+        },
+        "di": {
+          "total": 19,
+          "selected": 3,
+          "not_selected": 16,
+          "selected_mean_good_seed": 263,
+          "not_selected_mean_good_seed": 131.0625
+        },
+        "dni": {
+          "total": 12,
+          "selected": 2,
+          "not_selected": 10,
+          "selected_mean_good_seed": 12.5,
+          "not_selected_mean_good_seed": 8.2
+        }
+      },
+      "n_actual_code_pairs": 9,
+      "route_counts_all_pairs": {
+        "neither": 1,
+        "terminal_only": 5,
+        "intermediate_only": 0,
+        "both": 3
+      },
+      "smallest_code_one_per_mother": {
+        "n_distinct_mothers": 7,
+        "route_counts": {
+          "neither": 1,
+          "terminal_only": 4,
+          "intermediate_only": 0,
+          "both": 2
+        },
+        "selected_mother_branch_ids": [
+          "2008|ES73|2",
+          "2008|SD05|2",
+          "2008|WG25|2",
+          "2008|WG30|2",
+          "2008|WR46|2",
+          "2008|WR51|3",
+          "2008|WR56|2"
+        ],
+        "p_two_sided_exact_discordant_symmetry": 0.125
+      },
+      "largest_code_one_per_mother": {
+        "n_distinct_mothers": 7,
+        "route_counts": {
+          "neither": 0,
+          "terminal_only": 5,
+          "intermediate_only": 0,
+          "both": 2
+        },
+        "selected_mother_branch_ids": [
+          "2008|ES73|2",
+          "2008|SD05|3",
+          "2008|WG25|2",
+          "2008|WG30|2",
+          "2008|WR46|2",
+          "2008|WR51|3",
+          "2008|WR56|3"
+        ],
+        "p_two_sided_exact_discordant_symmetry": 0.0625
+      }
+    }
+  },
+  "methods_manual_provenance_dissertation": "https://digitalcommons.unl.edu/bioscidiss/41/",
+  "limits": [
+    "not_independent_branches",
+    "selection_conditioned_on_posttreatment_recorded_heads",
+    "year_also_changes_insecticide_and_damage_methods",
+    "rosette_measure_timing_undetermined",
+    "no_causal_year_or_head_position_effect_identified"
+  ]
+}
