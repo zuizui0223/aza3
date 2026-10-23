@@ -1,0 +1,64 @@
+name: Original Cirsium same-mother route coverage vs joint failure v3
+on:
+  pull_request:
+    paths:
+      - 'analysis/audit_cirsium_undulatum_maternal_route_coverage_v3.py'
+      - 'tests/test_cirsium_undulatum_maternal_route_coverage_v3.py'
+      - 'data/evidence/cirsium_undulatum_maternal_route_coverage_independent_js_v3.json'
+      - 'docs/CIRSIUM_UNDULATUM_REAL_TWO_ROUTE_INSURANCE_20261023.md'
+      - '.github/workflows/audit-cirsium-maternal-route-coverage-v3.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verified-real-maternal-coverage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Unit test actual source and fail-closed counterfactual limits
+        run: |
+          python -m py_compile analysis/audit_cirsium_undulatum_maternal_route_coverage_v3.py tests/test_cirsium_undulatum_maternal_route_coverage_v3.py
+          python -m unittest discover -s tests -p 'test_cirsium_undulatum_maternal_route_coverage_v3.py' -v
+          python -m unittest discover -s tests -p 'test_cirsium_undulatum_maternal_reproductive_routes_v2.py' -v
+      - name: Recompute original USDA same-mother anatomical route counts
+        run: |
+          python analysis/audit_cirsium_undulatum_maternal_route_coverage_v3.py --output /tmp/real_Cirsium_coverage_v3.json
+      - name: Independently verify every source-derived route, exact test and biological nonclaim
+        run: |
+          python - <<'PY'
+          import json,math
+          actual=json.load(open('/tmp/real_Cirsium_coverage_v3.json'))
+          independently_counted=json.load(open('data/evidence/cirsium_undulatum_maternal_route_coverage_independent_js_v3.json'))
+          def verify(x,y,p='root'):
+              if isinstance(y,dict):
+                  assert isinstance(x,dict) and set(x)==set(y),(p,'keys',set(x)^set(y))
+                  for k in y:verify(x[k],y[k],p+'.'+str(k))
+              elif isinstance(y,list):
+                  assert isinstance(x,list) and len(x)==len(y),(p,'shape')
+                  for i,(a,b) in enumerate(zip(x,y)):verify(a,b,p+f'[{i}]')
+              elif type(y) is bool:
+                  assert type(x) is bool and x==y,(p,x,y)
+              elif isinstance(y,(int,float)):
+                  assert type(x) in (int,float) and math.isfinite(x)
+                  assert math.isclose(x,y,rel_tol=1e-12,abs_tol=1e-10),(p,x,y)
+              else:
+                  assert x==y,(p,x,y)
+          verify(actual,independently_counted)
+          assert actual['source']['jointly_consistent_mothers']==105
+          assert actual['year_arm_observed_coverage']['2008']['di']['P_any_maternal_good_seed']==1
+          assert actual['year_arm_observed_coverage']['2008']['di']['observed_union_surplus_over_better_single_route']==4/19
+          assert actual['year_arm_observed_coverage']['2008']['dni']['P_joint_failure_both_routes']==5/12
+          assert actual['paired_route_discordance_exact_tests']['2008_di']['q_BH_eight']>.05
+          assert actual['original_alternative_route_presence_tests']['2008_damage_ambient']['q_BH_eight']>.05
+          assert not any(actual['biological_claim_limits'].values())
+          print('PASS_TRUE_USDA_SOURCE_105_MOTHER_SPATIAL_ROUTE_COVERAGE_AND_JOINT_FAILURE')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: original-Cirsium-undulatum-real-maternal-joint-coverage-v3
+          path: /tmp/real_Cirsium_coverage_v3.json
+          retention-days: 30
