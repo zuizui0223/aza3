@@ -1,0 +1,85 @@
+name: Cirsium 2007-2008 within-branch capitulum placement and reproductive output
+on:
+  pull_request:
+    paths:
+      - 'analysis/audit_cirsium_undulatum_within_branch_position_v1.py'
+      - 'tests/test_cirsium_undulatum_within_branch_position_v1.py'
+      - 'data/evidence/cirsium_undulatum_within_branch_position_independent_js_v1.json'
+      - 'docs/CIRSIUM_UNDULATUM_WITHIN_BRANCH_HEAD_PLACEMENT_20261023.md'
+      - '.github/workflows/audit-cirsium-undulatum-within-branch-position-v1.yml'
+      - 'data/external/usda_wavyleaf_2007_2008/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-coherent-head-position-pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test original head position semantics and paired matched-mother signs
+        run: |
+          python -m py_compile analysis/audit_cirsium_undulatum_within_branch_position_v1.py
+          python -m unittest discover -s tests -p 'test_cirsium_undulatum_within_branch_position_v1.py' -v
+      - name: Rerun 106 original USDA mothers, 323 original heads and 5000 paired-mother resamples
+        run: |
+          mkdir -p work/branch_location
+          python analysis/audit_cirsium_undulatum_within_branch_position_v1.py \
+            --mothers data/external/usda_wavyleaf_2007_2008/mother_plants.csv \
+            --heads data/external/usda_wavyleaf_2007_2008/flower_heads.csv \
+            --dictionary data/external/usda_wavyleaf_2007_2008/source_dictionary.txt \
+            --bootstrap 5000 \
+            --out work/branch_location/results.json
+      - name: Independently match all original source rows, per-mother differences, six exact tests and bootstrap endpoints
+        run: |
+          python - <<'PY'
+          import json, math
+          x=json.load(open('work/branch_location/results.json'))
+          y=json.load(open('data/evidence/cirsium_undulatum_within_branch_position_independent_js_v1.json'))
+          def same(a,b,path="root"):
+              if isinstance(b,dict):
+                  assert isinstance(a,dict) and set(a)==set(b),(path,'source_keys')
+                  for k in b: same(a[k],b[k],path+'.'+k)
+              elif isinstance(b,list):
+                  assert isinstance(a,list) and len(a)==len(b),(path,'length')
+                  for i,(u,v) in enumerate(zip(a,b)):same(u,v,path+f'[{i}]')
+              elif type(b) is bool:
+                  assert type(a) is bool and a==b,(path,a,b)
+              elif type(b) in (int,float):
+                  assert type(a) in (int,float) and math.isfinite(a) and math.isfinite(b)
+                  assert math.isclose(a,b,abs_tol=1e-9,rel_tol=1e-9),(path,a,b)
+              else:
+                  assert type(a) is type(b) and a==b,(path,a,b)
+          o=x['source_audit']; z=y['audited_counts']
+          assert x['source']['git_blob_sources']['mother_plants.csv']==y['source']['mothers_sha']
+          assert x['source']['git_blob_sources']['flower_heads.csv']==y['source']['heads_sha']
+          assert x['source']['git_blob_sources']['source_dictionary.txt']==y['source']['dictionary_sha']
+          assert (o['n_original_mothers'],o['n_original_head_rows'],o['n_clean_head_rows'])==(106,323,297)
+          assert (o['source_position_counts']['apical'],o['source_position_counts']['branch_terminal'],o['source_position_counts']['intermediate'])==(103,173,21)
+          assert x['n_mothers_with_any_intermediate_head']==z['n_mothers_with_intermediate']==15
+          assert x['n_mothers_with_both_lateral_positions']==z['n_mothers_with_both']==14
+          assert x['bootstrap']['n_draws']==y['bootstrap_draws']==5000
+          assert x['bootstrap']['seed']==y['bootstrap_seed']==20261023
+          same(x['paired_mothers'],y['source_paired_mothers'],'actual14')
+          for v in x['head_position_by_year']:
+              same(v['head_position'],y['head_by_year'][v['year']],v['year']+'.head')
+          same(x['paired_within_mother_year_results'],y['per_year_paired'],'paired_by_year')
+          t=x['paired_within_mother_year_results']['2008']['position_differences']
+          assert [t['good_seed_per_head'][k] for k in ('n_increase','n_decrease','n_equal')]==[0,7,0]
+          assert t['good_seed_per_head']['posthoc_exact_two_sided_sign_p']==.015625
+          assert t['good_seed_per_head']['BH_q_six_exploratory_sign_tests']==.09375
+          assert [t['damage_score'][k] for k in ('n_increase','n_decrease')]==[4,3]
+          assert x['limits']['posthoc_six_tests_do_not_confirm_architectural_adaptation']
+          assert x['limits']['new_individual_head_observations_collected']==0
+          print('PASS: original 297 eligible USDA heads (103/173/21), 14 real paired mothers, exploratory 7/7 vs 4/3 damage, 6 BH and 5000 resamples independently reproduced.')
+          PY
+      - name: Save original-sourced, computed numerical results
+        uses: actions/upload-artifact@v4
+        with:
+          name: cirsium-undulatum-within-branch-head-position-source-audit-v1
+          path: work/branch_location/results.json
+          if-no-files-found: error
+          retention-days: 30
