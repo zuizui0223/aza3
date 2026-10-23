@@ -44,6 +44,8 @@ CONFIGS={
     "strict_core":{"cor_tol":.05,"inv_tol":.05,"cap_tol":.10,"outer_min":.10},
     "relaxed_core":{"cor_tol":.15,"inv_tol":.15,"cap_tol":.15,"outer_min":.10},
     "modest_outer":{"cor_tol":.10,"inv_tol":.10,"cap_tol":.15,"outer_min":.05},
+    "width_denominator_control":{"cor_tol":.10,"inv_tol":.10,
+                                 "cap_tol":.15,"invw_tol":.10,"outer_min":.10},
 }
 
 
@@ -100,14 +102,19 @@ def all_candidate_edges(rows,threshold):
                 co=abs(math.log(a["Cor_L"]/b["Cor_L"]))
                 iv=abs(math.log(a["Inv_L"]/b["Inv_L"]))
                 cp=abs(math.log(a["Cap_W"]/b["Cap_W"]))
+                invw=abs(math.log(a["Inv_W"]/b["Inv_W"]))
                 if not (co<=threshold["cor_tol"] and
                         iv<=threshold["inv_tol"] and
-                        cp<=threshold["cap_tol"]):
+                        cp<=threshold["cap_tol"] and
+                        ("invw_tol" not in threshold or
+                         invw<=threshold["invw_tol"])):
                     continue
                 ext=abs(math.log(a["Inv_Sp"]/b["Inv_Sp"]))
                 score=math.sqrt((co/threshold["cor_tol"])**2+
                                 (iv/threshold["inv_tol"])**2+
-                                (cp/threshold["cap_tol"])**2)
+                                (cp/threshold["cap_tol"])**2+
+                                ((invw/threshold["invw_tol"])**2
+                                 if "invw_tol" in threshold else 0))
                 edges.append({
                     "taxon":a["taxon"],
                     "sex":a["sex"],
@@ -194,6 +201,24 @@ def analyze(raw):
     demand(sum(v["outer_first_disjoint_pairs"]
                for v in p["group_counts"].values())==16,
            "SOURCE_DISJOINT_SET_STRATIFICATION_DRIFT")
+    width=analyses["width_denominator_control"]
+    demand((width["n_core_compatible_edges"],width["n_outer_divergent_edges"],
+            width["n_disjoint_core_first_pairs"],
+            width["n_disjoint_core_first_outer_divergent"],
+            width["n_disjoint_outer_first_pairs"])==(97,34,33,11,13),
+           "INVOLUCRE_WIDTH_CONTROL_SOURCE_COUNTS_DRIFT")
+    by_row={r["excel_row"]:r for r in rows}
+    raw_width_pairs=[]
+    for pair in width["outer_first_pairs"]:
+        a,b=(by_row[n] for n in pair["excel_rows"])
+        raw_width_pairs.append({
+            "excel_rows":pair["excel_rows"],
+            "absolute_outer_tip_width_log_contrast":
+                abs(math.log(a["Ibr_W"]/b["Ibr_W"])),
+        })
+    width_abs_count=sum(r["absolute_outer_tip_width_log_contrast"]>=.10
+                        for r in raw_width_pairs)
+    demand(width_abs_count==10,"ABSOLUTE_OUTER_TIP_WIDTH_ROBUSTNESS_DRIFT")
     return {
         "version":"aza3_actual_cirsium_outer_head_mosaic_matched_source_JS_v1",
         "source":{
@@ -232,6 +257,14 @@ def analyze(raw):
                 True,
         },
         "analyses":analyses,
+        "denominator_controlled_absolute_outer_tip_width":{
+            "matching":"width_denominator_control",
+            "source_relative_tip_spread_is_Ibr_W_div_Inv_W":True,
+            "additional_match_Inv_W_max_abs_log_ratio":.10,
+            "n_disjoint_ratio_divergent_pairs":len(raw_width_pairs),
+            "n_pairs_with_abs_Ibr_W_log_ratio_ge_0p1":width_abs_count,
+            "per_pair_absolute_width_log_contrast":raw_width_pairs,
+        },
         "caveats":{
             "same_plant_trait_matrix_not_necessarily_same_exact_floret_timepoint":True,
             "external_ratio_wider_phyllary_tip_envelope_not_true_spine_geometry":True,
