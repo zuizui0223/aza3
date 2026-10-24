@@ -1,0 +1,1256 @@
+{
+  "version": "cirsium_native_head_x_independent_recorded_visitor_audit_v1",
+  "computed_date": "2026-10-24",
+  "source": {
+    "original_NA_author_repo": "carol-siniscalchi/cirsium",
+    "original_NA_author_commit": "c925d4af86160064448f794a9715f70b917a2786",
+    "original_NA_traits_git_blob": "fa127f0587b676e6e004ea121424d26069586bcb",
+    "original_GloBI_archive_sha256": "ce0513fde35d9c1be42cef87da7a6f4b262e9b4fe237ba0b78e9bf31771b58a4",
+    "original_GloBI_observations_csv_sha256": "6d2732565c4f158a0f531b4671832738dafe0b06af7f25b635a5d26b7804deff",
+    "original_GloBI_source_artifact_id": 11534639952,
+    "original_GloBI_observation_snapshot": "2026-10-08"
+  },
+  "source_admission": {
+    "raw_archive_rows": 104162,
+    "incoming_iNaturalist_flower_visit_rows": 7375,
+    "unresolved_observation_id_rows": 114,
+    "ambiguous_observation_ids_excluded": 8,
+    "excluded_flags_nonexclusive": {
+      "not_two_binomial_source_names": 2055,
+      "insect_path_not_supported": 79,
+      "explicit_adult_stage_not_supported": 2750,
+      "coordinates_invalid": 3
+    },
+    "duplicate_rows_collapsed_after_admission": 0,
+    "retained_unique_observations": 3243,
+    "retained_host_name_strings": 42,
+    "retained_visitor_name_strings": 454,
+    "retained_rows_without_event_date": 3243,
+    "taxonomic_names_are_source_strings_not_revalidated_accepted_species": true
+  },
+  "source_panel": {
+    "n_original_phylogenetic_tip_labels": 63,
+    "n_exact_unambiguous_binomial_labels": 56,
+    "n_nonbinomial_subspecies_or_multiword_tip_labels": 7,
+    "do_not_collapse_infraspecies_labels_to_a_binomial": true,
+    "n_event_host_binomial_strings": 42,
+    "n_original_GloBI_eligible_events": 3243,
+    "n_events_joined_exact_binomial_anywhere": 1010,
+    "n_events_joined_exact_binomial_NA_bounds": 902,
+    "n_joined_taxa_anywhere": 15,
+    "n_joined_taxa_in_NA_bounds": 15,
+    "NA_window_degrees": {
+      "lat_min": 18,
+      "lat_max": 72,
+      "lon_min": -170,
+      "lon_max": -50
+    },
+    "n_original_admitted_visits_not_morphologically_linkable": 2233,
+    "n_source_visits_without_identifiable_insect_order_NA": 0
+  },
+  "species_all_original_native_binomial_tips": [
+    {
+      "source_taxon": "Cirsium americanum",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium andersonii",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium andrewsii",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium brevifolium",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 1,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium canescens",
+      "n_source_admitted_adult_flower_visit_events_NA": 1,
+      "n_source_order_classified_visits": 1,
+      "n_coarse_2deg_cells": 1,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 1,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 1,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": 1,
+      "recorded_lepidoptera_fraction": 0
+    },
+    {
+      "source_taxon": "Cirsium centaureae",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 1,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium ciliolatum",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 1,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium clavatum",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 1,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium clokeyi",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": true,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium coloradense",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium congdonii",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium conspicuum",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 1,
+      "source_outer_phyllaries_outward": true,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium crassicaule",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium culebraense",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium cymosum",
+      "n_source_admitted_adult_flower_visit_events_NA": 1,
+      "n_source_order_classified_visits": 1,
+      "n_coarse_2deg_cells": 1,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": true,
+      "source_glutinous_ridge": 1,
+      "source_order_record_counts": {
+        "Lepidoptera": 1,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": 0,
+      "recorded_lepidoptera_fraction": 1
+    },
+    {
+      "source_taxon": "Cirsium douglasii",
+      "n_source_admitted_adult_flower_visit_events_NA": 9,
+      "n_source_order_classified_visits": 9,
+      "n_coarse_2deg_cells": 1,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 1,
+      "source_order_record_counts": {
+        "Lepidoptera": 9,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": 0,
+      "recorded_lepidoptera_fraction": 1
+    },
+    {
+      "source_taxon": "Cirsium eatonii",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium edule",
+      "n_source_admitted_adult_flower_visit_events_NA": 5,
+      "n_source_order_classified_visits": 5,
+      "n_coarse_2deg_cells": 3,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": true,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 4,
+        "Hymenoptera": 1,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": 0.2,
+      "recorded_lepidoptera_fraction": 0.8
+    },
+    {
+      "source_taxon": "Cirsium engelmannii",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 1,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium flodmanii",
+      "n_source_admitted_adult_flower_visit_events_NA": 4,
+      "n_source_order_classified_visits": 4,
+      "n_coarse_2deg_cells": 3,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 1,
+      "source_order_record_counts": {
+        "Lepidoptera": 2,
+        "Hymenoptera": 1,
+        "Coleoptera": 0,
+        "Diptera": 1,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": 0.25,
+      "recorded_lepidoptera_fraction": 0.5
+    },
+    {
+      "source_taxon": "Cirsium funkiae",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 1,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium grahamii",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 1,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium hesperium",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium hookerianum",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium inamoenum",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium joannae",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": true,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium lasal",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium lecontei",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 1,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium longistylum",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium mohavense",
+      "n_source_admitted_adult_flower_visit_events_NA": 10,
+      "n_source_order_classified_visits": 10,
+      "n_coarse_2deg_cells": 1,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 1,
+      "source_order_record_counts": {
+        "Lepidoptera": 8,
+        "Hymenoptera": 2,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": 0.2,
+      "recorded_lepidoptera_fraction": 0.8
+    },
+    {
+      "source_taxon": "Cirsium murdockii",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium neomexicanum",
+      "n_source_admitted_adult_flower_visit_events_NA": 5,
+      "n_source_order_classified_visits": 5,
+      "n_coarse_2deg_cells": 3,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": true,
+      "source_glutinous_ridge": 1,
+      "source_order_record_counts": {
+        "Lepidoptera": 4,
+        "Hymenoptera": 0,
+        "Coleoptera": 1,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": 0,
+      "recorded_lepidoptera_fraction": 0.8
+    },
+    {
+      "source_taxon": "Cirsium nuttallii",
+      "n_source_admitted_adult_flower_visit_events_NA": 112,
+      "n_source_order_classified_visits": 112,
+      "n_coarse_2deg_cells": 9,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 1,
+      "source_order_record_counts": {
+        "Lepidoptera": 105,
+        "Hymenoptera": 4,
+        "Coleoptera": 3,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": 0.03571428571428571,
+      "recorded_lepidoptera_fraction": 0.9375
+    },
+    {
+      "source_taxon": "Cirsium ochrocentrum",
+      "n_source_admitted_adult_flower_visit_events_NA": 1,
+      "n_source_order_classified_visits": 1,
+      "n_coarse_2deg_cells": 1,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 1,
+      "source_order_record_counts": {
+        "Lepidoptera": 1,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": 0,
+      "recorded_lepidoptera_fraction": 1
+    },
+    {
+      "source_taxon": "Cirsium ownbeyi",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium peckii",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium pulchellum",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": true,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium remotifolium",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium repandum",
+      "n_source_admitted_adult_flower_visit_events_NA": 1,
+      "n_source_order_classified_visits": 1,
+      "n_coarse_2deg_cells": 1,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 1,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 1,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": 1,
+      "recorded_lepidoptera_fraction": 0
+    },
+    {
+      "source_taxon": "Cirsium rydbergii",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": true,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium scariosum",
+      "n_source_admitted_adult_flower_visit_events_NA": 2,
+      "n_source_order_classified_visits": 2,
+      "n_coarse_2deg_cells": 2,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 2,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": 1,
+      "recorded_lepidoptera_fraction": 0
+    },
+    {
+      "source_taxon": "Cirsium scopulorum",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 1,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium tenuisectum",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": true,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium texanum",
+      "n_source_admitted_adult_flower_visit_events_NA": 41,
+      "n_source_order_classified_visits": 41,
+      "n_coarse_2deg_cells": 11,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 1,
+      "source_order_record_counts": {
+        "Lepidoptera": 33,
+        "Hymenoptera": 3,
+        "Coleoptera": 5,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": 0.07317073170731707,
+      "recorded_lepidoptera_fraction": 0.8048780487804879
+    },
+    {
+      "source_taxon": "Cirsium tracyi",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 1,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium turneri",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": true,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium tweedyi",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium undulatum",
+      "n_source_admitted_adult_flower_visit_events_NA": 9,
+      "n_source_order_classified_visits": 9,
+      "n_coarse_2deg_cells": 6,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 1,
+      "source_order_record_counts": {
+        "Lepidoptera": 5,
+        "Hymenoptera": 4,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": 0.4444444444444444,
+      "recorded_lepidoptera_fraction": 0.5555555555555556
+    },
+    {
+      "source_taxon": "Cirsium validum",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium vinaceum",
+      "n_source_admitted_adult_flower_visit_events_NA": 2,
+      "n_source_order_classified_visits": 2,
+      "n_coarse_2deg_cells": 1,
+      "source_head_pending": 1,
+      "source_outer_phyllaries_outward": true,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 2,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": 0,
+      "recorded_lepidoptera_fraction": 1
+    },
+    {
+      "source_taxon": "Cirsium viperinum",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": true,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium virginense",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 1,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium vulgare",
+      "n_source_admitted_adult_flower_visit_events_NA": 699,
+      "n_source_order_classified_visits": 699,
+      "n_coarse_2deg_cells": 61,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 0,
+      "source_order_record_counts": {
+        "Lepidoptera": 529,
+        "Hymenoptera": 150,
+        "Coleoptera": 12,
+        "Diptera": 8,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": 0.2145922746781116,
+      "recorded_lepidoptera_fraction": 0.7567954220314735
+    },
+    {
+      "source_taxon": "Cirsium walapaiorum",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 1,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium wheeleri",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 1,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    },
+    {
+      "source_taxon": "Cirsium wrightii",
+      "n_source_admitted_adult_flower_visit_events_NA": 0,
+      "n_source_order_classified_visits": 0,
+      "n_coarse_2deg_cells": 0,
+      "source_head_pending": 0,
+      "source_outer_phyllaries_outward": false,
+      "source_glutinous_ridge": 1,
+      "source_order_record_counts": {
+        "Lepidoptera": 0,
+        "Hymenoptera": 0,
+        "Coleoptera": 0,
+        "Diptera": 0,
+        "Hemiptera": 0,
+        "Orthoptera": 0,
+        "Thysanoptera": 0
+      },
+      "recorded_hymenoptera_fraction": null,
+      "recorded_lepidoptera_fraction": null
+    }
+  ],
+  "taxa_original_records_at_least_N_in_2_or_more_regions": {
+    "2": 8,
+    "5": 6,
+    "10": 3,
+    "20": 3
+  },
+  "primary_ten_records_per_species_2_regions": {
+    "n_species": 3,
+    "source_taxa": [
+      "Cirsium nuttallii",
+      "Cirsium texanum",
+      "Cirsium vulgare"
+    ],
+    "total_original_admitted_visits_NA": 852,
+    "trait_distribution": {
+      "source_head_pending": {
+        "n_species_state0": 3,
+        "n_species_state1": 0,
+        "eligibility_minimum_taxa_per_state": 3,
+        "status": "NOT_IDENTIFIABLE_INDEPENDENT_MORPHOLOGY_GROUPS",
+        "mean_recorded_hymenoptera_fraction_state1_minus_state0": null,
+        "mean_recorded_lepidoptera_fraction_state1_minus_state0": null
+      },
+      "source_outer_phyllaries_outward": {
+        "n_species_state0": 3,
+        "n_species_state1": 0,
+        "eligibility_minimum_taxa_per_state": 3,
+        "status": "NOT_IDENTIFIABLE_INDEPENDENT_MORPHOLOGY_GROUPS",
+        "mean_recorded_hymenoptera_fraction_state1_minus_state0": null,
+        "mean_recorded_lepidoptera_fraction_state1_minus_state0": null
+      },
+      "source_glutinous_ridge": {
+        "n_species_state0": 1,
+        "n_species_state1": 2,
+        "eligibility_minimum_taxa_per_state": 3,
+        "status": "NOT_IDENTIFIABLE_INDEPENDENT_MORPHOLOGY_GROUPS",
+        "mean_recorded_hymenoptera_fraction_state1_minus_state0": null,
+        "mean_recorded_lepidoptera_fraction_state1_minus_state0": null
+      }
+    }
+  },
+  "actual_coarse_region_matching": {
+    "minimum_records_per_taxon_coarse_region": 5,
+    "eligible_taxon_coarse_region_units": 41,
+    "n_species_pairs_any_trait_state_contrast": 1,
+    "by_trait": {
+      "head_pending": {
+        "n_species_pairs_at_least_one_matched_region": 0,
+        "n_species_pairs_at_least_three_matched_regions": 0,
+        "candidate_pairs": []
+      },
+      "outer_phyllaries_outward": {
+        "n_species_pairs_at_least_one_matched_region": 0,
+        "n_species_pairs_at_least_three_matched_regions": 0,
+        "candidate_pairs": []
+      },
+      "sticky_ridge": {
+        "n_species_pairs_at_least_one_matched_region": 1,
+        "n_species_pairs_at_least_three_matched_regions": 0,
+        "candidate_pairs": [
+          {
+            "host_pair": [
+              "Cirsium douglasii",
+              "Cirsium vulgare"
+            ],
+            "n_original_coarse_regions_same_both_hosts": 1
+          }
+        ]
+      }
+    }
+  },
+  "limits": {
+    "visitor_record_is_not_pollination_success_or_oviposition": true,
+    "original_recording_effort_not_measured": true,
+    "original_all_retained_gloBI_event_dates_missing": true,
+    "species_trait_2013_taxon_mean_not_observed_on_iNat_individual": true,
+    "no_taxonomic_synonym_resolution_without_vouchers": true,
+    "NA_geographic_bounds_are_heuristic_not_species_native_range": true,
+    "source_taxa_are_phylogenetically_dependent": true,
+    "no_guild_effect_if_true_morphological_groups_missing": true,
+    "no_population_head_angle_or_spine_size_measured": true,
+    "no_new_organismal_field_data": 0
+  }
+}
