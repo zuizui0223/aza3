@@ -1,0 +1,400 @@
+{
+  "schema": "aza3_original_Cirsium_head_sex_module_contrast_independent_JS_v1",
+  "as_of": "2026-10-24",
+  "source": {
+    "paper_doi": "10.1007/s00606-023-01854-2",
+    "published_spreadsheet_sha256": "c06423cc6f9800ba4775a4428afa072ba1b3dc6fb48ccd05fdb7e42a2f03ee79",
+    "source_derived_subset_git_blob": "be95e6002ab45393786de05a7180eb77f38d941d",
+    "original_source_n_individuals": 114,
+    "verified_original_morphometry_cells": 912,
+    "taxa": [
+      "Cirsium acaulon",
+      "Cirsium bertolonii - Monte Sagro",
+      "Cirsium erisithales"
+    ],
+    "source_strata": "sex f female; h hermaphroditic; one original plant per row"
+  },
+  "design": {
+    "primary_outcomes": [
+      "corolla_log",
+      "outer_ratio_log"
+    ],
+    "sex_contrast": "mean(log(feature)) among female - mean(log(feature)) among hermaphroditic in source taxon",
+    "outer_spread_source_identity": "Inv_Sp = Ibr_W / Inv_W (not true spine)",
+    "secondary_descriptive_features": [
+      "relative_floret_log",
+      "absolute_tip_width_log",
+      "involucre_body_width_log",
+      "involucre_length_log",
+      "head_width_log"
+    ],
+    "pooled_effect": "unweighted mean of 3 taxon-specific original female-h log contrasts, not three independent phylogenetic origins",
+    "randomization_reference": "Monte Carlo exchange original sex labels WITHIN each taxon conditional on sex counts, not sex-randomized treatment",
+    "permutation_draws": 20000,
+    "pseudocount_p": "+1 numerator / +1 denominator",
+    "six_test_BH_family": "3 original taxon strata x 2 predesignated outcomes; exploratory discovered after original source inspection",
+    "bootstrap_draws": 5000,
+    "bootstrap_unit": "original plant within taxon x sex, resample each stratum separately",
+    "rng": "xorshift32",
+    "rng_seed": 20261024,
+    "source_group_order": [
+      "Cirsium acaulon",
+      "Cirsium bertolonii - Monte Sagro",
+      "Cirsium erisithales"
+    ],
+    "feature_order": [
+      "corolla_log",
+      "outer_ratio_log",
+      "relative_floret_log",
+      "absolute_tip_width_log",
+      "involucre_body_width_log",
+      "involucre_length_log",
+      "head_width_log"
+    ],
+    "sort_rows_preserve_publisher_subset": true
+  },
+  "by_taxon": {
+    "Cirsium acaulon": {
+      "n_f": 10,
+      "n_h": 30,
+      "features": {
+        "corolla_log": {
+          "mean_log_female_minus_hermaphrodite": -0.12468196150717636,
+          "ratio_percent": -11.722238479424172,
+          "ci95": [
+            -0.1580083598608148,
+            -0.09168865256717444
+          ],
+          "conditional_permutation_p_two_sided": 0.00004999750012499375,
+          "within_taxa_six_test_BH_q": 0.00014999250037498125
+        },
+        "outer_ratio_log": {
+          "mean_log_female_minus_hermaphrodite": 0.0045185882283212166,
+          "ratio_percent": 0.4528812441979795,
+          "ci95": [
+            -0.00966330972154158,
+            0.022104637939650264
+          ],
+          "conditional_permutation_p_two_sided": 0.5173241337933103,
+          "within_taxa_six_test_BH_q": 0.5173241337933103
+        },
+        "relative_floret_log": {
+          "mean_log_female_minus_hermaphrodite": -0.12259837760653712,
+          "ratio_percent": -11.538112602491466,
+          "ci95": [
+            -0.187092242703974,
+            -0.05060122472600597
+          ],
+          "conditional_permutation_p_two_sided": null,
+          "within_taxa_six_test_BH_q": null
+        },
+        "absolute_tip_width_log": {
+          "mean_log_female_minus_hermaphrodite": -0.08756623497034433,
+          "ratio_percent": -8.38418120692007,
+          "ci95": [
+            -0.1991039709811651,
+            0.01701408832208859
+          ],
+          "conditional_permutation_p_two_sided": null,
+          "within_taxa_six_test_BH_q": null
+        },
+        "involucre_body_width_log": {
+          "mean_log_female_minus_hermaphrodite": -0.09208482319866595,
+          "ratio_percent": -8.797221485001959,
+          "ci95": [
+            -0.20866428061493442,
+            0.015597309733542538
+          ],
+          "conditional_permutation_p_two_sided": null,
+          "within_taxa_six_test_BH_q": null
+        },
+        "involucre_length_log": {
+          "mean_log_female_minus_hermaphrodite": -0.002083583900639674,
+          "ratio_percent": -0.208141474650393,
+          "ci95": [
+            -0.09204212041355274,
+            0.07792934355943704
+          ],
+          "conditional_permutation_p_two_sided": null,
+          "within_taxa_six_test_BH_q": null
+        },
+        "head_width_log": {
+          "mean_log_female_minus_hermaphrodite": -0.20605083097953836,
+          "ratio_percent": -18.6208290598159,
+          "ci95": [
+            -0.38184569535266616,
+            -0.051557573895043965
+          ],
+          "conditional_permutation_p_two_sided": null,
+          "within_taxa_six_test_BH_q": null
+        }
+      }
+    },
+    "Cirsium bertolonii - Monte Sagro": {
+      "n_f": 10,
+      "n_h": 24,
+      "features": {
+        "corolla_log": {
+          "mean_log_female_minus_hermaphrodite": -0.06235879411812961,
+          "ratio_percent": -6.045427717058223,
+          "ci95": [
+            -0.08216361869143708,
+            -0.04338392637311812
+          ],
+          "conditional_permutation_p_two_sided": 0.00004999750012499375,
+          "within_taxa_six_test_BH_q": 0.00014999250037498125
+        },
+        "outer_ratio_log": {
+          "mean_log_female_minus_hermaphrodite": -0.06291449552781503,
+          "ratio_percent": -6.097623901232482,
+          "ci95": [
+            -0.15520130477180274,
+            0.040690165759256984
+          ],
+          "conditional_permutation_p_two_sided": 0.1934903254837258,
+          "within_taxa_six_test_BH_q": 0.2902354882255887
+        },
+        "relative_floret_log": {
+          "mean_log_female_minus_hermaphrodite": -0.030798663508399028,
+          "ratio_percent": -3.03292164625628,
+          "ci95": [
+            -0.10594680131113506,
+            0.04703316900516446
+          ],
+          "conditional_permutation_p_two_sided": null,
+          "within_taxa_six_test_BH_q": null
+        },
+        "absolute_tip_width_log": {
+          "mean_log_female_minus_hermaphrodite": -0.08394952774554021,
+          "ratio_percent": -8.052233696543782,
+          "ci95": [
+            -0.18510903329347025,
+            0.01863792326293618
+          ],
+          "conditional_permutation_p_two_sided": null,
+          "within_taxa_six_test_BH_q": null
+        },
+        "involucre_body_width_log": {
+          "mean_log_female_minus_hermaphrodite": -0.021035032217727068,
+          "ratio_percent": -2.0815339041640386,
+          "ci95": [
+            -0.14035284560212105,
+            0.0942455366542677
+          ],
+          "conditional_permutation_p_two_sided": null,
+          "within_taxa_six_test_BH_q": null
+        },
+        "involucre_length_log": {
+          "mean_log_female_minus_hermaphrodite": -0.03156013060973084,
+          "ratio_percent": -3.1067307811545093,
+          "ci95": [
+            -0.11364256161728911,
+            0.046747505255547044
+          ],
+          "conditional_permutation_p_two_sided": null,
+          "within_taxa_six_test_BH_q": null
+        },
+        "head_width_log": {
+          "mean_log_female_minus_hermaphrodite": -0.14032288815899685,
+          "ratio_percent": -13.092242476797017,
+          "ci95": [
+            -0.3315821382589561,
+            0.057508584852469166
+          ],
+          "conditional_permutation_p_two_sided": null,
+          "within_taxa_six_test_BH_q": null
+        }
+      }
+    },
+    "Cirsium erisithales": {
+      "n_f": 10,
+      "n_h": 30,
+      "features": {
+        "corolla_log": {
+          "mean_log_female_minus_hermaphrodite": -0.12422772117668801,
+          "ratio_percent": -11.682130051113074,
+          "ci95": [
+            -0.1789164480288263,
+            -0.06917994003049689
+          ],
+          "conditional_permutation_p_two_sided": 0.0000999950002499875,
+          "within_taxa_six_test_BH_q": 0.000199990000499975
+        },
+        "outer_ratio_log": {
+          "mean_log_female_minus_hermaphrodite": -0.020073736600489583,
+          "ratio_percent": -1.9873600546571866,
+          "ci95": [
+            -0.06661693255331824,
+            0.0346011361585889
+          ],
+          "conditional_permutation_p_two_sided": 0.45082745862706863,
+          "within_taxa_six_test_BH_q": 0.5173241337933103
+        },
+        "relative_floret_log": {
+          "mean_log_female_minus_hermaphrodite": -0.13089210449322342,
+          "ratio_percent": -12.268757264641222,
+          "ci95": [
+            -0.19341752703126538,
+            -0.057373392573134264
+          ],
+          "conditional_permutation_p_two_sided": null,
+          "within_taxa_six_test_BH_q": null
+        },
+        "absolute_tip_width_log": {
+          "mean_log_female_minus_hermaphrodite": 0.14735403351169962,
+          "ratio_percent": 15.876413175363055,
+          "ci95": [
+            0.02327620152444714,
+            0.2702567728026124
+          ],
+          "conditional_permutation_p_two_sided": null,
+          "within_taxa_six_test_BH_q": null
+        },
+        "involucre_body_width_log": {
+          "mean_log_female_minus_hermaphrodite": 0.16742777011218823,
+          "ratio_percent": 18.22598926014231,
+          "ci95": [
+            0.05897076402718686,
+            0.273226015209701
+          ],
+          "conditional_permutation_p_two_sided": null,
+          "within_taxa_six_test_BH_q": null
+        },
+        "involucre_length_log": {
+          "mean_log_female_minus_hermaphrodite": 0.006664383316536071,
+          "ratio_percent": 0.6686639733324746,
+          "ci95": [
+            -0.09255309312182551,
+            0.10666236901565186
+          ],
+          "conditional_permutation_p_two_sided": null,
+          "within_taxa_six_test_BH_q": null
+        },
+        "head_width_log": {
+          "mean_log_female_minus_hermaphrodite": 0.020818995923696626,
+          "ratio_percent": 2.1037223011243373,
+          "ci95": [
+            -0.10508980933107016,
+            0.14236270329528827
+          ],
+          "conditional_permutation_p_two_sided": null,
+          "within_taxa_six_test_BH_q": null
+        }
+      }
+    }
+  },
+  "pooled_equal_taxon": {
+    "corolla_log": {
+      "mean_log_female_minus_hermaphrodite": -0.10375615893399799,
+      "ratio_percent": -9.85549200466496,
+      "ci95": [
+        -0.12601588900258612,
+        -0.08133571340223184
+      ],
+      "conditional_permutation_p_two_sided": 0.00004999750012499375,
+      "within_taxa_six_test_BH_q": null
+    },
+    "outer_ratio_log": {
+      "mean_log_female_minus_hermaphrodite": -0.026156547966661132,
+      "ratio_percent": -2.5817428629853962,
+      "ci95": [
+        -0.06138825156960932,
+        0.012172269848903381
+      ],
+      "conditional_permutation_p_two_sided": 0.15104244787760612,
+      "within_taxa_six_test_BH_q": null
+    },
+    "relative_floret_log": {
+      "mean_log_female_minus_hermaphrodite": -0.09476304853605318,
+      "ratio_percent": -9.041156275283154,
+      "ci95": [
+        -0.13468762052177494,
+        -0.05207535125021281
+      ],
+      "conditional_permutation_p_two_sided": null,
+      "within_taxa_six_test_BH_q": null
+    },
+    "absolute_tip_width_log": {
+      "mean_log_female_minus_hermaphrodite": -0.008053909734728304,
+      "ratio_percent": -0.8021563898785065,
+      "ci95": [
+        -0.07302561802670689,
+        0.05704850563058686
+      ],
+      "conditional_permutation_p_two_sided": null,
+      "within_taxa_six_test_BH_q": null
+    },
+    "involucre_body_width_log": {
+      "mean_log_female_minus_hermaphrodite": 0.01810263823193174,
+      "ratio_percent": 1.8267484200665485,
+      "ci95": [
+        -0.048153792932129014,
+        0.0836210473743599
+      ],
+      "conditional_permutation_p_two_sided": null,
+      "within_taxa_six_test_BH_q": null
+    },
+    "involucre_length_log": {
+      "mean_log_female_minus_hermaphrodite": -0.008993110397944815,
+      "ratio_percent": -0.8952793329765252,
+      "ci95": [
+        -0.06053146792465076,
+        0.04088209981540302
+      ],
+      "conditional_permutation_p_two_sided": null,
+      "within_taxa_six_test_BH_q": null
+    },
+    "head_width_log": {
+      "mean_log_female_minus_hermaphrodite": -0.10851824107161286,
+      "ratio_percent": -10.283747053823767,
+      "ci95": [
+        -0.20632248771704031,
+        -0.015570768592108
+      ],
+      "conditional_permutation_p_two_sided": null,
+      "within_taxa_six_test_BH_q": null
+    }
+  },
+  "leave_one_original_taxon_out_equal_taxon": {
+    "Cirsium acaulon": {
+      "corolla_log": -0.09329325764740881,
+      "outer_ratio_log": -0.041494116064152306,
+      "relative_floret_log": -0.08084538400081122,
+      "absolute_tip_width_log": 0.03170225288307971,
+      "involucre_body_width_log": 0.07319636894723058,
+      "involucre_length_log": -0.012447873646597385,
+      "head_width_log": -0.05975194611765011
+    },
+    "Cirsium bertolonii - Monte Sagro": {
+      "corolla_log": -0.12445484134193219,
+      "outer_ratio_log": -0.007777574186084183,
+      "relative_floret_log": -0.12674524104988028,
+      "absolute_tip_width_log": 0.02989389927067765,
+      "involucre_body_width_log": 0.03767147345676114,
+      "involucre_length_log": 0.0022903997079481986,
+      "head_width_log": -0.09261591752792087
+    },
+    "Cirsium erisithales": {
+      "corolla_log": -0.09352037781265299,
+      "outer_ratio_log": -0.029197953649746908,
+      "relative_floret_log": -0.07669852055746808,
+      "absolute_tip_width_log": -0.08575788135794227,
+      "involucre_body_width_log": -0.05655992770819651,
+      "involucre_length_log": -0.016821857255185257,
+      "head_width_log": -0.1731868595692676
+    }
+  },
+  "limits": {
+    "observational_sex_not_randomized": true,
+    "original_taxa_three_not_independent_evolutionary_contrasts": true,
+    "taxon_sex_sample_balance_not_population_prevalence": true,
+    "corolla_shorter_is_not_direct_pollen_effect": true,
+    "outer_ratio_mechanical_spines_not_measured": true,
+    "outer_floor_effect_C_acaulon": true,
+    "sampling_protocol_genetic_structure_not_adjusted": true,
+    "within_sex_taxon_bootstrap_not_cross_genus_inference": true,
+    "NO_same_plant_insect_access_or_viable_seed_fate": 0,
+    "new_own_field_samples": 0,
+    "adaptive_genetic_LEGO_or_ancestral_regain_proven": false
+  }
+}
