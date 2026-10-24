@@ -1,0 +1,83 @@
+name: Real Pedicularis bract water vs flower exsertion access Q2
+on:
+  pull_request:
+    paths:
+      - 'analysis/audit_pedicularis_rex_two_access_operators_v1.py'
+      - 'tests/test_pedicularis_rex_two_access_operators_v1.py'
+      - 'data/evidence/pedicularis_rex_two_access_operators_author_source_v1.json'
+      - 'docs/PEDICULARIS_REX_TWO_ACCESS_OPERATORS_ORIGINAL_FUNCTIONAL_EVIDENCE_20261024.md'
+      - '.github/workflows/audit-pedicularis-rex-two-access-operators-v1.yml'
+      - 'README.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-published-positive-operator-evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Pass all 15 real source and causal-boundary negative-control tests
+        run: |
+          python -m py_compile analysis/audit_pedicularis_rex_two_access_operators_v1.py
+          python -m unittest discover -s tests -p 'test_pedicularis_rex_two_access_operators_v1.py' -v
+      - name: Replay 2015 and 2016 source table outcomes and conservative six-site BH correction
+        run: |
+          mkdir -p work/pedicularis_source
+          python analysis/audit_pedicularis_rex_two_access_operators_v1.py \
+            --source data/evidence/pedicularis_rex_two_access_operators_author_source_v1.json \
+            --out work/pedicularis_source/published_table_audit.json
+      - name: Live fetch original full-text 2015 journal XML and verify original model cells
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fLsS --retry 2 --connect-timeout 15 --max-time 55 \
+            'https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4392828/fullTextXML' \
+            -o work/pedicularis_source/2015_original_journal.xml
+          python - <<'PY'
+          import json,xml.etree.ElementTree as ET
+          data=open('work/pedicularis_source/2015_original_journal.xml','rb').read()
+          root=ET.fromstring(data)
+          full='\n'.join(root.itertext()).replace('·','.').replace('−','-')
+          need=('0.958','0.951','0.906','16.710','92.808',
+                '33.414','47.959','3.984','18.239','7.823','0.789','0.046')
+          missing=[p for p in need if p not in full]
+          assert not missing,('SOURCE_MODEL_TABLE_MISMATCH',missing)
+          assert 'plv019' in full, 'SOURCE_PAPER_IDENTITY_DRIFT'
+          got=json.load(open('work/pedicularis_source/published_table_audit.json'))
+          assert got['2015']['nominal_seed_predation_significant_sites']==5
+          assert got['2015']['conservative_six_site_BH_significant_sites']==4
+          assert got['2015']['per_site_p_and_q_upper']['Deqin']['BH_q_conservative_upper']>.05
+          assert got['2016']['linked_predation_trait_populations']==7
+          assert got['biology']['new_Cirsium_field_events']==0
+          print('PASS original EuropePMC publisher 2015 fulltext table numeric cells, 5 nominal/4 BH six-population enemy effects, and the separate 2016 source denominator inference gate.')
+          PY
+      - name: Nonblocking 2016 original supplement source-access diagnostics, no false raw-data claims
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL='https://pmc.ncbi.nlm.nih.gov/articles/instance/4970362/bin/supp_mcw097_aob-16074-s02.xls'
+          if curl -fLsS --connect-timeout 8 --max-time 20 "$URL" \
+                -o work/pedicularis_source/supp_candidate.bin; then
+            python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          data=Path('work/pedicularis_source/supp_candidate.bin').read_bytes()
+          if data.startswith(bytes.fromhex('d0cf11e0a1b11ae1')):
+              print('Genuine compound-file XLS magic detected (not yet parsed/verified for biological data). Size:',len(data),'SHA256:',hashlib.sha256(data).hexdigest())
+          else:
+              print('RAW_PEDICULARIS_2016_NOT_AUTHENTICATED (response is not real binary Excel). Bytes:',len(data))
+          PY
+          else
+            echo 'RAW_PEDICULARIS_2016_NOT_AUTHENTICATED (original PMC supplement download access failed)'
+          fi
+      - name: Save original source table audit only, not third-party source files
+        uses: actions/upload-artifact@v4
+        with:
+          name: pedicularis-two-original-study-source-operator-audit
+          path: work/pedicularis_source/published_table_audit.json
+          retention-days: 30
+          if-no-files-found: error
