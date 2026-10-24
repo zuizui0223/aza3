@@ -28,8 +28,8 @@ EXPECTED_SITES={
     "Baishuitai","Sanba","Zhongdian","Deqin","Daxueshan","Shama"
 }
 EXPECTED_EFFECTS={
-    "legitimate_bumblebee_visitation_Shama_only":.958,
-    "nectar_robber_visitation_Shama_only":.951,
+    "pollinator_visits_Shama_only":.958,
+    "nectar_robber_visits_Shama_only":.951,
     "initial_seed_set_six_sites":.906,
 }
 MAX_AUTHENTIC_REPORT_P=0.0001
@@ -162,9 +162,9 @@ def audit(evidence):
             "conservative_six_site_BH_significant_sites":4,
             "per_site_p_and_q_upper":qmap,
             "legitimate_pollinator_Shama_treatment_p":
-                endpoint["legitimate_bumblebee_visitation_Shama_only"]["p_exact"],
+                endpoint["pollinator_visits_Shama_only"]["p_exact"],
             "nectar_robber_Shama_treatment_p":
-                endpoint["nectar_robber_visitation_Shama_only"]["p_exact"],
+                endpoint["nectar_robber_visits_Shama_only"]["p_exact"],
             "initial_seed_set_treatment_p":
                 endpoint["initial_seed_set_six_sites"]["p_exact"],
             "final_seed_set_treatment_p_upper":
