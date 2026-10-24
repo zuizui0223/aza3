@@ -1,0 +1,237 @@
+{
+  "version": "pedicularis_rex_two_operators_source_table_v1",
+  "sources": {
+    "drainage_2015": {
+      "doi": "10.1093/aobpla/plv019",
+      "pmcid": "PMC4392828",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4392828/",
+      "author": "Sun and Huang",
+      "years": [
+        2010,
+        2011
+      ],
+      "seed_populations": 6,
+      "pollinator_video_populations": 1,
+      "pollinator_video_population": "Shama",
+      "experimental_units": "2015 seeds tagged 40–60 inflorescences per population; visit trial plot-level 10 plots/year, 5 drained vs 5 intact",
+      "treatment": "bract cut with scissors to remove water retention, not sham-equivalent water-only isolation",
+      "seed_scoring": "initial=(undamaged+damaged)/ovules, final=undamaged/ovules, predation=damaged/(damaged+undamaged)",
+      "tables_1_2": [
+        {
+          "label": "pollinator_visits_Shama_only",
+          "beta": 0.012,
+          "se": 0.224,
+          "chi2": 0.003,
+          "df": 1,
+          "p_exact": 0.958,
+          "p_less_than": null
+        },
+        {
+          "label": "nectar_robber_visits_Shama_only",
+          "beta": -0.014,
+          "se": 0.225,
+          "chi2": 0.004,
+          "df": 1,
+          "p_exact": 0.951,
+          "p_less_than": null
+        },
+        {
+          "label": "initial_seed_set_six_sites",
+          "beta": 0.001,
+          "se": 0.006,
+          "chi2": 0.014,
+          "df": 1,
+          "p_exact": 0.906,
+          "p_less_than": null
+        },
+        {
+          "label": "final_seed_set_six_sites",
+          "beta": 0.025,
+          "se": 0.006,
+          "chi2": 16.71,
+          "df": 1,
+          "p_exact": null,
+          "p_less_than": 0.0001
+        },
+        {
+          "label": "seed_predation_six_sites",
+          "beta": -0.072,
+          "se": 0.007,
+          "chi2": 92.808,
+          "df": 1,
+          "p_exact": null,
+          "p_less_than": 0.0001
+        }
+      ],
+      "site_specific_seed_predation": [
+        {
+          "name": "Baishuitai",
+          "beta": -0.104,
+          "se": 0.014,
+          "chi2": 33.414,
+          "df": 1,
+          "p_exact": null,
+          "p_lt": 0.0001,
+          "p_upper": 0.0001,
+          "BH_q_upper": 0.0002,
+          "passes_BH_conservative": true
+        },
+        {
+          "name": "Sanba",
+          "beta": -0.144,
+          "se": 0.015,
+          "chi2": 47.959,
+          "df": 1,
+          "p_exact": null,
+          "p_lt": 0.0001,
+          "p_upper": 0.0001,
+          "BH_q_upper": 0.0002,
+          "passes_BH_conservative": true
+        },
+        {
+          "name": "Zhongdian",
+          "beta": -0.093,
+          "se": 0.348,
+          "chi2": 0.072,
+          "df": 1,
+          "p_exact": 0.789,
+          "p_lt": null,
+          "p_upper": 0.789,
+          "BH_q_upper": 0.789,
+          "passes_BH_conservative": false
+        },
+        {
+          "name": "Deqin",
+          "beta": -0.035,
+          "se": 0.017,
+          "chi2": 3.984,
+          "df": 1,
+          "p_exact": 0.046,
+          "p_lt": null,
+          "p_upper": 0.046,
+          "BH_q_upper": 0.055200000000000006,
+          "passes_BH_conservative": false
+        },
+        {
+          "name": "Daxueshan",
+          "beta": -0.084,
+          "se": 0.017,
+          "chi2": 18.239,
+          "df": 1,
+          "p_exact": null,
+          "p_lt": 0.0001,
+          "p_upper": 0.0001,
+          "BH_q_upper": 0.0002,
+          "passes_BH_conservative": true
+        },
+        {
+          "name": "Shama",
+          "beta": -0.049,
+          "se": 0.017,
+          "chi2": 7.823,
+          "df": 1,
+          "p_exact": 0.005,
+          "p_lt": null,
+          "p_upper": 0.005,
+          "BH_q_upper": 0.0075,
+          "passes_BH_conservative": true
+        }
+      ],
+      "nominal_significant_sites": 5,
+      "conservative_BH_significant_sites": 4,
+      "p_values_less_0p0001_treated_as_conservative_upper_limit": true,
+      "visitation_2010_2011_randomized_treatment_plots": {
+        "per_year": 10,
+        "water_drained": 5,
+        "intact": 5,
+        "individual_insects_independent_replicates": false
+      }
+    },
+    "exsertion_2016": {
+      "doi": "10.1093/aob/mcw097",
+      "pmcid": "PMC4970362",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4970362/",
+      "author": "Sun Armbruster Huang",
+      "n_trait_populations": 14,
+      "n_pollen_plants": 299,
+      "n_pollen_flowers": 598,
+      "n_seed_populations": 12,
+      "n_linked_trait_predation_populations": 7,
+      "linked_populations": [
+        1,
+        3,
+        5,
+        8,
+        9,
+        10,
+        11
+      ],
+      "lost_morphology_labels_populations": [
+        2,
+        4,
+        6,
+        7,
+        12
+      ],
+      "exsertion": "(flower length - cupular bract height)/flower length",
+      "source_table_1_models": [
+        {
+          "endpoint": "pollen_arrival",
+          "exsertion_sign": "positive",
+          "exsertion_p_less_than": 0.01,
+          "best_AICc": 1700.1,
+          "interaction_AICc": 1714.83,
+          "n_pops": 14
+        },
+        {
+          "endpoint": "predispersal_seed_predation",
+          "exsertion_sign": "positive",
+          "exsertion_p_less_than": 0.001,
+          "best_AICc": -156.11,
+          "interaction_AICc": -151.03,
+          "n_pops": 7
+        },
+        {
+          "endpoint": "initial_seed_set",
+          "direct_positive_predictor": "pollen_arrival",
+          "predictor_p_less_than": 0.001,
+          "best_AICc": -493.44,
+          "interaction_AICc": -480.3,
+          "n_pops": 14
+        },
+        {
+          "endpoint": "final_viable_seed",
+          "direct_positive_predictor": "initial_seed_set",
+          "direct_negative_predictor": "seed_predation",
+          "best_model_has_population_interactions": true,
+          "best_AICc": -1000.03,
+          "full_AICc": -971.091,
+          "n_pops": 7
+        }
+      ],
+      "individual_supplement_xls_url": "https://pmc.ncbi.nlm.nih.gov/articles/instance/4970362/bin/supp_mcw097_aob-16074-s02.xls",
+      "individual_source_bytes_verified": false
+    }
+  },
+  "synthesis": {
+    "axes": [
+      "2015 experimentally reduced water retention in outer cupular bract, associated with more seed predation but no significant visitation change in 1 tested population",
+      "2016 naturally varying corolla protrusion beyond bract, positively associated with stigmatic pollen receipt AND predator attack in 7 fully linked populations"
+    ],
+    "same_species_different_trials": true,
+    "not_same_individual_factorial_water_x_exsertion": true,
+    "not_two_independent_evolutionary_origins": true,
+    "study_2015_visitor_non_significance_not_equivalence": true,
+    "study_2015_water_cut_not_sham_water_only": true,
+    "study_2016_original_raw_individual_reanalysis_not_performed": true,
+    "biological_functional_contact_axis_specificity_source_supported": true,
+    "causal_factorial_modularity_and_Cirsium_genetic_LEGO_not_supported": true
+  },
+  "limits": {
+    "one_population_visitation_2015_only": true,
+    "source_model_term_coefficient_scale_not_comparable": true,
+    "source_p_cutoff_is_upper_bound_not_an_exact_p": true,
+    "no_2016_source_individual_linked_phenotypes_measured_newly": true,
+    "no_new_own_field_records": 0
+  }
+}
