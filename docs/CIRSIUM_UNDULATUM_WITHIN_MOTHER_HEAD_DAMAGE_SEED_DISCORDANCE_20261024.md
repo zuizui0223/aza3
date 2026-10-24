@@ -31,6 +31,18 @@
 
 両年とも逆転個体は存在する。ただし[前回の年別実験法監査](CIRSIUM_UNDULATUM_2012_SOURCE_YEAR_PROTOCOL_SELECTION_20261023.md)が示したように、2007年と2008年で殺虫剤・損傷操作・調査間隔が異なり、年を純粋な気候・植食環境の自然反復とは扱えない。各年×処理群の母植物数も小さく、年差の生態学的な原因はこの表から特定できない。
 
+### 平均的な負の関係は残るが、個々の頭花には逆転がある
+
+極値比較だけで「損傷と種子数は無関係」と宣言しないため、元のスコアがある**全171枝末端頭花・86母植物**についてPearson相関を別に算出した。さらに同じ年×母植物内で損傷・種子数を平均中心化し、**同一母植物に複数頭花がある場合の頭花間変動**だけで相関した。
+
+| 元頭花の観測年 | 全枝末端の件数 | 頭花を単純に並べた記述的 r | 母植物内中心化 r（対象頭花数） |
+|---|---:|---:|---:|
+| 2007 | 69 | −0.064 | −0.139（60） |
+| 2008 | 102 | **−0.454** | **−0.270（79）** |
+| 全年（元プロトコルが違うため参考のみ） | 171 | −0.294 | −0.210（139） |
+
+元頭花を全て独立植物として扱う相関は擬似反復を含む**記述統計**で、rのp値を頭花独立で計算していない。母植物内中心化も、異なる頭花位置の時間・サイズ・資源条件を統制したものではない。**観測全体の負の関連と、同じ母植物の特定頭花の逆転は両立する**。傷害の種子形成に対する因果効果、昆虫相手の違い、刺や総苞片の機械的選択についてはいずれも未同定。
+
 ### かなり明確な真正植物の反例
 
 - **2007年 母植物351（di）**：頭花400の平均損傷スコア **0.205** でgood seed **0粒**。同じ植物の頭花300は損傷 **0.755** でもgood seed **81粒**。
@@ -59,6 +71,6 @@
 - 原USDA資料：`data/external/usda_wavyleaf_2007_2008/{mother_plants.csv,flower_heads.csv,source_dictionary.txt}`。3ファイルとも**元Git blob SHA**で固定し、14 orphan・12処理矛盾は黙って修正しない。
 - [実データ再計算Python](../analysis/audit_cirsium_undulatum_within_mother_injury_seed_rank_v1.py)：同じ母植物・同じ側枝頭花クラスの損傷最小vs最大、同損傷スコアでの種子変動、年と4処理の小標本別表示。元の枝x00/x10感度も同じデータ内で再現。
 - [原CSVから独立JavaScriptで計算した元母植物46件・48件の全レシート](../data/evidence/cirsium_undulatum_within_mother_damage_seed_rank_independent_js_v1.json)：使用頭花番号、元good seed、損傷スコア、各母植物の極値・同値の処理を残す。
-- [16件の負対照・原表テスト](../tests/test_cirsium_undulatum_within_mother_injury_seed_rank_v1.py)、[GitHub Actions全数値照合](../.github/workflows/audit-cirsium-undulatum-head-injury-seed-rank-v1.yml)。
+- [17件の負対照・原表テスト](../tests/test_cirsium_undulatum_within_mother_injury_seed_rank_v1.py)、[GitHub Actions全数値照合](../.github/workflows/audit-cirsium-undulatum-head-injury-seed-rank-v1.yml)。
 
 **結論の上限**：元母植物内で「見える食害スコア」と「実現したgood seed数」が単純な単調対応をしない事実は支持。頭花の構造や相互作用相手がその不一致を生んだ理由、その不一致の遺伝的・進化的起源はまだ検証できていない。
