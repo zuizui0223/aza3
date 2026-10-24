@@ -155,52 +155,6 @@ def contrast(female,hermaphrodite):
     }
 
 
-def conditional_permutations(groups, observed, pooled, draws=PERMUTATIONS):
-    check(draws==PERMUTATIONS,"SOURCE_MONTE_CARLO_REPLICATION_BUDGET_FIXED")
-    counts={t+"|"+k:0 for t in TAXA for k in PRIMARY}
-    counts.update({"pooled|"+k:0 for k in PRIMARY})
-    rng=xorshift32(SEED)
-    for _ in range(draws):
-        diffs=[]
-        for g in groups:
-            perm=list(range(len(g["all"])))
-            for j in range(len(perm)-1,0,-1):
-                k=next(rng)%(j+1)
-                perm[j],perm[k]=perm[k],perm[j]
-            f=[g["all"][k]["values"] for k in perm[:g["n_f"]]]
-            h=[g["all"][k]["values"] for k in perm[g["n_f"]:]]
-            c={key:mean([v[key] for v in f]) -
-                    mean([v[key] for v in h])
-               for key in PRIMARY}
-            diffs.append(c)
-            for key in PRIMARY:
-                if abs(c[key]) >= abs(observed[g["taxon"]][key])-1e-12:
-                    counts[g["taxon"]+"|"+key]+=1
-        for key in PRIMARY:
-            if abs(mean([d[key] for d in diffs])) >= abs(pooled[key])-1e-12:
-                counts["pooled|"+key]+=1
-    ps={k:(v+1)/(draws+1) for k,v in counts.items()}
-    keys=[t+"|"+k for t in TAXA for k in PRIMARY]
-    keys.sort(key=lambda k:(ps[k],k))
-    qvalues={}
-    q=1.0
-    for i in range(len(keys)-1,-1,-1):
-        key=keys[i]
-        q=min(q,ps[key]*len(keys)/(i+1))
-        qvalues[key]=q
-    return ps,qvalues
-
-
-def within_stratum_bootstrap(groups,draws=BOOTSTRAPS):
-    check(draws==BOOTSTRAPS,"SOURCE_BOOTSTRAP_REPLICATION_BUDGET_FIXED")
-    distrib={t+"|"+k:[] for t in TAXA+["pooled"] for k in FEATURES}
-    # Continuing RNG stream is intentionally NOT done: the original
-    # independent JS starts a fresh PRNG before permutation then continues
-    # the same stream through bootstrap. Reproduce that exact state by
-    # consuming the prerequisite sex permutations in the outer caller.
-    raise NotImplementedError("USE combined_replay; RNG must remain shared")
-
-
 def combined_replay(groups):
     observed={g["taxon"]:contrast(g["female"],g["herm"]) for g in groups}
     pooled={k:mean([observed[t][k] for t in TAXA]) for k in FEATURES}
