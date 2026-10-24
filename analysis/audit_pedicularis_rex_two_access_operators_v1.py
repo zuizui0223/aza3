@@ -70,9 +70,6 @@ def audit(evidence):
          a["pollinator_video_population"]=="Shama" and
          a["pollinator_video_population"] in EXPECTED_SITES,
          "FALSE_SIX_POPULATION_POLLINATOR_EFFECT")
-    need(a["water_only_sham_performed"] if "water_only_sham_performed" in a
-         else s.get("nonsense_test") is None,
-         "UNEXPECTED_SHAM_FIELD")
     need("not sham-equivalent" in a["treatment"] or
          "not sham-equivalent" in a.get("experimental_units","") or
          evidence["synthesis"]["study_2015_water_cut_not_sham_water_only"],
@@ -149,9 +146,10 @@ def audit(evidence):
     need(models["final_viable_seed"]["best_model_has_population_interactions"] is True,
          "2016_FINAL_FITNESS_MOSAIC_INTERACTION_REMOVED")
     syn=evidence["synthesis"]
-    need(syn["same_species_different_trials"] and
-         not syn["not_same_individual_factorial_water_x_exsertion"] is False
-         and syn["study_2016_original_raw_individual_reanalysis_not_performed"],
+    need(syn["same_species_different_trials"] is True and
+         syn["not_same_individual_factorial_water_x_exsertion"] is True and
+         syn["study_2016_original_raw_individual_reanalysis_not_performed"] is True and
+         syn["study_2015_water_cut_not_sham_water_only"] is True,
          "FALSE_SAME_HEAD_FACTORIAL_CAUSAL_LOSS")
     return {
         "version":"pedicularis_rex_q2_two_access_operators_audit_v1",
