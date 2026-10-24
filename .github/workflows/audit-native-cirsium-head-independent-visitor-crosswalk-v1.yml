@@ -70,7 +70,29 @@ jobs:
           assert len(p['species_all_original_native_binomial_tips'])==s['n_exact_unambiguous_binomial_labels']
           assert (s['n_events_joined_exact_binomial_NA_bounds']
                   <= s['n_events_joined_exact_binomial_anywhere'] <= 3243)
-          print('PASS original exact 63-author-tip and 3243-adult-visitor linkability; not a false head fitness selection test.')
+          frozen=json.load(open('data/evidence/cirsium_native_head_visitor_source_linkability_v1.json'))
+          def check_numberwise(a,b,path='root'):
+              import math
+              if isinstance(b,dict):
+                  assert isinstance(a,dict) and set(a)==set(b),(path,'keys',set(a)^set(b))
+                  for k in b:check_numberwise(a[k],b[k],path+'.'+str(k))
+              elif isinstance(b,list):
+                  assert isinstance(a,list) and len(a)==len(b),(path,'length')
+                  for i,(aa,bb) in enumerate(zip(a,b)):check_numberwise(aa,bb,path+f'[{i}]')
+              elif type(b) is bool:
+                  assert type(a) is bool and a==b,(path,a,b)
+              elif type(b) in (int,float):
+                  assert type(a) in (int,float) and math.isfinite(a),(path,a,b)
+                  assert math.isclose(a,b,rel_tol=1e-12,abs_tol=1e-12),(path,a,b)
+              else:
+                  assert a==b,(path,a,b)
+          check_numberwise(p,frozen)
+          assert s['n_exact_unambiguous_binomial_labels']==56
+          assert s['n_joined_taxa_in_NA_bounds']==15
+          assert s['n_events_joined_exact_binomial_NA_bounds']==902
+          assert p['primary_ten_records_per_species_2_regions']['n_species']==3
+          assert p['primary_ten_records_per_species_2_regions']['trait_distribution']['source_head_pending']['status']=='NOT_IDENTIFIABLE_INDEPENDENT_MORPHOLOGY_GROUPS'
+          print('PASS full 56 species x original 3243/902 visitors x exact current morph codes and all coarse region contrasts identical to frozen source receipt; no fabricated trait effect.')
           PY
       - name: Save only aggregate source coverage and no private precise visitor event coordinates
         uses: actions/upload-artifact@v4
