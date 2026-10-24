@@ -1,0 +1,86 @@
+name: Q2 original Ipomopsis nonlinear and pairwise trait selection independent replay
+on:
+  pull_request:
+    paths:
+      - 'analysis/audit_ipomopsis_higher_order_selection_v1.py'
+      - 'tests/test_ipomopsis_higher_order_selection_v1.py'
+      - 'data/evidence/ipomopsis_source_higher_order_selection_independent_js_v1.json'
+      - 'docs/IPOMOPSIS_Q2_ORIGINAL_HIGHER_ORDER_TRAIT_SELECTION_20261024.md'
+      - '.github/workflows/audit-ipomopsis-higher-order-source-selection-v1.yml'
+      - 'README.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-source-higher-order-stage-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate original source, nonlinear model and counterfactual-claim negative controls
+        run: |
+          python -m py_compile analysis/audit_ipomopsis_higher_order_selection_v1.py
+          python -m unittest discover -s tests -p 'test_ipomopsis_higher_order_selection_v1.py' -v
+      - name: Fetch genuine source file, verify public archive MD5 without trusting HTML fallback
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p work/ipomopsis_higher_order
+          curl -fLsS --retry 2 --connect-timeout 20 --max-time 100 \
+            'https://zenodo.org/records/5083399/files/Selection_by_pollinators_and_predators.csv?download=1' \
+            -o work/ipomopsis_higher_order/input.tmp || true
+          if ! (echo '12ed3dbe6d269c5f808f9c6b230d468c  work/ipomopsis_higher_order/input.tmp' | md5sum -c -); then
+            echo 'First endpoint unavailable or content is not the author source: retry official archive content URL'
+            curl -fLsS --retry 2 --connect-timeout 20 --max-time 100 \
+              'https://zenodo.org/api/records/5083399/files/Selection_by_pollinators_and_predators.csv/content' \
+              -o work/ipomopsis_higher_order/input.tmp
+          fi
+          echo '12ed3dbe6d269c5f808f9c6b230d468c  work/ipomopsis_higher_order/input.tmp' | md5sum -c -
+          mv work/ipomopsis_higher_order/input.tmp work/ipomopsis_higher_order/author_original.csv
+      - name: Recalculate original 437 records, conditional model terms, 5000 permutations and 1500 bootstraps
+        run: |
+          python analysis/audit_ipomopsis_higher_order_selection_v1.py \
+            --csv work/ipomopsis_higher_order/author_original.csv \
+            --out work/ipomopsis_higher_order/result_Python.json
+      - name: Independently verify all original source cohorts and every numeric nonlinear term against JS
+        run: |
+          python - <<'PY'
+          import json, math
+          x=json.load(open('work/ipomopsis_higher_order/result_Python.json'))
+          y=json.load(open('data/evidence/ipomopsis_source_higher_order_selection_independent_js_v1.json'))
+          def compare(a,b,k='root'):
+              if isinstance(b,dict):
+                  assert isinstance(a,dict) and set(a)==set(b),(k,'keys',set(a)^set(b))
+                  for name,v in b.items():compare(a[name],v,k+'.'+name)
+              elif isinstance(b,list):
+                  assert isinstance(a,list) and len(a)==len(b),(k,'array-length')
+                  for i,(aa,bb) in enumerate(zip(a,b)):compare(aa,bb,k+f'[{i}]')
+              elif type(b) is bool:
+                  assert type(a) is bool and a==b,(k,a,b)
+              elif type(b) in (float,int):
+                  assert type(a) in (float,int) and math.isfinite(a) and math.isfinite(b),(k,a,b)
+                  assert math.isclose(a,b,rel_tol=1e-8,abs_tol=1e-8),(k,a,b)
+              else:
+                  assert a==b,(k,a,b)
+          compare(x,y)
+          assert x['source']['source_original_records']==437
+          assert [r['n_eligible_original_source_rows'] for r in x['models']]==[354,288,88]
+          for m in x['models']:
+              assert m['inference']['permutations']==5000
+              assert m['inference']['bootstrap_draws']==1500
+              assert all(v['freedman_lane_within_source_group_p']>.05 for v in m['endpoints'].values())
+          assert x['multiplicity']['n_tests']==6
+          assert all(q>.05 for q in x['multiplicity']['six_source_exploratory_tests_BH_q'].values())
+          assert x['limits']['no_new_field_observations']==0
+          print('PASS: exact archival MD5, 437 real rows, all 3 stratified nonlinear/pairwise models, 5000 residual permutations, 1500 within-stratum bootstraps, all 9 holdout-year exact JS/Python checks and inferential guards.')
+          PY
+      - name: Archive derived numerical diagnostic only, not third-party original data
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-Ipomopsis-two-stage-higher-order-no-false-LEGO
+          path: work/ipomopsis_higher_order/result_Python.json
+          retention-days: 30
+          if-no-files-found: error
