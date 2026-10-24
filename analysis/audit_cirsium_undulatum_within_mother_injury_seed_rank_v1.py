@@ -96,6 +96,9 @@ def audit_sources(mothers, heads, dictionary):
     ensure(all(m["year"] in YEARS and m["trt"] in ARMS and
                m["trt"]==m["dam"]+m["ins"] for m in mothers),
            "ORIGINAL_MOTHER_TREATMENT_ASSIGNMENT_CHANGED")
+    original_head_ids=[mother_id(h)+"|"+h["hd"] for h in heads]
+    ensure(len(original_head_ids)==len(set(original_head_ids)),
+           "DUPLICATE_ORIGINAL_HEAD_RECORD")
     match=[h for h in heads if mother_id(h) in mother]
     conflict=[h for h in match if
               (h["dam"]!=mother[mother_id(h)]["dam"] or
