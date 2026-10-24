@@ -1,0 +1,3678 @@
+{
+  "schema": "aza3_real_undulatum_same_mother_lateral_damage_seed_rank_original_JS_v1",
+  "as_of": "2026-10-24",
+  "source": {
+    "author": "West & Louda 2021",
+    "paper_doi": "10.1002/ajb2.1744",
+    "usda_doi": "10.15482/USDA.ADC/1522649",
+    "original_mother_git_blob_sha": "458800272c3d0a03c7653702027a8f8578d9e88c",
+    "original_head_git_blob_sha": "637a4dcd5194d0bf5b26e7f9cf0dde56a50d7616",
+    "original_dictionary_git_blob_sha": "5e20c9d4609abc982287bd12f739c76d7c6d1d2f"
+  },
+  "grain": "Within one true original year x mother, compare minimum vs maximum author receptacle damage score among eligible scored lateral heads; mean seeds across ties; compare terminal x00 separately to hold source head position class constant; two independent mothers may not be same randomized trait treatment.",
+  "source_audit": {
+    "original_mother_rows": 106,
+    "original_head_rows": 323,
+    "head_with_source_mother": 309,
+    "head_without_source_mother": 14,
+    "treatment_mismatch_head_rows": 12,
+    "consistent_heads": 297,
+    "consistent_lateral_head_rows": 194,
+    "scored_lateral_head_rows": 192,
+    "scored_terminal_head_rows": 171,
+    "scored_intermediate_head_rows": 21
+  },
+  "damage_ontology": {
+    "maximum_recorded_score": 0.88,
+    "max_score_is_coded_not_exact_fraction_of_tissue_lost": true,
+    "author_good_seeds_are_not_verified_germination": true
+  },
+  "analyses": {
+    "lateral_all_classes": {
+      "summary": {
+        "n_original_mothers": 48,
+        "directions": {
+          "lower_damage_has_more_good_seeds": 26,
+          "higher_damage_has_more_good_seeds": 17,
+          "equal_good_seed_counts": 5
+        },
+        "exact_two_sided_p_for_symmetry_exploratory": 0.2220528201560228,
+        "mean_lower_minus_higher_good_seed": 6.840277777777778,
+        "n_higher_damage_head_produces_any_good_seed": 38,
+        "n_lower_damage_head_fails_while_higher_damage_succeeds": 6
+      },
+      "by_year_arm": {
+        "2007": {
+          "total": {
+            "n_original_mothers": 22,
+            "directions": {
+              "lower_damage_has_more_good_seeds": 14,
+              "higher_damage_has_more_good_seeds": 7,
+              "equal_good_seed_counts": 1
+            },
+            "exact_two_sided_p_for_symmetry_exploratory": 0.18924713134765625,
+            "mean_lower_minus_higher_good_seed": 5.5,
+            "n_higher_damage_head_produces_any_good_seed": 18,
+            "n_lower_damage_head_fails_while_higher_damage_succeeds": 3
+          },
+          "by_original_arm": {
+            "ndni": {
+              "n_original_mothers": 3,
+              "directions": {
+                "lower_damage_has_more_good_seeds": 2,
+                "higher_damage_has_more_good_seeds": 1,
+                "equal_good_seed_counts": 0
+              },
+              "exact_two_sided_p_for_symmetry_exploratory": 1,
+              "mean_lower_minus_higher_good_seed": -0.6666666666666666,
+              "n_higher_damage_head_produces_any_good_seed": 3,
+              "n_lower_damage_head_fails_while_higher_damage_succeeds": 0
+            },
+            "dni": {
+              "n_original_mothers": 4,
+              "directions": {
+                "lower_damage_has_more_good_seeds": 1,
+                "higher_damage_has_more_good_seeds": 3,
+                "equal_good_seed_counts": 0
+              },
+              "exact_two_sided_p_for_symmetry_exploratory": 0.625,
+              "mean_lower_minus_higher_good_seed": -5.5,
+              "n_higher_damage_head_produces_any_good_seed": 4,
+              "n_lower_damage_head_fails_while_higher_damage_succeeds": 1
+            },
+            "ndi": {
+              "n_original_mothers": 6,
+              "directions": {
+                "lower_damage_has_more_good_seeds": 3,
+                "higher_damage_has_more_good_seeds": 2,
+                "equal_good_seed_counts": 1
+              },
+              "exact_two_sided_p_for_symmetry_exploratory": 1,
+              "mean_lower_minus_higher_good_seed": -2.6666666666666665,
+              "n_higher_damage_head_produces_any_good_seed": 4,
+              "n_lower_damage_head_fails_while_higher_damage_succeeds": 1
+            },
+            "di": {
+              "n_original_mothers": 9,
+              "directions": {
+                "lower_damage_has_more_good_seeds": 8,
+                "higher_damage_has_more_good_seeds": 1,
+                "equal_good_seed_counts": 0
+              },
+              "exact_two_sided_p_for_symmetry_exploratory": 0.0390625,
+              "mean_lower_minus_higher_good_seed": 17.88888888888889,
+              "n_higher_damage_head_produces_any_good_seed": 7,
+              "n_lower_damage_head_fails_while_higher_damage_succeeds": 1
+            }
+          }
+        },
+        "2008": {
+          "total": {
+            "n_original_mothers": 26,
+            "directions": {
+              "lower_damage_has_more_good_seeds": 12,
+              "higher_damage_has_more_good_seeds": 10,
+              "equal_good_seed_counts": 4
+            },
+            "exact_two_sided_p_for_symmetry_exploratory": 0.8318119049072266,
+            "mean_lower_minus_higher_good_seed": 7.9743589743589745,
+            "n_higher_damage_head_produces_any_good_seed": 20,
+            "n_lower_damage_head_fails_while_higher_damage_succeeds": 3
+          },
+          "by_original_arm": {
+            "ndni": {
+              "n_original_mothers": 3,
+              "directions": {
+                "lower_damage_has_more_good_seeds": 1,
+                "higher_damage_has_more_good_seeds": 0,
+                "equal_good_seed_counts": 2
+              },
+              "exact_two_sided_p_for_symmetry_exploratory": 1,
+              "mean_lower_minus_higher_good_seed": 4.444444444444445,
+              "n_higher_damage_head_produces_any_good_seed": 1,
+              "n_lower_damage_head_fails_while_higher_damage_succeeds": 0
+            },
+            "dni": {
+              "n_original_mothers": 4,
+              "directions": {
+                "lower_damage_has_more_good_seeds": 1,
+                "higher_damage_has_more_good_seeds": 3,
+                "equal_good_seed_counts": 0
+              },
+              "exact_two_sided_p_for_symmetry_exploratory": 0.625,
+              "mean_lower_minus_higher_good_seed": -8.5,
+              "n_higher_damage_head_produces_any_good_seed": 3,
+              "n_lower_damage_head_fails_while_higher_damage_succeeds": 3
+            },
+            "ndi": {
+              "n_original_mothers": 7,
+              "directions": {
+                "lower_damage_has_more_good_seeds": 3,
+                "higher_damage_has_more_good_seeds": 3,
+                "equal_good_seed_counts": 1
+              },
+              "exact_two_sided_p_for_symmetry_exploratory": 1,
+              "mean_lower_minus_higher_good_seed": 8.285714285714286,
+              "n_higher_damage_head_produces_any_good_seed": 6,
+              "n_lower_damage_head_fails_while_higher_damage_succeeds": 0
+            },
+            "di": {
+              "n_original_mothers": 12,
+              "directions": {
+                "lower_damage_has_more_good_seeds": 7,
+                "higher_damage_has_more_good_seeds": 4,
+                "equal_good_seed_counts": 1
+              },
+              "exact_two_sided_p_for_symmetry_exploratory": 0.548828125,
+              "mean_lower_minus_higher_good_seed": 14.166666666666666,
+              "n_higher_damage_head_produces_any_good_seed": 10,
+              "n_lower_damage_head_fails_while_higher_damage_succeeds": 0
+            }
+          }
+        }
+      },
+      "per_mother": [
+        {
+          "mother": "2007|304",
+          "year": "2007",
+          "treatment": "ndi",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.2175,
+          "most_damaged_score": 0.57375,
+          "damage_score_gap": 0.35624999999999996,
+          "least_damaged_mean_good_seed": 109,
+          "most_damaged_mean_good_seed": 86,
+          "lower_damage_minus_higher_damage_good_seed": 23,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.2175,
+              "good_seed_count": 109
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.57375,
+              "good_seed_count": 86
+            }
+          ]
+        },
+        {
+          "mother": "2007|305",
+          "year": "2007",
+          "treatment": "dni",
+          "eligible_scored_heads": 5,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.32375,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.55625,
+          "least_damaged_mean_good_seed": 0,
+          "most_damaged_mean_good_seed": 18,
+          "lower_damage_minus_higher_damage_good_seed": -18,
+          "lower_damage_positive_rate": 0,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": true,
+          "low_heads": [
+            {
+              "head_code": "500",
+              "damage_score": 0.32375,
+              "good_seed_count": 0
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.88,
+              "good_seed_count": 18
+            }
+          ]
+        },
+        {
+          "mother": "2007|307",
+          "year": "2007",
+          "treatment": "di",
+          "eligible_scored_heads": 6,
+          "least_damaged_head_count": 2,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.355,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.525,
+          "least_damaged_mean_good_seed": 24.5,
+          "most_damaged_mean_good_seed": 7,
+          "lower_damage_minus_higher_damage_good_seed": 17.5,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "210",
+              "damage_score": 0.355,
+              "good_seed_count": 44
+            },
+            {
+              "head_code": "400",
+              "damage_score": 0.355,
+              "good_seed_count": 5
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "310",
+              "damage_score": 0.88,
+              "good_seed_count": 7
+            }
+          ]
+        },
+        {
+          "mother": "2007|311",
+          "year": "2007",
+          "treatment": "dni",
+          "eligible_scored_heads": 4,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.5925,
+          "most_damaged_score": 0.8175,
+          "damage_score_gap": 0.22499999999999998,
+          "least_damaged_mean_good_seed": 30,
+          "most_damaged_mean_good_seed": 5,
+          "lower_damage_minus_higher_damage_good_seed": 25,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "400",
+              "damage_score": 0.5925,
+              "good_seed_count": 30
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.8175,
+              "good_seed_count": 5
+            }
+          ]
+        },
+        {
+          "mother": "2007|313",
+          "year": "2007",
+          "treatment": "di",
+          "eligible_scored_heads": 3,
+          "least_damaged_head_count": 2,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.205,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.675,
+          "least_damaged_mean_good_seed": 6.5,
+          "most_damaged_mean_good_seed": 2,
+          "lower_damage_minus_higher_damage_good_seed": 4.5,
+          "lower_damage_positive_rate": 0.5,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.205,
+              "good_seed_count": 13
+            },
+            {
+              "head_code": "400",
+              "damage_score": 0.205,
+              "good_seed_count": 0
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.88,
+              "good_seed_count": 2
+            }
+          ]
+        },
+        {
+          "mother": "2007|315",
+          "year": "2007",
+          "treatment": "ndi",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.205,
+          "most_damaged_score": 0.405,
+          "damage_score_gap": 0.20000000000000004,
+          "least_damaged_mean_good_seed": 9,
+          "most_damaged_mean_good_seed": 0,
+          "lower_damage_minus_higher_damage_good_seed": 9,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 0,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.205,
+              "good_seed_count": 9
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "400",
+              "damage_score": 0.405,
+              "good_seed_count": 0
+            }
+          ]
+        },
+        {
+          "mother": "2007|322",
+          "year": "2007",
+          "treatment": "ndi",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.63625,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.24375000000000002,
+          "least_damaged_mean_good_seed": 0,
+          "most_damaged_mean_good_seed": 3,
+          "lower_damage_minus_higher_damage_good_seed": -3,
+          "lower_damage_positive_rate": 0,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": true,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.63625,
+              "good_seed_count": 0
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.88,
+              "good_seed_count": 3
+            }
+          ]
+        },
+        {
+          "mother": "2007|330",
+          "year": "2007",
+          "treatment": "di",
+          "eligible_scored_heads": 5,
+          "least_damaged_head_count": 2,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.205,
+          "most_damaged_score": 0.57375,
+          "damage_score_gap": 0.36875,
+          "least_damaged_mean_good_seed": 62,
+          "most_damaged_mean_good_seed": 5,
+          "lower_damage_minus_higher_damage_good_seed": 57,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "210",
+              "damage_score": 0.205,
+              "good_seed_count": 69
+            },
+            {
+              "head_code": "500",
+              "damage_score": 0.205,
+              "good_seed_count": 55
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.57375,
+              "good_seed_count": 5
+            }
+          ]
+        },
+        {
+          "mother": "2007|342",
+          "year": "2007",
+          "treatment": "dni",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.46125,
+          "most_damaged_score": 0.58,
+          "damage_score_gap": 0.11874999999999997,
+          "least_damaged_mean_good_seed": 12,
+          "most_damaged_mean_good_seed": 21,
+          "lower_damage_minus_higher_damage_good_seed": -9,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.46125,
+              "good_seed_count": 12
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.58,
+              "good_seed_count": 21
+            }
+          ]
+        },
+        {
+          "mother": "2007|344",
+          "year": "2007",
+          "treatment": "di",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.0925,
+          "most_damaged_score": 0.205,
+          "damage_score_gap": 0.11249999999999999,
+          "least_damaged_mean_good_seed": 25,
+          "most_damaged_mean_good_seed": 2,
+          "lower_damage_minus_higher_damage_good_seed": 23,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.0925,
+              "good_seed_count": 25
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.205,
+              "good_seed_count": 2
+            }
+          ]
+        },
+        {
+          "mother": "2007|345",
+          "year": "2007",
+          "treatment": "ndni",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.46125,
+          "most_damaged_score": 0.5175,
+          "damage_score_gap": 0.05624999999999997,
+          "least_damaged_mean_good_seed": 20,
+          "most_damaged_mean_good_seed": 8,
+          "lower_damage_minus_higher_damage_good_seed": 12,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.46125,
+              "good_seed_count": 20
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.5175,
+              "good_seed_count": 8
+            }
+          ]
+        },
+        {
+          "mother": "2007|346",
+          "year": "2007",
+          "treatment": "dni",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.57375,
+          "most_damaged_score": 0.63,
+          "damage_score_gap": 0.05625000000000002,
+          "least_damaged_mean_good_seed": 46,
+          "most_damaged_mean_good_seed": 66,
+          "lower_damage_minus_higher_damage_good_seed": -20,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "500",
+              "damage_score": 0.57375,
+              "good_seed_count": 46
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "400",
+              "damage_score": 0.63,
+              "good_seed_count": 66
+            }
+          ]
+        },
+        {
+          "mother": "2007|351",
+          "year": "2007",
+          "treatment": "di",
+          "eligible_scored_heads": 4,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.205,
+          "most_damaged_score": 0.755,
+          "damage_score_gap": 0.55,
+          "least_damaged_mean_good_seed": 0,
+          "most_damaged_mean_good_seed": 81,
+          "lower_damage_minus_higher_damage_good_seed": -81,
+          "lower_damage_positive_rate": 0,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": true,
+          "low_heads": [
+            {
+              "head_code": "400",
+              "damage_score": 0.205,
+              "good_seed_count": 0
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.755,
+              "good_seed_count": 81
+            }
+          ]
+        },
+        {
+          "mother": "2007|353",
+          "year": "2007",
+          "treatment": "ndi",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.205,
+          "most_damaged_score": 0.355,
+          "damage_score_gap": 0.15,
+          "least_damaged_mean_good_seed": 0,
+          "most_damaged_mean_good_seed": 0,
+          "lower_damage_minus_higher_damage_good_seed": 0,
+          "lower_damage_positive_rate": 0,
+          "higher_damage_positive_rate": 0,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "400",
+              "damage_score": 0.205,
+              "good_seed_count": 0
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.355,
+              "good_seed_count": 0
+            }
+          ]
+        },
+        {
+          "mother": "2007|356",
+          "year": "2007",
+          "treatment": "ndi",
+          "eligible_scored_heads": 4,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.255,
+          "most_damaged_score": 0.4675,
+          "damage_score_gap": 0.21250000000000002,
+          "least_damaged_mean_good_seed": 7,
+          "most_damaged_mean_good_seed": 54,
+          "lower_damage_minus_higher_damage_good_seed": -47,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.255,
+              "good_seed_count": 7
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "210",
+              "damage_score": 0.4675,
+              "good_seed_count": 54
+            }
+          ]
+        },
+        {
+          "mother": "2007|359",
+          "year": "2007",
+          "treatment": "di",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.205,
+          "most_damaged_score": 0.755,
+          "damage_score_gap": 0.55,
+          "least_damaged_mean_good_seed": 107,
+          "most_damaged_mean_good_seed": 0,
+          "lower_damage_minus_higher_damage_good_seed": 107,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 0,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.205,
+              "good_seed_count": 107
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.755,
+              "good_seed_count": 0
+            }
+          ]
+        },
+        {
+          "mother": "2007|362",
+          "year": "2007",
+          "treatment": "di",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.0925,
+          "most_damaged_score": 0.205,
+          "damage_score_gap": 0.11249999999999999,
+          "least_damaged_mean_good_seed": 26,
+          "most_damaged_mean_good_seed": 0,
+          "lower_damage_minus_higher_damage_good_seed": 26,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 0,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.0925,
+              "good_seed_count": 26
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.205,
+              "good_seed_count": 0
+            }
+          ]
+        },
+        {
+          "mother": "2007|366",
+          "year": "2007",
+          "treatment": "ndni",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.63,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.25,
+          "least_damaged_mean_good_seed": 3,
+          "most_damaged_mean_good_seed": 23,
+          "lower_damage_minus_higher_damage_good_seed": -20,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.63,
+              "good_seed_count": 3
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.88,
+              "good_seed_count": 23
+            }
+          ]
+        },
+        {
+          "mother": "2007|368",
+          "year": "2007",
+          "treatment": "di",
+          "eligible_scored_heads": 6,
+          "least_damaged_head_count": 2,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.205,
+          "most_damaged_score": 0.6925,
+          "damage_score_gap": 0.48750000000000004,
+          "least_damaged_mean_good_seed": 5,
+          "most_damaged_mean_good_seed": 1,
+          "lower_damage_minus_higher_damage_good_seed": 4,
+          "lower_damage_positive_rate": 0.5,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.205,
+              "good_seed_count": 0
+            },
+            {
+              "head_code": "600",
+              "damage_score": 0.205,
+              "good_seed_count": 10
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "410",
+              "damage_score": 0.6925,
+              "good_seed_count": 1
+            }
+          ]
+        },
+        {
+          "mother": "2007|369",
+          "year": "2007",
+          "treatment": "ndi",
+          "eligible_scored_heads": 3,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.305,
+          "most_damaged_score": 0.755,
+          "damage_score_gap": 0.45,
+          "least_damaged_mean_good_seed": 13,
+          "most_damaged_mean_good_seed": 11,
+          "lower_damage_minus_higher_damage_good_seed": 2,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.305,
+              "good_seed_count": 13
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "400",
+              "damage_score": 0.755,
+              "good_seed_count": 11
+            }
+          ]
+        },
+        {
+          "mother": "2007|373",
+          "year": "2007",
+          "treatment": "di",
+          "eligible_scored_heads": 3,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.205,
+          "most_damaged_score": 0.46125,
+          "damage_score_gap": 0.25625,
+          "least_damaged_mean_good_seed": 4,
+          "most_damaged_mean_good_seed": 1,
+          "lower_damage_minus_higher_damage_good_seed": 3,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.205,
+              "good_seed_count": 4
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.46125,
+              "good_seed_count": 1
+            }
+          ]
+        },
+        {
+          "mother": "2007|374",
+          "year": "2007",
+          "treatment": "ndni",
+          "eligible_scored_heads": 6,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 2,
+          "least_damaged_score": 0.205,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.675,
+          "least_damaged_mean_good_seed": 17,
+          "most_damaged_mean_good_seed": 11,
+          "lower_damage_minus_higher_damage_good_seed": 6,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 0.5,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "310",
+              "damage_score": 0.205,
+              "good_seed_count": 17
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.88,
+              "good_seed_count": 0
+            },
+            {
+              "head_code": "400",
+              "damage_score": 0.88,
+              "good_seed_count": 22
+            }
+          ]
+        },
+        {
+          "mother": "2008|ES66",
+          "year": "2008",
+          "treatment": "di",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.255,
+          "most_damaged_score": 0.405,
+          "damage_score_gap": 0.15000000000000002,
+          "least_damaged_mean_good_seed": 132,
+          "most_damaged_mean_good_seed": 135,
+          "lower_damage_minus_higher_damage_good_seed": -3,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.255,
+              "good_seed_count": 132
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.405,
+              "good_seed_count": 135
+            }
+          ]
+        },
+        {
+          "mother": "2008|ES68",
+          "year": "2008",
+          "treatment": "dni",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.4675,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.4125,
+          "least_damaged_mean_good_seed": 0,
+          "most_damaged_mean_good_seed": 3,
+          "lower_damage_minus_higher_damage_good_seed": -3,
+          "lower_damage_positive_rate": 0,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": true,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.4675,
+              "good_seed_count": 0
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.88,
+              "good_seed_count": 3
+            }
+          ]
+        },
+        {
+          "mother": "2008|ES69",
+          "year": "2008",
+          "treatment": "dni",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.205,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.675,
+          "least_damaged_mean_good_seed": 0,
+          "most_damaged_mean_good_seed": 42,
+          "lower_damage_minus_higher_damage_good_seed": -42,
+          "lower_damage_positive_rate": 0,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": true,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.205,
+              "good_seed_count": 0
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.88,
+              "good_seed_count": 42
+            }
+          ]
+        },
+        {
+          "mother": "2008|ES71",
+          "year": "2008",
+          "treatment": "ndi",
+          "eligible_scored_heads": 3,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.055,
+          "most_damaged_score": 0.355,
+          "damage_score_gap": 0.3,
+          "least_damaged_mean_good_seed": 129,
+          "most_damaged_mean_good_seed": 87,
+          "lower_damage_minus_higher_damage_good_seed": 42,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.055,
+              "good_seed_count": 129
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "400",
+              "damage_score": 0.355,
+              "good_seed_count": 87
+            }
+          ]
+        },
+        {
+          "mother": "2008|ES72",
+          "year": "2008",
+          "treatment": "ndni",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.8175,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.0625,
+          "least_damaged_mean_good_seed": 0,
+          "most_damaged_mean_good_seed": 0,
+          "lower_damage_minus_higher_damage_good_seed": 0,
+          "lower_damage_positive_rate": 0,
+          "higher_damage_positive_rate": 0,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "400",
+              "damage_score": 0.8175,
+              "good_seed_count": 0
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.88,
+              "good_seed_count": 0
+            }
+          ]
+        },
+        {
+          "mother": "2008|ES73",
+          "year": "2008",
+          "treatment": "ndi",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.0175,
+          "most_damaged_score": 0.755,
+          "damage_score_gap": 0.7375,
+          "least_damaged_mean_good_seed": 65,
+          "most_damaged_mean_good_seed": 83,
+          "lower_damage_minus_higher_damage_good_seed": -18,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "210",
+              "damage_score": 0.0175,
+              "good_seed_count": 65
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.755,
+              "good_seed_count": 83
+            }
+          ]
+        },
+        {
+          "mother": "2008|ES75",
+          "year": "2008",
+          "treatment": "di",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.4675,
+          "most_damaged_score": 0.6925,
+          "damage_score_gap": 0.22499999999999998,
+          "least_damaged_mean_good_seed": 14,
+          "most_damaged_mean_good_seed": 65,
+          "lower_damage_minus_higher_damage_good_seed": -51,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.4675,
+              "good_seed_count": 14
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.6925,
+              "good_seed_count": 65
+            }
+          ]
+        },
+        {
+          "mother": "2008|ES82",
+          "year": "2008",
+          "treatment": "ndi",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.055,
+          "most_damaged_score": 0.755,
+          "damage_score_gap": 0.7,
+          "least_damaged_mean_good_seed": 217,
+          "most_damaged_mean_good_seed": 33,
+          "lower_damage_minus_higher_damage_good_seed": 184,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "400",
+              "damage_score": 0.055,
+              "good_seed_count": 217
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.755,
+              "good_seed_count": 33
+            }
+          ]
+        },
+        {
+          "mother": "2008|ES84",
+          "year": "2008",
+          "treatment": "di",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.41125,
+          "most_damaged_score": 0.63,
+          "damage_score_gap": 0.21875,
+          "least_damaged_mean_good_seed": 77,
+          "most_damaged_mean_good_seed": 0,
+          "lower_damage_minus_higher_damage_good_seed": 77,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 0,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.41125,
+              "good_seed_count": 77
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.63,
+              "good_seed_count": 0
+            }
+          ]
+        },
+        {
+          "mother": "2008|SD01",
+          "year": "2008",
+          "treatment": "ndi",
+          "eligible_scored_heads": 3,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.305,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.575,
+          "least_damaged_mean_good_seed": 89,
+          "most_damaged_mean_good_seed": 49,
+          "lower_damage_minus_higher_damage_good_seed": 40,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.305,
+              "good_seed_count": 89
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "400",
+              "damage_score": 0.88,
+              "good_seed_count": 49
+            }
+          ]
+        },
+        {
+          "mother": "2008|SD05",
+          "year": "2008",
+          "treatment": "dni",
+          "eligible_scored_heads": 5,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 4,
+          "least_damaged_score": 0.755,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.125,
+          "least_damaged_mean_good_seed": 0,
+          "most_damaged_mean_good_seed": 0.5,
+          "lower_damage_minus_higher_damage_good_seed": -0.5,
+          "lower_damage_positive_rate": 0,
+          "higher_damage_positive_rate": 0.25,
+          "severe_success_vs_low_failure": true,
+          "low_heads": [
+            {
+              "head_code": "310",
+              "damage_score": 0.755,
+              "good_seed_count": 0
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.88,
+              "good_seed_count": 0
+            },
+            {
+              "head_code": "210",
+              "damage_score": 0.88,
+              "good_seed_count": 0
+            },
+            {
+              "head_code": "300",
+              "damage_score": 0.88,
+              "good_seed_count": 2
+            },
+            {
+              "head_code": "400",
+              "damage_score": 0.88,
+              "good_seed_count": 0
+            }
+          ]
+        },
+        {
+          "mother": "2008|SD06",
+          "year": "2008",
+          "treatment": "di",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.38,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.5,
+          "least_damaged_mean_good_seed": 48,
+          "most_damaged_mean_good_seed": 17,
+          "lower_damage_minus_higher_damage_good_seed": 31,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.38,
+              "good_seed_count": 48
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.88,
+              "good_seed_count": 17
+            }
+          ]
+        },
+        {
+          "mother": "2008|SD09",
+          "year": "2008",
+          "treatment": "di",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.755,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.125,
+          "least_damaged_mean_good_seed": 60,
+          "most_damaged_mean_good_seed": 39,
+          "lower_damage_minus_higher_damage_good_seed": 21,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.755,
+              "good_seed_count": 60
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.88,
+              "good_seed_count": 39
+            }
+          ]
+        },
+        {
+          "mother": "2008|SD18",
+          "year": "2008",
+          "treatment": "ndni",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.8175,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.0625,
+          "least_damaged_mean_good_seed": 0,
+          "most_damaged_mean_good_seed": 0,
+          "lower_damage_minus_higher_damage_good_seed": 0,
+          "lower_damage_positive_rate": 0,
+          "higher_damage_positive_rate": 0,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.8175,
+              "good_seed_count": 0
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "400",
+              "damage_score": 0.88,
+              "good_seed_count": 0
+            }
+          ]
+        },
+        {
+          "mother": "2008|WG23",
+          "year": "2008",
+          "treatment": "ndi",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.63,
+          "most_damaged_score": 0.8175,
+          "damage_score_gap": 0.1875,
+          "least_damaged_mean_good_seed": 21,
+          "most_damaged_mean_good_seed": 71,
+          "lower_damage_minus_higher_damage_good_seed": -50,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.63,
+              "good_seed_count": 21
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.8175,
+              "good_seed_count": 71
+            }
+          ]
+        },
+        {
+          "mother": "2008|WG24",
+          "year": "2008",
+          "treatment": "di",
+          "eligible_scored_heads": 6,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.005,
+          "most_damaged_score": 0.405,
+          "damage_score_gap": 0.4,
+          "least_damaged_mean_good_seed": 45,
+          "most_damaged_mean_good_seed": 4,
+          "lower_damage_minus_higher_damage_good_seed": 41,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.005,
+              "good_seed_count": 45
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "900",
+              "damage_score": 0.405,
+              "good_seed_count": 4
+            }
+          ]
+        },
+        {
+          "mother": "2008|WG25",
+          "year": "2008",
+          "treatment": "di",
+          "eligible_scored_heads": 3,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 2,
+          "least_damaged_score": 0.205,
+          "most_damaged_score": 0.255,
+          "damage_score_gap": 0.05000000000000002,
+          "least_damaged_mean_good_seed": 130,
+          "most_damaged_mean_good_seed": 43.5,
+          "lower_damage_minus_higher_damage_good_seed": 86.5,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 0.5,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.205,
+              "good_seed_count": 130
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "210",
+              "damage_score": 0.255,
+              "good_seed_count": 0
+            },
+            {
+              "head_code": "300",
+              "damage_score": 0.255,
+              "good_seed_count": 87
+            }
+          ]
+        },
+        {
+          "mother": "2008|WG27",
+          "year": "2008",
+          "treatment": "ndi",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.8175,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.0625,
+          "least_damaged_mean_good_seed": 9,
+          "most_damaged_mean_good_seed": 149,
+          "lower_damage_minus_higher_damage_good_seed": -140,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.8175,
+              "good_seed_count": 9
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.88,
+              "good_seed_count": 149
+            }
+          ]
+        },
+        {
+          "mother": "2008|WG29",
+          "year": "2008",
+          "treatment": "ndi",
+          "eligible_scored_heads": 3,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.055,
+          "most_damaged_score": 0.405,
+          "damage_score_gap": 0.35000000000000003,
+          "least_damaged_mean_good_seed": 0,
+          "most_damaged_mean_good_seed": 0,
+          "lower_damage_minus_higher_damage_good_seed": 0,
+          "lower_damage_positive_rate": 0,
+          "higher_damage_positive_rate": 0,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "500",
+              "damage_score": 0.055,
+              "good_seed_count": 0
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.405,
+              "good_seed_count": 0
+            }
+          ]
+        },
+        {
+          "mother": "2008|WG30",
+          "year": "2008",
+          "treatment": "di",
+          "eligible_scored_heads": 4,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.205,
+          "most_damaged_score": 0.8175,
+          "damage_score_gap": 0.6125,
+          "least_damaged_mean_good_seed": 5,
+          "most_damaged_mean_good_seed": 0,
+          "lower_damage_minus_higher_damage_good_seed": 5,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 0,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.205,
+              "good_seed_count": 5
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "210",
+              "damage_score": 0.8175,
+              "good_seed_count": 0
+            }
+          ]
+        },
+        {
+          "mother": "2008|WR41",
+          "year": "2008",
+          "treatment": "di",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.205,
+          "most_damaged_score": 0.46125,
+          "damage_score_gap": 0.25625,
+          "least_damaged_mean_good_seed": 22,
+          "most_damaged_mean_good_seed": 37,
+          "lower_damage_minus_higher_damage_good_seed": -15,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.205,
+              "good_seed_count": 22
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.46125,
+              "good_seed_count": 37
+            }
+          ]
+        },
+        {
+          "mother": "2008|WR46",
+          "year": "2008",
+          "treatment": "dni",
+          "eligible_scored_heads": 4,
+          "least_damaged_head_count": 2,
+          "most_damaged_head_count": 2,
+          "least_damaged_score": 0.755,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.125,
+          "least_damaged_mean_good_seed": 11.5,
+          "most_damaged_mean_good_seed": 0,
+          "lower_damage_minus_higher_damage_good_seed": 11.5,
+          "lower_damage_positive_rate": 0.5,
+          "higher_damage_positive_rate": 0,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.755,
+              "good_seed_count": 23
+            },
+            {
+              "head_code": "300",
+              "damage_score": 0.755,
+              "good_seed_count": 0
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "210",
+              "damage_score": 0.88,
+              "good_seed_count": 0
+            },
+            {
+              "head_code": "400",
+              "damage_score": 0.88,
+              "good_seed_count": 0
+            }
+          ]
+        },
+        {
+          "mother": "2008|WR47",
+          "year": "2008",
+          "treatment": "di",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.8175,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.0625,
+          "least_damaged_mean_good_seed": 12,
+          "most_damaged_mean_good_seed": 36,
+          "lower_damage_minus_higher_damage_good_seed": -24,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.8175,
+              "good_seed_count": 12
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.88,
+              "good_seed_count": 36
+            }
+          ]
+        },
+        {
+          "mother": "2008|WR51",
+          "year": "2008",
+          "treatment": "ndni",
+          "eligible_scored_heads": 4,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 3,
+          "least_damaged_score": 0.8175,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.0625,
+          "least_damaged_mean_good_seed": 15,
+          "most_damaged_mean_good_seed": 1.6666666666666667,
+          "lower_damage_minus_higher_damage_good_seed": 13.333333333333334,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 0.3333333333333333,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "400",
+              "damage_score": 0.8175,
+              "good_seed_count": 15
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.88,
+              "good_seed_count": 0
+            },
+            {
+              "head_code": "300",
+              "damage_score": 0.88,
+              "good_seed_count": 5
+            },
+            {
+              "head_code": "310",
+              "damage_score": 0.88,
+              "good_seed_count": 0
+            }
+          ]
+        },
+        {
+          "mother": "2008|WR55",
+          "year": "2008",
+          "treatment": "di",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.405,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.475,
+          "least_damaged_mean_good_seed": 74,
+          "most_damaged_mean_good_seed": 74,
+          "lower_damage_minus_higher_damage_good_seed": 0,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.405,
+              "good_seed_count": 74
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "400",
+              "damage_score": 0.88,
+              "good_seed_count": 74
+            }
+          ]
+        },
+        {
+          "mother": "2008|WR56",
+          "year": "2008",
+          "treatment": "di",
+          "eligible_scored_heads": 5,
+          "least_damaged_head_count": 2,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.405,
+          "most_damaged_score": 0.6925,
+          "damage_score_gap": 0.2875,
+          "least_damaged_mean_good_seed": 64.5,
+          "most_damaged_mean_good_seed": 63,
+          "lower_damage_minus_higher_damage_good_seed": 1.5,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.405,
+              "good_seed_count": 99
+            },
+            {
+              "head_code": "210",
+              "damage_score": 0.405,
+              "good_seed_count": 30
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "400",
+              "damage_score": 0.6925,
+              "good_seed_count": 63
+            }
+          ]
+        }
+      ]
+    },
+    "terminal_only": {
+      "summary": {
+        "n_original_mothers": 46,
+        "directions": {
+          "lower_damage_has_more_good_seeds": 23,
+          "higher_damage_has_more_good_seeds": 18,
+          "equal_good_seed_counts": 5
+        },
+        "exact_two_sided_p_for_symmetry_exploratory": 0.5327092552361137,
+        "mean_lower_minus_higher_good_seed": 4.380434782608695,
+        "n_higher_damage_head_produces_any_good_seed": 36,
+        "n_lower_damage_head_fails_while_higher_damage_succeeds": 5
+      },
+      "by_year_arm": {
+        "2007": {
+          "total": {
+            "n_original_mothers": 22,
+            "directions": {
+              "lower_damage_has_more_good_seeds": 12,
+              "higher_damage_has_more_good_seeds": 9,
+              "equal_good_seed_counts": 1
+            },
+            "exact_two_sided_p_for_symmetry_exploratory": 0.6636238098144531,
+            "mean_lower_minus_higher_good_seed": 2.977272727272727,
+            "n_higher_damage_head_produces_any_good_seed": 17,
+            "n_lower_damage_head_fails_while_higher_damage_succeeds": 3
+          },
+          "by_original_arm": {
+            "ndni": {
+              "n_original_mothers": 3,
+              "directions": {
+                "lower_damage_has_more_good_seeds": 1,
+                "higher_damage_has_more_good_seeds": 2,
+                "equal_good_seed_counts": 0
+              },
+              "exact_two_sided_p_for_symmetry_exploratory": 1,
+              "mean_lower_minus_higher_good_seed": -3.3333333333333335,
+              "n_higher_damage_head_produces_any_good_seed": 3,
+              "n_lower_damage_head_fails_while_higher_damage_succeeds": 0
+            },
+            "dni": {
+              "n_original_mothers": 4,
+              "directions": {
+                "lower_damage_has_more_good_seeds": 1,
+                "higher_damage_has_more_good_seeds": 3,
+                "equal_good_seed_counts": 0
+              },
+              "exact_two_sided_p_for_symmetry_exploratory": 0.625,
+              "mean_lower_minus_higher_good_seed": -5.5,
+              "n_higher_damage_head_produces_any_good_seed": 4,
+              "n_lower_damage_head_fails_while_higher_damage_succeeds": 1
+            },
+            "ndi": {
+              "n_original_mothers": 6,
+              "directions": {
+                "lower_damage_has_more_good_seeds": 3,
+                "higher_damage_has_more_good_seeds": 2,
+                "equal_good_seed_counts": 1
+              },
+              "exact_two_sided_p_for_symmetry_exploratory": 1,
+              "mean_lower_minus_higher_good_seed": -6.333333333333333,
+              "n_higher_damage_head_produces_any_good_seed": 4,
+              "n_lower_damage_head_fails_while_higher_damage_succeeds": 1
+            },
+            "di": {
+              "n_original_mothers": 9,
+              "directions": {
+                "lower_damage_has_more_good_seeds": 7,
+                "higher_damage_has_more_good_seeds": 2,
+                "equal_good_seed_counts": 0
+              },
+              "exact_two_sided_p_for_symmetry_exploratory": 0.1796875,
+              "mean_lower_minus_higher_good_seed": 15.055555555555555,
+              "n_higher_damage_head_produces_any_good_seed": 6,
+              "n_lower_damage_head_fails_while_higher_damage_succeeds": 1
+            }
+          }
+        },
+        "2008": {
+          "total": {
+            "n_original_mothers": 24,
+            "directions": {
+              "lower_damage_has_more_good_seeds": 11,
+              "higher_damage_has_more_good_seeds": 9,
+              "equal_good_seed_counts": 4
+            },
+            "exact_two_sided_p_for_symmetry_exploratory": 0.8238029479980469,
+            "mean_lower_minus_higher_good_seed": 5.666666666666667,
+            "n_higher_damage_head_produces_any_good_seed": 19,
+            "n_lower_damage_head_fails_while_higher_damage_succeeds": 2
+          },
+          "by_original_arm": {
+            "ndni": {
+              "n_original_mothers": 3,
+              "directions": {
+                "lower_damage_has_more_good_seeds": 1,
+                "higher_damage_has_more_good_seeds": 0,
+                "equal_good_seed_counts": 2
+              },
+              "exact_two_sided_p_for_symmetry_exploratory": 1,
+              "mean_lower_minus_higher_good_seed": 4.166666666666667,
+              "n_higher_damage_head_produces_any_good_seed": 1,
+              "n_lower_damage_head_fails_while_higher_damage_succeeds": 0
+            },
+            "dni": {
+              "n_original_mothers": 3,
+              "directions": {
+                "lower_damage_has_more_good_seeds": 1,
+                "higher_damage_has_more_good_seeds": 2,
+                "equal_good_seed_counts": 0
+              },
+              "exact_two_sided_p_for_symmetry_exploratory": 1,
+              "mean_lower_minus_higher_good_seed": -11.166666666666666,
+              "n_higher_damage_head_produces_any_good_seed": 2,
+              "n_lower_damage_head_fails_while_higher_damage_succeeds": 2
+            },
+            "ndi": {
+              "n_original_mothers": 6,
+              "directions": {
+                "lower_damage_has_more_good_seeds": 3,
+                "higher_damage_has_more_good_seeds": 2,
+                "equal_good_seed_counts": 1
+              },
+              "exact_two_sided_p_for_symmetry_exploratory": 1,
+              "mean_lower_minus_higher_good_seed": 12.666666666666666,
+              "n_higher_damage_head_produces_any_good_seed": 5,
+              "n_lower_damage_head_fails_while_higher_damage_succeeds": 0
+            },
+            "di": {
+              "n_original_mothers": 12,
+              "directions": {
+                "lower_damage_has_more_good_seeds": 6,
+                "higher_damage_has_more_good_seeds": 5,
+                "equal_good_seed_counts": 1
+              },
+              "exact_two_sided_p_for_symmetry_exploratory": 1,
+              "mean_lower_minus_higher_good_seed": 6.75,
+              "n_higher_damage_head_produces_any_good_seed": 11,
+              "n_lower_damage_head_fails_while_higher_damage_succeeds": 0
+            }
+          }
+        }
+      },
+      "per_mother": [
+        {
+          "mother": "2007|304",
+          "year": "2007",
+          "treatment": "ndi",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.2175,
+          "most_damaged_score": 0.57375,
+          "damage_score_gap": 0.35624999999999996,
+          "least_damaged_mean_good_seed": 109,
+          "most_damaged_mean_good_seed": 86,
+          "lower_damage_minus_higher_damage_good_seed": 23,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.2175,
+              "good_seed_count": 109
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.57375,
+              "good_seed_count": 86
+            }
+          ]
+        },
+        {
+          "mother": "2007|305",
+          "year": "2007",
+          "treatment": "dni",
+          "eligible_scored_heads": 4,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.32375,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.55625,
+          "least_damaged_mean_good_seed": 0,
+          "most_damaged_mean_good_seed": 18,
+          "lower_damage_minus_higher_damage_good_seed": -18,
+          "lower_damage_positive_rate": 0,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": true,
+          "low_heads": [
+            {
+              "head_code": "500",
+              "damage_score": 0.32375,
+              "good_seed_count": 0
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.88,
+              "good_seed_count": 18
+            }
+          ]
+        },
+        {
+          "mother": "2007|307",
+          "year": "2007",
+          "treatment": "di",
+          "eligible_scored_heads": 3,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.355,
+          "most_damaged_score": 0.6925,
+          "damage_score_gap": 0.3375,
+          "least_damaged_mean_good_seed": 5,
+          "most_damaged_mean_good_seed": 0,
+          "lower_damage_minus_higher_damage_good_seed": 5,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 0,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "400",
+              "damage_score": 0.355,
+              "good_seed_count": 5
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.6925,
+              "good_seed_count": 0
+            }
+          ]
+        },
+        {
+          "mother": "2007|311",
+          "year": "2007",
+          "treatment": "dni",
+          "eligible_scored_heads": 4,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.5925,
+          "most_damaged_score": 0.8175,
+          "damage_score_gap": 0.22499999999999998,
+          "least_damaged_mean_good_seed": 30,
+          "most_damaged_mean_good_seed": 5,
+          "lower_damage_minus_higher_damage_good_seed": 25,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "400",
+              "damage_score": 0.5925,
+              "good_seed_count": 30
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.8175,
+              "good_seed_count": 5
+            }
+          ]
+        },
+        {
+          "mother": "2007|313",
+          "year": "2007",
+          "treatment": "di",
+          "eligible_scored_heads": 3,
+          "least_damaged_head_count": 2,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.205,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.675,
+          "least_damaged_mean_good_seed": 6.5,
+          "most_damaged_mean_good_seed": 2,
+          "lower_damage_minus_higher_damage_good_seed": 4.5,
+          "lower_damage_positive_rate": 0.5,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.205,
+              "good_seed_count": 13
+            },
+            {
+              "head_code": "400",
+              "damage_score": 0.205,
+              "good_seed_count": 0
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.88,
+              "good_seed_count": 2
+            }
+          ]
+        },
+        {
+          "mother": "2007|315",
+          "year": "2007",
+          "treatment": "ndi",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.205,
+          "most_damaged_score": 0.405,
+          "damage_score_gap": 0.20000000000000004,
+          "least_damaged_mean_good_seed": 9,
+          "most_damaged_mean_good_seed": 0,
+          "lower_damage_minus_higher_damage_good_seed": 9,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 0,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.205,
+              "good_seed_count": 9
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "400",
+              "damage_score": 0.405,
+              "good_seed_count": 0
+            }
+          ]
+        },
+        {
+          "mother": "2007|322",
+          "year": "2007",
+          "treatment": "ndi",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.63625,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.24375000000000002,
+          "least_damaged_mean_good_seed": 0,
+          "most_damaged_mean_good_seed": 3,
+          "lower_damage_minus_higher_damage_good_seed": -3,
+          "lower_damage_positive_rate": 0,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": true,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.63625,
+              "good_seed_count": 0
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.88,
+              "good_seed_count": 3
+            }
+          ]
+        },
+        {
+          "mother": "2007|330",
+          "year": "2007",
+          "treatment": "di",
+          "eligible_scored_heads": 4,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.205,
+          "most_damaged_score": 0.57375,
+          "damage_score_gap": 0.36875,
+          "least_damaged_mean_good_seed": 55,
+          "most_damaged_mean_good_seed": 5,
+          "lower_damage_minus_higher_damage_good_seed": 50,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "500",
+              "damage_score": 0.205,
+              "good_seed_count": 55
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.57375,
+              "good_seed_count": 5
+            }
+          ]
+        },
+        {
+          "mother": "2007|342",
+          "year": "2007",
+          "treatment": "dni",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.46125,
+          "most_damaged_score": 0.58,
+          "damage_score_gap": 0.11874999999999997,
+          "least_damaged_mean_good_seed": 12,
+          "most_damaged_mean_good_seed": 21,
+          "lower_damage_minus_higher_damage_good_seed": -9,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.46125,
+              "good_seed_count": 12
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.58,
+              "good_seed_count": 21
+            }
+          ]
+        },
+        {
+          "mother": "2007|344",
+          "year": "2007",
+          "treatment": "di",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.0925,
+          "most_damaged_score": 0.205,
+          "damage_score_gap": 0.11249999999999999,
+          "least_damaged_mean_good_seed": 25,
+          "most_damaged_mean_good_seed": 2,
+          "lower_damage_minus_higher_damage_good_seed": 23,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.0925,
+              "good_seed_count": 25
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.205,
+              "good_seed_count": 2
+            }
+          ]
+        },
+        {
+          "mother": "2007|345",
+          "year": "2007",
+          "treatment": "ndni",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.46125,
+          "most_damaged_score": 0.5175,
+          "damage_score_gap": 0.05624999999999997,
+          "least_damaged_mean_good_seed": 20,
+          "most_damaged_mean_good_seed": 8,
+          "lower_damage_minus_higher_damage_good_seed": 12,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.46125,
+              "good_seed_count": 20
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.5175,
+              "good_seed_count": 8
+            }
+          ]
+        },
+        {
+          "mother": "2007|346",
+          "year": "2007",
+          "treatment": "dni",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.57375,
+          "most_damaged_score": 0.63,
+          "damage_score_gap": 0.05625000000000002,
+          "least_damaged_mean_good_seed": 46,
+          "most_damaged_mean_good_seed": 66,
+          "lower_damage_minus_higher_damage_good_seed": -20,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "500",
+              "damage_score": 0.57375,
+              "good_seed_count": 46
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "400",
+              "damage_score": 0.63,
+              "good_seed_count": 66
+            }
+          ]
+        },
+        {
+          "mother": "2007|351",
+          "year": "2007",
+          "treatment": "di",
+          "eligible_scored_heads": 3,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.205,
+          "most_damaged_score": 0.755,
+          "damage_score_gap": 0.55,
+          "least_damaged_mean_good_seed": 0,
+          "most_damaged_mean_good_seed": 81,
+          "lower_damage_minus_higher_damage_good_seed": -81,
+          "lower_damage_positive_rate": 0,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": true,
+          "low_heads": [
+            {
+              "head_code": "400",
+              "damage_score": 0.205,
+              "good_seed_count": 0
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.755,
+              "good_seed_count": 81
+            }
+          ]
+        },
+        {
+          "mother": "2007|353",
+          "year": "2007",
+          "treatment": "ndi",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.205,
+          "most_damaged_score": 0.355,
+          "damage_score_gap": 0.15,
+          "least_damaged_mean_good_seed": 0,
+          "most_damaged_mean_good_seed": 0,
+          "lower_damage_minus_higher_damage_good_seed": 0,
+          "lower_damage_positive_rate": 0,
+          "higher_damage_positive_rate": 0,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "400",
+              "damage_score": 0.205,
+              "good_seed_count": 0
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.355,
+              "good_seed_count": 0
+            }
+          ]
+        },
+        {
+          "mother": "2007|356",
+          "year": "2007",
+          "treatment": "ndi",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.255,
+          "most_damaged_score": 0.36125,
+          "damage_score_gap": 0.10625000000000001,
+          "least_damaged_mean_good_seed": 7,
+          "most_damaged_mean_good_seed": 76,
+          "lower_damage_minus_higher_damage_good_seed": -69,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.255,
+              "good_seed_count": 7
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.36125,
+              "good_seed_count": 76
+            }
+          ]
+        },
+        {
+          "mother": "2007|359",
+          "year": "2007",
+          "treatment": "di",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.205,
+          "most_damaged_score": 0.755,
+          "damage_score_gap": 0.55,
+          "least_damaged_mean_good_seed": 107,
+          "most_damaged_mean_good_seed": 0,
+          "lower_damage_minus_higher_damage_good_seed": 107,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 0,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.205,
+              "good_seed_count": 107
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.755,
+              "good_seed_count": 0
+            }
+          ]
+        },
+        {
+          "mother": "2007|362",
+          "year": "2007",
+          "treatment": "di",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.0925,
+          "most_damaged_score": 0.205,
+          "damage_score_gap": 0.11249999999999999,
+          "least_damaged_mean_good_seed": 26,
+          "most_damaged_mean_good_seed": 0,
+          "lower_damage_minus_higher_damage_good_seed": 26,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 0,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.0925,
+              "good_seed_count": 26
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.205,
+              "good_seed_count": 0
+            }
+          ]
+        },
+        {
+          "mother": "2007|366",
+          "year": "2007",
+          "treatment": "ndni",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.63,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.25,
+          "least_damaged_mean_good_seed": 3,
+          "most_damaged_mean_good_seed": 23,
+          "lower_damage_minus_higher_damage_good_seed": -20,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.63,
+              "good_seed_count": 3
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.88,
+              "good_seed_count": 23
+            }
+          ]
+        },
+        {
+          "mother": "2007|368",
+          "year": "2007",
+          "treatment": "di",
+          "eligible_scored_heads": 5,
+          "least_damaged_head_count": 2,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.205,
+          "most_damaged_score": 0.57375,
+          "damage_score_gap": 0.36875,
+          "least_damaged_mean_good_seed": 5,
+          "most_damaged_mean_good_seed": 7,
+          "lower_damage_minus_higher_damage_good_seed": -2,
+          "lower_damage_positive_rate": 0.5,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.205,
+              "good_seed_count": 0
+            },
+            {
+              "head_code": "600",
+              "damage_score": 0.205,
+              "good_seed_count": 10
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "500",
+              "damage_score": 0.57375,
+              "good_seed_count": 7
+            }
+          ]
+        },
+        {
+          "mother": "2007|369",
+          "year": "2007",
+          "treatment": "ndi",
+          "eligible_scored_heads": 3,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.305,
+          "most_damaged_score": 0.755,
+          "damage_score_gap": 0.45,
+          "least_damaged_mean_good_seed": 13,
+          "most_damaged_mean_good_seed": 11,
+          "lower_damage_minus_higher_damage_good_seed": 2,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.305,
+              "good_seed_count": 13
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "400",
+              "damage_score": 0.755,
+              "good_seed_count": 11
+            }
+          ]
+        },
+        {
+          "mother": "2007|373",
+          "year": "2007",
+          "treatment": "di",
+          "eligible_scored_heads": 3,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.205,
+          "most_damaged_score": 0.46125,
+          "damage_score_gap": 0.25625,
+          "least_damaged_mean_good_seed": 4,
+          "most_damaged_mean_good_seed": 1,
+          "lower_damage_minus_higher_damage_good_seed": 3,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.205,
+              "good_seed_count": 4
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.46125,
+              "good_seed_count": 1
+            }
+          ]
+        },
+        {
+          "mother": "2007|374",
+          "year": "2007",
+          "treatment": "ndni",
+          "eligible_scored_heads": 4,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 2,
+          "least_damaged_score": 0.5175,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.36250000000000004,
+          "least_damaged_mean_good_seed": 9,
+          "most_damaged_mean_good_seed": 11,
+          "lower_damage_minus_higher_damage_good_seed": -2,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 0.5,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "500",
+              "damage_score": 0.5175,
+              "good_seed_count": 9
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.88,
+              "good_seed_count": 0
+            },
+            {
+              "head_code": "400",
+              "damage_score": 0.88,
+              "good_seed_count": 22
+            }
+          ]
+        },
+        {
+          "mother": "2008|ES66",
+          "year": "2008",
+          "treatment": "di",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.255,
+          "most_damaged_score": 0.405,
+          "damage_score_gap": 0.15000000000000002,
+          "least_damaged_mean_good_seed": 132,
+          "most_damaged_mean_good_seed": 135,
+          "lower_damage_minus_higher_damage_good_seed": -3,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.255,
+              "good_seed_count": 132
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.405,
+              "good_seed_count": 135
+            }
+          ]
+        },
+        {
+          "mother": "2008|ES68",
+          "year": "2008",
+          "treatment": "dni",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.4675,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.4125,
+          "least_damaged_mean_good_seed": 0,
+          "most_damaged_mean_good_seed": 3,
+          "lower_damage_minus_higher_damage_good_seed": -3,
+          "lower_damage_positive_rate": 0,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": true,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.4675,
+              "good_seed_count": 0
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.88,
+              "good_seed_count": 3
+            }
+          ]
+        },
+        {
+          "mother": "2008|ES69",
+          "year": "2008",
+          "treatment": "dni",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.205,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.675,
+          "least_damaged_mean_good_seed": 0,
+          "most_damaged_mean_good_seed": 42,
+          "lower_damage_minus_higher_damage_good_seed": -42,
+          "lower_damage_positive_rate": 0,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": true,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.205,
+              "good_seed_count": 0
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.88,
+              "good_seed_count": 42
+            }
+          ]
+        },
+        {
+          "mother": "2008|ES71",
+          "year": "2008",
+          "treatment": "ndi",
+          "eligible_scored_heads": 3,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.055,
+          "most_damaged_score": 0.355,
+          "damage_score_gap": 0.3,
+          "least_damaged_mean_good_seed": 129,
+          "most_damaged_mean_good_seed": 87,
+          "lower_damage_minus_higher_damage_good_seed": 42,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.055,
+              "good_seed_count": 129
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "400",
+              "damage_score": 0.355,
+              "good_seed_count": 87
+            }
+          ]
+        },
+        {
+          "mother": "2008|ES72",
+          "year": "2008",
+          "treatment": "ndni",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.8175,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.0625,
+          "least_damaged_mean_good_seed": 0,
+          "most_damaged_mean_good_seed": 0,
+          "lower_damage_minus_higher_damage_good_seed": 0,
+          "lower_damage_positive_rate": 0,
+          "higher_damage_positive_rate": 0,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "400",
+              "damage_score": 0.8175,
+              "good_seed_count": 0
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.88,
+              "good_seed_count": 0
+            }
+          ]
+        },
+        {
+          "mother": "2008|ES75",
+          "year": "2008",
+          "treatment": "di",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.4675,
+          "most_damaged_score": 0.6925,
+          "damage_score_gap": 0.22499999999999998,
+          "least_damaged_mean_good_seed": 14,
+          "most_damaged_mean_good_seed": 65,
+          "lower_damage_minus_higher_damage_good_seed": -51,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.4675,
+              "good_seed_count": 14
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.6925,
+              "good_seed_count": 65
+            }
+          ]
+        },
+        {
+          "mother": "2008|ES82",
+          "year": "2008",
+          "treatment": "ndi",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.055,
+          "most_damaged_score": 0.755,
+          "damage_score_gap": 0.7,
+          "least_damaged_mean_good_seed": 217,
+          "most_damaged_mean_good_seed": 33,
+          "lower_damage_minus_higher_damage_good_seed": 184,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "400",
+              "damage_score": 0.055,
+              "good_seed_count": 217
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.755,
+              "good_seed_count": 33
+            }
+          ]
+        },
+        {
+          "mother": "2008|ES84",
+          "year": "2008",
+          "treatment": "di",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.41125,
+          "most_damaged_score": 0.63,
+          "damage_score_gap": 0.21875,
+          "least_damaged_mean_good_seed": 77,
+          "most_damaged_mean_good_seed": 0,
+          "lower_damage_minus_higher_damage_good_seed": 77,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 0,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.41125,
+              "good_seed_count": 77
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.63,
+              "good_seed_count": 0
+            }
+          ]
+        },
+        {
+          "mother": "2008|SD01",
+          "year": "2008",
+          "treatment": "ndi",
+          "eligible_scored_heads": 3,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.305,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.575,
+          "least_damaged_mean_good_seed": 89,
+          "most_damaged_mean_good_seed": 49,
+          "lower_damage_minus_higher_damage_good_seed": 40,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.305,
+              "good_seed_count": 89
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "400",
+              "damage_score": 0.88,
+              "good_seed_count": 49
+            }
+          ]
+        },
+        {
+          "mother": "2008|SD06",
+          "year": "2008",
+          "treatment": "di",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.38,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.5,
+          "least_damaged_mean_good_seed": 48,
+          "most_damaged_mean_good_seed": 17,
+          "lower_damage_minus_higher_damage_good_seed": 31,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.38,
+              "good_seed_count": 48
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.88,
+              "good_seed_count": 17
+            }
+          ]
+        },
+        {
+          "mother": "2008|SD09",
+          "year": "2008",
+          "treatment": "di",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.755,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.125,
+          "least_damaged_mean_good_seed": 60,
+          "most_damaged_mean_good_seed": 39,
+          "lower_damage_minus_higher_damage_good_seed": 21,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.755,
+              "good_seed_count": 60
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.88,
+              "good_seed_count": 39
+            }
+          ]
+        },
+        {
+          "mother": "2008|SD18",
+          "year": "2008",
+          "treatment": "ndni",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.8175,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.0625,
+          "least_damaged_mean_good_seed": 0,
+          "most_damaged_mean_good_seed": 0,
+          "lower_damage_minus_higher_damage_good_seed": 0,
+          "lower_damage_positive_rate": 0,
+          "higher_damage_positive_rate": 0,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.8175,
+              "good_seed_count": 0
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "400",
+              "damage_score": 0.88,
+              "good_seed_count": 0
+            }
+          ]
+        },
+        {
+          "mother": "2008|WG23",
+          "year": "2008",
+          "treatment": "ndi",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.63,
+          "most_damaged_score": 0.8175,
+          "damage_score_gap": 0.1875,
+          "least_damaged_mean_good_seed": 21,
+          "most_damaged_mean_good_seed": 71,
+          "lower_damage_minus_higher_damage_good_seed": -50,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.63,
+              "good_seed_count": 21
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.8175,
+              "good_seed_count": 71
+            }
+          ]
+        },
+        {
+          "mother": "2008|WG24",
+          "year": "2008",
+          "treatment": "di",
+          "eligible_scored_heads": 6,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.005,
+          "most_damaged_score": 0.405,
+          "damage_score_gap": 0.4,
+          "least_damaged_mean_good_seed": 45,
+          "most_damaged_mean_good_seed": 4,
+          "lower_damage_minus_higher_damage_good_seed": 41,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.005,
+              "good_seed_count": 45
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "900",
+              "damage_score": 0.405,
+              "good_seed_count": 4
+            }
+          ]
+        },
+        {
+          "mother": "2008|WG25",
+          "year": "2008",
+          "treatment": "di",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.205,
+          "most_damaged_score": 0.255,
+          "damage_score_gap": 0.05000000000000002,
+          "least_damaged_mean_good_seed": 130,
+          "most_damaged_mean_good_seed": 87,
+          "lower_damage_minus_higher_damage_good_seed": 43,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.205,
+              "good_seed_count": 130
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.255,
+              "good_seed_count": 87
+            }
+          ]
+        },
+        {
+          "mother": "2008|WG27",
+          "year": "2008",
+          "treatment": "ndi",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.8175,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.0625,
+          "least_damaged_mean_good_seed": 9,
+          "most_damaged_mean_good_seed": 149,
+          "lower_damage_minus_higher_damage_good_seed": -140,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.8175,
+              "good_seed_count": 9
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.88,
+              "good_seed_count": 149
+            }
+          ]
+        },
+        {
+          "mother": "2008|WG29",
+          "year": "2008",
+          "treatment": "ndi",
+          "eligible_scored_heads": 3,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.055,
+          "most_damaged_score": 0.405,
+          "damage_score_gap": 0.35000000000000003,
+          "least_damaged_mean_good_seed": 0,
+          "most_damaged_mean_good_seed": 0,
+          "lower_damage_minus_higher_damage_good_seed": 0,
+          "lower_damage_positive_rate": 0,
+          "higher_damage_positive_rate": 0,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "500",
+              "damage_score": 0.055,
+              "good_seed_count": 0
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.405,
+              "good_seed_count": 0
+            }
+          ]
+        },
+        {
+          "mother": "2008|WG30",
+          "year": "2008",
+          "treatment": "di",
+          "eligible_scored_heads": 3,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.205,
+          "most_damaged_score": 0.5175,
+          "damage_score_gap": 0.3125,
+          "least_damaged_mean_good_seed": 5,
+          "most_damaged_mean_good_seed": 80,
+          "lower_damage_minus_higher_damage_good_seed": -75,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.205,
+              "good_seed_count": 5
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.5175,
+              "good_seed_count": 80
+            }
+          ]
+        },
+        {
+          "mother": "2008|WR41",
+          "year": "2008",
+          "treatment": "di",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.205,
+          "most_damaged_score": 0.46125,
+          "damage_score_gap": 0.25625,
+          "least_damaged_mean_good_seed": 22,
+          "most_damaged_mean_good_seed": 37,
+          "lower_damage_minus_higher_damage_good_seed": -15,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.205,
+              "good_seed_count": 22
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.46125,
+              "good_seed_count": 37
+            }
+          ]
+        },
+        {
+          "mother": "2008|WR46",
+          "year": "2008",
+          "treatment": "dni",
+          "eligible_scored_heads": 3,
+          "least_damaged_head_count": 2,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.755,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.125,
+          "least_damaged_mean_good_seed": 11.5,
+          "most_damaged_mean_good_seed": 0,
+          "lower_damage_minus_higher_damage_good_seed": 11.5,
+          "lower_damage_positive_rate": 0.5,
+          "higher_damage_positive_rate": 0,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.755,
+              "good_seed_count": 23
+            },
+            {
+              "head_code": "300",
+              "damage_score": 0.755,
+              "good_seed_count": 0
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "400",
+              "damage_score": 0.88,
+              "good_seed_count": 0
+            }
+          ]
+        },
+        {
+          "mother": "2008|WR47",
+          "year": "2008",
+          "treatment": "di",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.8175,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.0625,
+          "least_damaged_mean_good_seed": 12,
+          "most_damaged_mean_good_seed": 36,
+          "lower_damage_minus_higher_damage_good_seed": -24,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "300",
+              "damage_score": 0.8175,
+              "good_seed_count": 12
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.88,
+              "good_seed_count": 36
+            }
+          ]
+        },
+        {
+          "mother": "2008|WR51",
+          "year": "2008",
+          "treatment": "ndni",
+          "eligible_scored_heads": 3,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 2,
+          "least_damaged_score": 0.8175,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.0625,
+          "least_damaged_mean_good_seed": 15,
+          "most_damaged_mean_good_seed": 2.5,
+          "lower_damage_minus_higher_damage_good_seed": 12.5,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 0.5,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "400",
+              "damage_score": 0.8175,
+              "good_seed_count": 15
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.88,
+              "good_seed_count": 0
+            },
+            {
+              "head_code": "300",
+              "damage_score": 0.88,
+              "good_seed_count": 5
+            }
+          ]
+        },
+        {
+          "mother": "2008|WR55",
+          "year": "2008",
+          "treatment": "di",
+          "eligible_scored_heads": 2,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.405,
+          "most_damaged_score": 0.88,
+          "damage_score_gap": 0.475,
+          "least_damaged_mean_good_seed": 74,
+          "most_damaged_mean_good_seed": 74,
+          "lower_damage_minus_higher_damage_good_seed": 0,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.405,
+              "good_seed_count": 74
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "400",
+              "damage_score": 0.88,
+              "good_seed_count": 74
+            }
+          ]
+        },
+        {
+          "mother": "2008|WR56",
+          "year": "2008",
+          "treatment": "di",
+          "eligible_scored_heads": 3,
+          "least_damaged_head_count": 1,
+          "most_damaged_head_count": 1,
+          "least_damaged_score": 0.405,
+          "most_damaged_score": 0.6925,
+          "damage_score_gap": 0.2875,
+          "least_damaged_mean_good_seed": 99,
+          "most_damaged_mean_good_seed": 63,
+          "lower_damage_minus_higher_damage_good_seed": 36,
+          "lower_damage_positive_rate": 1,
+          "higher_damage_positive_rate": 1,
+          "severe_success_vs_low_failure": false,
+          "low_heads": [
+            {
+              "head_code": "200",
+              "damage_score": 0.405,
+              "good_seed_count": 99
+            }
+          ],
+          "high_heads": [
+            {
+              "head_code": "400",
+              "damage_score": 0.6925,
+              "good_seed_count": 63
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "equal_scored_damage_distinct_seed_outputs": {
+    "summary": {
+      "n_same_source_damage_score_terminal_groups": 13,
+      "n_distinct_source_mothers": 13,
+      "n_same_damage_but_different_good_seed_counts": 9,
+      "n_same_damage_but_seed_positive_vs_zero": 8,
+      "by_year": {
+        "2007": {
+          "eligible_groups": 3,
+          "variable_good_seed_groups": 3
+        },
+        "2008": {
+          "eligible_groups": 10,
+          "variable_good_seed_groups": 6
+        }
+      }
+    },
+    "groups": [
+      {
+        "mother": "2007|313",
+        "year": "2007",
+        "treatment": "di",
+        "damage_score": 0.205,
+        "n_heads": 2,
+        "min_good_seed": 0,
+        "max_good_seed": 13,
+        "different_good_seed_counts": true,
+        "mixed_zero_and_positive": true,
+        "heads": [
+          {
+            "head_code": "300",
+            "good_seed_count": 13
+          },
+          {
+            "head_code": "400",
+            "good_seed_count": 0
+          }
+        ]
+      },
+      {
+        "mother": "2007|368",
+        "year": "2007",
+        "treatment": "di",
+        "damage_score": 0.205,
+        "n_heads": 2,
+        "min_good_seed": 0,
+        "max_good_seed": 10,
+        "different_good_seed_counts": true,
+        "mixed_zero_and_positive": true,
+        "heads": [
+          {
+            "head_code": "300",
+            "good_seed_count": 0
+          },
+          {
+            "head_code": "600",
+            "good_seed_count": 10
+          }
+        ]
+      },
+      {
+        "mother": "2007|374",
+        "year": "2007",
+        "treatment": "ndni",
+        "damage_score": 0.88,
+        "n_heads": 2,
+        "min_good_seed": 0,
+        "max_good_seed": 22,
+        "different_good_seed_counts": true,
+        "mixed_zero_and_positive": true,
+        "heads": [
+          {
+            "head_code": "200",
+            "good_seed_count": 0
+          },
+          {
+            "head_code": "400",
+            "good_seed_count": 22
+          }
+        ]
+      },
+      {
+        "mother": "2008|ES76",
+        "year": "2008",
+        "treatment": "dni",
+        "damage_score": 0.88,
+        "n_heads": 2,
+        "min_good_seed": 0,
+        "max_good_seed": 10,
+        "different_good_seed_counts": true,
+        "mixed_zero_and_positive": true,
+        "heads": [
+          {
+            "head_code": "200",
+            "good_seed_count": 10
+          },
+          {
+            "head_code": "300",
+            "good_seed_count": 0
+          }
+        ]
+      },
+      {
+        "mother": "2008|SD02",
+        "year": "2008",
+        "treatment": "dni",
+        "damage_score": 0.88,
+        "n_heads": 2,
+        "min_good_seed": 0,
+        "max_good_seed": 0,
+        "different_good_seed_counts": false,
+        "mixed_zero_and_positive": false,
+        "heads": [
+          {
+            "head_code": "200",
+            "good_seed_count": 0
+          },
+          {
+            "head_code": "300",
+            "good_seed_count": 0
+          }
+        ]
+      },
+      {
+        "mother": "2008|SD04",
+        "year": "2008",
+        "treatment": "di",
+        "damage_score": 0.5175,
+        "n_heads": 2,
+        "min_good_seed": 134,
+        "max_good_seed": 148,
+        "different_good_seed_counts": true,
+        "mixed_zero_and_positive": false,
+        "heads": [
+          {
+            "head_code": "200",
+            "good_seed_count": 134
+          },
+          {
+            "head_code": "300",
+            "good_seed_count": 148
+          }
+        ]
+      },
+      {
+        "mother": "2008|SD05",
+        "year": "2008",
+        "treatment": "dni",
+        "damage_score": 0.88,
+        "n_heads": 3,
+        "min_good_seed": 0,
+        "max_good_seed": 2,
+        "different_good_seed_counts": true,
+        "mixed_zero_and_positive": true,
+        "heads": [
+          {
+            "head_code": "200",
+            "good_seed_count": 0
+          },
+          {
+            "head_code": "300",
+            "good_seed_count": 2
+          },
+          {
+            "head_code": "400",
+            "good_seed_count": 0
+          }
+        ]
+      },
+      {
+        "mother": "2008|SD13",
+        "year": "2008",
+        "treatment": "ndi",
+        "damage_score": 0.88,
+        "n_heads": 2,
+        "min_good_seed": 0,
+        "max_good_seed": 17,
+        "different_good_seed_counts": true,
+        "mixed_zero_and_positive": true,
+        "heads": [
+          {
+            "head_code": "200",
+            "good_seed_count": 0
+          },
+          {
+            "head_code": "300",
+            "good_seed_count": 17
+          }
+        ]
+      },
+      {
+        "mother": "2008|SD14",
+        "year": "2008",
+        "treatment": "ndni",
+        "damage_score": 0.88,
+        "n_heads": 2,
+        "min_good_seed": 0,
+        "max_good_seed": 0,
+        "different_good_seed_counts": false,
+        "mixed_zero_and_positive": false,
+        "heads": [
+          {
+            "head_code": "200",
+            "good_seed_count": 0
+          },
+          {
+            "head_code": "300",
+            "good_seed_count": 0
+          }
+        ]
+      },
+      {
+        "mother": "2008|WG31",
+        "year": "2008",
+        "treatment": "ndni",
+        "damage_score": 0.88,
+        "n_heads": 4,
+        "min_good_seed": 0,
+        "max_good_seed": 0,
+        "different_good_seed_counts": false,
+        "mixed_zero_and_positive": false,
+        "heads": [
+          {
+            "head_code": "200",
+            "good_seed_count": 0
+          },
+          {
+            "head_code": "400",
+            "good_seed_count": 0
+          },
+          {
+            "head_code": "500",
+            "good_seed_count": 0
+          },
+          {
+            "head_code": "1300",
+            "good_seed_count": 0
+          }
+        ]
+      },
+      {
+        "mother": "2008|WG35",
+        "year": "2008",
+        "treatment": "ndni",
+        "damage_score": 0.88,
+        "n_heads": 3,
+        "min_good_seed": 0,
+        "max_good_seed": 0,
+        "different_good_seed_counts": false,
+        "mixed_zero_and_positive": false,
+        "heads": [
+          {
+            "head_code": "200",
+            "good_seed_count": 0
+          },
+          {
+            "head_code": "300",
+            "good_seed_count": 0
+          },
+          {
+            "head_code": "500",
+            "good_seed_count": 0
+          }
+        ]
+      },
+      {
+        "mother": "2008|WR46",
+        "year": "2008",
+        "treatment": "dni",
+        "damage_score": 0.755,
+        "n_heads": 2,
+        "min_good_seed": 0,
+        "max_good_seed": 23,
+        "different_good_seed_counts": true,
+        "mixed_zero_and_positive": true,
+        "heads": [
+          {
+            "head_code": "200",
+            "good_seed_count": 23
+          },
+          {
+            "head_code": "300",
+            "good_seed_count": 0
+          }
+        ]
+      },
+      {
+        "mother": "2008|WR51",
+        "year": "2008",
+        "treatment": "ndni",
+        "damage_score": 0.88,
+        "n_heads": 2,
+        "min_good_seed": 0,
+        "max_good_seed": 5,
+        "different_good_seed_counts": true,
+        "mixed_zero_and_positive": true,
+        "heads": [
+          {
+            "head_code": "200",
+            "good_seed_count": 0
+          },
+          {
+            "head_code": "300",
+            "good_seed_count": 5
+          }
+        ]
+      }
+    ]
+  },
+  "prior_source_nested_branch_germination_not_measured": {
+    "n_parent_source_code_matched_pairs": 20,
+    "by_year": {
+      "2007": {
+        "n": 11,
+        "damage_and_seed_direction_cross_tab": {
+          "positive_damage__negative_good_seed": 4,
+          "negative_damage__positive_good_seed": 3,
+          "negative_damage__negative_good_seed": 2,
+          "positive_damage__positive_good_seed": 1,
+          "positive_damage__equal_good_seed": 1
+        }
+      },
+      "2008": {
+        "n": 9,
+        "damage_and_seed_direction_cross_tab": {
+          "negative_damage__negative_good_seed": 2,
+          "equal_damage__equal_good_seed": 1,
+          "positive_damage__negative_good_seed": 3,
+          "equal_damage__negative_good_seed": 2,
+          "equal_damage__positive_good_seed": 1
+        }
+      }
+    }
+  },
+  "limits": {
+    "only_mothers_with_min_two_scored_head_same_class_and_different_damage_eligible": true,
+    "min_max_selection_on_observed_posttreatment_damage_not_randomized": true,
+    "head_size_and_flowering_age_not_identified": true,
+    "source_damaged_appearance_and_good_seed_are_related_but_different_scoring": true,
+    "exclusions_conflicting_treatments_and_orphans_not_imputed_zero": true,
+    "no_year_environment_only_conclusion_due_to_changed_protocol": true,
+    "no_true_spine_phyllary_angle_or_verified_pollinator_service": true,
+    "no_causal_insect_seed_fitness_or_genetic_LEGO_support": true,
+    "n_new_field_observations": 0
+  }
+}
