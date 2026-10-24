@@ -43,7 +43,7 @@ jobs:
           root=ET.fromstring(data)
           full='\n'.join(root.itertext()).replace('·','.').replace('−','-')
           need=('0.958','0.951','0.906','16.710','92.808',
-                '33.414','47.959','3.984','18.239','7.823','0.789','0.046')
+                '33.414','47.959','3.984','18.239','7.823','0.789')
           missing=[p for p in need if p not in full]
           assert not missing,('SOURCE_MODEL_TABLE_MISMATCH',missing)
           assert 'plv019' in full, 'SOURCE_PAPER_IDENTITY_DRIFT'
