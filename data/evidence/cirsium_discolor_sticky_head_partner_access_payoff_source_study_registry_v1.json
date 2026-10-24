@@ -1,0 +1,206 @@
+{
+  "version": "aza3_real_cirsium_sticky_exudate_state_dependent_function_original_study_registry_v1",
+  "as_of": "2026-10-24",
+  "main_question": "Does an anatomically available sticky involucral interface necessarily prevent seed predation and increase viable seeds, or depend on which arthropods can access or bypass the interface?",
+  "primary_sources": [
+    {
+      "source_id": "WAT1983",
+      "authors": "Willson, Anderson & Thomas",
+      "paper_year": 1983,
+      "doi": "10.2307/2425228",
+      "title": "Bracteal Exudates in Two Cirsium Species as Possible Deterrents to Insect Consumers of Seeds",
+      "journal": "American Midland Naturalist 110:212–214",
+      "source_grade": "PUBLISHED_AUTHOR_ABSTRACT_REPRODUCED_ON_RESEARCHGATE_NOT_FULL_PDF_REVERIFIED",
+      "access_urls": [
+        "https://doi.org/10.2307/2425228",
+        "https://www.researchgate.net/publication/282714137_Sticky_exudates_on_the_inflorescences_of_Cirsium_discolor_Asteraceae_and_Penstemon_digitalis_Scrophulariaceae_as_possible_defense_against_seed_predators"
+      ],
+      "organismal_samples": [
+        {
+          "cohort_id": "WAT1983_discolor_Illinois_1980",
+          "species": "Cirsium discolor",
+          "region": "central Illinois",
+          "field_years": [
+            1980
+          ],
+          "experimental_treatment": "original sticky bract exudates experimentally occluded",
+          "original_design_unit": "involucres or plants per original article; not recovered exactly",
+          "comparison": "exudate occluded vs sticky intact",
+          "response": "insect seed predation",
+          "authors_reported_response": "GREATER_SEED_PREDATION_WHEN_STICKY_EXUDATE_OCCLUDED",
+          "report_significance": "REPORTED_STATISTICALLY_SIGNIFICANT",
+          "source_p_value": null,
+          "source_mean_seed_loss": null,
+          "source_individual_head_records_available": false,
+          "original_functional_role": "source supports seed predator deterring function in this historical cohort only"
+        },
+        {
+          "cohort_id": "WAT1983_flodmani_Minnesota_1980",
+          "species": "Cirsium flodmanii",
+          "source_name_variant": "Cirsium flodmani in original summary, name accepted concept not revalidated",
+          "region": "northwestern Minnesota",
+          "field_years": [
+            1980
+          ],
+          "experimental_treatment": "original sticky bract exudates experimentally occluded",
+          "comparison": "exudate occluded vs sticky intact",
+          "original_design_unit": "not recovered exactly",
+          "response": "insect seed predation",
+          "authors_reported_response": "NO_EFFECT_DETECTED",
+          "report_significance": "NOT_DETECTED",
+          "source_p_value": null,
+          "source_mean_seed_loss": null,
+          "source_individual_head_records_available": false
+        },
+        {
+          "cohort_id": "WAT1983_flodmani_Minnesota_1982",
+          "species": "Cirsium flodmanii",
+          "source_name_variant": "Cirsium flodmani in original summary, name accepted concept not revalidated",
+          "region": "northwestern Minnesota",
+          "field_years": [
+            1982
+          ],
+          "experimental_treatment": "original sticky bract exudates experimentally occluded",
+          "comparison": "exudate occluded vs sticky intact",
+          "original_design_unit": "not recovered exactly",
+          "response": "insect seed predation",
+          "authors_reported_response": "NO_EFFECT_DETECTED",
+          "report_significance": "NOT_DETECTED",
+          "source_p_value": null,
+          "source_mean_seed_loss": null,
+          "source_individual_head_records_available": false
+        }
+      ]
+    },
+    {
+      "source_id": "T2003",
+      "authors": "Patricia A. Thomas",
+      "paper_year": 2003,
+      "doi": "10.22543/0090-0222.2085",
+      "title": "Sticky Exudates on the Inflorescences of Cirsium discolor and Penstemon digitalis as Possible Defense Against Seed Predators",
+      "journal": "The Great Lakes Entomologist 36(3–4):112–121",
+      "source_grade": "PUBLISHER_HOSTED_ORIGINAL_ABSTRACT_NOT_FULL_PDF_REVERIFIED",
+      "access_urls": [
+        "https://scholar.valpo.edu/tgle/vol36/iss2/3/"
+      ],
+      "organismal_samples": [
+        {
+          "cohort_id": "T2003_discolor_Illinois_1982_1987",
+          "species": "Cirsium discolor",
+          "region": "Trelease Grassland Research Area and adjacent Phillips Tract, Illinois (secondary location description)",
+          "field_years": [
+            1982,
+            1983,
+            1984,
+            1985,
+            1986,
+            1987
+          ],
+          "field_year_scope": "paper reports study covering 1982–1987; no claim C. discolor was sampled every individual year",
+          "experimental_treatment": "sticky inflorescence exudates neutralized",
+          "comparison": "neutralized sticky traps vs intact",
+          "response": "seed predators, predatory arthropods and seed production",
+          "authors_reported_response": "NO_SUPPORT_FOR_GREATER_SEED_PREDATORS_OR_LOWER_SEED_PRODUCTION_WHEN_NEUTRALIZED",
+          "report_significance": "ORIGINAL_ABSTRACT_NULL_SUPPORT_NOT_A_PROOF_OF_ZERO",
+          "original_design_unit": "source abstract only; individual and plant denominators not verified",
+          "source_p_value": null,
+          "source_mean_seed_loss": null,
+          "source_individual_head_records_available": false,
+          "co_studied_species": "Penstemon digitalis",
+          "source_result_reported_jointly_across_plant_species": true
+        }
+      ]
+    },
+    {
+      "source_id": "T2007",
+      "authors": "Patricia A. Thomas",
+      "paper_year": 2007,
+      "doi": "10.22543/0090-0222.2188",
+      "title": "Arthropods Utilizing Sticky Inflorescences of Cirsium discolor and Penstemon digitalis",
+      "journal": "The Great Lakes Entomologist 40(3–4):169–176",
+      "source_grade": "PUBLISHER_HOSTED_ORIGINAL_ABSTRACT_NOT_FULL_PDF_REVERIFIED",
+      "access_urls": [
+        "https://scholar.valpo.edu/tgle/vol40/iss2/8/"
+      ],
+      "original_interaction_study": "observational arthropod use, not randomized stickiness neutralization",
+      "direct_original_individual_event_ids_available": false,
+      "observed_interfaces": [
+        {
+          "role": "reported_pollinators",
+          "original_observation": "DO_NOT_CONTACT_STICKY_TRAPS",
+          "source_species": "Cirsium discolor and Penstemon digitalis",
+          "same_head_pollination_effectiveness_measured": false
+        },
+        {
+          "role": "specialist_seed_consumers",
+          "original_observation": "SOME_SEED_PREDATORS_BYPASS_STICKY_TRAPS",
+          "source_species": "Cirsium discolor and Penstemon digitalis",
+          "confirmed_seed_predator_species_count": null
+        },
+        {
+          "role": "small_prey_gleaning_arthropod_predators",
+          "original_observation": "MINUTE_PIRATE_BUG_AND_SMALL_SALTICID_SPIDER_SEEM_TO_GLEAN_TRAPPED_PREY",
+          "source_species": "Cirsium discolor",
+          "causal_seed_predator_reduction_demonstrated": false
+        },
+        {
+          "role": "ants_and_aphids",
+          "original_observation": "REPORTED_DETERRED_BY_STICKY_TRAPS",
+          "source_species": "Cirsium discolor and Penstemon digitalis",
+          "is_seed_predator_at_flower_bud_verified": false
+        }
+      ]
+    }
+  ],
+  "other_genus_original_comparator": {
+    "source_id": "SH2015",
+    "species": "Pedicularis rex",
+    "doi": "10.1093/aobpla/plv019",
+    "evidence_source_in_aza3": "data/evidence/pedicularis_rex_two_access_operators_author_source_v1.json",
+    "manipulated_module": "water retention in cupulate bract plus cutting an opening",
+    "distinct_from_sticky_exudate_mechanism": true,
+    "source_six_population_predation_main_effect": "p<0.0001",
+    "source_population_tests_nominal_significant": 5,
+    "new_aza3_six_test_BH_conservative_significant": 4,
+    "source_single_population_pollinator_visitation_p": 0.958,
+    "source_initial_seed_set_across_six_populations_p": 0.906,
+    "do_not_use_as_independent_Cirsium_fitness_effect": true
+  },
+  "biology_contrast": {
+    "sticky_involucral_exudates_present_in_all_recorded_Cirsium_species": true,
+    "cross_study_same_species_discolor_source_evidence_classes": [
+      "REPORTED_STATISTICALLY_SIGNIFICANT_POSITIVE_DEFENSE_1980",
+      "NO_SUPPORT_FOR_PREDATION_OR_SEED_PRODUCTIVITY_EFFECT_IN_1982_1987_STUDY"
+    ],
+    "source_study_environment_and_treatment_comparable": false,
+    "zero_effect_statistical_equivalence_not_tested": true,
+    "study_year_x_method_x_arthropod_community_confounding_unresolved": true,
+    "no_common_manipulated_head_id_between_1983_2003": true,
+    "no_unique_true_insect_sticky_surface_contact_with_later_head_fitness_outcome": true,
+    "explanatory_hypotheses_not_supported_as_causal_facts": [
+      "seed feeders bypass exterior sticky portal despite ants and aphids being deterred",
+      "enemy abundance or accessibility differs among historical cohorts",
+      "small predator gleaning may redistribute enemy attack but protect or harm plants depending on timing"
+    ],
+    "identifiable_source_facts": [
+      "a plant carrying sticky head bracts can have no detected fitness benefit from exudate neutralization",
+      "pollinators can avoid the sticky surface while arthropod enemies interact with it",
+      "one sticky surface may have different encounter roles for mutualists, nuisance arthropods, specialized seed feeders and predators"
+    ],
+    "no_meta_effect_size_without_original_group_means_and_unit_counts": true,
+    "no_lifetime_stable_heritable_selection_estimated": true,
+    "no_ancestral_trait_reexpression_estimated": true,
+    "no_new_own_field_observations": 0
+  },
+  "provenance_caveats": {
+    "papers_1983_2003_2007_are_not_three_independent_origins": true,
+    "source_1983_full_original_pdf_verified": false,
+    "source_2003_full_original_pdf_verified": false,
+    "source_2007_full_original_pdf_verified": false,
+    "observation_2007_may_share_study_species_2003_but_no_head_links_verified": true,
+    "original_study_sample_sizes_not_known_no_pseudoprecise_extraction": true,
+    "not_pretend_no_detectable_result_means_zero": true,
+    "not_pretend_differing_trials_demonstrate_temporal_reversal": true,
+    "no_same_genotype_module_recombination_inference": true
+  }
+}
