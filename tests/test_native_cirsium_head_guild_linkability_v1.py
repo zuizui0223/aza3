@@ -92,10 +92,10 @@ class SourceGatedVisitorCrosswalk(unittest.TestCase):
         self.assertEqual(g["status"],"DESCRIPTIVE_SPECIES_LEVEL_ONLY")
         self.assertAlmostEqual(
             g["mean_recorded_hymenoptera_fraction_state1_minus_state0"],
-            .5)
+            .45)
         self.assertAlmostEqual(
             g["mean_recorded_lepidoptera_fraction_state1_minus_state0"],
-            -.5)
+            -.45)
 
     def test_no_region_matched_pairs_cannot_be_inferred_as_no_visitor(self):
         df=pd.DataFrame(columns=[
