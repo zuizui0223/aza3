@@ -1,0 +1,61 @@
+name: Q2 original Cirsium sticky head defence partner and context evidence
+on:
+  pull_request:
+    paths:
+      - 'analysis/audit_cirsium_sticky_head_partner_payoff_regime_v1.py'
+      - 'tests/test_cirsium_sticky_head_partner_payoff_regime_v1.py'
+      - 'data/evidence/cirsium_discolor_sticky_head_partner_access_payoff_source_study_registry_v1.json'
+      - 'docs/CIRSIUM_STICKY_BRACT_REGIME_DEPENDENT_FUNCTION_Q2_20261024.md'
+      - '.github/workflows/audit-cirsium-sticky-bract-payoff-regime-v1.yml'
+      - 'README.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-experiment-source-claims-not-new-observations:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check 16 source provenance and false-causal claim controls
+        run: |
+          python -m py_compile analysis/audit_cirsium_sticky_head_partner_payoff_regime_v1.py
+          python -m unittest discover -s tests -p 'test_cirsium_sticky_head_partner_payoff_regime_v1.py' -v
+      - name: Audit published original evidence at true organism, intervention and insect-contact grain
+        run: |
+          mkdir -p work/sticky_head_q2
+          python analysis/audit_cirsium_sticky_head_partner_payoff_regime_v1.py \
+            --source data/evidence/cirsium_discolor_sticky_head_partner_access_payoff_source_study_registry_v1.json \
+            --pedicularis-comparator data/evidence/pedicularis_rex_two_access_operators_author_source_v1.json \
+            --out work/sticky_head_q2/sticky_payoff_audit.json
+      - name: Do not convert original unknown significance, time or arthropod bypass into fabricated head selection
+        run: |
+          python - <<'PY'
+          import json
+          a=json.load(open('work/sticky_head_q2/sticky_payoff_audit.json'))
+          registry=json.load(open('data/evidence/cirsium_discolor_sticky_head_partner_access_payoff_source_study_registry_v1.json'))
+          assert a['provenance']['primary_publications']==3
+          assert a['provenance']['original_source_organism_cohorts']==4
+          assert a['original_seed_predation_support']['significant_source_reports']==1
+          assert a['original_seed_predation_support']['reported_nondetections_not_null_effect_size']==3
+          assert a['original_seed_predation_support']['pooled_experimental_effect_size'] is None
+          assert a['original_seed_predation_support']['confidence_interval_for_sticky_defence_benefit'] is None
+          assert a['original_seed_predation_support']['sign_reversal_demonstrated'] is False
+          assert a['independent_observed_visitor_access_2007']['reported_pollinators']=='DO_NOT_CONTACT_STICKY_TRAPS'
+          assert a['independent_observed_visitor_access_2007']['specialist_seed_consumers']=='SOME_SEED_PREDATORS_BYPASS_STICKY_TRAPS'
+          assert a['positive_non_Cirsium_comparator']['site_specific_predation_significant_after_conservative_BH']==4
+          assert all(not registry['provenance_caveats'][k] for k in ('source_1983_full_original_pdf_verified','source_2003_full_original_pdf_verified','source_2007_full_original_pdf_verified'))
+          assert a['biological_inference']['trait_by_true_insect_contact_measured_in_same_head_to_fitness'] is False
+          assert a['biological_inference']['new_original_organismal_field_rows']==0
+          print('PASS source-authentic Cirsium repeated intervention reports, separate 2007 contact routes, distinct published Pedicularis positive comparator, no invented GLM p/CI/raw field records or adaptation.')
+          PY
+      - name: Preserve sourced claim audit only (no external raw papers or unverified head records)
+        uses: actions/upload-artifact@v4
+        with:
+          name: Cirsium-verified-sticky-bract-different-studies-claim-ceiling-v1
+          path: work/sticky_head_q2/sticky_payoff_audit.json
+          if-no-files-found: error
+          retention-days: 30
