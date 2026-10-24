@@ -165,7 +165,7 @@ class OriginalHeadInjurySeedRank(unittest.TestCase):
 
     def test_negative_injury_code_exceeds_original_scale(self):
         heads=copy.deepcopy(self.h)
-        heads[0]["av.dam"]="1.01"
+        heads[1]["av.dam"]="1.01"
         with self.assertRaisesRegex(ValueError,"INVALID_CODED_RECEPTACLE_DAMAGE"):
             v.analyze(self.m,heads,self.d)
 
