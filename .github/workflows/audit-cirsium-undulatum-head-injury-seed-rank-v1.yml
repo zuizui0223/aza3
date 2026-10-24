@@ -1,0 +1,82 @@
+name: Source-authentic within-mother Cirsium head injury vs seeds
+on:
+  pull_request:
+    paths:
+      - 'analysis/audit_cirsium_undulatum_within_mother_injury_seed_rank_v1.py'
+      - 'tests/test_cirsium_undulatum_within_mother_injury_seed_rank_v1.py'
+      - 'data/evidence/cirsium_undulatum_within_mother_damage_seed_rank_independent_js_v1.json'
+      - 'docs/CIRSIUM_UNDULATUM_WITHIN_MOTHER_HEAD_DAMAGE_SEED_DISCORDANCE_20261024.md'
+      - 'data/external/usda_wavyleaf_2007_2008/**'
+      - '.github/workflows/audit-cirsium-undulatum-head-injury-seed-rank-v1.yml'
+      - 'README.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  actual-usda-source-mother-head-scoring:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test maternal grain, original scoring, coded damage, source exclusions and false biological claims
+        run: |
+          python -m py_compile analysis/audit_cirsium_undulatum_within_mother_injury_seed_rank_v1.py
+          python -m unittest discover -s tests -p 'test_cirsium_undulatum_within_mother_injury_seed_rank_v1.py' -v
+      - name: Recompute genuine original USDA 106 plant 323 head observations and 46 maternal terminal contrasts
+        run: |
+          mkdir -p work/cirsium_injury
+          python analysis/audit_cirsium_undulatum_within_mother_injury_seed_rank_v1.py \
+            --mothers data/external/usda_wavyleaf_2007_2008/mother_plants.csv \
+            --heads data/external/usda_wavyleaf_2007_2008/flower_heads.csv \
+            --dictionary data/external/usda_wavyleaf_2007_2008/source_dictionary.txt \
+            --out work/cirsium_injury/result_original_python.json
+      - name: Compare every mother and genuine head code to independently computed original-data JS receipt
+        run: |
+          python - <<'PY'
+          import json,math
+          actual=json.load(open('work/cirsium_injury/result_original_python.json'))
+          receipt=json.load(open('data/evidence/cirsium_undulatum_within_mother_damage_seed_rank_independent_js_v1.json'))
+          def near(x,y,key='root'):
+              if isinstance(y,dict):
+                  assert isinstance(x,dict) and set(x)==set(y),(key,'keys',set(x)^set(y))
+                  for k in y:near(x[k],y[k],key+'.'+k)
+              elif isinstance(y,list):
+                  assert isinstance(x,list) and len(x)==len(y),(key,'size')
+                  for i,(a,b) in enumerate(zip(x,y)):
+                      near(a,b,key+f'[{i}]')
+              elif type(y) is bool:
+                  assert type(x) is bool and x==y,(key,x,y)
+              elif type(y) in (int,float):
+                  assert type(x) in (int,float) and math.isfinite(x),(key,x,y)
+                  assert math.isclose(x,y,rel_tol=1e-11,abs_tol=1e-11),(key,x,y)
+              else:
+                  assert x==y,(key,x,y)
+          near(actual,receipt)
+          for r in ('lateral_all_classes','terminal_only'):
+              u=actual['analyses'][r]
+              assert len(u['per_mother'])==u['summary']['n_original_mothers']
+              assert len({x['mother'] for x in u['per_mother']})==len(u['per_mother'])
+          t=actual['analyses']['terminal_only']['summary']
+          assert t['n_original_mothers']==46
+          assert t['directions']=={
+              'lower_damage_has_more_good_seeds':23,
+              'higher_damage_has_more_good_seeds':18,
+              'equal_good_seed_counts':5}
+          s=actual['equal_scored_damage_distinct_seed_outputs']['summary']
+          assert s['n_same_source_damage_score_terminal_groups']==13
+          assert s['n_same_damage_but_different_good_seed_counts']==9
+          assert s['n_same_damage_but_seed_positive_vs_zero']==8
+          assert actual['limits']['no_true_spine_phyllary_angle_or_verified_pollinator_service']
+          assert actual['limits']['n_new_field_observations']==0
+          print('PASS 3 Git-blob original source locks, 106 real plants, 323 heads, 297 aligned, all original 48/46 mothers, 13 equal-score groups and prior nested 20 source head pairs; no fabricated causal head defense result.')
+          PY
+      - name: Upload original source numeric receipt (no duplicated field data)
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-Cirsium-within-mother-injury-seed-rank-v1
+          path: work/cirsium_injury/result_original_python.json
+          retention-days: 30
+          if-no-files-found: error
