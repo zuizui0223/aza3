@@ -332,6 +332,11 @@ def main():
     a.out.parent.mkdir(parents=True,exist_ok=True)
     a.out.write_text(json.dumps(result,indent=2,ensure_ascii=False,
                                 allow_nan=False)+"\n")
+    # Intentionally emit a second single-line AGGREGATED receipt in CI so
+    # reviewers can source-freeze its 56 taxon coverage outcomes without
+    # copying sensitive original event IDs, observer IDs or coordinates.
+    print("NATIVE_CIRSIUM_EVIDENCE_JSON="+json.dumps(
+        result,separators=(",",":"),ensure_ascii=False,allow_nan=False))
     print(json.dumps({
         "panel":result["source_panel"],
         "coverage":result["taxa_original_records_at_least_N_in_2_or_more_regions"],
