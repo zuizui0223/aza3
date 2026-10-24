@@ -299,6 +299,65 @@ def nested_pairs(scored):
         "by_year":out,
     }
 
+def correlation_diagnostic(terminal):
+    """Head-pooled vs within-mother Pearson, both descriptive diagnostics.
+
+    The pooled head correlation pseudoreplicates mothers; the within-mother
+    residual correlation uses ONLY mothers with >=2 source terminal heads.
+    Source-year split preserves calendar/protocol context. Neither is a
+    causal effect of altering damage or a source sex/age adjustment.
+    """
+    def avg(xs):
+        return sum(xs)/len(xs)
+
+    def pearson(rows):
+        if len(rows)<3:
+            return None
+        ax=avg([r["damage"] for r in rows])
+        ay=avg([r["good"] for r in rows])
+        num=dx=dy=0.0
+        for r in rows:
+            x=r["damage"]-ax
+            y=r["good"]-ay
+            num+=x*y
+            dx+=x*x
+            dy+=y*y
+        return num/math.sqrt(dx*dy) if dx>0 and dy>0 else None
+
+    original=[{
+        "year":h["year"],"mother":mother_id(h),
+        "damage":damage(h),"good":good(h),
+    } for h in terminal]
+    results={}
+    for year in (*YEARS,"all_years_descriptive_only"):
+        vals=[r for r in original
+              if year=="all_years_descriptive_only" or r["year"]==year]
+        grouped=defaultdict(list)
+        for r in vals:
+            grouped[r["mother"]].append(r)
+        centered=[]
+        n_eligible=0
+        for rr in grouped.values():
+            if len(rr)<2:
+                continue
+            n_eligible+=1
+            md=avg([x["damage"] for x in rr])
+            ms=avg([x["good"] for x in rr])
+            centered.extend({
+                "damage":x["damage"]-md,
+                "good":x["good"]-ms,
+            } for x in rr)
+        results[year]={
+            "n_original_head_records":len(vals),
+            "n_original_mothers":len(grouped),
+            "n_mothers_at_least_two_heads":n_eligible,
+            "n_terminal_heads_in_mothers_at_least_two":len(centered),
+            "pooled_head_level_r_not_independent":pearson(vals),
+            "within_mother_demeaned_r_descriptive":pearson(centered),
+        }
+    return results
+
+
 def analyze(mothers,heads,dictionary):
     ix,scored,terminal,intermediate,audit=audit_sources(
         mothers,heads,dictionary)
@@ -341,6 +400,8 @@ def analyze(mothers,heads,dictionary):
         },
         "prior_source_nested_branch_germination_not_measured":
             nested_pairs(scored),
+        "terminal_score_vs_good_seed_pearson_diagnostic":
+            correlation_diagnostic(terminal),
         "limits":{
             "only_mothers_with_min_two_scored_head_same_class_and_different_damage_eligible":True,
             "min_max_selection_on_observed_posttreatment_damage_not_randomized":True,
