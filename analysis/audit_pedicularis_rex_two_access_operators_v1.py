@@ -98,7 +98,7 @@ def audit(evidence):
     qmap={}
     for row,q in zip(sorted_sites,expected_bh):
         name=row["name"]
-        need(math.isclose(row["bh_q_conservative_upper"],q,
+        need(math.isclose(row["BH_q_upper"],q,
                           rel_tol=0,abs_tol=1e-12),
              "ORIGINAL_SIX_SITE_BH_RECEIPT_DRIFT")
         need(row["passes_BH_conservative"]==(q<.05),
