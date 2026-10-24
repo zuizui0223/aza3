@@ -1,0 +1,1802 @@
+{
+  "schema": "aza3_original_ipomopsis_higher_order_selection_source_JS_v1",
+  "as_of": "2026-10-24",
+  "source": {
+    "archive": "https://zenodo.org/records/5083399",
+    "paper": "10.1086/716740",
+    "file": "Selection_by_pollinators_and_predators.csv",
+    "author_file_md5": "12ed3dbe6d269c5f808f9c6b230d468c",
+    "source_original_records": 437,
+    "original_missing_code": ".",
+    "source_original_plant_ids_unavailable": true
+  },
+  "design": {
+    "models": [
+      "width_quadratic",
+      "width_by_color",
+      "width_by_sepal"
+    ],
+    "primary_stage_responses": [
+      "seed_initiation_log1p",
+      "fruit_fly_escape_fraction"
+    ],
+    "original_site_labels_are_not_distinct_physical_sites": true,
+    "year_levels": [
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018
+    ],
+    "conditional_exploratory_not_randomized": true,
+    "interpret_permutation_with_source_exchangeability_caveat": true,
+    "structural_bridge_to_Cirsium_only_not_original_Cirsium_phenotypic_fitness_data": true
+  },
+  "models": [
+    {
+      "model_id": "width_quadratic",
+      "shape": "square",
+      "original_fields": [
+        "width"
+      ],
+      "n_original_joint_records": 367,
+      "n_eligible_original_source_rows": 354,
+      "n_original_site_year_type_groups": 34,
+      "model_source_group_rows": [
+        {
+          "key": "agg|2010|H",
+          "n": 2,
+          "source_file_rows": [
+            2,
+            3
+          ]
+        },
+        {
+          "key": "hyb|2010|H",
+          "n": 2,
+          "source_file_rows": [
+            4,
+            7
+          ]
+        },
+        {
+          "key": "hyb|2010|A",
+          "n": 2,
+          "source_file_rows": [
+            5,
+            6
+          ]
+        },
+        {
+          "key": "agg|2011|H",
+          "n": 23,
+          "source_file_rows": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            21,
+            22,
+            23,
+            24,
+            26,
+            27,
+            28,
+            30,
+            31,
+            33,
+            35
+          ]
+        },
+        {
+          "key": "agg|2011|A",
+          "n": 3,
+          "source_file_rows": [
+            25,
+            29,
+            34
+          ]
+        },
+        {
+          "key": "hyb|2011|H",
+          "n": 5,
+          "source_file_rows": [
+            36,
+            37,
+            38,
+            40,
+            41
+          ]
+        },
+        {
+          "key": "agg|2012|H",
+          "n": 14,
+          "source_file_rows": [
+            45,
+            46,
+            48,
+            49,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60
+          ]
+        },
+        {
+          "key": "hyb|2012|A",
+          "n": 4,
+          "source_file_rows": [
+            62,
+            64,
+            67,
+            73
+          ]
+        },
+        {
+          "key": "hyb|2012|H",
+          "n": 7,
+          "source_file_rows": [
+            63,
+            65,
+            69,
+            70,
+            71,
+            74,
+            75
+          ]
+        },
+        {
+          "key": "ten|2012|H",
+          "n": 3,
+          "source_file_rows": [
+            76,
+            78,
+            79
+          ]
+        },
+        {
+          "key": "agg|2013|H",
+          "n": 6,
+          "source_file_rows": [
+            80,
+            81,
+            83,
+            84,
+            85,
+            86
+          ]
+        },
+        {
+          "key": "agg|2013|A",
+          "n": 8,
+          "source_file_rows": [
+            82,
+            87,
+            88,
+            89,
+            90,
+            91,
+            93,
+            94
+          ]
+        },
+        {
+          "key": "hyb|2013|H",
+          "n": 2,
+          "source_file_rows": [
+            95,
+            99
+          ]
+        },
+        {
+          "key": "hyb|2013|A",
+          "n": 3,
+          "source_file_rows": [
+            96,
+            97,
+            98
+          ]
+        },
+        {
+          "key": "ten|2013|H",
+          "n": 3,
+          "source_file_rows": [
+            104,
+            105,
+            106
+          ]
+        },
+        {
+          "key": "agg|2014|H",
+          "n": 9,
+          "source_file_rows": [
+            107,
+            109,
+            110,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117
+          ]
+        },
+        {
+          "key": "hyb|2014|H",
+          "n": 8,
+          "source_file_rows": [
+            119,
+            120,
+            121,
+            123,
+            124,
+            125,
+            127,
+            128
+          ]
+        },
+        {
+          "key": "ten|2014|H",
+          "n": 20,
+          "source_file_rows": [
+            129,
+            130,
+            132,
+            134,
+            135,
+            136,
+            137,
+            138,
+            139,
+            141,
+            142,
+            143,
+            145,
+            146,
+            148,
+            149,
+            151,
+            152,
+            153,
+            154
+          ]
+        },
+        {
+          "key": "ten|2014|T",
+          "n": 3,
+          "source_file_rows": [
+            131,
+            140,
+            150
+          ]
+        },
+        {
+          "key": "ten|2014|A",
+          "n": 2,
+          "source_file_rows": [
+            147,
+            155
+          ]
+        },
+        {
+          "key": "agg|2015|A",
+          "n": 17,
+          "source_file_rows": [
+            159,
+            160,
+            161,
+            162,
+            163,
+            164,
+            165,
+            166,
+            167,
+            168,
+            170,
+            171,
+            172,
+            173,
+            174,
+            175,
+            176
+          ]
+        },
+        {
+          "key": "hyb|2015|H",
+          "n": 11,
+          "source_file_rows": [
+            177,
+            179,
+            182,
+            183,
+            184,
+            185,
+            186,
+            187,
+            188,
+            189,
+            190
+          ]
+        },
+        {
+          "key": "ten|2015|H",
+          "n": 12,
+          "source_file_rows": [
+            192,
+            195,
+            196,
+            197,
+            198,
+            200,
+            202,
+            203,
+            204,
+            208,
+            209,
+            211
+          ]
+        },
+        {
+          "key": "ten|2015|T",
+          "n": 4,
+          "source_file_rows": [
+            193,
+            194,
+            205,
+            210
+          ]
+        },
+        {
+          "key": "ten|2015|A",
+          "n": 2,
+          "source_file_rows": [
+            199,
+            201
+          ]
+        },
+        {
+          "key": "agg|2016|A",
+          "n": 18,
+          "source_file_rows": [
+            212,
+            213,
+            214,
+            215,
+            216,
+            217,
+            218,
+            219,
+            221,
+            222,
+            223,
+            225,
+            226,
+            227,
+            228,
+            229,
+            230,
+            231
+          ]
+        },
+        {
+          "key": "hyb|2016|H",
+          "n": 9,
+          "source_file_rows": [
+            232,
+            233,
+            234,
+            235,
+            237,
+            238,
+            239,
+            240,
+            241
+          ]
+        },
+        {
+          "key": "ten|2016|A",
+          "n": 2,
+          "source_file_rows": [
+            243,
+            248
+          ]
+        },
+        {
+          "key": "ten|2016|H",
+          "n": 6,
+          "source_file_rows": [
+            244,
+            245,
+            247,
+            249,
+            250,
+            251
+          ]
+        },
+        {
+          "key": "agg|2017|A",
+          "n": 47,
+          "source_file_rows": [
+            256,
+            257,
+            258,
+            259,
+            260,
+            261,
+            262,
+            263,
+            264,
+            265,
+            267,
+            268,
+            269,
+            270,
+            271,
+            272,
+            273,
+            274,
+            275,
+            276,
+            277,
+            278,
+            279,
+            280,
+            281,
+            282,
+            283,
+            284,
+            285,
+            286,
+            288,
+            289,
+            290,
+            291,
+            293,
+            294,
+            295,
+            296,
+            297,
+            298,
+            300,
+            301,
+            302,
+            303,
+            304,
+            305,
+            306
+          ]
+        },
+        {
+          "key": "hyb|2017|H",
+          "n": 31,
+          "source_file_rows": [
+            309,
+            310,
+            311,
+            312,
+            313,
+            314,
+            315,
+            316,
+            317,
+            318,
+            319,
+            320,
+            321,
+            322,
+            324,
+            325,
+            326,
+            327,
+            328,
+            329,
+            330,
+            332,
+            333,
+            334,
+            335,
+            336,
+            337,
+            339,
+            340,
+            341,
+            342
+          ]
+        },
+        {
+          "key": "agg|2018|A",
+          "n": 34,
+          "source_file_rows": [
+            350,
+            351,
+            352,
+            354,
+            355,
+            356,
+            359,
+            361,
+            362,
+            363,
+            364,
+            365,
+            366,
+            368,
+            369,
+            370,
+            371,
+            372,
+            373,
+            375,
+            376,
+            377,
+            378,
+            380,
+            382,
+            383,
+            388,
+            389,
+            390,
+            391,
+            392,
+            393,
+            396,
+            397
+          ]
+        },
+        {
+          "key": "hyb|2018|H",
+          "n": 30,
+          "source_file_rows": [
+            398,
+            399,
+            400,
+            401,
+            402,
+            406,
+            407,
+            408,
+            409,
+            410,
+            411,
+            412,
+            414,
+            415,
+            416,
+            418,
+            420,
+            421,
+            422,
+            423,
+            424,
+            425,
+            426,
+            427,
+            430,
+            431,
+            432,
+            433,
+            434,
+            435
+          ]
+        },
+        {
+          "key": "ten|2018|H",
+          "n": 2,
+          "source_file_rows": [
+            436,
+            438
+          ]
+        }
+      ],
+      "scaling": {
+        "source_trait_raw_means": [
+          3.16595872881356
+        ],
+        "source_trait_raw_sd": [
+          0.4768144141409369
+        ],
+        "global_standardization_then_within_original_stratum_centering": true
+      },
+      "estimand": "Incremental source within-garden/year/type second-order trait term conditional on linear traits; descriptive, no random floral trait allocation",
+      "inference": {
+        "permutations": 5000,
+        "bootstrap_draws": 1500,
+        "seed": 20261025,
+        "algorithm": "xorshift32",
+        "reference": "Freedman-Lane permuted main-effects regression residuals within source Site|Year|Type strata, paired stage outcomes shuffled with shared assignment",
+        "bootstrap": "Original source rows resampled within Site|Year|Type fixed strata; no verified plant identity",
+        "test_statistic": "nonnegative partial R2, refit base and full"
+      },
+      "endpoints": {
+        "seed_initiation_log1p": {
+          "base_sse": 311.9715692852289,
+          "full_sse": 308.2589646371263,
+          "partial_R2": 0.011900458290506002,
+          "extra_standardized_beta": 0.07775729151264825,
+          "linear_coefficients": [
+            0.07058459530319762
+          ],
+          "added_term_variation_explained_fraction": 0.011900458290506002,
+          "freedman_lane_within_source_group_p": 0.0643871225754849,
+          "bootstrap_beta_ci95": [
+            -0.013318880516433958,
+            0.172918837254508
+          ],
+          "bootstrap_partial_R2_ci95": [
+            0.00013188175225805663,
+            0.05662300151410776
+          ],
+          "n_valid_bootstrap": 1500,
+          "note": "The bootstrap interval for nonnegative partial R2 is not a test of model advantage"
+        },
+        "fruit_fly_escape_fraction": {
+          "base_sse": 9.90144959098209,
+          "full_sse": 9.85927889984264,
+          "partial_R2": 0.0042590421485211435,
+          "extra_standardized_beta": -0.008287186869189146,
+          "linear_coefficients": [
+            -0.006765001336312686
+          ],
+          "added_term_variation_explained_fraction": 0.0042590421485211435,
+          "freedman_lane_within_source_group_p": 0.23115376924615078,
+          "bootstrap_beta_ci95": [
+            -0.024776222281607058,
+            0.006224650937514304
+          ],
+          "bootstrap_partial_R2_ci95": [
+            0.000012740825560846629,
+            0.03445127339552799
+          ],
+          "n_valid_bootstrap": 1500,
+          "note": "The bootstrap interval for nonnegative partial R2 is not a test of model advantage"
+        }
+      },
+      "leave_one_source_year_out_within_test_stratum": {
+        "2010": {
+          "n_test_rows": 6,
+          "n_test_groups": 3,
+          "seed_initiation_log1p": {
+            "base_test_SSE": 1.300531655908836,
+            "extended_test_SSE": 1.7249127570267728
+          },
+          "fruit_fly_escape_fraction": {
+            "base_test_SSE": 0.014004711362111346,
+            "extended_test_SSE": 0.016473123130147774
+          }
+        },
+        "2011": {
+          "n_test_rows": 31,
+          "n_test_groups": 3,
+          "seed_initiation_log1p": {
+            "base_test_SSE": 18.9578226526172,
+            "extended_test_SSE": 18.421064414121112
+          },
+          "fruit_fly_escape_fraction": {
+            "base_test_SSE": 0.5812820134708861,
+            "extended_test_SSE": 0.5716388979461399
+          }
+        },
+        "2012": {
+          "n_test_rows": 28,
+          "n_test_groups": 4,
+          "seed_initiation_log1p": {
+            "base_test_SSE": 25.102596574970963,
+            "extended_test_SSE": 24.688375893415767
+          },
+          "fruit_fly_escape_fraction": {
+            "base_test_SSE": 0.7671999658389708,
+            "extended_test_SSE": 0.7583897115899441
+          }
+        },
+        "2013": {
+          "n_test_rows": 22,
+          "n_test_groups": 5,
+          "seed_initiation_log1p": {
+            "base_test_SSE": 12.38773663953793,
+            "extended_test_SSE": 12.03372522827443
+          },
+          "fruit_fly_escape_fraction": {
+            "base_test_SSE": 0.29001214486064475,
+            "extended_test_SSE": 0.2862369637572416
+          }
+        },
+        "2014": {
+          "n_test_rows": 42,
+          "n_test_groups": 5,
+          "seed_initiation_log1p": {
+            "base_test_SSE": 26.285990841397016,
+            "extended_test_SSE": 27.560417217801525
+          },
+          "fruit_fly_escape_fraction": {
+            "base_test_SSE": 1.0451262307876383,
+            "extended_test_SSE": 1.0680112549724583
+          }
+        },
+        "2015": {
+          "n_test_rows": 46,
+          "n_test_groups": 5,
+          "seed_initiation_log1p": {
+            "base_test_SSE": 42.99201492938744,
+            "extended_test_SSE": 43.473276795504816
+          },
+          "fruit_fly_escape_fraction": {
+            "base_test_SSE": 1.077422890804114,
+            "extended_test_SSE": 1.1482955991919783
+          }
+        },
+        "2016": {
+          "n_test_rows": 35,
+          "n_test_groups": 4,
+          "seed_initiation_log1p": {
+            "base_test_SSE": 30.267701027499925,
+            "extended_test_SSE": 31.69137691091046
+          },
+          "fruit_fly_escape_fraction": {
+            "base_test_SSE": 1.1597335548402197,
+            "extended_test_SSE": 1.162702889653107
+          }
+        },
+        "2017": {
+          "n_test_rows": 78,
+          "n_test_groups": 2,
+          "seed_initiation_log1p": {
+            "base_test_SSE": 69.39433480596384,
+            "extended_test_SSE": 69.32187797227243
+          },
+          "fruit_fly_escape_fraction": {
+            "base_test_SSE": 2.7438666196849217,
+            "extended_test_SSE": 2.743152940491971
+          }
+        },
+        "2018": {
+          "n_test_rows": 66,
+          "n_test_groups": 3,
+          "seed_initiation_log1p": {
+            "base_test_SSE": 94.01212345423558,
+            "extended_test_SSE": 110.2890307165616
+          },
+          "fruit_fly_escape_fraction": {
+            "base_test_SSE": 2.307738641532138,
+            "extended_test_SSE": 2.548146583504367
+          }
+        }
+      },
+      "leave_one_year_out_summary": {
+        "seed_initiation_log1p": {
+          "heldout_year_relative_SSE_gain": -0.05769615258402491,
+          "positive_means_improvement": true,
+          "base_SSE": 320.70085258151875,
+          "extra_SSE": 339.20405790588893
+        },
+        "fruit_fly_escape_fraction": {
+          "heldout_year_relative_SSE_gain": -0.03170928567538586,
+          "positive_means_improvement": true,
+          "base_SSE": 9.986386773181644,
+          "extra_SSE": 10.303047964237356
+        }
+      }
+    },
+    {
+      "model_id": "width_by_color",
+      "shape": "interaction",
+      "original_fields": [
+        "width",
+        "color"
+      ],
+      "n_original_joint_records": 301,
+      "n_eligible_original_source_rows": 288,
+      "n_original_site_year_type_groups": 29,
+      "model_source_group_rows": [
+        {
+          "key": "hyb|2010|A",
+          "n": 2,
+          "source_file_rows": [
+            5,
+            6
+          ]
+        },
+        {
+          "key": "agg|2011|H",
+          "n": 23,
+          "source_file_rows": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            21,
+            22,
+            23,
+            24,
+            26,
+            27,
+            28,
+            30,
+            31,
+            33,
+            35
+          ]
+        },
+        {
+          "key": "agg|2011|A",
+          "n": 3,
+          "source_file_rows": [
+            25,
+            29,
+            34
+          ]
+        },
+        {
+          "key": "hyb|2011|H",
+          "n": 5,
+          "source_file_rows": [
+            36,
+            37,
+            38,
+            40,
+            41
+          ]
+        },
+        {
+          "key": "agg|2012|H",
+          "n": 14,
+          "source_file_rows": [
+            45,
+            46,
+            48,
+            49,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60
+          ]
+        },
+        {
+          "key": "hyb|2012|A",
+          "n": 4,
+          "source_file_rows": [
+            62,
+            64,
+            67,
+            73
+          ]
+        },
+        {
+          "key": "hyb|2012|H",
+          "n": 7,
+          "source_file_rows": [
+            63,
+            65,
+            69,
+            70,
+            71,
+            74,
+            75
+          ]
+        },
+        {
+          "key": "ten|2012|H",
+          "n": 3,
+          "source_file_rows": [
+            76,
+            78,
+            79
+          ]
+        },
+        {
+          "key": "agg|2013|H",
+          "n": 6,
+          "source_file_rows": [
+            80,
+            81,
+            83,
+            84,
+            85,
+            86
+          ]
+        },
+        {
+          "key": "agg|2013|A",
+          "n": 8,
+          "source_file_rows": [
+            82,
+            87,
+            88,
+            89,
+            90,
+            91,
+            93,
+            94
+          ]
+        },
+        {
+          "key": "hyb|2013|H",
+          "n": 2,
+          "source_file_rows": [
+            95,
+            99
+          ]
+        },
+        {
+          "key": "hyb|2013|A",
+          "n": 3,
+          "source_file_rows": [
+            96,
+            97,
+            98
+          ]
+        },
+        {
+          "key": "ten|2013|H",
+          "n": 3,
+          "source_file_rows": [
+            104,
+            105,
+            106
+          ]
+        },
+        {
+          "key": "agg|2014|H",
+          "n": 9,
+          "source_file_rows": [
+            107,
+            109,
+            110,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117
+          ]
+        },
+        {
+          "key": "hyb|2014|H",
+          "n": 8,
+          "source_file_rows": [
+            119,
+            120,
+            121,
+            123,
+            124,
+            125,
+            127,
+            128
+          ]
+        },
+        {
+          "key": "ten|2014|H",
+          "n": 20,
+          "source_file_rows": [
+            129,
+            130,
+            132,
+            134,
+            135,
+            136,
+            137,
+            138,
+            139,
+            141,
+            142,
+            143,
+            145,
+            146,
+            148,
+            149,
+            151,
+            152,
+            153,
+            154
+          ]
+        },
+        {
+          "key": "ten|2014|T",
+          "n": 2,
+          "source_file_rows": [
+            140,
+            150
+          ]
+        },
+        {
+          "key": "ten|2014|A",
+          "n": 2,
+          "source_file_rows": [
+            147,
+            155
+          ]
+        },
+        {
+          "key": "hyb|2015|H",
+          "n": 2,
+          "source_file_rows": [
+            177,
+            179
+          ]
+        },
+        {
+          "key": "ten|2015|H",
+          "n": 11,
+          "source_file_rows": [
+            192,
+            195,
+            196,
+            197,
+            198,
+            202,
+            203,
+            204,
+            208,
+            209,
+            211
+          ]
+        },
+        {
+          "key": "ten|2015|T",
+          "n": 3,
+          "source_file_rows": [
+            193,
+            194,
+            210
+          ]
+        },
+        {
+          "key": "ten|2015|A",
+          "n": 2,
+          "source_file_rows": [
+            199,
+            201
+          ]
+        },
+        {
+          "key": "ten|2016|A",
+          "n": 2,
+          "source_file_rows": [
+            243,
+            248
+          ]
+        },
+        {
+          "key": "ten|2016|H",
+          "n": 6,
+          "source_file_rows": [
+            244,
+            245,
+            247,
+            249,
+            250,
+            251
+          ]
+        },
+        {
+          "key": "agg|2017|A",
+          "n": 47,
+          "source_file_rows": [
+            256,
+            257,
+            258,
+            259,
+            260,
+            261,
+            262,
+            263,
+            264,
+            265,
+            267,
+            268,
+            269,
+            270,
+            271,
+            272,
+            273,
+            274,
+            275,
+            276,
+            277,
+            278,
+            279,
+            280,
+            281,
+            282,
+            283,
+            284,
+            285,
+            286,
+            288,
+            289,
+            290,
+            291,
+            293,
+            294,
+            295,
+            296,
+            297,
+            298,
+            300,
+            301,
+            302,
+            303,
+            304,
+            305,
+            306
+          ]
+        },
+        {
+          "key": "hyb|2017|H",
+          "n": 30,
+          "source_file_rows": [
+            309,
+            310,
+            311,
+            312,
+            313,
+            314,
+            315,
+            316,
+            317,
+            318,
+            319,
+            320,
+            321,
+            322,
+            324,
+            325,
+            326,
+            327,
+            328,
+            329,
+            330,
+            332,
+            333,
+            334,
+            335,
+            336,
+            337,
+            340,
+            341,
+            342
+          ]
+        },
+        {
+          "key": "agg|2018|A",
+          "n": 31,
+          "source_file_rows": [
+            351,
+            352,
+            354,
+            355,
+            356,
+            359,
+            361,
+            362,
+            363,
+            364,
+            365,
+            366,
+            369,
+            370,
+            371,
+            372,
+            373,
+            375,
+            376,
+            377,
+            378,
+            380,
+            382,
+            383,
+            388,
+            389,
+            391,
+            392,
+            393,
+            396,
+            397
+          ]
+        },
+        {
+          "key": "hyb|2018|H",
+          "n": 28,
+          "source_file_rows": [
+            398,
+            399,
+            400,
+            401,
+            402,
+            406,
+            407,
+            408,
+            409,
+            410,
+            411,
+            412,
+            414,
+            415,
+            416,
+            418,
+            420,
+            421,
+            422,
+            424,
+            425,
+            426,
+            427,
+            430,
+            431,
+            432,
+            433,
+            435
+          ]
+        },
+        {
+          "key": "ten|2018|H",
+          "n": 2,
+          "source_file_rows": [
+            436,
+            438
+          ]
+        }
+      ],
+      "scaling": {
+        "source_trait_raw_means": [
+          3.1406460069444417,
+          0.5117941666666667
+        ],
+        "source_trait_raw_sd": [
+          0.46884396051880445,
+          0.17440124153203918
+        ],
+        "global_standardization_then_within_original_stratum_centering": true
+      },
+      "estimand": "Incremental source within-garden/year/type second-order trait term conditional on linear traits; descriptive, no random floral trait allocation",
+      "inference": {
+        "permutations": 5000,
+        "bootstrap_draws": 1500,
+        "seed": 20261026,
+        "algorithm": "xorshift32",
+        "reference": "Freedman-Lane permuted main-effects regression residuals within source Site|Year|Type strata, paired stage outcomes shuffled with shared assignment",
+        "bootstrap": "Original source rows resampled within Site|Year|Type fixed strata; no verified plant identity",
+        "test_statistic": "nonnegative partial R2, refit base and full"
+      },
+      "endpoints": {
+        "seed_initiation_log1p": {
+          "base_sse": 254.24975560364803,
+          "full_sse": 252.96457248264014,
+          "partial_R2": 0.005054805728157206,
+          "extra_standardized_beta": -0.07589981037274267,
+          "linear_coefficients": [
+            0.040824537143984846,
+            0.10177856171434047
+          ],
+          "added_term_variation_explained_fraction": 0.005054805728157206,
+          "freedman_lane_within_source_group_p": 0.28274345130973805,
+          "bootstrap_beta_ci95": [
+            -0.18527646364124062,
+            0.07205080484196956
+          ],
+          "bootstrap_partial_R2_ci95": [
+            0.000006985214425988797,
+            0.03307392144756548
+          ],
+          "n_valid_bootstrap": 1500,
+          "note": "The bootstrap interval for nonnegative partial R2 is not a test of model advantage"
+        },
+        "fruit_fly_escape_fraction": {
+          "base_sse": 7.843948419145961,
+          "full_sse": 7.838502928887339,
+          "partial_R2": 0.0006942282085040742,
+          "extra_standardized_beta": -0.004940565678392003,
+          "linear_coefficients": [
+            -0.006831630850082957,
+            -0.007815513671178262
+          ],
+          "added_term_variation_explained_fraction": 0.0006942282085040742,
+          "freedman_lane_within_source_group_p": 0.6328734253149371,
+          "bootstrap_beta_ci95": [
+            -0.028872932213185674,
+            0.012747720304203933
+          ],
+          "bootstrap_partial_R2_ci95": [
+            0.000004745928834864973,
+            0.0198431724997319
+          ],
+          "n_valid_bootstrap": 1500,
+          "note": "The bootstrap interval for nonnegative partial R2 is not a test of model advantage"
+        }
+      },
+      "leave_one_source_year_out_within_test_stratum": {
+        "2010": {
+          "n_test_rows": 2,
+          "n_test_groups": 1,
+          "seed_initiation_log1p": {
+            "base_test_SSE": 0.28278150260033413,
+            "extended_test_SSE": 0.17816944656986966
+          },
+          "fruit_fly_escape_fraction": {
+            "base_test_SSE": 0.008372466938476673,
+            "extended_test_SSE": 0.009982412913143513
+          }
+        },
+        "2011": {
+          "n_test_rows": 31,
+          "n_test_groups": 3,
+          "seed_initiation_log1p": {
+            "base_test_SSE": 21.65309037484829,
+            "extended_test_SSE": 20.91794033837054
+          },
+          "fruit_fly_escape_fraction": {
+            "base_test_SSE": 0.5899861833582069,
+            "extended_test_SSE": 0.5909180577616233
+          }
+        },
+        "2012": {
+          "n_test_rows": 28,
+          "n_test_groups": 4,
+          "seed_initiation_log1p": {
+            "base_test_SSE": 24.681996292098997,
+            "extended_test_SSE": 25.642688044872507
+          },
+          "fruit_fly_escape_fraction": {
+            "base_test_SSE": 0.7623136587284188,
+            "extended_test_SSE": 0.7719007397252723
+          }
+        },
+        "2013": {
+          "n_test_rows": 22,
+          "n_test_groups": 5,
+          "seed_initiation_log1p": {
+            "base_test_SSE": 12.169491101909452,
+            "extended_test_SSE": 12.239626327029406
+          },
+          "fruit_fly_escape_fraction": {
+            "base_test_SSE": 0.29870723341941585,
+            "extended_test_SSE": 0.29899230366019663
+          }
+        },
+        "2014": {
+          "n_test_rows": 41,
+          "n_test_groups": 5,
+          "seed_initiation_log1p": {
+            "base_test_SSE": 26.648140993327615,
+            "extended_test_SSE": 29.159504324434124
+          },
+          "fruit_fly_escape_fraction": {
+            "base_test_SSE": 1.049316693129836,
+            "extended_test_SSE": 1.0498193734298709
+          }
+        },
+        "2015": {
+          "n_test_rows": 18,
+          "n_test_groups": 4,
+          "seed_initiation_log1p": {
+            "base_test_SSE": 14.31317170189632,
+            "extended_test_SSE": 13.636182648537947
+          },
+          "fruit_fly_escape_fraction": {
+            "base_test_SSE": 0.30564507304828825,
+            "extended_test_SSE": 0.3097695177886967
+          }
+        },
+        "2016": {
+          "n_test_rows": 8,
+          "n_test_groups": 2,
+          "seed_initiation_log1p": {
+            "base_test_SSE": 8.269438687986945,
+            "extended_test_SSE": 8.270328126541418
+          },
+          "fruit_fly_escape_fraction": {
+            "base_test_SSE": 0.21524871010252342,
+            "extended_test_SSE": 0.21290963236465874
+          }
+        },
+        "2017": {
+          "n_test_rows": 77,
+          "n_test_groups": 2,
+          "seed_initiation_log1p": {
+            "base_test_SSE": 67.56686223374676,
+            "extended_test_SSE": 69.55711151392791
+          },
+          "fruit_fly_escape_fraction": {
+            "base_test_SSE": 2.694461571251715,
+            "extended_test_SSE": 2.7189550824363815
+          }
+        },
+        "2018": {
+          "n_test_rows": 61,
+          "n_test_groups": 3,
+          "seed_initiation_log1p": {
+            "base_test_SSE": 93.33809799154568,
+            "extended_test_SSE": 93.07819966699891
+          },
+          "fruit_fly_escape_fraction": {
+            "base_test_SSE": 2.075347521695719,
+            "extended_test_SSE": 2.0892298380250676
+          }
+        }
+      },
+      "leave_one_year_out_summary": {
+        "seed_initiation_log1p": {
+          "heldout_year_relative_SSE_gain": -0.013969346493886738,
+          "positive_means_improvement": true,
+          "base_SSE": 268.9230708799604,
+          "extra_SSE": 272.6797504372826
+        },
+        "fruit_fly_escape_fraction": {
+          "heldout_year_relative_SSE_gain": -0.00663522918300958,
+          "positive_means_improvement": true,
+          "base_SSE": 7.9993991116726,
+          "extra_SSE": 8.052476958104911
+        }
+      }
+    },
+    {
+      "model_id": "width_by_sepal",
+      "shape": "interaction",
+      "original_fields": [
+        "width",
+        "sepal"
+      ],
+      "n_original_joint_records": 96,
+      "n_eligible_original_source_rows": 88,
+      "n_original_site_year_type_groups": 14,
+      "model_source_group_rows": [
+        {
+          "key": "agg|2012|H",
+          "n": 10,
+          "source_file_rows": [
+            45,
+            49,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60
+          ]
+        },
+        {
+          "key": "hyb|2012|A",
+          "n": 3,
+          "source_file_rows": [
+            62,
+            67,
+            73
+          ]
+        },
+        {
+          "key": "hyb|2012|H",
+          "n": 5,
+          "source_file_rows": [
+            65,
+            69,
+            71,
+            74,
+            75
+          ]
+        },
+        {
+          "key": "agg|2014|H",
+          "n": 9,
+          "source_file_rows": [
+            107,
+            109,
+            110,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117
+          ]
+        },
+        {
+          "key": "hyb|2014|H",
+          "n": 8,
+          "source_file_rows": [
+            119,
+            120,
+            121,
+            123,
+            124,
+            125,
+            127,
+            128
+          ]
+        },
+        {
+          "key": "ten|2014|H",
+          "n": 20,
+          "source_file_rows": [
+            129,
+            130,
+            132,
+            134,
+            135,
+            136,
+            137,
+            138,
+            139,
+            141,
+            142,
+            143,
+            145,
+            146,
+            148,
+            149,
+            151,
+            152,
+            153,
+            154
+          ]
+        },
+        {
+          "key": "ten|2014|T",
+          "n": 3,
+          "source_file_rows": [
+            131,
+            140,
+            150
+          ]
+        },
+        {
+          "key": "ten|2014|A",
+          "n": 2,
+          "source_file_rows": [
+            147,
+            155
+          ]
+        },
+        {
+          "key": "hyb|2015|H",
+          "n": 2,
+          "source_file_rows": [
+            177,
+            179
+          ]
+        },
+        {
+          "key": "ten|2015|H",
+          "n": 12,
+          "source_file_rows": [
+            192,
+            195,
+            196,
+            197,
+            198,
+            200,
+            202,
+            203,
+            204,
+            208,
+            209,
+            211
+          ]
+        },
+        {
+          "key": "ten|2015|T",
+          "n": 4,
+          "source_file_rows": [
+            193,
+            194,
+            205,
+            210
+          ]
+        },
+        {
+          "key": "ten|2015|A",
+          "n": 2,
+          "source_file_rows": [
+            199,
+            201
+          ]
+        },
+        {
+          "key": "ten|2016|A",
+          "n": 2,
+          "source_file_rows": [
+            243,
+            248
+          ]
+        },
+        {
+          "key": "ten|2016|H",
+          "n": 6,
+          "source_file_rows": [
+            244,
+            245,
+            247,
+            249,
+            250,
+            251
+          ]
+        }
+      ],
+      "scaling": {
+        "source_trait_raw_means": [
+          3.202386363636363,
+          1.5522727272727275
+        ],
+        "source_trait_raw_sd": [
+          0.3344734437351486,
+          0.21979398955058335
+        ],
+        "global_standardization_then_within_original_stratum_centering": true
+      },
+      "estimand": "Incremental source within-garden/year/type second-order trait term conditional on linear traits; descriptive, no random floral trait allocation",
+      "inference": {
+        "permutations": 5000,
+        "bootstrap_draws": 1500,
+        "seed": 20261027,
+        "algorithm": "xorshift32",
+        "reference": "Freedman-Lane permuted main-effects regression residuals within source Site|Year|Type strata, paired stage outcomes shuffled with shared assignment",
+        "bootstrap": "Original source rows resampled within Site|Year|Type fixed strata; no verified plant identity",
+        "test_statistic": "nonnegative partial R2, refit base and full"
+      },
+      "endpoints": {
+        "seed_initiation_log1p": {
+          "base_sse": 60.986107517552696,
+          "full_sse": 59.386443067847765,
+          "partial_R2": 0.026229981135367997,
+          "extra_standardized_beta": -0.1545721092008391,
+          "linear_coefficients": [
+            0.17521089622420932,
+            -0.04410138891379579
+          ],
+          "added_term_variation_explained_fraction": 0.026229981135367997,
+          "freedman_lane_within_source_group_p": 0.16576684663067387,
+          "bootstrap_beta_ci95": [
+            -0.3776710405282939,
+            0.1377458739723556
+          ],
+          "bootstrap_partial_R2_ci95": [
+            0.0000720287948476492,
+            0.15387039995139018
+          ],
+          "n_valid_bootstrap": 1500,
+          "note": "The bootstrap interval for nonnegative partial R2 is not a test of model advantage"
+        },
+        "fruit_fly_escape_fraction": {
+          "base_sse": 1.9220381095460624,
+          "full_sse": 1.8959078317517244,
+          "partial_R2": 0.013595088289123095,
+          "extra_standardized_beta": 0.019755530656448795,
+          "linear_coefficients": [
+            0.013779402889251766,
+            -0.039031757554615194
+          ],
+          "added_term_variation_explained_fraction": 0.013595088289123095,
+          "freedman_lane_within_source_group_p": 0.27954409118176365,
+          "bootstrap_beta_ci95": [
+            -0.020901697743463676,
+            0.06092496598903532
+          ],
+          "bootstrap_partial_R2_ci95": [
+            0.00003661317479674847,
+            0.1111396492781852
+          ],
+          "n_valid_bootstrap": 1500,
+          "note": "The bootstrap interval for nonnegative partial R2 is not a test of model advantage"
+        }
+      },
+      "leave_one_source_year_out_within_test_stratum": {
+        "2012": {
+          "n_test_rows": 18,
+          "n_test_groups": 3,
+          "seed_initiation_log1p": {
+            "base_test_SSE": 15.004991255973353,
+            "extended_test_SSE": 13.852696354672537
+          },
+          "fruit_fly_escape_fraction": {
+            "base_test_SSE": 0.363059010678254,
+            "extended_test_SSE": 0.3498671054015332
+          }
+        },
+        "2014": {
+          "n_test_rows": 42,
+          "n_test_groups": 5,
+          "seed_initiation_log1p": {
+            "base_test_SSE": 40.11593587144617,
+            "extended_test_SSE": 38.902930942913
+          },
+          "fruit_fly_escape_fraction": {
+            "base_test_SSE": 1.1140802441647575,
+            "extended_test_SSE": 1.158893097475281
+          }
+        },
+        "2015": {
+          "n_test_rows": 20,
+          "n_test_groups": 4,
+          "seed_initiation_log1p": {
+            "base_test_SSE": 14.175934436563525,
+            "extended_test_SSE": 16.445271361509292
+          },
+          "fruit_fly_escape_fraction": {
+            "base_test_SSE": 0.35442650061156344,
+            "extended_test_SSE": 0.45530873600323013
+          }
+        },
+        "2016": {
+          "n_test_rows": 8,
+          "n_test_groups": 2,
+          "seed_initiation_log1p": {
+            "base_test_SSE": 7.645553158356834,
+            "extended_test_SSE": 7.347818911118654
+          },
+          "fruit_fly_escape_fraction": {
+            "base_test_SSE": 0.1839832556730503,
+            "extended_test_SSE": 0.18664088195460118
+          }
+        }
+      },
+      "leave_one_year_out_summary": {
+        "seed_initiation_log1p": {
+          "heldout_year_relative_SSE_gain": 0.005116776664043072,
+          "positive_means_improvement": true,
+          "base_SSE": 76.94241472233988,
+          "extra_SSE": 76.54871757021348
+        },
+        "fruit_fly_escape_fraction": {
+          "heldout_year_relative_SSE_gain": -0.06705905386612405,
+          "positive_means_improvement": true,
+          "base_SSE": 2.015549011127625,
+          "extra_SSE": 2.1507098208346456
+        }
+      }
+    }
+  ],
+  "multiplicity": {
+    "six_source_exploratory_tests_BH_q": {
+      "width_by_color|fruit_fly_escape_fraction": 0.6328734253149371,
+      "width_by_color|seed_initiation_log1p": 0.3392921415716857,
+      "width_by_sepal|fruit_fly_escape_fraction": 0.3392921415716857,
+      "width_quadratic|fruit_fly_escape_fraction": 0.3392921415716857,
+      "width_by_sepal|seed_initiation_log1p": 0.3392921415716857,
+      "width_quadratic|seed_initiation_log1p": 0.3392921415716857
+    },
+    "n_tests": 6
+  },
+  "limits": {
+    "no_verified_unique_plant_ids": true,
+    "different_organism_than_Cirsium": true,
+    "original_authors_multivariate_selection_results_not_refuted": true,
+    "whole_outcome_observational_and_exposure_not_randomized": true,
+    "partial_R2_effect_sizes_subject_to_selection_bias": true,
+    "bootstrap_partial_R2_interval_not_evidence_against_zero": true,
+    "quadratic_extra_term_is_not_an_evolutionary_reversion": true,
+    "interaction_geometry_not_proven_Pedicularis_or_Cirsium_mechanism": true,
+    "no_new_field_observations": 0
+  }
+}
