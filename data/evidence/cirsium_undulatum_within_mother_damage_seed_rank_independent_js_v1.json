@@ -3674,5 +3674,31 @@
     "no_true_spine_phyllary_angle_or_verified_pollinator_service": true,
     "no_causal_insect_seed_fitness_or_genetic_LEGO_support": true,
     "n_new_field_observations": 0
+  },
+  "terminal_score_vs_good_seed_pearson_diagnostic": {
+    "2007": {
+      "n_original_head_records": 69,
+      "n_original_mothers": 31,
+      "n_mothers_at_least_two_heads": 22,
+      "n_terminal_heads_in_mothers_at_least_two": 60,
+      "pooled_head_level_r_not_independent": -0.06400727450417101,
+      "within_mother_demeaned_r_descriptive": -0.1393467469601251
+    },
+    "2008": {
+      "n_original_head_records": 102,
+      "n_original_mothers": 55,
+      "n_mothers_at_least_two_heads": 32,
+      "n_terminal_heads_in_mothers_at_least_two": 79,
+      "pooled_head_level_r_not_independent": -0.4539108689115904,
+      "within_mother_demeaned_r_descriptive": -0.26984588634097434
+    },
+    "all_years_descriptive_only": {
+      "n_original_head_records": 171,
+      "n_original_mothers": 86,
+      "n_mothers_at_least_two_heads": 54,
+      "n_terminal_heads_in_mothers_at_least_two": 139,
+      "pooled_head_level_r_not_independent": -0.2938450971688947,
+      "within_mother_demeaned_r_descriptive": -0.20954884460100218
+    }
   }
 }
