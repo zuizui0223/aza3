@@ -180,6 +180,26 @@ class OriginalHeadInjurySeedRank(unittest.TestCase):
             v.analyze(self.m,self.h,self.d.replace("four quarters of the receptacle",
                                                   "unverified")) 
 
+    def test_source_naive_vs_within_mother_association_not_conflated(self):
+        z=self.report["terminal_score_vs_good_seed_pearson_diagnostic"]
+        for year,n,m,rep,naive,within in [
+            ("2007",69,31,60,-.06400727450417101,-.1393467469601251),
+            ("2008",102,55,79,-.4539108689115904,-.26984588634097434),
+            ("all_years_descriptive_only",171,86,139,
+              -.2938450971688947,-.20954884460100218)]:
+            x=z[year]
+            self.assertEqual(x["n_original_head_records"],n)
+            self.assertEqual(x["n_original_mothers"],m)
+            self.assertEqual(x["n_terminal_heads_in_mothers_at_least_two"],rep)
+            self.assertAlmostEqual(x["pooled_head_level_r_not_independent"],
+                                   naive,places=12)
+            self.assertAlmostEqual(x["within_mother_demeaned_r_descriptive"],
+                                   within,places=12)
+            self.assertLess(x["pooled_head_level_r_not_independent"],0)
+            self.assertLess(x["within_mother_demeaned_r_descriptive"],0)
+        self.assertEqual(z["all_years_descriptive_only"]
+                         ["n_mothers_at_least_two_heads"],54)
+
     def test_exact_sign_reference_never_measures_functional_randomized_damage(self):
         self.assertAlmostEqual(v.exact_sign(23,18),.5327092552361137)
         self.assertEqual(v.exact_sign(0,0),1)
