@@ -1,0 +1,88 @@
+name: Q2 original Ipomopsis flower traits through pollination and seed predation
+on:
+  pull_request:
+    paths:
+      - 'analysis/audit_original_ipomopsis_two_stage_selection_v1.py'
+      - 'tests/test_original_ipomopsis_two_stage_selection_v1.py'
+      - 'data/evidence/ipomopsis_two_stage_trait_selection_independent_original_js_v1.json'
+      - 'docs/INDEPENDENT_IPOMOPSIS_ORIGINAL_TWO_STAGE_SELECTION_Q2_20261024.md'
+      - '.github/workflows/audit-ipomopsis-original-traits-two-stages-v1.yml'
+      - 'README.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-outgroup-source-and-multistage-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test published data metadata, stages, null inference and negative controls
+        run: |
+          python -m py_compile analysis/audit_original_ipomopsis_two_stage_selection_v1.py
+          python -m unittest discover -s tests -p 'test_original_ipomopsis_two_stage_selection_v1.py' -v
+      - name: Fetch freely published Zenodo CSV and verify the archive MD5 before computation
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p work/ipomopsis_original
+          curl -fLsS --retry 2 --connect-timeout 20 --max-time 110 \
+            'https://zenodo.org/records/5083399/files/Selection_by_pollinators_and_predators.csv?download=1' \
+            -o work/ipomopsis_original/original.tmp || true
+          if ! (echo '12ed3dbe6d269c5f808f9c6b230d468c  work/ipomopsis_original/original.tmp' \
+                | md5sum -c -); then
+            echo 'Source endpoint failed content integrity: retry archive REST content endpoint.'
+            curl -fLsS --retry 2 --connect-timeout 20 --max-time 110 \
+              'https://zenodo.org/api/records/5083399/files/Selection_by_pollinators_and_predators.csv/content' \
+              -o work/ipomopsis_original/original.tmp
+          fi
+          echo '12ed3dbe6d269c5f808f9c6b230d468c  work/ipomopsis_original/original.tmp' \
+            | md5sum -c -
+          mv work/ipomopsis_original/original.tmp work/ipomopsis_original/author_original.csv
+          test -s work/ipomopsis_original/author_original.csv
+      - name: Recompute 437 original records, 10000 source-conditional permutations and 3000 source-stratum bootstraps
+        run: |
+          python analysis/audit_original_ipomopsis_two_stage_selection_v1.py \
+            --csv work/ipomopsis_original/author_original.csv \
+            --out work/ipomopsis_original/result_Python.json
+      - name: Independently crosscheck the full original-source JS numeric receipt
+        run: |
+          python - <<'PY'
+          import json,math
+          a=json.load(open('work/ipomopsis_original/result_Python.json'))
+          b=json.load(open('data/evidence/ipomopsis_two_stage_trait_selection_independent_original_js_v1.json'))
+          def same(x,y,key='root'):
+              if isinstance(y,dict):
+                  assert isinstance(x,dict) and set(x)==set(y),(key,'keys',set(x)^set(y))
+                  for k in y:same(x[k],y[k],key+'.'+k)
+              elif isinstance(y,list):
+                  assert isinstance(x,list) and len(x)==len(y),(key,'list size')
+                  for i,(xx,yy) in enumerate(zip(x,y)):same(xx,yy,key+f'[{i}]')
+              elif type(y) is bool:
+                  assert type(x) is bool and x==y,(key,x,y)
+              elif type(y) in (int,float):
+                  assert type(x) in (int,float) and math.isfinite(x) and math.isfinite(y),(key,x,y)
+                  assert math.isclose(x,y,rel_tol=1e-9,abs_tol=1e-9),(key,x,y)
+              else:
+                  assert x==y,(key,x,y)
+          same(a,b)
+          assert a['audit']['n_original_data_records']==437
+          assert a['audit']['seeds_greater_than_seedsinit']==41
+          assert a['analyses']['width']['summary']['n_within_group_comparable_records']==354
+          assert a['analyses']['sepal']['summary']['n_within_group_comparable_records']==90
+          assert a['analyses']['width']['permutation_p_two_sided']['stage_difference']>.05
+          assert a['analyses']['four_analyses_multiplicity_BH_q']['sepal_escape']>.05
+          assert a['limits']['Ipomopsis_not_Cirsium']
+          assert a['limits']['new_own_field_observations']==0
+          print('PASS: original author MD5, all 437 source rows, true missing values and source labels, every real row/source stratum, 10k permutations+3k resamples each of 2 traits, independent JS/Python equality.')
+          PY
+      - name: Preserve only computed source-audit metadata and contrasts (not third-party source CSV)
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-Ipomopsis-two-stage-floral-selection-Q2-portability
+          path: work/ipomopsis_original/result_Python.json
+          retention-days: 30
+          if-no-files-found: error

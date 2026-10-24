@@ -1,0 +1,1104 @@
+{
+  "schema": "aza3_general_cross_stage_original_ipomopsis_source_v1",
+  "as_of": "2026-10-24",
+  "source": {
+    "publication": "Campbell et al (2022), American Naturalist",
+    "doi": "10.1086/716740",
+    "open_data_doi": "10.7280/D1KM49",
+    "zenodo_record": "https://zenodo.org/records/5083399",
+    "author_csv": "Selection_by_pollinators_and_predators.csv",
+    "metadata_author_md5": "12ed3dbe6d269c5f808f9c6b230d468c",
+    "author_readme": "ReadMe_Selection_by_pollinators_and_predators.csv",
+    "published_author_data_not_an_aza3_field_study": true
+  },
+  "audit": {
+    "n_original_data_records": 437,
+    "n_original_fields": 12,
+    "source_header": [
+      "Site",
+      "Year",
+      "Type",
+      "width",
+      "color",
+      "nectar",
+      "sepal",
+      "totpinene",
+      "indoleN",
+      "seeds",
+      "seedsinit",
+      "flyescape"
+    ],
+    "missing_count_by_column": {
+      "Site": 0,
+      "Year": 0,
+      "Type": 0,
+      "width": 18,
+      "color": 90,
+      "nectar": 160,
+      "sepal": 329,
+      "totpinene": 234,
+      "indoleN": 265,
+      "seeds": 32,
+      "seedsinit": 28,
+      "flyescape": 51
+    },
+    "site_counts": {
+      "agg": 221,
+      "hyb": 144,
+      "ten": 72
+    },
+    "year_counts": {
+      "2010": 6,
+      "2011": 35,
+      "2012": 37,
+      "2013": 27,
+      "2014": 49,
+      "2015": 56,
+      "2016": 40,
+      "2017": 96,
+      "2018": 91
+    },
+    "type_counts": {
+      "H": 246,
+      "A": 175,
+      "T": 16
+    },
+    "seeds_greater_than_seedsinit": 41,
+    "source_plant_identifier_field_exists": false,
+    "source_exact_duplicate_full_rows": 0
+  },
+  "analyses": {
+    "width": {
+      "design": {
+        "source_eligible_strata": [
+          {
+            "key": "agg|2010|H",
+            "n": 2,
+            "source_file_rows": [
+              2,
+              3
+            ]
+          },
+          {
+            "key": "hyb|2010|H",
+            "n": 2,
+            "source_file_rows": [
+              4,
+              7
+            ]
+          },
+          {
+            "key": "hyb|2010|A",
+            "n": 2,
+            "source_file_rows": [
+              5,
+              6
+            ]
+          },
+          {
+            "key": "agg|2011|H",
+            "n": 23,
+            "source_file_rows": [
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              21,
+              22,
+              23,
+              24,
+              26,
+              27,
+              28,
+              30,
+              31,
+              33,
+              35
+            ]
+          },
+          {
+            "key": "agg|2011|A",
+            "n": 3,
+            "source_file_rows": [
+              25,
+              29,
+              34
+            ]
+          },
+          {
+            "key": "hyb|2011|H",
+            "n": 5,
+            "source_file_rows": [
+              36,
+              37,
+              38,
+              40,
+              41
+            ]
+          },
+          {
+            "key": "agg|2012|H",
+            "n": 14,
+            "source_file_rows": [
+              45,
+              46,
+              48,
+              49,
+              51,
+              52,
+              53,
+              54,
+              55,
+              56,
+              57,
+              58,
+              59,
+              60
+            ]
+          },
+          {
+            "key": "hyb|2012|A",
+            "n": 4,
+            "source_file_rows": [
+              62,
+              64,
+              67,
+              73
+            ]
+          },
+          {
+            "key": "hyb|2012|H",
+            "n": 7,
+            "source_file_rows": [
+              63,
+              65,
+              69,
+              70,
+              71,
+              74,
+              75
+            ]
+          },
+          {
+            "key": "ten|2012|H",
+            "n": 3,
+            "source_file_rows": [
+              76,
+              78,
+              79
+            ]
+          },
+          {
+            "key": "agg|2013|H",
+            "n": 6,
+            "source_file_rows": [
+              80,
+              81,
+              83,
+              84,
+              85,
+              86
+            ]
+          },
+          {
+            "key": "agg|2013|A",
+            "n": 8,
+            "source_file_rows": [
+              82,
+              87,
+              88,
+              89,
+              90,
+              91,
+              93,
+              94
+            ]
+          },
+          {
+            "key": "hyb|2013|H",
+            "n": 2,
+            "source_file_rows": [
+              95,
+              99
+            ]
+          },
+          {
+            "key": "hyb|2013|A",
+            "n": 3,
+            "source_file_rows": [
+              96,
+              97,
+              98
+            ]
+          },
+          {
+            "key": "ten|2013|H",
+            "n": 3,
+            "source_file_rows": [
+              104,
+              105,
+              106
+            ]
+          },
+          {
+            "key": "agg|2014|H",
+            "n": 9,
+            "source_file_rows": [
+              107,
+              109,
+              110,
+              112,
+              113,
+              114,
+              115,
+              116,
+              117
+            ]
+          },
+          {
+            "key": "hyb|2014|H",
+            "n": 8,
+            "source_file_rows": [
+              119,
+              120,
+              121,
+              123,
+              124,
+              125,
+              127,
+              128
+            ]
+          },
+          {
+            "key": "ten|2014|H",
+            "n": 20,
+            "source_file_rows": [
+              129,
+              130,
+              132,
+              134,
+              135,
+              136,
+              137,
+              138,
+              139,
+              141,
+              142,
+              143,
+              145,
+              146,
+              148,
+              149,
+              151,
+              152,
+              153,
+              154
+            ]
+          },
+          {
+            "key": "ten|2014|T",
+            "n": 3,
+            "source_file_rows": [
+              131,
+              140,
+              150
+            ]
+          },
+          {
+            "key": "ten|2014|A",
+            "n": 2,
+            "source_file_rows": [
+              147,
+              155
+            ]
+          },
+          {
+            "key": "agg|2015|A",
+            "n": 17,
+            "source_file_rows": [
+              159,
+              160,
+              161,
+              162,
+              163,
+              164,
+              165,
+              166,
+              167,
+              168,
+              170,
+              171,
+              172,
+              173,
+              174,
+              175,
+              176
+            ]
+          },
+          {
+            "key": "hyb|2015|H",
+            "n": 11,
+            "source_file_rows": [
+              177,
+              179,
+              182,
+              183,
+              184,
+              185,
+              186,
+              187,
+              188,
+              189,
+              190
+            ]
+          },
+          {
+            "key": "ten|2015|H",
+            "n": 12,
+            "source_file_rows": [
+              192,
+              195,
+              196,
+              197,
+              198,
+              200,
+              202,
+              203,
+              204,
+              208,
+              209,
+              211
+            ]
+          },
+          {
+            "key": "ten|2015|T",
+            "n": 4,
+            "source_file_rows": [
+              193,
+              194,
+              205,
+              210
+            ]
+          },
+          {
+            "key": "ten|2015|A",
+            "n": 2,
+            "source_file_rows": [
+              199,
+              201
+            ]
+          },
+          {
+            "key": "agg|2016|A",
+            "n": 18,
+            "source_file_rows": [
+              212,
+              213,
+              214,
+              215,
+              216,
+              217,
+              218,
+              219,
+              221,
+              222,
+              223,
+              225,
+              226,
+              227,
+              228,
+              229,
+              230,
+              231
+            ]
+          },
+          {
+            "key": "hyb|2016|H",
+            "n": 9,
+            "source_file_rows": [
+              232,
+              233,
+              234,
+              235,
+              237,
+              238,
+              239,
+              240,
+              241
+            ]
+          },
+          {
+            "key": "ten|2016|A",
+            "n": 2,
+            "source_file_rows": [
+              243,
+              248
+            ]
+          },
+          {
+            "key": "ten|2016|H",
+            "n": 6,
+            "source_file_rows": [
+              244,
+              245,
+              247,
+              249,
+              250,
+              251
+            ]
+          },
+          {
+            "key": "agg|2017|A",
+            "n": 47,
+            "source_file_rows": [
+              256,
+              257,
+              258,
+              259,
+              260,
+              261,
+              262,
+              263,
+              264,
+              265,
+              267,
+              268,
+              269,
+              270,
+              271,
+              272,
+              273,
+              274,
+              275,
+              276,
+              277,
+              278,
+              279,
+              280,
+              281,
+              282,
+              283,
+              284,
+              285,
+              286,
+              288,
+              289,
+              290,
+              291,
+              293,
+              294,
+              295,
+              296,
+              297,
+              298,
+              300,
+              301,
+              302,
+              303,
+              304,
+              305,
+              306
+            ]
+          },
+          {
+            "key": "hyb|2017|H",
+            "n": 31,
+            "source_file_rows": [
+              309,
+              310,
+              311,
+              312,
+              313,
+              314,
+              315,
+              316,
+              317,
+              318,
+              319,
+              320,
+              321,
+              322,
+              324,
+              325,
+              326,
+              327,
+              328,
+              329,
+              330,
+              332,
+              333,
+              334,
+              335,
+              336,
+              337,
+              339,
+              340,
+              341,
+              342
+            ]
+          },
+          {
+            "key": "agg|2018|A",
+            "n": 34,
+            "source_file_rows": [
+              350,
+              351,
+              352,
+              354,
+              355,
+              356,
+              359,
+              361,
+              362,
+              363,
+              364,
+              365,
+              366,
+              368,
+              369,
+              370,
+              371,
+              372,
+              373,
+              375,
+              376,
+              377,
+              378,
+              380,
+              382,
+              383,
+              388,
+              389,
+              390,
+              391,
+              392,
+              393,
+              396,
+              397
+            ]
+          },
+          {
+            "key": "hyb|2018|H",
+            "n": 30,
+            "source_file_rows": [
+              398,
+              399,
+              400,
+              401,
+              402,
+              406,
+              407,
+              408,
+              409,
+              410,
+              411,
+              412,
+              414,
+              415,
+              416,
+              418,
+              420,
+              421,
+              422,
+              423,
+              424,
+              425,
+              426,
+              427,
+              430,
+              431,
+              432,
+              433,
+              434,
+              435
+            ]
+          },
+          {
+            "key": "ten|2018|H",
+            "n": 2,
+            "source_file_rows": [
+              436,
+              438
+            ]
+          }
+        ],
+        "permutations": 10000,
+        "bootstrap_draws": 3000,
+        "seed": 20261024,
+        "prng": "xorshift32",
+        "stratum_field_order": "Site|Year|Type",
+        "individual_record_id_not_supplied_by_author": true,
+        "unknown_repeat_individual_possible": true,
+        "outcome_transform": "log1p(seedsinit) and raw flyescape fraction",
+        "sitecode": "original three source site labels (original README notes hyb and ten same upper site)"
+      },
+      "summary": {
+        "n_source_complete_records": 367,
+        "n_within_group_comparable_records": 354,
+        "n_groups": 34,
+        "source_group_size_min": 2,
+        "source_group_size_max": 47,
+        "raw_correlations": {
+          "width_or_sepal_vs_log1p_initiated": 0.28283346836233314,
+          "width_or_sepal_vs_fly_escape": -0.14404478690024206
+        },
+        "within_group_correlations": {
+          "trait_vs_log1p_initiated": 0.053495032924067,
+          "trait_vs_fly_escape": -0.028808559820120223
+        }
+      },
+      "r_init": 0.05349503292406693,
+      "r_escape": -0.028808559820120226,
+      "r_init_minus_r_escape": 0.08230359274418717,
+      "permutation_p_two_sided": {
+        "init": 0.3347665233476652,
+        "escape": 0.6106389361063893,
+        "stage_difference": 0.33266673332666735
+      },
+      "within_stratum_row_resample_ci95": {
+        "init": [
+          -0.05910854928235734,
+          0.17400988802688167
+        ],
+        "escape": [
+          -0.1430266409804289,
+          0.08444547872413595
+        ],
+        "stage_difference": [
+          -0.10045953774447124,
+          0.26513459917875504
+        ]
+      }
+    },
+    "sepal": {
+      "design": {
+        "source_eligible_strata": [
+          {
+            "key": "agg|2012|H",
+            "n": 10,
+            "source_file_rows": [
+              45,
+              49,
+              53,
+              54,
+              55,
+              56,
+              57,
+              58,
+              59,
+              60
+            ]
+          },
+          {
+            "key": "hyb|2012|A",
+            "n": 3,
+            "source_file_rows": [
+              62,
+              67,
+              73
+            ]
+          },
+          {
+            "key": "hyb|2012|H",
+            "n": 5,
+            "source_file_rows": [
+              65,
+              69,
+              71,
+              74,
+              75
+            ]
+          },
+          {
+            "key": "agg|2014|H",
+            "n": 9,
+            "source_file_rows": [
+              107,
+              109,
+              110,
+              112,
+              113,
+              114,
+              115,
+              116,
+              117
+            ]
+          },
+          {
+            "key": "hyb|2014|A",
+            "n": 2,
+            "source_file_rows": [
+              118,
+              122
+            ]
+          },
+          {
+            "key": "hyb|2014|H",
+            "n": 8,
+            "source_file_rows": [
+              119,
+              120,
+              121,
+              123,
+              124,
+              125,
+              127,
+              128
+            ]
+          },
+          {
+            "key": "ten|2014|H",
+            "n": 20,
+            "source_file_rows": [
+              129,
+              130,
+              132,
+              134,
+              135,
+              136,
+              137,
+              138,
+              139,
+              141,
+              142,
+              143,
+              145,
+              146,
+              148,
+              149,
+              151,
+              152,
+              153,
+              154
+            ]
+          },
+          {
+            "key": "ten|2014|T",
+            "n": 3,
+            "source_file_rows": [
+              131,
+              140,
+              150
+            ]
+          },
+          {
+            "key": "ten|2014|A",
+            "n": 2,
+            "source_file_rows": [
+              147,
+              155
+            ]
+          },
+          {
+            "key": "hyb|2015|H",
+            "n": 2,
+            "source_file_rows": [
+              177,
+              179
+            ]
+          },
+          {
+            "key": "ten|2015|H",
+            "n": 12,
+            "source_file_rows": [
+              192,
+              195,
+              196,
+              197,
+              198,
+              200,
+              202,
+              203,
+              204,
+              208,
+              209,
+              211
+            ]
+          },
+          {
+            "key": "ten|2015|T",
+            "n": 4,
+            "source_file_rows": [
+              193,
+              194,
+              205,
+              210
+            ]
+          },
+          {
+            "key": "ten|2015|A",
+            "n": 2,
+            "source_file_rows": [
+              199,
+              201
+            ]
+          },
+          {
+            "key": "ten|2016|A",
+            "n": 2,
+            "source_file_rows": [
+              243,
+              248
+            ]
+          },
+          {
+            "key": "ten|2016|H",
+            "n": 6,
+            "source_file_rows": [
+              244,
+              245,
+              247,
+              249,
+              250,
+              251
+            ]
+          }
+        ],
+        "permutations": 10000,
+        "bootstrap_draws": 3000,
+        "seed": 20261025,
+        "prng": "xorshift32",
+        "stratum_field_order": "Site|Year|Type",
+        "individual_record_id_not_supplied_by_author": true,
+        "unknown_repeat_individual_possible": true,
+        "outcome_transform": "log1p(seedsinit) and raw flyescape fraction",
+        "sitecode": "original three source site labels (original README notes hyb and ten same upper site)"
+      },
+      "summary": {
+        "n_source_complete_records": 96,
+        "n_within_group_comparable_records": 90,
+        "n_groups": 15,
+        "source_group_size_min": 2,
+        "source_group_size_max": 20,
+        "raw_correlations": {
+          "width_or_sepal_vs_log1p_initiated": 0.03399186508817718,
+          "width_or_sepal_vs_fly_escape": -0.2801681228441927
+        },
+        "within_group_correlations": {
+          "trait_vs_log1p_initiated": -0.005002846883399549,
+          "trait_vs_fly_escape": -0.20795737618789845
+        }
+      },
+      "r_init": -0.005002846883399559,
+      "r_escape": -0.2079573761878985,
+      "r_init_minus_r_escape": 0.20295452930449895,
+      "permutation_p_two_sided": {
+        "init": 0.9687031296870313,
+        "escape": 0.0826917308269173,
+        "stage_difference": 0.2933706629337066
+      },
+      "within_stratum_row_resample_ci95": {
+        "init": [
+          -0.2517339076856641,
+          0.21813857228834166
+        ],
+        "escape": [
+          -0.407476329335501,
+          0.08408951284671248
+        ],
+        "stage_difference": [
+          -0.2760774981928564,
+          0.5488088474497697
+        ]
+      }
+    },
+    "four_analyses_multiplicity_BH_q": {
+      "sepal_init": 0.9687031296870313,
+      "width_escape": 0.8141852481418524,
+      "width_init": 0.6695330466953304,
+      "sepal_escape": 0.3307669233076692
+    },
+    "merged_actual_upper_site_sensitivity": {
+      "width": {
+        "n_source_complete_records": 367,
+        "n_within_group_comparable_records": 358,
+        "n_groups": 28,
+        "source_group_size_min": 2,
+        "source_group_size_max": 47,
+        "raw_correlations": {
+          "width_or_sepal_vs_log1p_initiated": 0.28283346836233314,
+          "width_or_sepal_vs_fly_escape": -0.14404478690024206
+        },
+        "within_group_correlations": {
+          "trait_vs_log1p_initiated": 0.06392148857280598,
+          "trait_vs_fly_escape": -0.030951879296620827
+        }
+      },
+      "sepal": {
+        "n_source_complete_records": 96,
+        "n_within_group_comparable_records": 93,
+        "n_groups": 12,
+        "source_group_size_min": 2,
+        "source_group_size_max": 28,
+        "raw_correlations": {
+          "width_or_sepal_vs_log1p_initiated": 0.03399186508817718,
+          "width_or_sepal_vs_fly_escape": -0.2801681228441927
+        },
+        "within_group_correlations": {
+          "trait_vs_log1p_initiated": 0.003662262113532378,
+          "trait_vs_fly_escape": -0.21585018220215801
+        }
+      }
+    },
+    "leave_one_year_out_width": {
+      "2010": {
+        "n_source_complete_records": 361,
+        "n_within_group_comparable_records": 348,
+        "n_groups": 31,
+        "source_group_size_min": 2,
+        "source_group_size_max": 47,
+        "raw_correlations": {
+          "width_or_sepal_vs_log1p_initiated": 0.28651255842139256,
+          "width_or_sepal_vs_fly_escape": -0.14973762257336906
+        },
+        "within_group_correlations": {
+          "trait_vs_log1p_initiated": 0.06317096138060715,
+          "trait_vs_fly_escape": -0.03165170953523309
+        }
+      },
+      "2011": {
+        "n_source_complete_records": 333,
+        "n_within_group_comparable_records": 323,
+        "n_groups": 31,
+        "source_group_size_min": 2,
+        "source_group_size_max": 47,
+        "raw_correlations": {
+          "width_or_sepal_vs_log1p_initiated": 0.2447280894156627,
+          "width_or_sepal_vs_fly_escape": -0.12964730609691116
+        },
+        "within_group_correlations": {
+          "trait_vs_log1p_initiated": 0.04470396225661176,
+          "trait_vs_fly_escape": -0.0161365471250301
+        }
+      },
+      "2012": {
+        "n_source_complete_records": 337,
+        "n_within_group_comparable_records": 326,
+        "n_groups": 30,
+        "source_group_size_min": 2,
+        "source_group_size_max": 47,
+        "raw_correlations": {
+          "width_or_sepal_vs_log1p_initiated": 0.30371346361048,
+          "width_or_sepal_vs_fly_escape": -0.1413409413058011
+        },
+        "within_group_correlations": {
+          "trait_vs_log1p_initiated": 0.02736890422532243,
+          "trait_vs_fly_escape": -0.01861558305530255
+        }
+      },
+      "2013": {
+        "n_source_complete_records": 344,
+        "n_within_group_comparable_records": 332,
+        "n_groups": 29,
+        "source_group_size_min": 2,
+        "source_group_size_max": 47,
+        "raw_correlations": {
+          "width_or_sepal_vs_log1p_initiated": 0.2893397361930317,
+          "width_or_sepal_vs_fly_escape": -0.1502010181869732
+        },
+        "within_group_correlations": {
+          "trait_vs_log1p_initiated": 0.03915361423327022,
+          "trait_vs_fly_escape": -0.01806727779296801
+        }
+      },
+      "2014": {
+        "n_source_complete_records": 321,
+        "n_within_group_comparable_records": 312,
+        "n_groups": 29,
+        "source_group_size_min": 2,
+        "source_group_size_max": 47,
+        "raw_correlations": {
+          "width_or_sepal_vs_log1p_initiated": 0.3101648005039241,
+          "width_or_sepal_vs_fly_escape": -0.1559410118423513
+        },
+        "within_group_correlations": {
+          "trait_vs_log1p_initiated": 0.07662252538870358,
+          "trait_vs_fly_escape": -0.03878480076569632
+        }
+      },
+      "2015": {
+        "n_source_complete_records": 321,
+        "n_within_group_comparable_records": 308,
+        "n_groups": 29,
+        "source_group_size_min": 2,
+        "source_group_size_max": 47,
+        "raw_correlations": {
+          "width_or_sepal_vs_log1p_initiated": 0.29016944074916184,
+          "width_or_sepal_vs_fly_escape": -0.14329210275153068
+        },
+        "within_group_correlations": {
+          "trait_vs_log1p_initiated": 0.02586207935272726,
+          "trait_vs_fly_escape": -0.03749225075931428
+        }
+      },
+      "2016": {
+        "n_source_complete_records": 331,
+        "n_within_group_comparable_records": 319,
+        "n_groups": 30,
+        "source_group_size_min": 2,
+        "source_group_size_max": 47,
+        "raw_correlations": {
+          "width_or_sepal_vs_log1p_initiated": 0.2997792626085153,
+          "width_or_sepal_vs_fly_escape": -0.1481521774010549
+        },
+        "within_group_correlations": {
+          "trait_vs_log1p_initiated": 0.04632944937839244,
+          "trait_vs_fly_escape": -0.035960816846458854
+        }
+      },
+      "2017": {
+        "n_source_complete_records": 288,
+        "n_within_group_comparable_records": 276,
+        "n_groups": 32,
+        "source_group_size_min": 2,
+        "source_group_size_max": 34,
+        "raw_correlations": {
+          "width_or_sepal_vs_log1p_initiated": 0.25351373624305445,
+          "width_or_sepal_vs_fly_escape": -0.15648089157464182
+        },
+        "within_group_correlations": {
+          "trait_vs_log1p_initiated": 0.013841567205376241,
+          "trait_vs_fly_escape": 0.011253226623382495
+        }
+      },
+      "2018": {
+        "n_source_complete_records": 300,
+        "n_within_group_comparable_records": 288,
+        "n_groups": 31,
+        "source_group_size_min": 2,
+        "source_group_size_max": 47,
+        "raw_correlations": {
+          "width_or_sepal_vs_log1p_initiated": 0.22086715559124517,
+          "width_or_sepal_vs_fly_escape": -0.10517817971006224
+        },
+        "within_group_correlations": {
+          "trait_vs_log1p_initiated": 0.16050927582762547,
+          "trait_vs_fly_escape": -0.07719782875477563
+        }
+      }
+    }
+  },
+  "limits": {
+    "Ipomopsis_not_Cirsium": true,
+    "traits_are_corolla_and_sepal_width_not_Cirsium_spines": true,
+    "observational_within_source_strata_not_true_trait_randomized_intervention": true,
+    "independent_pollinator_visitation_and_oviposition_video_not_in_source": true,
+    "source_type_A_H_T_is_taxon_class_not_three_independent_lineages": true,
+    "original_source_has_no_unique_plant_identifier": true,
+    "staged_outcomes_related_not_seeds_equals_initiated_times_flyescape": true,
+    "flyescape_measures_fraction_of_fruits_avoiding_predation": true,
+    "selection_model_after_original_article_not_reconstructed": true,
+    "permutation_exchangeability_not_proven": true,
+    "bootstrap_within_site_year_type_descriptive_only": true,
+    "analyses_exploratory_after_source_selection": true,
+    "new_own_field_observations": 0
+  }
+}
