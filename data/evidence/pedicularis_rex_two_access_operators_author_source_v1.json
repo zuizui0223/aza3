@@ -139,7 +139,13 @@
       ],
       "nominal_significant_sites": 5,
       "conservative_BH_significant_sites": 4,
-      "p_values_less_0p0001_treated_as_conservative_upper_limit": true
+      "p_values_less_0p0001_treated_as_conservative_upper_limit": true,
+      "visitation_2010_2011_randomized_treatment_plots": {
+        "per_year": 10,
+        "water_drained": 5,
+        "intact": 5,
+        "individual_insects_independent_replicates": false
+      }
     },
     "exsertion_2016": {
       "doi": "10.1093/aob/mcw097",
