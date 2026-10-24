@@ -1,0 +1,74 @@
+name: Cirsium original reproductive sex head core versus outer morphology
+on:
+  pull_request:
+    paths:
+      - 'analysis/audit_cirsium_sex_conditional_head_mosaic_v1.py'
+      - 'tests/test_cirsium_sex_conditional_head_mosaic_v1.py'
+      - 'data/evidence/cirsium_head_sex_core_exterior_contrast_independent_js_v1.json'
+      - 'docs/CIRSIUM_ACTUAL_REPRODUCTIVE_SEX_INNER_VS_OUTER_HEAD_MOSAIC_20261024.md'
+      - 'data/evidence/cirsium_2023_same_plant_head_morphology_subset_v1.csv'
+      - '.github/workflows/audit-cirsium-sex-head-inner-outer-source-v1.yml'
+      - 'README.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  independent-original-plant-sex-stratum-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Confirm source anatomy, 114-plant grain, original sexes and scientific negative controls
+        run: |
+          python -m py_compile analysis/audit_cirsium_sex_conditional_head_mosaic_v1.py
+          python -m unittest discover -s tests -p 'test_cirsium_sex_conditional_head_mosaic_v1.py' -v
+      - name: Recompute 20000 within-taxon original-sex permutations and 5000 source-plant bootstraps
+        run: |
+          mkdir -p work/cirsium_sex
+          python analysis/audit_cirsium_sex_conditional_head_mosaic_v1.py \
+            --subset data/evidence/cirsium_2023_same_plant_head_morphology_subset_v1.csv \
+            --out work/cirsium_sex/results_python.json
+      - name: Cross-check original independent JS and Python each feature taxon CI and conditional p
+        run: |
+          python - <<'PY'
+          import json,math
+          a=json.load(open('work/cirsium_sex/results_python.json'))
+          b=json.load(open('data/evidence/cirsium_head_sex_core_exterior_contrast_independent_js_v1.json'))
+          def exact(x,y,key='root'):
+              if isinstance(y,dict):
+                  assert isinstance(x,dict) and set(x)==set(y),(key,'keys',set(x)^set(y))
+                  for k,v in y.items(): exact(x[k],v,key+'.'+k)
+              elif isinstance(y,list):
+                  assert isinstance(x,list) and len(x)==len(y),(key,'shape')
+                  for i,(xx,yy) in enumerate(zip(x,y)):exact(xx,yy,key+f'[{i}]')
+              elif type(y) is bool:
+                  assert type(x) is bool and x==y,(key,x,y)
+              elif type(y) in (int,float):
+                  assert type(x) in (int,float) and math.isfinite(x) and math.isfinite(y),(key,x,y)
+                  assert math.isclose(x,y,abs_tol=1e-9,rel_tol=1e-9),(key,x,y)
+              else:
+                  assert x==y,(key,x,y)
+          exact(a,b)
+          assert a['source']['original_source_n_individuals']==114
+          assert a['design']['permutation_draws']==20000
+          assert a['design']['bootstrap_draws']==5000
+          for taxon,details in a['by_taxon'].items():
+              assert details['features']['corolla_log']['ratio_percent']<0,taxon
+              assert details['features']['corolla_log']['within_taxa_six_test_BH_q']<.01,taxon
+              assert details['features']['outer_ratio_log']['within_taxa_six_test_BH_q']>.05,taxon
+          assert a['pooled_equal_taxon']['corolla_log']['mean_log_female_minus_hermaphrodite']<-.09
+          assert a['pooled_equal_taxon']['outer_ratio_log']['conditional_permutation_p_two_sided']>.05
+          assert a['limits']['NO_same_plant_insect_access_or_viable_seed_fate']==0
+          assert a['limits']['new_own_field_samples']==0
+          print('PASS authentic 114 source plants, 912 publisher-matched cells, all 3 sex strata x 7 features, 20k permutation p, BH q and 5000 bootstrap interval bounds, independent JS/Python exact replay.')
+          PY
+      - name: Save machine-readable original plant summary only
+        uses: actions/upload-artifact@v4
+        with:
+          name: Cirsium-sex-head-original-inner-outer-source-v1
+          path: work/cirsium_sex/results_python.json
+          if-no-files-found: error
+          retention-days: 30
