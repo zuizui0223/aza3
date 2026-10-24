@@ -142,5 +142,65 @@ class SourceGatedVisitorCrosswalk(unittest.TestCase):
             "GLOBI_ORIGINAL_GIT_ACTIONS_SOURCE_SHA256_CHANGED"):
             v.original_events(b"totally not the original public archive")
 
+    def test_actual_2026_original_crosswalk_documented_coverage_and_failed_trait_gate(self):
+        import json
+        receipt=ROOT/"data/evidence/cirsium_native_head_visitor_source_linkability_v1.json"
+        got=json.loads(receipt.read_text(encoding="utf-8"))
+        src=got["source_panel"]
+        self.assertEqual(src["n_original_phylogenetic_tip_labels"],63)
+        self.assertEqual(src["n_exact_unambiguous_binomial_labels"],56)
+        self.assertEqual(src["n_nonbinomial_subspecies_or_multiword_tip_labels"],7)
+        self.assertEqual(src["n_original_GloBI_eligible_events"],3243)
+        self.assertEqual(src["n_joined_taxa_anywhere"],15)
+        self.assertEqual(src["n_events_joined_exact_binomial_anywhere"],1010)
+        self.assertEqual(src["n_events_joined_exact_binomial_NA_bounds"],902)
+        self.assertEqual(got["taxa_original_records_at_least_N_in_2_or_more_regions"],
+                         {"2":8,"5":6,"10":3,"20":3})
+        primary=got["primary_ten_records_per_species_2_regions"]
+        self.assertEqual(primary["source_taxa"],
+                         ["Cirsium nuttallii","Cirsium texanum","Cirsium vulgare"])
+        self.assertEqual(primary["total_original_admitted_visits_NA"],852)
+        for axis in ("source_head_pending",
+                     "source_outer_phyllaries_outward",
+                     "source_glutinous_ridge"):
+            self.assertEqual(primary["trait_distribution"][axis]["status"],
+                             "NOT_IDENTIFIABLE_INDEPENDENT_MORPHOLOGY_GROUPS")
+        cross=got["actual_coarse_region_matching"]
+        self.assertEqual(cross["n_species_pairs_any_trait_state_contrast"],1)
+        self.assertEqual(cross["by_trait"]["head_pending"]
+                         ["n_species_pairs_at_least_one_matched_region"],0)
+        self.assertEqual(cross["by_trait"]["outer_phyllaries_outward"]
+                         ["n_species_pairs_at_least_one_matched_region"],0)
+        self.assertEqual(cross["by_trait"]["sticky_ridge"]
+                         ["n_species_pairs_at_least_three_matched_regions"],0)
+        self.assertTrue(got["limits"]["visitor_record_is_not_pollination_success_or_oviposition"])
+        self.assertEqual(got["limits"]["no_new_organismal_field_data"],0)
+
+    def test_real_morphology_states_are_not_filled_with_false_absent_visitors(self):
+        import json
+        doc=json.loads((ROOT/"data/evidence/cirsium_native_head_visitor_source_linkability_v1.json")
+                       .read_text(encoding="utf-8"))
+        by={r["source_taxon"]:r for r in doc["species_all_original_native_binomial_tips"]}
+        self.assertEqual(by["Cirsium vulgare"][
+            "n_source_admitted_adult_flower_visit_events_NA"],699)
+        self.assertEqual(by["Cirsium nuttallii"][
+            "n_source_admitted_adult_flower_visit_events_NA"],112)
+        self.assertEqual(by["Cirsium texanum"][
+            "n_source_admitted_adult_flower_visit_events_NA"],41)
+        self.assertEqual(by["Cirsium edule"][
+            "n_source_admitted_adult_flower_visit_events_NA"],5)
+        self.assertTrue(by["Cirsium edule"]["source_outer_phyllaries_outward"])
+        self.assertEqual(by["Cirsium neomexicanum"][
+            "n_source_admitted_adult_flower_visit_events_NA"],5)
+        self.assertTrue(by["Cirsium neomexicanum"]["source_outer_phyllaries_outward"])
+        self.assertEqual(by["Cirsium vinaceum"][
+            "n_source_admitted_adult_flower_visit_events_NA"],2)
+        self.assertEqual(by["Cirsium vinaceum"]["source_head_pending"],1)
+        # A source taxon with zero GloBI visit records has UNKNOWN
+        # visitation frequency, not demonstrated no visitors.
+        n0=sum(r["n_source_admitted_adult_flower_visit_events_NA"]==0
+               for r in doc["species_all_original_native_binomial_tips"])
+        self.assertEqual(n0,41)
+
 if __name__=="__main__":
     unittest.main()
