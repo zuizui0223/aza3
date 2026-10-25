@@ -1,0 +1,143 @@
+name: R1B0 241-locus coordinate proxy
+
+on:
+  pull_request:
+    paths:
+      - "analysis/r1b0_prepare_241_coordinate_queries_v1.py"
+      - "analysis/r1b0_summarize_coordinate_proxy_v1.py"
+      - "analysis/r1b0_compare_coordinate_proxy_v1.py"
+      - ".github/workflows/r1b0-coordinate-proxy-v1.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: r1b0-coordinate-proxy-v1-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  coordinate-proxy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install minimap2
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y minimap2
+          minimap2 --version
+          python --version
+
+      - name: Prepare public 241-locus target queries
+        run: |
+          set -euo pipefail
+          curl -L --fail --retry 3 \
+            https://raw.githubusercontent.com/carol-siniscalchi/Comp1061-Angio353/main/comp1061_hybpiper_reference.fasta \
+            -o comp1061_hybpiper_reference.fasta
+          python analysis/r1b0_prepare_241_coordinate_queries_v1.py \
+            --target comp1061_hybpiper_reference.fasta \
+            --loci data/evidence/moreyra_conservative_241_no_warning_loci_v1.txt \
+            --output r1b0_241_queries.fasta \
+            --receipt r1b0_241_queries_receipt.json
+
+      - name: Download and verify Cirsium heterophyllum hap1
+        run: |
+          set -euo pipefail
+          url="https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/965/225/835/GCA_965225835.1_daCirHete1.hap1.1/GCA_965225835.1_daCirHete1.hap1.1_genomic.fna.gz"
+          curl -L --fail --retry 4 --retry-delay 5 "$url" -o heterophyllum.fa.gz
+          echo "9b5e78bc4736baec58f688262e3f0cca  heterophyllum.fa.gz" | md5sum -c -
+          gzip -dc heterophyllum.fa.gz > heterophyllum.fa
+          echo "2b38c89fbd7c052ff731ea56a8d40f61  heterophyllum.fa" | md5sum -c -
+          du -h heterophyllum.fa.gz heterophyllum.fa
+
+      - name: Localize 241 loci in heterophyllum
+        run: |
+          set -euo pipefail
+          minimap2 -x splice:hq -t 4 -N 5 --secondary=yes --cs=long \
+            heterophyllum.fa r1b0_241_queries.fasta > heterophyllum.paf
+          python analysis/r1b0_summarize_coordinate_proxy_v1.py \
+            --queries r1b0_241_queries.fasta \
+            --paf heterophyllum.paf \
+            --reference-id GCA_965225835.1 \
+            --out-csv heterophyllum_241_proxy.csv \
+            --out-json heterophyllum_241_proxy.json
+          rm -f heterophyllum.fa heterophyllum.fa.gz
+
+      - name: Download and verify Cirsium dissectum hap1
+        run: |
+          set -euo pipefail
+          url="https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/965/276/805/GCA_965276805.1_daCirDiss1.hap1.1/GCA_965276805.1_daCirDiss1.hap1.1_genomic.fna.gz"
+          curl -L --fail --retry 4 --retry-delay 5 "$url" -o dissectum.fa.gz
+          echo "833d314a3cd6b148db017fba37d72b7d  dissectum.fa.gz" | md5sum -c -
+          gzip -dc dissectum.fa.gz > dissectum.fa
+          echo "7d6f4d0382f991c5cda53ce82308eba9  dissectum.fa" | md5sum -c -
+          du -h dissectum.fa.gz dissectum.fa
+
+      - name: Localize 241 loci in dissectum
+        run: |
+          set -euo pipefail
+          minimap2 -x splice:hq -t 4 -N 5 --secondary=yes --cs=long \
+            dissectum.fa r1b0_241_queries.fasta > dissectum.paf
+          python analysis/r1b0_summarize_coordinate_proxy_v1.py \
+            --queries r1b0_241_queries.fasta \
+            --paf dissectum.paf \
+            --reference-id GCA_965276805.1 \
+            --out-csv dissectum_241_proxy.csv \
+            --out-json dissectum_241_proxy.json
+          rm -f dissectum.fa dissectum.fa.gz
+
+      - name: Download and verify Cirsium nipponicum
+        run: |
+          set -euo pipefail
+          curl -L --fail --retry 4 --retry-delay 5 \
+            https://ndownloader.figshare.com/files/48979489 \
+            -o nipponicum.fa
+          echo "e9390e23ffd0dc5e3da8271db4d1d3ca  nipponicum.fa" | md5sum -c -
+          du -h nipponicum.fa
+
+      - name: Localize 241 loci in nipponicum
+        run: |
+          set -euo pipefail
+          minimap2 -x splice:hq -t 4 -N 5 --secondary=yes --cs=long \
+            nipponicum.fa r1b0_241_queries.fasta > nipponicum.paf
+          python analysis/r1b0_summarize_coordinate_proxy_v1.py \
+            --queries r1b0_241_queries.fasta \
+            --paf nipponicum.paf \
+            --reference-id C_nipponicum_figshare_48979489 \
+            --out-csv nipponicum_241_proxy.csv \
+            --out-json nipponicum_241_proxy.json
+          rm -f nipponicum.fa
+
+      - name: Cross-reference coordinate concordance
+        run: |
+          set -euo pipefail
+          python analysis/r1b0_compare_coordinate_proxy_v1.py \
+            --heterophyllum heterophyllum_241_proxy.csv \
+            --dissectum dissectum_241_proxy.csv \
+            --nipponicum nipponicum_241_proxy.csv \
+            --output r1b0_241_cross_reference_proxy.json
+          echo "===== HETEROPHYLLUM ====="
+          cat heterophyllum_241_proxy.json
+          echo "===== DISSECTUM ====="
+          cat dissectum_241_proxy.json
+          echo "===== NIPPONICUM ====="
+          cat nipponicum_241_proxy.json
+          echo "===== CROSS REFERENCE ====="
+          python - <<'PY'
+          import json
+          d=json.load(open("r1b0_241_cross_reference_proxy.json"))
+          print(json.dumps(d["summary"],indent=2))
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: r1b0-241-coordinate-proxy-${{ github.run_id }}
+          path: |
+            r1b0_241_queries_receipt.json
+            *_241_proxy.json
+            *_241_proxy.csv
+            r1b0_241_cross_reference_proxy.json
+          if-no-files-found: error

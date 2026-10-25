@@ -1,0 +1,77 @@
+{
+  "contract_version": "c_sieboldii_flow_cytometry_qc_v1",
+  "status_date": "2026-10-05",
+  "status": "METHOD_FROZEN_NOT_COLLECTION_AUTHORIZATION",
+  "focal_taxon": "Cirsium sieboldii",
+  "purpose": "Provide same-individual absolute 2C DNA-content QC for R1B reference-transferability and later structural interpretation; not a phenotype-causality test.",
+  "public_context": {
+    "focal_chromosome_context": "2n=2x=34; x=17",
+    "focal_species_specific_2C": "NOT_IDENTIFIED_IN_PUBLIC_AUDIT",
+    "genus_evidence": "Diploid Cirsium with 2n=34 can differ substantially in 2C DNA content; chromosome count is not a sufficient proxy for genome size.",
+    "central_european_diploid_2C_pg_range": [
+      2.14,
+      3.6
+    ],
+    "east_asian_recent_examples": {
+      "Cirsium brevicaule_2C_pg_approx": 1.93,
+      "Cirsium irumtiense_2C_pg_approx": 0.69,
+      "Cirsium japonicum_var_takaoense_2C_pg_approx": 1.01
+    }
+  },
+  "assay": {
+    "primary_fluorochrome": "propidium iodide (PI)",
+    "tissue": "fresh young leaf preferred; archive a paired tissue/voucher link to the same individual",
+    "internal_standard_initial_candidate": "Solanum lycopersicum, working value 2C=2.0 pg, matching the 2026 East-Asian Cirsium study",
+    "standard_selection_rule": "Run a sample-only and standard-only pilot at the same voltage, then a co-preparation. If G1 peaks overlap or cannot be unambiguously separated, switch to a validated alternative internal standard with better peak separation; do not force the tomato standard.",
+    "nuclei_per_measurement_min": 5000,
+    "peak_cv_target_percent_le": 3,
+    "peak_cv_hard_recheck_percent_gt": 5,
+    "replicate_preparations_min": 2,
+    "replicate_disagreement_rule": "If independent 2C estimates differ by >3%, run at least one additional independent preparation; if a stable estimate cannot be obtained without violating the peak-CV rule, code FLOW_2C_NOT_IDENTIFIABLE.",
+    "conversion_for_reporting": "1 pg ≈ 978 Mb; report 2C pg and derived 1C Mb, but retain raw fluorescence ratios and FCS files as primary records."
+  },
+  "required_records": [
+    "individual_id",
+    "tissue_id",
+    "date",
+    "instrument",
+    "laser",
+    "voltage_or_gain",
+    "buffer_and_PI_protocol",
+    "internal_standard_species_and_accession_or_source",
+    "standard_working_2C_pg",
+    "sample_G1_mean_channel",
+    "standard_G1_mean_channel",
+    "sample_peak_CV_percent",
+    "standard_peak_CV_percent",
+    "nuclei_count",
+    "2C_pg",
+    "derived_1C_Mb",
+    "replicate_id",
+    "raw_FCS_path_or_archive_id",
+    "QC_class"
+  ],
+  "qc_classes": [
+    "FLOW_2C_PASS",
+    "FLOW_2C_RECHECK",
+    "FLOW_2C_NOT_IDENTIFIABLE"
+  ],
+  "use_in_r1b": [
+    "Test whether callable fraction, normalized depth, allele balance or reference sensitivity covary with same-individual 2C.",
+    "Flag multimodal or unexpectedly broad 2C distributions before interpreting genomic structure.",
+    "Use 2C as a QC covariate and stratification variable, not as a causal explanation of capitulum phenotypes."
+  ],
+  "prespecified_heterogeneity_flag": "After measurement QC passes, if the between-individual 2C range exceeds 5% of the cohort median and is larger than replicate measurement dispersion, raise GENOME_SIZE_HETEROGENEITY_FLAG and inspect clustering before pooling individuals.",
+  "prohibited_inferences": [
+    "Do not infer equivalent genome architecture from 2n=34.",
+    "Do not infer polyploidy from a small continuous 2C shift without chromosome/ploidy evidence.",
+    "Do not infer phenotype causation from 2C association.",
+    "Do not exclude an individual solely because its 2C differs unless the exclusion rule was independently justified by assay failure or a prespecified cytotype stratum."
+  ],
+  "source_basis": [
+    "Bures et al. 2004, Annals of Botany 94:353-363, DOI 10.1093/aob/mch151",
+    "Dolezel, Greilhuber & Suda 2007, Nature Protocols 2:2233-2244, DOI 10.1038/nprot.2007.310",
+    "Chang et al. 2026, BMC Plant Biology, DOI 10.1186/s12870-026-08097-6",
+    "Reference standards for flow cytometric estimation of absolute nuclear DNA content in plants (2021 review)"
+  ]
+}

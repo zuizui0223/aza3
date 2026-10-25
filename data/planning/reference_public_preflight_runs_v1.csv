@@ -1,0 +1,11 @@
+panel_id,taxon,run,experiment,biosample,library_name,bases,avg_read_length,role,claim_ceiling
+P01,Cirsium sieboldii,SRR30887308,SRX26291290,SAMN44017917,Cirsium_sieboldii_366,656395250,250,focal_public_target_capture,"single individual; target-capture only; reference-transfer preflight, not local ancestry"
+P02,Cirsium japonicum,SRR30887271,SRX26291327,SAMN44017885,Cirsium_japonicum_FJ315,396608250,250,japanese_near_focal,"single individual; target-capture only"
+P03,Cirsium lineare,SRR30887240,SRX26291359,SAMN44017876,Cirsium_lineare_PE229,1052985000,250,aza3_focal_nearby,"single individual; target-capture only"
+P04,Cirsium nipponicum,SRR25265660,SRX21011558,SAMN34240318,Cirsium-nipponicum_276,709613500,250,east_asian_reference_taxon,"single individual; target-capture only"
+P05,Cirsium nipponicum var. yoshinoi,SRR30887223,SRX26291373,SAMN44017954,Cirsium_yoshinoi_FJ405,509971998,302,east_asian_reference_relative,"single individual; target-capture only"
+P06,Cirsium nipponicum var. incomptum,SRR30887286,SRX26291312,SAMN44017937,Cirsium_tonense_FJ403,563458614,302,east_asian_reference_relative,"single individual; target-capture only"
+P07,Cirsium pendulum,SRR25265649,SRX21011568,SAMN34240327,Cirsium-pendulum_MW157,361806250,250,aza3_phaseA_focal,"single individual; target-capture only"
+P08,Cirsium dipsacolepis,SRR30887259,SRX26291339,SAMN44017836,Cirsium_dipsacolepis_FJ363,1881033750,250,aza3_phaseA_focal,"single individual; target-capture only"
+P09,Cirsium tanakae,SRR30887291,SRX26291307,SAMN44017932,Cirsium_tanakae_271,806716750,250,japanese_radiation_comparator,"single individual; target-capture only"
+P10,Cirsium japonicum var. maackii,SRR25265685,SRX21011532,SAMN34240313,Cirsium-maackii_MW159,612810750,250,japonicum_complex_comparator,"single individual; target-capture only"
