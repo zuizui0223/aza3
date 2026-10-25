@@ -1,0 +1,90 @@
+{
+  "audit_version": "r1b0_distributed_spot_kmer_smoke_v1",
+  "status_date": "2026-10-05",
+  "source_run": "SRR30887308",
+  "source_taxon": "Cirsium sieboldii",
+  "target_source": {
+    "repository": "carol-siniscalchi/Comp1061-Angio353",
+    "path": "comp1061_hybpiper_reference.fasta",
+    "blob_sha": "4f89e234007f367ffa8aa5e2be536bc44f31f445",
+    "sequence_records": 2597,
+    "distinct_loci": 1061,
+    "unique_15mers": 1011900
+  },
+  "method": {
+    "read_access": "NCBI Run Browser deterministic dispersed spot-ID queries",
+    "adapter_trim_motifs": [
+      "AGATCGGAAGAGC",
+      "GATCGGAAGAGC"
+    ],
+    "k": 15,
+    "phase_a": "Exact target-kmer overlap; target k-mer or reverse-complement accepted.",
+    "phase_b": "Only 15-mers uniquely attributable to one target locus were counted; best locus required >=5 unique-locus k-mer hits for the strong-read summary.",
+    "random_exact_15mer_hit_probability_per_window": 0.0009424053132534027
+  },
+  "phase_a": {
+    "requested_spots": 30,
+    "retrieved_spots": 17,
+    "retrieved_reads": 34,
+    "reads_with_ge_1_target_kmer_hit": 16,
+    "reads_with_ge_5_target_kmer_hits": 11,
+    "reads_with_ge_10_target_kmer_hits": 8,
+    "maximum_hits_per_read": 65,
+    "mean_hits_per_read": 10.235294117647058,
+    "median_hits_per_read": 0,
+    "interpretation": "Mixed target-rich and target-poor reads are expected because the experiment design mixed unenriched and target-enriched libraries 3:2."
+  },
+  "phase_b": {
+    "requested_spots_requery": 17,
+    "retrieved_reads": 22,
+    "strong_unique_locus_reads": 9,
+    "strong_distinct_loci": 5,
+    "loci": [
+      "AT1G02140",
+      "AT1G61800",
+      "AT1G79040",
+      "AT3G21760",
+      "AT4G14342"
+    ],
+    "paired_same_locus_examples": [
+      {
+        "spot": 721000,
+        "locus": "AT1G79040",
+        "mate1_hits": 25,
+        "mate2_hits": 50
+      },
+      {
+        "spot": 1531000,
+        "locus": "AT4G14342",
+        "mate1_hits": 65,
+        "mate2_hits": 65
+      },
+      {
+        "spot": 1621000,
+        "locus": "AT3G21760",
+        "mate1_hits": 9,
+        "mate2_hits": 6
+      },
+      {
+        "spot": 2521000,
+        "locus": "AT1G02140",
+        "mate1_hits": 27,
+        "mate2_hits": 27
+      }
+    ],
+    "singleton_strong_example": {
+      "spot": 1441000,
+      "mate": 1,
+      "locus": "AT1G61800",
+      "best_hits": 37,
+      "second_best_hits": 2
+    }
+  },
+  "decision": "PUBLIC_RUN_CONTAINS_MULTIPLE_AUTHENTIC_COMP1061_TARGET_SIGNALS__HYBPIPER_FULL_RECOVERY_STILL_REQUIRED",
+  "claim_boundary": [
+    "This deterministic spot sample is not a random-sampling estimate of capture efficiency.",
+    "Run Browser retrieval was incomplete for some requested spot IDs and is used only as an independent technical check.",
+    "No reference-transferability, locus-recovery fraction, orthology, local ancestry, genomic modularity, or genotype-phenotype inference is authorized.",
+    "Primary R1B-0 evidence remains full-run HybPiper locus recovery followed by frozen orthology and cross-reference localization."
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "contract_version": "aza3_r1b_own_wgs_transferability_pilot_v1",
+  "status_date": "2026-10-05",
+  "status": "DESIGN_FROZEN_NOT_COLLECTION_AUTHORIZATION",
+  "focal_taxon": "Cirsium sieboldii",
+  "primary_n": 8,
+  "allowed_n": [
+    6,
+    10
+  ],
+  "target_depth_x": 8,
+  "acceptable_depth_range_x": [
+    6,
+    10
+  ],
+  "required_same_individual_fields": [
+    "individual_id",
+    "population_id",
+    "voucher_or_diagnostic_image",
+    "direct_colour",
+    "direct_orientation",
+    "direct_phyllary",
+    "direct_stickiness",
+    "2C_genome_size_or_failure_code",
+    "cytotype_or_failure_code",
+    "dna_extraction_id"
+  ],
+  "reference_panel": [
+    "GCA_965225835.1",
+    "GCA_965276805.1",
+    "C_nipponicum_public_assembly"
+  ],
+  "decisions": [
+    "OWN_WGS_GREEN",
+    "OWN_WGS_AMBER",
+    "OWN_WGS_RED",
+    "NOT_IDENTIFIABLE"
+  ],
+  "prohibited_inference": "No module-specific genomic architecture or genotype-phenotype claim is authorized by this pilot.",
+  "current_authorization": false
+}
