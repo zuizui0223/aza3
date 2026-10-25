@@ -1,0 +1,307 @@
+# aza3 Nature single-question pivot v2 — reconfigurable integration
+
+**Status:** active conceptual target; genomic answer not yet known  
+**Date:** 2026-10-05
+
+## The one question
+
+> **Must an integrated complex organ evolve as an integrated unit?**
+
+Working answer to test:
+
+> **No. Phenotypic integration may be a repeatedly reconstructed state rather than a persistently inherited evolutionary unit: component couplings can differ across present-day covariance, ecological association, historical change and genomic inheritance, allowing an organ to remain integrated while its parts are reassembled.**
+
+Working label: **reconfigurable integration**.
+
+This label is a hypothesis shorthand, not a claim that the phrase itself is novel.
+
+## What changed
+
+The previous Nature framing assumed a positive alignment:
+
+`ecological modules -> historical modules -> genomic modules`
+
+and treated that alignment as the source of combinatorial evolvability.
+
+The frozen Azami reanalysis does not support the first arrow as a general module-level statement.
+
+Across nine predeclared capitulum constructs and six predeclared environmental blocks:
+
+- phenotypic module cohesion is supported among taxa and within taxa;
+- ecological fingerprint cohesion under those same module labels is not supported;
+- phenotypic integration strength does not predict environmental-profile similarity.
+
+Therefore the Nature question cannot be:
+
+> do ecological modules match genomic modules?
+
+The stronger question is whether **the same organ can be integrated at one level without preserving the same coupling structure at other levels**.
+
+## Existing evidence before new aza3 population genomics
+
+### Layer 1 — present phenotype is structured and integrated
+
+From the frozen Azami v3 complete-18 common cohort:
+
+- 1,734 observations;
+- 42 taxa;
+- within-taxon module cohesion: within-minus-between RV = 0.09228, permutation P = 0.0013;
+- among-taxon module cohesion: within-minus-between RV = 0.08941, permutation P = 0.0365.
+
+Thus the capitulum is not an arbitrary bag of image traits.
+
+### Layer 2 — ecology does not reproduce the same module partition
+
+The aza3 exact test uses six normalized environmental-block fingerprints for the nine constructs and all 5,040 label assignments preserving module sizes 1/3/2/3.
+
+Among taxa:
+
+- mean within-module cosine similarity = 0.88429;
+- mean between-module cosine similarity = 0.87328;
+- difference = 0.01101;
+- exact one-sided P = 0.36587.
+
+Within taxa:
+
+- difference = 0.01634;
+- exact one-sided P = 0.29524.
+
+Separate frozen Azami analysis also finds no coupling between pairwise phenotypic integration and similarity of environmental profiles:
+
+- among taxa: rho = 0.04299, QAP P = 0.8475;
+- within taxa: rho = 0.23449, QAP P = 0.1652.
+
+Decision:
+
+> **FIXED_ECOLOGICAL_MODULE_ALIGNMENT_NOT_SUPPORTED**
+
+This does not mean ecology is unimportant.
+
+Two trait-specific ecological anchors survive the complete robustness sequence:
+
+- floral chroma × short-wave radiation;
+- presentation angle × annual precipitation.
+
+Those environmental predictors are themselves almost unrelated in the complete-18 observation cohort (Pearson r about -0.003).
+
+Thus the supported statement is:
+
+> **specific capitulum components track distinct ecological dimensions, but those dimensions do not organize the whole capitulum into the same fixed modules seen in phenotype covariance.**
+
+### Layer 3 — historical change is not synchronized
+
+EAzami establishes, within its admitted topology uncertainty:
+
+- orientation: 4–6 minimum changes;
+- phyllary posture: 3;
+- stickiness: 5;
+- unequal relative-depth geometry;
+- 0/3 discrete trait pairs pass the robust shared-transition-localization rule.
+
+This rejects the simplest model in which a presently integrated capitulum has one persistent synchronized macroevolutionary history.
+
+It does not establish genetic independence.
+
+### Layer 4 — reference feasibility no longer blocks the genomic test
+
+R1B-0 public-data work shows:
+
+- high focal target-capture recovery;
+- strong East-Asian coding-sequence compatibility;
+- high clean-locus placement success across three public genome references;
+- LOW within-individual hap1/hap2 reference noise.
+
+The preregistered result is:
+
+`HAPLOTYPE_CONTROL_GREEN__PROCEED_TO_OWN_WGS_PILOT`
+
+A focal *C. sieboldii* chromosome reference is therefore not built first.
+
+## Focal-system prerequisite — verify that reassembly substrate exists
+
+The genomic mechanism cannot be tested merely because *C. sieboldii* has several states somewhere across its range.
+
+The public audit currently supports species-wide variation but does not establish same-population independent segregation. Orientation is especially vulnerable to a phenology artefact because ordinary nodding heads become upright after flowering.
+
+Therefore:
+
+`docs/C_SIEBOLDII_COMBINATORIAL_SUBSTRATE_GATE_V1.md`
+
+is required before selecting *C. sieboldii* as the Nature Fig.3–4 biological population.
+
+A `CS_GREEN` result preserves the strongest within-population natural-reassembly route.
+
+`CS_GREEN_LOCAL_SET` retains a weaker local reassembly route.
+
+`CS_AMBER` or `CS_RED_*` means *C. sieboldii* may remain useful for historical/genomic-source questions but should not be forced into the Nature kill shot.
+
+## The decisive aza3 test
+
+The genomic result must distinguish two biological models.
+
+### Model F — fixed evolutionary integration
+
+If the currently integrated organ is inherited/evolves as a persistent integrated unit:
+
+- traits that form present phenotypic modules should repeatedly share genomic regions or local ancestry;
+- local genealogies for component traits should be concordant;
+- recombinant ancestry should not independently predict component states;
+- head configurations should largely follow a small number of linked whole-organ genomic backgrounds.
+
+### Model R — reconfigurable integration
+
+If integration is repeatedly reconstructed:
+
+- different component states are predicted by separable genomic regions/local histories;
+- the partitions need not reproduce present phenotypic covariance modules;
+- component-associated ancestry can assort or recombine independently within the same species/populations;
+- individuals with new genomic mosaics can carry viable new combinations of component states;
+- present organ-level integration can therefore coexist with historical and genomic decoupling.
+
+## The Nature kill shot
+
+The strongest single result would be:
+
+> **two plants can occupy the same integrated capitulum phenotype region, or equally functional configurations, while reaching it through different combinations of component-specific local genomic histories — and those histories recombine independently in segregating natural populations.**
+
+Even stronger:
+
+> a genomic mosaic not used to define the model prospectively predicts a capitulum combination not represented in the training populations.
+
+That turns the paper from retrospective history into a prediction about what combinations evolution can generate.
+
+## Five-figure paper contract
+
+### Fig. 1 — Integration without one ecological partition
+
+Show:
+- present phenotypic module cohesion;
+- exact null result for module-aligned environmental fingerprints;
+- two robust component-specific ecological anchors.
+
+Claim:
+**the capitulum is integrated, but its ecological association structure is not the same fixed partition.**
+
+### Fig. 2 — Integration without synchronized history
+
+Show:
+- recurrence;
+- unequal depth;
+- 0/3 robust shared transition localization.
+
+Claim:
+**present integration does not imply shared macroevolutionary history.**
+
+### Fig. 3 — Does integration imply genomic co-inheritance?
+
+Primary new aza3 result.
+
+Show same-individual:
+- direct component phenotypes;
+- genome-wide ancestry;
+- component-associated genomic regions;
+- local ancestry/local genealogy;
+- cytotype/genome-size controls.
+
+Fixed-module prediction:
+shared local genomic history.
+
+Reconfigurable-integration prediction:
+separable local histories.
+
+### Fig. 4 — Natural reassembly
+
+Show:
+- segregating/recombinant individuals;
+- ancestry mosaics;
+- component-state combinations;
+- out-of-sample prediction of component combinations if feasible.
+
+This is the causal/mechanistic centerpiece.
+
+### Fig. 5 — Function remains coherent after reassembly
+
+Use one preregistered component route, probably orientation:
+
+`orientation -> wetting/presentation -> reproductive process -> viable achenes`
+
+The point is not to prove every component adaptive.
+
+The point is to show that evolutionary reassembly can still produce a biologically coherent reproductive organ.
+
+## What is genuinely new and what is not
+
+Not new on its own:
+
+- organisms are modular;
+- different definitions of modularity need not correspond;
+- phenotypic integration can constrain or facilitate evolution;
+- mosaic evolution occurs;
+- standing variants can be recombined;
+- developmental modules can change across lineages.
+
+These are established literatures.
+
+The Nature-scale advance would be to close, in one natural radiation and one complex reproductive organ:
+
+`present integration`
+→ `cross-level decoupling`
+→ `separable genomic inheritance`
+→ `natural reassembly`
+→ `functional integrated outcome`.
+
+The key conceptual move is not “modules exist.”
+
+It is:
+
+> **integration itself need not be the unit of inheritance.**
+
+## Why this could change the usual view
+
+A common operational shortcut in studies of complex traits is to infer evolutionary constraint or evolvability from a detected covariance/module partition.
+
+The literature already warns that developmental, functional, variational and evolutionary modularity need not coincide.
+
+This study becomes high-impact only if it demonstrates the stronger consequence:
+
+> **a statistically integrated organ can retain high combinatorial evolvability precisely because the couplings that integrate its present phenotype are not permanently locked into its historical and genomic inheritance.**
+
+That changes the interpretation of phenotypic integration from a persistent architecture to a potentially transient outcome.
+
+## Critical literature boundary
+
+The conceptual background that must be acknowledged explicitly includes:
+
+- Armbruster et al. 2014, *Philosophical Transactions B*: integration/modularity have multiple meanings and their relation to evolvability is not one-to-one.
+- Cheverud & Marroig 2016, *Annual Review of Ecology, Evolution, and Systematics*: correspondence among variational and developmental modularity is not guaranteed.
+- Dellinger et al. 2019, *Communications Biology*: floral functional modularity can change with pollination regime and affect evolutionary rate.
+- Parins-Fukuchi 2020, *Evolution*: shifts in modularity can accompany bursts of mosaic evolution.
+- Smith et al. 2020, *Frontiers in Ecology and Evolution*: evolutionary modularity can facilitate exchange of phenotype components without requiring strict developmental modularity.
+- Houle & Rossoni 2022, *Annual Review of Ecology, Evolution, and Systematics*: functional/developmental modularity is often assumed to map to variational/evolutionary modularity without a demonstrated reason.
+- Evans & Felice 2026, *Nature Reviews Biodiversity*: integration/modularity can shape diversification and module breakup/reassembly remains a central open problem.
+
+Therefore the paper must not claim that cross-level mismatch itself is unprecedented.
+
+It must demonstrate **the evolutionary consequence of that mismatch**.
+
+## Falsifier
+
+The reconfigurable-integration hypothesis fails as a Nature-scale mechanism if dense same-individual genomics shows that:
+
+- all focal component traits follow the same local genomic ancestry;
+- phenotype combinations track one whole-organ genomic background;
+- recombinants do not independently assort component states;
+- apparent historical decoupling disappears once population genomic history is resolved.
+
+That outcome would support persistent/fixed evolutionary integration instead.
+
+## Immediate execution order
+
+1. Keep the Fig. 1 ecological-module null; do not search for another grouping that makes it significant.
+2. Run Gate CS: verify whether *C. sieboldii* actually contains a same-population or tightly local multi-component substrate at standardized anthesis.
+3. If Gate CS is GREEN, select those verified individuals/populations for the 8-individual WGS reference-transferability pilot.
+4. If WGS_TRANSFER_GREEN, freeze the genomic fixed-vs-reconfigurable estimands before scaling.
+5. If Gate CS is AMBER/RED, verify an alternative focal system rather than forcing *C. sieboldii* into the reassembly claim.
+6. Test component-specific genomic histories before any fitness interpretation.
+7. Open the natural-reassembly/prediction test only after component genomic separation is established.
+8. Keep Gate 0 acceleration as context, not a prerequisite.

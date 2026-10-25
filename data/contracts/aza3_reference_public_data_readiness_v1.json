@@ -1,0 +1,133 @@
+{
+  "contract_version": "aza3_reference_public_data_readiness_v1",
+  "status_date": "2026-10-05",
+  "status": "R1A_COMPLETE__R1B0_PUBLIC_PREFLIGHT_SUPPORTIVE__R1B_OWN_WGS_PILOT_AUTHORIZED",
+  "nature_role": "Determine whether existing public Cirsium resources can support module-specific local genealogy and ancestry inference in focal Japanese systems without reference-induced artefact.",
+  "focal_system": "Cirsium sieboldii",
+  "resource_inventory": "data/planning/reference_public_resource_inventory_v1.csv",
+  "public_resource_classes": [
+    "chromosome_scale_congener_references",
+    "east_asian_contig_reference_and_annotation",
+    "genus_wide_target_capture",
+    "east_asian_leaf_transcriptomes",
+    "raw_reference_build_reads"
+  ],
+  "candidate_reference_panel": [
+    {
+      "taxon": "Cirsium heterophyllum",
+      "assembly": "GCA_965225835.1",
+      "role": "chromosome_backbone_1"
+    },
+    {
+      "taxon": "Cirsium dissectum",
+      "assembly": "GCA_965276805.1",
+      "role": "chromosome_backbone_2"
+    },
+    {
+      "taxon": "Cirsium nipponicum",
+      "source": "PRJNA1127082 + Figshare 10.6084/m9.figshare.26927092",
+      "role": "east_asian_sequence_anchor"
+    }
+  ],
+  "focal_public_reference_status": "NO_FOCAL_C_SIEBOLDII_WHOLE_GENOME_REFERENCE_IDENTIFIED_IN_CURRENT_AUDIT",
+  "r1b_pilot_design": {
+    "sample_target": "6-10 C. sieboldii individuals spanning populations and directly scored capitulum states; phenotype labels kept blinded during first mapping-QC pass where feasible",
+    "required_same_individual_metadata": [
+      "population_id",
+      "voucher_or_diagnostic_image",
+      "direct_colour",
+      "direct_orientation",
+      "direct_phyllary_state",
+      "direct_stickiness",
+      "2C_genome_size_or_explicit_missingness",
+      "cytotype_or_explicit_missingness"
+    ],
+    "run_against": [
+      "GCA_965225835.1",
+      "GCA_965276805.1",
+      "C_nipponicum_public_assembly"
+    ],
+    "primary_qc": [
+      "unique_mapping_fraction",
+      "mapped_pair_fraction",
+      "coverage_uniformity",
+      "allele_balance",
+      "callable_fraction",
+      "window_missingness",
+      "genotype_likelihood_PCA",
+      "pairwise_relatedness_or_kinship",
+      "windowed_local_PCA_or_local_relatedness"
+    ],
+    "bias_tests": [
+      "reference_x_sample interaction in callable fraction",
+      "phenotype-linked missingness after labels are opened",
+      "population-linked mapping failure",
+      "reference-specific local ancestry or local-PCA signals",
+      "reference-specific allele-balance distortion"
+    ],
+    "negative_control_principle": "Reference transfer is acceptable only when the biological conclusion, not merely global mapping rate, is stable across the primary congener backbones and East-Asian sequence anchor where technically comparable, and when the claimed among-reference differences exceed same-individual hap1-vs-hap2 sensitivity.",
+    "reference_internal_controls": [
+      {
+        "taxon": "Cirsium heterophyllum",
+        "primary_hap1": "GCA_965225835.1",
+        "hap2_control": "GCA_965225975.1",
+        "purpose": "bound same-individual reference-haplotype sensitivity"
+      },
+      {
+        "taxon": "Cirsium dissectum",
+        "primary_hap1": "GCA_965276805.1",
+        "hap2_control": "GCA_965276745.1",
+        "purpose": "bound same-individual reference-haplotype sensitivity; NCBI assembly comments report haplotypic inversions on chromosomes 1, 6 and 7"
+      }
+    ],
+    "reference_metadata_boundary": "NCBI accession-level reports identify 17 chromosome-scale scaffolds for both hap1 assemblies. Any prior 19-chromosome description is superseded."
+  },
+  "decision_classes": {
+    "GREEN_EXISTING_REFERENCE_SUFFICIENT": {
+      "condition": "Genome-wide ancestry and the local-history signals used for the planned Fig.3 inference are materially reference-invariant, with no phenotype-linked mapping/callability artefact.",
+      "authorized": [
+        "Phase-A ancestry",
+        "reference-aware dense resequencing triage",
+        "module-specific local-history discovery"
+      ],
+      "not_automatically_authorized": [
+        "fine causal variant claim",
+        "SV claim",
+        "absolute haplotype age"
+      ]
+    },
+    "AMBER_FOCAL_REFERENCE_REQUIRED": {
+      "condition": "Genome-wide ancestry is stable but window-level genealogy, haplotype block, or genotype-phenotype localization is materially reference-dependent.",
+      "action": "Build a focal C. sieboldii reference before Nature Fig.3 Tier-2 inference.",
+      "minimum_reference_plan": [
+        "same focal population",
+        "fully scored reference individual",
+        "flow-cytometry checked",
+        "PacBio HiFi or equivalent long reads",
+        "Hi-C or equivalent chromosome scaffolding",
+        "repeat annotation",
+        "gene annotation using public Cirsium transcriptomes"
+      ]
+    },
+    "RED_PANGENOME_OR_GRAPH_REQUIRED": {
+      "condition": "Reference bias tracks major phenotype/ancestry classes or structural/haplotype inference remains unstable after a focal linear reference.",
+      "action": "Use two or more phenotype/ancestry-divergent focal assemblies and a graph/mini-pangenome representation before combinatorial-reuse claims."
+    },
+    "NOT_IDENTIFIABLE": {
+      "condition": "Pilot coverage or sample design cannot distinguish reference artefact from biological local-history signal.",
+      "action": "Do not open module-specific genomic-history claims; redesign pilot."
+    }
+  },
+  "claim_boundaries": [
+    "Target-capture loci from PRJNA957074 may inform broad topology and orthology but cannot by themselves establish fine local ancestry, haplotype age, recombination blocks, or structural-variant reuse.",
+    "Young-leaf transcriptomes from PRJNA1158676 and PRJNA1311153 may inform coding orthology and expressed haplotypes but cannot establish intergenic regulatory architecture or genome-wide local ancestry.",
+    "A high mapping rate to a congener does not by itself authorize local-genealogy inference.",
+    "Shared chromosome number does not establish equivalent genome architecture; same-individual genome-size/cytotype information remains required.",
+    "No focal C. sieboldii reference should be built until R1B shows that existing resources are insufficient for the intended estimand, unless an independent design need already requires it."
+  ],
+  "current_decision": "PROCEED_TO_OWN_WGS_TRANSFERABILITY_PILOT",
+  "public_preflight_result": "data/evidence/r1b0_stage2_primary_reference_result_v1.json",
+  "haplotype_control_result": "data/evidence/r1b0_haplotype_control_result_v1.json",
+  "reference_build_decision": "DO_NOT_BUILD_FOCAL_C_SIEBOLDII_REFERENCE_YET",
+  "reference_build_reopen_rule": "Reopen focal long-read reference only if the own-WGS pilot shows phenotype/population-linked callability bias or materially reference-dependent local-history signals."
+}

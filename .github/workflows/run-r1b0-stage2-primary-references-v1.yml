@@ -1,0 +1,350 @@
+name: Run R1B-0 Stage2 primary references
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/run-r1b0-stage2-primary-references-v1.yml"
+      - "analysis/build_focal_frozen_locus_fasta_v1.py"
+      - "analysis/compare_focal_cnipg_loci_v1.py"
+      - "analysis/summarize_hybpiper_recovery_v1.py"
+      - "analysis/summarize_r1b0_reference_localization_v1.py"
+      - "analysis/compare_r1b0_reference_localizations_v1.py"
+      - "data/evidence/moreyra_conservative_241_no_warning_loci_v1.txt"
+      - "data/evidence/r1b0_genome_reference_byte_contract_v1.json"
+  workflow_dispatch:
+
+concurrency:
+  group: r1b0-stage2-primary-references-v1-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  stage2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    defaults:
+      run:
+        shell: bash -el {0}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Checkout frozen EAzami durable reference pack source
+        uses: actions/checkout@v4
+        with:
+          repository: zuizui0223/EAzami
+          ref: f406c32ac6d4a8da49777d7973a92f48146bd6df
+          path: eazami
+          persist-credentials: false
+
+      - name: Create Stage-2 environment
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: r1b0-stage2
+          init-shell: bash
+          cache-environment: true
+          create-args: >-
+            python=3.12
+            hybpiper=2.3.4
+            sra-tools
+            minimap2
+            biopython
+            -c conda-forge
+            -c bioconda
+
+      - name: Freeze software versions
+        run: |
+          set -euo pipefail
+          hybpiper --version
+          fasterq-dump --version
+          minimap2 --version
+          python - <<'PY'
+          import Bio
+          print("biopython", Bio.__version__)
+          PY
+
+      - name: Fetch and audit original Compositae1061 target
+        run: |
+          set -euo pipefail
+          mkdir -p stage2
+          curl -L --fail --retry 5 \
+            https://raw.githubusercontent.com/carol-siniscalchi/Comp1061-Angio353/main/comp1061_hybpiper_reference.fasta \
+            -o stage2/comp1061_hybpiper_reference.fasta
+          python - <<'PY'
+          from pathlib import Path
+          p=Path("stage2/comp1061_hybpiper_reference.fasta")
+          headers=[x[1:] for x in p.read_text().splitlines() if x.startswith(">")]
+          loci={h.split("-",1)[1] for h in headers}
+          prefixes={h.split("-",1)[0] for h in headers}
+          assert len(headers)==2597, len(headers)
+          assert len(loci)==1061, len(loci)
+          assert prefixes=={"lett","saff","sunf"}, prefixes
+          print({"records":len(headers),"loci":len(loci),"bytes":p.stat().st_size})
+          PY
+
+      - name: Download focal C. sieboldii public run
+        run: |
+          set -euo pipefail
+          mkdir -p stage2/reads
+          curl -L --fail --retry 8 --retry-all-errors \
+            https://sra-pub-run-odp.s3.amazonaws.com/sra/SRR30887308/SRR30887308 \
+            -o stage2/SRR30887308.sra
+          echo "4ab8540f122074512893acdf25ce4e21  stage2/SRR30887308.sra" | md5sum -c -
+          fasterq-dump stage2/SRR30887308.sra \
+            --split-files --threads 4 --outdir stage2/reads
+          wc -l stage2/reads/SRR30887308_1.fastq stage2/reads/SRR30887308_2.fastq
+
+      - name: Recover focal loci with HybPiper
+        run: |
+          set -euo pipefail
+          cd stage2
+          hybpiper assemble \
+            -t_dna comp1061_hybpiper_reference.fasta \
+            -r reads/SRR30887308_1.fastq reads/SRR30887308_2.fastq \
+            --bwa \
+            --prefix SRR30887308__PUBLIC_COMP1061_1061 \
+            --cpu 4
+
+      - name: Freeze focal 241-locus FASTA and recovery receipt
+        run: |
+          set -euo pipefail
+          python analysis/summarize_hybpiper_recovery_v1.py \
+            --root stage2/SRR30887308__PUBLIC_COMP1061_1061 \
+            --expected-loci 1061 \
+            --frozen-loci data/evidence/moreyra_conservative_241_no_warning_loci_v1.txt \
+            --frozen-loci-id MOREYRA_COMPATIBILITY_241 \
+            --output stage2/focal_recovery.json
+          python analysis/build_focal_frozen_locus_fasta_v1.py \
+            --hybpiper-root stage2/SRR30887308__PUBLIC_COMP1061_1061 \
+            --loci data/evidence/moreyra_conservative_241_no_warning_loci_v1.txt \
+            --sample-id SRR30887308 \
+            --output stage2/focal_241.fasta \
+            --report stage2/focal_241_build.json
+          cat stage2/focal_recovery.json
+          cat stage2/focal_241_build.json
+
+      - name: Materialize frozen C. nipponicum 180-locus genome-derived pack
+        run: |
+          set -euo pipefail
+          python eazami/analysis/materialize_frozen_public_candidate_locus_pack.py \
+            --candidate CNIPG \
+            --output stage2/cnipg_pack
+          python - <<'PY'
+          import json
+          d=json.load(open("stage2/cnipg_pack/durable_materialization.json"))
+          assert d["candidate_id"]=="CNIPG"
+          assert d["tip_id"]=="AUG_ULLEUNG_CNIP2024"
+          assert d["strict_locus_count"]==180
+          print(json.dumps(d,indent=2))
+          PY
+          python - <<'PY'
+          from pathlib import Path
+          from Bio import SeqIO
+          out=Path("stage2/cnipg_180.fasta")
+          with out.open("w") as fh:
+              for p in sorted(Path("stage2/cnipg_pack/loci").glob("*.fasta")):
+                  recs=list(SeqIO.parse(str(p),"fasta"))
+                  if len(recs)!=1:
+                      raise SystemExit(f"{p}: expected one record")
+                  seq=str(recs[0].seq).upper()
+                  fh.write(f">{p.stem}|CNIPG\n")
+                  for i in range(0,len(seq),80):
+                      fh.write(seq[i:i+80]+"\n")
+          print("CNIPG combined loci", sum(1 for x in out.read_text().splitlines() if x.startswith(">")))
+          PY
+
+      - name: Independent focal-vs-CNIPG coding-sequence compatibility
+        run: |
+          set -euo pipefail
+          python analysis/compare_focal_cnipg_loci_v1.py \
+            --focal-root stage2/SRR30887308__PUBLIC_COMP1061_1061 \
+            --cnipg-root stage2/cnipg_pack \
+            --frozen-loci data/evidence/moreyra_conservative_241_no_warning_loci_v1.txt \
+            --output-json stage2/focal_cnipg_sequence_compatibility.json \
+            --output-csv stage2/focal_cnipg_sequence_compatibility.csv
+          cat stage2/focal_cnipg_sequence_compatibility.json
+
+      - name: Remove raw focal payload before genome downloads
+        run: |
+          set -euo pipefail
+          rm -f stage2/SRR30887308.sra
+          rm -rf stage2/reads
+          rm -rf stage2/SRR30887308__PUBLIC_COMP1061_1061
+          df -h .
+
+      - name: Localize to C. heterophyllum hap1
+        run: |
+          set -euo pipefail
+          mkdir -p stage2/refs stage2/localization
+          curl -L --fail --retry 8 --retry-all-errors \
+            https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/965/225/835/GCA_965225835.1_daCirHete1.hap1.1/GCA_965225835.1_daCirHete1.hap1.1_genomic.fna.gz \
+            -o stage2/refs/heterophyllum.fna.gz
+          echo "9b5e78bc4736baec58f688262e3f0cca  stage2/refs/heterophyllum.fna.gz" | md5sum -c -
+          gunzip -c stage2/refs/heterophyllum.fna.gz > stage2/refs/heterophyllum.fna
+          echo "2b38c89fbd7c052ff731ea56a8d40f61  stage2/refs/heterophyllum.fna" | md5sum -c -
+          minimap2 -x splice:hq -G 500k --secondary=yes -N 10 -t 4 \
+            stage2/refs/heterophyllum.fna stage2/focal_241.fasta \
+            > stage2/localization/focal__heterophyllum_hap1.paf
+          minimap2 -x splice:hq -G 500k --secondary=yes -N 10 -t 4 \
+            stage2/refs/heterophyllum.fna stage2/cnipg_180.fasta \
+            > stage2/localization/cnipg__heterophyllum_hap1.paf
+          python analysis/summarize_r1b0_reference_localization_v1.py \
+            --paf stage2/localization/focal__heterophyllum_hap1.paf \
+            --reference-id heterophyllum_hap1 \
+            --output-tsv stage2/localization/focal__heterophyllum_hap1.tsv \
+            --output-json stage2/localization/focal__heterophyllum_hap1.json
+          python analysis/summarize_r1b0_reference_localization_v1.py \
+            --paf stage2/localization/cnipg__heterophyllum_hap1.paf \
+            --reference-id heterophyllum_hap1 \
+            --output-tsv stage2/localization/cnipg__heterophyllum_hap1.tsv \
+            --output-json stage2/localization/cnipg__heterophyllum_hap1.json
+          rm -f stage2/refs/heterophyllum.fna stage2/refs/heterophyllum.fna.gz
+          df -h .
+
+      - name: Localize to C. dissectum hap1
+        run: |
+          set -euo pipefail
+          curl -L --fail --retry 8 --retry-all-errors \
+            https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/965/276/805/GCA_965276805.1_daCirDiss1.hap1.1/GCA_965276805.1_daCirDiss1.hap1.1_genomic.fna.gz \
+            -o stage2/refs/dissectum.fna.gz
+          echo "833d314a3cd6b148db017fba37d72b7d  stage2/refs/dissectum.fna.gz" | md5sum -c -
+          gunzip -c stage2/refs/dissectum.fna.gz > stage2/refs/dissectum.fna
+          echo "7d6f4d0382f991c5cda53ce82308eba9  stage2/refs/dissectum.fna" | md5sum -c -
+          minimap2 -x splice:hq -G 500k --secondary=yes -N 10 -t 4 \
+            stage2/refs/dissectum.fna stage2/focal_241.fasta \
+            > stage2/localization/focal__dissectum_hap1.paf
+          minimap2 -x splice:hq -G 500k --secondary=yes -N 10 -t 4 \
+            stage2/refs/dissectum.fna stage2/cnipg_180.fasta \
+            > stage2/localization/cnipg__dissectum_hap1.paf
+          python analysis/summarize_r1b0_reference_localization_v1.py \
+            --paf stage2/localization/focal__dissectum_hap1.paf \
+            --reference-id dissectum_hap1 \
+            --output-tsv stage2/localization/focal__dissectum_hap1.tsv \
+            --output-json stage2/localization/focal__dissectum_hap1.json
+          python analysis/summarize_r1b0_reference_localization_v1.py \
+            --paf stage2/localization/cnipg__dissectum_hap1.paf \
+            --reference-id dissectum_hap1 \
+            --output-tsv stage2/localization/cnipg__dissectum_hap1.tsv \
+            --output-json stage2/localization/cnipg__dissectum_hap1.json
+          rm -f stage2/refs/dissectum.fna stage2/refs/dissectum.fna.gz
+          df -h .
+
+      - name: Localize to C. nipponicum
+        run: |
+          set -euo pipefail
+          curl -L --fail --retry 8 --retry-all-errors \
+            https://ndownloader.figshare.com/files/48979489 \
+            -o stage2/refs/nipponicum.fna
+          echo "e9390e23ffd0dc5e3da8271db4d1d3ca  stage2/refs/nipponicum.fna" | md5sum -c -
+          minimap2 -x splice:hq -G 500k --secondary=yes -N 10 -t 4 \
+            stage2/refs/nipponicum.fna stage2/focal_241.fasta \
+            > stage2/localization/focal__nipponicum.paf
+          minimap2 -x splice:hq -G 500k --secondary=yes -N 10 -t 4 \
+            stage2/refs/nipponicum.fna stage2/cnipg_180.fasta \
+            > stage2/localization/cnipg__nipponicum.paf
+          python analysis/summarize_r1b0_reference_localization_v1.py \
+            --paf stage2/localization/focal__nipponicum.paf \
+            --reference-id nipponicum \
+            --output-tsv stage2/localization/focal__nipponicum.tsv \
+            --output-json stage2/localization/focal__nipponicum.json
+          python analysis/summarize_r1b0_reference_localization_v1.py \
+            --paf stage2/localization/cnipg__nipponicum.paf \
+            --reference-id nipponicum \
+            --output-tsv stage2/localization/cnipg__nipponicum.tsv \
+            --output-json stage2/localization/cnipg__nipponicum.json
+          rm -f stage2/refs/nipponicum.fna
+          df -h .
+
+      - name: Compare the three primary references
+        run: |
+          set -euo pipefail
+          python analysis/compare_r1b0_reference_localizations_v1.py \
+            --heterophyllum stage2/localization/focal__heterophyllum_hap1.tsv \
+            --dissectum stage2/localization/focal__dissectum_hap1.tsv \
+            --nipponicum stage2/localization/focal__nipponicum.tsv \
+            --query-set-id C_SIEBOLDII_MOREYRA_COMPATIBILITY_241 \
+            --output-json stage2/focal_cross_reference.json \
+            --output-tsv stage2/focal_cross_reference.tsv
+          python analysis/compare_r1b0_reference_localizations_v1.py \
+            --heterophyllum stage2/localization/cnipg__heterophyllum_hap1.tsv \
+            --dissectum stage2/localization/cnipg__dissectum_hap1.tsv \
+            --nipponicum stage2/localization/cnipg__nipponicum.tsv \
+            --query-set-id C_NIPPONICUM_GENOME_DERIVED_180 \
+            --output-json stage2/cnipg_cross_reference.json \
+            --output-tsv stage2/cnipg_cross_reference.tsv
+          echo "===== FOCAL CROSS-REFERENCE ====="
+          cat stage2/focal_cross_reference.json
+          echo "===== CNIPG POSITIVE CONTROL ====="
+          cat stage2/cnipg_cross_reference.json
+
+      - name: Build bounded Stage-2 receipt
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path("stage2")
+          focal=json.load(open(root/"focal_cross_reference.json"))
+          cn=json.load(open(root/"cnipg_cross_reference.json"))
+          seq=json.load(open(root/"focal_cnipg_sequence_compatibility.json"))
+          rec=json.load(open(root/"focal_recovery.json"))
+          build=json.load(open(root/"focal_241_build.json"))
+          refs={}
+          for q in ("focal","cnipg"):
+              refs[q]={}
+              for r in ("heterophyllum_hap1","dissectum_hap1","nipponicum"):
+                  refs[q][r]=json.load(open(root/"localization"/f"{q}__{r}.json"))
+          out={
+              "result_version":"r1b0_stage2_primary_reference_viability_v1",
+              "status":"PRIMARY_REFERENCE_VIABILITY_ONLY__HAPLOTYPE_CONTROLS_PENDING",
+              "focal_run":"SRR30887308",
+              "focal_recovery":rec,
+              "focal_241_build":build,
+              "focal_vs_cnipg_sequence_compatibility":seq,
+              "focal_cross_reference":focal,
+              "cnipg_positive_control_cross_reference":cn,
+              "per_reference":refs,
+              "reference_byte_integrity":"verified_against_frozen_MD5_before_each_mapping",
+              "mapping_preset":"minimap2 -x splice:hq -G 500k --secondary=yes -N 10",
+              "claim_boundary":(
+                  "Primary-reference coding-locus placement viability only. "
+                  "Within-individual hap1/hap2 controls remain required before interpreting "
+                  "among-reference coordinate differences. No local ancestry, haplotype age, "
+                  "recombination, SV reuse, genomic modularity or genotype-phenotype claim is authorized."
+              )
+          }
+          (root/"stage2_primary_reference_viability_receipt.json").write_text(json.dumps(out,indent=2)+"\n")
+          print(json.dumps({
+              "status":out["status"],
+              "focal_recovered_241":build["recovered_loci"],
+              "focal_sequence_common_loci":seq["common_loci_compared"],
+              "focal_sequence_identity_median":seq["identity"]["median"],
+              "focal_unique_all_three_fraction":focal["common_unique_all_three_fraction"],
+              "focal_unique_at_least_two_fraction":focal["common_unique_at_least_two_fraction"],
+              "cnipg_unique_all_three_fraction":cn["common_unique_all_three_fraction"],
+          },indent=2))
+          PY
+
+      - name: Upload Stage-2 bounded outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: r1b0-stage2-primary-references-${{ github.run_id }}
+          path: |
+            stage2/focal_recovery.json
+            stage2/focal_241_build.json
+            stage2/focal_241.fasta
+            stage2/cnipg_pack/durable_materialization.json
+            stage2/cnipg_pack/strict_recovered_loci.txt
+            stage2/focal_cnipg_sequence_compatibility.json
+            stage2/focal_cnipg_sequence_compatibility.csv
+            stage2/localization/*.json
+            stage2/localization/*.tsv
+            stage2/focal_cross_reference.json
+            stage2/focal_cross_reference.tsv
+            stage2/cnipg_cross_reference.json
+            stage2/cnipg_cross_reference.tsv
+            stage2/stage2_primary_reference_viability_receipt.json
+          if-no-files-found: error
+          retention-days: 30

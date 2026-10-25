@@ -1,0 +1,44 @@
+name: Test Fig1 ecological modularity
+
+on:
+  pull_request:
+    paths:
+      - "analysis/test_fig1_ecological_modularity_v1.py"
+      - ".github/workflows/test-fig1-ecological-modularity-v1.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: test-fig1-ecological-modularity-v1-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Checkout frozen Azami source
+        uses: actions/checkout@v4
+        with:
+          repository: zuizui0223/azami
+          ref: b463dbc938e454baa54b2e480f7f1d8badd7795d
+          path: azami
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run exact ecological-module test
+        run: |
+          python analysis/test_fig1_ecological_modularity_v1.py \
+            --among azami/reproducibility/current_reference/axes/biological_axes_among_min5.csv \
+            --within azami/reproducibility/current_reference/axes/biological_axes_within.csv \
+            --out-dir fig1_result
+          cat fig1_result/fig1_ecological_modularity_report.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fig1-ecological-modularity-${{ github.run_id }}
+          path: fig1_result/
+          if-no-files-found: error
+          retention-days: 30

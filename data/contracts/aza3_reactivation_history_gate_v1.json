@@ -1,0 +1,33 @@
+{
+  "contract_version": "aza3_reactivation_history_gate_v1",
+  "status_date": "2026-10-07",
+  "status": "REQUIRED_BEFORE_REGAIN_LANGUAGE",
+  "classification": [
+    "H_REGAIN_SUPPORTED",
+    "H_REGAIN_COMPATIBLE",
+    "H_SUPPRESSION_ONLY",
+    "H_RETICULATE_REACQUISITION",
+    "H_NO_REGAIN",
+    "H_NOT_IDENTIFIABLE"
+  ],
+  "freeze_order": [
+    "tip_or_population_states",
+    "topology_ensemble",
+    "branch_length_treatment",
+    "transition_model_and_root_prior_or_sensitivity_grid",
+    "historical_classification",
+    "open_molecular_reactivation_evidence"
+  ],
+  "population_rule": "verified morph-linked population/sample states are primary when species-tip coding would collapse polymorphism",
+  "reticulation_rule": "local genealogy / introgression must be evaluated before within-lineage reactivation is claimed",
+  "current_system_status": {
+    "takaoense": "H_REGAIN_COMPATIBLE",
+    "arenicola": "H_NOT_IDENTIFIABLE"
+  },
+  "nature_dependency": "reversal is optional; F/M/R inheritance-unit test does not depend on a positive regain result",
+  "forbidden_shortcuts": [
+    "molecular_expression_restoration_alone_cannot_define_historical_regain",
+    "tip_state_A_B_A_pattern_without_ancestral_uncertainty_is_insufficient",
+    "introgressive_reacquisition_must_not_be_called_within_lineage_reactivation"
+  ]
+}

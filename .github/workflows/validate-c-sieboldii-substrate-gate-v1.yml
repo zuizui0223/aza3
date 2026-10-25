@@ -1,0 +1,228 @@
+name: Validate C sieboldii substrate gate
+
+on:
+  pull_request:
+    paths:
+      - "README.md"
+      - "docs/C_SIEBOLDII_COMBINATORIAL_SUBSTRATE_GATE_V1.md"
+      - "data/contracts/c_sieboldii_combinatorial_substrate_gate_v1.json"
+      - "data/evidence/c_sieboldii_combinatorial_substrate_public_audit_v1.json"
+      - "data/evidence/c_sieboldii_public_locality_prescreen_v1.json"
+      - "data/templates/c_sieboldii_combinatorial_census_v1.csv"
+      - "data/planning/c_sieboldii_cs0_locality_priority_v1.csv"
+      - "docs/C_SIEBOLDII_CS0_FIELD_CARD_V1.md"
+      - "docs/C_SIEBOLDII_CS0_TAXONOMIC_DIAGNOSTIC_V1.md"
+      - "analysis/classify_c_sieboldii_combinatorial_substrate_v1.py"
+      - "analysis/validate_c_sieboldii_combinatorial_substrate_gate_v1.py"
+      - ".github/workflows/validate-c-sieboldii-substrate-gate-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate contracts
+        run: |
+          python -m py_compile analysis/classify_c_sieboldii_combinatorial_substrate_v1.py
+          python -m py_compile analysis/validate_c_sieboldii_combinatorial_substrate_gate_v1.py
+          python analysis/validate_c_sieboldii_combinatorial_substrate_gate_v1.py
+
+      - name: Smoke-test positive primary substrate
+        run: |
+          python - <<'PY'
+          import csv
+          fields="observation_id,population_id,local_set_id,date,genet_or_individual_id,head_id,flower_stage,colour_L,colour_a,colour_b,colour_chroma,colour_white_descriptive,orientation_deg_gravity,phyllary_rows,outer_phyllary_angle_deg,involucre_diameter_mm,involucre_length_mm,stickiness_score,gland_exudate_status,voucher_or_image_id,habitat_microzone,taxonomic_confidence,repeat_head_followup_id,notes".split(",")
+          rows=[]
+          # 24 A2 individuals: 3 cells x8, deliberately not deterministic in continuous chroma/angle.
+          specs=[
+              (True,[20,30,40,50,55,45,35,25],[4,5,6,7,8,9,10,11]),       # white/upright
+              (True,[130,140,150,160,170,145,155,165],[5,7,6,9,8,10,11,12]), # white/nodding
+              (False,[125,135,145,155,165,175,150,160],[20,22,19,25,23,24,21,26]), # coloured/nodding
+          ]
+          i=0
+          for white,angs,chromas in specs:
+              for a,c in zip(angs,chromas):
+                  i+=1
+                  r={k:"" for k in fields}
+                  r.update({
+                    "observation_id":f"O{i:02d}","population_id":"POP1","date":"2026-09-20",
+                    "genet_or_individual_id":f"G{i:02d}","head_id":f"H{i:02d}","flower_stage":"A2",
+                    "colour_chroma":str(c),"colour_white_descriptive":"true" if white else "false",
+                    "orientation_deg_gravity":str(a),"taxonomic_confidence":"high"
+                  })
+                  rows.append(r)
+          with open("positive.csv","w",newline="") as fh:
+              w=csv.DictWriter(fh,fieldnames=fields); w.writeheader(); w.writerows(rows)
+          PY
+          python analysis/classify_c_sieboldii_combinatorial_substrate_v1.py --input positive.csv --output positive.json
+          python - <<'PY'
+          import json
+          d=json.load(open("positive.json"))
+          assert d["decision"]=="CS_GREEN", d
+          PY
+
+      - name: Smoke-test post-anthesis reorientation cannot rescue gate
+        run: |
+          python - <<'PY'
+          import csv
+          fields="observation_id,population_id,local_set_id,date,genet_or_individual_id,head_id,flower_stage,colour_L,colour_a,colour_b,colour_chroma,colour_white_descriptive,orientation_deg_gravity,phyllary_rows,outer_phyllary_angle_deg,involucre_diameter_mm,involucre_length_mm,stickiness_score,gland_exudate_status,voucher_or_image_id,habitat_microzone,taxonomic_confidence,repeat_head_followup_id,notes".split(",")
+          rows=[]
+          # Flowering heads all nodding. Upright heads exist only at P and must be ignored.
+          for i in range(1,13):
+              for stage,angle in [("A2",150),("P",25)]:
+                  r={k:"" for k in fields}
+                  r.update({
+                    "observation_id":f"O{i}_{stage}","population_id":"POP1","date":"2026-09-20",
+                    "genet_or_individual_id":f"G{i}","head_id":f"H{i}_{stage}","flower_stage":stage,
+                    "colour_chroma":str(5 if i<=6 else 22),
+                    "colour_white_descriptive":"true" if i<=6 else "false",
+                    "orientation_deg_gravity":str(angle),"taxonomic_confidence":"high"
+                  })
+                  rows.append(r)
+          with open("phenology.csv","w",newline="") as fh:
+              w=csv.DictWriter(fh,fieldnames=fields); w.writeheader(); w.writerows(rows)
+          PY
+          python analysis/classify_c_sieboldii_combinatorial_substrate_v1.py --input phenology.csv --output phenology.json
+          python - <<'PY'
+          import json
+          d=json.load(open("phenology.json"))
+          assert d["decision"]!="CS_GREEN", d
+          assert d["population_results"][0]["upright_extreme_n"]==0
+          PY
+
+      - name: Smoke-test true local-set substrate
+        run: |
+          python - <<'PY'
+          import csv
+          fields="observation_id,population_id,local_set_id,date,genet_or_individual_id,head_id,flower_stage,colour_L,colour_a,colour_b,colour_chroma,colour_white_descriptive,orientation_deg_gravity,phyllary_rows,outer_phyllary_angle_deg,involucre_diameter_mm,involucre_length_mm,stickiness_score,gland_exudate_status,voucher_or_image_id,habitat_microzone,taxonomic_confidence,repeat_head_followup_id,notes".split(",")
+          rows=[]; i=0
+          # Two nearby populations, each n=12 so neither can pass alone.
+          # Both populations contain all four C x O cells, so local-set support is not population-confounded.
+          for pop in ("P1","P2"):
+              specs=[
+                  (True,  [25,35,45], [5,7,9]),
+                  (True,  [135,150,165], [6,8,10]),
+                  (False, [20,40,55], [20,23,26]),
+                  (False, [130,145,170], [21,24,27]),
+              ]
+              for white,angs,chromas in specs:
+                  for a,ch in zip(angs,chromas):
+                      i+=1
+                      r={k:"" for k in fields}
+                      r.update({
+                        "observation_id":f"L{i:02d}","population_id":pop,"local_set_id":"LS1",
+                        "date":"2026-09-20","genet_or_individual_id":f"G{i:02d}",
+                        "head_id":f"H{i:02d}","flower_stage":"A2",
+                        "colour_chroma":str(ch),"colour_white_descriptive":"true" if white else "false",
+                        "orientation_deg_gravity":str(a),"taxonomic_confidence":"high"
+                      })
+                      rows.append(r)
+          with open("local_green.csv","w",newline="") as fh:
+              w=csv.DictWriter(fh,fieldnames=fields); w.writeheader(); w.writerows(rows)
+          PY
+          python analysis/classify_c_sieboldii_combinatorial_substrate_v1.py --input local_green.csv --output local_green.json
+          python - <<'PY'
+          import json
+          d=json.load(open("local_green.json"))
+          assert d["decision"]=="CS_GREEN_LOCAL_SET", d
+          assert not any(x["primary_CO_pass"] for x in d["population_results"])
+          x=d["local_set_results"][0]
+          assert x["local_set_confounding_pass"] is True
+          assert all(v>=2 for v in x["local_set_population_support"].values())
+          PY
+
+      - name: Smoke-test population-confounded local set cannot pass
+        run: |
+          python - <<'PY'
+          import csv
+          fields="observation_id,population_id,local_set_id,date,genet_or_individual_id,head_id,flower_stage,colour_L,colour_a,colour_b,colour_chroma,colour_white_descriptive,orientation_deg_gravity,phyllary_rows,outer_phyllary_angle_deg,involucre_diameter_mm,involucre_length_mm,stickiness_score,gland_exudate_status,voucher_or_image_id,habitat_microzone,taxonomic_confidence,repeat_head_followup_id,notes".split(",")
+          rows=[]; i=0
+          # Combined set has colour and orientation variation, but colour is completely confounded with population.
+          for pop,white,chroma_base in (("P1",True,6),("P2",False,22)):
+              for a in (25,35,45,135,150,165,30,40,50,130,145,170):
+                  i+=1
+                  r={k:"" for k in fields}
+                  r.update({
+                    "observation_id":f"C{i:02d}","population_id":pop,"local_set_id":"LSC",
+                    "date":"2026-09-20","genet_or_individual_id":f"G{i:02d}",
+                    "head_id":f"H{i:02d}","flower_stage":"A2",
+                    "colour_chroma":str(chroma_base+(i%3)),
+                    "colour_white_descriptive":"true" if white else "false",
+                    "orientation_deg_gravity":str(a),"taxonomic_confidence":"high"
+                  })
+                  rows.append(r)
+          with open("local_confounded.csv","w",newline="") as fh:
+              w=csv.DictWriter(fh,fieldnames=fields); w.writeheader(); w.writerows(rows)
+          PY
+          python analysis/classify_c_sieboldii_combinatorial_substrate_v1.py --input local_confounded.csv --output local_confounded.json
+          python - <<'PY'
+          import json
+          d=json.load(open("local_confounded.json"))
+          assert d["decision"]!="CS_GREEN_LOCAL_SET", d
+          x=d["local_set_results"][0]
+          assert x["local_set_confounding_pass"] is False
+          assert x["local_set_population_support"]["white_populations"]==1
+          assert x["local_set_population_support"]["nonwhite_populations"]==1
+          PY
+
+      - name: Smoke-test unresolved taxa cannot manufacture substrate
+        run: |
+          python - <<'PY'
+          import csv
+          fields="observation_id,population_id,local_set_id,date,genet_or_individual_id,head_id,flower_stage,colour_L,colour_a,colour_b,colour_chroma,colour_white_descriptive,orientation_deg_gravity,phyllary_rows,outer_phyllary_angle_deg,involucre_diameter_mm,involucre_length_mm,stickiness_score,gland_exudate_status,voucher_or_image_id,habitat_microzone,taxonomic_confidence,repeat_head_followup_id,notes".split(",")
+          rows=[]; i=0
+
+          # Twelve confirmed focal plants: all non-white and nodding.
+          for a in (130,135,140,145,150,155,160,165,170,150,145,155):
+              i+=1
+              r={k:"" for k in fields}
+              r.update({
+                "observation_id":f"H{i:02d}","population_id":"POP_TAX","date":"2026-10-01",
+                "genet_or_individual_id":f"G{i:02d}","head_id":f"HH{i:02d}",
+                "flower_stage":"A2","colour_chroma":str(22+(i%3)),
+                "colour_white_descriptive":"false","orientation_deg_gravity":str(a),
+                "taxonomic_confidence":"high"
+              })
+              rows.append(r)
+
+          # Eighteen unresolved plants would manufacture all missing cells if admitted.
+          unresolved=[
+              (True,25),(True,35),(True,45),(True,50),(True,55),(True,40),
+              (True,130),(True,140),(True,150),(True,160),(True,170),(True,145),
+              (False,20),(False,30),(False,40),(False,45),(False,50),(False,55),
+          ]
+          for white,a in unresolved:
+              i+=1
+              r={k:"" for k in fields}
+              r.update({
+                "observation_id":f"U{i:02d}","population_id":"POP_TAX","date":"2026-10-01",
+                "genet_or_individual_id":f"G{i:02d}","head_id":f"HH{i:02d}",
+                "flower_stage":"A2","colour_chroma":"6" if white else "23",
+                "colour_white_descriptive":"true" if white else "false",
+                "orientation_deg_gravity":str(a),"taxonomic_confidence":"unresolved"
+              })
+              rows.append(r)
+
+          with open("taxonomic_confounded.csv","w",newline="") as fh:
+              w=csv.DictWriter(fh,fieldnames=fields); w.writeheader(); w.writerows(rows)
+          PY
+          python analysis/classify_c_sieboldii_combinatorial_substrate_v1.py --input taxonomic_confounded.csv --output taxonomic_confounded.json
+          python - <<'PY'
+          import json
+          d=json.load(open("taxonomic_confounded.json"))
+          assert d["decision"] not in {"CS_GREEN","CS_GREEN_LOCAL_SET"}, d
+          x=d["population_results"][0]
+          assert x["stage_eligible_A1_A2_n"]==30, x
+          assert x["excluded_taxonomic_confidence_n"]==18, x
+          assert x["n_complete_A1_A2"]==12, x
+          assert x["upright_extreme_n"]==0, x
+          assert x["primary_CO_pass"] is False, x
+          PY

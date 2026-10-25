@@ -1,0 +1,70 @@
+{
+  "contract_version": "r1b0_sieboldii_cnipg_secondary_sequence_compatibility_v1",
+  "status_date": "2026-10-05",
+  "analysis_role": "Secondary pre-existing-artifact cross-check while the independent aza3 HybPiper rerun is pending.",
+  "source_sieboldii": {
+    "repository": "zuizui0223/EAzami",
+    "workflow_run": 32806058893,
+    "artifact_id": 9557421855,
+    "artifact_digest": "sha256:9a80e07e6b7dfbb182ef64a0eff63f4d0050d3dce00658170de5f95d5a6dece7",
+    "sample": "J38S037",
+    "taxon": "Cirsium sieboldii",
+    "run": "SRR30887308",
+    "source_files": [
+      "tree_result/japan38_concat.fasta",
+      "tree_result/partitions.csv"
+    ],
+    "partition_loci": 176,
+    "focal_partitions_with_nonmissing_sequence": 176
+  },
+  "source_cnipponicum": {
+    "repository": "zuizui0223/EAzami",
+    "artifact_id": 9174758977,
+    "artifact_digest": "sha256:079e3bfaab1d5041ebc2dcb1919532c75eefde7ffe1f766ab0473845f2f9dd69",
+    "taxon": "Cirsium nipponicum",
+    "tip_id": "AUG_ULLEUNG_CNIP2024",
+    "strict_loci": 180,
+    "source_genome": "PRJNA1127082 / Figshare 10.6084/m9.figshare.26927092.v1"
+  },
+  "intersection": {
+    "common_loci_compared": 125,
+    "common_fraction_of_cnipponicum_pack": 0.6944444444444444,
+    "limitation": "The 125-locus intersection is bounded by the 176-locus accepted Japan38 tree partition set, not by focal C. sieboldii target recovery. The independent aza3 HybPiper rerun is expected to test a broader focal locus set."
+  },
+  "alignment_method": {
+    "mode": "local",
+    "match_score": 2.0,
+    "mismatch_score": -1.0,
+    "open_gap_score": -5.0,
+    "extend_gap_score": -0.5,
+    "primary_identity": "informative aligned A/C/G/T pairs only; N-containing aligned positions excluded",
+    "secondary_identity": "raw identity treating N as mismatch",
+    "sequence_preparation": "C. sieboldii partition segments extracted from concatenated alignment and '-' gaps removed; N retained for missingness accounting."
+  },
+  "informative_identity": {
+    "q05": 0.9639385815257129,
+    "q25": 0.9896265560165975,
+    "median": 0.9961089494163424,
+    "q75": 0.99822695035461,
+    "q95": 1.0,
+    "min": 0.9331619537275064,
+    "max": 1.0,
+    "loci_ge_0_90": 125,
+    "loci_ge_0_95": 123,
+    "loci_ge_0_98": 112
+  },
+  "raw_identity_including_N_as_mismatch": {
+    "q05": 0.9339558891116712,
+    "median": 0.9954337899543378,
+    "q95": 1.0,
+    "min": 0.5600907029478458,
+    "max": 1.0
+  },
+  "coverage_of_shorter": {
+    "q05": 0.8336441336441337,
+    "median": 1.0,
+    "q95": 1.0
+  },
+  "decision": "EAST_ASIAN_SEQUENCE_ANCHOR_SUPPORTIVE__CHROMOSOME_COORDINATE_TRANSFER_PENDING",
+  "claim_boundary": "Strong coding-sequence compatibility does not establish chromosome-coordinate concordance, local ancestry, haplotype age, structural-variant reuse, genomic modularity, or genotype-phenotype association."
+}

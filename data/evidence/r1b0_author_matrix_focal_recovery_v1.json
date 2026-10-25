@@ -1,0 +1,186 @@
+{
+  "result_version": "r1b0_author_matrix_focal_recovery_v1",
+  "status_date": "2026-10-05",
+  "status": "TARGET_RECOVERY_GREEN__GENOME_REFERENCE_LOCALIZATION_PENDING",
+  "purpose": "Use the authors' public HybPiper output matrices to determine whether focal Cirsium sieboldii shows poor captured-locus recovery before rerunning the public data independently.",
+  "source": {
+    "repository": "ldmoreyra/A-thorny-tale",
+    "hybpiper_stats": "hybpiper_stats_exonerate.tsv",
+    "hybpiper_stats_sha256_from_eazami_audit": "deb845dbaef8f3d40155f69f29b7bb590b07af14f915c3937afdff5b00a39bd7",
+    "sequence_lengths": "seq_lengths_exonerate.tsv",
+    "sequence_lengths_sha256_from_eazami_audit": "d98168c1fcc204a491a2f4a804635488c748e0a7a7fed1272f8c04e220285eda",
+    "focal_sample": "Cirsium-sieboldii_366",
+    "focal_run": "SRR30887308"
+  },
+  "focal_author_hybpiper_stats": {
+    "num_reads": 4109610,
+    "reads_mapped": 1317250,
+    "percent_on_target": 32.1,
+    "genes_mapped": 1043,
+    "genes_with_contigs": 1021,
+    "genes_with_sequences": 1017,
+    "genes_at_25pct": 1012,
+    "genes_at_50pct": 955,
+    "genes_at_75pct": 777,
+    "genes_at_150pct": 3,
+    "paralog_warnings_long": 237,
+    "paralog_warnings_depth": 275
+  },
+  "compatibility_layers": {
+    "public_1061": {
+      "denominator": 1061,
+      "recovered_genes_with_sequences": 1017,
+      "recovery_fraction": 0.9585296889726673,
+      "boundary": "Compatibility denominator only. The paper reports 1064 mapped target loci and the exact historical 1064-target file is not publicly recovered."
+    },
+    "moreyra_compatibility_241": {
+      "frozen_loci": 241,
+      "recovered_loci": 241,
+      "recovery_fraction": 1,
+      "recovered_bp": 99720,
+      "median_recovered_bp": 402,
+      "min_recovered_bp": 81,
+      "max_recovered_bp": 1059,
+      "boundary": "Conservative no-warning + occupancy>=0.80 compatibility set from the audited public author matrices; not the published final 350-locus matrix."
+    }
+  },
+  "frozen_ten_sample_panel": {
+    "samples": 10,
+    "focal_comparison": {
+      "percent_on_target": {
+        "focal": 32.1,
+        "panel_median": 36,
+        "panel_min": 20.8,
+        "panel_max": 70.2
+      },
+      "genes_with_sequences": {
+        "focal": 1017,
+        "panel_median": 1016.5,
+        "panel_min": 986,
+        "panel_max": 1031
+      },
+      "genes_at_50pct": {
+        "focal": 955,
+        "panel_median": 946.5,
+        "panel_min": 906,
+        "panel_max": 964
+      },
+      "genes_at_75pct": {
+        "focal": 777,
+        "panel_median": 765.5,
+        "panel_min": 659,
+        "panel_max": 793
+      },
+      "paralog_warnings_long": {
+        "focal": 237,
+        "panel_median": 206.5,
+        "panel_min": 144,
+        "panel_max": 237
+      },
+      "paralog_warnings_depth": {
+        "focal": 275,
+        "panel_median": 252.5,
+        "panel_min": 202,
+        "panel_max": 275
+      }
+    },
+    "high_stringency_241_recovery": [
+      {
+        "sample": "Cirsium-sieboldii_366",
+        "recovered": 241,
+        "fraction": 1,
+        "median_bp": 402,
+        "total_bp": 99720
+      },
+      {
+        "sample": "Cirsium-japonicum_horridumFJ315",
+        "recovered": 241,
+        "fraction": 1,
+        "median_bp": 363,
+        "total_bp": 90198
+      },
+      {
+        "sample": "Cirsium-lineare_PE229",
+        "recovered": 241,
+        "fraction": 1,
+        "median_bp": 408,
+        "total_bp": 100575
+      },
+      {
+        "sample": "Cirsium-nipponicum_276",
+        "recovered": 241,
+        "fraction": 1,
+        "median_bp": 378,
+        "total_bp": 95502
+      },
+      {
+        "sample": "Cirsium-yoshinoi_FJ405",
+        "recovered": 237,
+        "fraction": 0.983402489626556,
+        "median_bp": 381,
+        "total_bp": 94884
+      },
+      {
+        "sample": "Cirsium-tonense_FJ403",
+        "recovered": 240,
+        "fraction": 0.995850622406639,
+        "median_bp": 399,
+        "total_bp": 98448
+      },
+      {
+        "sample": "Cirsium-pendulum_MW157",
+        "recovered": 238,
+        "fraction": 0.9875518672199171,
+        "median_bp": 408,
+        "total_bp": 98421
+      },
+      {
+        "sample": "Cirsium-dipsacolepis_FJ363",
+        "recovered": 241,
+        "fraction": 1,
+        "median_bp": 336,
+        "total_bp": 85098
+      },
+      {
+        "sample": "Cirsium-tanakae_271",
+        "recovered": 241,
+        "fraction": 1,
+        "median_bp": 387,
+        "total_bp": 97659
+      },
+      {
+        "sample": "Cirsium-maackii_MW159",
+        "recovered": 241,
+        "fraction": 1,
+        "median_bp": 408,
+        "total_bp": 100914
+      }
+    ],
+    "full_241_recovery_samples": 7,
+    "interpretation": "C. sieboldii is in the full-recovery group and is not a captured-locus dropout outlier."
+  },
+  "all_cirsium_context": {
+    "n_samples": 265,
+    "focal_percentile_leq": {
+      "percent_on_target": 0.3320754716981132,
+      "genes_with_sequences": 0.30566037735849055,
+      "genes_at_50pct": 0.5433962264150943,
+      "genes_at_75pct": 0.5811320754716981,
+      "paralog_warnings_long": 0.6264150943396226,
+      "paralog_warnings_depth": 0.4641509433962264
+    },
+    "interpretation": "Although the focal sample has the highest paralog-warning counts within the frozen ten-sample panel, those counts are not exceptional across the 265 Cirsium samples in the authors' matrix."
+  },
+  "decision": {
+    "target_recovery_stage": "GREEN",
+    "genome_reference_localization_stage": "PENDING",
+    "overall_public_transfer_decision": "NOT_YET_CLASSIFIED",
+    "next_test": "Localize a pre-frozen clean locus set against C. heterophyllum, C. dissectum and C. nipponicum references, and independently reproduce focal recovery with the public 1061 target."
+  },
+  "claim_boundaries": [
+    "This result is read from the authors' public output matrices and is not yet an independent rerun.",
+    "It supports captured-locus recoverability, not local ancestry, recombination, haplotype age, structural variation, genomic modularity or genotype-phenotype association.",
+    "The public 1061 locus universe is not asserted to be byte-identical to the authors' historical 1064-target file.",
+    "The 241-locus set is a conservative compatibility layer and is not the published final 350-locus matrix."
+  ]
+}

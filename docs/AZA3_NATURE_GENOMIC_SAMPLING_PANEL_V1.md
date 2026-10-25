@@ -23,7 +23,7 @@ The existing recommended Japan/Ryukyu population-genomic panel is retained at **
 | System | Recommended n | Nature-scale role | Key modules | Main genomic question |
 |---|---:|---|---|---|
 | *C. pendulum* | 60 | replicated colour polymorphism + continental anchor | colour, orientation | old standing colour variation, introgression or independent regulatory origin? |
-| *C. sieboldii* | 40 | **highest-value combinatorial system** | colour, orientation, phyllary, stickiness | can multiple head modules segregate on different genomic histories within one species? |
+| *C. sieboldii* | 40 | **conditional candidate for within-species reconfigurable integration** | colour, anthesis-standardized orientation, phyllary, stickiness | after Gate CS verifies a segregating substrate, can components follow separable genomic histories and reassemble within one species? |
 | *C. lineare* | 24 | sticky secondary-history anchor | stickiness + all directly scorable modules | is the sticky state associated with an old/reused block or lineage-specific origin? |
 | *C. dipsacolepis* | 24 | nonsticky matched secondary-history contrast | stickiness, phyllary, orientation | does the JPN06–JPN15 contrast reflect species ancestry, local reuse or different origins? |
 | *C. brevicaule* | 75 | central-Ryukyu white lineage | colour + all directly scorable modules | standing variation / gene flow / regulatory loss across island populations? |
@@ -32,7 +32,7 @@ The existing recommended Japan/Ryukyu population-genomic panel is retained at **
 
 These counts preserve the previously frozen recommended Phase-A sampling targets. They are not retrospective GWAS power calculations.
 
-## Why C. sieboldii is now central
+## Why C. sieboldii is a conditional focal candidate
 
 EAzami authority evidence places *C. sieboldii* at:
 
@@ -42,7 +42,13 @@ EAzami authority evidence places *C. sieboldii* at:
 - documented white morph variation;
 - diploid taxon-level cytotype context.
 
-This makes *C. sieboldii* the strongest current system in which several capitulum modules may segregate inside one species.
+These records make *C. sieboldii* a strong **candidate**, but not yet a verified combinatorial system.
+
+A new prerequisite is `docs/C_SIEBOLDII_COMBINATORIAL_SUBSTRATE_GATE_V1.md`.
+
+The current public audit does **not** demonstrate that white/non-white, anthesis-upright/nodding or phyllary states independently co-segregate within the same natural population. Moreover, ordinary *C. sieboldii* heads become upright after flowering, so orientation must be scored at standardized anthesis before it can be treated as an individual state.
+
+Therefore the species becomes Nature-central only after Gate CS returns `CS_GREEN` or, with weaker reassembly language, `CS_GREEN_LOCAL_SET`.
 
 The Nature-scale question is not whether all these traits share one locus. It is the opposite:
 
@@ -151,7 +157,7 @@ Required analyses can include:
 
 At least one focal system must score multiple capitulum modules on the same individuals.
 
-Primary candidate: *C. sieboldii*.
+Primary candidate: *C. sieboldii*, **conditional on Gate CS verification of a real within-population/local combinatorial substrate**.
 
 Support for genomic combinatorial reuse requires more than multiple trait associations.
 
@@ -189,6 +195,8 @@ Before any genome-wide association or rare-variant claim:
 ## Stop rules
 
 - No field collection is authorized by this document.
+- Do not sequence the planned 40 *C. sieboldii* until Gate CS verifies its biological leverage and R1B verifies dense-reference transferability.
+- Do not treat post-anthesis reorientation as genetic orientation polymorphism.
 - No post-hoc replacement of inaccessible populations after their expected genomic leverage is known.
 - No diploid-only joint caller across mixed cytotypes.
 - No species-level phenotype substituted for same-individual phenotype.

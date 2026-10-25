@@ -1,0 +1,29 @@
+name: Validate latent ancestral-program hypothesis
+
+on:
+  pull_request:
+    paths:
+      - "docs/LATENT_ANCESTRAL_PROGRAM_REACTIVATION_V1.md"
+      - "docs/REACTIVATION_HISTORY_GATE_V1.md"
+      - "data/contracts/aza3_latent_ancestral_program_reactivation_v1.json"
+      - "data/contracts/aza3_reactivation_history_gate_v1.json"
+      - "data/evidence/eazami_latent_pathway_handoff_v1.json"
+      - "data/evidence/latent_program_reactivation_literature_map_v1.csv"
+      - "analysis/validate_latent_ancestral_program_reactivation_v1.py"
+      - ".github/workflows/validate-latent-ancestral-program-reactivation-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: |
+          python -m py_compile analysis/validate_latent_ancestral_program_reactivation_v1.py
+          python analysis/validate_latent_ancestral_program_reactivation_v1.py
