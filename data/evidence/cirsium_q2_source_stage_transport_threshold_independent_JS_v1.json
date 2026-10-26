@@ -1,0 +1,533 @@
+{
+  "version": "aza3_q2_cirsium_stage_transport_conditional_access_original_JS_v1",
+  "as_of": "2026-10-26",
+  "source": {
+    "source_doi": "10.2307/2260602",
+    "paper_year": 1988,
+    "source_type": "published original Table 1/2 re-transcription only, not individual raw data",
+    "exclosure_original_years": [
+      1981,
+      1982
+    ],
+    "head_stem_years": [
+      1982,
+      1984
+    ],
+    "site": "Meijendel, Netherlands",
+    "original_number_of_exclosure_habitat_date_cells": 10,
+    "other_head_source": {
+      "source": "Cirsium arvense original 2022 4-arm intervention, not Cirsium vulgare 1981/1982 exclosure",
+      "paper_doi": "10.21203/rs.3.rs-6634172/v1",
+      "original_head_rows": 615,
+      "matched_four_arm_blocks": 36,
+      "author_defined_bag_minus_control_good_seed_fraction": -0.5230663124174955,
+      "not_a_head_module_treatment": true,
+      "not_a_count_H_or_genotype_matched": true,
+      "no_original_individual_joint_source_link_to_1988": true
+    }
+  },
+  "definitions": {
+    "units_of_yield": "mature seeds per original head entering original postdispersal exposure; expected retained seeds, NOT viable seedlings",
+    "q_definition": "1 - table2 treatment-specific source percentage seeds consumed/100; conditional on reported exposure experiment",
+    "H_definition": "expected mature seeds before dispersal, assuming all pre-dispersal module costs included",
+    "no_same_seed_ID_link_across_1988_cohorts": true,
+    "independent_cross_source_numeric_product_forbidden": true,
+    "use_of_cage_as_if_genetic_module_could_change_postdispersal_route_is_scenario_not_empirical_trait_effect": true
+  },
+  "source_original_exclosure_cell_replay": [
+    {
+      "date": "1981-09-25",
+      "habitat": "scrub",
+      "source_seed_predation_percentage": {
+        "cage": 12,
+        "net": 27,
+        "open": 27
+      },
+      "measured_seed_retention_per_exposure_treatment": {
+        "cage": 0.88,
+        "net": 0.73,
+        "open": 0.73
+      },
+      "source_recorded_cage_minus_open_retention": 0.15000000000000002,
+      "source_recorded_net_minus_open_retention": 0,
+      "head_seed_yield_ratio_threshold_for_hypothetical_cage_route_to_exceed_open": 0.8295454545454545,
+      "cage_over_open_per_seed_retention_ratio": 1.2054794520547945
+    },
+    {
+      "date": "1981-10-22",
+      "habitat": "scrub",
+      "source_seed_predation_percentage": {
+        "cage": 9,
+        "net": 22,
+        "open": 19
+      },
+      "measured_seed_retention_per_exposure_treatment": {
+        "cage": 0.91,
+        "net": 0.78,
+        "open": 0.81
+      },
+      "source_recorded_cage_minus_open_retention": 0.09999999999999998,
+      "source_recorded_net_minus_open_retention": -0.030000000000000027,
+      "head_seed_yield_ratio_threshold_for_hypothetical_cage_route_to_exceed_open": 0.8901098901098902,
+      "cage_over_open_per_seed_retention_ratio": 1.1234567901234567
+    },
+    {
+      "date": "1981-11-18",
+      "habitat": "scrub",
+      "source_seed_predation_percentage": {
+        "cage": 8,
+        "net": 93,
+        "open": 83
+      },
+      "measured_seed_retention_per_exposure_treatment": {
+        "cage": 0.92,
+        "net": 0.06999999999999995,
+        "open": 0.17000000000000004
+      },
+      "source_recorded_cage_minus_open_retention": 0.75,
+      "source_recorded_net_minus_open_retention": -0.10000000000000009,
+      "head_seed_yield_ratio_threshold_for_hypothetical_cage_route_to_exceed_open": 0.18478260869565222,
+      "cage_over_open_per_seed_retention_ratio": 5.4117647058823515
+    },
+    {
+      "date": "1982-01-20",
+      "habitat": "scrub",
+      "source_seed_predation_percentage": {
+        "cage": 7,
+        "net": 67,
+        "open": 71
+      },
+      "measured_seed_retention_per_exposure_treatment": {
+        "cage": 0.9299999999999999,
+        "net": 0.32999999999999996,
+        "open": 0.29000000000000004
+      },
+      "source_recorded_cage_minus_open_retention": 0.6399999999999999,
+      "source_recorded_net_minus_open_retention": 0.039999999999999925,
+      "head_seed_yield_ratio_threshold_for_hypothetical_cage_route_to_exceed_open": 0.31182795698924737,
+      "cage_over_open_per_seed_retention_ratio": 3.2068965517241375
+    },
+    {
+      "date": "1982-02-05",
+      "habitat": "scrub",
+      "source_seed_predation_percentage": {
+        "cage": 3,
+        "net": 73,
+        "open": 79
+      },
+      "measured_seed_retention_per_exposure_treatment": {
+        "cage": 0.97,
+        "net": 0.27,
+        "open": 0.20999999999999996
+      },
+      "source_recorded_cage_minus_open_retention": 0.76,
+      "source_recorded_net_minus_open_retention": 0.06000000000000005,
+      "head_seed_yield_ratio_threshold_for_hypothetical_cage_route_to_exceed_open": 0.21649484536082472,
+      "cage_over_open_per_seed_retention_ratio": 4.6190476190476195
+    },
+    {
+      "date": "1981-09-25",
+      "habitat": "herbaceous_vegetation",
+      "source_seed_predation_percentage": {
+        "cage": 9,
+        "net": 79,
+        "open": 76
+      },
+      "measured_seed_retention_per_exposure_treatment": {
+        "cage": 0.91,
+        "net": 0.20999999999999996,
+        "open": 0.24
+      },
+      "source_recorded_cage_minus_open_retention": 0.67,
+      "source_recorded_net_minus_open_retention": -0.030000000000000027,
+      "head_seed_yield_ratio_threshold_for_hypothetical_cage_route_to_exceed_open": 0.26373626373626374,
+      "cage_over_open_per_seed_retention_ratio": 3.791666666666667
+    },
+    {
+      "date": "1981-10-22",
+      "habitat": "herbaceous_vegetation",
+      "source_seed_predation_percentage": {
+        "cage": 5,
+        "net": 62,
+        "open": 83
+      },
+      "measured_seed_retention_per_exposure_treatment": {
+        "cage": 0.95,
+        "net": 0.38,
+        "open": 0.17000000000000004
+      },
+      "source_recorded_cage_minus_open_retention": 0.7799999999999999,
+      "source_recorded_net_minus_open_retention": 0.20999999999999996,
+      "head_seed_yield_ratio_threshold_for_hypothetical_cage_route_to_exceed_open": 0.1789473684210527,
+      "cage_over_open_per_seed_retention_ratio": 5.588235294117646
+    },
+    {
+      "date": "1981-11-18",
+      "habitat": "herbaceous_vegetation",
+      "source_seed_predation_percentage": {
+        "cage": 3,
+        "net": 78,
+        "open": 70
+      },
+      "measured_seed_retention_per_exposure_treatment": {
+        "cage": 0.97,
+        "net": 0.21999999999999997,
+        "open": 0.30000000000000004
+      },
+      "source_recorded_cage_minus_open_retention": 0.6699999999999999,
+      "source_recorded_net_minus_open_retention": -0.08000000000000007,
+      "head_seed_yield_ratio_threshold_for_hypothetical_cage_route_to_exceed_open": 0.309278350515464,
+      "cage_over_open_per_seed_retention_ratio": 3.233333333333333
+    },
+    {
+      "date": "1982-01-20",
+      "habitat": "herbaceous_vegetation",
+      "source_seed_predation_percentage": {
+        "cage": 5,
+        "net": 78,
+        "open": 70
+      },
+      "measured_seed_retention_per_exposure_treatment": {
+        "cage": 0.95,
+        "net": 0.21999999999999997,
+        "open": 0.30000000000000004
+      },
+      "source_recorded_cage_minus_open_retention": 0.6499999999999999,
+      "source_recorded_net_minus_open_retention": -0.08000000000000007,
+      "head_seed_yield_ratio_threshold_for_hypothetical_cage_route_to_exceed_open": 0.31578947368421056,
+      "cage_over_open_per_seed_retention_ratio": 3.166666666666666
+    },
+    {
+      "date": "1982-02-05",
+      "habitat": "herbaceous_vegetation",
+      "source_seed_predation_percentage": {
+        "cage": 1,
+        "net": 75,
+        "open": 57
+      },
+      "measured_seed_retention_per_exposure_treatment": {
+        "cage": 0.99,
+        "net": 0.25,
+        "open": 0.43000000000000005
+      },
+      "source_recorded_cage_minus_open_retention": 0.5599999999999999,
+      "source_recorded_net_minus_open_retention": -0.18000000000000005,
+      "head_seed_yield_ratio_threshold_for_hypothetical_cage_route_to_exceed_open": 0.4343434343434344,
+      "cage_over_open_per_seed_retention_ratio": 2.3023255813953485
+    }
+  ],
+  "source_aggregates": {
+    "n_habitat_date_groups": 10,
+    "n_dates": 5,
+    "n_habitats": 2,
+    "mean_predation_percentage": {
+      "cage": 6.2,
+      "net": 65.4,
+      "open": 63.5
+    },
+    "mean_seed_retention_percentage": {
+      "cage": 93.8,
+      "net": 34.599999999999994,
+      "open": 36.5
+    },
+    "within_habitat_date_cage_retention_exceeds_open": 10,
+    "within_habitat_date_cage_retention_exceeds_net": 10,
+    "mean_matched_cage_minus_open_survival_percentage_points": 57.3,
+    "ratio_of_group_mean_retention_cage_divided_by_open": 2.56986301369863,
+    "mean_of_cellwise_ratios_cage_divided_by_open": 3.364887266101202,
+    "source_break_even_head_yield_ratio_min": 0.1789473684210527,
+    "source_break_even_head_yield_ratio_max": 0.8901098901098902,
+    "ratio_of_group_mean_retention_open_divided_by_cage": 0.3891257995735608,
+    "n_source_cells_where_bird_net_retention_is_below_open": 6
+  },
+  "counterfactual_algebra_only": {
+    "constant_downstream_route": {
+      "expected_surviving_seed_proxy": "E[Y_z|matched_background]=q * H_z, with H_z measured mature seed output inclusive of all pretreatment head costs; q common to the two head phenotype states; no genotype-dependent postdispersal selection",
+      "difference": "W_1-W_0=q*(H_1-H_0)",
+      "condition": "q>0 implies sign(W_1-W_0)=sign(H_1-H_0); q=0 implies both W=0",
+      "no_seed_independence_across_individuals_needed_for_expectation": true,
+      "only_same_late_s_and_same_background_stage_cost_scale": true,
+      "does_not_identify_head_effect_from_original_table": true
+    },
+    "variable_downstream_route": {
+      "expected_surviving_seed_proxy": "W_z=q_z * H_z; q_z is realized postdispersal seed retention conditional on phenotype/seed phenotype/dispersal microhabitat, not estimated for native Cirsium z in archive",
+      "break_even": "If H_0>0 and q_1>0, W_1>W_0 iff H_1/H_0>q_0/q_1. Actual random cage/open treatment is not a genetically controlled Cirsium capitulum trait.",
+      "reverse_possible_only_if_correlated_trait_or_environment_conditional_postdispersal_route": true,
+      "matched_outcome_trial_required": true
+    },
+    "stem_stage": {
+      "head_eligible_survival": "W_z=a_z*q_z*H_z with a_z probability of making seed-bearing heads; a_z can be correlated with prior stem attack/plant size; not equal to 1-% any stem attack",
+      "if_a_z_equal_and_positive": "The common upstream factor a cannot reverse a head-only ranking, but attenuates its absolute reproductive increment",
+      "original_1982_any_stem_attack_fraction_is_not_stem_death_probability": true
+    },
+    "costs_and_limits": {
+      "head_output_H_must_include_all_pre_dispersal_head_costs": true,
+      "offspring_establishment_or_late_architecture_costs_need_separate_term": true,
+      "no_claim_of_architecture_global_advantage_slk_Phi_or_SCH_conflict": true,
+      "1988_cage_effect_cannot_be_inferred_for_head_morphology": true
+    },
+    "declared_illustrative_Hratios": [
+      {
+        "hypothetical_predispersal_head_seed_output_ratio_protected_over_open": 0.5,
+        "n_habitat_dates_where_protected_head_route_would_yield_more_surviving_exposed_seeds": 8,
+        "n_habitat_dates_where_open_route_would_yield_more": 2,
+        "n_exact_ties": 0,
+        "normalized_differences_by_source_cell": [
+          {
+            "cell": "1981-09-25|scrub",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": -0.29
+          },
+          {
+            "cell": "1981-10-22|scrub",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": -0.35500000000000004
+          },
+          {
+            "cell": "1981-11-18|scrub",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.29
+          },
+          {
+            "cell": "1982-01-20|scrub",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.17499999999999993
+          },
+          {
+            "cell": "1982-02-05|scrub",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.275
+          },
+          {
+            "cell": "1981-09-25|herbaceous_vegetation",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.21500000000000002
+          },
+          {
+            "cell": "1981-10-22|herbaceous_vegetation",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.30499999999999994
+          },
+          {
+            "cell": "1981-11-18|herbaceous_vegetation",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.18499999999999994
+          },
+          {
+            "cell": "1982-01-20|herbaceous_vegetation",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.17499999999999993
+          },
+          {
+            "cell": "1982-02-05|herbaceous_vegetation",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.06499999999999995
+          }
+        ],
+        "head_output_ratio_is_observed": false,
+        "trait_changes_seed_caging_or_deposition_observed": false
+      },
+      {
+        "hypothetical_predispersal_head_seed_output_ratio_protected_over_open": 0.75,
+        "n_habitat_dates_where_protected_head_route_would_yield_more_surviving_exposed_seeds": 8,
+        "n_habitat_dates_where_open_route_would_yield_more": 2,
+        "n_exact_ties": 0,
+        "normalized_differences_by_source_cell": [
+          {
+            "cell": "1981-09-25|scrub",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": -0.06999999999999995
+          },
+          {
+            "cell": "1981-10-22|scrub",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": -0.12750000000000006
+          },
+          {
+            "cell": "1981-11-18|scrub",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.52
+          },
+          {
+            "cell": "1982-01-20|scrub",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.4075
+          },
+          {
+            "cell": "1982-02-05|scrub",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.5175000000000001
+          },
+          {
+            "cell": "1981-09-25|herbaceous_vegetation",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.4425
+          },
+          {
+            "cell": "1981-10-22|herbaceous_vegetation",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.5424999999999999
+          },
+          {
+            "cell": "1981-11-18|herbaceous_vegetation",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.4275
+          },
+          {
+            "cell": "1982-01-20|herbaceous_vegetation",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.41249999999999987
+          },
+          {
+            "cell": "1982-02-05|herbaceous_vegetation",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.3124999999999999
+          }
+        ],
+        "head_output_ratio_is_observed": false,
+        "trait_changes_seed_caging_or_deposition_observed": false
+      },
+      {
+        "hypothetical_predispersal_head_seed_output_ratio_protected_over_open": 0.8,
+        "n_habitat_dates_where_protected_head_route_would_yield_more_surviving_exposed_seeds": 8,
+        "n_habitat_dates_where_open_route_would_yield_more": 2,
+        "n_exact_ties": 0,
+        "normalized_differences_by_source_cell": [
+          {
+            "cell": "1981-09-25|scrub",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": -0.025999999999999912
+          },
+          {
+            "cell": "1981-10-22|scrub",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": -0.08199999999999996
+          },
+          {
+            "cell": "1981-11-18|scrub",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.5660000000000001
+          },
+          {
+            "cell": "1982-01-20|scrub",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.45399999999999996
+          },
+          {
+            "cell": "1982-02-05|scrub",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.5660000000000001
+          },
+          {
+            "cell": "1981-09-25|herbaceous_vegetation",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.4880000000000001
+          },
+          {
+            "cell": "1981-10-22|herbaceous_vegetation",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.59
+          },
+          {
+            "cell": "1981-11-18|herbaceous_vegetation",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.476
+          },
+          {
+            "cell": "1982-01-20|herbaceous_vegetation",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.45999999999999996
+          },
+          {
+            "cell": "1982-02-05|herbaceous_vegetation",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.362
+          }
+        ],
+        "head_output_ratio_is_observed": false,
+        "trait_changes_seed_caging_or_deposition_observed": false
+      },
+      {
+        "hypothetical_predispersal_head_seed_output_ratio_protected_over_open": 0.9,
+        "n_habitat_dates_where_protected_head_route_would_yield_more_surviving_exposed_seeds": 10,
+        "n_habitat_dates_where_open_route_would_yield_more": 0,
+        "n_exact_ties": 0,
+        "normalized_differences_by_source_cell": [
+          {
+            "cell": "1981-09-25|scrub",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.062000000000000055
+          },
+          {
+            "cell": "1981-10-22|scrub",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.009000000000000008
+          },
+          {
+            "cell": "1981-11-18|scrub",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.658
+          },
+          {
+            "cell": "1982-01-20|scrub",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.5469999999999999
+          },
+          {
+            "cell": "1982-02-05|scrub",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.663
+          },
+          {
+            "cell": "1981-09-25|herbaceous_vegetation",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.5790000000000001
+          },
+          {
+            "cell": "1981-10-22|herbaceous_vegetation",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.6849999999999999
+          },
+          {
+            "cell": "1981-11-18|herbaceous_vegetation",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.573
+          },
+          {
+            "cell": "1982-01-20|herbaceous_vegetation",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.5549999999999999
+          },
+          {
+            "cell": "1982-02-05|herbaceous_vegetation",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.46099999999999997
+          }
+        ],
+        "head_output_ratio_is_observed": false,
+        "trait_changes_seed_caging_or_deposition_observed": false
+      },
+      {
+        "hypothetical_predispersal_head_seed_output_ratio_protected_over_open": 1,
+        "n_habitat_dates_where_protected_head_route_would_yield_more_surviving_exposed_seeds": 10,
+        "n_habitat_dates_where_open_route_would_yield_more": 0,
+        "n_exact_ties": 0,
+        "normalized_differences_by_source_cell": [
+          {
+            "cell": "1981-09-25|scrub",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.15000000000000002
+          },
+          {
+            "cell": "1981-10-22|scrub",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.09999999999999998
+          },
+          {
+            "cell": "1981-11-18|scrub",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.75
+          },
+          {
+            "cell": "1982-01-20|scrub",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.6399999999999999
+          },
+          {
+            "cell": "1982-02-05|scrub",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.76
+          },
+          {
+            "cell": "1981-09-25|herbaceous_vegetation",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.67
+          },
+          {
+            "cell": "1981-10-22|herbaceous_vegetation",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.7799999999999999
+          },
+          {
+            "cell": "1981-11-18|herbaceous_vegetation",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.6699999999999999
+          },
+          {
+            "cell": "1982-01-20|herbaceous_vegetation",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.6499999999999999
+          },
+          {
+            "cell": "1982-02-05|herbaceous_vegetation",
+            "normalized_survivor_advantage_if_hypothetical_head_ratio_and_cage_vs_open": 0.5599999999999999
+          }
+        ],
+        "head_output_ratio_is_observed": false,
+        "trait_changes_seed_caging_or_deposition_observed": false
+      }
+    ]
+  },
+  "measurement_gate": {
+    "same_mother_and_genotyped_original_head_records_observed": false,
+    "head_module_measurements_orientation_bracts_true_spines_stickiness": false,
+    "matched_pollinator_deposition_and_oviposition_observed": false,
+    "original_heads_mature_seed_output_measured_but_not_joint_trait_treatment": false,
+    "same_head_seed_batch_split_to_randomized_postdispersal_access": false,
+    "actual_seed_borne_genotype_specific_retention_estimated": false,
+    "proposed_actual_field_design": "prospectively register original head IDs and phenotype; measure seed output under valid original P x E sham interventions, split real ID-tied mature seeds among matched microhabitat predator-exclusion/open blocks with permissions, measure retention and germination without multiplying unlinked years or species",
+    "status": "SOURCE_RETENTION_QUANTIFIED_BUT_HEAD_MODULE_TRANSMISSION_NOT_IDENTIFIABLE",
+    "new_field_observations": 0
+  }
+}
