@@ -342,7 +342,7 @@ def analyze(source,unlinked):
                 False,
             "matched_pollinator_deposition_and_oviposition_observed":False,
             "original_heads_mature_seed_output_measured_but_not_joint_trait_treatment":
-                False,
+                True,
             "same_head_seed_batch_split_to_randomized_postdispersal_access":False,
             "actual_seed_borne_genotype_specific_retention_estimated":False,
             "proposed_actual_field_design":(
