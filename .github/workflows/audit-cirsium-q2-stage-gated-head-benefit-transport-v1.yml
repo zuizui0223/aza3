@@ -56,8 +56,8 @@ jobs:
           exact(a,b)
           assert a['source']['source_doi']=='10.2307/2260602'
           assert a['source_aggregates']['within_habitat_date_cage_retention_exceeds_open']==10
-          assert a['source_aggregates']['mean_seed_retention_percentage']['cage']==93.8
-          assert a['source_aggregates']['mean_seed_retention_percentage']['open']==36.5
+          assert math.isclose(a['source_aggregates']['mean_seed_retention_percentage']['cage'],93.8,abs_tol=1e-12)
+          assert math.isclose(a['source_aggregates']['mean_seed_retention_percentage']['open'],36.5,abs_tol=1e-12)
           assert a['definitions']['independent_cross_source_numeric_product_forbidden']
           scenario=a['counterfactual_algebra_only']['declared_illustrative_Hratios'][2]
           assert scenario['hypothetical_predispersal_head_seed_output_ratio_protected_over_open']==.8
