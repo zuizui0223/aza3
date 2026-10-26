@@ -1,0 +1,73 @@
+name: Original Cirsium vulgare 1988 herbivore life-stage and rodent exclusion source
+on:
+  pull_request:
+    paths:
+      - 'analysis/audit_cirsium_vulgare_1988_multistage_herbivore_gate_v1.py'
+      - 'tests/test_cirsium_vulgare_1988_multistage_herbivore_gate_v1.py'
+      - 'data/evidence/cirsium_vulgare_1988_original_multistage_source_tables_v1.json'
+      - 'data/evidence/cirsium_vulgare_1988_multistage_risk_independent_JS_v1.json'
+      - 'docs/CIRSIUM_VULGARE_1988_STEM_HEAD_RODENT_MULTISTAGE_REAL_DATA_20261026.md'
+      - '.github/workflows/audit-cirsium-vulgare-1988-real-multistage-source-v1.yml'
+      - 'README.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-experiment-fitness-stage-firewall:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Reject false sample identifiers and altered original stem/head/rodent trials
+        run: |
+          python -m py_compile analysis/audit_cirsium_vulgare_1988_multistage_herbivore_gate_v1.py
+          python -m unittest discover -s tests -p 'test_cirsium_vulgare_1988_multistage_herbivore_gate_v1.py' -v
+      - name: Reconstruct true 1982 and 1984 stem/head ecological stage values and 1981-82 exclosure published table
+        run: |
+          mkdir -p work/cirsium_vulgare
+          python analysis/audit_cirsium_vulgare_1988_multistage_herbivore_gate_v1.py \
+            --source data/evidence/cirsium_vulgare_1988_original_multistage_source_tables_v1.json \
+            --out work/cirsium_vulgare/original_source_replay_python.json
+      - name: Compare all original sample counts, 2 field years, 10 original exclosure habitat-date cells and stage shifts to independent JavaScript
+        run: |
+          python - <<'PY'
+          import json,math
+          x=json.load(open('work/cirsium_vulgare/original_source_replay_python.json'))
+          y=json.load(open('data/evidence/cirsium_vulgare_1988_multistage_risk_independent_JS_v1.json'))
+          def same(a,b,path='root'):
+              if isinstance(b,dict):
+                  assert isinstance(a,dict) and set(a)==set(b),(path,set(a)^set(b))
+                  for k,v in b.items():same(a[k],v,path+'.'+k)
+              elif isinstance(b,list):
+                  assert isinstance(a,list) and len(a)==len(b),(path,len(a),len(b))
+                  for i,(aa,bb) in enumerate(zip(a,b)):same(aa,bb,path+f'[{i}]')
+              elif type(b) is bool:
+                  assert type(a) is bool and a==b,(path,a,b)
+              elif type(b) in (float,int):
+                  assert type(a) in (float,int) and math.isfinite(a),(path,a,b)
+                  assert math.isclose(a,b,rel_tol=1e-12,abs_tol=1e-12),(path,a,b)
+              else:
+                  assert a==b,(path,a,b)
+          same(x,y)
+          z=x['year_change_1984_minus_1982']
+          assert z['stem_damaged_prevalence_pp']==-74
+          assert z['head_visible_damaged_prevalence_pp']==26
+          a=x['postdispersal_exclosure']
+          assert a['n_source_habitat_dates']==10 and a['original_measured_table2_cells']==30
+          assert math.isclose(a['equal_habitat_date_mean_predation_pct']['cage'],6.2)
+          assert math.isclose(a['equal_habitat_date_mean_predation_pct']['open'],63.5)
+          assert a['n_habitat_dates_open_greater_cage']==10
+          assert x['warnings']['not_legitimate_to_add_stem_seed_reduction_plus_flowerhead_predation_pct']
+          assert x['warnings']['new_own_observations']==0
+          print('PASS original Cirsium vulgare Meijendel 1982/1984 different-grain source studies, all published Table 2 cage/net/open rows, 10/10 lower rodent-exclosure seed predation, no fictitious net same-head fitness estimate.')
+          PY
+      - name: Save computed audit without claiming original head-level data download
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-cirsium-vulgare-1988-life-stage-bottlenecks
+          path: work/cirsium_vulgare/original_source_replay_python.json
+          retention-days: 30
+          if-no-files-found: error
