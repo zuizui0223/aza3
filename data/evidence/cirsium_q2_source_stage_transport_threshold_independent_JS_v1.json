@@ -29,7 +29,7 @@
   "definitions": {
     "units_of_yield": "mature seeds per original head entering original postdispersal exposure; expected retained seeds, NOT viable seedlings",
     "q_definition": "1 - table2 treatment-specific source percentage seeds consumed/100; conditional on reported exposure experiment",
-    "H_definition": "expected mature seeds before dispersal, assuming all pre-dispersal module costs included",
+    "H_definition": "Expected mature head output including pre-dispersal costs; heterogeneous cohorts need joint H_i × q_i measurements, not product of separate unweighted group means",
     "no_same_seed_ID_link_across_1988_cohorts": true,
     "independent_cross_source_numeric_product_forbidden": true,
     "use_of_cage_as_if_genetic_module_could_change_postdispersal_route_is_scenario_not_empirical_trait_effect": true
@@ -250,7 +250,7 @@
       "does_not_identify_head_effect_from_original_table": true
     },
     "variable_downstream_route": {
-      "expected_surviving_seed_proxy": "W_z=q_z * H_z; q_z is realized postdispersal seed retention conditional on phenotype/seed phenotype/dispersal microhabitat, not estimated for native Cirsium z in archive",
+      "expected_surviving_seed_proxy": "W_z=q_z*H_z only if q_z denotes the SEED-WEIGHTED retention factor for the same z-defined source seed cohort (E[H_i*q_i]/E[H_i] when cohort has heterogeneous head counts), or every head has common retention; multiplying separate unweighted cohort means requires zero relevant covariance.",
       "break_even": "If H_0>0 and q_1>0, W_1>W_0 iff H_1/H_0>q_0/q_1. Actual random cage/open treatment is not a genetically controlled Cirsium capitulum trait.",
       "reverse_possible_only_if_correlated_trait_or_environment_conditional_postdispersal_route": true,
       "matched_outcome_trial_required": true
@@ -517,7 +517,44 @@
         "head_output_ratio_is_observed": false,
         "trait_changes_seed_caging_or_deposition_observed": false
       }
-    ]
+    ],
+    "joint_alignment_nonidentifiability_witness": {
+      "status": "CONSTRUCTED_MATHEMATICAL_COUNTEREXAMPLE_NOT_ORIGINAL_SOURCE_RECORDS",
+      "source_field_rows_used": 0,
+      "heterogeneous_expected_value_identity": "E[H_i*q_i]=E[H_i]*E[q_i]+Cov(H_i,q_i). Even when head output and per-head retention have IDENTICAL MARGINAL distributions, expected surviving output can differ if their within-head pairing differs.",
+      "both_scenarios_same_original_head_seed_counts_H": [
+        8,
+        2
+      ],
+      "both_scenarios_same_unweighted_retention_marginal_sorted": [
+        0.1,
+        0.9
+      ],
+      "mean_H": 5,
+      "mean_unweighted_q": 0.5,
+      "naive_marginal_product": 2.5,
+      "aligned_H_and_q_scenario": {
+        "q_assigned_to_H_in_original_H_order": [
+          0.9,
+          0.1
+        ],
+        "mean_H_times_q": 3.7,
+        "covariance_H_q": 1.2000000000000002,
+        "head_seed_weighted_retention": 0.74
+      },
+      "opposed_H_and_q_scenario": {
+        "q_assigned_to_H_in_original_H_order": [
+          0.1,
+          0.9
+        ],
+        "mean_H_times_q": 1.3,
+        "covariance_H_q": -1.2,
+        "head_seed_weighted_retention": 0.26
+      },
+      "difference_in_expected_retained_seeds_between_scenarios": 2.4000000000000004,
+      "joint_seed_batch_trace_required_to_identify_which_alignment_applies": true,
+      "stage_1988_table_marginal_lacks_head_link": true
+    }
   },
   "measurement_gate": {
     "same_mother_and_genotyped_original_head_records_observed": false,
@@ -526,7 +563,7 @@
     "original_heads_mature_seed_output_measured_but_not_joint_trait_treatment": false,
     "same_head_seed_batch_split_to_randomized_postdispersal_access": false,
     "actual_seed_borne_genotype_specific_retention_estimated": false,
-    "proposed_actual_field_design": "prospectively register original head IDs and phenotype; measure seed output under valid original P x E sham interventions, split real ID-tied mature seeds among matched microhabitat predator-exclusion/open blocks with permissions, measure retention and germination without multiplying unlinked years or species",
+    "proposed_actual_field_design": "prospectively register original head IDs and phenotype; measure seed output under valid original P x E sham interventions, split real ID-tied mature seeds among matched microhabitat predator-exclusion/open blocks with permissions, measure retention and germination without multiplying unlinked years or species; preserve same-source head-seed alignment or estimate seed-weighted retention to avoid E[H]E[q] error",
     "status": "SOURCE_RETENTION_QUANTIFIED_BUT_HEAD_MODULE_TRANSMISSION_NOT_IDENTIFIABLE",
     "new_field_observations": 0
   }
