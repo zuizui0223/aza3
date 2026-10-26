@@ -560,7 +560,7 @@
     "same_mother_and_genotyped_original_head_records_observed": false,
     "head_module_measurements_orientation_bracts_true_spines_stickiness": false,
     "matched_pollinator_deposition_and_oviposition_observed": false,
-    "original_heads_mature_seed_output_measured_but_not_joint_trait_treatment": false,
+    "original_heads_mature_seed_output_measured_but_not_joint_trait_treatment": true,
     "same_head_seed_batch_split_to_randomized_postdispersal_access": false,
     "actual_seed_borne_genotype_specific_retention_estimated": false,
     "proposed_actual_field_design": "prospectively register original head IDs and phenotype; measure seed output under valid original P x E sham interventions, split real ID-tied mature seeds among matched microhabitat predator-exclusion/open blocks with permissions, measure retention and germination without multiplying unlinked years or species; preserve same-source head-seed alignment or estimate seed-weighted retention to avoid E[H]E[q] error",
