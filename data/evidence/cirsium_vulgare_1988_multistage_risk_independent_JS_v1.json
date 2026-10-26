@@ -1,0 +1,181 @@
+{
+  "schema": "aza3_original_cirsium_vulgare_year_stem_head_postdispersal_independent_JS_v1",
+  "as_of": "2026-10-26",
+  "source": {
+    "doi": "10.2307/2260602",
+    "original_author_year": 1988,
+    "source_fulltext_author_uploaded_url": "https://www.researchgate.net/publication/271759934_Production_Dispersal_and_Predation_of_Seeds_in_the_Biennial_Cirsium_Vulgare",
+    "source_input_type": "published tables/narrative, not individual raw field records",
+    "source_table1_years": [
+      "1982",
+      "1984"
+    ],
+    "source_table2_exclosure_dates": [
+      "1981-09-25",
+      "1981-10-22",
+      "1981-11-18",
+      "1982-01-20",
+      "1982-02-05"
+    ]
+  },
+  "year_biological_stage_contrasts": {
+    "1982": {
+      "n_stem_random_plants": 117,
+      "n_head_samples": 268,
+      "head_damage_count": 67,
+      "head_damage_fraction_from_counts": 0.25,
+      "head_good_seeds_attacked_minus_unattacked_mean": -6,
+      "head_good_seeds_attacked_over_unattacked_mean": 0.8604651162790697,
+      "stem_damage_reported_pct": 98,
+      "head_damage_reported_pct": 25,
+      "stem_seed_reduction_pct_replayed": 79.67479674796748,
+      "within_head_predation_mean_seed_loss_pct_reported": 3,
+      "mean_seed_per_random_plant": 50,
+      "nondrandom_undamaged_added": 50
+    },
+    "1984": {
+      "n_stem_random_plants": 67,
+      "n_head_samples": 97,
+      "head_damage_count": 49,
+      "head_damage_fraction_from_counts": 0.5051546391752577,
+      "head_good_seeds_attacked_minus_unattacked_mean": -69,
+      "head_good_seeds_attacked_over_unattacked_mean": 0.6682692307692307,
+      "stem_damage_reported_pct": 24,
+      "head_damage_reported_pct": 51,
+      "stem_seed_reduction_pct_replayed": 14.185639229422065,
+      "within_head_predation_mean_seed_loss_pct_reported": 17,
+      "mean_seed_per_random_plant": 1470,
+      "nondrandom_undamaged_added": 0
+    }
+  },
+  "year_change_1984_minus_1982": {
+    "stem_damaged_prevalence_pp": -74,
+    "head_visible_damaged_prevalence_pp": 26,
+    "reported_stem_seed_reduction_pp": -65,
+    "reported_predation_within_heads_seed_loss_pp": 14,
+    "year_change_is_different_field_cohorts_not_random_experimental_assignment": true
+  },
+  "postdispersal_exclosure": {
+    "n_source_habitat_dates": 10,
+    "n_distinct_dates": 5,
+    "n_habitats": 2,
+    "original_measured_table2_cells": 30,
+    "equal_habitat_date_mean_predation_pct": {
+      "cage": 6.2,
+      "net": 65.4,
+      "open": 63.5
+    },
+    "source_original_date_habitat_rows": [
+      {
+        "date": "1981-09-25",
+        "habitat": "scrub",
+        "open_minus_cage": 15,
+        "net_minus_cage": 15,
+        "net_minus_open": 0
+      },
+      {
+        "date": "1981-10-22",
+        "habitat": "scrub",
+        "open_minus_cage": 10,
+        "net_minus_cage": 13,
+        "net_minus_open": 3
+      },
+      {
+        "date": "1981-11-18",
+        "habitat": "scrub",
+        "open_minus_cage": 75,
+        "net_minus_cage": 85,
+        "net_minus_open": 10
+      },
+      {
+        "date": "1982-01-20",
+        "habitat": "scrub",
+        "open_minus_cage": 64,
+        "net_minus_cage": 60,
+        "net_minus_open": -4
+      },
+      {
+        "date": "1982-02-05",
+        "habitat": "scrub",
+        "open_minus_cage": 76,
+        "net_minus_cage": 70,
+        "net_minus_open": -6
+      },
+      {
+        "date": "1981-09-25",
+        "habitat": "herbaceous_vegetation",
+        "open_minus_cage": 67,
+        "net_minus_cage": 70,
+        "net_minus_open": 3
+      },
+      {
+        "date": "1981-10-22",
+        "habitat": "herbaceous_vegetation",
+        "open_minus_cage": 78,
+        "net_minus_cage": 57,
+        "net_minus_open": -21
+      },
+      {
+        "date": "1981-11-18",
+        "habitat": "herbaceous_vegetation",
+        "open_minus_cage": 67,
+        "net_minus_cage": 75,
+        "net_minus_open": 8
+      },
+      {
+        "date": "1982-01-20",
+        "habitat": "herbaceous_vegetation",
+        "open_minus_cage": 65,
+        "net_minus_cage": 73,
+        "net_minus_open": 8
+      },
+      {
+        "date": "1982-02-05",
+        "habitat": "herbaceous_vegetation",
+        "open_minus_cage": 56,
+        "net_minus_cage": 74,
+        "net_minus_open": 18
+      }
+    ],
+    "equal_habitat_date_mean_open_minus_cage_pp": 57.3,
+    "equal_habitat_date_mean_net_minus_cage_pp": 59.2,
+    "equal_habitat_date_mean_net_minus_open_pp": 1.9,
+    "n_habitat_dates_open_greater_cage": 10,
+    "n_habitat_dates_net_greater_cage": 10,
+    "per_habitat": {
+      "scrub": {
+        "n_dates": 5,
+        "means": {
+          "cage": 7.8,
+          "net": 56.4,
+          "open": 55.8
+        },
+        "open_minus_cage": 48,
+        "net_minus_open": 0.6
+      },
+      "herbaceous_vegetation": {
+        "n_dates": 5,
+        "means": {
+          "cage": 4.6,
+          "net": 74.4,
+          "open": 71.2
+        },
+        "open_minus_cage": 66.6,
+        "net_minus_open": 3.2
+      }
+    },
+    "reported_author_bird_only_net_vs_open_no_detected_difference": true,
+    "reported_author_rodent_and_bird_cage_below_both_at_source_p_lt": 0.05,
+    "descriptive_10_cells_not_ten_independent_origin_or_plant_fitness_measures": true
+  },
+  "warnings": {
+    "not_legitimate_to_add_stem_seed_reduction_plus_flowerhead_predation_pct": true,
+    "nonnrandom_1982_undamaged_stem_comparator": true,
+    "different_study_years_and_postdispersal_year": true,
+    "observed_head_groups_are_not_randomized_damage_treatment": true,
+    "no_detailed_source_flowerhead_individual_ids": true,
+    "mouse_exclosure_not_sticky_thistle_head_defense": true,
+    "no_genetically_inherited_capitulum_LEGO_selection_or_trait_reexpression_inferred": true,
+    "new_own_observations": 0
+  }
+}
