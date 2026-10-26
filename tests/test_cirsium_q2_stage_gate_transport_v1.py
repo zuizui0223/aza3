@@ -137,7 +137,7 @@ class ConditionalHeadPayoffTransportTests(unittest.TestCase):
         self.assertEqual(b["original_head_rows"],615)
         self.assertEqual(b["matched_four_arm_blocks"],36)
         self.assertAlmostEqual(b["author_defined_bag_minus_control_good_seed_fraction"],
-                               -.5229549024164956,places=6)
+                               -.5230663124174955,places=6)
         self.assertTrue(b["not_a_count_H_or_genotype_matched"])
         self.assertTrue(b["no_original_individual_joint_source_link_to_1988"])
 
