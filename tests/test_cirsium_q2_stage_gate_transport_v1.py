@@ -182,6 +182,32 @@ class ConditionalHeadPayoffTransportTests(unittest.TestCase):
         self.assertEqual(status["new_field_observations"],0)
         self.assertFalse(status["same_head_seed_batch_split_to_randomized_postdispersal_access"])
 
+    def test_joint_alignment_counterexample_same_marginals_different_expected_seed_output(self):
+        w=gate.joint_alignment_witness()
+        self.assertEqual(
+            w["status"],
+            "CONSTRUCTED_MATHEMATICAL_COUNTEREXAMPLE_NOT_ORIGINAL_SOURCE_RECORDS")
+        self.assertEqual(w["source_field_rows_used"],0)
+        self.assertEqual(w["both_scenarios_same_original_head_seed_counts_H"],[8,2])
+        self.assertEqual(
+            w["both_scenarios_same_unweighted_retention_marginal_sorted"],
+            [.1,.9])
+        self.assertAlmostEqual(w["mean_H"],5)
+        self.assertAlmostEqual(w["mean_unweighted_q"],.5)
+        self.assertAlmostEqual(w["naive_marginal_product"],2.5)
+        high=w["aligned_H_and_q_scenario"]
+        low=w["opposed_H_and_q_scenario"]
+        self.assertAlmostEqual(high["mean_H_times_q"],3.7)
+        self.assertAlmostEqual(low["mean_H_times_q"],1.3)
+        self.assertAlmostEqual(high["covariance_H_q"],1.2)
+        self.assertAlmostEqual(low["covariance_H_q"],-1.2)
+        self.assertAlmostEqual(high["head_seed_weighted_retention"],.74)
+        self.assertAlmostEqual(low["head_seed_weighted_retention"],.26)
+        self.assertAlmostEqual(
+            w["difference_in_expected_retained_seeds_between_scenarios"],2.4)
+        self.assertTrue(w["joint_seed_batch_trace_required_to_identify_which_alignment_applies"])
+        self.assertTrue(w["stage_1988_table_marginal_lacks_head_link"])
+
     def test_independently_calculated_JS_all_source_cells_and_scenarios(self):
         def match(a,b,path="root"):
             if isinstance(b,dict):
