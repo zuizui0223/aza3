@@ -1,0 +1,226 @@
+{
+  "version": "cirsium_vulgare_original_1988_stage_heterogeneity_tables_v1",
+  "as_of": "2026-10-26",
+  "source": {
+    "authors": "Klinkhamer, P. G. L.; de Jong, T. J.; van der Meijden, E.",
+    "paper_year": 1988,
+    "doi": "10.2307/2260602",
+    "journal": "Journal of Ecology 76(2):403–414",
+    "title": "Production, Dispersal and Predation of Seeds in the Biennial Cirsium vulgare",
+    "public_author_uploaded_fulltext": "https://www.researchgate.net/publication/271759934_Production_Dispersal_and_Predation_of_Seeds_in_the_Biennial_Cirsium_Vulgare",
+    "original_publisher_pdf_bytes_verified": false,
+    "author_uploaded_fulltext_visible_html": true,
+    "reported_data_are_published_table_and_text_values_not_retrieved_individual_records": true,
+    "study_locality": "Meijendel coastal sand-dunes, The Netherlands",
+    "doi_source_type": "original peer-reviewed article"
+  },
+  "study_years": {
+    "1982": {
+      "stem_census": {
+        "n_random_flowering_individuals": 117,
+        "percent_stems_attacked_any_herbivore_reported": 98,
+        "mean_good_seeds_per_random_flowering_plant": 50,
+        "SE_good_seeds_per_random_plant": 7,
+        "n_random_flowering_plants_undamaged_stems": 2,
+        "n_additional_nonstratified_undamaged_stem_plants_nonnrandom": 50,
+        "n_seed_sample_undamaged_stem_plants": 52,
+        "mean_good_seeds_per_undamaged_stem_plant": 246,
+        "SE_good_seeds_per_undamaged_stem_plant": 36,
+        "author_stem_damage_seed_production_reduction_pct": 80,
+        "undamaged_plant_sample_not_random_population_sample": true
+      },
+      "before_dispersal_flowerhead_census": {
+        "n_heads_with_visible_seed_predation": 67,
+        "n_heads_without_visible_seed_predation": 201,
+        "pct_flowerheads_with_traces_of_seed_predation_reported": 25,
+        "mean_good_seeds_per_attacked_head": 37,
+        "SE_good_seeds_per_attacked_head": 2,
+        "mean_good_seeds_per_unattacked_head": 43,
+        "SE_good_seeds_per_unattacked_head": 2,
+        "mean_seed_loss_to_predation_inside_flowerheads_pct_reported": 3,
+        "head_records_linked_to_original_stem_census_plant_ids": false
+      },
+      "author_maximum_no_stem_or_head_predation_potential_seeds_per_plant": 258
+    },
+    "1984": {
+      "stem_census": {
+        "n_random_flowering_individuals": 67,
+        "percent_stems_attacked_any_herbivore_reported": 24,
+        "mean_good_seeds_per_random_flowering_plant": 1470,
+        "SE_good_seeds_per_random_plant": 87,
+        "n_random_flowering_plants_undamaged_stems": 51,
+        "n_additional_nonstratified_undamaged_stem_plants_nonnrandom": 0,
+        "n_seed_sample_undamaged_stem_plants": 51,
+        "mean_good_seeds_per_undamaged_stem_plant": 1713,
+        "SE_good_seeds_per_undamaged_stem_plant": 245,
+        "author_stem_damage_seed_production_reduction_pct": 15,
+        "undamaged_plant_sample_not_random_population_sample": false
+      },
+      "before_dispersal_flowerhead_census": {
+        "n_heads_with_visible_seed_predation": 49,
+        "n_heads_without_visible_seed_predation": 48,
+        "pct_flowerheads_with_traces_of_seed_predation_reported": 51,
+        "mean_good_seeds_per_attacked_head": 139,
+        "SE_good_seeds_per_attacked_head": 12,
+        "mean_good_seeds_per_unattacked_head": 208,
+        "SE_good_seeds_per_unattacked_head": 14,
+        "mean_seed_loss_to_predation_inside_flowerheads_pct_reported": 17,
+        "head_records_linked_to_original_stem_census_plant_ids": false
+      },
+      "author_maximum_no_stem_or_head_predation_potential_seeds_per_plant": 2080
+    }
+  },
+  "postdispersal_exclosure": {
+    "table_number": 2,
+    "study_dates": [
+      "1981-09-25",
+      "1981-10-22",
+      "1981-11-18",
+      "1982-01-20",
+      "1982-02-05"
+    ],
+    "time_series_years": [
+      1981,
+      1982
+    ],
+    "habitats": [
+      "scrub",
+      "herbaceous_vegetation"
+    ],
+    "treatments": {
+      "cage": {
+        "mesh_cm": 0.6,
+        "exclude": "birds and small rodents but NOT small insects"
+      },
+      "net": {
+        "mesh_cm": 2,
+        "exclude": "birds, allow small rodents and insects"
+      },
+      "open": {
+        "mesh_cm": null,
+        "exclude": "no deliberate exclusion of birds, rodents, insects"
+      }
+    },
+    "n_containers_per_exposure_series_as_described_by_author": 10,
+    "n_seeds_per_container_as_described_by_author": 10,
+    "n_repeated_experiment_dates": 5,
+    "table2_values_are_group_level_percent_seed_loss_not_individual_container_rows": true,
+    "author_comparison": "Wilcoxon matched pairs n=10 P<0.05 comparing cage vs net or open at each time; no detectable net vs open difference reported",
+    "rows": [
+      {
+        "date": "1981-09-25",
+        "habitat": "scrub",
+        "cage": 12,
+        "net": 27,
+        "open": 27
+      },
+      {
+        "date": "1981-10-22",
+        "habitat": "scrub",
+        "cage": 9,
+        "net": 22,
+        "open": 19
+      },
+      {
+        "date": "1981-11-18",
+        "habitat": "scrub",
+        "cage": 8,
+        "net": 93,
+        "open": 83
+      },
+      {
+        "date": "1982-01-20",
+        "habitat": "scrub",
+        "cage": 7,
+        "net": 67,
+        "open": 71
+      },
+      {
+        "date": "1982-02-05",
+        "habitat": "scrub",
+        "cage": 3,
+        "net": 73,
+        "open": 79
+      },
+      {
+        "date": "1981-09-25",
+        "habitat": "herbaceous_vegetation",
+        "cage": 9,
+        "net": 79,
+        "open": 76
+      },
+      {
+        "date": "1981-10-22",
+        "habitat": "herbaceous_vegetation",
+        "cage": 5,
+        "net": 62,
+        "open": 83
+      },
+      {
+        "date": "1981-11-18",
+        "habitat": "herbaceous_vegetation",
+        "cage": 3,
+        "net": 78,
+        "open": 70
+      },
+      {
+        "date": "1982-01-20",
+        "habitat": "herbaceous_vegetation",
+        "cage": 5,
+        "net": 78,
+        "open": 70
+      },
+      {
+        "date": "1982-02-05",
+        "habitat": "herbaceous_vegetation",
+        "cage": 1,
+        "net": 75,
+        "open": 57
+      }
+    ],
+    "separate_seeds_sown_95_local_populations_1982": {
+      "n_populations": 95,
+      "mean_seed_predation_percent_per_week": 39,
+      "SD_percent": 23.5,
+      "seed_number_per_container": 20
+    },
+    "separate_1981_3_week_sown_grid_experiment": {
+      "n_grids": 9,
+      "initial_seeds_per_container": 20,
+      "author_reported_fraction_preyed_after_three_weeks_percent": 60
+    },
+    "inference": "small rodents were principal postdispersal seed consumers in this exclosure study; the 2cm bird net did not reduce losses relative to open, while 0.6cm cage did",
+    "separate_paired_container_level_raw_observations_retrieved": false
+  },
+  "species_observed": {
+    "stem_borers": [
+      "Cheilosia grossa (Syrphidae: Diptera)",
+      "Epiblema scutulana (Tortricidae: Lepidoptera)"
+    ],
+    "also_rabbit_stem_damage": true,
+    "flowerhead_seed_predators": [
+      "Phycitodes binaevella (Pyralidae: Lepidoptera)",
+      "Eucosma cana (Tortricidae: Lepidoptera)",
+      "Myelois cribrella (Pyralidae: Lepidoptera)"
+    ],
+    "postdispersal_predators_hypothesized_from_traces": [
+      "Apodemus sylvaticus",
+      "Clethrionomys glareolus"
+    ],
+    "different_stages_not_interchangeable": true
+  },
+  "limits": {
+    "stem_plant_n_1982_undamaged_includes_50_nonnrandomly_added": true,
+    "author_stem_reduction_percent_is_comparison_of_seed_production_not_a_randomized_stem_attack": true,
+    "flowerhead_infestation_and_seeds_observational_not_randomized_infestation": true,
+    "stem_and_head_denominator_nonidentical": true,
+    "postdispersal_exclosure_data_from_1981_to_1982_not_same_year_as_1984_head_census": true,
+    "postdispersal_habitat_date_cells_not_independent_organismal_replicates": true,
+    "field_mechanistic_randomized_inference_only_where_source_exclosure_design_supports": true,
+    "head_orientation_true_spines_stickiness_not_measured": true,
+    "different_enemies_by_stage_not_a_species_wide_phylogenetic_trait_transition": true,
+    "no_plant_head_oviposition_pollen_service_filled_fitness_link": true,
+    "no_original_individual_observation_rows_downloaded": true,
+    "no_new_own_field_samples": 0
+  }
+}
