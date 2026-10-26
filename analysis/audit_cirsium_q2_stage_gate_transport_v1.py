@@ -111,6 +111,58 @@ def assert_no_cross_study_lifetime_merge(original,unlinked):
         "no_original_individual_joint_source_link_to_1988":True,
     }
 
+def joint_alignment_witness():
+    """Constructive same-marginal opposite-joint-alignment counterexample.
+
+    All values are SYNTHETIC. This demonstrates why product of marginal
+    head fecundity means and mean per-head seed survival is generally not
+    the expected surviving-seed output without source head-batch linkage.
+    """
+    H=[8,2]
+    q_aligned=[.9,.1]
+    q_opposed=[.1,.9]
+    aH=mean(H)
+    aq=mean(q_aligned)
+    y_aligned=mean([h*q for h,q in zip(H,q_aligned)])
+    y_opposed=mean([h*q for h,q in zip(H,q_opposed)])
+    require(math.isclose(y_aligned,3.7) and
+            math.isclose(y_opposed,1.3) and
+            math.isclose(aH*aq,2.5),
+            "SYNTHETIC_JOINT_MARGINAL_LOGIC_CHANGED")
+    return {
+        "status":"CONSTRUCTED_MATHEMATICAL_COUNTEREXAMPLE_NOT_ORIGINAL_SOURCE_RECORDS",
+        "source_field_rows_used":0,
+        "heterogeneous_expected_value_identity":(
+            "E[H_i*q_i]=E[H_i]*E[q_i]+Cov(H_i,q_i). Even when head output "
+            "and per-head retention have IDENTICAL MARGINAL distributions, "
+            "expected surviving output can differ if their within-head "
+            "pairing differs."),
+        "both_scenarios_same_original_head_seed_counts_H":H,
+        "both_scenarios_same_unweighted_retention_marginal_sorted":
+            sorted(q_aligned),
+        "mean_H":aH,
+        "mean_unweighted_q":aq,
+        "naive_marginal_product":aH*aq,
+        "aligned_H_and_q_scenario":{
+            "q_assigned_to_H_in_original_H_order":q_aligned,
+            "mean_H_times_q":y_aligned,
+            "covariance_H_q":y_aligned-aH*aq,
+            "head_seed_weighted_retention":y_aligned/aH,
+        },
+        "opposed_H_and_q_scenario":{
+            "q_assigned_to_H_in_original_H_order":q_opposed,
+            "mean_H_times_q":y_opposed,
+            "covariance_H_q":y_opposed-aH*aq,
+            "head_seed_weighted_retention":y_opposed/aH,
+        },
+        "difference_in_expected_retained_seeds_between_scenarios":
+            y_aligned-y_opposed,
+        "joint_seed_batch_trace_required_to_identify_which_alignment_applies":
+            True,
+        "stage_1988_table_marginal_lacks_head_link":True,
+    }
+
+
 def analyze(source,unlinked):
     verify_original_1988_paper_table(source)
     other=assert_no_cross_study_lifetime_merge(source,unlinked)
@@ -222,7 +274,9 @@ def analyze(source,unlinked):
         "definitions":{
             "units_of_yield":"mature seeds per original head entering original postdispersal exposure; expected retained seeds, NOT viable seedlings",
             "q_definition":"1 - table2 treatment-specific source percentage seeds consumed/100; conditional on reported exposure experiment",
-            "H_definition":"expected mature seeds before dispersal, assuming all pre-dispersal module costs included",
+            "H_definition":("Expected mature head output including pre-dispersal "
+                "costs; heterogeneous cohorts need joint H_i × q_i "
+                "measurements, not product of separate unweighted group means"),
             "no_same_seed_ID_link_across_1988_cohorts":True,
             "independent_cross_source_numeric_product_forbidden":True,
             "use_of_cage_as_if_genetic_module_could_change_postdispersal_route_is_scenario_not_empirical_trait_effect":True,
@@ -245,10 +299,12 @@ def analyze(source,unlinked):
             },
             "variable_downstream_route":{
                 "expected_surviving_seed_proxy":(
-                    "W_z=q_z * H_z; q_z is realized postdispersal seed "
-                    "retention conditional on phenotype/seed phenotype/"
-                    "dispersal microhabitat, not estimated for native "
-                    "Cirsium z in archive"),
+                    "W_z=q_z*H_z only if q_z denotes the SEED-WEIGHTED "
+                    "retention factor for the same z-defined source seed "
+                    "cohort (E[H_i*q_i]/E[H_i] when cohort has "
+                    "heterogeneous head counts), or every head has common "
+                    "retention; multiplying separate unweighted cohort "
+                    "means requires zero relevant covariance."),
                 "break_even":(
                     "If H_0>0 and q_1>0, W_1>W_0 iff H_1/H_0>q_0/q_1. "
                     "Actual random cage/open treatment is not a genetically "
@@ -277,6 +333,8 @@ def analyze(source,unlinked):
                 "1988_cage_effect_cannot_be_inferred_for_head_morphology":True,
             },
             "declared_illustrative_Hratios":scen,
+            "joint_alignment_nonidentifiability_witness":
+                joint_alignment_witness(),
         },
         "measurement_gate":{
             "same_mother_and_genotyped_original_head_records_observed":False,
@@ -293,7 +351,9 @@ def analyze(source,unlinked):
                 "interventions, split real ID-tied mature seeds among matched "
                 "microhabitat predator-exclusion/open blocks with permissions, "
                 "measure retention and germination without multiplying "
-                "unlinked years or species"),
+                "unlinked years or species; preserve same-source head-seed "
+                "alignment or estimate seed-weighted retention to avoid "
+                "E[H]E[q] error"),
             "status":"SOURCE_RETENTION_QUANTIFIED_BUT_HEAD_MODULE_TRANSMISSION_NOT_IDENTIFIABLE",
             "new_field_observations":0,
         },
