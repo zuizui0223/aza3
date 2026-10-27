@@ -140,6 +140,18 @@ class CirsiumRealHeadFailureTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"DUPLICATE_HEAD_POSITION"):
             head_mother_crosswalk(mothers,heads,strict2008=False)
 
+    def test_orphan_2008_head_without_mother_is_rejected_even_if_seed_zero(self):
+        mothers=[dict(r) for r in self.mothers]
+        heads=[dict(r) for r in self.heads]
+        target=next(r for r in heads if r["year"]=="2008"
+                    and r["plt"]=="ES72" and r["hd"]=="300"
+                    and r["hd.gsd"]=="0")
+        # Removing a zero-seed head from ES72 would not change its
+        # maternal total, so ONLY the head-identity accounting catches it.
+        target["plt"]="unmatched_source_head"
+        with self.assertRaisesRegex(ValueError,"ORPHAN_2008_HEAD_WITHOUT_MOTHER"):
+            head_mother_crosswalk(mothers,heads,strict2008=True)
+
     def test_no_unmeasured_stamen_genetics_or_exact_slk_payoff_claim(self):
         flags=self.r["scientific_claim_limits"]
         for key,val in flags.items():
