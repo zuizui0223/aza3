@@ -36,7 +36,8 @@
       "lateral_positive_seed_heads_damage_ge_080": 3,
       "lateral_head_rows_at_max_observed_damage_088": 18,
       "lateral_positive_seed_heads_at_max_damage_088": 1,
-      "lateral_zero_seed_heads_at_max_damage_088": 17
+      "lateral_zero_seed_heads_at_max_damage_088": 17,
+      "mothers_with_scored_lateral_but_zero_lateral_seed": 9
     },
     "dni": {
       "mothers": 12,
@@ -58,7 +59,8 @@
       "lateral_positive_seed_heads_damage_ge_080": 6,
       "lateral_head_rows_at_max_observed_damage_088": 17,
       "lateral_positive_seed_heads_at_max_damage_088": 6,
-      "lateral_zero_seed_heads_at_max_damage_088": 11
+      "lateral_zero_seed_heads_at_max_damage_088": 11,
+      "mothers_with_scored_lateral_but_zero_lateral_seed": 5
     },
     "ndi": {
       "mothers": 21,
@@ -80,7 +82,8 @@
       "lateral_positive_seed_heads_damage_ge_080": 6,
       "lateral_head_rows_at_max_observed_damage_088": 6,
       "lateral_positive_seed_heads_at_max_damage_088": 4,
-      "lateral_zero_seed_heads_at_max_damage_088": 2
+      "lateral_zero_seed_heads_at_max_damage_088": 2,
+      "mothers_with_scored_lateral_but_zero_lateral_seed": 3
     },
     "di": {
       "mothers": 19,
@@ -102,7 +105,8 @@
       "lateral_positive_seed_heads_damage_ge_080": 5,
       "lateral_head_rows_at_max_observed_damage_088": 4,
       "lateral_positive_seed_heads_at_max_damage_088": 4,
-      "lateral_zero_seed_heads_at_max_damage_088": 0
+      "lateral_zero_seed_heads_at_max_damage_088": 0,
+      "mothers_with_scored_lateral_but_zero_lateral_seed": 0
     }
   },
   "within_mother_lateral_head_damage_comparison": {
