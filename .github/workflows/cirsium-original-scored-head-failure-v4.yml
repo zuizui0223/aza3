@@ -1,0 +1,67 @@
+name: Cirsium original mother-head scored lateral inventory and joint seed failure v4
+on:
+  pull_request:
+    paths:
+      - 'analysis/audit_cirsium_undulatum_scored_head_failure_v4.py'
+      - 'tests/test_cirsium_undulatum_scored_head_failure_v4.py'
+      - 'data/evidence/cirsium_undulatum_scored_head_failure_independent_js_v4.json'
+      - 'docs/CIRSIUM_UNDULATUM_SCORED_LATERAL_HEADS_DURING_JOINT_SEED_FAILURE_20261028.md'
+      - '.github/workflows/cirsium-original-scored-head-failure-v4.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-matched-heads:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify raw USDA source counts, 2008 mother-head join, and negative controls
+        run: |
+          python -m py_compile analysis/audit_cirsium_undulatum_scored_head_failure_v4.py tests/test_cirsium_undulatum_scored_head_failure_v4.py
+          python -m unittest discover -s tests -p 'test_cirsium_undulatum_scored_head_failure_v4.py' -v
+          python -m unittest discover -s tests -p 'test_cirsium_undulatum_maternal_route_coverage_v3.py' -v
+          python -m unittest discover -s tests -p 'test_cirsium_undulatum_maternal_reproductive_routes_v2.py' -v
+      - name: Reproduce exact 67-mother 178-head original 2008 source
+        run: |
+          python analysis/audit_cirsium_undulatum_scored_head_failure_v4.py --output /tmp/cirsium_usda_scored_heads_v4.json
+      - name: Independent source-JavaScript whole-receipt agreement; no causal-genetic claims
+        run: |
+          python - <<'PY'
+          import json,math
+          a=json.load(open('/tmp/cirsium_usda_scored_heads_v4.json'))
+          b=json.load(open('data/evidence/cirsium_undulatum_scored_head_failure_independent_js_v4.json'))
+          def compare(x,y,path='root'):
+              if isinstance(y,dict):
+                  assert isinstance(x,dict) and set(x)==set(y),(path,'keys',set(x)^set(y))
+                  for k in y:compare(x[k],y[k],path+'.'+k)
+              elif isinstance(y,list):
+                  assert isinstance(x,list) and len(x)==len(y),(path,'array shape')
+                  for i,(xx,yy) in enumerate(zip(x,y)):compare(xx,yy,path+f'[{i}]')
+              elif isinstance(y,bool):
+                  assert type(x) is bool and x==y,(path,x,y)
+              elif isinstance(y,(float,int)):
+                  assert type(x) in (int,float) and math.isfinite(x)
+                  assert math.isclose(x,y,abs_tol=1e-10,rel_tol=1e-12),(path,x,y)
+              else:
+                  assert x==y,(path,x,y)
+          compare(a,b)
+          assert a['source']['mother_head_reconciliation_all_2008'] is True
+          assert a['source']['original_2008_head_rows']==178
+          assert a['source']['original_2008_lateral_head_rows']==111
+          assert a['year2008_by_original_treatment']['dni']['joint_failure_mothers_with_scored_lateral_head']==5
+          assert a['year2008_by_original_treatment']['ndni']['joint_failure_mothers_with_scored_lateral_head']==9
+          assert a['year2008_by_original_treatment']['dni']['lateral_positive_seed_heads_at_max_damage_088']==6
+          assert a['within_mother_lateral_head_damage_comparison']['successful_lateral_heads_higher_damage_mothers']==5
+          assert a['other_year_archive_quality']['full_2007_mother_head_joint_state_authenticated'] is False
+          assert all(v is False for v in a['scientific_claim_limits'].values())
+          print('PASS_ACTUAL_LATERAL_HEADS_IN_JOINT_SEED_FAILURE_NOT_GENETIC_AFTERLIFE_OR_CAUSAL_DAMAGERESISTANCE')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: source-audited-cirsium-real-scored-head-failure-v4
+          path: /tmp/cirsium_usda_scored_heads_v4.json
+          retention-days: 30
