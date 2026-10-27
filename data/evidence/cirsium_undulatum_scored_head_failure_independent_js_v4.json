@@ -1,0 +1,183 @@
+{
+  "schema": "aza3_USDA_Cirsium_undulatum_scored_head_failure_v4",
+  "source": {
+    "original_USDA_doi": "10.15482/USDA.ADC/1522649",
+    "original_paper_doi": "10.1002/ajb2.1744",
+    "mother_source_sha1": "458800272c3d0a03c7653702027a8f8578d9e88c",
+    "head_source_sha1": "637a4dcd5194d0bf5b26e7f9cf0dde56a50d7616",
+    "original_mother_rows": 106,
+    "original_head_rows": 323,
+    "original_2008_mothers": 67,
+    "original_2008_head_rows": 178,
+    "original_2008_lateral_head_rows": 111,
+    "original_2008_apical_head_rows": 67,
+    "mother_head_reconciliation_all_2008": true,
+    "max_recorded_head_damage_score": 0.88,
+    "original_source_and_prior_compensation_are_not_new_studies": true
+  },
+  "year2008_by_original_treatment": {
+    "ndni": {
+      "mothers": 15,
+      "mothers_with_lateral_head_record": 11,
+      "mothers_without_scored_lateral_head": 4,
+      "mothers_with_two_plus_lateral_head_records": 6,
+      "mothers_with_positive_lateral_good_seed": 2,
+      "apical_seed_positive_mothers": 2,
+      "mothers_both_seed_routes_zero": 12,
+      "joint_failure_mothers_with_scored_lateral_head": 9,
+      "joint_failure_mothers_with_two_plus_scored_lateral_heads": 5,
+      "joint_failure_mothers_with_3plus_source_buds": 9,
+      "joint_failure_mothers_with_lateral_scored_good_seed_zero": 9,
+      "scored_lateral_head_rows": 22,
+      "scored_lateral_good_seed_positive_head_rows": 3,
+      "scored_lateral_good_seed_zero_head_rows": 19,
+      "lateral_head_rows_damage_score_missing": 0,
+      "lateral_head_rows_damage_ge_080": 22,
+      "lateral_positive_seed_heads_damage_ge_080": 3,
+      "lateral_head_rows_at_max_observed_damage_088": 18,
+      "lateral_positive_seed_heads_at_max_damage_088": 1,
+      "lateral_zero_seed_heads_at_max_damage_088": 17
+    },
+    "dni": {
+      "mothers": 12,
+      "mothers_with_lateral_head_record": 12,
+      "mothers_without_scored_lateral_head": 0,
+      "mothers_with_two_plus_lateral_head_records": 6,
+      "mothers_with_positive_lateral_good_seed": 7,
+      "apical_seed_positive_mothers": 0,
+      "mothers_both_seed_routes_zero": 5,
+      "joint_failure_mothers_with_scored_lateral_head": 5,
+      "joint_failure_mothers_with_two_plus_scored_lateral_heads": 1,
+      "joint_failure_mothers_with_3plus_source_buds": 4,
+      "joint_failure_mothers_with_lateral_scored_good_seed_zero": 5,
+      "scored_lateral_head_rows": 23,
+      "scored_lateral_good_seed_positive_head_rows": 7,
+      "scored_lateral_good_seed_zero_head_rows": 16,
+      "lateral_head_rows_damage_score_missing": 0,
+      "lateral_head_rows_damage_ge_080": 17,
+      "lateral_positive_seed_heads_damage_ge_080": 6,
+      "lateral_head_rows_at_max_observed_damage_088": 17,
+      "lateral_positive_seed_heads_at_max_damage_088": 6,
+      "lateral_zero_seed_heads_at_max_damage_088": 11
+    },
+    "ndi": {
+      "mothers": 21,
+      "mothers_with_lateral_head_record": 17,
+      "mothers_without_scored_lateral_head": 4,
+      "mothers_with_two_plus_lateral_head_records": 8,
+      "mothers_with_positive_lateral_good_seed": 14,
+      "apical_seed_positive_mothers": 20,
+      "mothers_both_seed_routes_zero": 0,
+      "joint_failure_mothers_with_scored_lateral_head": 0,
+      "joint_failure_mothers_with_two_plus_scored_lateral_heads": 0,
+      "joint_failure_mothers_with_3plus_source_buds": 0,
+      "joint_failure_mothers_with_lateral_scored_good_seed_zero": 0,
+      "scored_lateral_head_rows": 28,
+      "scored_lateral_good_seed_positive_head_rows": 22,
+      "scored_lateral_good_seed_zero_head_rows": 6,
+      "lateral_head_rows_damage_score_missing": 0,
+      "lateral_head_rows_damage_ge_080": 8,
+      "lateral_positive_seed_heads_damage_ge_080": 6,
+      "lateral_head_rows_at_max_observed_damage_088": 6,
+      "lateral_positive_seed_heads_at_max_damage_088": 4,
+      "lateral_zero_seed_heads_at_max_damage_088": 2
+    },
+    "di": {
+      "mothers": 19,
+      "mothers_with_lateral_head_record": 15,
+      "mothers_without_scored_lateral_head": 4,
+      "mothers_with_two_plus_lateral_head_records": 13,
+      "mothers_with_positive_lateral_good_seed": 15,
+      "apical_seed_positive_mothers": 11,
+      "mothers_both_seed_routes_zero": 0,
+      "joint_failure_mothers_with_scored_lateral_head": 0,
+      "joint_failure_mothers_with_two_plus_scored_lateral_heads": 0,
+      "joint_failure_mothers_with_3plus_source_buds": 0,
+      "joint_failure_mothers_with_lateral_scored_good_seed_zero": 0,
+      "scored_lateral_head_rows": 38,
+      "scored_lateral_good_seed_positive_head_rows": 33,
+      "scored_lateral_good_seed_zero_head_rows": 5,
+      "lateral_head_rows_damage_score_missing": 0,
+      "lateral_head_rows_damage_ge_080": 6,
+      "lateral_positive_seed_heads_damage_ge_080": 5,
+      "lateral_head_rows_at_max_observed_damage_088": 4,
+      "lateral_positive_seed_heads_at_max_damage_088": 4,
+      "lateral_zero_seed_heads_at_max_damage_088": 0
+    }
+  },
+  "within_mother_lateral_head_damage_comparison": {
+    "n_2008_mothers_with_both_positive_and_zero_lateral_heads": 12,
+    "successful_lateral_heads_lower_damage_mothers": 5,
+    "successful_lateral_heads_higher_damage_mothers": 5,
+    "successful_lateral_heads_same_damage_mothers": 2,
+    "one_signed_damage_pattern_in_all_mothers_inferred": false,
+    "by_treatment": {
+      "ndni": {
+        "n": 1,
+        "lower": 1,
+        "higher": 0,
+        "same": 0
+      },
+      "dni": {
+        "n": 5,
+        "lower": 1,
+        "higher": 3,
+        "same": 1
+      },
+      "ndi": {
+        "n": 2,
+        "lower": 0,
+        "higher": 1,
+        "same": 1
+      },
+      "di": {
+        "n": 4,
+        "lower": 3,
+        "higher": 1,
+        "same": 0
+      }
+    }
+  },
+  "other_year_archive_quality": {
+    "year": "2007",
+    "mother_rows": 39,
+    "head_rows": 145,
+    "mother_ids_without_scored_head_rows": [
+      "2007|329",
+      "2007|367"
+    ],
+    "mother_ids_with_lateral_seed_sum_disagreement": [
+      "2007|327",
+      "2007|329",
+      "2007|367"
+    ],
+    "mother_ids_with_apical_seed_sum_disagreement": [],
+    "mother_ids_with_treatment_label_conflicts": [
+      "2007|323",
+      "2007|375"
+    ],
+    "full_2007_mother_head_joint_state_authenticated": false
+  },
+  "source_semantics": {
+    "source_mothers_with_zero_no_flw_but_positive_total_seed": 10,
+    "source_2008_mothers_zero_no_flw_positive_seed": 6,
+    "no_flw_is_complete_verified_plant_head_anthesis_inventory": false,
+    "score_hd_gsd_zero_guarantees_no_flower_opened": false
+  },
+  "scientific_claim_limits": {
+    "scored_lateral_head_means_confirmed_anthesis": false,
+    "damage_score_deterministically_classifies_reproductive_outcome": false,
+    "within_mother_damage_association_is_causal": false,
+    "one_insect_antagonist_proven_joint_failure_agent": false,
+    "apical_damage_means_apex_was_removed_completely": false,
+    "structural_head_availability_implies_pollen_service": false,
+    "new_floral_SLK_division_of_labour_payoff_estimated": false,
+    "genetic_ANTO_ancestral_functional_re_expression_estimated": false,
+    "head_records_independent_genotypes": false,
+    "insecticide_selectively_affects_seed_predators_only": false,
+    "two_original_years_share_the_same_maternal_genotypes": false,
+    "good_seed_equals_established_seedling": false,
+    "observed_damage_correlation_establishes_pre_exposure_cause": false
+  },
+  "conclusion": "REAL_LATERAL_HEADS_RECORDED_DURING_JOINT_SEED_FAILURE_CAUSE_UNIDENTIFIED"
+}
