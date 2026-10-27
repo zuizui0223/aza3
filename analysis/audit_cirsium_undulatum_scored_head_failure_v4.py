@@ -88,6 +88,11 @@ def head_mother_crosswalk(mothers,heads,strict2008=True):
         _=score_damage_as_number(row["av.dam"])
         heads_by_key[key[:2]].append(row)
 
+    for key in heads_by_key:
+        if key[0]=="2008":
+            ensure(key in mothers_by_key,
+                   "ORPHAN_2008_HEAD_WITHOUT_MOTHER")
+
     mismatch_lat=[]
     mismatch_ap=[]
     missing=[]
@@ -138,6 +143,9 @@ def head_mother_crosswalk(mothers,heads,strict2008=True):
                "ORIGINAL_2008_HEAD_COUNT_CHANGED")
         ensure(len(verified)==67,
                "ORIGINAL_2008_MOTHER_HEAD_CROSSWALK_INCOMPLETE")
+        ensure(sum(len(p["lateral"])+1 for p in all_2008)==
+               sum(h["year"]=="2008" for h in heads),
+               "ORIGINAL_2008_HEAD_ROWS_NOT_ACCOUNTED_BY_MOTHERS")
 
     report2007={
         "year":"2007",
