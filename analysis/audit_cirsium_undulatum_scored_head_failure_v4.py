@@ -160,6 +160,7 @@ def summarize_2008_group(mothers):
         "mothers_without_scored_lateral_head":0,
         "mothers_with_two_plus_lateral_head_records":0,
         "mothers_with_positive_lateral_good_seed":0,
+        "mothers_with_scored_lateral_but_zero_lateral_seed":0,
         "apical_seed_positive_mothers":0,
         "mothers_both_seed_routes_zero":0,
         "joint_failure_mothers_with_scored_lateral_head":0,
@@ -187,6 +188,7 @@ def summarize_2008_group(mothers):
         r["mothers_without_scored_lateral_head"]+=int(n==0)
         r["mothers_with_two_plus_lateral_head_records"]+=int(n>=2)
         r["mothers_with_positive_lateral_good_seed"]+=int(lat)
+        r["mothers_with_scored_lateral_but_zero_lateral_seed"]+=int(n>0 and not lat)
         r["apical_seed_positive_mothers"]+=int(ap)
         r["mothers_both_seed_routes_zero"]+=int(zero)
         r["joint_failure_mothers_with_scored_lateral_head"]+=int(zero and n>0)
