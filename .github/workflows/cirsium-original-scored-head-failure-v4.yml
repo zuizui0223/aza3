@@ -4,6 +4,10 @@ on:
     paths:
       - 'analysis/audit_cirsium_undulatum_scored_head_failure_v4.py'
       - 'analysis/audit_cirsium_undulatum_lateral_head_positions_v5.py'
+      - 'analysis/audit_cirsium_undulatum_ambient_failure_size_v6.py'
+      - 'tests/test_cirsium_undulatum_ambient_failure_size_v6.py'
+      - 'data/evidence/cirsium_undulatum_2008_ambient_failure_size_independent_js_v6.json'
+      - 'docs/CIRSIUM_UNDULATUM_AMBIENT_COMMON_FAILURE_SIZE_SENSITIVITY_20261028.md'
       - 'tests/test_cirsium_undulatum_lateral_head_positions_v5.py'
       - 'data/evidence/cirsium_undulatum_lateral_head_positions_independent_js_v5.json'
       - 'tests/test_cirsium_undulatum_scored_head_failure_v4.py'
@@ -57,6 +61,38 @@ jobs:
           assert [a['original_id_prefix_strata'][p]['original_arms']['dni']['both_seed_routes_zero'] for p in ('ES','SD','WG','WR')]==[0,2,2,1]
           assert not any(a['claim_limits'].values())
           print('PASS_ORIGINAL_2008_CIRSIUM_LATERAL_POSITION_REROUTING_NOT_HEAD_CHRONOLOGY_OR_EVOLUTIONARY_REGAIN')
+          PY
+      - name: Audit original ambient mothers' plant size and structural opportunity using 6 exact source permutations
+        run: |
+          python -m unittest discover -s tests -p 'test_cirsium_undulatum_ambient_failure_size_v6.py' -v
+          python analysis/audit_cirsium_undulatum_ambient_failure_size_v6.py --output /tmp/cirsium_2008_ambient_size_v6.json
+          python - <<'PY'
+          import json,math
+          a=json.load(open('/tmp/cirsium_2008_ambient_size_v6.json'))
+          b=json.load(open('data/evidence/cirsium_undulatum_2008_ambient_failure_size_independent_js_v6.json'))
+          def eq(x,y,p='root'):
+              if isinstance(y,dict):
+                  assert isinstance(x,dict) and set(x)==set(y),(p,'keys',set(x)^set(y))
+                  for k in y:eq(x[k],y[k],p+'.'+k)
+              elif isinstance(y,list):
+                  assert isinstance(x,list) and len(x)==len(y),(p,'list')
+                  for i,(u,v) in enumerate(zip(x,y)):eq(u,v,p+f'[{i}]')
+              elif type(y) is bool:
+                  assert type(x) is bool and x==y,(p,x,y)
+              elif isinstance(y,(int,float)):
+                  assert type(x) in (int,float) and math.isfinite(x) and math.isclose(x,y,abs_tol=1e-9,rel_tol=1e-11),(p,x,y)
+              else:
+                  assert x==y,(p,x,y)
+          eq(a,b)
+          z=a['six_exploratory_covariates']['plant_height_cm']
+          assert z['exact_stratified_permutation']['total_assignments']==360360
+          assert z['exact_stratified_permutation']['p_two_sided']<.05
+          assert z['q_BH_six_exploratory_covariates']>.05
+          assert a['height_sensitivity']['leave_out_source_prefix']['WR']['p_two_sided']>.25
+          assert a['height_sensitivity']['leave_out_highest_successful_height']['p_two_sided']>.05
+          assert a['source']['ambient_insect_2008_mothers']==27
+          assert all(v is False for v in a['interpretive_ceiling'].values())
+          print('PASS_USDA_2008_AMBIENT_FAILURE_EXACT_6_FEATURE_SCREEN_AND_EXPLICIT_NONCAUSAL_CEILING')
           PY
       - name: Reproduce exact 67-mother 178-head original 2008 source
         run: |
