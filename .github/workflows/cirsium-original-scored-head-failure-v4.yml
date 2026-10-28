@@ -3,6 +3,9 @@ on:
   pull_request:
     paths:
       - 'analysis/audit_cirsium_undulatum_scored_head_failure_v4.py'
+      - 'analysis/audit_cirsium_undulatum_lateral_head_positions_v5.py'
+      - 'tests/test_cirsium_undulatum_lateral_head_positions_v5.py'
+      - 'data/evidence/cirsium_undulatum_lateral_head_positions_independent_js_v5.json'
       - 'tests/test_cirsium_undulatum_scored_head_failure_v4.py'
       - 'data/evidence/cirsium_undulatum_scored_head_failure_independent_js_v4.json'
       - 'docs/CIRSIUM_UNDULATUM_SCORED_LATERAL_HEADS_DURING_JOINT_SEED_FAILURE_20261028.md'
@@ -25,6 +28,36 @@ jobs:
           python -m unittest discover -s tests -p 'test_cirsium_undulatum_scored_head_failure_v4.py' -v
           python -m unittest discover -s tests -p 'test_cirsium_undulatum_maternal_route_coverage_v3.py' -v
           python -m unittest discover -s tests -p 'test_cirsium_undulatum_maternal_reproductive_routes_v2.py' -v
+      - name: Test recorded positional fallback and same-source original ID prefix strata
+        run: |
+          python -m unittest discover -s tests -p 'test_cirsium_undulatum_lateral_head_positions_v5.py' -v
+          python analysis/audit_cirsium_undulatum_lateral_head_positions_v5.py --output /tmp/cirsium_source_positions_v5.json
+          python - <<'PY'
+          import json,math
+          a=json.load(open('/tmp/cirsium_source_positions_v5.json'))
+          b=json.load(open('data/evidence/cirsium_undulatum_lateral_head_positions_independent_js_v5.json'))
+          def verify(x,y,path='root'):
+              if isinstance(y,dict):
+                  assert isinstance(x,dict) and set(x)==set(y),(path,'dict',set(x)^set(y))
+                  for k in y:verify(x[k],y[k],path+'.'+k)
+              elif isinstance(y,list):
+                  assert isinstance(x,list) and len(x)==len(y),(path,'list')
+                  for i,(u,v) in enumerate(zip(x,y)):verify(u,v,path+'['+str(i)+']')
+              elif type(y) is bool:
+                  assert type(x) is bool and x==y,(path,x,y)
+              elif isinstance(y,(int,float)):
+                  assert type(x) in (int,float) and math.isfinite(x)
+                  assert math.isclose(x,y,rel_tol=1e-12,abs_tol=1e-10),(path,x,y)
+              else:
+                  assert x==y,(path,x,y)
+          verify(a,b)
+          assert a['source']['jointly_validated_2008_mothers']==67
+          assert a['source']['mothers_with_2plus_scored_lateral_heads']==33
+          assert a['by_2008_treatment']['dni']['first_zero_later_positive_mothers']==['ES68','SD05']
+          assert [a['original_id_prefix_strata'][p]['original_arms']['dni']['both_seed_routes_zero'] for p in ('ES','SD','WG','WR')]==[0,2,2,1]
+          assert not any(a['claim_limits'].values())
+          print('PASS_ORIGINAL_2008_CIRSIUM_LATERAL_POSITION_REROUTING_NOT_HEAD_CHRONOLOGY_OR_EVOLUTIONARY_REGAIN')
+          PY
       - name: Reproduce exact 67-mother 178-head original 2008 source
         run: |
           python analysis/audit_cirsium_undulatum_scored_head_failure_v4.py --output /tmp/cirsium_usda_scored_heads_v4.json
