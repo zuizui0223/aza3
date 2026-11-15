@@ -29,6 +29,7 @@ REQUIRED = {
         "handoff_id", "individual_id", "voucher_id", "material_type",
         "transfer_status", "material_use_permission", "sequencing_permission",
         "conservation_review", "dna_qc_status", "linked_head_image_id",
+        "quantity", "preservation_type",
         "admission_status",
     },
 }
@@ -64,6 +65,12 @@ def handoff_qc_pass(row: dict[str, str]) -> bool:
     fields = ("individual_id", "voucher_id", "handoff_id")
     return (
         all(val(row, k) for k in fields)
+        and norm(row, "material_type") in {
+            "dna", "dna_extract", "leaf", "leaf_tissue", "silica_leaf",
+            "silica-dried leaf", "frozen_leaf",
+        }
+        and val(row, "quantity")
+        and val(row, "preservation_type")
         and norm(row, "transfer_status") in RECEIVED
         and all(norm(row, k) in POSITIVE for k in (
             "material_use_permission", "sequencing_permission", "conservation_review"
