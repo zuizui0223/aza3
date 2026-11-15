@@ -16,7 +16,7 @@
 - Moreyra et al. 2025 DOI:10.1016/j.ympev.2025.108285 は350核座位の広域系統解析を提供し、日本産38種を含む。日本産サンプルの大半は一つの若い放散に属するが、単一の樹のすべての枝が確定したわけではない。
 - EAzamiの現在の日本38種の祖先形質変化の下限：O 4–6、総苞姿勢3、粘着5。これらは下限であり、反復適応の回数・原因遺伝子の数ではない。樹の単位は置換/座位であり、年代付け済み樹が回収できるまで形態変化数/Myrの主張はしない。
 - JPN_14 Cirsium kiotoense、JPN_36 C. sieboldii、JPN_06 C. dipsacolepis、JPN_15 C. lineare は公刊日本38の系統対応あり。C. kagamontanum / C. hidapaludosum / C. muratae はその固定日本38 tip listにいない（属の核データが世界中に全くないという意味ではない）。
-- EAzami `data/evidence/japan38_azami_trait_coverage_v1.csv` で JPN_14のAzami同定単位の連続形質欠測。**真正の総苞片トゲ実長・硬さを同一DNA個体で測ったデータは現行iza3 intakeにはない。**
+- EAzami `data/evidence/japan38_azami_trait_coverage_v1.csv` で JPN_14のAzami同定単位の連続形質欠測。**真正の総苞片トゲ実長・硬さを同一DNA個体で測ったデータは現行aza3 intakeにはない。**
 - `aza3/data/intake/grow_ito_sample_handoff_v1.csv`、`chapter3_individual_intake_v1.csv`、`orientation_aspect_projection_calibration_v1.csv` はいずれもヘッダーのみ（2026-11-15照会）。伊藤教授からの提供予定試料の受領・解析用権利・適格なRADデータは確認されていない。
 
 ## 1. 実物計測の仕様（同個体・同頭花）
@@ -77,3 +77,9 @@
 - Same-specimen intake: data/intake/grow_ito_sample_handoff_v1.csv and data/intake/chapter3_individual_intake_v1.csv
 - NMNS taxa: kiotoense https://www.kahaku.go.jp/research/db/botany/azami/detail.html?no=38 ; kagamontanum https://www.kahaku.go.jp/research/db/botany/azami/detail.html?no=40 ; sieboldii https://www.kahaku.go.jp/research/db/botany/azami/detail.html?no=46 ; hidapaludosum https://www.kahaku.go.jp/research/db/botany/azami/detail.html?no=129 ; muratae https://www.kahaku.go.jp/research/db/botany/azami/detail.html?no=80 ; lineare https://www.kahaku.go.jp/research/db/botany/azami/detail.html?no=156
 - OU/measurement-error caution: https://doi.org/10.1111/2041-210X.12337 ; https://pmc.ncbi.nlm.nih.gov/articles/PMC4949538/
+
+## 2026-11-15 実装追補：発育軌道と多対一の機能的補償
+- [発育段階・形態・機能の反証可能な設計](PHD_STAGE_DEPENDENT_FUNCTIONAL_REASSEMBLY_20261115.md) — O(bud→open→fruit) × B(開出／真正の刺) と、時間的分業・機能的補償・相互作用ニッチ・機械的拘束を競合させる。
+- [自然対照群ごとの発育軌道と最初の停止判定](../data/planning/cirsium_phd_stage_trajectory_screen_20261115.csv) — 6比較系すべてについて、刊行済みの記載と同じ個体での未計測部分を区別。
+- [判定契約](../data/contracts/phd_stage_function_interaction_preregister_20261115.json) — 主要計測軸、モデル可否ゲート、因果処理と指標、誤った適応主張の停止条件。
+- **計画内の順序は不変**：系統＋祖先形質 → BM/OUと環境／ニッチ → 自然対照 → 向き×sham操作（総苞は安全な条件付き補助介入）。「発育軌道」は O を蕾から結実まで追跡する測定であり独立した第三の博士主題ではない。観測生物学データとRAD受領は現時点0。
