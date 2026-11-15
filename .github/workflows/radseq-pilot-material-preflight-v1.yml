@@ -1,0 +1,34 @@
+name: RAD pilot material preflight v1
+
+on:
+  pull_request:
+    paths:
+      - "analysis/audit_radseq_pilot_intake_v1.py"
+      - "analysis/test_radseq_pilot_intake_v1.py"
+      - "data/intake/aza3_nature_individual_intake_v1.csv"
+      - "data/intake/chapter3_individual_intake_v1.csv"
+      - "data/intake/grow_ito_sample_handoff_v1.csv"
+      - ".github/workflows/radseq-pilot-material-preflight-v1.yml"
+  push:
+    branches:
+      - analysis/radseq-material-readiness-20261115
+    paths:
+      - "analysis/audit_radseq_pilot_intake_v1.py"
+      - "analysis/test_radseq_pilot_intake_v1.py"
+      - ".github/workflows/radseq-pilot-material-preflight-v1.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Test fail-closed sample and permission gates
+        run: python -m unittest analysis/test_radseq_pilot_intake_v1.py -v
+      - name: Audit public intake state (no authorization implied)
+        run: python analysis/audit_radseq_pilot_intake_v1.py
