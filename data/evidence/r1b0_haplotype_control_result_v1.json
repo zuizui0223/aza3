@@ -1,0 +1,57 @@
+{
+  "evidence_version": "r1b0_haplotype_control_result_v1",
+  "status_date": "2026-10-05",
+  "execution": {
+    "repository": "zuizui0223/aza3",
+    "workflow_run_id": 37303864721,
+    "workflow_name": "Run R1B-0 haplotype controls",
+    "head_sha": "d14c99e9884f8c00fa62b5f6555f998ec9999ab5",
+    "artifact_id": 11342552912,
+    "artifact_digest": "sha256:d3d65cfddc8540177fd65ede187f9e43eb80511f6e090f736fe23acc908a1b14",
+    "source_stage2_run": 37282907706
+  },
+  "focal_query_set": "C_SIEBOLDII_MOREYRA_COMPATIBILITY_241",
+  "controls": {
+    "heterophyllum": {
+      "hap1": "GCA_965225835.1",
+      "hap2": "GCA_965225975.1",
+      "common_loci": 236,
+      "hap1_unique_fraction": 0.9661016949152542,
+      "hap2_unique_fraction": 0.9703389830508474,
+      "absolute_unique_fraction_difference": 0.004237288135593209,
+      "unique_status_agreement_fraction": 0.9703389830508474,
+      "classification": "LOW_HAPLOTYPE_REFERENCE_NOISE"
+    },
+    "dissectum": {
+      "hap1": "GCA_965276805.1",
+      "hap2": "GCA_965276745.1",
+      "common_loci": 235,
+      "hap1_unique_fraction": 0.9574468085106383,
+      "hap2_unique_fraction": 0.9659574468085106,
+      "absolute_unique_fraction_difference": 0.008510638297872242,
+      "unique_status_agreement_fraction": 0.9914893617021276,
+      "classification": "LOW_HAPLOTYPE_REFERENCE_NOISE"
+    }
+  },
+  "cnipponicum_positive_control": {
+    "heterophyllum_unique_status_agreement_fraction": 0.9832402234636871,
+    "dissectum_unique_status_agreement_fraction": 0.9832402234636871,
+    "both_classifications": "LOW_HAPLOTYPE_REFERENCE_NOISE"
+  },
+  "preregistered_rule": {
+    "low": "unique-status agreement >=0.95 and absolute unique-fraction difference <=0.03",
+    "moderate": "otherwise, agreement >=0.90 and absolute unique-fraction difference <=0.07",
+    "high": "otherwise"
+  },
+  "decision": "HAPLOTYPE_CONTROL_GREEN__PROCEED_TO_OWN_WGS_PILOT",
+  "implication": "Same-individual reference-haplotype choice contributes little to coding-locus placement status. Existing public references remain viable for the next own-data transferability pilot; a focal C. sieboldii genome is not yet required.",
+  "claim_boundary": [
+    "Reference-haplotype noise calibration only",
+    "No local ancestry claim",
+    "No recombination claim",
+    "No haplotype-age claim",
+    "No structural-variant reuse claim",
+    "No genomic-modularity claim",
+    "No genotype-phenotype association claim"
+  ]
+}

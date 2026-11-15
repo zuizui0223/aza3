@@ -1,0 +1,133 @@
+{
+  "evidence_version": "aza3_fig1_ecological_module_alignment_result_v1",
+  "status_date": "2026-10-05",
+  "source": {
+    "repository": "zuizui0223/azami",
+    "commit": "b463dbc938e454baa54b2e480f7f1d8badd7795d",
+    "among_axes": {
+      "path": "reproducibility/current_reference/axes/biological_axes_among_min5.csv",
+      "blob_sha": "3bbfe838772ca98842069ac8198cf938c1eb473e"
+    },
+    "within_axes": {
+      "path": "reproducibility/current_reference/axes/biological_axes_within.csv",
+      "blob_sha": "e75fe2bfefcbf203d87dab403d083172d68ed4cc"
+    },
+    "construct_upgrade": {
+      "path": "reproducibility/current_reference/upgrade/construct_scale_upgrade_report.json",
+      "blob_sha": "6edcefa889c089588147371885b6c45d682a8487"
+    },
+    "sensitivity_chain": {
+      "path": "analysis/v3/BIOLOGICAL_AXIS_SENSITIVITY_CHAIN_RESULT_20260910.md",
+      "blob_sha": "068fe878d78756c7421087b3fbc968e9b42a2457"
+    },
+    "environment_collinearity": {
+      "path": "analysis_outputs/v2_full27_environment_atlas_2026-08-27/secondary/environment_collinearity/environment_predictor_pairwise_correlations.csv",
+      "blob_sha": "c8d3fb74c8ba1aeef625fac24de930bbf34471f8"
+    }
+  },
+  "execution": {
+    "repository": "zuizui0223/aza3",
+    "workflow_run_id": 37305449649,
+    "artifact_id": 11343965235,
+    "artifact_digest": "sha256:2729aacd4e168b87e0950e09e5ec258338e12841ef31c6e4c1edea6dfb7c8707",
+    "head_sha": "52d4daa2dd82a1da10a8825871d5cd8c15dbb2aa"
+  },
+  "biological_modules": {
+    "presentation": [
+      "presentation_angle"
+    ],
+    "colour": [
+      "floral_lightness",
+      "floral_chroma",
+      "floral_hue"
+    ],
+    "head_form": [
+      "head_elongation",
+      "head_compactness"
+    ],
+    "involucre_armature": [
+      "involucre_form",
+      "projection_prominence",
+      "projection_pattern"
+    ]
+  },
+  "test": {
+    "fingerprint": "six predeclared environmental blocks; block score = size-balanced RMS of construct effect magnitudes; normalized within construct",
+    "similarity": "cosine",
+    "primary_estimand": "mean within-module cosine similarity minus mean between-module cosine similarity",
+    "null": "all 5040 distinct assignments preserving module sizes 1/3/2/3",
+    "among_taxon": {
+      "within_pairs": 7,
+      "between_pairs": 29,
+      "mean_within_module_cosine": 0.8842912963630748,
+      "mean_between_module_cosine": 0.8732808310140123,
+      "difference": 0.01101046534906247,
+      "exact_one_sided_p": 0.36587301587301585,
+      "decision": "NO_EVIDENCE_FOR_MODULE_ALIGNED_ECOLOGICAL_FINGERPRINTS"
+    },
+    "within_taxon": {
+      "mean_within_module_cosine": 0.8811032343041154,
+      "mean_between_module_cosine": 0.8647585757454714,
+      "difference": 0.016344658558643976,
+      "exact_one_sided_p": 0.29523809523809524,
+      "decision": "NO_EVIDENCE_FOR_MODULE_ALIGNED_ECOLOGICAL_FINGERPRINTS"
+    }
+  },
+  "contrast_with_phenotypic_modularity": {
+    "within_taxon_module_cohesion": {
+      "within_minus_between_rv": 0.09228482845047475,
+      "permutation_p_one_sided": 0.0013
+    },
+    "among_taxon_module_cohesion": {
+      "within_minus_between_rv": 0.08941081645443845,
+      "permutation_p_one_sided": 0.0365
+    },
+    "interpretation": "The same predeclared biological modules are detectable in visible phenotype covariance, but their ecological association fingerprints do not show corresponding module cohesion."
+  },
+  "integration_environment_coupling": {
+    "among_taxon": {
+      "rho": 0.04298584298584299,
+      "qap_p_two_sided": 0.8475
+    },
+    "within_taxon": {
+      "rho": 0.2344916344916345,
+      "qap_p_two_sided": 0.1652
+    },
+    "interpretation": "Trait-pair phenotypic integration strength does not predict similarity of six-block environmental association profiles."
+  },
+  "robust_trait_specific_ecological_anchors": [
+    {
+      "construct": "floral_chroma",
+      "predictor": "chelsa_rsds_mean",
+      "baseline_beta": -0.3453720171,
+      "spatial_beta": -0.7124111818,
+      "spatial_permutation_p": 0.005,
+      "residual_moran_p": 0.188,
+      "historical_placement_pass": "52/52"
+    },
+    {
+      "construct": "presentation_angle",
+      "predictor": "chelsa_bio12",
+      "baseline_beta": 0.3043592859,
+      "spatial_beta": 0.2860860885,
+      "spatial_permutation_p": 0.023,
+      "residual_moran_p": 0.072,
+      "historical_placement_pass": "52/52"
+    }
+  ],
+  "anchor_environment_independence": {
+    "predictor_pair": "chelsa_bio12 vs chelsa_rsds_mean",
+    "observation_raw_pearson_r": -0.002972095755,
+    "observation_raw_spearman_rho": 0.03824731889,
+    "among_taxon_median_pearson_r": -0.2093332022,
+    "among_taxon_median_spearman_rho": -0.2397867499
+  },
+  "decision": "FIXED_ECOLOGICAL_MODULE_ALIGNMENT_NOT_SUPPORTED",
+  "nature_implication": "Do not claim that predeclared capitulum modules map onto distinct ecological demand modules. Retain trait-specific ecological anchors and test a stronger question: whether a presently integrated organ can be evolutionarily reassembled because covariance, ecological association, historical change and genomic inheritance need not share one fixed partition.",
+  "claim_boundary": [
+    "environmental association is not selection",
+    "null module-alignment test does not imply ecology is irrelevant",
+    "trait-specific robust associations do not establish adaptation",
+    "phenotypic modules are not automatically developmental or genetic modules"
+  ]
+}

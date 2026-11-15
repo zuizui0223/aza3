@@ -1,0 +1,197 @@
+{
+  "contract_version": "aza3_reference_transfer_public_preflight_v1",
+  "status_date": "2026-10-05",
+  "status": "PUBLIC_PREFLIGHT_SUPPORTIVE__OWN_WGS_PILOT_AUTHORIZED",
+  "parent_gate": "aza3_reference_public_data_readiness_v1",
+  "source_bioproject": "PRJNA957074",
+  "frozen_run_panel": "data/planning/reference_public_preflight_runs_v1.csv",
+  "focal_run": {
+    "taxon": "Cirsium sieboldii",
+    "run": "SRR30887308",
+    "experiment": "SRX26291290",
+    "biosample": "SAMN44017917",
+    "bases": 656395250,
+    "library_strategy": "Targeted-Capture",
+    "library_selection": "Hybrid Selection",
+    "layout": "PAIRED",
+    "experiment_design_note": "NCBI Run Browser states that unenriched libraries were mixed with target-enriched libraries at a 3:2 ratio before sequencing.",
+    "raw_read_mapping_rate_role": "TECHNICAL_QC_ONLY__NOT_REFERENCE_TRANSFERABILITY_ESTIMAND",
+    "read_structure": "2 x 125 bp biological reads; 2,625,581 spots; 656,395,250 total bases",
+    "run_browser_gc_percent": 42.6
+  },
+  "target_reference_versions": [
+    {
+      "id": "PUBLIC_COMP1061_1061",
+      "source": "github:carol-siniscalchi/Comp1061-Angio353/comp1061_hybpiper_reference.fasta",
+      "status": "PUBLIC",
+      "role": "compatibility_reference",
+      "claim_boundary": "Public 1061-locus reference; not the exact author 1064-target universe."
+    },
+    {
+      "id": "PUBLIC_1061_PLUS_TIOGANUM_COMPATIBILITY",
+      "source_run": "SRR25265669",
+      "source_taxon_label": "Cirsium tioganum",
+      "current_ncbi_taxon": "Cirsium scariosum var. americanum",
+      "source_experiment": "SRX21011548",
+      "source_biosample": "SAMN34240347",
+      "source_bases": 36939020978,
+      "reconstruction_rule": "Recover homologous exons from the high-coverage source with the public original Compositae1061 target and append them by locus, reproducing the published logic without claiming byte identity to the authors' intermediate file.",
+      "status": "RECONSTRUCTABLE_PUBLICLY",
+      "role": "compatibility_sensitivity",
+      "claim_boundary": "Adds tioganum homologs to the public 1061 locus IDs. It does not establish or reproduce the unresolved three-locus difference behind the paper-reported 1064 target count."
+    }
+  ],
+  "genome_references": [
+    {
+      "taxon": "Cirsium heterophyllum",
+      "assembly": "GCA_965225835.1",
+      "filename": "GCA_965225835.1_daCirHete1.hap1.1_genomic.fna.gz",
+      "compressed_md5": "9b5e78bc4736baec58f688262e3f0cca",
+      "uncompressed_md5": "2b38c89fbd7c052ff731ea56a8d40f61",
+      "chromosome_count": 17
+    },
+    {
+      "taxon": "Cirsium dissectum",
+      "assembly": "GCA_965276805.1",
+      "filename": "GCA_965276805.1_daCirDiss1.hap1.1_genomic.fna.gz",
+      "compressed_md5": "833d314a3cd6b148db017fba37d72b7d",
+      "uncompressed_md5": "7d6f4d0382f991c5cda53ce82308eba9",
+      "chromosome_count": 17
+    },
+    {
+      "taxon": "Cirsium nipponicum",
+      "source": "10.6084/m9.figshare.26927092",
+      "filename": "C.nipponicum_softmasked_genome.fa",
+      "figshare_file_id": 48979489,
+      "md5": "e9390e23ffd0dc5e3da8271db4d1d3ca"
+    }
+  ],
+  "stages": [
+    {
+      "stage": "target_file_sensitivity",
+      "estimands": [
+        "loci_recovered",
+        "recovered_target_length_per_locus",
+        "cirsium_target_gain_over_original",
+        "paralog_warning_burden",
+        "sample_by_target_locus_dropout"
+      ]
+    },
+    {
+      "stage": "genome_reference_localization",
+      "estimands": [
+        "clean_locus_unique_localization_fraction",
+        "alignment_span_and_identity",
+        "chromosome_or_contig_placement_concordance",
+        "cross_reference_per_locus_divergence_rank_correlation",
+        "cross_reference_locus_dropout",
+        "cross_reference_sample_distance_concordance",
+        "within_reference_individual_hap1_hap2_placement_sensitivity"
+      ]
+    }
+  ],
+  "clean_locus_principle": "Report broad recovery across the reproducible public 1061 named loci, use the frozen Moreyra-compatible conservative 241 no-warning/high-occupancy set as the primary historical high-stringency layer, and freeze any additional AUTO_STRICT_CLEAN rule before opening focal C. sieboldii transferability results. None is the unpublished final 350-locus matrix.",
+  "decision_classes": {
+    "PUBLIC_TRANSFER_GREEN": "Target-file sensitivity is small or bounded, clean-locus placement is broadly reference-invariant, and Japanese comparison-panel relationships are stable; proceed to 6-10-individual focal WGS R1B pilot.",
+    "PUBLIC_TRANSFER_AMBER": "Public loci remain useful for topology/orthology but target-file dependence, reference-specific dropout or distance distortion remains; plan focal C. sieboldii reference in parallel with a small WGS bias audit.",
+    "PUBLIC_TRANSFER_RED": "C. sieboldii or the Japanese radiation is strongly and inconsistently represented across target/reference choices; focal C. sieboldii long-read chromosome assembly becomes a prerequisite.",
+    "NOT_IDENTIFIABLE": "Target reconstruction or public-data comparability is inadequate; stop public-data expansion and proceed to own-data R1B design."
+  },
+  "prohibited_inferences": [
+    "local ancestry",
+    "recombination blocks",
+    "haplotype age",
+    "structural variant reuse",
+    "module-specific local genealogy",
+    "genotype-phenotype association"
+  ],
+  "stop_rule": "One bounded target-capture transferability preflight only; do not turn PRJNA957074 into a new aza3 phylogenomics project.",
+  "published_moreyra_orthology_rule": {
+    "discard_if_paralog_warnings_gt": 10,
+    "intermediate_warning_range": "1-10",
+    "intermediate_action": "HybPiper paralog retriever + aligned gene-tree inspection",
+    "discard_conditions": [
+      "more than one paralog",
+      "ortholog/paralog misassignment"
+    ],
+    "final_missing_data_lt": 0.5,
+    "final_species_presence_gte": 0.8,
+    "published_final_loci": 350,
+    "boundary": "The published 350-locus set depends on manual gene-tree decisions and final alignment filtering and remains unrecovered. The public author repository also reports 1064 mapped target loci while only 1061 named loci are reproducibly identified; R1B-0 must preserve that discrepancy rather than force 350 or 1064 identities."
+  },
+  "clean_locus_layers": [
+    "PUBLIC_1061_BROAD_RECOVERY",
+    "MOREYRA_COMPATIBILITY_241",
+    "AUTO_STRICT_CLEAN"
+  ],
+  "primary_metric_registry": "data/contracts/r1b0_primary_metric_registry_v1.csv",
+  "result_schemas": {
+    "target_recovery": "data/templates/r1b0_target_recovery_results_v1.csv",
+    "reference_localization": "data/templates/r1b0_reference_localization_results_v1.csv"
+  },
+  "locus_handoff_contract": "data/contracts/aza3_eazami_moreyra_locus_handoff_v1.json",
+  "historical_target_universe": {
+    "paper_reported_mapped_loci": 1064,
+    "reproducible_public_named_loci": 1061,
+    "exact_author_1064_target_recovered": false,
+    "unresolved_difference": 3,
+    "boundary": "Do not equate the public 1061-locus HybPiper reference with the exact target/reference used in Moreyra et al. 2023/2025. The authors' public summary files consistently report 1064 mapped target loci, while the reproducible named-locus universe is 1061."
+  },
+  "fixed_compatibility_layer": {
+    "path": "data/evidence/moreyra_conservative_241_no_warning_loci_v1.txt",
+    "count": 241,
+    "sha256": "d561c6e393b1964fdd4b3acf14fda8b10f2f43923b1074cd35f86bfed07ebf73",
+    "derivation": "No paralog warning in the recovered author matrix plus raw sequence occupancy >=0.80 across the public author dataset.",
+    "role": "Primary high-stringency reference-transfer comparison layer."
+  },
+  "genome_reference_internal_controls": [
+    {
+      "taxon": "Cirsium heterophyllum",
+      "hap1": "GCA_965225835.1",
+      "hap2": "GCA_965225975.1",
+      "hap2_filename": "GCA_965225975.1_daCirHete1.hap2.1_genomic.fna.gz",
+      "hap2_compressed_md5": "f2c131de0c37d88b8ddfb24ba15ca33b",
+      "hap2_uncompressed_md5": "12fb5d97949287ad43daacdc42c30f9b",
+      "comparison_role": "within_individual_reference_haplotype_sensitivity"
+    },
+    {
+      "taxon": "Cirsium dissectum",
+      "hap1": "GCA_965276805.1",
+      "hap2": "GCA_965276745.1",
+      "hap2_filename": "GCA_965276745.1_daCirDiss1.hap2.1_genomic.fna.gz",
+      "hap2_compressed_md5": "eb3bb9a68dc278ec9bd5c587d60a82ea",
+      "hap2_uncompressed_md5": "9436bc6f958406d7642292c9f0258661",
+      "comparison_role": "within_individual_reference_haplotype_sensitivity",
+      "known_haplotypic_inversions": [
+        "Chr1",
+        "Chr6",
+        "Chr7"
+      ]
+    }
+  ],
+  "genome_reference_metadata": {
+    "heterophyllum_hap1_chromosome_scale_scaffolds": 17,
+    "dissectum_hap1_chromosome_scale_scaffolds": 17,
+    "correction": "Any prior 19-chromosome description is superseded by NCBI accession-level assembly reports.",
+    "nipponicum_figshare": {
+      "filename": "C.nipponicum_softmasked_genome.fa",
+      "file_id": 48979489,
+      "size_bytes": 948012384,
+      "md5": "e9390e23ffd0dc5e3da8271db4d1d3ca",
+      "download_url": "https://ndownloader.figshare.com/files/48979489"
+    },
+    "byte_integrity_rule": "R1B-0 localization is fail-closed unless every genome file matches the frozen byte contract; for NCBI .gz references verify both compressed and decompressed MD5."
+  },
+  "genome_reference_byte_contract": "data/evidence/r1b0_genome_reference_byte_contract_v1.json",
+  "empirical_results": {
+    "focal_smoke": "data/evidence/r1b0_focal_public_smoke_result_v1.json",
+    "author_matrix_recovery": "data/evidence/r1b0_author_matrix_focal_recovery_v1.json",
+    "independent_stage2": "data/evidence/r1b0_stage2_primary_reference_result_v1.json",
+    "haplotype_controls": "data/evidence/r1b0_haplotype_control_result_v1.json"
+  },
+  "routing_decision": "PROCEED_TO_OWN_WGS_TRANSFERABILITY_PILOT",
+  "full_public_transfer_green": false,
+  "full_public_transfer_green_reason": "Dense multi-individual genome-wide and local-window reference invariance remains untested; the public preflight only establishes sufficient reference viability to justify the own-WGS pilot.",
+  "focal_reference_build_now": false,
+  "focal_reference_reopen_condition": "Own-WGS returns AMBER/RED because genome-wide or local-window inference is materially reference-dependent or phenotype/cytotype-linked technical bias appears."
+}

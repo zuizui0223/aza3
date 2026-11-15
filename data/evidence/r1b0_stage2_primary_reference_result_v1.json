@@ -1,0 +1,90 @@
+{
+  "evidence_version": "r1b0_stage2_primary_reference_result_v1",
+  "status_date": "2026-10-05",
+  "execution": {
+    "repository": "zuizui0223/aza3",
+    "workflow_run_id": 37282907706,
+    "workflow_name": "Run R1B-0 Stage2 primary references",
+    "head_sha": "0866f3feaa40d8e6b00c12d281fee2640b9f1a8a",
+    "artifact_id": 11334273059,
+    "artifact_digest": "sha256:bc67eea71120183ab552b659e9949812026fdd9ac076ff5c89129667bcb93309"
+  },
+  "focal": {
+    "taxon": "Cirsium sieboldii",
+    "run": "SRR30887308",
+    "public_1061_recovery": {
+      "recovered_distinct_fna_loci": 988,
+      "denominator": 1061,
+      "fraction": 0.9311969839773798
+    },
+    "conservative_241": {
+      "requested": 241,
+      "recovered": 238,
+      "fraction": 0.9875518672199171,
+      "missing_loci": [
+        "At1g07510",
+        "At3g08850",
+        "At5g51660"
+      ],
+      "fasta_sha256": "1998a227a61184a99a85ea56e76c472f24c84e6f86a4fad3605917a4b9f177b"
+    }
+  },
+  "east_asian_sequence_anchor": {
+    "comparator": "Cirsium nipponicum genome-derived strict loci",
+    "common_loci_compared": 177,
+    "informative_identity_median": 0.9942196531791907,
+    "informative_identity_q05": 0.9317616304925537,
+    "informative_identity_q95": 1,
+    "coverage_of_shorter_median": 1
+  },
+  "primary_reference_localization": {
+    "heterophyllum_hap1": {
+      "loci_with_paf_record": 237,
+      "unique_high_conf": 229,
+      "unique_high_conf_fraction": 0.9662447257383966
+    },
+    "dissectum_hap1": {
+      "loci_with_paf_record": 236,
+      "unique_high_conf": 226,
+      "unique_high_conf_fraction": 0.9576271186440678
+    },
+    "nipponicum": {
+      "loci_with_paf_record": 233,
+      "unique_high_conf": 217,
+      "unique_high_conf_fraction": 0.9313304721030042
+    },
+    "common_loci_with_paf_all_three": 230,
+    "common_unique_all_three": 207,
+    "common_unique_all_three_fraction": 0.9,
+    "common_unique_at_least_two": 224,
+    "common_unique_at_least_two_fraction": 0.9739130434782609,
+    "pairwise_unique_status_agreement": {
+      "heterophyllum_vs_dissectum": 0.9652173913043478,
+      "heterophyllum_vs_nipponicum": 0.9391304347826087,
+      "dissectum_vs_nipponicum": 0.9391304347826087
+    }
+  },
+  "positive_control_cnipponicum": {
+    "common_loci_with_paf_all_three": 179,
+    "common_unique_all_three": 174,
+    "common_unique_all_three_fraction": 0.9720670391061452,
+    "common_unique_at_least_two": 179,
+    "common_unique_at_least_two_fraction": 1
+  },
+  "decision": {
+    "target_recovery_stage": "GREEN",
+    "primary_reference_viability": "SUPPORTIVE",
+    "full_public_transfer_classification": "PENDING_HAPLOTYPE_CONTROLS_AND_MULTI_SAMPLE_DISTANCE",
+    "immediate_implication": "Do not build a focal C. sieboldii reference yet. Test same-individual hap1/hap2 reference noise first; if small, proceed to the 6-10-individual focal WGS transferability pilot.",
+    "red_route_triggered": false
+  },
+  "claim_boundaries": [
+    "Coding-locus placement viability only",
+    "No local ancestry claim",
+    "No haplotype-age claim",
+    "No recombination-block claim",
+    "No structural-variant reuse claim",
+    "No genomic-modularity claim",
+    "No genotype-phenotype association claim"
+  ]
+}

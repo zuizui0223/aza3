@@ -1,0 +1,79 @@
+{
+  "contract_version": "r1b0_sieboldii_public_recovery_empirical_v1",
+  "status_date": "2026-10-05",
+  "analysis_role": "Previously generated EAzami public-data compatibility artifact reused as an empirical Stage-1 recovery receipt for aza3 R1B-0. This is not the new independent aza3 rerun and does not classify genome-reference transferability.",
+  "source_repository": "zuizui0223/EAzami",
+  "source_matrix_workflow_run": 32806058893,
+  "source_matrix_artifact": {
+    "id": 9557421855,
+    "name": "japan38-comp1061-tree-v1-32806058893",
+    "digest": "sha256:9a80e07e6b7dfbb182ef64a0eff63f4d0050d3dce00658170de5f95d5a6dece7",
+    "expired": false
+  },
+  "source_tree_acceptance_contract": "EAzami:data/evidence/japan38_comp1061_primary_tree_acceptance_v1.json",
+  "source_file_sha256": {
+    "aggregate_summary_json": "e91acd3c1ce3643a37fc08e9f2ef1396ffeec81374a37c79361519b50d7786a6",
+    "current_qc_summary_json": "00c95079fbfbdabfe9472938bd8cd500e4d5f32a2ceaf884736a5d44773d30bb",
+    "sample_qc_csv": "c6d9c9d6af6d9781936222f6add925d4134359271b667e65a31f26ff63c9a348",
+    "locus_qc_csv": "4850be59c3fa5c839d6369f0301f0f34633652c2b5c582aa90e01cd46398d8de",
+    "current_conservative_241_loci_txt": "af1409866a37a3706196dd6d784043ff8bce3bed3bf334bd7c24a43f83f784f4"
+  },
+  "focal_sample": {
+    "tip_id": "J38S037",
+    "paper_japan_member_id": "JPN_36",
+    "taxon": "Cirsium sieboldii",
+    "biosample": "SAMN44017917",
+    "run": "SRR30887308",
+    "voucher_context": "Cultivated at the Botanical Garden of Barcelona; wild source unresolved in recovered metadata.",
+    "morph_linked": false
+  },
+  "broad_raw_recovery": {
+    "public_named_locus_universe": 1061,
+    "recovered_loci": 988,
+    "recovery_fraction": 0.9311969839773798,
+    "panel_n": 39,
+    "panel_median_recovered_loci": 997,
+    "panel_min_recovered_loci": 788,
+    "panel_max_recovered_loci": 1010,
+    "focal_ascending_rank": 15,
+    "focal_fraction_of_panel_at_or_below": 0.38461538461538464,
+    "interpretation": "C. sieboldii is not an extreme low-recovery sample in the 39-sample Japan38 compatibility panel."
+  },
+  "current_panel_qc_layers": {
+    "public_1061": {
+      "base_count": 1061,
+      "current_panel_eligible_count": 681,
+      "focal_present": 680,
+      "focal_fraction": 0.9985315712187959,
+      "panel_median_fraction": 0.9985315712187959
+    },
+    "reproducible_531": {
+      "base_count": 531,
+      "current_panel_eligible_count": 482,
+      "focal_present": 482,
+      "focal_fraction": 1,
+      "panel_median_fraction": 1
+    },
+    "conservative_241": {
+      "base_count": 241,
+      "current_panel_eligible_count": 236,
+      "focal_present": 236,
+      "focal_fraction": 1,
+      "panel_median_fraction": 1,
+      "clarification": "Five of the frozen 241 loci failed the current 39-sample panel-wide occupancy/paralogy gate before focal comparison; C. sieboldii retained all 236 loci that remained eligible."
+    }
+  },
+  "stage1_decision": "FOCAL_PUBLIC_TARGET_CAPTURE_RECOVERY_NOT_A_FAILURE",
+  "r1b0_route_status": "STAGE1_RECOVERY_SUPPORTIVE__STAGE2_GENOME_REFERENCE_LOCALIZATION_PENDING",
+  "does_not_authorize": [
+    "PUBLIC_TRANSFER_GREEN classification",
+    "local ancestry",
+    "haplotype age",
+    "recombination blocks",
+    "structural variant reuse",
+    "module-specific local genealogy",
+    "genotype-phenotype association",
+    "morph assignment to the public C. sieboldii individual"
+  ],
+  "independent_reproduction_status": "A new aza3 HybPiper rerun of SRR30887308 against PUBLIC_COMP1061_1061 is queued on PR #26; this receipt will be cross-checked against that rerun when it completes."
+}

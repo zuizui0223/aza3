@@ -1,0 +1,115 @@
+{
+  "evidence_version": "c_sieboldii_public_locality_prescreen_v1",
+  "status_date": "2026-10-06",
+  "status": "PUBLIC_PRESCREEN_SUPPORTS_TARGETED_CS0__NO_COMBINATORIAL_SUBSTRATE_YET",
+  "focal_taxon": "Cirsium sieboldii",
+  "primary_gate_pair": [
+    "floral_colour",
+    "anthesis_orientation"
+  ],
+  "authoritative_species_evidence": {
+    "source": "National Museum of Nature and Science Japan thistle database",
+    "url": "https://www.kahaku.go.jp/research/db/botany/azami/detail.html?no=46",
+    "supported": [
+      "ordinary flowers are nodding at anthesis and become upright after flowering",
+      "upright-flowering plants are reported from multiple localities",
+      "white-flowered plants are recognized as Shirobana-kiseruazami"
+    ],
+    "boundary": "No locality-specific co-segregation of white/non-white and anthesis-upright/nodding is established."
+  },
+  "white_form": {
+    "accepted_name": "Cirsium sieboldii f. leucanthum T.Shimizu",
+    "original_publication": "J. Phytogeogr. Taxon. 37(2):120 (1989)",
+    "type_locality": "Nagano Prefecture, Kirigamine, Kurumayama Moor",
+    "type_collector": "K. Imai",
+    "type_herbarium": "SHIN",
+    "supporting_source": "https://shinshu-plants.jp/bn/BBSN_055_167.pdf",
+    "current_locality_support": {
+      "locality": "Kurumayama Moor / Kurumayama Highlands",
+      "evidence": "Shirobana-kiseruazami listed among local plants",
+      "source": "https://lobendhutte.com/sightseeing/kiri/kurumayama.html"
+    },
+    "route_role": "highest-priority colour-variation verification locality"
+  },
+  "tsukude_aichi": {
+    "locality": "Tsukude Plateau, Aichi Prefecture",
+    "evidence": [
+      "C. sieboldii herbarium records from former Tsukude-mura (Iwanami and Higashitahara)",
+      "local field flora reports abundant C. sieboldii in Mikawa wetlands",
+      "hairy and nearly glabrous plants reported together in the Tsukude Plateau region"
+    ],
+    "sources": [
+      "https://db.kahaku.go.jp/webmuseum/col_b1_01/TNS-VS_133597",
+      "https://db.kahaku.go.jp/webmuseum/col_b1_01/TNS-VS_133129",
+      "https://mikawanoyasou.org/data/kiseruazami.htm"
+    ],
+    "route_role": "priority locality set for dense intraspecific-variation census; not evidence of orientation or colour co-segregation"
+  },
+  "decision": {
+    "public_gate_class": "NOT_IDENTIFIABLE_FOR_COMBINATORIAL_SUBSTRATE",
+    "cs0_priority": [
+      "Kurumayama Moor / Kirigamine: verify white vs non-white frequency and record A1-A2 orientation opportunistically from permitted paths",
+      "Kiyooka-Mukaiyama Wetland, Tsukude: run the primary standardized A1-A2 orientation census and prospectively screen colour",
+      "Kashibaru Wetland, Saga: third-priority upright-flowering validation only, with explicit taxonomic-mixture screening",
+      "Other localities only if these routes are not identifiable"
+    ],
+    "reason": "Public sources establish both trait dimensions somewhere in the species but do not establish same-population or tightly matched local-set co-segregation.",
+    "orientation_prior_update": "Local-area and population-level records make true anthesis-orientation variation plausible; CS_RED_PHENOLOGY should not be assumed a priori, but same-population focal-species verification remains required."
+  },
+  "hard_boundaries": [
+    "post-anthesis upright heads are not upright-flowering morphs",
+    "white-form locality does not imply orientation polymorphism",
+    "regional morphological variation does not imply combinatorial segregation",
+    "no Nature natural-reassembly claim before same-individual CS census"
+  ],
+  "access_feasibility": {
+    "kurumayama_moor": {
+      "observation_mode": "boardwalk_or_rope_boundary_only",
+      "restriction": "Natural Monument wetland; entry and plant collection are prohibited without appropriate authorization.",
+      "implication": "High biological priority for white-form verification, but census completeness may be limited by visibility from permitted paths.",
+      "source": "https://www.city.suwa.lg.jp/site/bunkazai/41074.html"
+    },
+    "kiyooka_mukaiyama": {
+      "observation_mode": "boardwalk_observation",
+      "restriction": "Observation infrastructure is present; no tissue collection is implied by Gate CS.",
+      "implication": "Highest practical priority for standardized A1-A2 orientation census and prospective colour screening.",
+      "sources": [
+        "https://www.pref.aichi.jp/shinshiroshitara/nature/bog/kiyookamukaiyama.html",
+        "https://mikawanoyasou.org/data/kiseruazami.htm"
+      ]
+    },
+    "naganoyama": {
+      "observation_mode": "roadside_or_boundary_only",
+      "restriction": "Wetland interior is roped off and entry is not allowed; designated Natural Monument.",
+      "implication": "Lower CS0 priority than Kiyooka-Mukaiyama for a 20-30 individual standardized census.",
+      "source": "https://www.pref.aichi.jp/soshiki/shinshiroshitara/0000075448.html"
+    },
+    "kashibaru": {
+      "observation_mode": "boardwalk / designated observation areas",
+      "restriction": "Saga Natural Environment Conservation Area; plant collection prohibited; some zones inaccessible.",
+      "implication": "Useful third-priority orientation-validation site if taxonomic verification can be done non-destructively. Not first choice for the colour x orientation gate.",
+      "sources": [
+        "https://kumashokuken.sakura.ne.jp/kumashoku/map/",
+        "https://www.pref.saga.lg.jp/kiji0037889/index.html"
+      ]
+    }
+  },
+  "local_orientation_evidence": [
+    {
+      "locality_context": "Kobe-area nearby rural landscape, Hyogo",
+      "date": "2016-10-13 observation / 2016-10-14 post",
+      "evidence": "The observer reports flowering C. sieboldii in one nearby rural area and explicitly notes that some plants flower with a straight peduncle rather than nodding.",
+      "source": "https://kobenohana.seesaa.net/article/201610article_14.html",
+      "strength": "LOCAL_AREA_FLOWERING_ORIENTATION_VARIATION",
+      "limitation": "Exact revisit locality is not published; cannot be an operational CS0 site from this source alone."
+    },
+    {
+      "locality_context": "Kashibaru Wetland, Karatsu, Saga",
+      "date": "2022-10-17",
+      "evidence": "Local flowering report states that most flowering Maa-azami (identified there as Kiseru-azami) were upward-facing and horizontal heads were rare.",
+      "source": "https://kumashokuken.sakura.ne.jp/kumashoku/%E9%96%8B%E8%8A%B1%E6%83%85%E5%A0%B1%EF%BC%9A2022%E5%B9%B4%EF%BC%88%E4%BB%A4%E5%92%8C4%E5%B9%B4%EF%BC%89/",
+      "strength": "POPULATION_LEVEL_UPRIGHT_FLOWERING_CANDIDATE",
+      "limitation": "The wetland flora also lists Satsuma-maa-azami; individual-level taxonomic verification is mandatory before treating this as focal C. sieboldii."
+    }
+  ]
+}

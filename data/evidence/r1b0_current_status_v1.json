@@ -1,0 +1,50 @@
+{
+  "status_version": "r1b0_current_status_v1",
+  "status_date": "2026-10-05",
+  "focal_system": "Cirsium sieboldii",
+  "focal_run": "SRR30887308",
+  "stage1_target_recovery": {
+    "decision": "GREEN",
+    "evidence": [
+      "data/evidence/r1b0_focal_public_smoke_result_v1.json",
+      "data/evidence/r1b0_author_matrix_focal_recovery_v1.json",
+      "data/evidence/r1b0_sieboldii_public_recovery_empirical_v1.json"
+    ],
+    "key_results": {
+      "direct_mapping_loci_hit": "1033/1061",
+      "direct_mapping_loci_ge_10_reads": "1006/1061",
+      "author_hybpiper_genes_with_sequences": "1017/1061",
+      "conservative_241_recovery": "241/241",
+      "japan38_panel_focal_rank": "not_extreme_low_recovery"
+    },
+    "interpretation": "Catastrophic focal target mismatch is rejected. C. sieboldii is not a captured-locus recovery outlier under the public Compositae1061 system."
+  },
+  "east_asian_sequence_anchor": {
+    "decision": "SUPPORTIVE",
+    "evidence": "data/evidence/r1b0_sieboldii_cnipg_secondary_sequence_compatibility_v1.json",
+    "common_loci": 125,
+    "median_informative_identity": 0.9961089494163424,
+    "loci_ge_0_95_identity": 123,
+    "interpretation": "Coding-sequence compatibility with the C. nipponicum genome-derived anchor is strong, but chromosome-coordinate transfer remains untested."
+  },
+  "stage2_genome_reference_localization": {
+    "decision": "PENDING",
+    "workflow": "Run R1B-0 Stage2 primary references",
+    "required_references": [
+      "C. heterophyllum GCA_965225835.1",
+      "C. dissectum GCA_965276805.1",
+      "C. nipponicum Figshare 10.6084/m9.figshare.26927092"
+    ],
+    "boundary": "Primary-reference placement must be followed by same-individual hap1/hap2 controls before among-reference placement differences are interpreted."
+  },
+  "overall_public_transfer_decision": "NOT_YET_CLASSIFIED",
+  "next_decision_rule": "Do not call PUBLIC_TRANSFER_GREEN until Stage 2 primary-reference localization and within-individual haplotype controls show that the focal clean-locus placement result is stable enough for the intended estimand.",
+  "prohibited_inferences": [
+    "local ancestry",
+    "haplotype age",
+    "recombination blocks",
+    "structural variant reuse",
+    "genomic modularity",
+    "genotype-phenotype association"
+  ]
+}

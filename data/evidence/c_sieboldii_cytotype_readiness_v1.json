@@ -1,0 +1,29 @@
+{
+  "evidence_version": "c_sieboldii_cytotype_readiness_v1",
+  "status_date": "2026-10-05",
+  "status": "CHROMOSOME_PLOIDY_KNOWN__FOCAL_2C_NOT_IDENTIFIED_IN_PUBLIC_AUDIT",
+  "taxon": "Cirsium sieboldii",
+  "established_public_context": [
+    {
+      "source": "National Museum of Nature and Science, Japan — Japanese Cirsium database",
+      "result": "2n=2x=34",
+      "interpretation": "diploid chromosome context; haploid chromosome complement x=17"
+    },
+    {
+      "source": "PloiDB Cirsium entry",
+      "result": "base/haploid count 17; Diploid",
+      "interpretation": "independent database consistency check"
+    }
+  ],
+  "public_2C_genome_size_audit": {
+    "result": "NO_SPECIES_SPECIFIC_2C_VALUE_IDENTIFIED_IN_CURRENT_AUDIT",
+    "boundary": "absence is search-bounded, not proof that no unpublished, non-indexed, or inaccessible measurement exists"
+  },
+  "aza3_requirement": [
+    "Measure same-individual 2C genome size by flow cytometry for focal genomic samples where feasible.",
+    "Retain chromosome/ploidy and continuous 2C genome size as separate variables.",
+    "Do not treat 2n=34 as evidence of equivalent genome architecture across Cirsium.",
+    "Use focal 2C data as mapping/callability and structural-interpretation QC before phenotype-linked genomic inference."
+  ],
+  "nature_claim_boundary": "Known diploidy lowers one source of ambiguity but does not authorize assuming a shared genome size or structurally equivalent reference architecture."
+}
