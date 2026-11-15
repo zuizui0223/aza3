@@ -1,0 +1,33 @@
+name: Audit Cirsium ecological solution readiness v1
+
+on:
+  pull_request:
+    paths:
+      - "analysis/audit_cirsium_ecological_solution_readiness_v1.py"
+      - "analysis/test_cirsium_ecological_solution_readiness_v1.py"
+      - "data/intake/aza3_focal_head_pollen_assay_v1.csv"
+      - "data/intake/aza3_focal_head_seed_outcome_v1.csv"
+      - "data/intake/aza3_nature_individual_intake_v1.csv"
+      - "data/intake/orientation_aspect_projection_calibration_v1.csv"
+      - "data/intake/capitulum_guild_access_event_ledger_v1.csv"
+      - "data/intake/capitulum_video_effort_denominator_v1.csv"
+      - ".github/workflows/audit-cirsium-ecological-solution-readiness-v1.yml"
+  push:
+    branches:
+      - research/cirsium-ecological-solution-space-20261115
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Assert synthetic control and source-grain gates
+        run: python -m unittest analysis/test_cirsium_ecological_solution_readiness_v1.py -v
+      - name: Audit existing public intake evidence without accepting field claims
+        run: python analysis/audit_cirsium_ecological_solution_readiness_v1.py
