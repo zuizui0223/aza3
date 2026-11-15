@@ -30,7 +30,7 @@
 
 ## さらに厳しい反例：送粉×種子食害の形質選択も既知
 
-- **Xu et al. (2016) `Pedicularis rex`, Annals of Botany**, DOI https://doi.org/10.1093/aob/mcw097：12–14集団で柱頭花粉・花冠露出・種子捕食・最終種子を測定。花冠が苞の上に出るほど花粉量は増えるが種子捕食も増える、敵による選択は地域差を示す。**花の物理的入口形態 × 相反する相互作用 × 適応度**は既知。
+- **Sun, Armbruster & Huang (2016) `Pedicularis rex`, Annals of Botany**, DOI https://doi.org/10.1093/aob/mcw097：12–14集団で柱頭花粉・花冠露出・種子捕食・最終種子を測定。花冠が苞の上に出るほど花粉量は増えるが種子捕食も増える、敵による選択は地域差を示す。**花の物理的入口形態 × 相反する相互作用 × 適応度**は既知。
 - **Campbell et al. (2022) `Ipomopsis`, American Naturalist**, DOI https://doi.org/10.1086/716740：2種＋雑種の共通園で6花形質について受粉段階と種子捕食段階の選択を分割。形質間の相関的選択は多くが種子形成開始段階で生じ、二段階の単純な合成から新規相関選択が必然とはいえない。**雑種 × 多形質 × 送粉/食害段階**まで既知。ただし個体別RAD由来の網状系統と密に結んだ本研究の推定対象ではない。
 - **Govender, Witkowski & Cron (2026) `Aloe`, Arthropod-Plant Interactions**, DOI https://doi.org/10.1007/s11829-026-10301-1（11月7日公開）：3種間の形質・種子捕食、種内での形態効果は種依存／大半は弱い。**派手な花ほど敵に目立つ**という一般則は実測で支持されていない。
 - **Gross et al. (2025)** と**Greya送粉効率の2023 Ecology原著**は、倍数性・花形態・生物間相互作用と局所的な機能的適応を既にかなり密接に扱う。したがって **`integrating polyploidy + pollination + antagonism is unprecedented` も不可**。
