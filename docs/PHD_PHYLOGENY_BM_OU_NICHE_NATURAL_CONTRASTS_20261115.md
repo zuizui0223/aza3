@@ -93,3 +93,9 @@
 - [属外の原著24件・機能景観／形態機能多対一の再評価](PHD_CROSS_CLADE_FUNCTIONAL_LANDSCAPES_AND_NICHE_20261115.md) — Dalechampia 81分類群の機能再利用、Dalechampia自然選択の安定化、Rheum の雨/UV保護と種子食害のコスト、Pedicularis の送粉と種子食者の対立、Silene の直接/間接気候、2026 Costus のモジュール保持、魚のmany-to-one理論など。文献だけでアザミの適応は認定しない。
 - [属外の文献証拠行列](../data/evidence/phd_cross_taxon_functional_landscape_literature_20261115.csv) — 各文献の対象・直接結果・本計画への移植可能部分・移植禁止条件・DOIを分離。
 - **改訂中心問い（既存系統・形態・自然対照・介入主線を維持）**：適応的な形態そのものは収斂するのか、それとも環境・実現相互作用の下で、別々の頭花構造が等価な機能を実現できるのか。OU選択は実験的適応度地形の実証ではない。自然対照のO×Bと真の有効花粉・確認産卵・成熟充実痩果の多成分実測を主証拠とする。
+
+## 2026-11-16 実証主線 v2：条件付き形態→機能の対応
+- [第3章の一次問い・推定対象・等価性停止条件・自然対照順](PHD_CONDITIONAL_FORM_FUNCTION_CAUSAL_MAINLINE_20261116.md) — 形態的収斂と機能的収斂を区別し、同じ痩果数に至る異なる送粉/食害経路を分離する。現行博士3章の順序は変えない。
+- [事前登録の機能景観・試験可能性ゲート](../data/contracts/phd_conditional_form_function_v1_20261116.json) — O×B、E、G、蕾→開花→結実、核系統を統合。ただし現在の実証個体・相互作用/痩果データは0。
+- [合成精度シナリオ](../data/planning/phd_form_function_precision_scenarios_20261116.json)＋[判定コード](../analysis/phd_form_function_equivalence_gate_v1.py)＋[独立単体テスト](../tests/test_phd_form_function_equivalence_gate_v1.py) — 「p>0.05＝等価」「最終痩果数が等しい＝同じ機能」という誤判定を拒否。数値は仮想の母植物差SDを用いた設計例のみ。
+- **最新先行研究の追加**：[Kay & Anderson (2025)](https://doi.org/10.1093/aob/mcaf096) は花の適応景観、[New Phytologist (2026)](https://doi.org/10.1111/nph.71605) は種境界を越えた花形質のゲノム構造、[Annals of Botany (2026)](https://doi.org/10.1093/aob/mcag186) は共分散構造の収斂。いずれも一般概念がすでに研究済みであることを示し、博士の主張を「アザミの進化史を統制した複数の実在機能経路と繁殖成果」へ絞る。
