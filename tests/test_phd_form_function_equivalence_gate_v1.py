@@ -11,7 +11,7 @@ class FormFunctionGateTests(unittest.TestCase):
     def classify(self, intervals):
         return classify_evidence(gates=self.gates,
             distinct_morphologies=True, margins=self.margins,
-            intervals=intervals, **kwargs)
+            intervals=intervals)
     def test_perfect_identical_responses_with_narrow_intervals_can_pass(self):
         result=self.classify({k:(-.04,.04) for k in ENDPOINTS})
         self.assertEqual(result["status"], "CONDITIONAL_MULTI_ENDPOINT_EQUIVALENCE_COMPATIBLE")
