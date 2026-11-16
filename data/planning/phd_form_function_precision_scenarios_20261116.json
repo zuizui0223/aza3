@@ -1,0 +1,45 @@
+{
+  "scenario_type": "HYPOTHETICAL_NOT_EMPIRICAL",
+  "method": "normal approximation 90% CI for independent-mother contrast",
+  "z_90": 1.6448536269514722,
+  "assumed_margins_std_units": 0.1,
+  "caution": "Not power, not field sample size recommendation; no site/year/maternal clustering beyond assumed mother-level SD",
+  "data": [
+    {
+      "independent_mothers": 24,
+      "hypothetical_sd_of_maternal_contrast": 0.4,
+      "normal_approx_90pct_ci_halfwidth": 0.134302,
+      "zero_centered_interval_entirely_within_illustrative_margin_point_one": false
+    },
+    {
+      "independent_mothers": 60,
+      "hypothetical_sd_of_maternal_contrast": 0.4,
+      "normal_approx_90pct_ci_halfwidth": 0.08494,
+      "zero_centered_interval_entirely_within_illustrative_margin_point_one": true
+    },
+    {
+      "independent_mothers": 120,
+      "hypothetical_sd_of_maternal_contrast": 0.4,
+      "normal_approx_90pct_ci_halfwidth": 0.060062,
+      "zero_centered_interval_entirely_within_illustrative_margin_point_one": true
+    },
+    {
+      "independent_mothers": 24,
+      "hypothetical_sd_of_maternal_contrast": 0.7,
+      "normal_approx_90pct_ci_halfwidth": 0.235028,
+      "zero_centered_interval_entirely_within_illustrative_margin_point_one": false
+    },
+    {
+      "independent_mothers": 60,
+      "hypothetical_sd_of_maternal_contrast": 0.7,
+      "normal_approx_90pct_ci_halfwidth": 0.148645,
+      "zero_centered_interval_entirely_within_illustrative_margin_point_one": false
+    },
+    {
+      "independent_mothers": 120,
+      "hypothetical_sd_of_maternal_contrast": 0.7,
+      "normal_approx_90pct_ci_halfwidth": 0.105108,
+      "zero_centered_interval_entirely_within_illustrative_margin_point_one": false
+    }
+  ]
+}

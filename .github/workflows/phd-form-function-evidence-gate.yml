@@ -1,0 +1,40 @@
+name: PhD conditional form-function evidence gate
+on:
+  push:
+    paths:
+      - "analysis/phd_form_function_equivalence_gate_v1.py"
+      - "tests/test_phd_form_function_equivalence_gate_v1.py"
+      - "data/planning/phd_form_function_precision_scenarios_20261116.json"
+      - ".github/workflows/phd-form-function-evidence-gate.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Test equivalence logic
+        run: python -m unittest discover -s tests -p 'test_phd_form_function_equivalence_gate_v1.py' -v
+      - name: Validate synthetic-only prospective scenario
+        shell: bash
+        run: |
+          python analysis/phd_form_function_equivalence_gate_v1.py > /tmp/phd_form_function_scenario.json
+          python - <<'PY'
+          import json
+          with open("/tmp/phd_form_function_scenario.json", encoding="utf-8") as f:
+              result = json.load(f)
+          assert result["not_empirical"] is True
+          assert result["status"] == "SYNTHETIC_PROSPECTIVE_DESIGN_ONLY"
+          assert result["empirical_fitness_equivalence_authorized"] is False
+          assert result["RAD_ancestral_reconstruction_completed"] is False
+          assert len(result["ci_halfwidths"]) == 6
+          assert result["synthetic_evidence_examples"]["no_joint_head_data"]["status"] == "NOT_IDENTIFIABLE"
+          assert result["synthetic_evidence_examples"]["all_broad"]["status"] == "INDETERMINATE_NOT_EQUIVALENT_BY_DEFAULT"
+          print("PASS: only prospective scenarios; no empirical equivalence or adaptation claim")
+          PY

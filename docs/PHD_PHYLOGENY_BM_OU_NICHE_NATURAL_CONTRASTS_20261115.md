@@ -1,0 +1,101 @@
+# 博士計画2026-11-15：核系統→祖先頭花形質→BM/OU・ニッチ放散→自然対照・機能実験
+
+**Status: proposed research design / not empirical results / not authorized field sampling.**
+**Owner: aza3.** Earlier GROW 2026-10-27 focused plan and EAzami historical results remain unchanged.
+本ノートは「遺伝子機構・花色の再発現」より先に「歴史と生態的機能」を検証するための博士3年間の分析順を固定する。
+
+## 結論・研究質問
+**なぜアザミ属では、頭花の向き O と総苞の形態 B が異なる組合せで反復するのか。形質分化は系統史・気候/微生息環境ニッチ・相互作用ニッチの何と対応し、現在の繁殖利益に結びつくのか。**
+- D1 系統史：既刊350核遺伝子の広域骨格の下で、適格な近縁RAD-seq個体と同個体の形態を使い、核祖先・交雑・祖先形質の不確実性を推定。
+- D2 比較進化：BMを基準にOU・複数進化速度・共進化モデルを検定し、環境ニッチの保存/分化と形態の反復・分化が対応するかを検証。
+- D3 生態的機能：種内自然対照/同所別種対照/地理的な準対照を分離し、向き×降雨/送粉/種子食害、総苞×侵入経路を、可能な範囲でsham付操作により検証。
+
+**定義**：系統上の形質変化、環境との系統補正済み相関、OUの支持、現在の機能効果、選択勾配、局所適応の遺伝的証明は別の推論段階。上流結果だけで下流を断定しない。
+
+## 0. 確認済み現在地（2026-11-15）
+- Moreyra et al. 2025 DOI:10.1016/j.ympev.2025.108285 は350核座位の広域系統解析を提供し、日本産38種を含む。日本産サンプルの大半は一つの若い放散に属するが、単一の樹のすべての枝が確定したわけではない。
+- EAzamiの現在の日本38種の祖先形質変化の下限：O 4–6、総苞姿勢3、粘着5。これらは下限であり、反復適応の回数・原因遺伝子の数ではない。樹の単位は置換/座位であり、年代付け済み樹が回収できるまで形態変化数/Myrの主張はしない。
+- JPN_14 Cirsium kiotoense、JPN_36 C. sieboldii、JPN_06 C. dipsacolepis、JPN_15 C. lineare は公刊日本38の系統対応あり。C. kagamontanum / C. hidapaludosum / C. muratae はその固定日本38 tip listにいない（属の核データが世界中に全くないという意味ではない）。
+- EAzami `data/evidence/japan38_azami_trait_coverage_v1.csv` で JPN_14のAzami同定単位の連続形質欠測。**真正の総苞片トゲ実長・硬さを同一DNA個体で測ったデータは現行aza3 intakeにはない。**
+- `aza3/data/intake/grow_ito_sample_handoff_v1.csv`、`chapter3_individual_intake_v1.csv`、`orientation_aspect_projection_calibration_v1.csv` はいずれもヘッダーのみ（2026-11-15照会）。伊藤教授からの提供予定試料の受領・解析用権利・適格なRADデータは確認されていない。
+
+## 1. 実物計測の仕様（同個体・同頭花）
+- O：開花中の頭花軸と鉛直上向きの角度（0°直立、90°水平、180°点頭）、**蕾・開花・結実を別々**に測る。枝の湾曲/重さに由来する見かけの垂下と、頭花本体の向きを区別。既存Azamiの画像フレーム角を重力角として転用しない。
+- B：外/中/内総苞片の開出角・隙間・長さ、**真正の刺の突出長mm/密度/硬さ**。総苞片の開出は刺の長さではない。
+- S：腺体・粘着の有無と粘着強度。O・Bと別の形質として記録。葉の刺を頭花の刺に流用しない。
+- 調整候補：頭花真の縦横比・重量・小花数/頭花・同時開花頭花数/個体・花色・性型（雌性/両性）・開花齢・枝順位・植物サイズ・記録条件。これらを主仮説に追加しない。
+- 個体IDを核DNA・voucher・生育集団・DNA取得権利・形態画像・頭花・開花段階・結果の階層へ連結。入手できない形質を種の権威記載から個体実測へ代入しない。
+
+## 2. 候補自然対照の事前登録
+機会標本の追加順ではなく、**同所性・変異の実在・共通花期・系統情報・許可**で選ぶ。細部は `data/planning/cirsium_phd_natural_contrast_panel_20261115.csv`。
+1. **N01 オハラメアザミ種内自然勾配**：*C. kiotoense*。科博記載では開花方向が点頭～斜上/時に直立、総苞は粘る/ほぼ粘らない、刺は無～弱/まれに鋭い。これらが同集団・同時期に独立変異するかが先決。性型を必ず記録。
+2. **N02 オハラメアザミ×カガノアザミ**：*C. kiotoense* vs *C. kagamontanum*。国立科学博物館は北陸で同所生育があると記す。両者の頭花方向・粘着に候補差があるが、真正の刺の機能差は未測定。**同所・同時開花・訪問昆虫の同じ観察努力**を確認して初めて自然対照とする。*kagamontanum*は日本38tip外ゆえ核系統アンカー追加候補。
+3. **N03 キセルアザミの種内直立型**：*C. sieboldii*。通常は開花中点頭、直立型も記載。自然の立/垂型が**同じ発育段階**で共存するか確認。開花後の直立を「直立型」に混ぜない。
+4. **N04 キセルアザミ×ヒダキセルアザミ**：*C. sieboldii* vs *C. hidapaludosum*。両者湿地環境だが後者は蕾から結実まで直立と記載され、分布は重ならない。**同所対照ではなく、地理・環境を調整する準対照**。系統上の近縁/独立性はRADまたは核座位で検証、既知の姉妹種と仮定しない。
+5. **N05 モリアザミ×ヤナギアザミ**：*C. dipsacolepis* vs *C. lineare*。EAzamiの固定ML背景では姉妹対、粘着性に対照がある。上向き頭花同士の**総苞の粘着／開出／真正の刺を分離する**比較であり、刺の因果効果ではない。産地・環境が違えばその交絡を明示。
+6. **N06 タンバアザミ追加候補**：*C. muratae*。京都・兵庫、下向き頭花で総苞先端は斜上という科博記載。*kiotoense*との近地域形態比較の候補だが、既存38 tip外・近縁性未検証・同所性未検証。種の状態を「同じ近縁クレードの独立変化」と仮定しない。
+
+**候補7分類群の固定日本38 tip対応は4/7。これは条件付きサンプリングの欠落評価であり、新しい分子解析結果ではない。** まず未収録3分類群の標本/同定と利用可能な公刊核配列を確認する。不要なRAD全属一括再配列はしない。
+
+## 3. 分子系統・祖先形質の順番
+1. Moreyra 350核座位のtaxon/sample/voucher一覧と許容系統樹アンサンブルを回収し、固定日本38の同定ゆれを解消。単一の最良樹だけ採用しない。
+2. 近縁種と自然対照の個体RADをde novo解析し、共通座位率、欠測、restriction-site dropout、複製一致、ploidy/パラログ、混合・遺伝子流動を監査する。十分な共有座位がなければRAD樹を広域種樹と扱わず、**350核座位を広域骨格、RADを種内/近縁祖先として別レーンで報告**。非共有座位をそのまま結合して一本の枝長にしない。
+3. 離散化した姿勢（事前定義閾値・成長期別）にはMkモデル・確率的形質マッピング、連続角度/実測総苞形質には誤差を含む祖先分布の推定。多型種を強制的に1 tip 1 stateに潰さない。
+4. 進化の独立対連動は、O×刺/T、O×総苞開出、O×粘着の**別対比**として、標本数/樹不確実性と遷移機会を考慮したモデルで評価。「同一枝の変化未検出」は遺伝モジュール独立の証拠ではない。
+5. 公刊の年代付き木の原本が回収・再較正できたときのみ per-Myr・disparity-through-time 等を解放する。利用できない場合は置換単位での感度分析に留める。
+
+## 4. BM / OU とニッチ放散の階層（D2）
+**主帰無**：測定誤差・祖先共分散を持つ単一速度BM。最初から多レジームOUを当てない。
+- M1: BMと複数速度BM（十分な独立遷移がある場合のみ）。樹の不確実性・種内分散・観測誤差を通す。
+- M2: OU1 → 生態レジームを**事前に外生的に定義**したOU複数レジーム（十分なサンプル・独立レジーム反復・parametric-bootstrap power/adequacyがあるときのみ）。OU支持≠自然選択の実証。
+- M3: Oと刺/開出の多変量BM共分散・系統補正回帰。強い表現型相関≠共通遺伝機構。角度境界でガウス近似が悪い場合は変換/適切な尤度を感度分析。
+- E1: 種/集団の**実際の生育・開花期**に対応する降雨/極端降雨、気温、湿度/蒸気圧不足、日射（一次は多重検定を避けた水分/降雨軸）。BIO18を秋の開花時降雨の直接代用としない。
+- E2: 採集/画像/GBIFの空間偏りと種ごとの利用可能環境背景を揃え、分布・環境niche overlap（例：Schoener D）とphylogenetic niche conservatism/divergenceを比較。気候ニッチの現生相関から植民史の時間順序を断言しない。
+- E3: 「形質分化あり/ニッチ差小」「形質差小/ニッチ分化」「両者相関」「両者不一致」を事前に許容する。昆虫ニッチは現地の実際の訪花・産卵者を測定するまで空欄とし、GloBIの属ごとの相互作用を各地点の実在とみなさない。
+
+**検定可能性ゲート**：種数・独立変化数・環境コントラスト・欠測の実績を開く前に、樹と測定分散のシミュレーションでOU対BMやO×Bの識別力を確認。不十分なら `NOT_IDENTIFIABLE`。AICc最小だけで適応シンドロームを宣言しない。測定誤差がOUへの誤選択を生むことは文献で既知。
+
+## 5. D3 自然対照群から操作へ（別レイヤー）
+- 自然対照：同所同時期の異種 → 同種同集団の異型 → 非同所の準対照、の順に交絡を評価。**同種内の雌性株と両性株を混ぜて種子数で適応度比較しない。**
+- 向き介入：同母植物の発育段階が近い頭花にsham対照付きランダム割当。雨/濡れ、花粉発芽・柱頭花粉・送粉者の真の有効接触、最終充実痩果を測る。観察時間は昆虫ゼロの時間も記録。
+- 総苞介入：蕾期の種子食者/侵入経路と実際のトゲ接触を先に撮影。生体損傷のない入口操作（または粘着中和）が成立し、許可・安全性・shamが揃う場合に限り因果試験へ。棘切除自体による傷害を防御効果と取り違えない。
+- 機能分業 vs 相乗/代替 vs 衝突 vs 形状/発生拘束を別競合仮説として、同一母株の**成熟充実痩果**（必要なら発芽可能性まで）で比較。受粉量と種子損失の異なる論文の数値を掛け算しない。
+- 現代の機能利益が観測されても遺伝的局所適応は確定しない。共通園/相互移植等と遺伝性・出自×環境の検証がない場合の上限は現在の選択・機能まで。
+
+## 6. 博士3年の出口と次の実務
+**D1**：サンプルの適格性・広域核骨格と近縁RADの役割分担・祖先形質と遷移史の再推定・自然対照のpilot選定。
+**D2**：形態×環境ニッチのBM/OU/PGLS/ニッチ分化（識別力が弱ければモデルを絞る）。同時に同所/種内自然対照の花期と昆虫を観察。
+**D3**：自然対照で得た独立形態コントラストをsham対照付き操作で機能確認、独立年/集団再現。原因遺伝子の特定・色再発現は必達項目から除外。
+
+**最初の次工程（未完）**：7分類群について (a) voucherと同定、(b) 既存核データ、(c) 実在する形態変異、(d) 適格な同所/開花重複、(e) 権限と保全、を独立に調べる。現地採集・操作は別途正式承認が必要。本稿は採集承認ではない。
+
+## Sources / provenance
+- Published backbone: Moreyra et al. 2025 DOI https://doi.org/10.1016/j.ympev.2025.108285
+- EAzami: https://github.com/zuizui0223/EAzami/blob/main/data/evidence/japan38_azami_trait_coverage_v1.csv
+- EAzami targeted comparator: https://github.com/zuizui0223/EAzami/blob/main/data/evidence/japan38_fdt8_priority_targets_v2.csv
+- PhD predecessor: docs/GROW_PHD_FOCUSED_ORIENTATION_PHYLLARY_3YEAR_V1_20261027.md
+- Same-specimen intake: data/intake/grow_ito_sample_handoff_v1.csv and data/intake/chapter3_individual_intake_v1.csv
+- NMNS taxa: kiotoense https://www.kahaku.go.jp/research/db/botany/azami/detail.html?no=38 ; kagamontanum https://www.kahaku.go.jp/research/db/botany/azami/detail.html?no=40 ; sieboldii https://www.kahaku.go.jp/research/db/botany/azami/detail.html?no=46 ; hidapaludosum https://www.kahaku.go.jp/research/db/botany/azami/detail.html?no=129 ; muratae https://www.kahaku.go.jp/research/db/botany/azami/detail.html?no=80 ; lineare https://www.kahaku.go.jp/research/db/botany/azami/detail.html?no=156
+- OU/measurement-error caution: https://doi.org/10.1111/2041-210X.12337 ; https://pmc.ncbi.nlm.nih.gov/articles/PMC4949538/
+
+## 2026-11-15 実装追補：発育軌道と多対一の機能的補償
+- [発育段階・形態・機能の反証可能な設計](PHD_STAGE_DEPENDENT_FUNCTIONAL_REASSEMBLY_20261115.md) — O(bud→open→fruit) × B(開出／真正の刺) と、時間的分業・機能的補償・相互作用ニッチ・機械的拘束を競合させる。
+- [自然対照群ごとの発育軌道と最初の停止判定](../data/planning/cirsium_phd_stage_trajectory_screen_20261115.csv) — 6比較系すべてについて、刊行済みの記載と同じ個体での未計測部分を区別。
+- [判定契約](../data/contracts/phd_stage_function_interaction_preregister_20261115.json) — 主要計測軸、モデル可否ゲート、因果処理と指標、誤った適応主張の停止条件。
+- **計画内の順序は不変**：系統＋祖先形質 → BM/OUと環境／ニッチ → 自然対照 → 向き×sham操作（総苞は安全な条件付き補助介入）。「発育軌道」は O を蕾から結実まで追跡する測定であり独立した第三の博士主題ではない。観測生物学データとRAD受領は現時点0。
+
+## 2026-11-15 source-verified literature evidence handoff
+- [博士研究の原著確認と既知・新規・推論限界の対応表](PHD_LITERATURE_PRIMARY_SOURCE_GAPS_20261115.md) — Cirsiumの既刊系統/ニッチ、キク科の総苞機能実験、発育段階別食害、2026年の新研究、BM/OUとgene-tree discordanceの注意を統合。**世界初や未研究と断定せず、確認した文献群との具体的な重複・差分を明示。**
+- [文献21件のチェック表](../data/evidence/cirsium_phd_source_checked_literature_20261115.csv) — DOI・研究対象・研究方法・結果・移転可能な設計・主張限界・一次資料のアクセス品質を固定。1983年Willsonの効果は二次索引の原著抄録のみで、フルテキスト個体データは未認証。
+- **改訂された新規性の条件**：気候・植食被害への単純関連、苞葉の多機能性、花角度の雨保護は既知。頭花O×真正Bの系統上の独立変化、同じ頭花の発育軌道、実現昆虫相別のアクセスと雌性繁殖を、未偏り自然対照+安全な角度介入で**連続的に検証すること**を必要条件とする。
+
+## 2026-11-15: Cirsiumを越えた比較と本質的な差分
+- [属外の原著24件・機能景観／形態機能多対一の再評価](PHD_CROSS_CLADE_FUNCTIONAL_LANDSCAPES_AND_NICHE_20261115.md) — Dalechampia 81分類群の機能再利用、Dalechampia自然選択の安定化、Rheum の雨/UV保護と種子食害のコスト、Pedicularis の送粉と種子食者の対立、Silene の直接/間接気候、2026 Costus のモジュール保持、魚のmany-to-one理論など。文献だけでアザミの適応は認定しない。
+- [属外の文献証拠行列](../data/evidence/phd_cross_taxon_functional_landscape_literature_20261115.csv) — 各文献の対象・直接結果・本計画への移植可能部分・移植禁止条件・DOIを分離。
+- **改訂中心問い（既存系統・形態・自然対照・介入主線を維持）**：適応的な形態そのものは収斂するのか、それとも環境・実現相互作用の下で、別々の頭花構造が等価な機能を実現できるのか。OU選択は実験的適応度地形の実証ではない。自然対照のO×Bと真の有効花粉・確認産卵・成熟充実痩果の多成分実測を主証拠とする。
+
+## 2026-11-16 実証主線 v2：条件付き形態→機能の対応
+- [第3章の一次問い・推定対象・等価性停止条件・自然対照順](PHD_CONDITIONAL_FORM_FUNCTION_CAUSAL_MAINLINE_20261116.md) — 形態的収斂と機能的収斂を区別し、同じ痩果数に至る異なる送粉/食害経路を分離する。現行博士3章の順序は変えない。
+- [事前登録の機能景観・試験可能性ゲート](../data/contracts/phd_conditional_form_function_v1_20261116.json) — O×B、E、G、蕾→開花→結実、核系統を統合。ただし現在の実証個体・相互作用/痩果データは0。
+- [合成精度シナリオ](../data/planning/phd_form_function_precision_scenarios_20261116.json)＋[判定コード](../analysis/phd_form_function_equivalence_gate_v1.py)＋[独立単体テスト](../tests/test_phd_form_function_equivalence_gate_v1.py) — 「p>0.05＝等価」「最終痩果数が等しい＝同じ機能」という誤判定を拒否。数値は仮想の母植物差SDを用いた設計例のみ。
+- **最新先行研究の追加**：[Kay & Anderson (2025)](https://doi.org/10.1093/aob/mcaf096) は花の適応景観、[New Phytologist (2026)](https://doi.org/10.1111/nph.71605) は種境界を越えた花形質のゲノム構造、[Annals of Botany (2026)](https://doi.org/10.1093/aob/mcag186) は共分散構造の収斂。いずれも一般概念がすでに研究済みであることを示し、博士の主張を「アザミの進化史を統制した複数の実在機能経路と繁殖成果」へ絞る。

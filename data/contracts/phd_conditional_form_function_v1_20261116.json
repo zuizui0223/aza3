@@ -1,0 +1,114 @@
+{
+  "version": "2026-11-16-phd-conditional-architecture-v1",
+  "status": "PREREG_DESIGN_ONLY_WITH_SYNTHETIC_PRECISION_SCENARIOS",
+  "main_claim": "Conditional form-to-function mapping across nuclear-history-constrained Cirsium natural contrasts",
+  "primary_historical_question": "Are orientation at anthesis and true phyllary spine/opening independently or contingently changing among lineages?",
+  "primary_ecological_question": "Can distinct head configurations yield equivalent multi-component performance within a realized climate-and-guild context?",
+  "trait_states": {
+    "O_deg": "gravity-referenced axis angle at tagged capitulum; bud, anthesis and fruit separate sessions",
+    "B_spine_projection_mm": "calibrated actual spine-tip projection, not phyllary posture or image outline",
+    "B_aperture_mm": "measured access gap/outer phyllary posture, separate from spine length",
+    "S_stickiness": "auxiliary, not synonymous with physical spine or gap"
+  },
+  "independent_sampling_unit": "maternal plant (nested head and visits); sites and years additional hierarchy",
+  "natural_panel_primary": [
+    "N01_kiotoense_within_population",
+    "N03_sieboldii_stage_matched_morphs"
+  ],
+  "natural_panel_context_validation": [
+    "N02_kiotoense_kagamontanum_if_same_site_coflower"
+  ],
+  "ancestry_control": [
+    "N05_dipsacolepis_lineare_stickiness_contrast_only"
+  ],
+  "minimal_outcomes": {
+    "pollination": "conspecific pollen deposited on identified stigma/floret, actual observation exposure",
+    "antagonism": "verified oviposition or seed injury; denominator eligible inspected heads/achenes",
+    "final_maternal_fitness_component": "mature filled viable achene yield for complete mother cohort if achievable; otherwise label head-limited",
+    "optional": "germination potential; pollen-siring success if separately assayed"
+  },
+  "causal_estimand": "Effect of randomized non-damaging head orientation change relative to sham, conditional on baseline bract morphology and measured site/guild context. Non-randomized B is effect modifier, not identified direct cause.",
+  "primary_interaction": "orientation treatment x pre-treatment B (exact one B axis selected after outcome-blind geometry pilot, subject to adequate independent mothers)",
+  "conditional_equivalence_rule": "Morphological separation above measurement error AND all preselected 90 percent mother-level confidence intervals for functional endpoints strictly inside independently predeclared biologically meaningful equivalence margins. No difference p-value is not equivalence.",
+  "compensation_rule": "If matched maternal final seed yields pass predeclared equivalence but pollen/antagonism differences are substantial, label equal net reproductive component with distinct pathways; do not label identical function or causal compensation.",
+  "context_dependence_rule": "Compare the orientation intervention effect in genuinely replicated guild/environment strata, testing an interaction or held-out site effect. Nonrandomized guild variation requires confounding limits.",
+  "phylogeny_propagation": "Use published nuclear tree ensemble plus admitted within-lineage RAD ancestry as separate validated strata; time-calibrate before per-Myr evolutionary rates; BM baseline and power-gated OU; do not call OU theta experimental fitness peak.",
+  "required_readiness_gates": [
+    "true_angle_and_spine_same_plant",
+    "joint_morphological_support_within_site_stage_sex",
+    "legitimate_independent_maternal_units",
+    "verified_pollen_assays",
+    "observed_enemy_exposure_denominator",
+    "mature_achene_outcome_linked",
+    "permissions_and_voucher",
+    "ancestry_admissible_for_historical_claim"
+  ],
+  "output_categories": [
+    "MULTICOMPONENT_PRACTICAL_EQUIVALENCE_COMPATIBLE",
+    "SAME_NET_SEED_WITH_DIFFERENT_COMPONENTS",
+    "CONDITIONAL_O_RESPONSE_DEPENDS_ON_B_OR_G",
+    "MORPHOLOGY_OR_HISTORY_CONSTRAINT",
+    "NOT_IDENTIFIABLE"
+  ],
+  "pilot_precision_is_not_power": true,
+  "illustrative_margin_standardized_units": 0.1,
+  "illustrative_paired_mother_sd": [
+    0.4,
+    0.7
+  ],
+  "illustrative_independent_mother_n": [
+    24,
+    60,
+    120
+  ],
+  "grid": [
+    {
+      "independent_mothers": 24,
+      "hypothetical_sd_of_maternal_contrast": 0.4,
+      "normal_approx_90pct_ci_halfwidth": 0.134302,
+      "zero_centered_interval_entirely_within_illustrative_margin_point_one": false
+    },
+    {
+      "independent_mothers": 60,
+      "hypothetical_sd_of_maternal_contrast": 0.4,
+      "normal_approx_90pct_ci_halfwidth": 0.08494,
+      "zero_centered_interval_entirely_within_illustrative_margin_point_one": true
+    },
+    {
+      "independent_mothers": 120,
+      "hypothetical_sd_of_maternal_contrast": 0.4,
+      "normal_approx_90pct_ci_halfwidth": 0.060062,
+      "zero_centered_interval_entirely_within_illustrative_margin_point_one": true
+    },
+    {
+      "independent_mothers": 24,
+      "hypothetical_sd_of_maternal_contrast": 0.7,
+      "normal_approx_90pct_ci_halfwidth": 0.235028,
+      "zero_centered_interval_entirely_within_illustrative_margin_point_one": false
+    },
+    {
+      "independent_mothers": 60,
+      "hypothetical_sd_of_maternal_contrast": 0.7,
+      "normal_approx_90pct_ci_halfwidth": 0.148645,
+      "zero_centered_interval_entirely_within_illustrative_margin_point_one": false
+    },
+    {
+      "independent_mothers": 120,
+      "hypothetical_sd_of_maternal_contrast": 0.7,
+      "normal_approx_90pct_ci_halfwidth": 0.105108,
+      "zero_centered_interval_entirely_within_illustrative_margin_point_one": false
+    }
+  ],
+  "numerical_precision_formula": "NormalDist.inv_cdf(0.95) * sd_of_independent_mother_contrast / sqrt(n_mothers) for 90% approximate normal CI; excludes site/year/measurement-error design effects",
+  "data_ingested": "No original morphology/pollen/seed/head IDs used to calculate precision scenarios",
+  "number_of_own_admitted_cirsium_functional_cases": 0,
+  "adaptation_evidence_claimed": false,
+  "novel_empirical_results": false,
+  "citations": [
+    "https://doi.org/10.1093/aob/mcaf096",
+    "https://doi.org/10.1111/nph.71605",
+    "https://doi.org/10.1093/aob/mcag186",
+    "https://doi.org/10.1249/mss.0000000000001481",
+    "https://doi.org/10.1111/2041-210X.12337"
+  ]
+}

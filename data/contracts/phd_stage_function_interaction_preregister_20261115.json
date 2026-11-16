@@ -1,0 +1,96 @@
+{
+  "version": "2026-11-15-v1",
+  "status": "design_only_no_new_observations",
+  "research_unit": "one plant by one marked head by one observation session; effects clustered by mother plant",
+  "primary_trait_axes": {
+    "O": "head-axis angle 0 up 90 horizontal 180 down with gravity reference",
+    "B": "outer phyllary opening gap spine projection length rigidity; spine != opening != stickiness",
+    "S": "separate supplementary stickiness surface assay"
+  },
+  "developmental_stages": [
+    "bud",
+    "anthesis",
+    "fruit"
+  ],
+  "inference_ladder": [
+    "nuclear_phylogeny_and_asr",
+    "BM_OU_phylo_niche_comparison",
+    "observational_natural_contrast",
+    "randomized_orientation_sham",
+    "conditional_one_bract_access_sham",
+    "measured_mature_filled_achenes"
+  ],
+  "primary_falsifiable_contrasts": [
+    {
+      "id": "T",
+      "question": "Is orientation trajectory functionally stage-dependent?",
+      "necessary_data": [
+        "same_head_stage_angle",
+        "oviposition_event_timing",
+        "conspecific_pollen_delivery"
+      ],
+      "failure_examples": [
+        "angle_change_after_oviposition_cannot_block_earlier_egg_laying",
+        "stage_records_not_linked"
+      ]
+    },
+    {
+      "id": "C",
+      "question": "Do different orientation by bract combinations provide compensatory or interacting fitness payoffs?",
+      "necessary_data": [
+        "overlap_of_O_and_B_given_site_stage_sex",
+        "actual_enemy_contact_route",
+        "mature_filled_achenes"
+      ],
+      "failure_examples": [
+        "no_joint_O_B_variation",
+        "O_B_effect_explained_by_head_size"
+      ]
+    },
+    {
+      "id": "E",
+      "question": "Does the observed partner assemblage explain differences beyond climate and lineage?",
+      "necessary_data": [
+        "local_guild_exposure",
+        "microclimate",
+        "nuclear_history"
+      ],
+      "failure_examples": [
+        "guild_unmeasured",
+        "no_independent_site_regime_replicates"
+      ]
+    },
+    {
+      "id": "M",
+      "question": "Can passive head weight or developmental constraint explain morphology?",
+      "necessary_data": [
+        "head_mass_or_proxy",
+        "peduncle_geometry",
+        "stage",
+        "body_size"
+      ],
+      "failure_examples": [
+        "staged_sham_controlled_O_intervention_changes_pollen_or_rain_protection"
+      ]
+    }
+  ],
+  "macroevolution_limits": {
+    "known_ancestral_state_results": "EAzami O 4-6 B posture 3 stickiness 5 are topology-conditional minima; true spine history not established",
+    "BM_OU_gate": "examine tree age plus independent transitions plus measurement errors; run parametric model adequacy/power before declaring OU regimes",
+    "no_anchored_dated_tree": "do_not_claim_per_Myr_rates_or_temporal_niche_lags",
+    "no_stage_linked_taxa": "do_not_fit_developmental_trajectory_OU",
+    "ou_support": "not_direct_proof_of_adaptive_optimum"
+  },
+  "causal_primary": {
+    "assignment": "randomized_orientation_vs_sham_within_eligible_mother_or_at_mother_level_if_interference",
+    "process_outcome": "conspecific_stigma_pollen_deposition",
+    "reproductive_outcome": "mature_filled_achene_count_with_legitimate_denominator",
+    "post_treatment_variables": "approach_and_landing_are_mediators_not_unconditional_baseline_covariates",
+    "secondary_B_intervention": "at_most_one_after_non_damaging_pilot_permits_and_real_enemies"
+  },
+  "species_count": "7 unique candidate taxa across 6 natural contrast configurations",
+  "confirmed_fixed_Japan38_coverage": "4 of 7 candidate species; other 3 missing from fixed list not necessarily missing nuclear data globally",
+  "biological_field_data_count": 0,
+  "permitted_field_interventions": false,
+  "next_gate": "validate voucher and taxonomic concept; real within-stage O and B phenotypic variation; conspecific flowering overlap and observer time; permitted material; nucleus tree fit"
+}

@@ -1,0 +1,75 @@
+{
+  "as_of": "2026-11-16 JST",
+  "inspection": "Live GitHub main intake files read through connected GitHub; frozen original morphology source referenced separately",
+  "source_rows": [
+    {
+      "file": "data/intake/aza3_nature_individual_intake_v1.csv",
+      "git_blob_sha": "3c6802662f74bbc9808d4c83b44c69af4c40f116",
+      "header_columns": 32,
+      "nonheader_rows": 0
+    },
+    {
+      "file": "data/intake/orientation_aspect_projection_calibration_v1.csv",
+      "git_blob_sha": "6458c0eda7923d7465590b9a3bd7a854a9823770",
+      "header_columns": 38,
+      "nonheader_rows": 0
+    },
+    {
+      "file": "data/intake/capitulum_guild_access_event_ledger_v1.csv",
+      "git_blob_sha": "5482f8ef5bc9d30fd6d7f39a30112ae2dc6e390e",
+      "header_columns": 32,
+      "nonheader_rows": 0
+    },
+    {
+      "file": "data/intake/capitulum_video_effort_denominator_v1.csv",
+      "git_blob_sha": "673ae973fbd0935fdadff7496e88bf35ec26f4f5",
+      "header_columns": 27,
+      "nonheader_rows": 0
+    },
+    {
+      "file": "data/intake/aza3_focal_head_pollen_assay_v1.csv",
+      "git_blob_sha": "0e5fb9ef3d906a738999a9271d2798d051248cb8",
+      "header_columns": 15,
+      "nonheader_rows": 0
+    },
+    {
+      "file": "data/intake/aza3_focal_head_seed_outcome_v1.csv",
+      "git_blob_sha": "38099aa027509bac46be0871ea8428f2642b678c",
+      "header_columns": 19,
+      "nonheader_rows": 0
+    }
+  ],
+  "valid_joined_dna_angle_bract_guild_pollen_achene_heads": 0,
+  "current_functional_equivalence_test": "NOT_IDENTIFIABLE",
+  "standing_original_morphology_independent_evidence": {
+    "evidence_file": "data/evidence/cirsium_head_core_external_morphology_result_v1.json",
+    "evidence_blob_sha": "31a983cb30d3b5848059db30976ae92442a74250",
+    "source_real_nonhybrid_individuals": 114,
+    "sex_taxon_strata": 6,
+    "independent_outside_morph_pairing_source": "docs/CIRSIUM_REAL_CORE_MATCHED_OUTER_HEAD_MOSAIC_20261023.md",
+    "experimentally_measured_true_spine_in_this_data": false,
+    "head_orientation_in_this_data": false,
+    "pollen_oviposition_and_mature_seed_in_same_114_plants": false,
+    "inference_limit": "Real independent phenotypic configuration possibilities are not functional equivalence or adaptive fitness."
+  },
+  "prospective_test": {
+    "script": "analysis/phd_form_function_equivalence_gate_v1.py",
+    "unit_test": "tests/test_phd_form_function_equivalence_gate_v1.py",
+    "workflow": "phd-form-function-evidence-gate.yml",
+    "first_workflow_run_failed": "https://github.com/zuizui0223/aza3/actions/runs/43890373787",
+    "first_failure_reason": "test helper accidentally referenced undefined kwargs; no scientific inference executed",
+    "corrected_workflow_run_passed": "https://github.com/zuizui0223/aza3/actions/runs/43890557034",
+    "unit_tests_passed": 7,
+    "synthetic_only": true
+  },
+  "missing_biological_evidence": [
+    "same_head_true_gravity_angle_and_true_phyllary_spine",
+    "stage_matched_natural_OxB_overlap",
+    "identified_local_maternal_plant_identity",
+    "recorded_real_pollinator_and_ovipositor_exposure",
+    "linked_stigma_pollen_and_mature_filled_achenes",
+    "legal_sampling_and_intervention_authorization",
+    "admitted_rad_sequence_and_cytotype"
+  ],
+  "warning": "This is a point-in-time file audit, not proof that no eligible material exists outside this repository. No field data, phenotype selection or adaptation was newly inferred."
+}
