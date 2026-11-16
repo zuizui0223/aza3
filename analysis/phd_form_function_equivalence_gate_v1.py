@@ -66,7 +66,7 @@ def classify_evidence(*, gates: dict[str, bool], distinct_morphologies: bool,
     elif equivalent[2] and any(clearly_different[:2]):
         status = "SAME_NET_FITNESS_COMPONENT_DIFFERENT_PATHWAYS"
     elif clearly_different[2]:
-        status = "MATERnal_REPRODUCTIVE_OUTCOME_DIFFERENT"
+        status = "MATERNAL_REPRODUCTIVE_OUTCOME_DIFFERENT"
     else:
         status = "INDETERMINATE_NOT_EQUIVALENT_BY_DEFAULT"
 
