@@ -1,0 +1,221 @@
+{
+  "schema": "aza3_USDA_Cirsium_undulatum_lateral_position_opportunity_v5",
+  "source": {
+    "dataset_doi": "10.15482/USDA.ADC/1522649",
+    "paper_doi": "10.1002/ajb2.1744",
+    "original_mothers": 106,
+    "original_heads": 323,
+    "jointly_validated_2008_mothers": 67,
+    "original_2008_scored_lateral_heads": 111,
+    "mothers_with_2plus_scored_lateral_heads": 33,
+    "all_2008_head_good_seed_sums_match_maternal_source": true,
+    "2007_head_archive_full_identity_not_verified": true,
+    "study_source_not_a_new_independent_sample": true
+  },
+  "by_2008_treatment": {
+    "ndni": {
+      "original_mothers": 15,
+      "lateral_seed_positive_mothers": 2,
+      "mothers_with_2plus_scored_lateral_heads": 6,
+      "lateral_rank_presence_2plus": {
+        "mothers": 6,
+        "first_zero_later_positive": 1,
+        "first_positive_later_positive": 0,
+        "first_positive_later_zero": 0,
+        "first_zero_later_zero": 5
+      },
+      "first_zero_later_positive_mothers": [
+        "WR51"
+      ],
+      "first_zero_later_positive_mothers_with_apical_good_seed_zero": 0,
+      "first_zero_later_positive_in_positive_mothers": 1
+    },
+    "dni": {
+      "original_mothers": 12,
+      "lateral_seed_positive_mothers": 7,
+      "mothers_with_2plus_scored_lateral_heads": 6,
+      "lateral_rank_presence_2plus": {
+        "mothers": 6,
+        "first_zero_later_positive": 2,
+        "first_positive_later_positive": 0,
+        "first_positive_later_zero": 3,
+        "first_zero_later_zero": 1
+      },
+      "first_zero_later_positive_mothers": [
+        "ES68",
+        "SD05"
+      ],
+      "first_zero_later_positive_mothers_with_apical_good_seed_zero": 2,
+      "first_zero_later_positive_in_positive_mothers": 2
+    },
+    "ndi": {
+      "original_mothers": 21,
+      "lateral_seed_positive_mothers": 14,
+      "mothers_with_2plus_scored_lateral_heads": 8,
+      "lateral_rank_presence_2plus": {
+        "mothers": 8,
+        "first_zero_later_positive": 1,
+        "first_positive_later_positive": 6,
+        "first_positive_later_zero": 1,
+        "first_zero_later_zero": 0
+      },
+      "first_zero_later_positive_mothers": [
+        "SD13"
+      ],
+      "first_zero_later_positive_mothers_with_apical_good_seed_zero": 0,
+      "first_zero_later_positive_in_positive_mothers": 1
+    },
+    "di": {
+      "original_mothers": 19,
+      "lateral_seed_positive_mothers": 15,
+      "mothers_with_2plus_scored_lateral_heads": 13,
+      "lateral_rank_presence_2plus": {
+        "mothers": 13,
+        "first_zero_later_positive": 0,
+        "first_positive_later_positive": 12,
+        "first_positive_later_zero": 1,
+        "first_zero_later_zero": 0
+      },
+      "first_zero_later_positive_mothers": [],
+      "first_zero_later_positive_mothers_with_apical_good_seed_zero": 0,
+      "first_zero_later_positive_in_positive_mothers": 0
+    }
+  },
+  "original_id_prefix_strata": {
+    "ES": {
+      "total_mothers": 17,
+      "original_arms": {
+        "ndni": {
+          "n": 4,
+          "both_seed_routes_zero": 2,
+          "lateral_good_seed_positive": 1,
+          "mother_has_scored_lateral": 2
+        },
+        "dni": {
+          "n": 3,
+          "both_seed_routes_zero": 0,
+          "lateral_good_seed_positive": 3,
+          "mother_has_scored_lateral": 3
+        },
+        "ndi": {
+          "n": 5,
+          "both_seed_routes_zero": 0,
+          "lateral_good_seed_positive": 5,
+          "mother_has_scored_lateral": 5
+        },
+        "di": {
+          "n": 5,
+          "both_seed_routes_zero": 0,
+          "lateral_good_seed_positive": 4,
+          "mother_has_scored_lateral": 4
+        }
+      }
+    },
+    "SD": {
+      "total_mothers": 17,
+      "original_arms": {
+        "ndni": {
+          "n": 4,
+          "both_seed_routes_zero": 4,
+          "lateral_good_seed_positive": 0,
+          "mother_has_scored_lateral": 3
+        },
+        "dni": {
+          "n": 4,
+          "both_seed_routes_zero": 2,
+          "lateral_good_seed_positive": 2,
+          "mother_has_scored_lateral": 4
+        },
+        "ndi": {
+          "n": 5,
+          "both_seed_routes_zero": 0,
+          "lateral_good_seed_positive": 5,
+          "mother_has_scored_lateral": 5
+        },
+        "di": {
+          "n": 4,
+          "both_seed_routes_zero": 0,
+          "lateral_good_seed_positive": 4,
+          "mother_has_scored_lateral": 4
+        }
+      }
+    },
+    "WG": {
+      "total_mothers": 12,
+      "original_arms": {
+        "ndni": {
+          "n": 3,
+          "both_seed_routes_zero": 3,
+          "lateral_good_seed_positive": 0,
+          "mother_has_scored_lateral": 2
+        },
+        "dni": {
+          "n": 2,
+          "both_seed_routes_zero": 2,
+          "lateral_good_seed_positive": 0,
+          "mother_has_scored_lateral": 2
+        },
+        "ndi": {
+          "n": 4,
+          "both_seed_routes_zero": 0,
+          "lateral_good_seed_positive": 3,
+          "mother_has_scored_lateral": 4
+        },
+        "di": {
+          "n": 3,
+          "both_seed_routes_zero": 0,
+          "lateral_good_seed_positive": 3,
+          "mother_has_scored_lateral": 3
+        }
+      }
+    },
+    "WR": {
+      "total_mothers": 21,
+      "original_arms": {
+        "ndni": {
+          "n": 4,
+          "both_seed_routes_zero": 3,
+          "lateral_good_seed_positive": 1,
+          "mother_has_scored_lateral": 4
+        },
+        "dni": {
+          "n": 3,
+          "both_seed_routes_zero": 1,
+          "lateral_good_seed_positive": 2,
+          "mother_has_scored_lateral": 3
+        },
+        "ndi": {
+          "n": 7,
+          "both_seed_routes_zero": 0,
+          "lateral_good_seed_positive": 1,
+          "mother_has_scored_lateral": 3
+        },
+        "di": {
+          "n": 7,
+          "both_seed_routes_zero": 0,
+          "lateral_good_seed_positive": 4,
+          "mother_has_scored_lateral": 4
+        }
+      }
+    }
+  },
+  "biology": {
+    "original_nonapical_heads_do_have_multiple_source_position_codes": true,
+    "first_position_reproductive_failure_can_coexist_with_other_position_positive": true,
+    "head_position_coding_is_spatial_not_observed_event_timing": true,
+    "original_joint_insecticide_effect_not_a_new_discovery": true
+  },
+  "claim_limits": {
+    "head_position_codes_are_proven_chronological_order": false,
+    "higher_numbered_head_is_proven_later_flowering": false,
+    "source_id_prefix_verified_as_geographic_site": false,
+    "first_lower_code_head_failed_due_to_specific_arthropod": false,
+    "higher_position_head_caused_fitness_compensation": false,
+    "endogenous_head_number_safe_as_causal_adjustment": false,
+    "observed_route_mosaic_is_genetic_division_of_labour": false,
+    "native_ancestral_organ_regain_from_F2_or_Cirsium_shown": false,
+    "direct_SLK_rare_invasion_or_complete_WF_architecture_measured": false,
+    "ANTO_regained_molecular_competence_identified": false
+  },
+  "conclusion": "ACTUAL_NONAPICAL_HEAD_CODE_ALTERNATIVES_WITH_POSITIONAL_FALLBACK_NOT_EVOLUTIONARY_REGENERATION"
+}

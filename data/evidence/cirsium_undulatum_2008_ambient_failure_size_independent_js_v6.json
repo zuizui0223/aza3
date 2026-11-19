@@ -1,0 +1,361 @@
+{
+  "schema": "aza3_Cirsium_undulatum_2008_ambient_mother_source_size_screen_v6",
+  "source": {
+    "dataset_doi": "10.15482/USDA.ADC/1522649",
+    "article_doi": "10.1002/ajb2.1744",
+    "original_mothers_all_years": 106,
+    "original_heads_all_years": 323,
+    "complete_2008_mothers": 67,
+    "ambient_insect_2008_mothers": 27,
+    "ambient_apical_intact": 15,
+    "ambient_apical_damaged": 12,
+    "any_seed_positive": 10,
+    "both_seed_routes_failed": 17,
+    "original_source_id_prefixes": [
+      "ES",
+      "SD",
+      "WG",
+      "WR"
+    ],
+    "no_flw_not_in_six_covariates": "ORIGINAL_ZERO_FLOWERED_BUT_POSITIVE_APICAL_SEED_CONFLICT",
+    "not_seven_posthoc_favorable_covariates": true,
+    "raw_mother_and_head_Git_SHA_checked": true,
+    "same_2008_population_as_prior_aza3_source_audits": true
+  },
+  "six_exploratory_covariates": {
+    "plant_height_cm": {
+      "n_measured_mothers": 27,
+      "seed_positive": 10,
+      "seed_zero": 17,
+      "n_missing": 0,
+      "mean_in_zero_seed_mothers": 46.294117647058826,
+      "mean_in_seed_positive_mothers": 53.8,
+      "mean_difference_positive_minus_zero": 7.505882352941171,
+      "exact_stratified_permutation": {
+        "n_measured_mothers": 27,
+        "n_missing": 0,
+        "n_informative_strata": 2,
+        "uninformative_stratum_mothers": 0,
+        "total_assignments": 360360,
+        "tail_assignments": 4403,
+        "p_two_sided": 0.012218337218337219,
+        "observed_centered_positive_sum": 54.88333333333333,
+        "fixed_positive_counts_by_informative_stratum": [
+          {
+            "stratum": [
+              "dni"
+            ],
+            "n": 12,
+            "n_positive": 7,
+            "n_combinations": 792
+          },
+          {
+            "stratum": [
+              "ndni"
+            ],
+            "n": 15,
+            "n_positive": 3,
+            "n_combinations": 455
+          }
+        ],
+        "outcome_not_randomly_permuted_by_experiment": true
+      },
+      "q_BH_six_exploratory_covariates": 0.07331002331002331
+    },
+    "basal_rosette_diameter_cm": {
+      "n_measured_mothers": 24,
+      "seed_positive": 8,
+      "seed_zero": 16,
+      "n_missing": 3,
+      "mean_in_zero_seed_mothers": 22.796875,
+      "mean_in_seed_positive_mothers": 21.9375,
+      "mean_difference_positive_minus_zero": -0.859375,
+      "exact_stratified_permutation": {
+        "n_measured_mothers": 24,
+        "n_missing": 3,
+        "n_informative_strata": 2,
+        "uninformative_stratum_mothers": 0,
+        "total_assignments": 36036,
+        "tail_assignments": 34146,
+        "p_two_sided": 0.9475524475524476,
+        "observed_centered_positive_sum": 0.9440559440559441,
+        "fixed_positive_counts_by_informative_stratum": [
+          {
+            "stratum": [
+              "dni"
+            ],
+            "n": 11,
+            "n_positive": 6,
+            "n_combinations": 462
+          },
+          {
+            "stratum": [
+              "ndni"
+            ],
+            "n": 13,
+            "n_positive": 2,
+            "n_combinations": 78
+          }
+        ],
+        "outcome_not_randomly_permuted_by_experiment": true
+      },
+      "q_BH_six_exploratory_covariates": 0.9475524475524476
+    },
+    "flower_bud_count": {
+      "n_measured_mothers": 27,
+      "seed_positive": 10,
+      "seed_zero": 17,
+      "n_missing": 0,
+      "mean_in_zero_seed_mothers": 4.588235294117647,
+      "mean_in_seed_positive_mothers": 4.5,
+      "mean_difference_positive_minus_zero": -0.08823529411764675,
+      "exact_stratified_permutation": {
+        "n_measured_mothers": 27,
+        "n_missing": 0,
+        "n_informative_strata": 2,
+        "uninformative_stratum_mothers": 0,
+        "total_assignments": 360360,
+        "tail_assignments": 261869,
+        "p_two_sided": 0.7266872016872017,
+        "observed_centered_positive_sum": 2.3833333333333333,
+        "fixed_positive_counts_by_informative_stratum": [
+          {
+            "stratum": [
+              "dni"
+            ],
+            "n": 12,
+            "n_positive": 7,
+            "n_combinations": 792
+          },
+          {
+            "stratum": [
+              "ndni"
+            ],
+            "n": 15,
+            "n_positive": 3,
+            "n_combinations": 455
+          }
+        ],
+        "outcome_not_randomly_permuted_by_experiment": true
+      },
+      "q_BH_six_exploratory_covariates": 0.872024642024642
+    },
+    "branch_count": {
+      "n_measured_mothers": 27,
+      "seed_positive": 10,
+      "seed_zero": 17,
+      "n_missing": 0,
+      "mean_in_zero_seed_mothers": 3.1176470588235294,
+      "mean_in_seed_positive_mothers": 3.2,
+      "mean_difference_positive_minus_zero": 0.08235294117647074,
+      "exact_stratified_permutation": {
+        "n_measured_mothers": 27,
+        "n_missing": 0,
+        "n_informative_strata": 2,
+        "uninformative_stratum_mothers": 0,
+        "total_assignments": 360360,
+        "tail_assignments": 255918,
+        "p_two_sided": 0.7101731601731601,
+        "observed_centered_positive_sum": 1.5833333333333333,
+        "fixed_positive_counts_by_informative_stratum": [
+          {
+            "stratum": [
+              "dni"
+            ],
+            "n": 12,
+            "n_positive": 7,
+            "n_combinations": 792
+          },
+          {
+            "stratum": [
+              "ndni"
+            ],
+            "n": 15,
+            "n_positive": 3,
+            "n_combinations": 455
+          }
+        ],
+        "outcome_not_randomly_permuted_by_experiment": true
+      },
+      "q_BH_six_exploratory_covariates": 0.872024642024642
+    },
+    "mean_head_damage_fraction": {
+      "n_measured_mothers": 27,
+      "seed_positive": 10,
+      "seed_zero": 17,
+      "n_missing": 0,
+      "mean_in_zero_seed_mothers": 0.8541176470588239,
+      "mean_in_seed_positive_mothers": 0.8300000000000001,
+      "mean_difference_positive_minus_zero": -0.0241176470588238,
+      "exact_stratified_permutation": {
+        "n_measured_mothers": 27,
+        "n_missing": 0,
+        "n_informative_strata": 2,
+        "uninformative_stratum_mothers": 0,
+        "total_assignments": 360360,
+        "tail_assignments": 217398,
+        "p_two_sided": 0.6032800532800533,
+        "observed_centered_positive_sum": -0.08966666666666667,
+        "fixed_positive_counts_by_informative_stratum": [
+          {
+            "stratum": [
+              "dni"
+            ],
+            "n": 12,
+            "n_positive": 7,
+            "n_combinations": 792
+          },
+          {
+            "stratum": [
+              "ndni"
+            ],
+            "n": 15,
+            "n_positive": 3,
+            "n_combinations": 455
+          }
+        ],
+        "outcome_not_randomly_permuted_by_experiment": true
+      },
+      "q_BH_six_exploratory_covariates": 0.872024642024642
+    },
+    "scored_lateral_head_count": {
+      "n_measured_mothers": 27,
+      "seed_positive": 10,
+      "seed_zero": 17,
+      "n_missing": 0,
+      "mean_in_zero_seed_mothers": 1.3529411764705883,
+      "mean_in_seed_positive_mothers": 2.2,
+      "mean_difference_positive_minus_zero": 0.8470588235294119,
+      "exact_stratified_permutation": {
+        "n_measured_mothers": 27,
+        "n_missing": 0,
+        "n_informative_strata": 2,
+        "uninformative_stratum_mothers": 0,
+        "total_assignments": 360360,
+        "tail_assignments": 72040,
+        "p_two_sided": 0.1999111999111999,
+        "observed_centered_positive_sum": 4.183333333333334,
+        "fixed_positive_counts_by_informative_stratum": [
+          {
+            "stratum": [
+              "dni"
+            ],
+            "n": 12,
+            "n_positive": 7,
+            "n_combinations": 792
+          },
+          {
+            "stratum": [
+              "ndni"
+            ],
+            "n": 15,
+            "n_positive": 3,
+            "n_combinations": 455
+          }
+        ],
+        "outcome_not_randomly_permuted_by_experiment": true
+      },
+      "q_BH_six_exploratory_covariates": 0.5997335997335997
+    }
+  },
+  "height_sensitivity": {
+    "leave_out_source_prefix": {
+      "ES": {
+        "removed_prefix": "ES",
+        "n_remaining_mothers": 20,
+        "p_two_sided": 0.0007215007215007215,
+        "n_assignments": 1386
+      },
+      "SD": {
+        "removed_prefix": "SD",
+        "n_remaining_mothers": 19,
+        "p_two_sided": 0.0659090909090909,
+        "n_assignments": 9240
+      },
+      "WG": {
+        "removed_prefix": "WG",
+        "n_remaining_mothers": 22,
+        "p_two_sided": 0.010833333333333334,
+        "n_assignments": 26400
+      },
+      "WR": {
+        "removed_prefix": "WR",
+        "n_remaining_mothers": 20,
+        "p_two_sided": 0.2945165945165945,
+        "n_assignments": 6930
+      }
+    },
+    "leave_out_highest_successful_height": {
+      "source_plant_identifier": "WR51",
+      "height_cm": 77,
+      "n_mothers": 26,
+      "p_two_sided": 0.07473082473082474,
+      "n_assignments": 72072
+    },
+    "source_prefix_and_apical_treatment_conditional": {
+      "n_measured_mothers": 27,
+      "n_missing": 0,
+      "n_informative_strata": 4,
+      "uninformative_stratum_mothers": 12,
+      "total_assignments": 432,
+      "tail_assignments": 10,
+      "p_two_sided": 0.023148148148148147,
+      "observed_centered_positive_sum": 49.083333333333336,
+      "fixed_positive_counts_by_informative_stratum": [
+        {
+          "stratum": [
+            "dni",
+            "SD"
+          ],
+          "n": 4,
+          "n_positive": 2,
+          "n_combinations": 6
+        },
+        {
+          "stratum": [
+            "dni",
+            "WR"
+          ],
+          "n": 3,
+          "n_positive": 2,
+          "n_combinations": 3
+        },
+        {
+          "stratum": [
+            "ndni",
+            "ES"
+          ],
+          "n": 4,
+          "n_positive": 2,
+          "n_combinations": 6
+        },
+        {
+          "stratum": [
+            "ndni",
+            "WR"
+          ],
+          "n": 4,
+          "n_positive": 1,
+          "n_combinations": 4
+        }
+      ],
+      "outcome_not_randomly_permuted_by_experiment": true
+    }
+  },
+  "interpretive_ceiling": {
+    "source_prefixes_are_verified_field_sites": false,
+    "flowering_fields_are_complete_verified_anthesis": false,
+    "post_treatment_plant_height_is_pre_exposure_causal_covariate": false,
+    "rosette_size_measurements_are_complete_and_pretreatment": false,
+    "number_of_heads_is_non_endogenous_unconfounded_treatment": false,
+    "observed_damage_score_identifies_pollinator_vs_seed_predator": false,
+    "height_p_012_is_confirmatory_after_six_BH": false,
+    "joint_failure_due_to_one_arthropod_established": false,
+    "head_number_independent_of_maternal_condition": false,
+    "SLK_candidate_architecture_relative_fitness_identified": false,
+    "ANTO_ancestral_genetic_re_expression_or_heritability_estimated": false,
+    "parent_good_seed_positive_means_seedling_established": false,
+    "independent_new_plant_experiment_done_by_aza3": false
+  },
+  "scientific_conclusion": "AMBIENT_MATERNAL_SEED_FAILURE_NOT_DETERMINISTICALLY_EXPLAINED_BY_SIZE_OR_SCORED_DAMAGE_NO_CAUSE_IDENTIFIED"
+}
